@@ -134,6 +134,23 @@ Part 1 article contains Q1 through Q30. No synthetic questions were added.
 
 ## Test Results From June 26, 2026
 
+The `2026-06-26-direct-qa` experiment evaluates three answer models on all
+50 Razavi-bench tasks. Each answer model has three rollouts, and each answer is
+re-scored by two judge models: MiniMax M3 and DeepSeek V4 Pro.
+
+| Answer Model | Judge Model | Overall | Part 1 First 30 | Part 2 Last 20 |
+|---|---|---:|---:|---:|
+| Claude | MiniMax-M3 | 88.50% | 94.72% | 79.17% |
+| Claude | DeepSeek-V4-Pro | 90.33% | 95.00% | 83.33% |
+| GPT | MiniMax-M3 | 81.17% | 88.33% | 70.42% |
+| GPT | DeepSeek-V4-Pro | 81.83% | 86.67% | 74.58% |
+| Gemini | MiniMax-M3 | 80.50% | 90.28% | 65.83% |
+| Gemini | DeepSeek-V4-Pro | 83.00% | 92.78% | 68.33% |
+
 <p align="center">
-  <img src="docs/assets/razavi_3rollout_model_rows.png" alt="Razavi-bench 2026-06-26 test results" width="86%"/>
+  <img src="docs/assets/judge_scores_deepseek.png" alt="Razavi-bench DeepSeek V4 Pro judge scores" width="86%"/>
+</p>
+
+<p align="center">
+  <img src="docs/assets/judge_scores_minimax.png" alt="Razavi-bench MiniMax M3 judge scores" width="86%"/>
 </p>
