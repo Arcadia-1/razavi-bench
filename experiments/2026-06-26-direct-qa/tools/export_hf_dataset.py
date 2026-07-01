@@ -1,21 +1,14 @@
 #!/usr/bin/env python3
-"""Export Hugging Face Dataset Viewer friendly JSONL files."""
+"""Export the Hugging Face Dataset Viewer task table."""
 
 from __future__ import annotations
 
-import json
 import re
 from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[3]
 DATA_DIR = ROOT / "data"
-EXPERIMENT_DIR = ROOT / "experiments" / "2026-06-26-direct-qa"
-FINAL_DEEPSEEK_SCORES = (
-    EXPERIMENT_DIR / "judge_outputs" / "deepseek-v4-pro-20260630-123714.jsonl"
-)
-
-
 def read_text(path: Path) -> str:
     return path.read_text(encoding="utf-8").strip()
 
@@ -56,40 +49,8 @@ def export_tasks() -> None:
     write_jsonl(DATA_DIR / "tasks.jsonl", rows)
 
 
-def export_model_answers() -> None:
-    rows = []
-    for family in ("claude", "gemini", "gpt"):
-        for rollout in (1, 2, 3):
-            path = EXPERIMENT_DIR / "model_outputs" / f"{family}-rollout-{rollout}.jsonl"
-            with path.open(encoding="utf-8") as f:
-                rows.extend(json.loads(line) for line in f)
-
-    rows.sort(key=lambda row: (row["model_family"], row["rollout"], row["task_slug"]))
-    write_jsonl(DATA_DIR / "model_answers_2026-06-26-direct-qa.jsonl", rows)
-
-
-def export_final_scores() -> None:
-    rows = []
-    with FINAL_DEEPSEEK_SCORES.open(encoding="utf-8") as f:
-        rows.extend(json.loads(line) for line in f)
-
-    rows.sort(
-        key=lambda row: (
-            row["answer_model_family"],
-            row["rollout"],
-            row["task_slug"],
-        )
-    )
-    write_jsonl(
-        DATA_DIR / "judge_scores_deepseek-v4-pro-20260630-123714.jsonl",
-        rows,
-    )
-
-
 def main() -> None:
     export_tasks()
-    export_model_answers()
-    export_final_scores()
 
 
 if __name__ == "__main__":

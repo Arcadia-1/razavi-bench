@@ -20,14 +20,6 @@ configs:
     data_files:
       - split: train
         path: data/tasks.jsonl
-  - config_name: model_answers_2026_06_26
-    data_files:
-      - split: train
-        path: data/model_answers_2026-06-26-direct-qa.jsonl
-  - config_name: judge_scores_deepseek_v4_pro_20260630_123714
-    data_files:
-      - split: train
-        path: data/judge_scores_deepseek-v4-pro-20260630-123714.jsonl
 ---
 
 <h1 align="center">Razavi-bench</h1>
@@ -82,13 +74,15 @@ Top-level files:
 
 ## Dataset Viewer Configs
 
-This Hugging Face dataset exposes three structured configs:
+This Hugging Face dataset exposes the benchmark task set as its structured
+viewer config:
 
 | Config | Rows | Description |
 |---|---:|---|
 | `tasks` | 50 | Benchmark prompts, golden solutions, part/question numbers, and local figure paths. |
-| `model_answers_2026_06_26` | 450 | Three independent rollouts for Claude, Gemini, and GPT on all 50 tasks. |
-| `judge_scores_deepseek_v4_pro_20260630_123714` | 450 | DeepSeek-V4-Pro scores and rationales for the June 26, 2026 experiment. |
+
+Model rollout outputs and judge scores are kept under `experiments/` as
+reproducibility artifacts, but they are not exposed as primary dataset configs.
 
 ## Task Format
 
