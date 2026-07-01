@@ -1,3 +1,35 @@
+---
+license: cc-by-4.0
+pretty_name: Razavi Bench
+language:
+  - en
+task_categories:
+  - question-answering
+  - visual-question-answering
+tags:
+  - analog-design
+  - circuit-design
+  - benchmark
+  - multimodal
+  - llm-evaluation
+  - electronic-design-automation
+size_categories:
+  - n<1K
+configs:
+  - config_name: tasks
+    data_files:
+      - split: train
+        path: data/tasks.jsonl
+  - config_name: model_answers_2026_06_26
+    data_files:
+      - split: train
+        path: data/model_answers_2026-06-26-direct-qa.jsonl
+  - config_name: judge_scores_deepseek_v4_pro_20260630_123714
+    data_files:
+      - split: train
+        path: data/judge_scores_deepseek-v4-pro-20260630-123714.jsonl
+---
+
 <h1 align="center">Razavi-bench</h1>
 
 <p align="center">
@@ -28,7 +60,7 @@ answer. Cleaned public AI model outputs are stored separately under
 | Part 1 | 30 questions, Q1-Q30 |
 | Part 2 | 20 questions, Q1-Q20 |
 | `task.toml` files | 0 |
-| Source PDFs | Not tracked |
+| Source PDFs | Included under `docs/papers/` with permission |
 
 ## Repository Layout
 
@@ -43,9 +75,20 @@ Top-level files:
 
 | Path | Purpose |
 |---|---|
+| `data/` | Hugging Face Dataset Viewer friendly JSONL exports |
 | `evaluation_rubric.md` | 0-4 evaluation guide used by judge scripts |
 | `experiments/` | Cleaned model outputs and per-experiment metadata |
 | `LICENSE` | License, source, and permission terms |
+
+## Dataset Viewer Configs
+
+This Hugging Face dataset exposes three structured configs:
+
+| Config | Rows | Description |
+|---|---:|---|
+| `tasks` | 50 | Benchmark prompts, golden solutions, part/question numbers, and local figure paths. |
+| `model_answers_2026_06_26` | 450 | Three independent rollouts for Claude, Gemini, and GPT on all 50 tasks. |
+| `judge_scores_deepseek_v4_pro_20260630_123714` | 450 | DeepSeek-V4-Pro scores and rationales for the June 26, 2026 experiment. |
 
 ## Task Format
 
