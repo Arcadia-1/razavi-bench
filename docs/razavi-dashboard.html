@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Razavi-Bench — Analog Design Reasoning Benchmark</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<style>
+  :root {
+    --bg-primary: #080808;
+    --bg-card: #111111;
+    --bg-card-hover: #1a1a1a;
+    --border: #222222;
+    --border-light: #333333;
+    --text-primary: #f0f0f0;
+    --text-secondary: #999999;
+    --text-muted: #666666;
+    --radius: 8px;
+    --radius-lg: 12px;
+    --max-width: 1100px;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ---- NAV ---- */
+  nav {
+    position: sticky; top:0; z-index:100;
+    background: rgba(8,8,8,0.88);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+  }
+  nav .nav-inner {
+    max-width: var(--max-width); margin:0 auto;
+    display:flex; align-items:center; justify-content:space-between;
+    height: 56px;
+  }
+  nav .logo {
+    display:flex; align-items:center; gap:10px;
+    font-weight:700; font-size:17px; color: var(--text-primary);
+    text-decoration:none;
+  }
+  nav .logo svg { width:28px; height:28px; }
+  nav .nav-links { display:flex; gap:24px; align-items:center; }
+  nav .nav-links a { color: var(--text-secondary); text-decoration:none; font-size:14px; font-weight:500; transition:color .15s; }
+  nav .nav-links a:hover { color: var(--text-primary); }
+  nav .btn-gh {
+    background: transparent; border: 1px solid var(--border-light);
+    color: var(--text-primary); padding: 6px 14px;
+    border-radius: 6px; font-size:13px; font-weight:600; cursor:pointer;
+    transition: all .15s; text-decoration:none; display:inline-flex; align-items:center; gap:6px;
+  }
+  nav .btn-gh:hover { background: var(--bg-card); border-color: var(--text-muted); }
+  nav .btn-gh svg { width:15px; height:15px; opacity:0.7; }
+
+  /* ---- HERO ---- */
+  .hero {
+    max-width: var(--max-width); margin:0 auto;
+    padding: 56px 24px 64px;
+  }
+  .hero-row1 {
+    display:flex; align-items:flex-start; justify-content:space-between; gap:48px;
+  }
+  .hero-left {
+    display:flex; align-items:flex-start; gap:16px;
+  }
+  .hero-left .hero-icon { flex-shrink:0; margin-top:8px; }
+  .hero-left .hero-icon svg { width:44px; height:44px; }
+  .hero-left h1 {
+    font-size: clamp(44px, 7vw, 64px); font-weight:500;
+    letter-spacing: -0.03em; line-height:1.0; margin-bottom:0;
+    color: var(--text-primary);
+  }
+  .hero-divider { height:2px; background:#444; margin:6px 0 18px; }
+  .hero-row2 { display:flex; justify-content:space-between; align-items:flex-start; gap:48px; }
+  .hero-left .hero-sub {
+    color: #b0b0b0; font-size:18px;
+    line-height:1.6; margin-bottom:0; max-width:580px;
+  }
+  .hero-meta {
+    flex-shrink:0; padding-top:0;
+  }
+  .hero-meta .meta-row {
+    display:flex; justify-content:space-between; gap:24px;
+    font-size:13px; line-height:1.7;
+  }
+  .hero-meta .meta-row .meta-key { color: var(--text-muted); text-align:left; }
+  .hero-meta .meta-row .meta-val { color: var(--text-primary); font-weight:600; text-align:right; }
+
+  /* ---- SECTIONS ---- */
+  section { max-width: var(--max-width); margin:0 auto; padding: 0 24px 56px; }
+  .sec-head { margin-bottom:20px; }
+  .sec-head h2 { margin:0 0 14px 0; font-size:24px; font-weight:700; letter-spacing:-0.02em; color: var(--text-primary); }
+  .sec-head .sec-controls { display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+  section h3 { font-size:15px; font-weight:600; margin-bottom:16px; color: var(--text-secondary); }
+
+  /* ---- TOGGLES ---- */
+  .toggle-group { display:flex; gap:4px; background: var(--bg-card); border-radius:0; padding:3px; border: 1px solid var(--border); }
+  .toggle-group button {
+    padding: 6px 14px; border:none; border-radius:0;
+    font-size:13px; font-weight:600; cursor:pointer;
+    background: transparent; color: var(--text-secondary);
+    transition: all .15s; font-family:inherit; white-space:nowrap;
+  }
+  .toggle-group button.active { background: var(--text-primary); color: #000; }
+  .toggles-row { display:flex; gap:16px; align-items:center; flex-wrap:wrap; }
+
+  /* ---- LEADERBOARD ---- */
+  .table-wrap { overflow-x:auto; border-radius: var(--radius-lg); border: 1px solid var(--border); }
+  table { width:100%; border-collapse:collapse; font-size:14px; min-width:520px; }
+  thead th {
+    text-align:left; padding: 14px 20px;
+    font-size:11px; font-weight:600; color: var(--text-muted);
+    text-transform:uppercase; letter-spacing:0.05em;
+    background: var(--bg-card); border-bottom: 1px solid var(--border);
+  }
+  thead th:last-child { text-align:left; }
+  thead th:first-child { width:48px; text-align:center; }
+  tbody td { padding: 16px 20px; border-bottom: 1px solid var(--border); }
+  tbody tr { transition: background .15s; }
+  /* part-col and score-col linked: hover either → both light up */
+  .part-col:hover, .score-col:hover { background: var(--bg-card-hover); }
+  .part-col:hover + .score-col { background: var(--bg-card-hover); }
+  .score-col:hover { /* handled above */ }
+  /* model-col and rank: independent */
+  .model-col:hover { background: var(--bg-card-hover); }
+  .rank:hover { background: var(--bg-card-hover); }
+  tbody tr:last-child td { border-bottom:none; }
+  tbody .rank { text-align:center; font-weight:700; font-size:14px; width:48px; }
+  .rank-badge {
+    display:inline-flex; align-items:center; justify-content:center;
+    width:26px; height:26px; border-radius:50%; font-weight:700; font-size:12px;
+  }
+  .rank-1 { background: #f0f0f0; color:#000; }
+  .rank-2 { background: #999999; color:#000; }
+  .rank-3 { background: #666666; color:#fff; }
+  .rank-n { color: var(--text-secondary); }
+
+  .model-col { font-weight:600; white-space:nowrap; }
+  .score-col { padding-right:8px; }
+  .score-bar { display:flex; align-items:center; gap:10px; }
+  .score-bar .bar-track {
+    flex:1; height:18px; background: #1a1a1a; position:relative; min-width:180px;
+  }
+  /* bottom layer: faint full-width bar */
+  .score-bar .bar-base {
+    position:absolute; left:0; top:2px; bottom:2px; width:100%;
+    background: rgba(255,255,255,0.03); border-radius: 2px;
+  }
+  /* fill layer — pattern set inline per bar via CSS variable */
+  .score-bar .bar-fill {
+    height:calc(100% - 4px); top:2px; position:absolute; left:0;
+    transition: width .5s cubic-bezier(.4,0,.2,1);
+    border-radius: 2px;
+    background-image: var(--bar-pattern);
+    background-size: 8px 8px;
+  }
+  /* Overall: solid, no pattern */
+  .score-bar .bar-fill.pat-overall { --bar-pattern: none; }
+  /* Part 1: light diagonal lines */
+  .score-bar .bar-fill.pat-part1 {
+    --bar-pattern: repeating-linear-gradient(-45deg, transparent, transparent 4px, rgba(255,255,255,0.13) 4px, rgba(255,255,255,0.13) 6px);
+  }
+  /* Part 2: denser diagonal lines */
+  .score-bar .bar-fill.pat-part2 {
+    --bar-pattern: repeating-linear-gradient(-45deg, transparent, transparent 2px, rgba(255,255,255,0.16) 2px, rgba(255,255,255,0.16) 4px);
+  }
+  .score-bar .bar-err {
+    position:absolute; top:50%; height:1px;
+    background: rgba(255,255,255,0.40);
+    transition: left .5s, width .5s;
+    transform:translateY(-50%);
+  }
+  /* dumbbell dots — fill set inline per bar, white ring via box-shadow */
+  .score-bar .bar-err::before,
+  .score-bar .bar-err::after {
+    content:''; position:absolute;
+    width:6px; height:6px; border-radius:50%;
+    top:50%; transform:translate(-50%,-50%);
+    background: var(--dot-color);
+    box-shadow: 0 0 0 1.5px #fff;
+  }
+  .score-bar .bar-err::before { left:0; }
+  .score-bar .bar-err::after { left:100%; }
+  .score-bar .bar-val {
+    font-weight:700; font-size:15px; width:62px; text-align:right;
+    font-variant-numeric: tabular-nums; color: var(--text-primary); flex-shrink:0;
+  }
+  .score-bar .bar-sub {
+    font-size:10px; color: var(--text-muted); font-weight:400; display:block;
+  }
+  .breakdown-col { font-size:15px; font-weight:700; color: var(--text-primary); white-space:nowrap; text-align:right; }
+  .breakdown-col .bd-sub { font-size:10px; color: var(--text-muted); font-weight:400; display:block; }
+
+  /* ---- CHART AREAS ---- */
+  .chart-grid { display:grid; grid-template-columns: 1fr 1fr; gap:20px; }
+  .chart-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 0; padding: 24px;
+  }
+  .chart-card .chart-wrap { position:relative; height:300px; }
+
+  /* ---- RUBRIC ---- */
+  .rubric-table td:first-child { font-weight:700; font-size:18px; text-align:center; width:60px; color: var(--text-primary); }
+  .rubric-table td:nth-child(2) { font-weight:600; white-space:nowrap; }
+  .rubric-table td:nth-child(3) { color: var(--text-secondary); font-size:13px; }
+
+  /* ---- FOOTER ---- */
+  footer {
+    border-top: 1px solid var(--border); padding: 32px 24px; text-align:center;
+    color: var(--text-muted); font-size:13px; max-width: var(--max-width); margin:0 auto;
+  }
+  footer a { color: var(--text-secondary); text-decoration:underline; }
+  footer a:hover { color: var(--text-primary); }
+  footer .footer-row { margin-bottom:6px; }
+
+  /* ---- RESPONSIVE ---- */
+  @media (max-width: 768px) {
+    .hero-row1 { flex-direction:column; gap:20px; }
+    .chart-grid { grid-template-columns: 1fr; }
+    .toggles-row { flex-direction:column; align-items:flex-start; }
+  }
+  @media (max-width: 480px) {
+    nav .nav-links a:not(.btn-gh) { display:none; }
+    .sec-head { flex-direction:column; align-items:flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ========== NAV ========== -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <svg viewBox="0 0 28 28" fill="none"><rect x="2" y="2" width="11" height="8" rx="2" fill="#e0e0e0"/><rect x="15" y="2" width="11" height="8" rx="2" fill="#888"/><rect x="2" y="12" width="7" height="14" rx="2" fill="#1a1a1a" stroke="#333" stroke-width="1"/><rect x="15" y="12" width="7" height="14" rx="2" fill="#1a1a1a" stroke="#333" stroke-width="1"/><path d="M11 18 L15 18" stroke="#e0e0e0" stroke-width="2" stroke-linecap="round"/></svg>
+      Razavi-Bench
+    </a>
+    <div class="nav-links">
+      <a href="#leaderboard">Leaderboard</a>
+      <a href="#rubric">Rubric</a>
+      <a href="https://github.com/Arcadia-1/razavi-bench" class="btn-gh" target="_blank" rel="noopener">
+        <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ========== HERO ========== -->
+<header class="hero">
+  <div class="hero-row1">
+    <div class="hero-left">
+      <div class="hero-icon">
+        <svg viewBox="0 0 36 36" fill="none"><rect x="3" y="3" width="13" height="9" rx="3" fill="#e0e0e0"/><rect x="19" y="3" width="13" height="9" rx="3" fill="#888"/><rect x="3" y="16" width="8" height="17" rx="3" fill="#1a1a1a" stroke="#333" stroke-width="1.5"/><rect x="19" y="16" width="8" height="17" rx="3" fill="#1a1a1a" stroke="#333" stroke-width="1.5"/><path d="M13 24 L19 24" stroke="#e0e0e0" stroke-width="2.5" stroke-linecap="round"/></svg>
+      </div>
+      <h1>Razavi-Bench</h1>
+    </div>
+    <div class="hero-meta">
+      <div class="meta-row"><span class="meta-key">Tasks</span><span class="meta-val">50</span></div>
+      <div class="meta-row"><span class="meta-key">Rubric</span><span class="meta-val">0–4</span></div>
+      <div class="meta-row"><span class="meta-key">Models</span><span class="meta-val">3</span></div>
+      <div class="meta-row"><span class="meta-key">Judges</span><span class="meta-val">2</span></div>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+  <div class="hero-row2">
+    <p class="hero-sub">
+      An expert-curated benchmark that tests whether frontier AI<br>
+      models can reason about analog circuit design.
+    </p>
+  </div>
+</header>
+
+<!-- ========== LEADERBOARD + CHARTS ========== -->
+<section id="leaderboard">
+  <div class="sec-head">
+    <h2>Leaderboard</h2>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>#</th><th>Model</th><th colspan="2">Score</th></tr>
+      </thead>
+      <tbody id="lbBody"></tbody>
+    </table>
+  </div>
+
+  <div class="chart-grid" style="margin-top:32px;">
+    <div class="chart-card">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px;flex-wrap:wrap;">
+        <h3 style="margin:0;">Score Distribution</h3>
+        <div style="display:flex;gap:8px;">
+          <div class="toggle-group" id="distSubsetToggle">
+            <button class="active" data-subset="all">All</button>
+            <button data-subset="part1">Part 1</button>
+            <button data-subset="part2">Part 2</button>
+          </div>
+        </div>
+      </div>
+      <div class="chart-wrap"><canvas id="distChart"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px;flex-wrap:wrap;">
+        <h3 style="margin:0;">Judge Agreement</h3>
+        <div class="toggle-group" id="judgeCmpSubsetToggle">
+          <button class="active" data-subset="all">All</button>
+          <button data-subset="part1">Part 1</button>
+          <button data-subset="part2">Part 2</button>
+        </div>
+      </div>
+      <div class="chart-wrap"><canvas id="judgeCompareChart"></canvas></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== RUBRIC ========== -->
+<section id="rubric">
+  <h2 style="margin-bottom:20px;">Evaluation Rubric</h2>
+  <div class="table-wrap">
+    <table class="rubric-table">
+      <thead>
+        <tr><th>Score</th><th>Meaning</th><th>Criteria</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>4</td><td style="color:#22c55e;">Correct</td><td>Correct conclusion and reasoning; topology, device roles, dominant mechanism, trend, and key assumptions are right.</td></tr>
+        <tr><td>3</td><td style="color:#86efac;">Mostly correct</td><td>Main conclusion is right, with a minor omission, imprecision, or modeling flaw that does not change the result.</td></tr>
+        <tr><td>2</td><td style="color:#fbbf24;">Partially correct</td><td>Identifies some relevant mechanism, but misses an important circuit detail, trend, or design consequence.</td></tr>
+        <tr><td>1</td><td style="color:#f97316;">Mostly incorrect</td><td>Main conclusion is wrong, but the answer contains a small amount of relevant circuit understanding.</td></tr>
+        <tr><td>0</td><td style="color:#ef4444;">Incorrect / unusable</td><td>Fundamentally wrong, internally inconsistent, or based on a mistaken topology/device/connection.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="color:var(--text-muted);font-size:13px;margin-top:12px;">
+    Judges evaluate against golden solutions prioritizing analog-circuit reasoning over surface similarity. See <a href="https://github.com/Arcadia-1/razavi-bench" style="color:var(--text-secondary);">GitHub</a> for full details.
+  </p>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <div class="footer-row"><strong>Razavi-Bench</strong> — An expert-curated analog-design reasoning benchmark.</div>
+  <div class="footer-row">
+    Questions &amp; figures adapted with permission from Behzad Razavi, <em>Analog Design Experiments With AI</em>, IEEE Solid-State Circuits Magazine (2025–2026).
+  </div>
+  <div class="footer-row">
+    Dataset: <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> · Code: <a href="https://opensource.org/licenses/MIT">MIT</a> ·
+    <a href="https://github.com/Arcadia-1/razavi-bench">GitHub</a>
+  </div>
+</footer>
+
+<script>
+// ===== EMBEDDED DATA =====
+const RAW = [
+  {jf:"minimax",am:"claude",r:1,p:"part1",sc:95.0,dist:{0:1,1:0,2:0,3:2,4:27}},
+  {jf:"minimax",am:"claude",r:1,p:"part2",sc:75.0,dist:{0:1,1:3,2:2,3:3,4:11}},
+  {jf:"minimax",am:"claude",r:1,p:"all",sc:87.0,dist:{0:2,1:3,2:2,3:5,4:38}},
+  {jf:"minimax",am:"claude",r:2,p:"part1",sc:94.1667,dist:{0:1,1:0,2:1,3:1,4:27}},
+  {jf:"minimax",am:"claude",r:2,p:"part2",sc:80.0,dist:{0:0,1:4,2:1,3:2,4:13}},
+  {jf:"minimax",am:"claude",r:2,p:"all",sc:88.5,dist:{0:1,1:4,2:2,3:3,4:40}},
+  {jf:"minimax",am:"claude",r:3,p:"part1",sc:95.0,dist:{0:0,1:1,2:0,3:3,4:26}},
+  {jf:"minimax",am:"claude",r:3,p:"part2",sc:81.25,dist:{0:0,1:3,2:2,3:2,4:13}},
+  {jf:"minimax",am:"claude",r:3,p:"all",sc:89.5,dist:{0:0,1:4,2:2,3:5,4:39}},
+  {jf:"minimax",am:"gemini",r:1,p:"part1",sc:93.3333,dist:{0:0,1:0,2:2,3:4,4:24}},
+  {jf:"minimax",am:"gemini",r:1,p:"part2",sc:67.5,dist:{0:1,1:5,2:1,3:5,4:8}},
+  {jf:"minimax",am:"gemini",r:1,p:"all",sc:83.0,dist:{0:1,1:5,2:3,3:9,4:32}},
+  {jf:"minimax",am:"gemini",r:2,p:"part1",sc:90.0,dist:{0:0,1:1,2:3,3:3,4:23}},
+  {jf:"minimax",am:"gemini",r:2,p:"part2",sc:67.5,dist:{0:1,1:5,2:3,3:1,4:10}},
+  {jf:"minimax",am:"gemini",r:2,p:"all",sc:81.0,dist:{0:1,1:6,2:6,3:4,4:33}},
+  {jf:"minimax",am:"gemini",r:3,p:"part1",sc:87.5,dist:{0:1,1:1,2:1,3:6,4:21}},
+  {jf:"minimax",am:"gemini",r:3,p:"part2",sc:62.5,dist:{0:0,1:7,2:3,3:3,4:7}},
+  {jf:"minimax",am:"gemini",r:3,p:"all",sc:77.5,dist:{0:1,1:8,2:4,3:9,4:28}},
+  {jf:"minimax",am:"gpt",r:1,p:"part1",sc:87.5,dist:{0:1,1:2,2:1,3:3,4:23}},
+  {jf:"minimax",am:"gpt",r:1,p:"part2",sc:73.75,dist:{0:0,1:4,2:3,3:3,4:10}},
+  {jf:"minimax",am:"gpt",r:1,p:"all",sc:82.0,dist:{0:1,1:6,2:4,3:6,4:33}},
+  {jf:"minimax",am:"gpt",r:2,p:"part1",sc:88.3333,dist:{0:1,1:1,2:3,3:1,4:24}},
+  {jf:"minimax",am:"gpt",r:2,p:"part2",sc:60.0,dist:{0:1,1:7,2:2,3:3,4:7}},
+  {jf:"minimax",am:"gpt",r:2,p:"all",sc:77.0,dist:{0:2,1:8,2:5,3:4,4:31}},
+  {jf:"minimax",am:"gpt",r:3,p:"part1",sc:89.1667,dist:{0:0,1:3,2:0,3:4,4:23}},
+  {jf:"minimax",am:"gpt",r:3,p:"part2",sc:76.25,dist:{0:1,1:3,2:1,3:4,4:11}},
+  {jf:"minimax",am:"gpt",r:3,p:"all",sc:84.0,dist:{0:1,1:6,2:1,3:8,4:34}},
+  {jf:"deepseek",am:"claude",r:1,p:"part1",sc:94.1667,dist:{0:1,1:0,2:0,3:3,4:26}},
+  {jf:"deepseek",am:"claude",r:1,p:"part2",sc:78.75,dist:{0:0,1:3,2:3,3:2,4:12}},
+  {jf:"deepseek",am:"claude",r:1,p:"all",sc:88.0,dist:{0:1,1:3,2:3,3:5,4:38}},
+  {jf:"deepseek",am:"claude",r:2,p:"part1",sc:95.0,dist:{0:1,1:0,2:0,3:2,4:27}},
+  {jf:"deepseek",am:"claude",r:2,p:"part2",sc:85.0,dist:{0:0,1:1,2:3,3:3,4:13}},
+  {jf:"deepseek",am:"claude",r:2,p:"all",sc:91.0,dist:{0:1,1:1,2:3,3:5,4:40}},
+  {jf:"deepseek",am:"claude",r:3,p:"part1",sc:95.8333,dist:{0:0,1:1,2:0,3:2,4:27}},
+  {jf:"deepseek",am:"claude",r:3,p:"part2",sc:83.75,dist:{0:0,1:1,2:4,3:2,4:13}},
+  {jf:"deepseek",am:"claude",r:3,p:"all",sc:91.0,dist:{0:0,1:2,2:4,3:4,4:40}},
+  {jf:"deepseek",am:"gemini",r:1,p:"part1",sc:95.8333,dist:{0:0,1:0,2:1,3:3,4:26}},
+  {jf:"deepseek",am:"gemini",r:1,p:"part2",sc:70.0,dist:{0:0,1:5,2:3,3:3,4:9}},
+  {jf:"deepseek",am:"gemini",r:1,p:"all",sc:85.5,dist:{0:0,1:5,2:4,3:6,4:35}},
+  {jf:"deepseek",am:"gemini",r:2,p:"part1",sc:91.6667,dist:{0:0,1:1,2:1,3:5,4:23}},
+  {jf:"deepseek",am:"gemini",r:2,p:"part2",sc:67.5,dist:{0:0,1:5,2:4,3:3,4:8}},
+  {jf:"deepseek",am:"gemini",r:2,p:"all",sc:82.0,dist:{0:0,1:6,2:5,3:8,4:31}},
+  {jf:"deepseek",am:"gemini",r:3,p:"part1",sc:90.8333,dist:{0:1,1:0,2:1,3:5,4:23}},
+  {jf:"deepseek",am:"gemini",r:3,p:"part2",sc:66.25,dist:{0:0,1:6,2:3,3:3,4:8}},
+  {jf:"deepseek",am:"gemini",r:3,p:"all",sc:81.0,dist:{0:1,1:6,2:4,3:8,4:31}},
+  {jf:"deepseek",am:"gpt",r:1,p:"part1",sc:86.6667,dist:{0:2,1:2,2:0,3:2,4:24}},
+  {jf:"deepseek",am:"gpt",r:1,p:"part2",sc:76.25,dist:{0:0,1:3,2:3,3:4,4:10}},
+  {jf:"deepseek",am:"gpt",r:1,p:"all",sc:82.5,dist:{0:2,1:5,2:3,3:6,4:34}},
+  {jf:"deepseek",am:"gpt",r:2,p:"part1",sc:85.0,dist:{0:3,1:1,2:1,3:1,4:24}},
+  {jf:"deepseek",am:"gpt",r:2,p:"part2",sc:63.75,dist:{0:0,1:7,2:4,3:0,4:9}},
+  {jf:"deepseek",am:"gpt",r:2,p:"all",sc:76.5,dist:{0:3,1:8,2:5,3:1,4:33}},
+  {jf:"deepseek",am:"gpt",r:3,p:"part1",sc:88.3333,dist:{0:2,1:1,2:0,3:3,4:24}},
+  {jf:"deepseek",am:"gpt",r:3,p:"part2",sc:82.5,dist:{0:0,1:2,2:3,3:2,4:13}},
+  {jf:"deepseek",am:"gpt",r:3,p:"all",sc:86.0,dist:{0:2,1:3,2:3,3:5,4:37}},
+];
+
+const MODEL_NAMES = { claude: "Claude Opus 4.8", gemini: "Gemini 3.1 Pro", gpt: "GPT-5.5" };
+const MODEL_ORDER = ["claude", "gemini", "gpt"];
+const SCORE_MEANINGS = ['Incorrect', 'Mostly incorrect', 'Partially correct', 'Mostly correct', 'Correct'];
+const SCORE_COLORS = ['#ef4444','#f97316','#fbbf24','#86efac','#22c55e'];
+const BAR_COLORS = { claude:'#3b82f6', gemini:'#f59e0b', gpt:'#ef4444' };
+
+function avg(arr) { return arr.reduce((a,b)=>a+b,0) / arr.length; }
+
+function getRollup(jf, am, part) {
+  const rows = RAW.filter(r => r.jf === jf && r.am === am && r.p === part);
+  const scores = rows.map(r => r.sc);
+  const dist = {0:0,1:0,2:0,3:0,4:0};
+  rows.forEach(r => { for(let k=0;k<=4;k++) dist[k] += r.dist[k]; });
+  return { mean: avg(scores), min: Math.min(...scores), max: Math.max(...scores), dist, n: rows[0]?.n||0 };
+}
+
+// Average: per-rollout mean of two judges, then mean/min/max across rollouts
+function getAvgRollup(am, part) {
+  const r1 = RAW.filter(r => r.jf === "minimax" && r.am === am && r.p === part);
+  const r2 = RAW.filter(r => r.jf === "deepseek" && r.am === am && r.p === part);
+  const scores = [0,1,2].map(i => (r1[i].sc + r2[i].sc) / 2);
+  const dist = {0:0,1:0,2:0,3:0,4:0};
+  const all = [...r1, ...r2]; // 2 judges × 3 rollouts = 6 rows
+  all.forEach(r => { for(let k=0;k<=4;k++) dist[k] += r.dist[k]; });
+  for(let k=0;k<=4;k++) dist[k] = Math.round(dist[k] / all.length);
+  const total = Object.values(dist).reduce((a,b)=>a+b,0);
+  const distPct = {}; for(let k=0;k<=4;k++) distPct[k] = total ? (dist[k] / total * 100) : 0;
+  return { mean: avg(scores), min: Math.min(...scores), max: Math.max(...scores), dist, distPct, n: r1[0]?.n||0 };
+}
+
+let distSubset = "all";
+let cmpSubset = "all";
+
+function buildLeaderboard() {
+  const rows = [];
+  MODEL_ORDER.forEach(am => {
+    rows.push({am, part:'Overall', ...getAvgRollup(am,"all")});
+    rows.push({am, part:'Part 1', ...getAvgRollup(am,"part1")});
+    rows.push({am, part:'Part 2', ...getAvgRollup(am,"part2")});
+  });
+  // group by model, sort by Overall descending
+  const models = MODEL_ORDER.map(am => ({ am, overall: rows.find(r=>r.am===am&&r.part==='Overall').mean }))
+    .sort((a,b)=>b.overall-a.overall);
+  const rankMap = {}; models.forEach((m,i)=> rankMap[m.am]=i+1);
+
+  document.getElementById("lbBody").innerHTML = rows.map((d,i) => {
+    const rk = rankMap[d.am];
+    const rkCls = rk===1?"rank-1":rk===2?"rank-2":rk===3?"rank-3":"rank-n";
+    const pMin = d.min, pMax = d.max;
+    const bc = BAR_COLORS[d.am];
+    const patCls = d.part === 'Overall' ? 'pat-overall' : d.part === 'Part 1' ? 'pat-part1' : 'pat-part2';
+    const isFirst = (i===0 || rows[i-1].am!==d.am);
+    return `<tr data-model="${d.am}">
+      ${isFirst ? `<td class="rank" rowspan="3"><span class="rank-badge ${rkCls}">${rk}</span></td>
+      <td class="model-col" rowspan="3">${MODEL_NAMES[d.am]}</td>` : ''}
+      <td class="part-col" style="padding:6px 20px;font-size:13px;color:var(--text-secondary);font-weight:500;">${d.part}</td>
+      <td class="score-col">
+        <div class="score-bar">
+          <div class="bar-track">
+            <div class="bar-base"></div>
+            <div class="bar-fill ${patCls}" style="width:${d.mean}%;background-color:${bc}"></div>
+            <div class="bar-err" style="left:${pMin}%;width:${pMax-pMin}%;--dot-color:${bc}"></div>
+          </div>
+          <span class="bar-val">${d.mean.toFixed(1)}%<span class="bar-sub">${d.min.toFixed(1)}–${d.max.toFixed(1)}%</span></span>
+        </div>
+      </td>
+    </tr>`;
+  }).join("");
+}
+
+function buildDistChart(subset) {
+  const ctx = document.getElementById("distChart").getContext("2d");
+  if (ctx._chart) ctx._chart.destroy();
+  const datasets = [0,1,2,3,4].map(score => ({
+    label: SCORE_MEANINGS[score],
+    data: MODEL_ORDER.map(m => {
+      return getAvgRollup(m,subset).distPct[score];
+    }),
+    rawCounts: MODEL_ORDER.map(m => {
+      return getAvgRollup(m,subset).dist[score];
+    }),
+    backgroundColor: SCORE_COLORS[score], borderColor:'#111111', borderWidth:2, borderRadius:0,
+  }));
+  const ch = new Chart(ctx, {
+    type:'bar', data:{ labels: MODEL_ORDER.map(m=>MODEL_NAMES[m]), datasets },
+    options:{
+      responsive:true, maintainAspectRatio:false, indexAxis:'y',
+      plugins:{
+        legend:{ position:'bottom', labels:{ usePointStyle:false, boxWidth:10, boxHeight:10, padding:16, font:{size:11}, color:'#999' } },
+        tooltip:{
+          callbacks:{
+            label(ctx) { return ctx.dataset.label + ': ' + ctx.dataset.rawCounts[ctx.dataIndex] + ' questions'; }
+          }
+        }
+      },
+      scales:{
+        x:{ stacked:true, max:100, grid:{color:'#1a1a1a'}, ticks:{font:{size:11},color:'#999', callback:v=>v+'%'} },
+        y:{ stacked:true, grid:{display:false}, ticks:{color:'#ccc'} }
+      }
+    }
+  });
+  ctx._chart = ch;
+}
+
+function buildJudgeCompareChart(subset) {
+  const ctx = document.getElementById("judgeCompareChart").getContext("2d");
+  if (ctx._chart) ctx._chart.destroy();
+  const mm = MODEL_ORDER.map(m => getRollup("minimax",m,subset));
+  const ds = MODEL_ORDER.map(m => getRollup("deepseek",m,subset));
+
+  const ch = new Chart(ctx, {
+    type:'bar',
+    data:{
+      labels: MODEL_ORDER.map(m=>MODEL_NAMES[m]),
+      datasets:[
+        { label:'MiniMax Judge', data:mm.map(d=>d.mean), backgroundColor:'#3b82f6', borderColor:'#2b6fd4', borderWidth:1, borderRadius:0, barPercentage:0.45, categoryPercentage:0.75 },
+        { label:'DeepSeek Judge', data:ds.map(d=>d.mean), backgroundColor:'#ef4444', borderColor:'#d43a3a', borderWidth:1, borderRadius:0, barPercentage:0.45, categoryPercentage:0.75 }
+      ]
+    },
+    options:{
+      responsive:true, maintainAspectRatio:false,
+      plugins:{
+        legend:{ labels:{ usePointStyle:false, boxWidth:10, boxHeight:10, padding:24, color:'#999', font:{size:11} } },
+        tooltip:{
+          callbacks:{
+            label(ctx) { return ctx.dataset.label + ': ' + ctx.raw.toFixed(1) + '% (score ' + (ctx.raw/25).toFixed(2) + '/4.00)'; }
+          }
+        }
+      },
+      scales:{
+        y:{ min:0, max:100, ticks:{stepSize:20, callback:v=>v+'%', color:'#999', font:{size:11}}, grid:{color:'#1a1a1a'} },
+        x:{ grid:{display:false}, ticks:{color:'#ccc', font:{size:12}} }
+      }
+    },
+    plugins:[]
+  });
+  ctx._chart = ch;
+}
+
+function refreshAll() {
+  buildLeaderboard();
+  buildDistChart(distSubset);
+  buildJudgeCompareChart(cmpSubset);
+}
+
+// Score Distribution subset toggle
+document.querySelectorAll("#distSubsetToggle button").forEach(b => {
+  b.addEventListener("click", ()=>{
+    document.querySelectorAll("#distSubsetToggle button").forEach(x=>x.classList.remove("active"));
+    b.classList.add("active"); distSubset=b.dataset.subset; buildDistChart(distSubset);
+  });
+});
+
+// Judge Agreement subset toggle
+document.querySelectorAll("#judgeCmpSubsetToggle button").forEach(b => {
+  b.addEventListener("click", ()=>{
+    document.querySelectorAll("#judgeCmpSubsetToggle button").forEach(x=>x.classList.remove("active"));
+    b.classList.add("active"); cmpSubset=b.dataset.subset; buildJudgeCompareChart(cmpSubset);
+  });
+});
+
+Chart.defaults.color = '#999999';
+Chart.defaults.borderColor = '#262626';
+Chart.defaults.font.family = 'Inter, system-ui, sans-serif';
+refreshAll();
+</script>
+</body>
+</html>
