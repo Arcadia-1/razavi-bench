@@ -1,43 +1,85 @@
-Razavi-Bench License
+Razavi-Bench Repository License Terms
 
-Razavi-Bench is derived from Behzad Razavi's "Analog Design Experiments With
-AI--Part 1 [The Analog Mind]" and "Analog Design Experiments With AI--Part 2
-[The Analog Mind]", published in IEEE Solid-State Circuits Magazine.
+Copyright (c) 2026 Zhang Tuoken.
 
-The benchmark questions and related source materials are included or adapted
-with permission from Behzad Razavi. Original article, question, and figure
-copyrights remain with their respective rights holders, including Behzad Razavi
-and/or IEEE, as applicable.
+This repository contains software code, benchmark materials, and third-party
+source materials with different permission boundaries. The terms below apply
+unless a separate written agreement says otherwise.
 
-Dataset curation, task organization, metadata, cleaned transcripts, score
-tables, evaluation packaging, and documentation are Copyright (c) 2026 Zhang
-Tuoken and are licensed under the Creative Commons Attribution 4.0
-International License (CC BY 4.0):
+1. Scope
 
-https://creativecommons.org/licenses/by/4.0/
+"Software code" means scripts, tooling, workflow files, and original website
+implementation code whose primary purpose is to run, analyze, or display the
+benchmark.
 
-AI model responses are reproduced as research artifacts for transparency,
-comparison, and independent re-grading. They do not represent endorsement by
-Behzad Razavi, IEEE, OpenAI, Google, Anthropic, or any other model provider.
+"Benchmark materials" means tasks, prompts, questions, figures, source PDFs,
+golden solutions, evaluation rubrics, judge prompts, model outputs, score
+tables, metadata, derived datasets, dashboard-embedded benchmark data,
+documentation describing the benchmark, and any content adapted from Behzad
+Razavi's articles.
 
-Code in this repository, including scripts for formatting, evaluation, and
-analysis, is licensed under the MIT License:
+Some files, such as dashboard HTML pages, contain both software/UI code and
+embedded benchmark materials. The software/UI portions are covered by the
+software license below; the embedded benchmark materials are covered by the
+benchmark-materials terms below.
 
-Copyright (c) 2026 Zhang Tuoken
+2. Source Material and Third-Party Rights
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of
-this software and associated documentation files (the "Software"), to deal in
-the Software without restriction, including without limitation the rights to use,
-copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the
-Software, and to permit persons to whom the Software is furnished to do so,
-subject to the following conditions:
+Razavi-Bench includes or adapts source questions and figures from Behzad
+Razavi's "Analog Design Experiments With AI--Part 1 [The Analog Mind]" and
+"Analog Design Experiments With AI--Part 2 [The Analog Mind]", published in
+IEEE Solid-State Circuits Magazine.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+Those source materials are included or adapted in this repository with
+permission from Behzad Razavi. That permission does not grant third parties any
+right to redistribute, sublicense, republish, rehost, mirror, sell, or repackage
+the source materials or adapted benchmark materials. Original article,
+question, and figure copyrights remain with their respective rights holders,
+including Behzad Razavi and/or IEEE, as applicable.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+3. Benchmark Materials
+
+The benchmark materials are made available for public viewing, citation,
+non-commercial research reference, and local evaluation from this repository.
+You may publish aggregate evaluation results produced using Razavi-Bench,
+provided that you cite this repository and do not redistribute the benchmark
+materials themselves.
+
+You may not, without prior written permission from the project maintainers and
+any applicable rights holders:
+
+- copy, redistribute, sublicense, rehost, mirror, republish, sell, or otherwise
+  distribute the benchmark materials;
+- incorporate the benchmark materials into a third-party benchmark, dataset,
+  leaderboard, training set, fine-tuning set, evaluation suite, or packaged
+  data release;
+- use the benchmark materials to train or fine-tune models;
+- remove or obscure attribution, source, copyright, or permission notices.
+
+For permission requests, open an issue or contact the project maintainers.
+
+4. Software Code
+
+Software code in this repository is licensed under the Apache License, Version
+2.0:
+
+https://www.apache.org/licenses/LICENSE-2.0
+
+The Apache License applies only to software code. It does not apply to benchmark
+materials, third-party copyrighted materials, source PDFs, adapted questions,
+figures, golden solutions, judge prompts, model outputs, score tables, derived
+datasets, or embedded benchmark data.
+
+5. Model Outputs and Scores
+
+AI model responses, judge outputs, and score tables are reproduced as research
+artifacts for transparency, comparison, and independent re-grading. They do not
+represent endorsement by Behzad Razavi, IEEE, OpenAI, Google, Anthropic, or any
+other model provider.
+
+6. No Warranty
+
+The repository is provided for research use on an "AS IS" basis, without
+warranty of any kind, express or implied, including but not limited to the
+warranties of merchantability, fitness for a particular purpose, and
+noninfringement. Use of the repository is at your own risk.

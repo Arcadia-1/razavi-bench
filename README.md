@@ -1,5 +1,5 @@
 ---
-license: cc-by-4.0
+license: other
 pretty_name: Razavi Bench
 language:
   - en
@@ -123,15 +123,29 @@ produced the scores. New experiments should prefer the reusable evaluator in
 
 ## License
 
+Razavi-Bench uses mixed license terms. See `LICENSE` for the full terms.
+
 The benchmark includes or adapts source questions and figures from Behzad
 Razavi's *Analog Design Experiments With AI* articles with permission from
 Behzad Razavi. Original article, question, and figure copyrights remain with
 their respective rights holders, including Behzad Razavi and/or IEEE, as
-applicable.
+applicable. This permission does not grant third parties the right to
+redistribute, rehost, repackage, or incorporate the benchmark materials into
+other benchmark or dataset releases.
 
-Dataset curation, cleaned transcripts, score tables, metadata, and documentation
-are licensed under CC BY 4.0 as described in `LICENSE`. Code is licensed under
-the MIT License in `LICENSE`.
+Benchmark materials, including tasks, prompts, figures, source PDFs, golden
+solutions, evaluation rubrics, judge prompts, model outputs, score tables,
+metadata, derived datasets, dashboard-embedded benchmark data, and benchmark
+documentation, are made available for public viewing, citation, non-commercial
+research reference, and local evaluation from this repository only. They may not
+be redistributed, sublicensed, mirrored, republished, used for model training or
+fine-tuning, or incorporated into third-party benchmarks, datasets,
+leaderboards, training sets, or evaluation suites without prior written
+permission.
+
+Software code in this repository is licensed under the Apache License, Version
+2.0. The Apache License applies only to software code and not to benchmark
+materials or third-party copyrighted content.
 
 ## Notes
 
