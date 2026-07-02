@@ -121,6 +121,21 @@ Historical experiment-specific scoring scripts live with the experiment that
 produced the scores. New experiments should prefer the reusable evaluator in
 `tools/` and store the generated judge metadata with the experiment outputs.
 
+## Citation
+
+If you use Razavi-Bench, please cite this repository:
+
+```bibtex
+@misc{zhang2026razavibench,
+  title        = {Razavi-Bench: An Expert-Curated Benchmark for Analog-Design Reasoning},
+  author       = {Zhishuai Zhang and Behzad Razavi},
+  year         = {2026},
+  howpublished = {\url{https://github.com/Arcadia-1/razavi-bench}},
+  url          = {https://razavi-bench.tokenzhang.com/},
+  note         = {Benchmark repository}
+}
+```
+
 ## License
 
 Razavi-Bench uses mixed license terms. See `LICENSE` for the full terms.
