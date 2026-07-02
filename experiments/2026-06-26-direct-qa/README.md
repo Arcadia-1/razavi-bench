@@ -19,7 +19,8 @@ experiment.
 - `judge_outputs/`: per-answer judge model output JSONL files.
 - `judge_scores/summary.csv`: rollout-aware aggregate score table for reports
   and plots.
-- `tools/`: scripts used to generate `judge_outputs/*.jsonl`.
+- `tools/`: historical scripts used to generate this experiment's original
+  `judge_outputs/*.jsonl`.
 - `figures/`: MiniMax and DeepSeek score plots generated from
   `judge_scores/summary.csv`.
 
@@ -46,8 +47,11 @@ model-family, rollout, judge-family, and Part 1/Part 2/overall aggregates. Use
 it as the single summary source for reports and plots; use `judge_outputs/*.jsonl`
 when per-answer scores and rationales are needed.
 
-The judge scripts read API keys from environment variables or interactive input.
-They do not store credentials in the repository.
+The judge scripts in this directory are kept as a reproducibility snapshot for
+this experiment. New judge runs should generally use the repository-level
+`tools/evaluate_answers.py` evaluator and store its metadata JSON with the new
+judge outputs. The historical scripts read API keys from environment variables
+or interactive input. They do not store credentials in the repository.
 
 Examples:
 

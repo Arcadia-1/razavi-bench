@@ -70,6 +70,7 @@ Top-level files:
 | `data/` | Hugging Face Dataset Viewer friendly JSONL exports |
 | `evaluation_rubric.md` | 0-4 evaluation guide used by judge scripts |
 | `experiments/` | Cleaned model outputs and per-experiment metadata |
+| `tools/` | Current reusable evaluation utilities |
 | `LICENSE` | License, source, and permission terms |
 
 ## Dataset Viewer Configs
@@ -94,6 +95,17 @@ Each `golden_solution.md` contains the expected reasoning and final answer for
 evaluation. The golden answers were reviewed against the source articles,
 figures, and circuit analysis.
 
+## Evaluation Tools
+
+Use `tools/evaluate_answers.py` for new model-output scoring runs. It accepts an
+answer JSONL, reads each task's `instruction.md` and `golden_solution.md`, reads
+the repository-level `evaluation_rubric.md`, calls a configured judge API, and
+writes score JSONL plus a metadata manifest.
+
+The evaluator is intentionally separate from answer generation. Direct,
+agentic, and simulator-assisted runs should first save final answers, then use
+the same evaluator configuration for a comparable score pass.
+
 ## Experiments
 
 `experiments/` contains cleaned model outputs and per-experiment metadata. The
@@ -105,8 +117,9 @@ data, and internal record IDs.
 
 Automated judge scores, when present, are experiment metadata for transparency
 and re-grading. They are not a substitute for independent expert review.
-Experiment-specific scoring scripts live with the experiment that produced the
-scores.
+Historical experiment-specific scoring scripts live with the experiment that
+produced the scores. New experiments should prefer the reusable evaluator in
+`tools/` and store the generated judge metadata with the experiment outputs.
 
 ## License
 
