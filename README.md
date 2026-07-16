@@ -174,11 +174,12 @@ Part 1 article contains Q1 through Q30. No synthetic questions were added.
 - B. Razavi, "Analog Design Experiments With AI—Part 2 [The Analog Mind]," in
   IEEE Solid-State Circuits Magazine, vol. 18, no. 2, pp. 8-13, Spring 2026.
 
-## Test Results From June 26, 2026
+## Direct QA Results
 
-The `2026-06-26-direct-qa` experiment evaluates three answer models on all
-50 Razavi-bench tasks. Each answer model has three rollouts, and each answer is
-re-scored by two judge models: MiniMax M3 and DeepSeek V4 Pro.
+The `2026-06-26-direct-qa` baseline and `2026-07-15-direct-qa` follow-up each
+evaluate answer models over three rollouts of all 50 Razavi-bench tasks. Every
+answer is scored by MiniMax M3 and DeepSeek V4 Pro. The table below preserves
+the judge-specific June 26 baseline scores.
 
 | Answer Model | Judge Model | Overall | Part 1 First 30 | Part 2 Last 20 |
 |---|---|---:|---:|---:|
@@ -190,9 +191,5 @@ re-scored by two judge models: MiniMax M3 and DeepSeek V4 Pro.
 | Gemini | DeepSeek-V4-Pro | 83.00% | 92.78% | 68.33% |
 
 <p align="center">
-  <img src="docs/assets/judge_scores_deepseek.png" alt="Razavi-bench DeepSeek V4 Pro judge scores" width="86%"/>
-</p>
-
-<p align="center">
-  <img src="docs/assets/judge_scores_minimax.png" alt="Razavi-bench MiniMax M3 judge scores" width="86%"/>
+  <img src="docs/assets/direct_qa_rollout_mean_all_metrics.png" alt="Razavi-bench Direct QA three-rollout comparison" width="92%"/>
 </p>
