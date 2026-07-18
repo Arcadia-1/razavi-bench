@@ -81,8 +81,8 @@ sorted by Overall; Part 1 and Part 2 charts retain this same order.
 | 3 | GPT 5.6 Sol Pro | max | 94.86% | 77.08% | 87.75% |
 | 4 | Gemini 3.1 Pro | high | 91.53% | 66.88% | 81.67% |
 | 5 | GPT 5.5 | max | 87.50% | 72.08% | 81.33% |
-| 6 | Kimi K3 | default | 86.25% | 66.04% | 78.17% |
-| 7 | Kimi K2.7 Code | default | 82.92% | 65.00% | 75.75% |
+| 6 | Kimi K3 | max | 86.25% | 66.04% | 78.17% |
+| 7 | Kimi K2.7 | default | 82.92% | 65.00% | 75.75% |
 | 8 | MiniMax M3 | ultra | 60.42% | 53.75% | 57.75% |
 
 ## Figures
@@ -140,6 +140,10 @@ sorted by Overall; Part 1 and Part 2 charts retain this same order.
 **Figure 12. Overall, Part 1, and Part 2**
 
 ![All evaluated models - all metrics](figures/historical_all_all_metrics.png)
+
+**Figure 13. Overall, Part 1, and Part 2 without MiniMax M3**
+
+![All evaluated models except MiniMax M3 - all metrics](figures/historical_without_minimax_all_metrics.png)
 
 ## Evaluation
 
