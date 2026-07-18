@@ -1,0 +1,38 @@
+* Razavi-Bench Figure 11(a) - CMOS inverter, small-signal gain at the trip point
+* Same topology as fig11a_cmos_inverter_vtc.cir:
+*   M2 = PMOS pull-up (S=VDD,G=Vin,D=Vout,B=VDD), M1 = NMOS pull-down (S=GND,G=Vin,D=Vout,B=GND).
+* Purpose: bias the stage as an analog amplifier at its switching point and confirm
+*   the golden-solution small-signal result: high-gain INVERTING amplifier with
+*   Gm ~ (gmn + gmp) and Rout ~ (ron || rop), so Av ~ -(gmn+gmp)*(ron||rop).
+* Method: a large DC feedback resistor Rfb (out->in) self-biases the inverter at
+*   Vin = Vout = Vtrip (the maximum-gain point) without needing to guess the bias.
+*   A single-point Vdd DC "sweep" evaluates the operating point (avoids the verbose
+*   top-level .op model-card dump); gm/gds are read back inside .control.
+* Nominal assumptions: Sky130 1.8 V primitives (TT), VDD=1.8 V, L=0.15 um,
+*   Wn=1.26 um, Wp=3.0 um, Rfb=100 MOhm (DC-only feedback, negligible loading).
+.include "../../simulator/ngspice-sky130/models/sky130.lib.spice"
+
+Vdd vdd 0 1.8
+Rfb out in 100Meg
+.nodeset v(in)=0.63 v(out)=0.63
+
+* subckt pin order: d g s b
+Xm2 out in vdd vdd sky130_fd_pr__pfet_01v8 w=3.0u  l=0.15u
+Xm1 out in 0   0   sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+
+.dc Vdd 1.8 1.8 1
+.control
+run
+let gmn  = @m.xm1.msky130_fd_pr__nfet_01v8[gm]
+let gmp  = @m.xm2.msky130_fd_pr__pfet_01v8[gm]
+let gdsn = @m.xm1.msky130_fd_pr__nfet_01v8[gds]
+let gdsp = @m.xm2.msky130_fd_pr__pfet_01v8[gds]
+let Gm   = gmn + gmp
+let Rout = 1/(gdsn + gdsp)
+let Av   = -Gm * Rout
+print v(in) v(out)
+print gmn gmp Gm Rout Av
+quit
+.endc
+
+.end

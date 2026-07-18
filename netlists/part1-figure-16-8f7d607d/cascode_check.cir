@@ -1,0 +1,52 @@
+* Razavi-Bench Figure 16: executable Sky130 output-resistance check
+* Reviewed topology is preserved exactly in D/G/S order:
+*   M2 (NMOS): D=Vout G=Vb1 S=NX B=0
+*   M1 (PMOS): D=0    G=Vin S=NX B=NX
+* The undrawn bulk assumptions, values, and stimuli are documented below.
+
+.include "../../simulator/ngspice-sky130/models/sky130.lib.spice"
+
+* Added assumptions: 1.8 V supply, 100 kohm drawn load, fixed DC gates.
+VDD_SRC VDD 0 1.8
+VB1_SRC Vb1 0 1.50
+VIN_SRC Vin 0 0.00
+R_D VDD Vout 100k
+
+* Added bulk assumptions: NMOS bulk to ground; isolated PMOS well to its source.
+* Explicit numeric geometry is used on every drawn MOSFET.
+XM2 Vout Vb1 NX 0  sky130_fd_pr__nfet_01v8 w=10.00u l=0.15u
+XM1 0    Vin  NX NX sky130_fd_pr__pfet_01v8 w=20.00u l=0.15u
+
+* Zero-DC small-signal test current enters Vout from ground.
+ITEST 0 Vout DC 0 AC 1
+
+.op
+.control
+set noaskquit
+run
+
+let gm1=abs(@m.xm1.msky130_fd_pr__pfet_01v8[gm])
+let gds1=abs(@m.xm1.msky130_fd_pr__pfet_01v8[gds])
+let gm2=abs(@m.xm2.msky130_fd_pr__nfet_01v8[gm])
+let gds2=abs(@m.xm2.msky130_fd_pr__nfet_01v8[gds])
+let ro1=1/gds1
+let ro2=1/gds2
+let supply_current=-i(VDD_SRC)
+let razavi_rout=(1+gm2*ro2)/gm1+ro2
+let usual_cascode_rout=gm2*ro1*ro2
+
+print v(vout) v(nx) supply_current gm1 gds1 gm2 gds2 ro1 ro2
+print razavi_rout usual_cascode_rout
+
+ac lin 1 1 1
+setplot op1
+let loaded_rout=real(ac1.v(vout))
+let stack_rout=1/(1/loaded_rout-1/100000)
+let formula_error_pct=100*(stack_rout-razavi_rout)/razavi_rout
+let cascode_ratio=usual_cascode_rout/stack_rout
+print loaded_rout stack_rout razavi_rout formula_error_pct
+print usual_cascode_rout cascode_ratio
+quit
+.endc
+
+.end

@@ -1,0 +1,76 @@
+* Razavi-Bench part2 Figure 12 -- dynamic-latch divide-by-two
+* Panel (a) and panel (b) use the visible switch/inverter connectivity.
+
+.include "../../simulator/ngspice-sky130/models/sky130.lib.spice"
+
+.subckt INV in out vdd vss
+XP out in vdd vdd sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XN out in vss vss sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+.ends INV
+.model SWCLK sw ron=20 roff=1e12 vt=0.9 vh=0.05
+
+VDD vdd 0 1.8
+VCK cks 0 PULSE(0 1.8 50p 20p 20p 1.96n 4n)
+VCKB ckbs 0 PULSE(1.8 0 50p 20p 20p 1.96n 4n)
+RCK cks ck 10
+RCKB ckbs ckb 10
+
+* Panel (a): CK switch, Inv1, CKB switch, Inv2, Inv3, feedback.
+SA1 a_fb a_n1 ck 0 SWCLK
+XA1 a_n1 a_n2 vdd 0 INV
+SA2 a_n2 a_n3 ckb 0 SWCLK
+XA2 a_n3 a_n4 vdd 0 INV
+XA3 a_n4 a_fb vdd 0 INV
+
+* Panel (b): same loop plus the unclocked red feedforward inverter.
+SB1 b_fb b_n1 ck 0 SWCLK
+XB1 b_n1 b_n2 vdd 0 INV
+XBRED b_fb b_n2 vdd 0 INV
+SB2 b_n2 b_n3 ckb 0 SWCLK
+XB2 b_n3 b_n4 vdd 0 INV
+XB3 b_n4 b_fb vdd 0 INV
+
+* Explicit equal storage/load capacitance and weak leakage paths.
+CA1 a_n1 0 20f
+CA2 a_n2 0 20f
+CA3 a_n3 0 20f
+CA4 a_n4 0 20f
+CAF a_fb 0 20f
+CB1 b_n1 0 20f
+CB2 b_n2 0 20f
+CB3 b_n3 0 20f
+CB4 b_n4 0 20f
+CBF b_fb 0 20f
+RA1 a_n1 0 1G
+RA3 a_n3 0 1G
+RB1 b_n1 0 1G
+RB3 b_n3 0 1G
+* Measurement-only low-pass probes reject narrow clock-feedthrough crossings.
+RQA a_fb a_q 10k
+CQA a_q 0 50f
+RQB b_fb b_q 10k
+CQB b_q 0 50f
+
+.ic v(a_fb)=0 v(a_n1)=0 v(a_n2)=1.8 v(a_n3)=1.8 v(a_n4)=0
+.ic v(b_fb)=0 v(b_n1)=0 v(b_n2)=1.8 v(b_n3)=1.8 v(b_n4)=0
+
+.control
+set noaskquit
+set filetype=ascii
+option method=gear reltol=1e-3
+tran 5p 80n uic
+* Input clock period is 4 ns; correct division gives 8 ns.
+meas tran per_a trig v(a_q) val=0.9 rise=3 targ v(a_q) val=0.9 rise=4
+meas tran per_b trig v(b_q) val=0.9 rise=3 targ v(b_q) val=0.9 rise=4
+meas tran swing_a pp v(a_fb) from=30n to=80n
+meas tran swing_b pp v(b_fb) from=30n to=80n
+* Mid-hold samples expose panel (b)'s unclocked-path contention.
+meas tran a_n2_hold find v(a_n2) at=36n
+meas tran b_n2_hold find v(b_n2) at=36n
+print per_a per_b swing_a swing_b a_n2_hold b_n2_hold
+write dynamic_divider.raw v(ck) v(a_fb) v(a_n2) v(b_fb) v(b_n2)
+wrdata dynamic_divider.dat time v(ck) v(a_fb) v(a_n2) v(b_fb) v(b_n2)
+quit
+.endc
+
+.end

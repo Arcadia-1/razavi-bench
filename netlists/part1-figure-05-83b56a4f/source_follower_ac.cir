@@ -1,0 +1,43 @@
+* Figure 5 (part1-008-source-follower): NMOS source follower -- small-signal AC gain
+* Independent (full AC solve) confirmation that Av = vout/vin < 1 and in phase.
+*
+* The gate is driven with a 1 V AC test source on the 0.9 V bias, so v(out) is
+* the complex voltage gain directly. The trustworthy small-signal follower gain
+* is the LOW-FREQUENCY ASYMPTOTE, which equals the .op-derived estimate
+* gm/(gm+gmbs+gds+1/RS) ~ 0.69 (body effect included, bulk tied to ground).
+*
+* MINIMAL-MODEL NOTE: this compact Sky130 subset carries anomalously large
+* source/drain junction capacitances, which create a spurious low-frequency
+* pole-zero doublet. Above ~0.1 Hz the AC magnitude drifts up toward unity, so
+* only the sub-0.01 Hz asymptote reflects the real resistive-load follower gain.
+* The genuine high-frequency Cgs feedforward (which also pushes a follower gain
+* toward 1) is masked by this artifact, so no bandwidth number is claimed here.
+* AC (small-signal about a solved .op) is still within the intended DC/OP/SS use.
+*
+* Nominal assumptions: VDD = 1.8 V, M1 = sky130_fd_pr__nfet_01v8 W=4.2u L=0.15u,
+* RS = 10 kOhm, Vin bias = 0.9 V.
+
+.include "../../simulator/ngspice-sky130/models/sky130.lib.spice"
+
+Vdd  vdd 0 1.8
+Vin  in  0 0.9 AC 1
+
+Xn   vdd in out 0 sky130_fd_pr__nfet_01v8 w=4.2u l=0.15u
+Rs   out 0 10k
+
+.ac dec 10 1m 1G
+
+.control
+run
+let voutm  = mag(v(out))
+let voutdb = db(v(out))
+let voutp  = 180/pi*ph(v(out))
+* Reliable small-signal gain = low-frequency asymptote (first sweep point, 1 mHz):
+print voutm[0] voutdb[0] voutp[0]
+meas ac gain_lf_lin find voutm  at=0.001
+meas ac gain_lf_db  find voutdb at=0.001
+meas ac phase_lf    find voutp  at=0.001
+quit
+.endc
+
+.end

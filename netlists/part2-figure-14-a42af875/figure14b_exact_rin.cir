@@ -1,0 +1,42 @@
+* Figure 14(b): exact input-resistance check for four unloaded gains.
+* Assumptions: RF=100kohm and RD2=20kohm; each port receives 1 A AC.
+* The four isolated copies demonstrate Rin=(RF+RD2)/(1+A).
+.temp 27
+
+Itest0 0 P0 DC 0 AC 1
+EAMP0 NAMP0 0 P0 0 0
+RD2_0 NAMP0 VRET0 20k
+RF_0 P0 VRET0 100k
+
+Itest1 0 P1 DC 0 AC 1
+EAMP1 NAMP1 0 P1 0 -1
+RD2_1 NAMP1 VRET1 20k
+RF_1 P1 VRET1 100k
+
+Itest10 0 P10 DC 0 AC 1
+EAMP10 NAMP10 0 P10 0 -10
+RD2_10 NAMP10 VRET10 20k
+RF_10 P10 VRET10 100k
+
+Itest100 0 P100 DC 0 AC 1
+EAMP100 NAMP100 0 P100 0 -100
+RD2_100 NAMP100 VRET100 20k
+RF_100 P100 VRET100 100k
+
+.control
+set noaskquit
+ac lin 1 1 1
+let rin_a0=real(v(P0))
+let rin_a1=real(v(P1))
+let rin_a10=real(v(P10))
+let rin_a100=real(v(P100))
+let expected_a0=120000/1
+let expected_a1=120000/2
+let expected_a10=120000/11
+let expected_a100=120000/101
+print rin_a0 expected_a0 rin_a1 expected_a1
+print rin_a10 expected_a10 rin_a100 expected_a100
+quit
+.endc
+
+.end

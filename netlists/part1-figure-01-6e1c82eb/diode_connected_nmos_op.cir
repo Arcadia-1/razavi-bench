@@ -1,0 +1,43 @@
+* part1-figure-01-6e1c82eb : Diode-connected NMOS -- operating-point check
+* Source figure: tasks/part1-004-sketch-ix-versus-vx/figure-01.png (Razavi Fig. 1)
+*
+* Purpose: confirm the two claims behind the IX-vs-VX sketch at one bias point.
+*   1) The device turns on around VX = VTH (extract vth here).
+*   2) Because gate and drain are tied (VDS = VGS), the on device is ALWAYS in
+*      saturation: the saturation test VDS >= VGS - VTH is VGS >= VGS - VTH,
+*      which holds for any VTH >= 0. So IX follows the square-law branch, not
+*      the triode branch, everywhere above threshold.
+*
+* Same topology as the DC-sweep deck; here VX is held at a fixed 0.9 V.
+.include "../../simulator/ngspice-sky130/models/sky130.lib.spice"
+
+* --- Nominal assumptions (schematic gives no numbers) ---
+*   W = 5 um, L = 0.5 um  : matches the DC-sweep deck.
+*   VX = 0.9 V            : a representative on-state bias (well above VTH,
+*                           within the 1.8 V device rating).
+.param W=5.0
+.param L=0.5
+
+Vx   vx 0 DC 0.9
+* Diode-connected NMOS: drain=vx, gate=vx, source=0, bulk=0
+XM1  vx vx 0 0 sky130_fd_pr__nfet_01v8 w=5u l=0.5u
+
+.op
+.control
+run
+let id   = @m.xm1.msky130_fd_pr__nfet_01v8[id]
+let vth  = @m.xm1.msky130_fd_pr__nfet_01v8[vth]
+let vgs  = @m.xm1.msky130_fd_pr__nfet_01v8[vgs]
+let vds  = @m.xm1.msky130_fd_pr__nfet_01v8[vds]
+let vdsat= @m.xm1.msky130_fd_pr__nfet_01v8[vdsat]
+let gm   = @m.xm1.msky130_fd_pr__nfet_01v8[gm]
+let gds  = @m.xm1.msky130_fd_pr__nfet_01v8[gds]
+* IX delivered by VX equals the drain current of the diode-connected device.
+let ix = -i(vx)
+print ix id vth vgs vds vdsat gm gds
+* Saturation margin: VDS - (VGS - VTH) should be >= 0 (equals VTH here).
+let sat_margin = vds - (vgs - vth)
+print sat_margin
+quit
+.endc
+.end

@@ -1,0 +1,53 @@
+* part1-figure-03-8bc208d7 : diode-connected PMOS driven by IX (faithful schematic)
+* Razavi part1-006 "Can the device act as a current source?"  Answer: NO.
+*
+* Topology (Figure 3):
+*   M1 is a MOSFET whose gate and one channel terminal are tied to ground, while
+*   the other channel terminal (top node, where the source IX injects current
+*   downward) sits at a positive voltage. With gate shorted to the grounded
+*   channel terminal, M1 is DIODE-CONNECTED. The only self-consistent, conducting
+*   reading is a PMOS: source = top node vx (highest potential), gate = drain =
+*   ground. Current flows source -> drain (vx -> gnd), i.e. IX flows down into vx.
+*
+* Why this is not a current source:
+*   Looking into node vx the small-signal resistance is 1/(gm+gds) ~ 1/gm (LOW),
+*   so the current is strongly set by the terminal voltage. A good current source
+*   needs a HIGH output resistance so the current stays fixed as its terminal
+*   voltage moves.
+*
+* Nominal assumptions (schematic gives no numbers):
+*   device W=1.26u L=0.15u (sky130 pfet), bias IX=10uA, bulk tied to source
+*   (isolated n-well) so there is no body effect and r_in -> 1/(gm+gds).
+
+.include ../../simulator/ngspice-sky130/models/sky130.lib.spice
+
+* IX injects current DOWN into the top node vx (n+=0, n-=vx -> current into vx)
+IX 0 vx DC 10u
+
+* PMOS M1 : d=gnd g=gnd s=vx b=vx  (gate tied to drain => diode-connected)
+XM1 0 0 vx vx sky130_fd_pr__pfet_01v8 w=1.26u l=0.15u
+
+.control
+* ---- operating point at the nominal 10 uA bias ----
+op
+let gm   = @m.xm1.msky130_fd_pr__pfet_01v8[gm]
+let gds  = @m.xm1.msky130_fd_pr__pfet_01v8[gds]
+let gmbs = @m.xm1.msky130_fd_pr__pfet_01v8[gmbs]
+let id   = @m.xm1.msky130_fd_pr__pfet_01v8[id]
+let r_gm  = 1/gm
+let r_in  = 1/(gm+gds)
+let r_out = 1/gds
+print v(vx) id gm gds gmbs
+* r_in (into vx) ~ 1/gm is far LOWER than r_out=1/gds of the same biased device:
+print r_gm r_in r_out
+
+* ---- large-signal I-V : force the current, watch the terminal voltage ----
+dc IX 2u 40u 2u
+print v(vx)
+* incremental resistance dV(vx)/dIX along the sweep stays ~1/gm (small)
+let r_inc = deriv(v(vx))
+print r_inc
+quit
+.endc
+
+.end

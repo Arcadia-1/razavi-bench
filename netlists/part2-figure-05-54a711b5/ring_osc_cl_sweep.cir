@@ -1,0 +1,58 @@
+* Figure 5 - Three-stage CMOS ring oscillator: load-capacitor sweep
+* Razavi-Bench part2-figure-05-54a711b5
+*
+* Same topology as ring_osc_3stage.cir. This deck sweeps the three equal
+* load capacitors C_L together and measures the oscillation frequency at
+* each value, to make the C_L dependence explicit:
+*
+*   - The ring keeps oscillating for every C_L, including very large values
+*     (supports part2-001: it does NOT fail to oscillate as C_L grows;
+*      frequency just decreases).
+*   - Once C_L dominates the small intrinsic node capacitance, f0 ~ 1/C_L,
+*     so doubling C_L roughly halves f0 (supports part2-002: white-noise
+*     phase-noise density ~ f0^2 then drops by ~4x, i.e. ~6 dB).
+*
+* Sky130 1.8V primitives; geometry in micrometers directly on each instance.
+
+.include "../../simulator/ngspice-sky130/models/sky130.lib.spice"
+
+.param vdd_val = 1.8
+
+Vdd vdd 0 DC {vdd_val}
+
+* --- Inverter 1: in = n3 (feedback), out = n1 ---
+XP1 n1 n3 vdd vdd sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XN1 n1 n3 0   0   sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+C1  n1 0 100f
+
+* --- Inverter 2: in = n1, out = n2 ---
+XP2 n2 n1 vdd vdd sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XN2 n2 n1 0   0   sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+C2  n2 0 100f
+
+* --- Inverter 3: in = n2, out = n3 ---
+XP3 n3 n2 vdd vdd sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XN3 n3 n2 0   0   sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+C3  n3 0 100f
+
+* Break the metastable equilibrium so oscillation starts deterministically.
+.ic v(n1)=1.8 v(n2)=0 v(n3)=0
+
+.control
+* Sweep the (equal) node caps; each entry doubles the previous one so the
+* ~2x frequency drop per doubling is directly visible in the printout.
+foreach cval 25f 50f 100f 200f 400f 800f
+  alter c1 = $cval
+  alter c2 = $cval
+  alter c3 = $cval
+  tran 5p 130n uic
+  meas tran ta WHEN v(n1)=0.9 RISE=5
+  meas tran tb WHEN v(n1)=0.9 RISE=6
+  let per = tb - ta
+  let frq = 1 / per
+  echo "C_L=$cval  period_s=$&per  freq_Hz=$&frq"
+end
+quit
+.endc
+
+.end

@@ -1,0 +1,54 @@
+* Razavi Figure 6 -- Common-gate stage (source input) -- DYNAMICS
+* MODEL: GENERIC textbook level-1 NMOS (NOT Sky130).
+* WHY  : The minimal public Sky130 model subset used by the other two decks
+*        produces unreliable small-signal capacitances in this ngspice 36
+*        build, so its .ac/.tran frequency behavior is not trustworthy
+*        (and large-signal .tran can stall MOS terminal nodes).  To show the
+*        NON-INVERTING dynamic behavior of the common-gate stage this deck
+*        uses an explicitly generic level-1 device whose dc operating point
+*        was tuned to match the Sky130 deck (Id~19uA, gm~190uS, gds~0.69uS).
+*        Do NOT report these numbers as Sky130 results.
+*
+* Purpose: .ac  -> flat NON-INVERTING gain (~+gm*RD) with an output pole set
+*                  by (RD||ro) and a nominal load capacitor CL.
+*          .tran -> small sine on the SOURCE; output rides in phase with the
+*                  input (non-inverting), amplified by ~+gm*RD.
+*
+* Generic level-1 params (idealized; body tied to source => no body effect,
+* matching the golden-solution simplification Av~=+gm*RD, Rin~=1/gm):
+.model NGEN NMOS (level=1 vto=0.7 kp=234u lambda=0.037)
+
+Vdd  vdd 0 1.8
+Vin  in  0 0.9 AC 1 SIN(0.9 5m 1k)
+Rd   vdd out 25k
+Cl   out 0 1p
+
+* M1: drain gate source bulk   (gate=vdd ac-ground, source=input, bulk=source)
+M1   out vdd in in NGEN W=2u L=0.5u
+
+.control
+op
+let id  = @m1[id]
+let gm  = @m1[gm]
+let gds = @m1[gds]
+print v(in) v(out) id gm gds
+
+* --- small-signal frequency response (input at source) ---
+ac dec 10 1 1G
+let gain_lf = vm(out)[0]
+print gain_lf
+meas ac gain_1k   find vm(out) at=1k
+meas ac phase_1k  find vp(out) at=1k
+meas ac gain_hf   find vm(out) at=1G
+
+* --- small-signal time response: non-inverting (in-phase) ---
+tran 5u 3m
+meas tran vo_max max v(out)
+meas tran vo_min min v(out)
+meas tran vi_max max v(in)
+meas tran vi_min min v(in)
+let av_tran = (vo_max - vo_min)/(vi_max - vi_min)
+print av_tran
+quit
+.endc
+.end

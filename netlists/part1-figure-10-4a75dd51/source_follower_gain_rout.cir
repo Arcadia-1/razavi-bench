@@ -1,0 +1,35 @@
+* Razavi-Bench part1 Figure 10 -- source follower gain and output resistance
+* The visible D/G/S connectivity is preserved. Values omitted by the figure
+* are explicit assumptions used only to test the source-follower mechanism.
+
+.include "../../simulator/ngspice-sky130/models/sky130.lib.spice"
+
+* Assumptions: VDD=1.8 V, Vin(dc)=1.10 V, Vb=0.70 V, CL=50 fF.
+VDD_G vdd_g 0 1.8
+VIN_G vin_g 0 DC 1.10 AC 1
+VB_G vb_g 0 0.70
+XM1_G vdd_g vin_g out_g 0 sky130_fd_pr__nfet_01v8 w=10.0u l=0.15u
+XM2_G out_g vb_g 0 0 sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+CL_G out_g 0 50f
+
+* Independent biased copy for output resistance. Vin, Vb and VDD are AC ground.
+VDD_R vdd_r 0 1.8
+VIN_R vin_r 0 1.10
+VB_R vb_r 0 0.70
+XM1_R vdd_r vin_r out_r 0 sky130_fd_pr__nfet_01v8 w=10.0u l=0.15u
+XM2_R out_r vb_r 0 0 sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+ITEST 0 out_r AC 1
+
+.control
+set noaskquit
+op
+print v(out_g) v(out_r)
+ac dec 50 10 10G
+meas ac gain_1khz find vm(out_g) at=1k
+meas ac gain_dc_db find vdb(out_g) at=10
+meas ac rout_1khz find vm(out_r) at=1k
+print gain_1khz gain_dc_db rout_1khz
+quit
+.endc
+
+.end

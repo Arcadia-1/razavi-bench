@@ -1,0 +1,44 @@
+* part1-figure-03-8bc208d7 : diode-connected PMOS output I-V (resistance probe)
+* Razavi part1-006 "Can the device act as a current source?"  Answer: NO.
+*
+* Same device topology as diode_connected_pmos_op.cir (M1: gate=drain=gnd,
+* other terminal = node vx, bulk tied to source). Here the schematic's current
+* source IX is REPLACED by a swept terminal voltage source Vterm. This is the
+* standard way to measure a two-terminal element's output I-V and output
+* resistance: drive the terminal voltage, read the current.
+*
+* A good current source would show a nearly FLAT I-V (current independent of
+* terminal voltage, i.e. very high output resistance). A diode-connected device
+* instead shows a STEEP I-V once |Vgs| exceeds the threshold: the current is set
+* by the terminal voltage and the small-signal resistance is only ~1/gm.
+*
+* Nominal assumptions: device W=1.26u L=0.15u (sky130 pfet); bulk = source.
+
+.include ../../simulator/ngspice-sky130/models/sky130.lib.spice
+
+* terminal voltage drive at node vx (DC value used for the .op point)
+Vterm vx 0 DC 1.0
+
+* PMOS M1 : d=gnd g=gnd s=vx b=vx  (gate tied to drain => diode-connected)
+XM1 0 0 vx vx sky130_fd_pr__pfet_01v8 w=1.26u l=0.15u
+
+.control
+* ---- small-signal resistance looking into vx at Vterm = 1.0 V ----
+op
+let gm   = @m.xm1.msky130_fd_pr__pfet_01v8[gm]
+let gds  = @m.xm1.msky130_fd_pr__pfet_01v8[gds]
+let r_in = 1/(gm+gds)
+print v(vx) gm gds r_in
+
+* ---- output I-V : sweep the terminal voltage, watch the (steep) current ----
+dc Vterm 0 1.8 0.05
+let iterm = abs(i(vterm))
+print iterm
+* incremental resistance dV/dI stays small (~1/gm) in the conducting region
+let ginc = deriv(i(vterm))
+let r_inc = abs(1/ginc)
+print r_inc
+quit
+.endc
+
+.end

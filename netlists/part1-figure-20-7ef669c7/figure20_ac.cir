@@ -1,0 +1,41 @@
+* Razavi-Bench Figure 20: source follower M1 drives common-gate M2
+* Simulation intent: measure n_int/Vin and Vout/Vin with VDD and Vb AC-grounded.
+* Assumptions omitted by the figure: VDD=1.8 V, Vin,DC=Vb=0.9 V,
+* I1=100 uA, RD=8 kohm, grounded bulks, and identical 4.2um/0.30um NMOS.
+
+.include "../../simulator/ngspice-sky130/models/sky130.lib.spice"
+
+VDD_src VDD 0 DC 1.8
+Vin_src Vin 0 DC 0.9 AC 1
+Vb_src Vb 0 DC 0.9
+
+* Preserve reviewed D G S B connectivity exactly.
+XM1 VDD  Vin n_int 0 sky130_fd_pr__nfet_01v8 w=4.2u l=0.30u
+XM2 Vout Vb  n_int 0 sky130_fd_pr__nfet_01v8 w=4.2u l=0.30u
+RD VDD Vout 8k
+I1 n_int 0 DC 100u
+
+.op
+.control
+op
+let m1_id=@m.xm1.msky130_fd_pr__nfet_01v8[id]
+let m2_id=@m.xm2.msky130_fd_pr__nfet_01v8[id]
+let m1_gm=@m.xm1.msky130_fd_pr__nfet_01v8[gm]
+let m2_gm=@m.xm2.msky130_fd_pr__nfet_01v8[gm]
+let m1_vds=@m.xm1.msky130_fd_pr__nfet_01v8[vds]
+let m2_vds=@m.xm2.msky130_fd_pr__nfet_01v8[vds]
+let m1_vdsat=@m.xm1.msky130_fd_pr__nfet_01v8[vdsat]
+let m2_vdsat=@m.xm2.msky130_fd_pr__nfet_01v8[vdsat]
+print v(n_int) v(vout) m1_id m2_id m1_gm m2_gm m1_vds m2_vds m1_vdsat m2_vdsat
+ac dec 40 10 1G
+let cg_gain=vm(vout)/vm(n_int)
+meas ac av_nint FIND vm(n_int) AT=1k
+meas ac av_cg FIND cg_gain AT=1k
+meas ac av_out FIND vm(vout) AT=1k
+meas ac phase_nint FIND vp(n_int) AT=1k
+meas ac phase_out FIND vp(vout) AT=1k
+meas ac av_out_100meg FIND vm(vout) AT=100Meg
+quit
+.endc
+
+.end

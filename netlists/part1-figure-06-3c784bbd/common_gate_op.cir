@@ -1,0 +1,51 @@
+* Razavi Figure 6 -- Common-gate stage (source input), Sky130 NMOS
+* Topology: gate tied to VDD (ac ground), signal applied to SOURCE (Vin),
+*           output taken at DRAIN through RD to VDD.  This is a COMMON-GATE
+*           stage: Rin ~= 1/gm and Av ~= +gm*RD (non-inverting).
+* Purpose : .op extraction of gm/gmbs/gds -> quantitative Rin and Av.
+*           Small-signal gain is computed from the operating point (the same
+*           methodology as the bundled common_source_tf.cir example), because
+*           the minimal Sky130 model subset has unreliable small-signal
+*           capacitances in this ngspice 36 build (see README / generic deck).
+.include "../../simulator/ngspice-sky130/models/sky130.lib.spice"
+
+* --- Nominal assumptions (schematic gives no numbers) ---
+* VDD   = 1.8 V   : Sky130 1.8 V device nominal supply
+* Vin   = 0.9 V   : source dc bias => VGS = VDD-Vin = 0.9 V (device on, in sat)
+* RD    = 25 kohm : sets Vout ~ 1.33 V, keeps VDS > Vov
+* M1    = sky130_fd_pr__nfet_01v8, W=2u L=0.5u
+* Bulk tied to ground (p-substrate NMOS) -> body effect present (gmbs)
+
+Vdd  vdd 0 1.8
+Vin  in  0 0.9 AC 1
+Rd   vdd out 25k
+
+* Xn: drain gate source bulk  (gate = vdd = ac ground, source = input node)
+Xn   out vdd in 0 sky130_fd_pr__nfet_01v8 w=2u l=0.5u
+
+.op
+.control
+run
+let id   = @m.xn.msky130_fd_pr__nfet_01v8[id]
+let vgs  = @m.xn.msky130_fd_pr__nfet_01v8[vgs]
+let vds  = @m.xn.msky130_fd_pr__nfet_01v8[vds]
+let vth  = @m.xn.msky130_fd_pr__nfet_01v8[vth]
+let gm   = @m.xn.msky130_fd_pr__nfet_01v8[gm]
+let gmbs = @m.xn.msky130_fd_pr__nfet_01v8[gmbs]
+let gds  = @m.xn.msky130_fd_pr__nfet_01v8[gds]
+let vov  = vgs - vth
+let ro   = 1/gds
+let rout = (25k*ro)/(25k+ro)
+* --- input resistance seen at the source ---
+let rin_simple = 1/gm
+let rin_body   = 1/(gm+gmbs)
+* --- voltage gain drain/source (non-inverting, positive) ---
+let av_simple  = gm*25k
+let av_body    = (gm+gmbs)*rout
+print v(in) v(out) id vgs vds vth vov
+print gm gmbs gds ro
+print rin_simple rin_body
+print av_simple av_body
+quit
+.endc
+.end

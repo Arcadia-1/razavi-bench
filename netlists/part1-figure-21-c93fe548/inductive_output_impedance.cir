@@ -1,0 +1,30 @@
+* Razavi-Bench part1 Figure 21 -- small-signal output impedance mechanism
+* Exact linearized source-follower core. The only dynamic element is M1 Cgs,
+* matching the mechanism asked about in the reference answer.
+
+* Assumptions: gm1=2 mS, RS=2 kohm, Cgs1=1 pF, bias-device ro=1 Mohm.
+* At low frequency Zout approaches 1/gm1. At high frequency Cgs1 ties gate
+* to source, suppressing gm feedback and making Zout approach RS (in parallel
+* with the large bias resistance). The transition has positive Im{Zout}.
+RS g1 0 2k
+CGS1 g1 vout 1p
+G_M1 vout 0 vout g1 2m
+R_BIAS vout 0 1meg
+ITEST 0 vout AC 1
+
+.control
+set noaskquit
+ac dec 200 1k 10G
+let zout=v(vout)
+let zreal=real(zout)
+let zimag=imag(zout)
+meas ac zlow find vm(vout) at=1k
+meas ac zhigh find vm(vout) at=10G
+meas ac zimag_max max zimag
+meas ac f_zimag_max when zimag=zimag_max
+print zlow zhigh zimag_max f_zimag_max
+write inductive_output_impedance.raw zout zreal zimag
+quit
+.endc
+
+.end
