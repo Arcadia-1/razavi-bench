@@ -1,7 +1,5 @@
 # Golden Solution - part1-015-malformed-cmos-inverter
 
-Figure 11(b) is not a proper CMOS inverter. Compared with the normal inverter in Figure 11(a), the device polarities/source-drain orientations are effectively swapped: the upper device is an NMOS connected to `VDD`, and the lower device is a PMOS connected to ground.
+Figure 11(b) has two NMOS devices, not a complementary CMOS pair. The upper device `M1`, with its drain at `VDD` and source at `Vout`, acts as a source-follower pull-up. The lower device `M2`, with its drain at `Vout` and source at ground, acts as a common-source pull-down. Both gates are driven by `Vin`.
 
-Although both gates are driven by `Vin`, the topology does not provide the standard PMOS pull-up to `VDD` and NMOS pull-down to ground. Around a bias point it may still exhibit a small-signal response because the two transconductances act in opposite directions at the output node. A useful small-signal form is therefore set by the difference of the device transconductances, for example proportional to `(gm2 - gm1) / (gm2 + 1/ro1 + 1/ro2)` under the simplified model.
-
-The important point is that this small-signal response does not make the circuit a valid logic inverter. It does not provide the normal regenerative, rail-to-rail CMOS inverter transfer characteristic, and it should not be interpreted as a proper complementary pull-up/pull-down logic stage.
+For low `Vin`, both devices can be off and `Vout` is not actively driven. When they conduct, `M1` pulls up while `M2` pulls down, so `Vout` is set by their current balance. The circuit therefore does not provide the regenerative, rail-to-rail transfer characteristic of a CMOS inverter.
