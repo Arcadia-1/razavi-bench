@@ -6,4 +6,6 @@ The two devices act in opposite directions at the output. As `Vin` rises, `M1` t
 
 The circuit as drawn has no independent biasing to enforce that cancellation, so any zero-gain point is bias- and process-dependent. For low `Vin`, both devices can be off and `Vout` is determined by leakage and load. It is therefore neither a useful rail-to-rail logic inverter nor a robust zero-gain amplifier as drawn.
 
-Full-credit rule: give full credit if the answer identifies both devices as NMOS, recognizes the upper source-follower and lower pull-down actions, and concludes that this is not a normal CMOS inverter. A gain formula, `gm`-matching derivation, operating-region proof, simulation, or explicit zero-gain observation is not required. Do not give full credit to an answer that identifies a complementary NMOS-PMOS pair or treats the circuit as an ordinary CMOS inverter.
+Scoring gate: the device-type identification is non-negotiable for this task. If an answer misidentifies either transistor type, assign 0. If an answer analyzes the circuit as a complementary push-pull stage or as an ordinary CMOS inverter, assign 0. Only answers that correctly identify both devices as NMOS may receive a nonzero score.
+
+Full-credit rule: give full credit if the answer identifies both devices as NMOS, recognizes the upper source-follower and lower pull-down actions, and concludes that this is not a normal CMOS inverter. A gain formula, `gm`-matching derivation, operating-region proof, simulation, or explicit zero-gain observation is not required.
