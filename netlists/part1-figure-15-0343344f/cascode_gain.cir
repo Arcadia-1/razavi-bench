@@ -1,0 +1,55 @@
+* Figure 15 -- NMOS cascode gain stage, Sky130 executable deck
+* Simulation intent: measure the low-frequency gain and compare it with
+* the ideal-current-load small-signal expression at the selected bias point.
+*
+* Reviewed DUT connectivity (D G S B) is preserved:
+*   M1: X    Vin VSS VSS
+*   M2: Vout Vb1 X   VSS
+*   I1: VDD -> Vout
+
+.include "../../simulator/ngspice-sky130/models/sky130.lib.spice"
+
+* Testbench assumptions omitted by the figure.
+VVDD VDD 0 1.8
+VBIAS Vb1 0 1.20
+VIN Vin 0 DC 0.70 AC 1
+I1 VDD Vout DC 40.575u
+
+* M1 and M2 are the drawn MOSFETs. Undrawn bulks are tied to ground.
+* Longer-than-minimum devices make the cascode resistance readily observable.
+XM1 X    Vin  0 0 sky130_fd_pr__nfet_01v8 w=10u l=0.50u
+XM2 Vout Vb1 X 0 sky130_fd_pr__nfet_01v8 w=10u l=0.50u
+
+.op
+.control
+set noaskquit
+run
+
+let m1_id  = @m.xm1.msky130_fd_pr__nfet_01v8[id]
+let m2_id  = @m.xm2.msky130_fd_pr__nfet_01v8[id]
+let m1_gm  = @m.xm1.msky130_fd_pr__nfet_01v8[gm]
+let m1_gds = @m.xm1.msky130_fd_pr__nfet_01v8[gds]
+let m1_vdsat = @m.xm1.msky130_fd_pr__nfet_01v8[vdsat]
+let m2_gm  = @m.xm2.msky130_fd_pr__nfet_01v8[gm]
+let m2_gmb = @m.xm2.msky130_fd_pr__nfet_01v8[gmbs]
+let m2_gds = @m.xm2.msky130_fd_pr__nfet_01v8[gds]
+let m2_vdsat = @m.xm2.msky130_fd_pr__nfet_01v8[vdsat]
+let m1_vds = v(X)
+let m2_vds = v(Vout)-v(X)
+let ro1 = 1/m1_gds
+let ro2 = 1/m2_gds
+let av_formula = -m1_gm*ro1*(1+(m2_gm+m2_gmb)*ro2)
+
+echo ---- DC_OPERATING_POINT ----
+print v(Vin) v(Vb1) v(X) v(Vout) m1_id m2_id m1_vds m1_vdsat m2_vds m2_vdsat
+echo ---- SMALL_SIGNAL_PARAMETERS_AND_IDEAL_LOAD_PREDICTION ----
+print m1_gm m1_gds m2_gm m2_gmb m2_gds ro1 ro2 av_formula
+
+ac lin 1 1 1
+let av_ac = v(Vout)/v(Vin)
+echo ---- ONE_HZ_AC_GAIN ----
+print real(av_ac) imag(av_ac) mag(av_ac) phase(av_ac)
+quit
+.endc
+
+.end

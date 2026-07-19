@@ -1,0 +1,12 @@
+* Sky130 NFET 1:1 current mirror output characteristic
+.include "{sky130_lib}"
+
+Vdd vdd 0 DC {vdd}
+Iref vdd d1 DC {iref}
+X1 d1 d1 0 0 sky130_fd_pr__nfet_01v8 w={w} l={l}
+X2 out d1 0 0 sky130_fd_pr__nfet_01v8 w={w} l={l}
+Vout out 0 DC 0
+
+.dc Vout 0 {vout_stop} {vout_step}
+.print dc i(Vout) v(d1)
+.end

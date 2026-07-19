@@ -1,0 +1,25 @@
+* Sky130 intrinsic gain length trend
+.include "../models/sky130.lib.spice"
+
+Vd1 d1 0 1.8
+Vd2 d2 0 1.8
+Vg g 0 0.9
+Vs s 0 0
+
+Xshort d1 g s 0 sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+Xlong  d2 g s 0 sky130_fd_pr__nfet_01v8 w=2.52u l=0.30u
+
+.op
+.control
+run
+let gm_short=@m.xshort.msky130_fd_pr__nfet_01v8[gm]
+let gds_short=@m.xshort.msky130_fd_pr__nfet_01v8[gds]
+let gain_short=gm_short/gds_short
+let gm_long=@m.xlong.msky130_fd_pr__nfet_01v8[gm]
+let gds_long=@m.xlong.msky130_fd_pr__nfet_01v8[gds]
+let gain_long=gm_long/gds_long
+print gm_short gds_short gain_short gm_long gds_long gain_long
+quit
+.endc
+
+.end

@@ -1,0 +1,81 @@
+* Razavi-Bench part2 Figure 8 -- supply resistance of an oscillating ring
+* Three Sky130 rings estimate dVDD/dIDD around 1.8 V by finite difference.
+
+.include "../../simulator/ngspice-sky130/models/sky130.lib.spice"
+
+.param CL=200f
+
+VDDL vddl 0 1.7
+VDDC vddc 0 1.8
+VDDH vddh 0 1.9
+
+* Low-supply copy.
+XPL1 l1 l3 vddl vddl sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XNL1 l1 l3 0 0 sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+XPL2 l2 l1 vddl vddl sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XNL2 l2 l1 0 0 sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+XPL3 l3 l2 vddl vddl sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XNL3 l3 l2 0 0 sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+CLL1 l1 0 {CL}
+CLL2 l2 0 {CL}
+CLL3 l3 0 {CL}
+
+* Center-supply copy.
+XPC1 c1 c3 vddc vddc sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XNC1 c1 c3 0 0 sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+XPC2 c2 c1 vddc vddc sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XNC2 c2 c1 0 0 sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+XPC3 c3 c2 vddc vddc sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XNC3 c3 c2 0 0 sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+CLC1 c1 0 {CL}
+CLC2 c2 0 {CL}
+CLC3 c3 0 {CL}
+
+* High-supply copy.
+XPH1 h1 h3 vddh vddh sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XNH1 h1 h3 0 0 sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+XPH2 h2 h1 vddh vddh sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XNH2 h2 h1 0 0 sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+XPH3 h3 h2 vddh vddh sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XNH3 h3 h2 0 0 sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+CLH1 h1 0 {CL}
+CLH2 h2 0 {CL}
+CLH3 h3 0 {CL}
+
+.ic v(l1)=1.7 v(l2)=0 v(l3)=0
+.ic v(c1)=1.8 v(c2)=0 v(c3)=0
+.ic v(h1)=1.9 v(h2)=0 v(h3)=0
+
+.control
+set noaskquit
+tran 10p 120n uic
+meas tran tl1 when v(l1)=0.85 rise=8
+meas tran tl2 when v(l1)=0.85 rise=18
+meas tran tc1 when v(c1)=0.90 rise=8
+meas tran tc2 when v(c1)=0.90 rise=18
+meas tran th1 when v(h1)=0.95 rise=8
+meas tran th2 when v(h1)=0.95 rise=18
+let fl=10/(tl2-tl1)
+let fc=10/(tc2-tc1)
+let fh=10/(th2-th1)
+meas tran il avg i(VDDL) from=40n to=120n
+meas tran ic avg i(VDDC) from=40n to=120n
+meas tran ih avg i(VDDH) from=40n to=120n
+let iload_l=-il
+let iload_c=-ic
+let iload_h=-ih
+let rx_fd=(1.9-1.7)/(iload_h-iload_l)
+let cl_value=200e-15
+let rx_formula=1/(3*fc*cl_value)
+let rx_power=1.8/iload_c
+let rx_power_ratio=rx_power/rx_formula
+let rx_slope_ratio=rx_fd/rx_formula
+let td=1/(6*fc)
+let rx_delay=2*td/cl_value
+print fl fc fh iload_l iload_c iload_h
+print rx_power rx_formula rx_power_ratio
+print rx_fd rx_slope_ratio td rx_delay
+quit
+.endc
+
+.end

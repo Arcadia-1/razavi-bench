@@ -1,0 +1,83 @@
+* Razavi-Bench part2 Figure 15 -- VCO supply pushing and LDO-noise conversion
+* The visible LC core, cross-coupled pair, tail source and MOS varactors are
+* retained. The unresolved LDO is represented only by its output voltage.
+
+.include "../../simulator/ngspice-sky130/models/sky130.lib.spice"
+
+.subckt VCO15 vtop vcont x y tail vss
+LX vtop x 10n
+LY vtop y 10n
+XCORE1 x y tail vss sky130_fd_pr__nfet_01v8 w=20.0u l=0.15u
+XCORE2 y x tail vss sky130_fd_pr__nfet_01v8 w=20.0u l=0.15u
+ITAIL tail vss DC 500u
+* MOS varactor convention from the reviewed topology: D/S/B at Vcont, G at tank.
+XVARX vcont x vcont vcont sky130_fd_pr__nfet_01v8 w=50.0u l=0.15u
+XVARY vcont y vcont vcont sky130_fd_pr__nfet_01v8 w=50.0u l=0.15u
+* One enabled representative switched-bank cell and finite tank loss.
+CBX x vss 500f
+CBY y vss 500f
+RPX x vtop 1k
+RPY y vtop 1k
+.ends VCO15
+
+* Supply-pushing sweep at fixed Vcont=0.6 V.
+VLDO_L vl 0 1.7
+VLDO_C vc 0 1.8
+VLDO_H vh 0 1.9
+VVCONT vcont 0 0.6
+XL vl vcont xl yl tl 0 VCO15
+XC vc vcont xc yc tc 0 VCO15
+XH vh vcont xh yh th 0 VCO15
+
+* Tuning-gain comparison at fixed supply=1.8 V.
+VVLOW vvlow 0 0.5
+VVHIGH vvhigh 0 0.7
+VLDO_VL vvl 0 1.8
+VLDO_VH vvh 0 1.8
+XVLOW vvl vvlow xvl yvl tvl 0 VCO15
+XVHIGH vvh vvhigh xvh yvh tvh 0 VCO15
+
+.ic v(xl)=1.81 v(yl)=1.79 v(tl)=0.4
+.ic v(xc)=1.81 v(yc)=1.79 v(tc)=0.4
+.ic v(xh)=1.81 v(yh)=1.79 v(th)=0.4
+.ic v(xvl)=1.81 v(yvl)=1.79 v(tvl)=0.4
+.ic v(xvh)=1.81 v(yvh)=1.79 v(tvh)=0.4
+
+.control
+set noaskquit
+option method=gear reltol=1e-3
+tran 5p 30n uic
+let vdl=v(xl)-v(yl)
+let vdc=v(xc)-v(yc)
+let vdh=v(xh)-v(yh)
+let vdvl=v(xvl)-v(yvl)
+let vdvh=v(xvh)-v(yvh)
+meas tran tl1 when vdl=0 rise=20
+meas tran tl2 when vdl=0 rise=40
+meas tran tc1 when vdc=0 rise=20
+meas tran tc2 when vdc=0 rise=40
+meas tran th1 when vdh=0 rise=20
+meas tran th2 when vdh=0 rise=40
+meas tran tvl1 when vdvl=0 rise=20
+meas tran tvl2 when vdvl=0 rise=40
+meas tran tvh1 when vdvh=0 rise=20
+meas tran tvh2 when vdvh=0 rise=40
+let fl=20/(tl2-tl1)
+let fc=20/(tc2-tc1)
+let fh=20/(th2-th1)
+let f_vlow=20/(tvl2-tvl1)
+let f_vhigh=20/(tvh2-tvh1)
+let kpush=(fh-fl)/0.2
+let kvco=(f_vhigh-f_vlow)/0.2
+let k_ratio=abs(kpush/kvco)
+* Example conversion uses Sth=1e-12 V^2/Hz and offset Deltaf=1 MHz.
+let sth=1e-12
+let delta_f=1e6
+let phase_noise_linear=kpush*kpush*sth/(2*delta_f*delta_f)
+let phase_noise_dbc=10*log10(phase_noise_linear)
+print fl fc fh kpush f_vlow f_vhigh kvco k_ratio
+print sth delta_f phase_noise_linear phase_noise_dbc
+quit
+.endc
+
+.end

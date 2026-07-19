@@ -1,0 +1,30 @@
+* Razavi Figure 6 -- Common-gate stage (source input), Sky130 NMOS
+* Purpose : .dc large-signal transfer Vout vs Vin (input at SOURCE).
+*           As Vin rises, VGS = VDD-Vin falls, Id falls, so Vout = VDD-Id*RD
+*           RISES.  The positive slope dVout/dVin directly confirms the
+*           NON-INVERTING gain (Av ~= +gm*RD) of the common-gate stage.
+*           DC operating-point solves are reliable for the Sky130 subset,
+*           so this is a trustworthy check of the gain SIGN and magnitude.
+.include "../../simulator/ngspice-sky130/models/sky130.lib.spice"
+
+* Same device / bias / load as common_gate_op.cir
+Vdd  vdd 0 1.8
+Vin  in  0 0.9
+Rd   vdd out 25k
+
+* Xn: drain gate source bulk
+Xn   out vdd in 0 sky130_fd_pr__nfet_01v8 w=2u l=0.5u
+
+.dc Vin 0.6 1.2 0.05
+.control
+run
+print v(out)
+* incremental (small-signal) gain ~ local slope around the 0.9 V bias
+meas dc vout_lo   find v(out) at=0.85
+meas dc vout_bias find v(out) at=0.90
+meas dc vout_hi   find v(out) at=0.95
+let gain_slope = (vout_hi - vout_lo)/0.1
+print vout_lo vout_bias vout_hi gain_slope
+quit
+.endc
+.end

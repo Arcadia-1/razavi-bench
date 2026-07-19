@@ -69,6 +69,9 @@ Top-level files:
 |---|---|
 | `data/` | Hugging Face Dataset Viewer friendly JSONL exports |
 | `evaluation_rubric.md` | 0-4 evaluation guide used by judge scripts |
+| `agentic/` | Public agentic evaluation modes, harness examples, and skill assets |
+| `netlists/` | Curated executable SPICE representations of the 38 unique schematic figures |
+| `simulator/` | Reproducible ngspice and minimal Sky130 assets used by the netlists and agentic treatment |
 | `experiments/` | Cleaned model outputs and per-experiment metadata |
 | `tools/` | Current reusable evaluation utilities |
 | `LICENSE` | License, source, and permission terms |
@@ -134,6 +137,25 @@ If you use Razavi-Bench, please cite this repository:
   url          = {https://razavi-bench.tokenzhang.com/},
   note         = {Benchmark repository}
 }
+```
+
+## Agentic Evaluation
+
+`agentic/` defines public file-based evaluation modes for Razavi-bench:
+direct multimodal QA, agentic multimodal QA, and an experimental
+agentic-ngspice-sky130 mode. Shared simulator assets live under `simulator/`,
+while independently curated schematic netlists live under `netlists/`. The
+ngspice mode includes a skill guide so simulator use is reproducible and
+constrained to supporting analog reasoning. All modes score the final answer,
+not simulator logs or scratch files.
+
+The 38 reference-assisted schematic groups under `netlists/` are independent
+curation artifacts and must not be mounted into official benchmark runs. Each
+deck documents its own topology, assumptions, analysis, and measured quantity.
+Run all 59 decks without leaving generated files in the repository with:
+
+```bash
+python3 netlists/verify.py
 ```
 
 ## License

@@ -1,0 +1,57 @@
+* Figure 14(a): reviewed transistor topology, Sky130 TT models.
+* Probe: low-frequency Zin=V(P)/1A with all DC bias sources AC-grounded.
+.include "../../simulator/ngspice-sky130/models/sky130.lib.spice"
+.temp 27
+
+* Added numerical assumptions (the figure gives no values).
+VDD_SRC VDD 0 DC 1.8
+VB_SRC Vb 0 DC 0.65
+IIN 0 P DC 0 AC 1
+CIN P 0 1p
+RD1 VDD X 12k
+ISS VDD S23 DC 180u
+RD2 Vout 0 20k
+RF P Vout 100k
+
+* Preserve reviewed D/G/S/B connections; omitted bulks tied as audited.
+XM1 X P 0 0 sky130_fd_pr__nfet_01v8 w=8u l=0.5u
+XM2 0 X S23 S23 sky130_fd_pr__pfet_01v8 w=40u l=0.3u
+XM3 Vout Vb S23 S23 sky130_fd_pr__pfet_01v8 w=40u l=0.3u
+
+.control
+set noaskquit
+op
+let gm1=@m.xm1.msky130_fd_pr__nfet_01v8[gm]
+let gds1=@m.xm1.msky130_fd_pr__nfet_01v8[gds]
+let gm2=@m.xm2.msky130_fd_pr__pfet_01v8[gm]
+let gds2=@m.xm2.msky130_fd_pr__pfet_01v8[gds]
+let gm3=@m.xm3.msky130_fd_pr__pfet_01v8[gm]
+let gds3=@m.xm3.msky130_fd_pr__pfet_01v8[gds]
+let id1=@m.xm1.msky130_fd_pr__nfet_01v8[id]
+let id2=@m.xm2.msky130_fd_pr__pfet_01v8[id]
+let id3=@m.xm3.msky130_fd_pr__pfet_01v8[id]
+let vgs1=@m.xm1.msky130_fd_pr__nfet_01v8[vgs]
+let vds1=@m.xm1.msky130_fd_pr__nfet_01v8[vds]
+let vth1=@m.xm1.msky130_fd_pr__nfet_01v8[vth]
+let vdsat1=@m.xm1.msky130_fd_pr__nfet_01v8[vdsat]
+let vgs2=@m.xm2.msky130_fd_pr__pfet_01v8[vgs]
+let vds2=@m.xm2.msky130_fd_pr__pfet_01v8[vds]
+let vth2=@m.xm2.msky130_fd_pr__pfet_01v8[vth]
+let vdsat2=@m.xm2.msky130_fd_pr__pfet_01v8[vdsat]
+let vgs3=@m.xm3.msky130_fd_pr__pfet_01v8[vgs]
+let vds3=@m.xm3.msky130_fd_pr__pfet_01v8[vds]
+let vth3=@m.xm3.msky130_fd_pr__pfet_01v8[vth]
+let vdsat3=@m.xm3.msky130_fd_pr__pfet_01v8[vdsat]
+print v(P) v(X) v(S23) v(Vout)
+print id1 id2 id3 gm1 gm2 gm3 gds1 gds2 gds3
+print vgs1 vds1 vth1 vdsat1
+print vgs2 vds2 vth2 vdsat2
+print vgs3 vds3 vth3 vdsat3
+ac lin 1 10 10
+let zin_10hz=real(v(P))
+let closed_loop_transimpedance=real(v(Vout))
+print zin_10hz closed_loop_transimpedance
+quit
+.endc
+
+.end

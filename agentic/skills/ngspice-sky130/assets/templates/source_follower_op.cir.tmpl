@@ -1,0 +1,20 @@
+* Sky130 source-follower operating-point probe
+.include "{sky130_lib}"
+
+Vdd vdd 0 1.8
+Vin in 0 0.9
+
+Xn vdd in out 0 sky130_fd_pr__nfet_01v8 w=4.2u l=0.15u
+Rs out 0 10k
+
+.op
+.control
+run
+let gm=@m.xn.msky130_fd_pr__nfet_01v8[gm]
+let gmbs=@m.xn.msky130_fd_pr__nfet_01v8[gmbs]
+let gain_est=gm/(gm+gmbs+1/10000)
+print gm gmbs gain_est v(out)
+quit
+.endc
+
+.end

@@ -1,0 +1,49 @@
+* ============================================================================
+* Razavi-Bench part1-figure-04  (task part1-007)
+* PMOS common-source with source degeneration -- SMALL-SIGNAL AC  (BEHAVIORAL)
+* ----------------------------------------------------------------------------
+* WHY BEHAVIORAL:  the minimal public Sky130 model subset reports non-physical
+* intrinsic capacitances at this operating point (e.g. cgg ~ 5e-2 F instead of
+* ~1e-13 F), so a Sky130 .ac frequency sweep shows a spurious sub-Hz doublet
+* and is NOT a trustworthy dynamic result.  Its small-signal *conductances*
+* (gm, gds) are fine, so here we build the exact linear small-signal model of
+* the SAME topology using those numbers and add a documented load cap.
+* This deck is a GENERIC linearized model, NOT a Sky130 result.
+*
+* Small-signal circuit (VDD -> ac ground, body tied to source => no gmb):
+*   gate = in ;  source node s --[RS]-- gnd ;  drain node out --[RD]-- gnd
+*   transistor  = VCCS gm*(v(in)-v(s)) from drain to source, in parallel with ro
+*   CL          = nominal load capacitance at the output (creates the pole)
+* Solving this network gives exactly  Av = -gm*RD / (1 + gm*RS)   (inverting),
+* which is the golden-solution expression.
+* ============================================================================
+
+* --- small-signal parameters extracted from pmos_cs_degen_op.cir (Sky130 .op) ---
+.param gm  = 7.5495e-4   $ S    transconductance at the bias (~115 uA)
+.param ro  = 4.7634e5    $ ohm  = 1/gds
+.param RS_V = 1k         $ source-degeneration resistor
+.param RD_V = 5k         $ drain load resistor
+.param CL   = 1p         $ nominal output load capacitance (assumed; not drawn)
+
+Vin in 0 0 AC 1
+Rs  s   0 {RS_V}
+G1  out s in s {gm}
+Ro  out s {ro}
+Rd  out 0 {RD_V}
+Cl  out 0 {CL}
+
+.ac dec 20 1 10g
+.control
+run
+set units=degrees
+* low-frequency gain magnitude, dB, and phase (should be ~2.14, 180 deg)
+meas ac gain_lf  find vm(out)  at=1k
+meas ac gain_db  find vdb(out) at=1k
+meas ac phase_lf find vp(out)  at=1k
+* -3 dB bandwidth set by the output pole 1/(2*pi*Rout*CL)
+let targ_db = gain_db - 3
+meas ac f_3db when vdb(out)=targ_db fall=1
+print gain_lf gain_db phase_lf f_3db
+quit
+.endc
+.end

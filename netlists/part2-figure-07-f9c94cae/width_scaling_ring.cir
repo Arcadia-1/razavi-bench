@@ -1,0 +1,73 @@
+* Razavi-Bench part2-figure-07-f9c94cae
+* Three-stage CMOS ring oscillator: baseline and doubled-width comparison.
+* Simulation intent: compare steady-state period and supply current while the
+* supply, channel lengths, explicit node loads, and startup condition are fixed.
+
+.include "../../simulator/ngspice-sky130/models/sky130.lib.spice"
+
+* Assumptions omitted by the figure: VDD=1.8 V; L=0.15 um; baseline widths
+* WN=1.26 um and WP=2.52 um; identical 5 fF explicit load at every output.
+VDD_B vdd_b 0 1.8
+VDD_D vdd_d 0 1.8
+
+* Baseline three-stage ring.  D/G/S/B connectivity follows reviewed_topology.cir.
+XMP1_B b1 b3 vdd_b vdd_b sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XMN1_B b1 b3 0     0     sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+XMP2_B b2 b1 vdd_b vdd_b sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XMN2_B b2 b1 0     0     sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+XMP3_B b3 b2 vdd_b vdd_b sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XMN3_B b3 b2 0     0     sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+CB1 b1 0 5f
+CB2 b2 0 5f
+CB3 b3 0 5f
+
+* Doubled-width three-stage ring.  Only all six W values differ from baseline.
+XMP1_D d1 d3 vdd_d vdd_d sky130_fd_pr__pfet_01v8 w=5.04u l=0.15u
+XMN1_D d1 d3 0     0     sky130_fd_pr__nfet_01v8 w=2.52u l=0.15u
+XMP2_D d2 d1 vdd_d vdd_d sky130_fd_pr__pfet_01v8 w=5.04u l=0.15u
+XMN2_D d2 d1 0     0     sky130_fd_pr__nfet_01v8 w=2.52u l=0.15u
+XMP3_D d3 d2 vdd_d vdd_d sky130_fd_pr__pfet_01v8 w=5.04u l=0.15u
+XMN3_D d3 d2 0     0     sky130_fd_pr__nfet_01v8 w=2.52u l=0.15u
+CD1 d1 0 5f
+CD2 d2 0 5f
+CD3 d3 0 5f
+
+* Deliberately asymmetric startup ICs, applied equally to the two rings.
+.ic v(b1)=0 v(b2)=0.9 v(b3)=1.8
+.ic v(d1)=0 v(d2)=0.9 v(d3)=1.8
+
+.control
+set noaskquit
+tran 2p 800p uic
+
+* Period from adjacent rising crossings after startup. SPICE reports supply
+* currents as negative because they leave each source's positive terminal; the
+* ratio below cancels that common sign and README reports their magnitudes.
+meas tran period_baseline trig v(b3) val=0.9 rise=2 targ v(b3) val=0.9 rise=3
+meas tran period_doubled  trig v(d3) val=0.9 rise=2 targ v(d3) val=0.9 rise=3
+meas tran idd_baseline avg i(VDD_B) from=400p to=800p
+meas tran idd_doubled  avg i(VDD_D) from=400p to=800p
+meas tran vmin_baseline min v(b3) from=400p to=800p
+meas tran vmax_baseline max v(b3) from=400p to=800p
+meas tran vmin_doubled  min v(d3) from=400p to=800p
+meas tran vmax_doubled  max v(d3) from=400p to=800p
+let freq_baseline=1/period_baseline
+let freq_doubled=1/period_doubled
+let frequency_ratio=freq_doubled/freq_baseline
+let supply_current_ratio=idd_doubled/idd_baseline
+
+* Width-scaling mechanism used by the golden solution: two parallel, otherwise
+* identical noisy realizations give half the normalized noise power.  This is
+* an equation-level inference, not a direct oscillator phase-noise analysis.
+let normalized_phase_noise_ratio=1/2
+let phase_noise_change_db=10*log10(normalized_phase_noise_ratio)
+
+print period_baseline period_doubled freq_baseline freq_doubled
+print frequency_ratio idd_baseline idd_doubled supply_current_ratio
+print vmin_baseline vmax_baseline vmin_doubled vmax_doubled
+print normalized_phase_noise_ratio phase_noise_change_db
+write width_scaling_ring_validation.raw v(b1) v(b2) v(b3) v(d1) v(d2) v(d3)
+quit
+.endc
+
+.end

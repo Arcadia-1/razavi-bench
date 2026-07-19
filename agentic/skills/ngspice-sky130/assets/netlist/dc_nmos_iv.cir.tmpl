@@ -1,0 +1,10 @@
+* Sky130 NFET Id-Vds sweep
+.include "{sky130_lib}"
+
+Vds drain 0 DC 0
+Vgs gate 0 DC {vgs}
+Xn drain gate 0 0 sky130_fd_pr__nfet_01v8 w={w} l={l}
+
+.dc Vds 0 {vds_stop} {vds_step}
+.print dc i(Vds)
+.end

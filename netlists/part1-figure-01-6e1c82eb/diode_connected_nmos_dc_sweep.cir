@@ -1,0 +1,38 @@
+* part1-figure-01-6e1c82eb : Diode-connected NMOS -- IX versus VX (DC sweep)
+* Source figure: tasks/part1-004-sketch-ix-versus-vx/figure-01.png (Razavi Fig. 1)
+*
+* Topology (faithful to the schematic):
+*   M1 is a diode-connected NMOS: gate and drain are tied together to node VX,
+*   source and bulk are at ground. An independent source VX (+ on top, - at
+*   ground) drives that node, and IX is the current it delivers into M1.
+*
+* Sign convention:
+*   ngspice reports i(Vx) as current entering the source's + terminal (node vx).
+*   The diode-connected device sinks current OUT of node vx, so the drawn
+*   current IX (arrow pointing from VX into the drain) is IX = -i(Vx).
+*
+* This sweep produces the requested "sketch": IX ~ 0 for VX <= VTH, then a
+* quadratic (square-law) rise for VX > VTH because VDS = VGS keeps M1 in
+* saturation whenever it conducts.
+.include "../../simulator/ngspice-sky130/models/sky130.lib.spice"
+
+* --- Nominal assumptions (schematic gives no numbers) ---
+*   W = 5 um, L = 0.5 um : longer-than-minimum channel for a clean square-law
+*                          curve with modest channel-length modulation.
+*   VX swept 0 -> 1.8 V  : Sky130 nfet_01v8 is a 1.8 V device.
+.param W=5.0
+.param L=0.5
+
+Vx   vx 0 DC 0
+* Diode-connected NMOS: drain=vx, gate=vx, source=0, bulk=0
+XM1  vx vx 0 0 sky130_fd_pr__nfet_01v8 w=5u l=0.5u
+
+.dc Vx 0 1.8 0.02
+.control
+run
+let ix = -i(vx)
+* Full IX-vs-VX characteristic (scale vector is the swept VX):
+print ix
+quit
+.endc
+.end

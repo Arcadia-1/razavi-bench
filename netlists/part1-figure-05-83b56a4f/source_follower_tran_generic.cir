@@ -1,0 +1,50 @@
+* Figure 5 (part1-008-source-follower): NMOS source follower -- TRANSIENT DYNAMICS
+* ================= GENERIC MOS MODEL -- NOT A SKY130 RESULT =================
+* This deck deliberately uses a generic square-law Level-1 NMOS, NOT the Sky130
+* PDK device. The minimal public Sky130 subset used by the .op/.dc/.ac decks
+* carries anomalous source/drain junction capacitances whose large-signal
+* transient response freezes/relaxes the MOS terminal nodes in ngspice 36
+* (verified: with uic the source node stays pinned near the gate; without uic a
+* step feeds ~1:1 through the junction caps and relaxes far too slowly to reach
+* the correct <1-gain steady state). Transient dynamics are therefore shown with
+* a well-behaved generic device. Treat the numbers here as illustrative of
+* common-drain DYNAMICS ONLY; the quantitative small-signal gain, bias, and
+* output resistance come from the Sky130 .op/.dc/.ac decks.
+* ===========================================================================
+*
+* Topology (identical to the schematic): drain -> VDD, gate -> Vin, source ->
+* Vout, RS from source to ground, output at the source. A small load cap CL
+* makes the follower step/settling behaviour visible.
+*
+* Generic device: VTO=0.5 V, KP=100u, W/L=20 -> gm ~ 0.3 mS at this bias, so the
+* follower gain gm*RS/(1+gm*RS) is a few tenths below unity, matching the theory.
+
+Vdd  vdd 0 1.8
+
+* Sine on the gate: 0.9 V bias, 0.2 V amplitude, 1 MHz (well below the CL pole):
+Vin  in  0 SIN(0.9 0.2 1MEG)
+
+M1   vdd in out 0 GENNMOS W=20u L=1u
+Rs   out 0 10k
+CL   out 0 1p
+
+.model GENNMOS NMOS (LEVEL=1 VTO=0.5 KP=100u LAMBDA=0.05 CGSO=1n CGDO=1n)
+
+.tran 5n 3u
+
+.control
+run
+* Follower dynamics: output tracks the input with a DC level shift and gain < 1.
+meas tran vin_max  max v(in)
+meas tran vin_min  min v(in)
+meas tran vout_max max v(out)  from=1u to=3u
+meas tran vout_min min v(out)  from=1u to=3u
+let vin_pp  = vin_max - vin_min
+let vout_pp = vout_max - vout_min
+let av_tran = vout_pp / vin_pp
+let level_shift = (vin_max+vin_min)/2 - (vout_max+vout_min)/2
+print vin_pp vout_pp av_tran level_shift
+quit
+.endc
+
+.end

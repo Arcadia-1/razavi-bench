@@ -1,0 +1,44 @@
+* Razavi-Bench part1-figure-14-2b29c3e7
+* Purpose: sweep lower-gate bias Vb1 while holding VDD, Vb2, and OUT fixed;
+*          observe X and the Sky130 M2 saturation margin VSD-|VDSAT|.
+*
+* Reviewed topology is preserved exactly (subcircuit order D G S B):
+* M2: X Vb2 VDD VDD; M1: OUT Vb1 X X.
+*
+* Documented simulation assumptions omitted by the figure:
+* - TT bundled Sky130 1.8-V PMOS primitive, both devices W=4.00 um, L=0.50 um.
+* - Source-tied bulks, as required by the reviewed topology.
+* - VDD=1.8 V, Vb2=0.5 V, and OUT=0.1 V.
+* - Selected Vb1 points span 0.00 V to 0.80 V.
+* - OUT's ideal voltage source is only a DC bias/test fixture for the Rout port.
+
+.include "../../simulator/ngspice-sky130/models/sky130.lib.spice"
+
+VDD_SRC VDD 0 1.8
+VB2_SRC Vb2 0 0.5
+VB1_SRC Vb1 0 0.0
+VOUT_FIX OUT 0 0.1
+
+XM2 X   Vb2 VDD VDD sky130_fd_pr__pfet_01v8 w=4.00u l=0.50u
+XM1 OUT Vb1 X   X   sky130_fd_pr__pfet_01v8 w=4.00u l=0.50u
+
+.control
+set noaskquit
+echo "M2 is saturation-compatible where m2_sat_margin > 0."
+echo "Each line is a separate operating point: vb1, X, VSD2, |VDSAT2|, margin, current."
+foreach vb1_value 0.00 0.10 0.20 0.25 0.26 0.27 0.30 0.40 0.50 0.60 0.70 0.80
+  alter VB1_SRC $vb1_value
+  op
+  let vb1_result = v(Vb1)
+  let x_voltage = v(X)
+  let m2_vsd = v(VDD)-v(X)
+  let m2_vsd_sat = abs(@m.xm2.msky130_fd_pr__pfet_01v8[vdsat])
+  let m2_sat_margin = m2_vsd-m2_vsd_sat
+  let stack_current = -i(VDD_SRC)
+  print vb1_result x_voltage m2_vsd m2_vsd_sat m2_sat_margin stack_current
+end
+
+quit
+.endc
+
+.end

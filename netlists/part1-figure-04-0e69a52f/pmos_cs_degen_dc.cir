@@ -1,0 +1,39 @@
+* ============================================================================
+* Razavi-Bench part1-figure-04  (task part1-007)
+* PMOS common-source stage with source degeneration -- DC TRANSFER CURVE
+* ----------------------------------------------------------------------------
+* Sweeps the gate input Vin and records the drain output Vout.  As Vin rises,
+* |VSG| shrinks, the PMOS current falls, and Vout = I*RD falls: the stage is
+* INVERTING (dVout/dVin < 0), as expected for a common-source amplifier.
+* The slope of the transfer curve at the dc bias equals the small-signal gain
+* Av ~= -gm*RD/(1+gm*RS), cross-checking pmos_cs_degen_op.cir.
+* Topology: VDD-[RS]-source(M1 PMOS); gate=Vin; drain=Vout-[RD]-GND; bulk=source.
+* ============================================================================
+.include "../../simulator/ngspice-sky130/models/sky130.lib.spice"
+
+.param VDD_V = 1.8
+.param RS_V  = 1k
+.param RD_V  = 5k
+.param WP    = 20
+.param LP    = 0.5
+
+Vdd vdd 0 {VDD_V}
+Vin in  0 0.35
+Rs  vdd s   {RS_V}
+Xm1 out in  s s sky130_fd_pr__pfet_01v8 w=20u l=0.5u
+Rd  out 0   {RD_V}
+
+.dc Vin 0 1.8 0.01
+.control
+run
+* incremental gain = slope of the dc transfer curve
+let slope = deriv(v(out))
+* values at the nominal bias (Vin = 0.35 V)
+meas dc vout_bias find v(out) at=0.35
+meas dc av_bias   find slope  at=0.35
+* peak (most negative) small-signal gain over the sweep
+meas dc av_peak   min slope
+print vout_bias av_bias av_peak
+quit
+.endc
+.end

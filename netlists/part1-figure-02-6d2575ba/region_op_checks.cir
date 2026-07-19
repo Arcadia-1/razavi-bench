@@ -1,0 +1,48 @@
+* Figure 2 (Razavi) -- NMOS region check for IX-versus-VX behavior
+* Same topology as ix_vs_vx_dc.cir (gate = VX, source grounded, drain at 1 V),
+* evaluated at three representative gate voltages so the operating point
+* confirms the three regions the sketch must show:
+*   VX = 0.3 V  -> below threshold, device off, IX ~ 0
+*   VX = 1.0 V  -> VDS (1 V) > VGS-VTH, saturation, IX quadratic in (VX-VTH)
+*   VX = 1.7 V  -> VDS (1 V) < VGS-VTH, triode, IX roughly linear in VX
+.include "../../simulator/ngspice-sky130/models/sky130.lib.spice"
+
+.param W=5u
+.param L=1u
+.param VDRAIN=1
+
+* --- off-region bias ---
+VXa ga 0 0.3
+Vda da 0 {VDRAIN}
+Xa da ga 0 0 sky130_fd_pr__nfet_01v8 w=5u l=1u
+
+* --- saturation-region bias ---
+VXb gb 0 1.0
+Vdb db 0 {VDRAIN}
+Xb db gb 0 0 sky130_fd_pr__nfet_01v8 w=5u l=1u
+
+* --- triode-region bias ---
+VXc gc 0 1.7
+Vdc dc 0 {VDRAIN}
+Xc dc gc 0 0 sky130_fd_pr__nfet_01v8 w=5u l=1u
+
+.op
+.control
+run
+let id_off = @m.xa.msky130_fd_pr__nfet_01v8[id]
+let vth_off = @m.xa.msky130_fd_pr__nfet_01v8[vth]
+let vov_off = @m.xa.msky130_fd_pr__nfet_01v8[vgs] - @m.xa.msky130_fd_pr__nfet_01v8[vth]
+let id_sat = @m.xb.msky130_fd_pr__nfet_01v8[id]
+let vth_sat = @m.xb.msky130_fd_pr__nfet_01v8[vth]
+let vov_sat = @m.xb.msky130_fd_pr__nfet_01v8[vgs] - @m.xb.msky130_fd_pr__nfet_01v8[vth]
+let vds_sat = @m.xb.msky130_fd_pr__nfet_01v8[vds]
+let id_tri = @m.xc.msky130_fd_pr__nfet_01v8[id]
+let vth_tri = @m.xc.msky130_fd_pr__nfet_01v8[vth]
+let vov_tri = @m.xc.msky130_fd_pr__nfet_01v8[vgs] - @m.xc.msky130_fd_pr__nfet_01v8[vth]
+let vds_tri = @m.xc.msky130_fd_pr__nfet_01v8[vds]
+print id_off vth_off vov_off
+print id_sat vds_sat vov_sat
+print id_tri vds_tri vov_tri
+quit
+.endc
+.end

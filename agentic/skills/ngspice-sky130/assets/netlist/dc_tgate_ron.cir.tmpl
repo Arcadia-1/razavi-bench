@@ -1,0 +1,14 @@
+* Sky130 transmission-gate Ron sweep
+.include "{sky130_lib}"
+
+Vdd vdd 0 DC {vdd}
+Vclk clk 0 DC {vdd}
+Vclkb clkb 0 DC 0
+Vin in 0 DC 0
+Vdelta out in DC {vtest}
+Xn out clk in 0 sky130_fd_pr__nfet_01v8 w={wn} l={l}
+Xp out clkb in vdd sky130_fd_pr__pfet_01v8 w={wp} l={l}
+
+.dc Vin 0 {vdd} {vstep}
+.print dc i(Vdelta)
+.end

@@ -1,0 +1,87 @@
+* Figure 9 StrongARM comparator: M5/M6 width versus regeneration delay.
+* Three complete copies hold all non-M5/M6 geometry, stimuli, and explicit
+* capacitors fixed. Literal widths expose the exact Sky130 device geometry.
+
+.include "../../simulator/ngspice-sky130/models/sky130.lib.spice"
+.option method=gear reltol=1e-4 abstol=1e-12 vntol=1e-6
+
+VDD VDD 0 1.8
+* Hold CK high for the complete evaluation window; no premature precharge reset.
+VCK CK 0 PULSE(0 1.8 20p 20p 20p 10n 20n)
+VIN1 VIN1 0 0.905
+VIN2 VIN2 0 0.895
+
+* Copy A: M5=M6=1.26 um.
+XM1A PA VIN1 TAILA 0 sky130_fd_pr__nfet_01v8 w=2.52u l=0.15u
+XM2A QA VIN2 TAILA 0 sky130_fd_pr__nfet_01v8 w=2.52u l=0.15u
+XM3A XA YA PA 0 sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+XM4A YA XA QA 0 sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+XM5A XA YA VDD VDD sky130_fd_pr__pfet_01v8 w=1.26u l=0.15u
+XM6A YA XA VDD VDD sky130_fd_pr__pfet_01v8 w=1.26u l=0.15u
+XM7A TAILA CK 0 0 sky130_fd_pr__nfet_01v8 w=3.36u l=0.15u
+XS1A PA CK VDD VDD sky130_fd_pr__pfet_01v8 w=1.26u l=0.15u
+XS2A QA CK VDD VDD sky130_fd_pr__pfet_01v8 w=1.26u l=0.15u
+XS3A XA CK VDD VDD sky130_fd_pr__pfet_01v8 w=1.26u l=0.15u
+XS4A YA CK VDD VDD sky130_fd_pr__pfet_01v8 w=1.26u l=0.15u
+CPA PA 0 5f
+CQA QA 0 5f
+CXA XA 0 30f
+CYA YA 0 30f
+
+* Copy B: M5=M6=2.52 um.
+XM1B PB VIN1 TAILB 0 sky130_fd_pr__nfet_01v8 w=2.52u l=0.15u
+XM2B QB VIN2 TAILB 0 sky130_fd_pr__nfet_01v8 w=2.52u l=0.15u
+XM3B XB YB PB 0 sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+XM4B YB XB QB 0 sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+XM5B XB YB VDD VDD sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XM6B YB XB VDD VDD sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XM7B TAILB CK 0 0 sky130_fd_pr__nfet_01v8 w=3.36u l=0.15u
+XS1B PB CK VDD VDD sky130_fd_pr__pfet_01v8 w=1.26u l=0.15u
+XS2B QB CK VDD VDD sky130_fd_pr__pfet_01v8 w=1.26u l=0.15u
+XS3B XB CK VDD VDD sky130_fd_pr__pfet_01v8 w=1.26u l=0.15u
+XS4B YB CK VDD VDD sky130_fd_pr__pfet_01v8 w=1.26u l=0.15u
+CPB PB 0 5f
+CQB QB 0 5f
+CXB XB 0 30f
+CYB YB 0 30f
+
+* Copy C: M5=M6=5.04 um.
+XM1C PC VIN1 TAILC 0 sky130_fd_pr__nfet_01v8 w=2.52u l=0.15u
+XM2C QC VIN2 TAILC 0 sky130_fd_pr__nfet_01v8 w=2.52u l=0.15u
+XM3C XC YC PC 0 sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+XM4C YC XC QC 0 sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+XM5C XC YC VDD VDD sky130_fd_pr__pfet_01v8 w=5.04u l=0.15u
+XM6C YC XC VDD VDD sky130_fd_pr__pfet_01v8 w=5.04u l=0.15u
+XM7C TAILC CK 0 0 sky130_fd_pr__nfet_01v8 w=3.36u l=0.15u
+XS1C PC CK VDD VDD sky130_fd_pr__pfet_01v8 w=1.26u l=0.15u
+XS2C QC CK VDD VDD sky130_fd_pr__pfet_01v8 w=1.26u l=0.15u
+XS3C XC CK VDD VDD sky130_fd_pr__pfet_01v8 w=1.26u l=0.15u
+XS4C YC CK VDD VDD sky130_fd_pr__pfet_01v8 w=1.26u l=0.15u
+CPC PC 0 5f
+CQC QC 0 5f
+CXC XC 0 30f
+CYC YC 0 30f
+
+* Explicit precharged initial state avoids an artificial floating-tail DC solve.
+.ic v(PA)=1.8 v(QA)=1.8 v(XA)=1.8 v(YA)=1.8 v(TAILA)=0
+.ic v(PB)=1.8 v(QB)=1.8 v(XB)=1.8 v(YB)=1.8 v(TAILB)=0
+.ic v(PC)=1.8 v(QC)=1.8 v(XC)=1.8 v(YC)=1.8 v(TAILC)=0
+
+.control
+tran 2p 8n uic
+let vdiff_w1=v(ya)-v(xa)
+let vdiff_w2=v(yb)-v(xb)
+let vdiff_w4=v(yc)-v(xc)
+* Speed metric: time from the evaluation clock edge until the differential
+* output first reaches 0.9 V. All copies use the same threshold and stimulus.
+meas tran delay_w1 trig v(ck) val=0.9 rise=1 targ vdiff_w1 val=0.9 rise=1
+meas tran delay_w2 trig v(ck) val=0.9 rise=1 targ vdiff_w2 val=0.9 rise=1
+meas tran delay_w4 trig v(ck) val=0.9 rise=1 targ vdiff_w4 val=0.9 rise=1
+meas tran final_w1 find vdiff_w1 at=8n
+meas tran final_w2 find vdiff_w2 at=8n
+meas tran final_w4 find vdiff_w4 at=8n
+print delay_w1 delay_w2 delay_w4 final_w1 final_w2 final_w4
+quit
+.endc
+
+.end

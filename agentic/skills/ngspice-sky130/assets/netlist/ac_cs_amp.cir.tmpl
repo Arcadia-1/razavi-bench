@@ -1,0 +1,12 @@
+* Sky130 common-source amplifier AC response
+.include "{sky130_lib}"
+
+Vdd vdd 0 DC {vdd}
+Vgs gate 0 DC {vgs_bias} AC 1
+Rd vdd drain {rd}
+Xn drain gate 0 0 sky130_fd_pr__nfet_01v8 w={w} l={l}
+CL drain 0 {cl}
+
+.ac dec 100 {fstart} {fstop}
+.print ac v(drain)
+.end

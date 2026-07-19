@@ -1,0 +1,78 @@
+* Fixed BJT devices for the bandgap-core task.
+* Agents may instantiate the QBG_PNP_1X and QBG_PNP_25X subcircuits but must
+* not define new device models inside the DUT netlist.
+*
+* The PNP device models below are derived from the open-source SkyWater SKY130
+* primitive PNP models, licensed under Apache License 2.0:
+*   sky130_fd_pr__pnp_05v5_W0p68L0p68.model.spice
+*   sky130_fd_pr__pnp_05v5_W3p40L3p40.model.spice
+*
+* Copyright 2020 The SkyWater PDK Authors
+* Licensed under the Apache License, Version 2.0.
+
+.param dkbfpp=1.0 dkispp=1.0 dknfpp=1.0
+.param dkbfpp5x=1.0 dkispp5x=1.0 dkisepp5x=1.0 dknfpp5x=1.0
+.param sky130_fd_pr__model__parasitic__diode_ps2nw__ajunction_mult=1.0
+.param sky130_fd_pr__model__parasitic__diode_ps2nw__pjunction_mult=1.0
+.param sky130_fd_pr__pfet_01v8__ajunction_mult=1.0
+.param sky130_fd_pr__pfet_01v8__pjunction_mult=1.0
+
+.param sky130_fd_pr__pnp_05v5_W0p68L0p68__bf_slope = 0.0
+.param sky130_fd_pr__pnp_05v5_W0p68L0p68__is_slope = 0.0
+.subckt sky130_fd_pr__pnp_05v5_W0p68L0p68 c b e s
+.param mult = 1.0
++ sky130_fd_pr__pnp_05v5_W0p68L0p68__bf_mm = {(19.35*dkbfpp*sky130_fd_pr__pnp_05v5_W0p68L0p68__bf_slope/sqrt(mult))}
++ sky130_fd_pr__pnp_05v5_W0p68L0p68__is_mm = {(1.5075e-018*dkispp*sky130_fd_pr__pnp_05v5_W0p68L0p68__is_slope/sqrt(mult))}
+qsky130_fd_pr__pnp_05v5_W0p68L0p68 c b e s sky130_fd_pr__pnp_05v5_W0p68L0p68__model
+.model sky130_fd_pr__pnp_05v5_W0p68L0p68__model pnp level = 1.0
++ tref = 30.0
++ cjc = 6.255e-015 cje = 6.113e-016 cjs = 0.0
++ fc = 0.5 mjc = 0.24 mje = 0.3 mjs = 0.24
++ vjc = 0.54 vje = 0.74 vjs = 0.54 xcjc = 1.0
++ ptf = 0 tf = 6.15385e-010 tr = 5e-008 vtf = 1.0e-12
++ xtf = 0.0
++ af = 1.60722 kf = 4.9435066e-11
++ is = '1.5075e-018*1.00*dkispp+sky130_fd_pr__pnp_05v5_W0p68L0p68__is_mm' rb = 316.21 re = 219 irb = 0.027411
++ rc = 531 rbm = 243.58 bf = '19.35*dkbfpp+sky130_fd_pr__pnp_05v5_W0p68L0p68__bf_mm' nf = '1.028*dknfpp'
++ vaf = 152.06 ikf = 3.3057e-005 ise = 9.4936e-017 ne = 1.6444
++ ns = 1 br = 0.2675 iss = 0 nr = 1.0
++ var = 4.3 ikr = 0.00043 nkf = 0.5 isc = 1.2e-15
++ nc = 1.003
++ xtb = 2.2132 xti = 1.1 eg = 1.2 tikf1 = -0.0037823
++ tnf1 = 1.972e-006 tnf2 = -8.8e-7
+.ends sky130_fd_pr__pnp_05v5_W0p68L0p68
+
+.param sky130_fd_pr__pnp_05v5_W3p40L3p40__bf_slope = 0.0
+.param sky130_fd_pr__pnp_05v5_W3p40L3p40__is_slope = 0.0
+.param sky130_fd_pr__pnp_05v5_W3p40L3p40__xti_slope = 0.0
+.subckt sky130_fd_pr__pnp_05v5_W3p40L3p40 c b e s
+.param mult = 1.0
++ sky130_fd_pr__pnp_05v5_W3p40L3p40__bf_mm = {(16.603*dkbfpp5x*sky130_fd_pr__pnp_05v5_W3p40L3p40__bf_slope*0.45/sqrt(mult))}
++ sky130_fd_pr__pnp_05v5_W3p40L3p40__is_mm = {(7.1190e-018*1.00*dkispp5x*sky130_fd_pr__pnp_05v5_W3p40L3p40__is_slope*0.13/sqrt(mult))}
++ sky130_fd_pr__pnp_05v5_W3p40L3p40__xti_mm = {(5*sky130_fd_pr__pnp_05v5_W3p40L3p40__xti_slope/sqrt(mult))}
+qsky130_fd_pr__pnp_05v5_W3p40L3p40 c b e s sky130_fd_pr__pnp_05v5_W3p40L3p40__model
+.model sky130_fd_pr__pnp_05v5_W3p40L3p40__model pnp level = 1.0
++ tref = 30 subs = 1.0
++ cjc = '9.155e-17*5.17*5.17*sky130_fd_pr__model__parasitic__diode_ps2nw__ajunction_mult+5.822e-16*4*5.17*sky130_fd_pr__model__parasitic__diode_ps2nw__pjunction_mult' cje = '7.4079e-16*3.4*3.4*sky130_fd_pr__pfet_01v8__ajunction_mult+9.88e-17*4*3.4*sky130_fd_pr__pfet_01v8__pjunction_mult' cjs = 0.0
++ fc = 0.5 mjc = 0.24 mje = 0.3 mjs = 0.24
++ vjc = 0.54 vje = 0.74 vjs = 0.54 xcjc = 1.0
++ ptf = 0 tf = 6.15385e-010 tr = 5e-008 vtf = 1.0e-12
++ xtf = 0.0
++ af = 1.30180 kf = 4.9435066e-11
++ is = '7.1190e-018*dkispp5x+sky130_fd_pr__pnp_05v5_W3p40L3p40__is_mm' rb = 73.32 re = 5.3848 irb = 0.0002
++ rc = 100.0 rbm = 25.19 bf = '16.603*dkbfpp5x+sky130_fd_pr__pnp_05v5_W3p40L3p40__bf_mm' nf = '1.000*dknfpp5x'
++ vaf = 111.6 ikf = 0.00038589 ise = '1.0310e-015*dkisepp5x' ne = 1.64
++ ns = 1 br = 0.2675 iss = 0 nr = 1.0
++ var = 4.3 ikr = 0.0043 nkf = 0.426 isc = 1.9855e-15
++ nc = 1.000
++ xtb = 1.692 xti = '5.0+sky130_fd_pr__pnp_05v5_W3p40L3p40__xti_mm' eg = 1.125 tnf1 = 5.972e-6
++ tikf1 = -0.002456 tnf2 = -3.0e-8
+.ends sky130_fd_pr__pnp_05v5_W3p40L3p40
+
+.subckt QBG_PNP_1X c b e s
+XQBGPNP c b e s sky130_fd_pr__pnp_05v5_W0p68L0p68
+.ends QBG_PNP_1X
+
+.subckt QBG_PNP_25X c b e s
+XQBGPNP c b e s sky130_fd_pr__pnp_05v5_W3p40L3p40
+.ends QBG_PNP_25X

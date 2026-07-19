@@ -1,0 +1,51 @@
+* Figure 5 (part1-008-source-follower): NMOS source follower / common-drain stage
+* Topology-faithful Sky130 operating-point + small-signal probe.
+*
+*   M1 drain -> VDD, gate -> Vin, source -> Vout node.
+*   RS from Vout (source) to ground is the source load.
+*   Output is taken at the source (Vout).
+*
+* Nominal assumptions (schematic gives no numbers):
+*   VDD      = 1.8 V   (Sky130 1.8 V primitive device rail)
+*   Vin bias = 0.9 V   (mid-rail gate bias -> device biased in saturation)
+*   M1       = sky130_fd_pr__nfet_01v8, W = 4.2 u, L = 0.15 u
+*   RS       = 10 kOhm (source degeneration / load)
+*
+* This .op deck extracts gm, gmbs, gds and forms the source-follower gain and
+* output-resistance estimates. DC/OP work is well within the minimal Sky130 subset.
+
+.include "../../simulator/ngspice-sky130/models/sky130.lib.spice"
+
+Vdd  vdd 0 1.8
+Vin  in  0 0.9
+
+* Xn: drain gate source bulk  (bulk tied to ground -> body effect present)
+Xn   vdd in out 0 sky130_fd_pr__nfet_01v8 w=4.2u l=0.15u
+Rs   out 0 10k
+
+.op
+
+.control
+run
+let gm  = @m.xn.msky130_fd_pr__nfet_01v8[gm]
+let gmbs= @m.xn.msky130_fd_pr__nfet_01v8[gmbs]
+let gds = @m.xn.msky130_fd_pr__nfet_01v8[gds]
+let id  = @m.xn.msky130_fd_pr__nfet_01v8[id]
+let vth = @m.xn.msky130_fd_pr__nfet_01v8[vth]
+let rs_val = 10e3
+* Full small-signal gain (body effect + channel-length modulation included):
+let av_full   = gm/(gm + gmbs + gds + 1/rs_val)
+* Textbook estimate from golden solution (neglect body effect and ro):
+let av_simple = gm*rs_val/(1 + gm*rs_val)
+* Output resistance looking into the source, and total output resistance:
+let rout_src  = 1/(gm + gmbs + gds)
+let rout_tot  = 1/(gm + gmbs + gds + 1/rs_val)
+print id vth
+print gm gmbs gds
+print av_full av_simple
+print rout_src rout_tot
+print v(in) v(out)
+quit
+.endc
+
+.end

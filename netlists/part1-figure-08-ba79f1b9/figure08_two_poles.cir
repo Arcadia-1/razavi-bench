@@ -1,0 +1,59 @@
+* Razavi-Bench Figure 8: common-source stage with two dynamic nodes
+* Simulation objective: count finite small-signal poles while holding the
+* bias point, component values, and the reviewed D/G/S/B topology fixed.
+
+.include "../../simulator/ngspice-sky130/models/sky130.lib.spice"
+
+* Added assumptions (the source figure supplies no numerical values/bias):
+* 1.8 V supply; 0.70 V gate bias with a 1 V AC test signal at vin.
+VVDD vdd 0 1.8
+VVIN vin 0 DC 0.70 AC 1
+
+* Reviewed topology, with illustrative explicit values.
+RRS vin g 20k
+RRD vdd d_out 10k
+XM1 d_out g 0 0 sky130_fd_pr__nfet_01v8 w=2.00u l=0.50u
+CGD g d_out 20f
+CGS g 0 80f
+CDB d_out 0 60f
+
+* The figure also shows CSB from source to bulk. Here S=B=0, so CSB is a
+* degenerate ground-to-ground element and is intentionally documentary-only:
+* CSB 0 0 40f
+
+.control
+set noaskquit
+op
+print v(g) v(d_out) @m.xm1.msky130_fd_pr__nfet_01v8[id] @m.xm1.msky130_fd_pr__nfet_01v8[gm] @m.xm1.msky130_fd_pr__nfet_01v8[gds]
+
+* Usual two-node small-signal model. The real Sky130 operating point supplies
+* gm and gds; the displayed lumped capacitors supply the energy-storage terms.
+* det(Y(s)) = a2*s^2 + a1*s + a0, hence exactly two finite roots.
+let gm_op=@m.xm1.msky130_fd_pr__nfet_01v8[gm]
+let gds_op=@m.xm1.msky130_fd_pr__nfet_01v8[gds]
+let gin=1/20k
+let gout=1/10k+gds_op
+let cgd_l=20f
+let cg_l=80f+cgd_l
+let cd_l=60f+cgd_l
+let a2=cg_l*cd_l-cgd_l*cgd_l
+let a1=gin*cd_l+cg_l*gout+cgd_l*gm_op
+let a0=gin*gout
+let disc=a1*a1-4*a2*a0
+let pole_slow=(-a1+sqrt(disc))/(2*a2)
+let pole_fast=(-a1-sqrt(disc))/(2*a2)
+let fp_slow_hz=-pole_slow/(2*pi)
+let fp_fast_hz=-pole_fast/(2*pi)
+print a2 a1 a0 pole_slow pole_fast fp_slow_hz fp_fast_hz
+
+* Full-PDK frequency-domain sanity check of the same reviewed topology.
+ac dec 100 10k 100g
+meas ac gain_10k_db find vdb(d_out) at=10k
+meas ac gain_100m_db find vdb(d_out) at=100meg
+meas ac gain_1g_db find vdb(d_out) at=1g
+meas ac gain_10g_db find vdb(d_out) at=10g
+print gain_10k_db gain_100m_db gain_1g_db gain_10g_db
+quit
+.endc
+
+.end
