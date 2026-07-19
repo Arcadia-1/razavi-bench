@@ -214,5 +214,5 @@ overlay applied to Part 1 Q15; all non-Q15 task scores are unchanged.
 | Gemini | DeepSeek-V4-Pro | 81.83% | 91.11% | 67.92% |
 
 <p align="center">
-  <img src="docs/assets/direct_qa_rollout_mean_all_metrics.png" alt="Razavi-bench Direct QA three-rollout comparison" width="92%"/>
+  <img src="docs/assets/direct_qa_rollout_mean_all_metrics.png?v=20260719-q15-hard-rule" alt="2026-07-19 current Direct QA snapshot" title="2026-07-19 current Direct QA snapshot" width="92%"/>
 </p>
