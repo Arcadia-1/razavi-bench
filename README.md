@@ -198,19 +198,20 @@ Part 1 article contains Q1 through Q30. No synthetic questions were added.
 
 ## Direct QA Results
 
-The `2026-06-26-direct-qa` baseline and `2026-07-15-direct-qa` follow-up each
+The `2026-06-26-direct-qa` baseline and later Direct QA follow-ups each
 evaluate answer models over three rollouts of all 50 Razavi-bench tasks. Every
-answer is scored by MiniMax M3 and DeepSeek V4 Pro. The table below preserves
-the judge-specific June 26 baseline scores.
+answer is scored by MiniMax M3 and DeepSeek V4 Pro. The table below reports the
+judge-specific June 26 baseline with the `2026-07-19-part1-q15-score-correction`
+overlay applied to Part 1 Q15; all non-Q15 task scores are unchanged.
 
 | Answer Model | Judge Model | Overall | Part 1 First 30 | Part 2 Last 20 |
 |---|---|---:|---:|---:|
-| Claude | MiniMax-M3 | 88.50% | 94.72% | 79.17% |
-| Claude | DeepSeek-V4-Pro | 90.33% | 95.00% | 83.33% |
-| GPT | MiniMax-M3 | 81.17% | 88.33% | 70.42% |
-| GPT | DeepSeek-V4-Pro | 81.83% | 86.67% | 74.58% |
-| Gemini | MiniMax-M3 | 80.50% | 90.28% | 65.83% |
-| Gemini | DeepSeek-V4-Pro | 83.00% | 92.78% | 68.33% |
+| Claude | MiniMax-M3 | 87.00% | 92.50% | 78.75% |
+| Claude | DeepSeek-V4-Pro | 88.50% | 92.50% | 82.50% |
+| GPT | MiniMax-M3 | 79.50% | 85.83% | 70.00% |
+| GPT | DeepSeek-V4-Pro | 80.17% | 84.17% | 74.17% |
+| Gemini | MiniMax-M3 | 79.67% | 88.89% | 65.83% |
+| Gemini | DeepSeek-V4-Pro | 81.83% | 91.11% | 67.92% |
 
 <p align="center">
   <img src="docs/assets/direct_qa_rollout_mean_all_metrics.png" alt="Razavi-bench Direct QA three-rollout comparison" width="92%"/>

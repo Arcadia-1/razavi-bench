@@ -1,0 +1,73 @@
+mode,model,model_key,rollout,metric,deepseek_percent,minimax_percent,judge_mean_percent
+direct_qa,Claude Fable 5,claude_fable_5,1,overall,95.5,92.5,94.0
+direct_qa,Claude Fable 5,claude_fable_5,2,overall,91.5,90.0,90.75
+direct_qa,Claude Fable 5,claude_fable_5,3,overall,92.5,91.5,92.0
+direct_qa,Claude Fable 5,claude_fable_5,1,part1,96.6667,94.1667,95.4167
+direct_qa,Claude Fable 5,claude_fable_5,2,part1,96.6667,95.0,95.8333
+direct_qa,Claude Fable 5,claude_fable_5,3,part1,96.6667,95.8333,96.25
+direct_qa,Claude Fable 5,claude_fable_5,1,part2,93.75,90.0,91.875
+direct_qa,Claude Fable 5,claude_fable_5,2,part2,83.75,82.5,83.125
+direct_qa,Claude Fable 5,claude_fable_5,3,part2,86.25,85.0,85.625
+direct_qa,Claude Opus 4.8,claude_opus_48,1,overall,86.5,85.5,86.0
+direct_qa,Claude Opus 4.8,claude_opus_48,2,overall,89.5,87.5,88.5
+direct_qa,Claude Opus 4.8,claude_opus_48,3,overall,89.5,88.0,88.75
+direct_qa,Claude Opus 4.8,claude_opus_48,1,part1,91.6667,92.5,92.0833
+direct_qa,Claude Opus 4.8,claude_opus_48,2,part1,92.5,92.5,92.5
+direct_qa,Claude Opus 4.8,claude_opus_48,3,part1,93.3333,92.5,92.9167
+direct_qa,Claude Opus 4.8,claude_opus_48,1,part2,78.75,75.0,76.875
+direct_qa,Claude Opus 4.8,claude_opus_48,2,part2,85.0,80.0,82.5
+direct_qa,Claude Opus 4.8,claude_opus_48,3,part2,83.75,81.25,82.5
+direct_qa,GPT 5.6 Sol Pro,gpt_56,1,overall,85.5,85.0,85.25
+direct_qa,GPT 5.6 Sol Pro,gpt_56,2,overall,87.5,85.0,86.25
+direct_qa,GPT 5.6 Sol Pro,gpt_56,3,overall,85.5,87.0,86.25
+direct_qa,GPT 5.6 Sol Pro,gpt_56,1,part1,91.6667,90.8333,91.25
+direct_qa,GPT 5.6 Sol Pro,gpt_56,2,part1,93.3333,93.3333,93.3333
+direct_qa,GPT 5.6 Sol Pro,gpt_56,3,part1,90.0,91.6667,90.8333
+direct_qa,GPT 5.6 Sol Pro,gpt_56,1,part2,76.25,76.25,76.25
+direct_qa,GPT 5.6 Sol Pro,gpt_56,2,part2,78.75,72.5,75.625
+direct_qa,GPT 5.6 Sol Pro,gpt_56,3,part2,78.75,80.0,79.375
+direct_qa,Gemini 3.1 Pro,gemini_31,1,overall,84.5,82.0,83.25
+direct_qa,Gemini 3.1 Pro,gemini_31,2,overall,81.0,80.0,80.5
+direct_qa,Gemini 3.1 Pro,gemini_31,3,overall,80.0,77.0,78.5
+direct_qa,Gemini 3.1 Pro,gemini_31,1,part1,94.1667,91.6667,92.9167
+direct_qa,Gemini 3.1 Pro,gemini_31,2,part1,90.0,88.3333,89.1667
+direct_qa,Gemini 3.1 Pro,gemini_31,3,part1,89.1667,86.6667,87.9167
+direct_qa,Gemini 3.1 Pro,gemini_31,1,part2,70.0,67.5,68.75
+direct_qa,Gemini 3.1 Pro,gemini_31,2,part2,67.5,67.5,67.5
+direct_qa,Gemini 3.1 Pro,gemini_31,3,part2,66.25,62.5,64.375
+direct_qa,GPT 5.5,gpt_55,1,overall,81.0,80.5,80.75
+direct_qa,GPT 5.5,gpt_55,2,overall,75.0,75.5,75.25
+direct_qa,GPT 5.5,gpt_55,3,overall,84.5,82.5,83.5
+direct_qa,GPT 5.5,gpt_55,1,part1,84.1667,85.0,84.5833
+direct_qa,GPT 5.5,gpt_55,2,part1,82.5,85.8333,84.1667
+direct_qa,GPT 5.5,gpt_55,3,part1,85.8333,86.6667,86.25
+direct_qa,GPT 5.5,gpt_55,1,part2,76.25,73.75,75.0
+direct_qa,GPT 5.5,gpt_55,2,part2,63.75,60.0,61.875
+direct_qa,GPT 5.5,gpt_55,3,part2,82.5,76.25,79.375
+direct_qa,Kimi K2.7,kimi_k27,1,overall,76.0,73.0,74.5
+direct_qa,Kimi K2.7,kimi_k27,2,overall,73.5,72.0,72.75
+direct_qa,Kimi K2.7,kimi_k27,3,overall,78.5,77.5,78.0
+direct_qa,Kimi K2.7,kimi_k27,1,part1,81.6667,80.8333,81.25
+direct_qa,Kimi K2.7,kimi_k27,2,part1,81.6667,80.8333,81.25
+direct_qa,Kimi K2.7,kimi_k27,3,part1,83.3333,82.5,82.9167
+direct_qa,Kimi K2.7,kimi_k27,1,part2,67.5,61.25,64.375
+direct_qa,Kimi K2.7,kimi_k27,2,part2,61.25,58.75,60.0
+direct_qa,Kimi K2.7,kimi_k27,3,part2,71.25,70.0,70.625
+direct_qa,Kimi K3,kimi_k3,1,overall,76.5,75.5,76.0
+direct_qa,Kimi K3,kimi_k3,2,overall,77.5,76.0,76.75
+direct_qa,Kimi K3,kimi_k3,3,overall,76.0,77.0,76.5
+direct_qa,Kimi K3,kimi_k3,1,part1,84.1667,83.3333,83.75
+direct_qa,Kimi K3,kimi_k3,2,part1,82.5,80.0,81.25
+direct_qa,Kimi K3,kimi_k3,3,part1,84.1667,85.8333,85.0
+direct_qa,Kimi K3,kimi_k3,1,part2,65.0,63.75,64.375
+direct_qa,Kimi K3,kimi_k3,2,part2,70.0,70.0,70.0
+direct_qa,Kimi K3,kimi_k3,3,part2,63.75,63.75,63.75
+direct_qa,MiniMax M3,minimax_m3,1,overall,60.0,54.0,57.0
+direct_qa,MiniMax M3,minimax_m3,2,overall,64.0,61.0,62.5
+direct_qa,MiniMax M3,minimax_m3,3,overall,54.5,51.5,53.0
+direct_qa,MiniMax M3,minimax_m3,1,part1,60.0,53.3333,56.6667
+direct_qa,MiniMax M3,minimax_m3,2,part1,70.0,66.6667,68.3333
+direct_qa,MiniMax M3,minimax_m3,3,part1,57.5,52.5,55.0
+direct_qa,MiniMax M3,minimax_m3,1,part2,60.0,55.0,57.5
+direct_qa,MiniMax M3,minimax_m3,2,part2,55.0,52.5,53.75
+direct_qa,MiniMax M3,minimax_m3,3,part2,50.0,50.0,50.0

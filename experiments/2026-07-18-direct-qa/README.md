@@ -19,6 +19,9 @@ Razavi-Bench questions, for 150 final answers in total.
 - Judge temperature: 0
 - Judge maximum output tokens: 2,048
 - Final comparison score: arithmetic mean of the two judge scores
+- Current aggregate: applies the
+  [`2026-07-19-part1-q15-score-correction`](../2026-07-19-part1-q15-score-correction)
+  overlay for Part 1 Q15; all non-Q15 task scores are unchanged.
 
 The initial generation encountered provider quota errors and several stalled
 or gateway-timed-out requests. Only records with a non-empty visible answer
@@ -53,9 +56,9 @@ Scores below are weighted over all three rollouts.
 
 | Judge | Part 1 | Part 2 | Overall |
 |---|---:|---:|---:|
-| DeepSeek V4 Pro | 86.67% | 66.25% | 78.50% |
-| MiniMax M3 no-thinking | 85.83% | 65.83% | 77.83% |
-| Mean | 86.25% | 66.04% | 78.17% |
+| DeepSeek V4 Pro | 83.61% | 66.25% | 76.67% |
+| MiniMax M3 no-thinking | 83.06% | 65.83% | 76.17% |
+| Mean | 83.33% | 66.04% | 76.42% |
 
 ## Rollout results
 
@@ -64,9 +67,9 @@ each rollout.
 
 | Rollout | Part 1 | Part 2 | Overall |
 |---|---:|---:|---:|
-| 1 | 86.25% | 64.38% | 77.50% |
-| 2 | 84.58% | 70.00% | 78.75% |
-| 3 | 87.92% | 63.75% | 78.25% |
+| 1 | 83.75% | 64.38% | 76.00% |
+| 2 | 81.25% | 70.00% | 76.75% |
+| 3 | 85.00% | 63.75% | 76.50% |
 
 ## Cross-model comparison
 
@@ -76,14 +79,14 @@ sorted by Overall; Part 1 and Part 2 charts retain this same order.
 
 | Rank | Model | Thinking effort | Part 1 | Part 2 | Overall |
 |---:|---|---|---:|---:|---:|
-| 1 | Claude Fable 5 | max | 98.89% | 86.88% | 94.08% |
-| 2 | Claude Opus 4.8 | max | 94.86% | 80.62% | 89.17% |
-| 3 | GPT 5.6 Sol Pro | max | 94.86% | 77.08% | 87.75% |
-| 4 | Gemini 3.1 Pro | high | 91.53% | 66.88% | 81.67% |
-| 5 | GPT 5.5 | max | 87.50% | 72.08% | 81.33% |
-| 6 | Kimi K3 | max | 86.25% | 66.04% | 78.17% |
-| 7 | Kimi K2.7 | default | 82.92% | 65.00% | 75.75% |
-| 8 | MiniMax M3 | ultra | 60.42% | 53.75% | 57.75% |
+| 1 | Claude Fable 5 | max | 95.83% | 86.88% | 92.25% |
+| 2 | Claude Opus 4.8 | max | 92.50% | 80.62% | 87.75% |
+| 3 | GPT 5.6 Sol Pro | max | 91.81% | 77.08% | 85.92% |
+| 4 | Gemini 3.1 Pro | high | 90.00% | 66.88% | 80.75% |
+| 5 | GPT 5.5 | max | 85.00% | 72.08% | 79.83% |
+| 6 | Kimi K3 | max | 83.33% | 66.04% | 76.42% |
+| 7 | Kimi K2.7 | default | 81.81% | 65.00% | 75.08% |
+| 8 | MiniMax M3 | ultra | 60.00% | 53.75% | 57.50% |
 
 ## Figures
 

@@ -1,0 +1,33 @@
+{
+  "current_q15_golden_sha256": "0baa9e972308e40ff5420b6292af6021c743103764b4a72c7c5cd188682011a6",
+  "experiment": "2026-07-19-part1-q15-score-correction",
+  "hard_rule_nonzero_manual_check": "Both nonzero answers explicitly identify both devices as NMOS, describe M1 as source-follower pull-up and M2 as common-source pull-down, and reject ordinary CMOS-inverter analysis.",
+  "hard_rule_nonzero_source_uids": [
+    "agentic-mm-v44-full50::agentic_multimodal::claude-opus-4-8-plus-claude-code::rollout-3",
+    "direct-mm-current-thinking-full50-doubao-kimi::direct_qa::kimi-k2-7-code::rollout-3"
+  ],
+  "hard_rule_score_distribution": {
+    "deepseek": {
+      "0": 34,
+      "4": 2
+    },
+    "minimax": {
+      "0": 34,
+      "4": 2
+    }
+  },
+  "manifest_duplicate_source_uids": 0,
+  "model_output_byte_hashes": "verified in the private Vela manifest; not included in the public repository",
+  "new_score_count": 72,
+  "old_score_count": 72,
+  "parse_error_count": 0,
+  "part2_delta_nonzero_count": 0,
+  "public_private_path_scan": "passed: no private Vela paths, record IDs, session IDs, task IDs, or local absolute paths in public correction files",
+  "q15_duplicate_new_scores": 0,
+  "q15_new_golden_hashes": [
+    "0baa9e972308e40ff5420b6292af6021c743103764b4a72c7c5cd188682011a6"
+  ],
+  "repo_commit": "349a4a013b25d84e43d11334ef7f3a0dff364026",
+  "soft_rule_outputs": "superseded private pre-hard-rule audit only; not present in public active outputs",
+  "source_count": 36
+}

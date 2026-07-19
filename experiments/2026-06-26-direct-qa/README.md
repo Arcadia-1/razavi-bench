@@ -18,7 +18,9 @@ experiment.
   by model family and rollout.
 - `judge_outputs/`: per-answer judge model output JSONL files.
 - `judge_scores/summary.csv`: rollout-aware aggregate score table for reports
-  and plots.
+  and plots. The active version applies the
+  [`2026-07-19-part1-q15-score-correction`](../2026-07-19-part1-q15-score-correction)
+  overlay for Part 1 Q15; all non-Q15 task scores are unchanged.
 - `tools/`: historical scripts used to generate this experiment's original
   `judge_outputs/*.jsonl`.
 - `figures/`: MiniMax and DeepSeek score plots generated from
@@ -42,10 +44,10 @@ to the rubric and golden answers used at judge time. If the rubric or golden
 answers change, add a new judge output artifact under this experiment rather
 than modifying the cleaned model output files.
 
-`judge_scores/summary.csv` is derived from the judge outputs and keeps
-model-family, rollout, judge-family, and Part 1/Part 2/overall aggregates. Use
-it as the single summary source for reports and plots; use `judge_outputs/*.jsonl`
-when per-answer scores and rationales are needed.
+`judge_scores/summary.csv` keeps model-family, rollout, judge-family, and Part
+1/Part 2/overall aggregates. The current active summary overlays the corrected
+Q15 score from the 2026-07-19 correction experiment; use `judge_outputs/*.jsonl`
+when the original per-answer scores and rationales are needed.
 
 The judge scripts in this directory are kept as a reproducibility snapshot for
 this experiment. New judge runs should generally use the repository-level

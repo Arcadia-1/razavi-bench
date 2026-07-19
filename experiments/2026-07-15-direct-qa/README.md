@@ -14,6 +14,9 @@ rollouts over all 50 Razavi-Bench questions.
 - Answer decoding: temperature 0 with model thinking enabled
 - Judges: DeepSeek V4 Pro and MiniMax M3 no-thinking
 - Final comparison score: arithmetic mean of the two judge scores
+- Current aggregate: applies the
+  [`2026-07-19-part1-q15-score-correction`](../2026-07-19-part1-q15-score-correction)
+  overlay for Part 1 Q15; all non-Q15 task scores are unchanged.
 
 Answer models in this experiment:
 
@@ -26,12 +29,12 @@ Scores below are weighted over all three rollouts.
 
 | Answer model | Judge | Part 1 | Part 2 | Overall |
 |---|---|---:|---:|---:|
-| Claude Fable 5 | DeepSeek V4 Pro | 100.00% | 87.92% | 95.17% |
-| Claude Fable 5 | MiniMax M3 no-thinking | 97.78% | 85.83% | 93.00% |
-| Claude Fable 5 | Mean | 98.89% | 86.88% | 94.08% |
-| GPT 5.6 Sol Pro | DeepSeek V4 Pro | 95.00% | 77.92% | 88.17% |
-| GPT 5.6 Sol Pro | MiniMax M3 no-thinking | 94.72% | 76.25% | 87.33% |
-| GPT 5.6 Sol Pro | Mean | 94.86% | 77.08% | 87.75% |
+| Claude Fable 5 | DeepSeek V4 Pro | 96.67% | 87.92% | 93.17% |
+| Claude Fable 5 | MiniMax M3 no-thinking | 95.00% | 85.83% | 91.33% |
+| Claude Fable 5 | Mean | 95.83% | 86.88% | 92.25% |
+| GPT 5.6 Sol Pro | DeepSeek V4 Pro | 91.67% | 77.92% | 86.17% |
+| GPT 5.6 Sol Pro | MiniMax M3 no-thinking | 91.94% | 76.25% | 85.67% |
+| GPT 5.6 Sol Pro | Mean | 91.81% | 77.08% | 85.92% |
 
 ## Contents
 
