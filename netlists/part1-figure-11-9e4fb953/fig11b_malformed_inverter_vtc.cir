@@ -1,19 +1,15 @@
-* Razavi-Bench Figure 11(b) - MALFORMED "inverter", DC transfer characteristic
-* Topology (from figure-11.png, subfigure b) - note the source/drain supply
-* orientation is WRONG for a complementary inverter; both device sources sit at Vout:
-*   M1 = NMOS on top   : drain->VDD, gate->Vin, source->Vout, body->GND
-*   M2 = PMOS on bottom: source->Vout, gate->Vin, drain->GND, body->VDD
-*   Vin drives both gates; Vout is the shared source node.
+* Razavi-Bench Figure 11(b) - malformed two-NMOS "inverter", DC transfer characteristic
+* Topology (from figure-11.png, subfigure b):
+*   M1 = upper NMOS source follower: drain->VDD, gate->Vin, source->Vout, body->GND
+*   M2 = lower NMOS common-source pull-down: drain->Vout, gate->Vin, source->GND, body->GND
+*   Vin drives both gates; Vout is the shared source/drain node.
 * Purpose: sweep Vin 0->VDD to expose the malformed behaviour described in the
-*   golden solution:
-*     - the top NMOS acts as a source follower passing a DEGRADED HIGH (~VDD - Vthn),
-*     - the bottom PMOS passes a DEGRADED LOW  (~|Vthp|),
-*     - the transfer curve is NON-inverting (positive slope) and level-compressed:
-*       Vout never reaches either rail, so logic levels are not regenerated.
-*   Threshold-voltage loss and body effect (bodies tied to the rails, not to the
-*   moving source node) cause the level degradation.
+*   golden solution. This is not a complementary CMOS inverter: M1 can only pull
+*   Vout up as a source follower, while M2 pulls Vout down when it conducts, so
+*   Vout is set by current balance and does not show a regenerative rail-to-rail
+*   CMOS inverter transfer characteristic.
 * Nominal assumptions: Sky130 1.8 V primitives (TT), VDD=1.8 V, L=0.15 um,
-*   Wn=1.26 um, Wp=3.0 um (same devices as fig 11(a), only the wiring differs).
+*   W=1.26 um for both NMOS devices.
 .include "../../simulator/ngspice-sky130/models/sky130.lib.spice"
 
 Vdd vdd 0 1.8
@@ -21,7 +17,7 @@ Vin in  0 0.9
 
 * subckt pin order: d g s b
 Xm1 vdd in out 0   sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
-Xm2 0   in out vdd sky130_fd_pr__pfet_01v8 w=3.0u  l=0.15u
+Xm2 out in 0   0   sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
 
 .dc Vin 0 1.8 0.02
 .print dc v(out)
