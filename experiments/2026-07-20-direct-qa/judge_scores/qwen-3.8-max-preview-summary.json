@@ -1,0 +1,86 @@
+[
+  {
+    "judge": "DeepSeek V4 Pro",
+    "rollout": 1,
+    "part1": 100.0,
+    "part2": 75.0,
+    "overall": 90.0
+  },
+  {
+    "judge": "DeepSeek V4 Pro",
+    "rollout": 2,
+    "part1": 96.66666666666667,
+    "part2": 72.5,
+    "overall": 87.0
+  },
+  {
+    "judge": "DeepSeek V4 Pro",
+    "rollout": 3,
+    "part1": 98.33333333333333,
+    "part2": 71.25,
+    "overall": 87.5
+  },
+  {
+    "judge": "MiniMax M3 no-thinking",
+    "rollout": 1,
+    "part1": 99.16666666666667,
+    "part2": 75.0,
+    "overall": 89.5
+  },
+  {
+    "judge": "MiniMax M3 no-thinking",
+    "rollout": 2,
+    "part1": 96.66666666666667,
+    "part2": 66.25,
+    "overall": 84.5
+  },
+  {
+    "judge": "MiniMax M3 no-thinking",
+    "rollout": 3,
+    "part1": 96.66666666666667,
+    "part2": 70.0,
+    "overall": 86.0
+  },
+  {
+    "judge": "DeepSeek V4 Pro",
+    "rollout": "weighted",
+    "part1": 98.33333333333333,
+    "part2": 72.91666666666666,
+    "overall": 88.16666666666667
+  },
+  {
+    "judge": "MiniMax M3 no-thinking",
+    "rollout": "weighted",
+    "part1": 97.5,
+    "part2": 70.41666666666667,
+    "overall": 86.66666666666667
+  },
+  {
+    "judge": "Mean of DeepSeek and MiniMax",
+    "rollout": 1,
+    "part1": 99.58333333333334,
+    "part2": 75.0,
+    "overall": 89.75
+  },
+  {
+    "judge": "Mean of DeepSeek and MiniMax",
+    "rollout": 2,
+    "part1": 96.66666666666667,
+    "part2": 69.375,
+    "overall": 85.75
+  },
+  {
+    "judge": "Mean of DeepSeek and MiniMax",
+    "rollout": 3,
+    "part1": 97.5,
+    "part2": 70.625,
+    "overall": 86.75
+  },
+  {
+    "judge": "Mean of DeepSeek and MiniMax",
+    "rollout": "weighted",
+    "part1": 97.91666666666666,
+    "part2": 71.66666666666666,
+    "overall": 87.41666666666667
+  }
+]

@@ -100,10 +100,11 @@ figures, and circuit analysis.
 
 ## Evaluation Tools
 
-Use `tools/evaluate_answers.py` for new model-output scoring runs. It accepts an
-answer JSONL, reads each task's `instruction.md` and `golden_solution.md`, reads
-the repository-level `evaluation_rubric.md`, calls a configured judge API, and
-writes score JSONL plus a metadata manifest.
+Use `tools/run_direct_qa.py` to collect direct multimodal answers from an
+OpenAI-compatible endpoint, then use `tools/evaluate_answers.py` for scoring.
+The evaluator accepts an answer JSONL, reads each task's `instruction.md` and
+`golden_solution.md`, reads the repository-level `evaluation_rubric.md`, calls
+a configured judge API, and writes score JSONL plus a metadata manifest.
 
 The evaluator is intentionally separate from answer generation. Direct,
 agentic, and simulator-assisted runs should first save final answers, then use
@@ -213,6 +214,22 @@ overlay applied to Part 1 Q15; all non-Q15 task scores are unchanged.
 | Gemini | MiniMax-M3 | 79.67% | 88.89% | 65.83% |
 | Gemini | DeepSeek-V4-Pro | 81.83% | 91.11% | 67.92% |
 
+The current active aggregate below adds the July 20 Qwen 3.8 Max Preview run.
+Each value is the mean of DeepSeek V4 Pro and MiniMax M3 no-thinking scores
+over three rollouts, with the Q15 hard-rule correction applied consistently.
+
+| Rank | Answer Model | Overall | Part 1 | Part 2 |
+|---:|---|---:|---:|---:|
+| 1 | Claude Fable 5 | 92.25% | 95.83% | 86.88% |
+| 2 | Claude Opus 4.8 | 87.75% | 92.50% | 80.62% |
+| 3 | Qwen 3.8 Max Preview | 87.42% | 97.92% | 71.67% |
+| 4 | GPT 5.6 Sol Pro | 85.92% | 91.81% | 77.08% |
+| 5 | Gemini 3.1 Pro | 80.75% | 90.00% | 66.88% |
+| 6 | GPT 5.5 | 79.83% | 85.00% | 72.08% |
+| 7 | Kimi K3 | 76.42% | 83.33% | 66.04% |
+| 8 | Kimi K2.7 | 75.08% | 81.81% | 65.00% |
+| 9 | MiniMax M3 | 57.50% | 60.00% | 53.75% |
+
 <p align="center">
-  <img src="docs/assets/direct_qa_rollout_mean_all_metrics.png?v=20260719-q15-hard-rule" alt="2026-07-19 current Direct QA snapshot" title="2026-07-19 current Direct QA snapshot" width="92%"/>
+  <img src="docs/assets/direct_qa_rollout_mean_all_metrics.png?v=20260720-qwen38" alt="2026-07-20 current Direct QA snapshot" title="2026-07-20 current Direct QA snapshot" width="92%"/>
 </p>

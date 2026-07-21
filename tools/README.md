@@ -2,6 +2,39 @@
 
 This directory contains the current reusable Razavi-Bench evaluation utilities.
 
+## `run_direct_qa.py`
+
+`run_direct_qa.py` runs direct multimodal QA against an OpenAI-compatible
+chat-completions endpoint. For every selected rollout, it reads each task's
+`instruction.md`, places any PNG figures before the prompt text, and saves only
+the final visible answer in the public output JSONL. Full provider responses
+are written to a separately selected local directory and should not be
+committed.
+
+The runner supports bounded concurrency, retries, and resume from existing
+non-empty answers. API keys are read only from an environment variable.
+
+```bash
+export RAZAVI_DIRECT_API_KEY=...
+
+python3 tools/run_direct_qa.py \
+  --base-url https://example.com/v1 \
+  --model example-multimodal-model \
+  --model-name "Example Model" \
+  --model-family example \
+  --experiment 2026-01-01-direct-qa \
+  --run-date 2026-01-01 \
+  --output-dir experiments/2026-01-01-direct-qa/model_outputs \
+  --output-prefix example-model \
+  --raw-dir ../razavi-bench-private/example-model/raw-responses \
+  --rollout 1 --rollout 2 --rollout 3 \
+  --concurrency 4 \
+  --resume
+```
+
+The public metadata records that raw responses were retained locally, but does
+not record their machine-specific path.
+
 ## `evaluate_answers.py`
 
 `evaluate_answers.py` scores saved answer JSONL files after model generation.
