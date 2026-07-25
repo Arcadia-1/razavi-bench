@@ -1,8 +1,8 @@
 # Direct QA experiment - 2026-07-25
 
-This directory contains two Claude Opus 5 Direct QA configurations evaluated
+This directory contains three Claude Opus 5 Direct QA configurations evaluated
 on 2026-07-25. Each configuration used three rollouts over all 50
-Razavi-Bench questions, for 300 final answers in total.
+Razavi-Bench questions, for 450 final answers in total.
 
 ## Setup
 
@@ -11,11 +11,13 @@ Razavi-Bench questions, for 300 final answers in total.
   thinking effort max
 - Answer model: Claude Opus 5 (`claude-opus-5[1m]`), Vela model ID `209900`,
   thinking effort xhigh
+- Answer model: Claude Opus 5 (`claude-opus-5[1m]`), Vela model ID `209904`,
+  thinking effort high
 - Rollouts: 3 per configuration
 - Questions per rollout: 50
 - Part 1: first 30 questions
 - Part 2: last 20 questions
-- Figure-bearing questions: 46 per rollout, 276 total
+- Figure-bearing questions: 46 per rollout, 414 total
 - Generation concurrency: 100
 - Judges: DeepSeek V4 Pro and MiniMax M3 no-thinking
 - Judge temperature: 0
@@ -23,21 +25,26 @@ Razavi-Bench questions, for 300 final answers in total.
 - Final comparison score: arithmetic mean of the two judge scores
 - Q15 scoring: current hard rule from the 2026-07-19 correction
 
-All 300 answer slots contain a non-empty visible answer, with 50 unique tasks
+All 450 answer slots contain a non-empty visible answer, with 50 unique tasks
 in each rollout and no missing or duplicated slots. Six records in the max
 configuration remained in an anomalous platform state despite having complete
 model responses; their final visible answers were recovered from model logs.
 The xhigh configuration required targeted retries for one slow answer slot.
-The answer traces showed no tool or web use.
+The high configuration completed all slots without answer recovery. Its rollout
+1 answer to Part 1 Q6 authentically misread the diode-connected device despite
+receiving the PNG, so that answer was retained. The answer traces showed no
+tool or web use.
 
 ## Contents
 
-- `model_outputs/`: six cleaned 50-answer rollout JSONL files
+- `model_outputs/`: nine cleaned 50-answer rollout JSONL files
 - `judge_outputs/`: per-question DeepSeek and MiniMax scores and rationales
 - `judge_scores/claude-opus-5-209903-summary.csv`: rollout and aggregate scores
 - `judge_scores/claude-opus-5-thinking-xhigh-209900-summary.csv`: xhigh scores
+- `judge_scores/claude-opus-5-thinking-high-209904-summary.csv`: high scores
 - `judge_scores/claude-opus-5-209903-summary.json`: machine-readable summary
 - `judge_scores/claude-opus-5-thinking-xhigh-209900-summary.json`: xhigh summary
+- `judge_scores/claude-opus-5-thinking-high-209904-summary.json`: high summary
 - `judge_scores/comparison.csv`: current cross-model comparison
 - `figures/`: public all-model comparison figures
 
@@ -51,6 +58,9 @@ Scores below are weighted over all three rollouts for each configuration.
 
 | Configuration | Judge | Part 1 | Part 2 | Overall |
 |---|---|---:|---:|---:|
+| high | DeepSeek V4 Pro | 98.61% | 89.17% | 94.83% |
+| high | MiniMax M3 no-thinking | 98.06% | 85.83% | 93.17% |
+| high | Mean | 98.33% | 87.50% | 94.00% |
 | xhigh | DeepSeek V4 Pro | 95.28% | 92.08% | 94.00% |
 | xhigh | MiniMax M3 no-thinking | 95.56% | 87.92% | 92.50% |
 | xhigh | Mean | 95.42% | 90.00% | 93.25% |
@@ -62,6 +72,12 @@ Scores below are weighted over all three rollouts for each configuration.
 
 The tables report the arithmetic mean of the DeepSeek and MiniMax scores for
 each rollout.
+
+| high rollout | Part 1 | Part 2 | Overall |
+|---|---:|---:|---:|
+| 1 | 97.92% | 87.50% | 93.75% |
+| 2 | 97.50% | 87.50% | 93.50% |
+| 3 | 99.58% | 87.50% | 94.75% |
 
 | xhigh rollout | Part 1 | Part 2 | Overall |
 |---|---:|---:|---:|
@@ -75,11 +91,11 @@ each rollout.
 | 2 | 95.83% | 87.50% | 92.50% |
 | 3 | 96.25% | 85.63% | 92.00% |
 
-The xhigh configuration reaches 93.25% Overall and ranks first in the current
-active Direct QA comparison. It exceeds the max configuration by 1.08 points
-Overall and 2.08 points on Part 2. The two xhigh judges differ by 1.50 points
-Overall, while its three rollout scores remain tightly grouped at 93.50%,
-93.50%, and 92.75%.
+The high configuration reaches 94.00% Overall and ranks first in the current
+active Direct QA comparison, 0.75 points above xhigh. Its Part 1 score is the
+strongest in the comparison at 98.33%, while xhigh remains 2.50 points higher
+on Part 2. The two high judges differ by 1.66 points Overall, and its three
+rollouts range from 93.50% to 94.75%.
 
 ## Figures
 
