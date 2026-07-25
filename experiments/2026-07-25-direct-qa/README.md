@@ -87,6 +87,13 @@ Overall, while its three rollout scores remain tightly grouped at 93.50%,
 
 ![Current Direct QA Overall comparison](figures/direct_qa_overall.png)
 
+### Overall only, excluding MiniMax
+
+The MiniMax M3 answer model is omitted from this view; MiniMax M3 remains one
+of the two judges used in every displayed score.
+
+![Current Direct QA Overall comparison without MiniMax M3](figures/direct_qa_overall_without_minimax.png)
+
 ### All evaluated models
 
 ![Current Direct QA comparison](figures/direct_qa_all_models.png)
