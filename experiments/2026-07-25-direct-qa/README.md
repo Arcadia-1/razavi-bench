@@ -70,6 +70,10 @@ scores remain tightly grouped at 92.0%, 92.5%, and 92.0%.
 
 ## Figures
 
+### Overall only
+
+![Current Direct QA Overall comparison](figures/direct_qa_overall.png)
+
 ### All evaluated models
 
 ![Current Direct QA comparison](figures/direct_qa_all_models.png)
