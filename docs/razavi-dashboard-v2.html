@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Razavi-Bench -- Analog Design Reasoning Benchmark</title>
+<meta name="description" content="An expert-curated benchmark that tests whether frontier AI models can reason about analog circuit design.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<style>
+:root{--bg-primary:#ffffff;--bg-card:#f5f5f5;--bg-card-hover:#eaeaea;--border:#d5d5d5;--border-light:#bbbbbb;--text-primary:#1a1a1a;--text-secondary:#1a1a1a;--text-muted:#333333;--radius-lg:0;--max-width:825px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg-primary);color:var(--text-primary);line-height:1.6;-webkit-font-smoothing:antialiased}
+
+nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 24px}
+nav .nav-inner{max-width:var(--max-width);margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:56px}
+nav .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:17px;color:var(--text-primary);text-decoration:none}
+nav .logo svg{width:28px;height:28px}
+nav .nav-links{display:flex;gap:24px;align-items:center}
+nav .nav-links a{color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:color .15s}
+nav .nav-links a:hover{color:var(--text-primary)}
+nav .btn-gh{background:transparent;border:1px solid var(--border-light);color:var(--text-primary);padding:6px 14px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;transition:all .15s;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+nav .btn-gh:hover{background:var(--bg-card);border-color:var(--text-muted)}
+nav .btn-gh svg{width:15px;height:15px;opacity:0.7}
+
+.hero{max-width:var(--max-width);margin:0 auto;padding:56px 24px 64px}
+.hero-row1{display:flex;align-items:flex-start;justify-content:space-between;gap:48px}
+.hero-left{display:flex;align-items:flex-start;gap:16px}
+.hero-left .hero-icon{flex-shrink:0;margin-top:8px}
+.hero-left .hero-icon svg{width:44px;height:44px}
+.hero-left h1{font-size:clamp(44px,7vw,64px);font-weight:500;letter-spacing:-0.03em;line-height:1.0;margin-bottom:0;color:var(--text-primary)}
+.hero-divider{height:2px;background:#ccc;margin:6px 0 18px}
+.hero-row2{display:flex;justify-content:space-between;align-items:flex-start;gap:48px}
+.hero-left .hero-sub{color:#1a1a1a;font-size:18px;line-height:1.6;margin-bottom:0;max-width:580px}
+.hero-meta{flex-shrink:0;padding-top:0}
+.hero-meta .meta-row{display:flex;justify-content:space-between;gap:24px;font-size:13px;line-height:1.7}
+.hero-meta .meta-row .meta-key{color:var(--text-muted);text-align:left}
+.hero-meta .meta-row .meta-val{color:var(--text-primary);font-weight:600;text-align:right}
+
+section{max-width:var(--max-width);margin:0 auto;padding:0 24px 56px}
+.sec-head{margin-bottom:20px}
+.sec-head h2{margin:0 0 14px 0;font-size:24px;font-weight:700;letter-spacing:-0.02em;color:var(--text-primary)}
+section h3{font-size:15px;font-weight:600;margin-bottom:16px;color:var(--text-secondary)}
+
+.toggle-group{display:flex;gap:4px;background:var(--bg-card);border-radius:0;padding:3px;border:1px solid var(--border)}
+.toggle-group button{padding:6px 14px;border:none;border-radius:0;font-size:13px;font-weight:600;cursor:pointer;background:transparent;color:var(--text-secondary);transition:all .15s;font-family:inherit;white-space:nowrap}
+.toggle-group button.active{background:var(--text-primary);color:#fff}
+
+.table-wrap{overflow-x:auto;overflow-y:hidden;border-radius:var(--radius-lg);border:1px solid var(--border);overscroll-behavior-inline:contain;-webkit-overflow-scrolling:touch}
+.no-scroll{overflow-y:hidden !important}
+table{width:100%;min-width:680px;border-collapse:separate;border-spacing:0;font-size:13px;table-layout:fixed}
+thead th{text-align:left;padding:10px 8px;font-size:10px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.05em;background:var(--bg-card);border-bottom:1px solid var(--border)}
+thead th:nth-child(1){width:28px;text-align:right;padding-right:6px}
+thead th:nth-child(2){width:280px}
+thead th:nth-child(3){text-align:left}
+thead th:nth-child(4){width:76px;text-align:left}
+tbody td{padding:7px 8px;border-bottom:1px solid rgba(0,0,0,0.06);font-size:14px}
+tbody tr{transition:background .15s,transform .2s,box-shadow .2s}
+tbody tr:hover{background:var(--bg-card-hover);transform:translateY(-1px);box-shadow:0 2px 8px rgba(0,0,0,0.1);position:relative;z-index:1}
+tbody tr:last-child td{border-bottom:none}
+tbody .rank{text-align:right;font-weight:600;font-size:12px;width:28px;padding-right:6px;color:var(--text-muted);font-variant-numeric:tabular-nums}
+.rank-1{color:#0f172a}
+.rank-2{color:#475569}
+.rank-3{color:#64748b}
+.rank-n{color:var(--text-muted)}
+.rank-badge{font-weight:600;font-size:12px}
+.model-col{font-weight:500;white-space:nowrap;font-size:13px;line-height:2.4}
+.model-effort{font-size:13px;color:var(--text-muted);font-weight:400;margin-left:4px}
+.part-col{display:none}
+.score-col{padding:6px 8px !important}
+.score-bar{display:flex;align-items:center;gap:6px}
+.score-bar .bar-track{flex:1;height:8px;background:rgba(0,0,0,0.04);position:relative;min-width:60px;border-radius:2px;background-image:repeating-linear-gradient(-45deg,transparent,transparent 4px,rgba(0,0,0,0.03) 4px,rgba(0,0,0,0.03) 6px)}
+.score-bar .bar-base{position:absolute;left:0;top:0;bottom:0;width:100%;background:transparent;border-radius:2px}
+.score-bar .bar-fill{height:100%;top:0;position:absolute;left:0;transition:width .4s cubic-bezier(.4,0,.2,1);border-radius:2px;background-image:var(--bar-pattern);background-size:6px 6px}
+.score-bar .bar-fill.pat-overall{--bar-pattern:none}
+.score-bar .bar-fill.pat-part1{--bar-pattern:repeating-linear-gradient(-45deg,transparent,transparent 3px,rgba(0,0,0,0.08) 3px,rgba(0,0,0,0.08) 5px)}
+.score-bar .bar-fill.pat-part2{--bar-pattern:repeating-linear-gradient(-45deg,transparent,transparent 1.5px,rgba(0,0,0,0.10) 1.5px,rgba(0,0,0,0.10) 3px)}
+.score-bar .bar-err{position:absolute;top:50%;height:2px;background:rgba(0,0,0,0.5);transition:left .4s,width .4s;transform:translateY(-50%)}
+.score-bar .bar-err::before,.score-bar .bar-err::after{content:'';position:absolute;width:4px;height:4px;border-radius:50%;top:50%;transform:translate(-50%,-50%);background:var(--dot-color);box-shadow:0 0 0 1.5px rgba(0,0,0,0.5)}
+.score-bar .bar-err::before{left:0}
+.score-bar .bar-err::after{left:100%}
+.score-bar .bar-val{font-weight:600;font-size:14px;width:48px;text-align:right;font-variant-numeric:tabular-nums;color:var(--text-primary);flex-shrink:0}
+.range-col{font-size:12px;color:var(--text-muted);text-align:right;padding-right:8px !important;white-space:nowrap}
+
+tr.lb-row{transition:transform .4s cubic-bezier(.25,.8,.25,1),opacity .35s ease}
+tr.lb-row td{overflow:hidden;white-space:nowrap}
+tr.lb-row.out{opacity:0;transform:translateX(-20px);pointer-events:none}
+tr.lb-row.in{animation:slideIn .40s cubic-bezier(.25,.8,.25,1) both}
+@keyframes slideIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
+
+.chart-card{background:transparent;border:1px solid var(--border);border-radius:0;padding:24px;margin-top:32px}
+.chart-card .chart-wrap{position:relative;height:300px;font-size:14px}
+
+.agentic-badge{display:inline-block;padding:1px 6px;font-size:10px;font-weight:600;border-radius:3px;margin-left:4px}
+.ag-better{background:#d1fae5;color:#065f46}
+.ag-worse{background:#fee2e2;color:#991b1b}
+.ag-neutral{background:#e2e8f0;color:#475569}
+
+.task-card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.task-card{background:var(--bg-card);border:1px solid var(--border);border-radius:0;padding:16px;display:flex;gap:12px;align-items:flex-start;transition:border-color .2s,background .2s}
+.task-card:hover{border-color:var(--border-light);background:var(--bg-card-hover)}
+.task-card-id{flex-shrink:0;width:40px;height:40px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--text-muted);background:var(--bg-primary);border:1px solid var(--border);border-radius:0;font-variant-numeric:tabular-nums}
+.task-card-body{font-size:13px;color:var(--text-secondary);line-height:1.5;white-space:pre-wrap}
+
+.task-accordion{border:1px solid var(--border);border-radius:0;margin-bottom:8px;overflow:hidden;transition:border-color .2s}
+.task-accordion:hover{border-color:var(--border-light)}
+.task-accordion .ta-header{display:flex;gap:12px;align-items:flex-start;width:100%;padding:14px 16px;border:0;background:transparent;color:inherit;text-align:left;font-family:inherit;cursor:pointer;user-select:none}
+.task-accordion .ta-header:hover{background:var(--bg-card-hover)}
+.task-accordion .ta-id{flex-shrink:0;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--text-muted);background:var(--bg-primary);border:1px solid var(--border);border-radius:0}
+.task-accordion .ta-q{flex:1;font-size:13px;color:var(--text-primary);line-height:1.5;white-space:pre-wrap}
+.task-accordion .ta-arrow{flex-shrink:0;color:var(--text-muted);font-size:14px;transition:transform .25s;line-height:36px}
+.task-accordion.open .ta-arrow{transform:rotate(180deg)}
+.task-accordion .ta-body{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.25,.8,.25,1)}
+.task-accordion.open .ta-body{max-height:9999px}
+.task-accordion .ta-content{padding:0 16px 16px 64px;font-size:13px;line-height:1.7}
+.task-accordion .ta-content h4{font-size:12px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.05em;margin:0 0 6px 0}
+.task-accordion .ta-content img{max-width:100%;border-radius:6px;margin:8px 0}
+.task-accordion .ta-content code{background:rgba(0,0,0,0.06);padding:1px 5px;border-radius:3px;font-size:12px}
+.task-accordion .ta-content .answer-text{color:var(--text-secondary);font-size:13px;line-height:1.7;white-space:pre-wrap}
+.task-loading{color:var(--text-muted);font-size:13px;padding:12px 0}
+
+.modal-overlay{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,0.5);backdrop-filter:blur(8px);display:flex;align-items:flex-start;justify-content:center;padding:48px 24px;overflow-y:auto;opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s}
+.modal-overlay.open{opacity:1;visibility:visible}
+.modal-inner{max-width:900px;width:100%;background:var(--bg-primary);border:1px solid var(--border);border-radius:0;padding:40px}
+.modal-inner h2{font-size:22px;margin-bottom:8px}
+.modal-close{position:absolute;top:16px;right:24px;background:none;border:none;color:var(--text-muted);font-size:24px;cursor:pointer;font-family:inherit}
+.modal-close:hover{color:var(--text-primary)}
+
+.rubric-table{min-width:640px;table-layout:fixed !important}
+.rubric-table td:first-child{font-weight:700;font-size:18px;text-align:center;width:130px;min-width:130px;color:var(--text-primary)}
+.rubric-table td:nth-child(2){font-weight:600;white-space:nowrap;width:130px;min-width:130px}
+.rubric-table td:nth-child(3){color:var(--text-secondary);font-size:13px}
+
+footer{border-top:1px solid var(--border);padding:32px 24px;text-align:center;color:var(--text-muted);font-size:13px;max-width:var(--max-width);margin:0 auto}
+footer a{color:var(--text-secondary);text-decoration:underline}
+footer a:hover{color:var(--text-primary)}
+footer .footer-row{margin-bottom:6px}
+
+@media(max-width:768px){.hero{padding:40px 24px 48px}.hero-row1{flex-direction:column;gap:20px}.hero-row2 br{display:none}.chart-card{padding:16px}.modal-inner{padding:28px 18px}.task-accordion .ta-content{padding:0 14px 14px}}
+@media(max-width:480px){nav .nav-links a:not(.btn-gh){display:none}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo"><svg viewBox="0 0 28 28" fill="none"><rect x="2" y="2" width="11" height="8" rx="2" fill="#1a1a1a"/><rect x="15" y="2" width="11" height="8" rx="2" fill="#555"/><rect x="2" y="12" width="7" height="14" rx="2" fill="#f5f5f5" stroke="#bbb" stroke-width="1"/><rect x="15" y="12" width="7" height="14" rx="2" fill="#f5f5f5" stroke="#bbb" stroke-width="1"/><path d="M11 18 L15 18" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round"/></svg>Razavi-Bench</a>
+    <div class="nav-links">
+      <a href="#leaderboard">Leaderboard</a><a href="#agentic">Agentic</a><a href="#tasks">Tasks</a><a href="#rubric">Rubric</a>
+      <a href="https://github.com/Arcadia-1/razavi-bench" class="btn-gh" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a>
+    </div>
+  </div>
+</nav>
+<header class="hero">
+  <div class="hero-row1">
+    <div class="hero-left">
+      <div class="hero-icon"><svg viewBox="0 0 36 36" fill="none"><rect x="3" y="3" width="13" height="9" rx="3" fill="#1a1a1a"/><rect x="19" y="3" width="13" height="9" rx="3" fill="#555"/><rect x="3" y="16" width="8" height="17" rx="3" fill="#f5f5f5" stroke="#bbb" stroke-width="1.5"/><rect x="19" y="16" width="8" height="17" rx="3" fill="#f5f5f5" stroke="#bbb" stroke-width="1.5"/><path d="M13 24 L19 24" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round"/></svg></div>
+      <h1>Razavi-Bench</h1>
+    </div>
+    <div class="hero-meta">
+      <div class="meta-row"><span class="meta-key">Tasks</span><span class="meta-val">50</span></div>
+      <div class="meta-row"><span class="meta-key">Rubric</span><span class="meta-val">0-4</span></div>
+      <div class="meta-row"><span class="meta-key">Models</span><span class="meta-val">10</span></div>
+      <div class="meta-row"><span class="meta-key">Judges</span><span class="meta-val">2</span></div>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+  <div class="hero-row2">
+    <p class="hero-sub">An expert-curated benchmark that tests whether frontier AI<br>models can reason about analog circuit design.</p>
+  </div>
+  <div style="max-width:900px;margin-top:28px;">
+    <p class="hero-sub" style="font-size:15px;max-width:900px;text-align:justify;">
+      Razavi-Bench covers 10 frontier models as of July 25, 2026 -- including Claude Fable 5, Claude Opus 5, GPT 5.6 Sol Pro, Qwen 3.8 Max Preview, Kimi K3, and MiniMax M3 -- on 50 expert-written analog design questions,
+      with all scores recalculated using a corrected rubric after a careful audit of Q15. The update also introduces agentic results: four models paired with an ngspice simulator,
+      showing that tool access helps some models while introducing new failure modes for others.
+    </p>
+  </div>
+</header>
+<section id="leaderboard">
+  <div class="sec-head">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+      <h2 style="margin:0;">Direct QA Leaderboard</h2>
+      <div class="toggle-group" id="directPartToggle"><button class="active" data-part="o">All</button><button data-part="p1">Part 1</button><button data-part="p2">Part 2</button></div>
+    </div>
+  </div>
+  <div class="table-wrap"><table><thead><tr><th>#</th><th>Model</th><th>Score</th><th>Range</th></tr></thead><tbody class="lb-table" id="lbDirectBody"></tbody></table></div>
+  <div class="chart-card">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px;flex-wrap:wrap;">
+      <h3 style="margin:0;">Score Distribution</h3>
+      <div class="toggle-group" id="distSubsetToggle"><button class="active" data-subset="o">All</button><button data-subset="p1">Part 1</button><button data-subset="p2">Part 2</button></div>
+    </div>
+    <div class="chart-wrap"><canvas id="distChart"></canvas></div>
+  </div>
+</section>
+<section id="agentic">
+  <div class="sec-head">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+      <h2 style="margin:0;">Agentic Leaderboard</h2>
+      <div class="toggle-group" id="agenticPartToggle2"><button class="active" data-part="o">All</button><button data-part="p1">Part 1</button><button data-part="p2">Part 2</button></div>
+    </div>
+  </div>
+  <div class="table-wrap"><table><thead><tr><th>#</th><th>Model</th><th>Score</th><th>Range</th></tr></thead><tbody class="lb-table" id="lbAgenticBody"></tbody></table></div>
+  <div style="font-size:13px;color:var(--text-muted);margin-top:6px;">Models equipped with simulator access (ngspice + sky130). Compare to direct QA scores.</div>
+  <div class="chart-card">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px;flex-wrap:wrap;">
+      <h3 style="margin:0;">Direct vs Agentic Comparison</h3>
+      <div class="toggle-group" id="agenticPartToggle"><button class="active" data-part="o">Overall</button><button data-part="p1">Part 1</button><button data-part="p2">Part 2</button></div>
+    </div>
+    <div class="chart-wrap"><canvas id="agenticCompareChart"></canvas></div>
+  </div>
+</section>
+<section id="tasks">
+  <div class="sec-head">
+    <h2>Task Examples</h2>
+  </div>
+  <div style="margin-bottom:32px;">
+    <h3 style="font-size:14px;font-weight:600;color:var(--text-secondary);margin-bottom:12px;">Part 1 -- Fundamentals (first 6 of 30)</h3>
+    <div class="task-card-grid" id="part1Examples"><div class="task-loading">Loading canonical task data...</div></div>
+    <a href="#" onclick="openTaskModal('part1');return false" style="display:inline-block;margin-top:12px;font-size:13px;color:var(--text-secondary);text-decoration:underline;">View all 30 Part 1 tasks →</a>
+  </div>
+  <div>
+    <h3 style="font-size:14px;font-weight:600;color:var(--text-secondary);margin-bottom:12px;">Part 2 -- Design & Simulation (first 6 of 20)</h3>
+    <div class="task-card-grid" id="part2Examples"><div class="task-loading">Loading canonical task data...</div></div>
+    <a href="#" onclick="openTaskModal('part2');return false" style="display:inline-block;margin-top:12px;font-size:13px;color:var(--text-secondary);text-decoration:underline;">View all 20 Part 2 tasks →</a>
+  </div>
+</section>
+<section id="rubric">
+  <h2 style="margin-bottom:20px;">Evaluation Rubric</h2>
+  <div class="table-wrap">
+    <table class="rubric-table">
+      <thead><tr><th style="width:100px;text-align:center">Score</th><th style="width:160px">Meaning</th><th>Criteria</th></tr></thead>
+      <tbody>
+        <tr><td>4</td><td style="color:#22c55e;">Correct</td><td>Correct conclusion and reasoning; topology, device roles, dominant mechanism, trend, and key assumptions are right.</td></tr>
+        <tr><td>3</td><td style="color:#86efac;">Mostly correct</td><td>Main conclusion is right, with a minor omission, imprecision, or modeling flaw that does not change the result.</td></tr>
+        <tr><td>2</td><td style="color:#fbbf24;">Partially correct</td><td>Identifies some relevant mechanism, but misses an important circuit detail, trend, or design consequence.</td></tr>
+        <tr><td>1</td><td style="color:#f97316;">Mostly incorrect</td><td>Main conclusion is wrong, but the answer contains a small amount of relevant circuit understanding.</td></tr>
+        <tr><td>0</td><td style="color:#ef4444;">Incorrect / unusable</td><td>Fundamentally wrong, internally inconsistent, or based on a mistaken topology/device/connection.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="color:var(--text-muted);font-size:13px;margin-top:12px;">Judges evaluate against golden solutions prioritizing analog-circuit reasoning over surface similarity. See <a href="https://github.com/Arcadia-1/razavi-bench" style="color:var(--text-secondary);">GitHub</a> for full details.</p>
+</section>
+<section id="citation">
+  <h2 style="margin-bottom:20px;">Citation</h2>
+  <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:0;padding:24px;font-size:14px;color:var(--text-secondary);font-family:'SF Mono','Fira Code','Cascadia Code','JetBrains Mono',monospace;line-height:1.8;overflow-x:auto;">
+@misc{zhang2026razavibench,<br>
+&nbsp;&nbsp;title&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= {Razavi-Bench: An Expert-Curated Benchmark for Analog-Design Reasoning},<br>
+&nbsp;&nbsp;author&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= {Zhishuai Zhang and Behzad Razavi},<br>
+&nbsp;&nbsp;year&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= {2026},<br>
+&nbsp;&nbsp;howpublished = {\url{<a href="https://github.com/Arcadia-1/razavi-bench" style="color:var(--text-secondary);">https://github.com/Arcadia-1/razavi-bench</a>}},<br>
+&nbsp;&nbsp;url&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= {<a href="https://razavi-bench.tokenzhang.com/" style="color:var(--text-secondary);">https://razavi-bench.tokenzhang.com/</a>},<br>
+&nbsp;&nbsp;note&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= {Benchmark repository}<br>
+}
+  </div>
+</section>
+<footer>
+  <div class="footer-row"><strong>Razavi-Bench</strong> -- An expert-curated analog-design reasoning benchmark.</div>
+  <div class="footer-row">Questions &amp; figures adapted with permission from Behzad Razavi, <em>Analog Design Experiments With AI</em>, IEEE Solid-State Circuits Magazine (2025-2026).</div>
+  <div class="footer-row">Benchmark materials: research reference only, no redistribution · Code: <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache-2.0</a> · <a href="https://github.com/Arcadia-1/razavi-bench">GitHub</a></div>
+</footer>
+
+<script>
+// ==== BENCHMARK DATA ====
+var S=["Incorrect","Mostly incorrect","Partially correct","Mostly correct","Correct"];
+var SC=["#ef4444","#f97316","#fbbf24","#86efac","#22c55e"];
+var DD=[
+{m:"claude_fable5",d:"Claude Fable 5",e:"max",o:{mn:92.25,lo:90,hi:95.5,d:[1,2.3,1.5,1.5,43.7],dp:[2,4.6,3,3,87.4]},p1:{mn:95.83,lo:94.17,hi:96.67,d:[1,0,0.2,0.7,28.2],dp:[3.3,0,0.7,2.3,93.7]},p2:{mn:86.88,lo:82.5,hi:93.75,d:[0,2.3,1.3,0.8,15.5],dp:[0,11.6,6.5,4,77.9]}},
+{m:"claude_opus5",d:"Claude Opus 5",e:"max",o:{mn:92.17,lo:91.5,hi:93,d:[1,1.8,1.7,2.8,42.7],dp:[2,3.7,3.3,5.7,85.3]},p1:{mn:95,lo:92.5,hi:96.67,d:[1,0.3,0.2,0.7,27.8],dp:[3.3,1.1,0.6,2.2,92.8]},p2:{mn:87.92,lo:85,hi:92.5,d:[0,1.5,1.5,2.2,14.8],dp:[0,7.5,7.5,10.8,74.2]}},
+{m:"claude_opus48",d:"Claude Opus 4.8",e:"max",o:{mn:87.75,lo:85.5,hi:89.5,d:[1.8,2.8,2.5,3.7,39.2],dp:[3.6,5.6,5,7.4,78.4]},p1:{mn:92.5,lo:91.67,hi:93.33,d:[1.7,0.3,0,1.3,26.7],dp:[5.7,1,0,4.3,89]},p2:{mn:80.63,lo:75,hi:85,d:[0.2,2.5,2.5,2.3,12.5],dp:[1,12.5,12.5,11.5,62.5]}},
+{m:"qwen38",d:"Qwen 3.8 Max Preview",e:"high",o:{mn:87.42,lo:85.75,hi:89.75,d:[0,6.7,2.7,1.7,40],dp:[0,13.1,5.3,3.3,78.4]},p1:{mn:97.92,lo:96.67,hi:99.58,d:[0,0.7,0.3,1,29.7],dp:[0,2.2,1,3.2,93.7]},p2:{mn:71.67,lo:69.38,hi:75,d:[0,6,2.3,1,11.3],dp:[0,29,11.3,4.9,54.9]}},
+{m:"gpt56",d:"GPT 5.6 Sol Pro",e:"high",o:{mn:85.92,lo:85,hi:87.5,d:[1,4,4,4.2,36.8],dp:[2,8,8,8.4,73.6]},p1:{mn:91.81,lo:90,hi:93.33,d:[1,1.3,0.3,1.2,26.2],dp:[3.3,4.3,1,4,87.3]},p2:{mn:77.08,lo:72.5,hi:80,d:[0,2.7,3.7,3,10.7],dp:[0,13.4,18.4,14.9,53.2]}},
+{m:"gemini31",d:"Gemini 3.1 Pro",e:"high",o:{mn:80.75,lo:77,hi:84.5,d:[1.7,5.8,3.5,7.3,31.7],dp:[3.4,11.6,7,14.6,63.4]},p1:{mn:90,lo:86.67,hi:94.17,d:[1.3,0.3,0.7,4.3,23.3],dp:[4.3,1,2.3,14.4,77.9]},p2:{mn:66.88,lo:62.5,hi:70,d:[0.3,5.5,2.8,3,8.3],dp:[1.5,27.6,14.1,15.1,41.7]}},
+{m:"gpt55",d:"GPT-5.5",e:"high",o:{mn:79.83,lo:75,hi:84.5,d:[2.8,6,3.5,4,33.7],dp:[5.6,12,7,8,67.4]},p1:{mn:85,lo:82.5,hi:86.67,d:[2.5,1.7,0.8,1.3,23.7],dp:[8.3,5.7,2.7,4.3,79]},p2:{mn:72.08,lo:60,hi:82.5,d:[0.3,4.3,2.7,2.7,10],dp:[1.5,21.5,13.5,13.5,50]}},
+{m:"kimi_k3",d:"Kimi K3",e:"med",o:{mn:76.42,lo:75.5,hi:77.5,d:[2,9.5,3.7,3.3,31.5],dp:[4,19,7.4,6.6,63]},p1:{mn:83.33,lo:80,hi:85.83,d:[2,3,1,1,23],dp:[6.7,10,3.3,3.3,76.7]},p2:{mn:66.04,lo:63.75,hi:70,d:[0,6.5,2.7,2.3,8.5],dp:[0,32.5,13.5,11.5,42.5]}},
+{m:"kimi_k27",d:"Kimi K2.7",e:"med",o:{mn:75.08,lo:72,hi:78.5,d:[3.2,8,5,3.2,30.7],dp:[6.4,16,10,6.4,61.3]},p1:{mn:81.81,lo:80.83,hi:83.33,d:[2.7,2.3,1.3,1.5,22.2],dp:[9,7.7,4.3,5,74]},p2:{mn:65,lo:58.75,hi:71.25,d:[0.5,5.7,3.7,1.7,8.5],dp:[2.5,28.4,18.4,8.5,42.3]}},
+{m:"minimax_m3",d:"MiniMax M3",e:"low",o:{mn:57.5,lo:51.5,hi:64,d:[4.8,13.8,8.5,7.2,15.7],dp:[9.6,27.6,17,14.4,31.4]},p1:{mn:60,lo:52.5,hi:70,d:[4.2,6.5,4.5,2.8,12],dp:[14,21.7,15,9.3,40]},p2:{mn:53.75,lo:50,hi:60,d:[0.7,7.3,4,4.3,3.7],dp:[3.5,36.5,20,21.5,18.5]}}];
+var AG=[
+{m:"claude_opus48_cc",d:"Claude Opus 4.8 + Claude Code",o:{mn:87.08,lo:84.5,hi:90.5,d:[1.7,3.7,2.8,2.5,39.3],dp:[3.4,7.4,5.6,5,78.6]},p1:{mn:92.08,lo:88.33,hi:95,d:[1.5,0.8,0.2,0.7,26.8],dp:[5,2.7,0.7,2.3,89.3]},p2:{mn:79.58,lo:75,hi:83.75,d:[0.2,2.8,2.7,1.8,12.5],dp:[1,14,13.5,9,62.5]}},
+{m:"gpt_codex",d:"GPT + Codex",o:{mn:86.92,lo:81.5,hi:90.5,d:[2.5,2.8,2.5,2.7,39.5],dp:[5,5.6,5,5.4,79]},p1:{mn:87.78,lo:85.83,hi:89.17,d:[2.3,0.7,0.8,1.7,24.5],dp:[7.7,2.3,2.7,5.7,81.7]},p2:{mn:85.63,lo:72.5,hi:93.75,d:[0.2,2.2,1.7,1,15],dp:[1,10.9,8.5,5,74.6]}},
+{m:"kimi_k27_cc",d:"Kimi K2.7 + Claude Code",o:{mn:71,lo:65.5,hi:73,d:[4.2,8.7,5.2,5,27],dp:[8.4,17.4,10.4,10,53.9]},p1:{mn:75.56,lo:70.83,hi:79.17,d:[3.3,2.5,2.7,3.2,18.3],dp:[11,8.3,9,10.7,61]},p2:{mn:64.17,lo:57.5,hi:70,d:[0.8,6.2,2.5,1.8,8.7],dp:[4,31,12.5,9,43.5]}},
+{m:"minimax_m3_cc",d:"MiniMax M3 + Claude Code",o:{mn:70.92,lo:64.5,hi:76.5,d:[5.2,8.3,4.7,3.2,28.7],dp:[10.4,16.6,9.4,6.4,57.3]},p1:{mn:77.5,lo:68.33,hi:83.33,d:[4,2,1.3,2.3,20.3],dp:[13.4,6.7,4.3,7.7,67.9]},p2:{mn:61.04,lo:55,hi:66.25,d:[1.2,6.3,3.3,0.8,8.3],dp:[6,31.7,16.6,4,41.7]}}];
+var DC={claude_opus48_cc:{o:87.75,p1:92.5,p2:80.63},gpt_codex:{o:79.83,p1:85,p2:72.08},kimi_k27_cc:{o:75.08,p1:81.81,p2:65},minimax_m3_cc:{o:57.5,p1:60,p2:53.75}};
+var BC={claude_fable5:"#7c8ba0",claude_opus5:"#426b8f",claude_opus48:"#5b7fa5",qwen38:"#6b9eb3",gpt56:"#6b9e7a",gemini31:"#c4956a",gpt55:"#c47a6a",kimi_k3:"#8b7ba5",kimi_k27:"#b38b6b",minimax_m3:"#7a7a85",claude_opus48_cc:"#5b7fa5",gpt_codex:"#6b9e7a",kimi_k27_cc:"#b38b6b",minimax_m3_cc:"#7a7a85"};
+
+// ==== CANONICAL TASK DATA ====
+var RAW_REPO_BASE="https://raw.githubusercontent.com/Arcadia-1/razavi-bench/main";
+var TASK_DATA_URLS=/^(localhost|127\.0\.0\.1)$/.test(location.hostname)?["../data/tasks.jsonl",RAW_REPO_BASE+"/data/tasks.jsonl"]:[RAW_REPO_BASE+"/data/tasks.jsonl"];
+var taskGroups={part1:[],part2:[]};
+var taskDataPromise=null;
+
+function esc(value){
+  return String(value).replace(/[&<>"']/g,function(char){return{"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[char]});
+}
+function taskId(row){
+  var n=Number(row.question_number)+(row.part==="part2"?200:0);
+  return String(n).padStart(3,"0");
+}
+function questionText(instruction){
+  var text=String(instruction||""),marker="## Question";
+  if(text.indexOf(marker)>=0)text=text.slice(text.indexOf(marker)+marker.length);
+  return text.split(/\n## Figures/)[0].trim();
+}
+function goldenText(solution){
+  return String(solution||"").replace(/^#[^\n]*\n+/,"").trim();
+}
+function renderTaskExamples(){
+  [["part1","part1Examples"],["part2","part2Examples"]].forEach(function(pair){
+    var rows=taskGroups[pair[0]].slice(0,6),container=document.getElementById(pair[1]);
+    container.innerHTML=rows.map(function(task){
+      return"<div class=task-card><div class=task-card-id>"+task.id+"</div><div class=task-card-body>"+esc(task.question)+"</div></div>";
+    }).join("");
+  });
+}
+function showTaskLoadError(message){
+  ["part1Examples","part2Examples"].forEach(function(id){
+    document.getElementById(id).innerHTML="<div class=task-loading>Task data could not be loaded. <a href=\"https://github.com/Arcadia-1/razavi-bench/tree/main/tasks\">Browse tasks on GitHub</a>.</div>";
+  });
+  console.error(message);
+}
+function loadTasks(){
+  if(taskDataPromise)return taskDataPromise;
+  taskDataPromise=(async function(){
+    var response=null,lastError=null;
+    for(var i=0;i<TASK_DATA_URLS.length;i++){
+      try{
+        response=await fetch(TASK_DATA_URLS[i],{cache:"no-cache"});
+        if(response.ok)break;
+        lastError=new Error("Task data request failed with status "+response.status);
+      }catch(error){lastError=error}
+    }
+    if(!response||!response.ok)throw lastError||new Error("Task data request failed");
+    var rows=(await response.text()).split(/\r?\n/).filter(Boolean).map(function(line){return JSON.parse(line)});
+    if(rows.length!==50)throw new Error("Expected 50 canonical tasks, received "+rows.length);
+    taskGroups={part1:[],part2:[]};
+    rows.forEach(function(row){
+      taskGroups[row.part].push({
+        id:taskId(row),
+        slug:row.task_slug,
+        question:questionText(row.instruction),
+        answer:goldenText(row.golden_solution),
+        figure:Array.isArray(row.figures)&&row.figures.length?row.figures[0]:""
+      });
+    });
+    renderTaskExamples();
+    return taskGroups;
+  })().catch(function(error){
+    taskDataPromise=null;
+    showTaskLoadError(error.message);
+    throw error;
+  });
+  return taskDataPromise;
+}
+
+// ==== RENDER HELPERS ====
+var dP="o",aP="o",dS="o",aCP="o";
+function bar(v,bc,pc){return"<div class=score-bar><div class=bar-track><div class=bar-base></div><div class=\"bar-fill "+pc+"\" style=\"width:"+v.mn+"%;background-color:"+bc+"\"></div><div class=bar-err style=\"left:"+v.lo+"%;width:"+(v.hi-v.lo)+"%;--dot-color:"+bc+"\"></div></div><span class=bar-val>"+v.mn.toFixed(1)+"</span></div>";}
+function rnk(rk){var rc=rk===1?"rank-1":rk===2?"rank-2":rk===3?"rank-3":"rank-n";return"<span class=\"rank-badge "+rc+"\">"+rk+"</span>";}
+function rng(v){return v.lo.toFixed(1)+" - "+v.hi.toFixed(1);}
+
+function bDL(part){
+  var s=DD.slice(),k=part==="o"?"o":part;
+  s.sort(function(a,b){return b[k].mn-a[k].mn});
+  var tb=document.getElementById("lbDirectBody"),wr=tb.closest(".table-wrap");
+  wr.classList.add("no-scroll");
+  setTimeout(function(){
+    var h=s.map(function(d,i){
+      var v=d[k],pc=k==="o"?"pat-overall":k==="p1"?"pat-part1":"pat-part2";
+      return"<tr class=\"lb-row in\" style=\"animation-delay:"+(i*0.03)+"s\"><td class=rank>"+rnk(i+1)+"</td><td class=model-col>"+d.d+" <span class=model-effort>["+d.e+"]</span></td><td class=score-col>"+bar(v,BC[d.m],pc)+"</td><td class=range-col>"+rng(v)+"</td></tr>";
+    }).join("");
+    tb.innerHTML=h;
+    setTimeout(function(){wr.classList.remove("no-scroll")},500);
+  },200);
+}
+
+function bAL(part){
+  var s=AG.slice(),k=part==="o"?"o":part;
+  s.sort(function(a,b){return b[k].mn-a[k].mn});
+  var tb=document.getElementById("lbAgenticBody"),wr=tb.closest(".table-wrap");
+  wr.classList.add("no-scroll");
+  setTimeout(function(){
+    var h=s.map(function(d,i){
+      var v=d[k],dir=DC[d.m],pc=k==="o"?"pat-overall":k==="p1"?"pat-part1":"pat-part2";
+      var dp=dir[k],dt=v.mn-dp,ds=dt>0.5?"+"+dt.toFixed(1):dt<-0.5?dt.toFixed(1):"±"+Math.abs(dt).toFixed(1);
+      var dc=dt>0.5?"ag-better":dt<-0.5?"ag-worse":"ag-neutral";
+      return"<tr class=\"lb-row in\" style=\"animation-delay:"+(i*0.03)+"s\"><td class=rank>"+rnk(i+1)+"</td><td class=model-col>"+d.d+" <span class=\"agentic-badge "+dc+"\">"+ds+"</span></td><td class=score-col>"+bar(v,BC[d.m],pc)+"</td><td class=range-col>"+rng(v)+"</td></tr>";
+    }).join("");
+    tb.innerHTML=h;
+    setTimeout(function(){wr.classList.remove("no-scroll")},500);
+  },200);
+}
+
+function bDC(subset){
+  var ctx=document.getElementById("distChart").getContext("2d");
+  if(ctx._chart)ctx._chart.destroy();
+  var ds=[0,1,2,3,4].map(function(sc){return{label:S[sc],data:DD.map(function(m){return m[subset].dp[sc]}),rawCounts:DD.map(function(m){return Math.round(m[subset].d[sc])}),backgroundColor:SC[sc],borderColor:"#ffffff",borderWidth:2}});
+  var ch=new Chart(ctx,{type:"bar",data:{labels:DD.map(function(m){return m.d}),datasets:ds},options:{responsive:true,maintainAspectRatio:false,indexAxis:"y",plugins:{legend:{position:"bottom",labels:{usePointStyle:false,boxWidth:10,boxHeight:10,padding:16,font:{size:13},color:"#1a1a1a"}},tooltip:{callbacks:{label:function(c){return c.dataset.label+": "+c.dataset.rawCounts[c.dataIndex]+" questions"}}}},scales:{x:{stacked:true,max:100,grid:{color:"#e5e5e5"},ticks:{font:{size:13},color:"#333",callback:function(v){return v+"%"}}},y:{stacked:true,grid:{display:false},ticks:{color:"#1a1a1a",font:{size:13}}}}}});
+  ctx._chart=ch;
+}
+
+function bAC(part){
+  var ctx=document.getElementById("agenticCompareChart").getContext("2d");
+  if(ctx._chart)ctx._chart.destroy();
+  var lb=AG.map(function(m){return m.d.replace(" + Claude Code","").replace(" + Codex","")});
+  var dv=AG.map(function(m){return DC[m.m][part]});
+  var agv=AG.map(function(m){return m[part].mn});
+  var ch=new Chart(ctx,{type:"bar",data:{labels:lb,datasets:[{label:"Direct QA",data:dv,backgroundColor:"#94a3b8",borderColor:"#7c8ba0",borderWidth:1},{label:"Agentic",data:agv,backgroundColor:"#3b82f6",borderColor:"#2563eb",borderWidth:1}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{usePointStyle:false,boxWidth:10,boxHeight:10,padding:24,color:"#1a1a1a",font:{size:13}}},tooltip:{callbacks:{label:function(c){return c.dataset.label+": "+c.raw.toFixed(1)+"%"}}}},scales:{y:{min:0,max:100,ticks:{stepSize:20,callback:function(v){return v+"%"},color:"#333",font:{size:13}},grid:{color:"#e5e5e5"}},x:{grid:{display:false},ticks:{color:"#1a1a1a",font:{size:13}}}}}});
+  ctx._chart=ch;
+}
+
+// ==== TASK MODAL ====
+async function openTaskModal(part){
+  var lb=part==="part1"?"Part 1 - Fundamentals (30 tasks)":"Part 2 - Design & Simulation (20 tasks)";
+  document.getElementById("modalTitle").textContent=lb;
+  document.getElementById("modalContent").innerHTML="<div class=task-loading>Loading canonical task data...</div>";
+  document.getElementById("taskModal").classList.add("open");
+  document.body.style.overflow="hidden";
+  try{
+    var groups=await loadTasks(),ts=groups[part];
+    document.getElementById("modalContent").innerHTML=ts.map(function(t,i){
+      var imageUrl=t.figure?RAW_REPO_BASE+"/"+t.figure:"";
+      var fh=imageUrl?"<div><h4>Figure</h4><img src=\""+esc(imageUrl)+"\" loading=lazy onerror=\"this.parentElement.style.display='none'\" alt=\"Figure for "+esc(t.slug)+"\"></div>":"";
+      var pid="ta-"+part+"-"+i;
+      return"<div class=task-accordion id=\""+pid+"\"><button class=ta-header type=button aria-expanded=false onclick=\"toggleAccordion('"+part+"',"+i+")\"><div class=ta-id>"+t.id+"</div><div class=ta-q>"+esc(t.question)+"</div><div class=ta-arrow aria-hidden=true>▼</div></button><div class=ta-body><div class=ta-content>"+fh+"<h4>Golden Solution</h4><div class=answer-text>"+esc(t.answer)+"</div></div></div></div>";
+    }).join("");
+  }catch(error){
+    document.getElementById("modalContent").innerHTML="<div class=task-loading>Task data could not be loaded. <a href=\"https://github.com/Arcadia-1/razavi-bench/tree/main/tasks\">Browse tasks on GitHub</a>.</div>";
+  }
+}
+function toggleAccordion(part,idx){
+  var el=document.getElementById("ta-"+part+"-"+idx);
+  if(!el)return;
+  el.parentElement.querySelectorAll(".task-accordion.open").forEach(function(x){
+    if(x!==el){x.classList.remove("open");x.querySelector(".ta-header").setAttribute("aria-expanded","false")}
+  });
+  el.classList.toggle("open");
+  el.querySelector(".ta-header").setAttribute("aria-expanded",String(el.classList.contains("open")));
+}
+function closeModal(){document.getElementById("taskModal").classList.remove("open");document.body.style.overflow="";}
+document.addEventListener("keydown",function(e){if(e.key==="Escape")closeModal()});
+
+// ==== INIT ====
+function R(){bDL(dP);bAL(aP);bDC(dS);bAC(aCP)}
+document.querySelectorAll("#directPartToggle button").forEach(function(b){b.onclick=function(){this.parentElement.querySelectorAll("button").forEach(function(x){x.classList.remove("active")});this.classList.add("active");dP=this.dataset.part;bDL(dP)}});
+document.querySelectorAll("#agenticPartToggle2 button").forEach(function(b){b.onclick=function(){this.parentElement.querySelectorAll("button").forEach(function(x){x.classList.remove("active")});this.classList.add("active");aP=this.dataset.part;bAL(aP)}});
+document.querySelectorAll("#distSubsetToggle button").forEach(function(b){b.onclick=function(){this.parentElement.querySelectorAll("button").forEach(function(x){x.classList.remove("active")});this.classList.add("active");dS=this.dataset.subset;bDC(dS)}});
+document.querySelectorAll("#agenticPartToggle button").forEach(function(b){b.onclick=function(){this.parentElement.querySelectorAll("button").forEach(function(x){x.classList.remove("active")});this.classList.add("active");aCP=this.dataset.part;bAC(aCP)}});
+Chart.defaults.color="#1a1a1a";Chart.defaults.borderColor="#d5d5d5";Chart.defaults.font={family:"Inter,system-ui,sans-serif",size:13};
+R();
+loadTasks().catch(function(){});
+</script>
+
+<!-- ========== TASK MODAL ========== -->
+<div class="modal-overlay" id="taskModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" onclick="if(event.target===this)closeModal()">
+  <div class="modal-inner" onclick="event.stopPropagation()">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;">
+      <h2 id="modalTitle" style="margin:0;"></h2>
+      <button class="modal-close" aria-label="Close task browser" onclick="closeModal()">&times;</button>
+    </div>
+    <div id="modalContent" style="font-size:13px;color:var(--text-secondary);line-height:1.7;"></div>
+  </div>
+</div>
+</body>
+</html>
