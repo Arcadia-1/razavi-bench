@@ -232,5 +232,5 @@ over three rollouts, with the Q15 hard-rule correction applied consistently.
 | 10 | MiniMax M3 | 57.50% | 60.00% | 53.75% |
 
 <p align="center">
-  <img src="docs/assets/direct_qa_rollout_mean_all_metrics.png?v=20260725-opus5" alt="2026-07-25 current Direct QA snapshot" title="2026-07-25 current Direct QA snapshot" width="92%"/>
+  <img src="docs/assets/direct_qa_rollout_mean_all_metrics.png?v=20260801-grok45" alt="2026-08-01 current Direct QA snapshot" title="2026-08-01 current Direct QA snapshot" width="92%"/>
 </p>

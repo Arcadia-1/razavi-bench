@@ -17,11 +17,11 @@ MODELS = {
     "Doubao Seed 2.1 Pro": "default",
     "GPT-4o": "default",
     "GPT-5.3": "default",
+    "Grok 4.5": "default",
     "GPT-5.6 Terra": "max",
 }
 JUDGES = {"MiniMax-M3": "MiniMax M3", "deepseek-v4-pro": "DeepSeek V4 Pro"}
 PARTS = {"part1-": "part1", "part2-": "part2"}
-DISPLAY_NAMES = {"GPT 5.6 Sol Pro": "GPT 5.6 Sol"}
 
 
 def load(path):
@@ -63,7 +63,6 @@ def main():
             values[model][judge][rollout][part(row["task_slug"])].append(int(row["score_0_to_4"]))
 
     summary, aggregate = [], []
-    comparison_rows = []
     for model in sorted(values):
         judge_means = {}
         for judge in JUDGES:
@@ -84,23 +83,26 @@ def main():
             aggregate.append({"model": model, "judge": JUDGES[judge], **judge_means[judge]})
         combined = {metric: mean([judge_means[judge][metric] for judge in JUDGES]) for metric in ("part1", "part2", "overall")}
         aggregate.append({"model": model, "judge": "Mean of DeepSeek and MiniMax", **combined})
-        comparison_rows.append({"rank": "", "model": model, "thinking_effort": MODELS[model], **combined})
 
     write_csv(SCORES / "summary.csv", ["model", "judge", "rollout", "part1", "part2", "overall"], summary)
     write_csv(SCORES / "aggregate.csv", ["model", "judge", "part1", "part2", "overall"], aggregate)
-    historical = REPO / "experiments/2026-07-26-direct-qa/judge_scores/comparison.csv"
-    with historical.open(encoding="utf-8") as file:
-        previous = [row for row in csv.DictReader(file) if row["model"] not in MODELS]
-    for row in previous:
-        row["model"] = DISPLAY_NAMES.get(row["model"], row["model"])
-        if row["thinking_effort"] in {"provider default", "ultra"}:
-            row["thinking_effort"] = "default"
-    previous.extend(comparison_rows)
-    previous.sort(key=lambda row: float(row["overall"]), reverse=True)
-    for rank, row in enumerate(previous, 1):
+    index = json.loads((REPO / "docs/data/direct_qa/index.json").read_text(encoding="utf-8"))
+    comparison_rows = []
+    for model in index["models"]:
+        scores = model["summary"]["scores"]
+        comparison_rows.append({
+            "rank": "",
+            "model": model["display_name"],
+            "thinking_effort": model["thinking_effort"],
+            "part1": scores["part1"]["active"]["score_percent"],
+            "part2": scores["part2"]["active"]["score_percent"],
+            "overall": scores["overall"]["active"]["score_percent"],
+        })
+    comparison_rows.sort(key=lambda row: float(row["overall"]), reverse=True)
+    for rank, row in enumerate(comparison_rows, 1):
         row["rank"] = rank
-    write_csv(SCORES / "comparison.csv", ["rank", "model", "thinking_effort", "part1", "part2", "overall"], previous)
-    print(json.dumps({"models": len(values), "comparison_rows": len(previous)}, indent=2))
+    write_csv(SCORES / "comparison.csv", ["rank", "model", "thinking_effort", "part1", "part2", "overall"], comparison_rows)
+    print(json.dumps({"models": len(values), "comparison_rows": len(comparison_rows)}, indent=2))
 
 
 if __name__ == "__main__":
