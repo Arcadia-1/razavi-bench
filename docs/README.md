@@ -11,3 +11,16 @@ incorporated into third-party benchmark or dataset releases without prior
 written permission. See `../LICENSE` for details.
 
 See `references.bib` for citation metadata.
+
+## Website data
+
+Current Direct QA data is published under `data/direct_qa/`:
+
+- `index.json` contains the ranked model summaries and links to detail files.
+- `models/<model_key>.json` contains three rollouts for one model, including the
+  question, raw answer, both judge results, active score, and token usage.
+
+`input_tokens` includes cached and cache-creation input tokens when the provider
+reports them. `cached_input_tokens` is the cache-read subset. A `null` token value
+with `complete: false` means that the historical provider response did not expose
+that field; consumers must not interpret it as zero.
