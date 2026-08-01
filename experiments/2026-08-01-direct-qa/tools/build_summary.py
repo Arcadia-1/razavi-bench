@@ -18,6 +18,8 @@ MODELS = {
     "GPT-4o": "default",
     "GPT-5.3": "default",
     "Grok 4.5": "default",
+    "Gemini 3.6 Flash": "default",
+    "Inkling Small": "default",
     "GPT-5.6 Terra": "max",
 }
 JUDGES = {"MiniMax-M3": "MiniMax M3", "deepseek-v4-pro": "DeepSeek V4 Pro"}

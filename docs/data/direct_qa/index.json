@@ -1,6 +1,6 @@
 {
   "schema_version": "razavi-bench.direct-qa.v1",
-  "generated_at": "2026-08-01T14:19:29.919231+00:00",
+  "generated_at": "2026-08-01T14:53:41.993541+00:00",
   "benchmark": {
     "mode": "direct_qa",
     "question_count": 50,
@@ -2191,6 +2191,256 @@
         }
       },
       "detail_file": "models/gpt_56.json"
+    },
+    {
+      "model_key": "gemini_36_flash",
+      "display_name": "Gemini 3.6 Flash",
+      "provider": "google",
+      "evaluation_model_ids": [],
+      "thinking_effort": "default",
+      "configuration_note": null,
+      "mode": "direct_qa",
+      "summary": {
+        "rollout_count": 3,
+        "answer_count": 150,
+        "scores": {
+          "overall": {
+            "active": {
+              "response_count": 150,
+              "correct_count": 109,
+              "incorrect_count": 41,
+              "partial_credit_count": 37,
+              "zero_count": 4,
+              "mean_score_0_to_4": 3.4366666666666665,
+              "score_percent": 85.91666666666666,
+              "score_distribution": {
+                "0": 4,
+                "0.5": 3,
+                "1": 11,
+                "1.5": 2,
+                "2": 4,
+                "2.5": 1,
+                "3": 5,
+                "3.5": 11,
+                "4": 109
+              }
+            },
+            "minimax_m3": {
+              "response_count": 150,
+              "correct_count": 113,
+              "incorrect_count": 37,
+              "partial_credit_count": 30,
+              "zero_count": 7,
+              "mean_score_0_to_4": 3.4,
+              "score_percent": 85.0,
+              "score_distribution": {
+                "0": 7,
+                "1": 13,
+                "2": 6,
+                "3": 11,
+                "4": 113
+              }
+            },
+            "deepseek_v4_pro": {
+              "response_count": 150,
+              "correct_count": 117,
+              "incorrect_count": 33,
+              "partial_credit_count": 29,
+              "zero_count": 4,
+              "mean_score_0_to_4": 3.473333333333333,
+              "score_percent": 86.83333333333333,
+              "score_distribution": {
+                "0": 4,
+                "1": 14,
+                "2": 6,
+                "3": 9,
+                "4": 117
+              }
+            }
+          },
+          "part1": {
+            "active": {
+              "response_count": 90,
+              "correct_count": 72,
+              "incorrect_count": 18,
+              "partial_credit_count": 15,
+              "zero_count": 3,
+              "mean_score_0_to_4": 3.716666666666667,
+              "score_percent": 92.91666666666667,
+              "score_distribution": {
+                "0": 3,
+                "0.5": 1,
+                "2.5": 1,
+                "3": 4,
+                "3.5": 9,
+                "4": 72
+              }
+            },
+            "minimax_m3": {
+              "response_count": 90,
+              "correct_count": 76,
+              "incorrect_count": 14,
+              "partial_credit_count": 10,
+              "zero_count": 4,
+              "mean_score_0_to_4": 3.688888888888889,
+              "score_percent": 92.22222222222223,
+              "score_distribution": {
+                "0": 4,
+                "2": 2,
+                "3": 8,
+                "4": 76
+              }
+            },
+            "deepseek_v4_pro": {
+              "response_count": 90,
+              "correct_count": 78,
+              "incorrect_count": 12,
+              "partial_credit_count": 9,
+              "zero_count": 3,
+              "mean_score_0_to_4": 3.7444444444444445,
+              "score_percent": 93.61111111111111,
+              "score_distribution": {
+                "0": 3,
+                "1": 1,
+                "3": 8,
+                "4": 78
+              }
+            }
+          },
+          "part2": {
+            "active": {
+              "response_count": 60,
+              "correct_count": 37,
+              "incorrect_count": 23,
+              "partial_credit_count": 22,
+              "zero_count": 1,
+              "mean_score_0_to_4": 3.0166666666666666,
+              "score_percent": 75.41666666666667,
+              "score_distribution": {
+                "0": 1,
+                "0.5": 2,
+                "1": 11,
+                "1.5": 2,
+                "2": 4,
+                "3": 1,
+                "3.5": 2,
+                "4": 37
+              }
+            },
+            "minimax_m3": {
+              "response_count": 60,
+              "correct_count": 37,
+              "incorrect_count": 23,
+              "partial_credit_count": 20,
+              "zero_count": 3,
+              "mean_score_0_to_4": 2.966666666666667,
+              "score_percent": 74.16666666666667,
+              "score_distribution": {
+                "0": 3,
+                "1": 13,
+                "2": 4,
+                "3": 3,
+                "4": 37
+              }
+            },
+            "deepseek_v4_pro": {
+              "response_count": 60,
+              "correct_count": 39,
+              "incorrect_count": 21,
+              "partial_credit_count": 20,
+              "zero_count": 1,
+              "mean_score_0_to_4": 3.066666666666667,
+              "score_percent": 76.66666666666667,
+              "score_distribution": {
+                "0": 1,
+                "1": 13,
+                "2": 6,
+                "3": 1,
+                "4": 39
+              }
+            }
+          }
+        },
+        "by_rollout": {
+          "1": {
+            "response_count": 50,
+            "correct_count": 35,
+            "incorrect_count": 15,
+            "partial_credit_count": 14,
+            "zero_count": 1,
+            "mean_score_0_to_4": 3.43,
+            "score_percent": 85.75,
+            "score_distribution": {
+              "0": 1,
+              "1": 5,
+              "2": 2,
+              "2.5": 1,
+              "3": 2,
+              "3.5": 4,
+              "4": 35
+            }
+          },
+          "2": {
+            "response_count": 50,
+            "correct_count": 37,
+            "incorrect_count": 13,
+            "partial_credit_count": 11,
+            "zero_count": 2,
+            "mean_score_0_to_4": 3.49,
+            "score_percent": 87.25,
+            "score_distribution": {
+              "0": 2,
+              "0.5": 1,
+              "1": 2,
+              "1.5": 1,
+              "2": 1,
+              "3": 1,
+              "3.5": 5,
+              "4": 37
+            }
+          },
+          "3": {
+            "response_count": 50,
+            "correct_count": 37,
+            "incorrect_count": 13,
+            "partial_credit_count": 12,
+            "zero_count": 1,
+            "mean_score_0_to_4": 3.39,
+            "score_percent": 84.75,
+            "score_distribution": {
+              "0": 1,
+              "0.5": 2,
+              "1": 4,
+              "1.5": 1,
+              "2": 1,
+              "3": 2,
+              "3.5": 2,
+              "4": 37
+            }
+          }
+        },
+        "tokens": {
+          "response_count": 150,
+          "usage_record_count": 150,
+          "complete_usage_count": 150,
+          "missing_usage_count": 0,
+          "missing_cached_input_count": 0,
+          "complete": true,
+          "totals": {
+            "cached_input_tokens": 0,
+            "input_tokens": 158827,
+            "output_tokens": 429912,
+            "total_tokens": 588739
+          },
+          "known_totals": {
+            "cached_input_tokens": 0,
+            "input_tokens": 158827,
+            "output_tokens": 429912,
+            "total_tokens": 588739
+          }
+        }
+      },
+      "detail_file": "models/gemini_36_flash.json"
     },
     {
       "model_key": "gpt_56_terra",
@@ -4728,6 +4978,262 @@
         }
       },
       "detail_file": "models/gpt_54_thinking_high.json"
+    },
+    {
+      "model_key": "inkling_small",
+      "display_name": "Inkling Small",
+      "provider": "thinkingmachines",
+      "evaluation_model_ids": [],
+      "thinking_effort": "default",
+      "configuration_note": null,
+      "mode": "direct_qa",
+      "summary": {
+        "rollout_count": 3,
+        "answer_count": 150,
+        "scores": {
+          "overall": {
+            "active": {
+              "response_count": 150,
+              "correct_count": 88,
+              "incorrect_count": 62,
+              "partial_credit_count": 57,
+              "zero_count": 5,
+              "mean_score_0_to_4": 2.973333333333333,
+              "score_percent": 74.33333333333333,
+              "score_distribution": {
+                "0": 5,
+                "0.5": 9,
+                "1": 15,
+                "1.5": 10,
+                "2": 10,
+                "2.5": 3,
+                "3": 6,
+                "3.5": 4,
+                "4": 88
+              }
+            },
+            "minimax_m3": {
+              "response_count": 150,
+              "correct_count": 91,
+              "incorrect_count": 59,
+              "partial_credit_count": 46,
+              "zero_count": 13,
+              "mean_score_0_to_4": 2.92,
+              "score_percent": 73.0,
+              "score_distribution": {
+                "0": 13,
+                "1": 25,
+                "2": 14,
+                "3": 7,
+                "4": 91
+              }
+            },
+            "deepseek_v4_pro": {
+              "response_count": 150,
+              "correct_count": 93,
+              "incorrect_count": 57,
+              "partial_credit_count": 51,
+              "zero_count": 6,
+              "mean_score_0_to_4": 3.026666666666667,
+              "score_percent": 75.66666666666667,
+              "score_distribution": {
+                "0": 6,
+                "1": 26,
+                "2": 19,
+                "3": 6,
+                "4": 93
+              }
+            }
+          },
+          "part1": {
+            "active": {
+              "response_count": 90,
+              "correct_count": 63,
+              "incorrect_count": 27,
+              "partial_credit_count": 22,
+              "zero_count": 5,
+              "mean_score_0_to_4": 3.25,
+              "score_percent": 81.25,
+              "score_distribution": {
+                "0": 5,
+                "0.5": 5,
+                "1": 3,
+                "1.5": 2,
+                "2": 5,
+                "2.5": 1,
+                "3": 3,
+                "3.5": 3,
+                "4": 63
+              }
+            },
+            "minimax_m3": {
+              "response_count": 90,
+              "correct_count": 65,
+              "incorrect_count": 25,
+              "partial_credit_count": 16,
+              "zero_count": 9,
+              "mean_score_0_to_4": 3.2333333333333334,
+              "score_percent": 80.83333333333333,
+              "score_distribution": {
+                "0": 9,
+                "1": 5,
+                "2": 7,
+                "3": 4,
+                "4": 65
+              }
+            },
+            "deepseek_v4_pro": {
+              "response_count": 90,
+              "correct_count": 66,
+              "incorrect_count": 24,
+              "partial_credit_count": 18,
+              "zero_count": 6,
+              "mean_score_0_to_4": 3.2666666666666666,
+              "score_percent": 81.66666666666667,
+              "score_distribution": {
+                "0": 6,
+                "1": 9,
+                "2": 6,
+                "3": 3,
+                "4": 66
+              }
+            }
+          },
+          "part2": {
+            "active": {
+              "response_count": 60,
+              "correct_count": 25,
+              "incorrect_count": 35,
+              "partial_credit_count": 35,
+              "zero_count": 0,
+              "mean_score_0_to_4": 2.558333333333333,
+              "score_percent": 63.95833333333333,
+              "score_distribution": {
+                "0.5": 4,
+                "1": 12,
+                "1.5": 8,
+                "2": 5,
+                "2.5": 2,
+                "3": 3,
+                "3.5": 1,
+                "4": 25
+              }
+            },
+            "minimax_m3": {
+              "response_count": 60,
+              "correct_count": 26,
+              "incorrect_count": 34,
+              "partial_credit_count": 30,
+              "zero_count": 4,
+              "mean_score_0_to_4": 2.45,
+              "score_percent": 61.25000000000001,
+              "score_distribution": {
+                "0": 4,
+                "1": 20,
+                "2": 7,
+                "3": 3,
+                "4": 26
+              }
+            },
+            "deepseek_v4_pro": {
+              "response_count": 60,
+              "correct_count": 27,
+              "incorrect_count": 33,
+              "partial_credit_count": 33,
+              "zero_count": 0,
+              "mean_score_0_to_4": 2.6666666666666665,
+              "score_percent": 66.66666666666666,
+              "score_distribution": {
+                "1": 17,
+                "2": 13,
+                "3": 3,
+                "4": 27
+              }
+            }
+          }
+        },
+        "by_rollout": {
+          "1": {
+            "response_count": 50,
+            "correct_count": 26,
+            "incorrect_count": 24,
+            "partial_credit_count": 22,
+            "zero_count": 2,
+            "mean_score_0_to_4": 2.91,
+            "score_percent": 72.75,
+            "score_distribution": {
+              "0": 2,
+              "0.5": 4,
+              "1": 3,
+              "1.5": 3,
+              "2": 4,
+              "2.5": 2,
+              "3": 4,
+              "3.5": 2,
+              "4": 26
+            }
+          },
+          "2": {
+            "response_count": 50,
+            "correct_count": 31,
+            "incorrect_count": 19,
+            "partial_credit_count": 18,
+            "zero_count": 1,
+            "mean_score_0_to_4": 3.05,
+            "score_percent": 76.25,
+            "score_distribution": {
+              "0": 1,
+              "0.5": 2,
+              "1": 7,
+              "1.5": 3,
+              "2": 2,
+              "2.5": 1,
+              "3": 2,
+              "3.5": 1,
+              "4": 31
+            }
+          },
+          "3": {
+            "response_count": 50,
+            "correct_count": 31,
+            "incorrect_count": 19,
+            "partial_credit_count": 17,
+            "zero_count": 2,
+            "mean_score_0_to_4": 2.96,
+            "score_percent": 74.0,
+            "score_distribution": {
+              "0": 2,
+              "0.5": 3,
+              "1": 5,
+              "1.5": 4,
+              "2": 4,
+              "3.5": 1,
+              "4": 31
+            }
+          }
+        },
+        "tokens": {
+          "response_count": 150,
+          "usage_record_count": 150,
+          "complete_usage_count": 150,
+          "missing_usage_count": 0,
+          "missing_cached_input_count": 0,
+          "complete": true,
+          "totals": {
+            "cached_input_tokens": 76400,
+            "input_tokens": 266193,
+            "output_tokens": 1422722,
+            "total_tokens": 1688915
+          },
+          "known_totals": {
+            "cached_input_tokens": 76400,
+            "input_tokens": 266193,
+            "output_tokens": 1422722,
+            "total_tokens": 1688915
+          }
+        }
+      },
+      "detail_file": "models/inkling_small.json"
     },
     {
       "model_key": "gpt_52",

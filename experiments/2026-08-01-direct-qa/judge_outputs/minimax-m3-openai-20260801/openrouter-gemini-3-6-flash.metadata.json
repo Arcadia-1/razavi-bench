@@ -1,0 +1,22 @@
+{
+  "concurrency": 20,
+  "failure_count": 0,
+  "input": "experiments/2026-08-01-direct-qa/model_outputs/openrouter-gemini-3-6-flash-rollout-*.jsonl",
+  "json_mode": true,
+  "judge_api_format": "chat-completions",
+  "judge_api_url": "https://api.minimaxi.com/v1/chat/completions",
+  "judge_model": "MiniMax-M3",
+  "judge_script": "tools/evaluate_answers.py",
+  "judge_script_sha256": "a848a574303143175da2c7835ea303147873e05775ca8671f6c7d106e8414469",
+  "judge_system_sha256": "5dc6bd623ac84598a572a6e06c08516704ef305c07593c1a1f2e3669265d790b",
+  "max_retries": 5,
+  "max_tokens": 8192,
+  "output": "experiments/2026-08-01-direct-qa/judge_outputs/minimax-m3-openai-20260801/openrouter-gemini-3-6-flash.scores.jsonl",
+  "record_count": 150,
+  "repo": ".",
+  "repo_commit": "c34c065fba2627067b67fdcf4ba75e786b30c00a",
+  "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54",
+  "scored_count": 150,
+  "temperature": 0,
+  "timeout": 120
+}

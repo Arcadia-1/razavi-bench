@@ -1,0 +1,22 @@
+{
+  "benchmark": "razavi-bench",
+  "experiment": "2026-08-01-direct-qa",
+  "run_date": "2026-08-01",
+  "repo_commit": "c34c065fba2627067b67fdcf4ba75e786b30c00a",
+  "mode": "direct_multimodal_qa",
+  "model_name": "Gemini 3.6 Flash",
+  "provider_model": "google/gemini-3.6-flash",
+  "api_format": "openai_chat_completions",
+  "temperature": 0.0,
+  "max_tokens": 8192,
+  "rollouts": [
+    1,
+    2,
+    3
+  ],
+  "concurrency": 10,
+  "expected_answers": 150,
+  "completed_answers": 150,
+  "failed_answers": 0,
+  "raw_responses_retained_locally": true
+}
