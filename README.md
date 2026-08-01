@@ -197,9 +197,9 @@ Part 1 article contains Q1 through Q30. No synthetic questions were added.
 - B. Razavi, "Analog Design Experiments With AI—Part 2 [The Analog Mind]," in
   IEEE Solid-State Circuits Magazine, vol. 18, no. 2, pp. 8-13, Spring 2026.
 
-## Direct QA Results
+## Multimodal QA Results
 
-The `2026-06-26-direct-qa` baseline and later Direct QA follow-ups each
+The `2026-06-26-direct-qa` baseline and later multimodal QA follow-ups each
 evaluate answer models over three rollouts of all 50 Razavi-bench tasks. Every
 answer is scored by MiniMax M3 and DeepSeek V4 Pro. The table below reports the
 judge-specific June 26 baseline with the `2026-07-19-part1-q15-score-correction`
@@ -232,5 +232,5 @@ hard-rule correction applied consistently.
 | 10 | Gemini 3.6 Flash | default | 85.92% | 92.92% | 75.42% |
 
 <p align="center">
-  <img src="docs/assets/direct_qa_rollout_mean_all_metrics.png?v=20260801-gemini36-inkling" alt="2026-08-01 current Direct QA snapshot" title="2026-08-01 current Direct QA snapshot" width="92%"/>
+  <img src="docs/assets/direct_qa_rollout_mean_all_metrics.png?v=20260801-multimodal-title" alt="2026-08-01 Razavi-Bench Multimodal QA snapshot" title="2026-08-01 Razavi-Bench Multimodal QA snapshot" width="92%"/>
 </p>
