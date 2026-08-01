@@ -19,14 +19,14 @@
           "incorrect_count": 100,
           "partial_credit_count": 99,
           "zero_count": 1,
-          "mean_score_0_to_4": 2.5033333333333334,
-          "score_percent": 62.583333333333336,
+          "mean_score_0_to_4": 2.513333333333333,
+          "score_percent": 62.83333333333333,
           "score_distribution": {
             "0": 1,
-            "0.5": 14,
-            "1": 33,
-            "1.5": 10,
-            "2": 12,
+            "0.5": 13,
+            "1": 31,
+            "1.5": 14,
+            "2": 11,
             "2.5": 4,
             "3": 9,
             "3.5": 17,
@@ -37,14 +37,14 @@
           "response_count": 150,
           "correct_count": 52,
           "incorrect_count": 98,
-          "partial_credit_count": 87,
-          "zero_count": 11,
-          "mean_score_0_to_4": 2.4266666666666667,
-          "score_percent": 60.66666666666667,
+          "partial_credit_count": 88,
+          "zero_count": 10,
+          "mean_score_0_to_4": 2.4466666666666668,
+          "score_percent": 61.16666666666667,
           "score_distribution": {
-            "0": 11,
-            "1": 42,
-            "2": 21,
+            "0": 10,
+            "1": 41,
+            "2": 23,
             "3": 24,
             "4": 52
           }
@@ -73,12 +73,12 @@
           "incorrect_count": 52,
           "partial_credit_count": 52,
           "zero_count": 0,
-          "mean_score_0_to_4": 2.738888888888889,
-          "score_percent": 68.47222222222223,
+          "mean_score_0_to_4": 2.75,
+          "score_percent": 68.75,
           "score_distribution": {
             "0.5": 9,
-            "1": 15,
-            "1.5": 6,
+            "1": 13,
+            "1.5": 8,
             "2": 3,
             "2.5": 3,
             "3": 7,
@@ -92,12 +92,12 @@
           "incorrect_count": 51,
           "partial_credit_count": 45,
           "zero_count": 6,
-          "mean_score_0_to_4": 2.6777777777777776,
-          "score_percent": 66.94444444444444,
+          "mean_score_0_to_4": 2.7,
+          "score_percent": 67.5,
           "score_distribution": {
             "0": 6,
-            "1": 20,
-            "2": 10,
+            "1": 18,
+            "2": 12,
             "3": 15,
             "4": 39
           }
@@ -126,14 +126,14 @@
           "incorrect_count": 48,
           "partial_credit_count": 47,
           "zero_count": 1,
-          "mean_score_0_to_4": 2.15,
-          "score_percent": 53.75,
+          "mean_score_0_to_4": 2.158333333333333,
+          "score_percent": 53.95833333333333,
           "score_distribution": {
             "0": 1,
-            "0.5": 5,
+            "0.5": 4,
             "1": 18,
-            "1.5": 4,
-            "2": 9,
+            "1.5": 6,
+            "2": 8,
             "2.5": 1,
             "3": 2,
             "3.5": 8,
@@ -144,13 +144,13 @@
           "response_count": 60,
           "correct_count": 13,
           "incorrect_count": 47,
-          "partial_credit_count": 42,
-          "zero_count": 5,
-          "mean_score_0_to_4": 2.05,
-          "score_percent": 51.24999999999999,
+          "partial_credit_count": 43,
+          "zero_count": 4,
+          "mean_score_0_to_4": 2.066666666666667,
+          "score_percent": 51.66666666666667,
           "score_distribution": {
-            "0": 5,
-            "1": 22,
+            "0": 4,
+            "1": 23,
             "2": 11,
             "3": 9,
             "4": 13
@@ -181,14 +181,14 @@
         "incorrect_count": 34,
         "partial_credit_count": 33,
         "zero_count": 1,
-        "mean_score_0_to_4": 2.46,
-        "score_percent": 61.5,
+        "mean_score_0_to_4": 2.48,
+        "score_percent": 62.0,
         "score_distribution": {
           "0": 1,
-          "0.5": 4,
-          "1": 12,
-          "1.5": 2,
-          "2": 4,
+          "0.5": 3,
+          "1": 11,
+          "1.5": 5,
+          "2": 3,
           "2.5": 3,
           "3": 3,
           "3.5": 5,
@@ -201,12 +201,12 @@
         "incorrect_count": 35,
         "partial_credit_count": 35,
         "zero_count": 0,
-        "mean_score_0_to_4": 2.45,
-        "score_percent": 61.25000000000001,
+        "mean_score_0_to_4": 2.46,
+        "score_percent": 61.5,
         "score_distribution": {
           "0.5": 6,
-          "1": 11,
-          "1.5": 3,
+          "1": 10,
+          "1.5": 4,
           "2": 4,
           "2.5": 1,
           "3": 3,
@@ -408,14 +408,14 @@
         "minimax_m3": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "The candidate correctly states that the small-signal model topology is identical between PMOS and NMOS, lists the same parameters (gm, gmb, ro), shows the equivalent circuit, and notes that differences are absorbed into numerical values (e.g., mobility). This aligns with the golden solution. The discussion of polarity conventions could be more explicit (the golden solution notes controlled source direction/sign conventions are reversed with absolute node-voltage references but equivalent with source-referenced variables), but this is a minor omission that doesn't change the main conclusion.",
+          "rationale": "The candidate correctly concludes that the small-signal models are identical in form/structure. It provides correct parameter expressions for gm, ro, and gmb, correctly notes that mobility differences are absorbed into numerical values, and draws the correct equivalent circuit topology. The answer matches the golden solution's essential points. The polarity/sign convention distinction mentioned in the golden solution is not explicitly discussed, but the core conclusion (identical model form) is correct and the candidate's emphasis on parameter values vs topology is valid.",
           "golden_solution_sha256": "3efff1057bca28f59c691e6a7b1b35b9aef015475c1aa91f716113f27e63976f",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         },
         "deepseek_v4_pro": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "The answer correctly states that the small-signal model topology is identical, explains linearization, and notes that parameter values differ. It matches the golden solution's key points and does not contain any errors that contradict the essential answer.",
+          "rationale": "The answer correctly states that the small-signal model topology is identical, with the same form after using consistent polarities. It identifies the key parameters and explains that differences are absorbed into numerical values. This matches the golden solution's essential conclusion and reasoning.",
           "golden_solution_sha256": "3efff1057bca28f59c691e6a7b1b35b9aef015475c1aa91f716113f27e63976f",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
@@ -609,7 +609,7 @@
         "minimax_m3": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "The candidate correctly identifies the device as a diode-connected PMOS, correctly concludes it does NOT act as a current source, provides the correct reasoning that VGS = VDS, that current depends on terminal voltage, and that the small-signal resistance is approximately 1/gm. This matches the golden solution's essential answer and reasoning.",
+          "rationale": "The candidate correctly identifies the device as a PMOS in diode-connected configuration, correctly concludes it cannot act as a current source, correctly gives the small-signal resistance as ~1/gm (low), and correctly explains that current depends on terminal voltage. This matches the golden solution's essential reasoning and conclusion. Minor differences (e.g., specifying PMOS, showing V_DS = V_GS boundary condition, I∝V²) are consistent and not contradictory.",
           "golden_solution_sha256": "c68ae81f6db628588daf721db5f50dcda0e30ccf15d07f2aa122c69f77cb6630",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         },
@@ -1076,25 +1076,25 @@
       "source_experiment": "2026-08-01-direct-qa",
       "scores": {
         "minimax_m3": {
-          "score_0_to_4": 4,
-          "is_full_credit": true,
-          "rationale": "The candidate correctly identifies the topology as a source follower (not a common-source amplifier) with M1 as the follower and M2 as a current source load. The gain expression Av = gm1*Rout/(1+gm1*Rout) matches the golden solution, the output resistance is correctly identified as approximately 1/gm1, and the overall reasoning about the current source load providing higher incremental resistance is sound. The initial device-type confusion (PMOS vs NMOS) was self-corrected, and the final analysis is correct.",
+          "score_0_to_4": 3,
+          "is_full_credit": false,
+          "rationale": "The candidate correctly identifies the circuit as a source follower with M1 as the follower and M2 as a current source load, and arrives at the correct small-signal gain expression Av = gmRL/(1+gmRL) < 1 and correct output resistance ~1/gm1. These match the golden solution. However, there are errors: the candidate initially misidentifies the device types (PMOS/NMOS) and self-corrects awkwardly, and the small-signal KCL at the source node is written with vgs1·gm1 flowing incorrectly (the standard expression has gmvgs flowing out of the source node toward ground through current source), though this cancels out in the final gain result. The topology, dominant mechanism, and final conclusions are correct.",
           "golden_solution_sha256": "5899641dbd24cb36d6d6d3697396d69386914708f3cd9d7b7d849ea09ccd465c",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         },
         "deepseek_v4_pro": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "The candidate correctly identifies the circuit as an NMOS source follower with an NMOS current source load, derives the correct small-signal gain expression (Av ≈ gm1*R_L/(1+gm1*R_L) < 1), and correctly notes the output resistance is low (≈1/gm1). The analysis aligns with the golden solution's key points: topology, gain less than unity, and low output resistance. The mention of body effect omission is acceptable as the golden solution also neglects it. The answer is correct and complete.",
+          "rationale": "The candidate correctly identifies the circuit as an NMOS source follower with an NMOS current source load, derives the correct small-signal gain expression (Av ≈ gm1*R_L/(1+gm1*R_L) < 1), and correctly notes the output resistance is low (~1/gm1). The analysis aligns with the golden solution's key points: topology, gain less than unity, and low output resistance. Minor initial confusion about PMOS is quickly corrected and does not affect the final correct reasoning.",
           "golden_solution_sha256": "5899641dbd24cb36d6d6d3697396d69386914708f3cd9d7b7d849ea09ccd465c",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
       "active_score": {
         "policy": "mean(minimax_m3,deepseek_v4_pro)",
-        "score_0_to_4": 4,
-        "score_percent": 100,
-        "is_full_credit": true
+        "score_0_to_4": 3.5,
+        "score_percent": 87.5,
+        "is_full_credit": false
       },
       "tokens": {
         "cached_input_tokens": 0,
@@ -1547,14 +1547,14 @@
         "minimax_m3": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "The answer correctly identifies M1 as the common-source input NMOS and M2 as the common-gate NMOS cascode, with I1 as the load current source. It provides the ideal-load gain Av ≈ -gm1 gm2 ro1 ro2 (body effect omitted, which is allowed) and also notes the equivalent -gm1*Rout form. The boosted output resistance expression Rout ≈ gm2 ro2 ro1 is correct. The topology, device roles, dominant mechanism, and key assumptions are all right. Minor DC point issues (Vx = Vin,DC and Vout ≈ VDD) are secondary/incidental and do not affect the essential small-signal gain result. Per the full-credit rule, this deserves full credit.",
+          "rationale": "The answer correctly identifies M1 as common-source input NMOS, M2 as common-gate NMOS cascode, and I1 as the load current source. It gives Av = -gm1*Rout with Rout ≈ gm2*ro2*ro1, and explicitly states Av ≈ -gm1*gm2*ro1*ro2 for an ideal current source load, which matches the golden solution's full-credit expressions. The DC analysis, body effect omission, and ideal-load KCL derivation are consistent with the rubric. Minor DC point issues (e.g., V_X expression) are non-essential.",
           "golden_solution_sha256": "61bcf44445629e8680bdc6f3bf3ffb8efce4e2ea67d91fd25c7bc185e4f6f25f",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         },
         "deepseek_v4_pro": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies M1 as common-source input NMOS and M2 as common-gate NMOS cascode. Provides gain expression Av ≈ -gm1 (gm2 ro1 ro2) under ideal current-source load, matching the golden solution's full-credit rule. Minor imprecisions (e.g., Rout expression missing body effect, DC analysis approximations) do not affect the essential answer.",
+          "rationale": "Correctly identifies M1 as common-source, M2 as common-gate cascode, and gives gain expression Av ≈ -gm1(gm2 ro1 ro2) which matches the golden solution's full-credit rule. Minor imprecisions (e.g., output resistance derivation, DC node voltage) do not affect the essential answer.",
           "golden_solution_sha256": "61bcf44445629e8680bdc6f3bf3ffb8efce4e2ea67d91fd25c7bc185e4f6f25f",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
@@ -1612,24 +1612,24 @@
       "source_experiment": "2026-08-01-direct-qa",
       "scores": {
         "minimax_m3": {
-          "score_0_to_4": 1,
+          "score_0_to_4": 2,
           "is_full_credit": false,
-          "rationale": "The candidate reaches the correct conclusion (not a standard cascode) but for the wrong reason. The golden solution identifies that the structure fails as a cascode because M1 acts as a source follower rather than a common-source input feeding a common-gate device, leading to a different Rout expression. The candidate instead invents a fictitious device-type mismatch (NMOS/PMOS) requirement, which is incorrect cascode theory and not the actual issue. The dominant mechanism (source-follower action) is missed entirely.",
+          "rationale": "The candidate correctly concludes the circuit is not a standard cascode, but the reasoning is based on a fabricated/false claim that M1 and M2 must be the same transistor type to form a cascode. PMOS/NMOS stacking does form cascodes (e.g., telescopic cascode). The candidate misses the essential insight from the golden solution: M1 actually operates as a source follower (not a common-source device feeding a common-gate cascode), which is the real reason the topology deviates from a standard cascode and produces Rout = (1+gm2·ro2)/gm1 + ro2. The correct identification of the source-follower action is missing entirely.",
           "golden_solution_sha256": "4e4f5566d59f894b1c9da376d4cca1d5f1a3a87065e2121de8d602e1a096f087",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         },
         "deepseek_v4_pro": {
           "score_0_to_4": 1,
           "is_full_credit": false,
-          "rationale": "The candidate incorrectly claims the circuit is not a cascode because M2 is PMOS, which is a fundamental mistake. The golden solution states it is not a cascode because M1 acts as a source follower, not because of transistor types. The candidate's reasoning is wrong, and the conclusion, while coincidentally matching the golden answer, is based on an erroneous premise. This is mostly incorrect, with only a small amount of relevant circuit understanding (recognizing stacked transistors).",
+          "rationale": "The candidate incorrectly claims the circuit is not a cascode because M2 is PMOS, but the golden solution states it is not a cascode because M1 acts as a source follower, not a common-source input. The candidate's reasoning is fundamentally wrong (based on transistor type rather than topology/operation), and the conclusion, while coincidentally matching the golden answer, is supported by a mistaken premise. This is a major miss in circuit understanding.",
           "golden_solution_sha256": "4e4f5566d59f894b1c9da376d4cca1d5f1a3a87065e2121de8d602e1a096f087",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
       "active_score": {
         "policy": "mean(minimax_m3,deepseek_v4_pro)",
-        "score_0_to_4": 1,
-        "score_percent": 25,
+        "score_0_to_4": 1.5,
+        "score_percent": 37.5,
         "is_full_credit": false
       },
       "tokens": {
@@ -1811,25 +1811,25 @@
       "source_experiment": "2026-08-01-direct-qa",
       "scores": {
         "minimax_m3": {
-          "score_0_to_4": 3,
-          "is_full_credit": false,
-          "rationale": "The candidate correctly identifies 2 poles, matching the golden solution. It properly counts independent dynamic nodes (input/gate of M1 and output/cascode node) rather than counting every capacitor label. It correctly notes that M2's gate is shorted to its drain, so CGD2 merges with the output node. However, the analysis of CGD's Miller effect is somewhat incomplete — the answer treats CGD as simply loading both nodes but doesn't explicitly discuss the Miller multiplication or the split into input-side and output-side equivalents. The golden solution emphasizes that CGD should not be counted only as an input-node capacitance (Miller effect contributes to both sides). Despite this imprecision in reasoning, the final answer and topology understanding are correct, warranting a score of 3 (mostly correct with minor imprecision).",
+          "score_0_to_4": 4,
+          "is_full_credit": true,
+          "rationale": "The candidate correctly identifies 2 poles based on two independent dynamic nodes: the gate/input node of M1 and the output/cascode node. The candidate correctly recognizes that CGD spans both nodes (Miller effect), that capacitors in parallel at the output node don't create additional poles, and does not invent capacitors not in the figure. The reasoning aligns well with the golden solution.",
           "golden_solution_sha256": "72fa059e1c3503faf2e652be9d4502478a02de83b67344ae9de4f5d3d140d5e9",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         },
         "deepseek_v4_pro": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies two independent dynamic nodes (input and output), counts two poles, and does not invent extra capacitors. Reasoning aligns with golden solution.",
+          "rationale": "Correctly identifies two independent dynamic nodes (input and output) and counts two poles. Recognizes that CGD2 is not an extra independent node because M2's gate is shorted to its drain. Matches the golden solution's emphasis on counting independent nodes, not every capacitance label.",
           "golden_solution_sha256": "72fa059e1c3503faf2e652be9d4502478a02de83b67344ae9de4f5d3d140d5e9",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
       "active_score": {
         "policy": "mean(minimax_m3,deepseek_v4_pro)",
-        "score_0_to_4": 3.5,
-        "score_percent": 87.5,
-        "is_full_credit": false
+        "score_0_to_4": 4,
+        "score_percent": 100,
+        "is_full_credit": true
       },
       "tokens": {
         "cached_input_tokens": 0,
@@ -2014,14 +2014,14 @@
         "minimax_m3": {
           "score_0_to_4": 3,
           "is_full_credit": false,
-          "rationale": "The candidate correctly identifies the key mechanism: at low frequency the output impedance is approximately 1/gm (in parallel with ro's), and at high frequency CGS1 shorts the gate-source so the impedance approaches RS, with the transition through CGS1·RS producing a phase lead (inductive behavior). The derivation of the lead-lag transfer function is essentially correct and the physical explanation of R_S delaying the gate response is sound. However, the high-frequency limiting impedance is not explicitly shown to approach RS — the candidate's final expression yields R0 = ro1||ro2 at high frequency, missing the fact that CGS1 shorting vgs eliminates the gm1 path and leaves RS in series (the dominant high-frequency impedance should be RS, not R0). This is an important detail per the golden solution, though the main inductive mechanism and low-frequency result are correct. Minor imprecision prevents a 4.",
+          "rationale": "The candidate correctly identifies the inductive output impedance mechanism: at low frequency Z_out ≈ 1/gm1, at high frequency Z_out → R_S (or R_0 in their notation), with C_GS1 and R_S creating a frequency-dependent transition that produces inductive behavior. The lead-lag network analysis and physical explanation (R_S delays gate response, causing |Z| to rise with frequency) are correct and aligned with the golden solution. Minor issues: the description of M1 as 'common-gate input, source output' is confusing terminology (it's a source follower with gate input), and the high-frequency limit should ideally approach R_S alone rather than R_0 (parallel output resistances), though the candidate's framework still captures the essential inductive mechanism correctly.",
           "golden_solution_sha256": "4ab6714ad7ba506cc65604bcb3a907b20d6cc03c465b90d7ef05241f0b637f67",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         },
         "deepseek_v4_pro": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "The answer correctly identifies the inductive output impedance mechanism: the frequency-dependent transition from 1/gm1 at low frequency to RS at high frequency due to CGS1 and RS. The derivation and physical explanation are consistent with the golden solution, and the essential conclusion is correct.",
+          "rationale": "The answer correctly identifies the inductive output impedance mechanism: the frequency-dependent transition from 1/gm1 at low frequency to RS at high frequency due to CGS1 and RS, with a positive imaginary component over a range. The derivation and physical explanation align with the golden solution's essential points. Minor issues (e.g., initial misstatement about gate voltage, some algebraic clutter) do not affect the core conclusion.",
           "golden_solution_sha256": "4ab6714ad7ba506cc65604bcb3a907b20d6cc03c465b90d7ef05241f0b637f67",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
@@ -2081,14 +2081,14 @@
         "minimax_m3": {
           "score_0_to_4": 1,
           "is_full_credit": false,
-          "rationale": "The candidate goes through multiple contradictory topology guesses and never converges on the correct one. The golden solution has M1 as common-source (gate at X, drain at Vout via RD1), M2 with gate at Vout and drain at X. The candidate's final equations treat M1 as common-gate with gate at Vout, which contradicts the correct topology. While the candidate eventually derives a positive feedback expression involving gm2*RD1 in the denominator (somewhat similar in spirit), it is based on an incorrect topology. The key correct relationship G_in ~ gds2 - gm1*gm2*RD1 is not obtained, and the device roles/signal paths are fundamentally wrong in the final analysis.",
+          "rationale": "The candidate answer has fundamental topology confusion and arrives at an incorrect transresistance expression. The golden solution states that M1 is a common-source device with load RD1 (gate of M1 at X, drain through RD1 to VDD), and M2's gate is tied to Vout with drain at X. The candidate oscillates between multiple incorrect topology interpretations (common-gate M1, diode-connected M1, both gates at X) and never settles on the correct one. The resulting transresistance R_D1/(1-gm2*R_D1) does not match the golden solution's input conductance analysis (Gin ≈ gds2 - gm1*gm2*RD1). While the candidate correctly identifies positive feedback and the instability boundary conceptually, the wrong topology and wrong final expression represent a fundamentally incorrect circuit analysis.",
           "golden_solution_sha256": "8725dfc04d82712368d6e8dfe8641cd376fdfa70aa0623e55d004d2a3b5fd988",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         },
         "deepseek_v4_pro": {
           "score_0_to_4": 1,
           "is_full_credit": false,
-          "rationale": "The candidate misidentifies the topology: M1 is common-source (gate at X, drain at Vout), not common-gate, and M2's gate is at Vout, not X. The derived transresistance expression is incorrect and does not match the golden solution's input conductance analysis. The answer misses the dominant positive feedback mechanism at the input node and the resulting negative input conductance. While it mentions positive feedback, the core circuit understanding is fundamentally wrong.",
+          "rationale": "The candidate misidentifies the topology: M1 is common-source (gate at X, drain at Vout), not common-gate, and M2's gate is at Vout, not X. The derived transresistance expression is incorrect and does not match the golden solution's input conductance form. The answer misses the dominant positive feedback mechanism at the input node and the resulting negative input conductance. The conclusion about transresistance boosting is not the central result; the golden solution emphasizes input resistance becoming large or negative. The answer contains some relevant circuit analysis but is fundamentally wrong in topology and key result.",
           "golden_solution_sha256": "8725dfc04d82712368d6e8dfe8641cd376fdfa70aa0623e55d004d2a3b5fd988",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
@@ -2550,7 +2550,7 @@
         "minimax_m3": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "The answer correctly identifies the oscillation-driven dynamic charging/discharging mechanism, derives the power P = 3 f0 CL VDD^2, and arrives at RX ≈ 1/(3 f0 CL). This matches the golden solution and satisfies the full-credit rule.",
+          "rationale": "The candidate answer correctly identifies the oscillation-driven dynamic charging/discharging mechanism as the dominant effect, derives the power expression P = 3 f0 CL VDD^2, and obtains RX = 1/(3 f0 CL), which matches the golden solution. The full-credit rule is satisfied.",
           "golden_solution_sha256": "a8256db6948e5bfed369844d2aabb600455c89fefd4449a1eebbd49b6744aef7",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         },
@@ -2749,9 +2749,9 @@
       "source_experiment": "2026-08-01-direct-qa",
       "scores": {
         "minimax_m3": {
-          "score_0_to_4": 1,
+          "score_0_to_4": 2,
           "is_full_credit": false,
-          "rationale": "The candidate identifies some relevant mechanisms (differential pair steering, current-to-voltage conversion via gm and capacitance), but reaches the wrong main conclusion. The golden solution states that increasing capacitance at P and Q does NOT change the initial voltage gain, only slows the transient response. The candidate conflates the time-domain rate (dV/dt) with the voltage gain itself (ΔVout/ΔVin), arriving at the incorrect answer that gain decreases. This is a fundamentally wrong conclusion on the essential point of the question.",
+          "rationale": "The candidate confuses the initial voltage gain (small-signal gain at the start of evaluation) with the rate of voltage buildup (dV/dt). The gain A_v = -g_m * Z_load is dominated by the small-signal transconductance and resistive load (or at high frequency the parallel R||C combination), not by the capacitance itself in a way that reduces the magnitude of gain. The golden solution states the initial voltage gain remains approximately unchanged because it depends on transconductance and tail current, not on the capacitances at P and Q. While the candidate correctly notes that larger C slows transients, it incorrectly concludes that the initial voltage gain decreases, which contradicts the essential answer.",
           "golden_solution_sha256": "806970fa9d2e87bbb08dc12710001abb7a45f270e2f26e215227f0d22df63132",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         },
@@ -2765,8 +2765,8 @@
       },
       "active_score": {
         "policy": "mean(minimax_m3,deepseek_v4_pro)",
-        "score_0_to_4": 1,
-        "score_percent": 25,
+        "score_0_to_4": 1.5,
+        "score_percent": 37.5,
         "is_full_credit": false
       },
       "tokens": {
@@ -3017,24 +3017,24 @@
       "source_experiment": "2026-08-01-direct-qa",
       "scores": {
         "minimax_m3": {
-          "score_0_to_4": 0,
+          "score_0_to_4": 1,
           "is_full_credit": false,
-          "rationale": "The golden solution's full-credit rule states that widening clocked transistors improves speed over a useful initial range due to reduced on-resistance, with charge sharing as the limiting tradeoff. The candidate answer concludes the opposite (speed degrades) and identifies the topology as a CML divider, which is incorrect — the figure is a CMOS dynamic divide-by-two latch, not a CML circuit. The main conclusion is wrong and the topology is misidentified, warranting a score of 0.",
+          "rationale": "The candidate concludes that speed degrades, which contradicts the golden solution's main finding that widening the clocked transistors improves speed over a useful initial range. While the answer mentions reduced on-resistance, it treats the topology as generally unusable due to parasitic/clock-loading effects rather than recognizing it as a useful topology with a sizing tradeoff. The low-credit rule applies: rejecting the topology as degrading is a miss of the main design conclusion. Some relevant circuit understanding is present (on-resistance, charge sharing concept), but the main conclusion is wrong.",
           "golden_solution_sha256": "74e71884cf01aaf51ce841cdf1f597ebc2a27a3f270cb291683e84f95b4ddb18",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         },
         "deepseek_v4_pro": {
           "score_0_to_4": 1,
           "is_full_credit": false,
-          "rationale": "The candidate answer concludes that speed degrades, which contradicts the golden solution's central result that widening clocked transistors improves speed over a useful initial range. The answer focuses on parasitic capacitance and clock loading, missing the dominant mechanism of reduced on-resistance improving transition speed. While it identifies some relevant effects, the main design conclusion is wrong, making it mostly incorrect.",
+          "rationale": "The candidate answer concludes that speed degrades, which contradicts the golden solution's central result that widening clocked transistors improves speed over a useful initial range. The answer focuses on parasitic capacitance and clock loading, missing the dominant mechanism of reduced on-resistance directly helping transition speed. While it identifies some relevant effects, the main design conclusion is opposite to the golden solution, making it mostly incorrect.",
           "golden_solution_sha256": "74e71884cf01aaf51ce841cdf1f597ebc2a27a3f270cb291683e84f95b4ddb18",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
       "active_score": {
         "policy": "mean(minimax_m3,deepseek_v4_pro)",
-        "score_0_to_4": 0.5,
-        "score_percent": 12.5,
+        "score_0_to_4": 1,
+        "score_percent": 25,
         "is_full_credit": false
       },
       "tokens": {
@@ -3352,24 +3352,24 @@
       "source_experiment": "2026-08-01-direct-qa",
       "scores": {
         "minimax_m3": {
-          "score_0_to_4": 2,
+          "score_0_to_4": 1,
           "is_full_credit": false,
-          "rationale": "The candidate recognizes the Miller effect and derives R_in || (R_F/(1+A)), which partially captures the feedback reduction. However, it fails to identify that the exact Miller-theorem result is Rin = (RF + RD2)/(1 + A0), missing the critical resistance at the output side of the feedback path (RD2) and not properly defining the unloaded gain A0 = (1/2) gm1 gm2,3 RD1 RD2. It also does not reject the generic RF/(1+Avol) expression as required by the golden solution, and treats R_in as an existing input resistance rather than deriving it from the full two-stage model. Under the low-credit rule and rubric, this is partially relevant but misses an important circuit detail.",
+          "rationale": "The answer only applies Miller's theorem to the input side, giving R_in || R_F/(1+A), which is equivalent to the generic RF/(1+Avol) result. It fails to recognize that the feedback resistor also sees RD2 at the output node, missing the key insight that the exact result is Rin = (RF + RD2)/(1 + A0). Per the low-credit rule, this deserves partial credit at most.",
           "golden_solution_sha256": "71949ab019b235c9b1f88d983ca3f98d62e5ed13e4c7c5fe4549b6c809ec0166",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         },
         "deepseek_v4_pro": {
           "score_0_to_4": 2,
           "is_full_credit": false,
-          "rationale": "The candidate answer uses a generic Miller approximation Rin = RF/(1+A) but misses the exact expression (RF+RD2)/(1+A0) required by the golden solution. It does not define the unloaded gain A0 = (1/2) gm1 gm2,3 RD1 RD2 and incorrectly treats Rin as a separate input resistance to ground, which is not part of the simplified model. The answer captures the Miller effect qualitatively but fails to provide the correct exact result, making it partially correct.",
+          "rationale": "The candidate answer uses a generic Miller approximation Rin = RF/(1+A) but misses the exact expression Rin = (RF + RD2)/(1 + A0) with A0 = (1/2) gm1 gm2,3 RD1 RD2. It does not account for RD2 in the feedback path and uses an undefined gain A without deriving the unloaded gain. The conclusion about low input impedance is correct, but the derivation is incomplete and imprecise, missing a key circuit detail.",
           "golden_solution_sha256": "71949ab019b235c9b1f88d983ca3f98d62e5ed13e4c7c5fe4549b6c809ec0166",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
       "active_score": {
         "policy": "mean(minimax_m3,deepseek_v4_pro)",
-        "score_0_to_4": 2,
-        "score_percent": 50,
+        "score_0_to_4": 1.5,
+        "score_percent": 37.5,
         "is_full_credit": false
       },
       "tokens": {
@@ -3488,14 +3488,14 @@
         "minimax_m3": {
           "score_0_to_4": 1,
           "is_full_credit": false,
-          "rationale": "The candidate claims monotonically decreasing phase noise with C_T, presenting it as a guaranteed improvement by bypassing the tail node at 2ω₀. This directly contradicts the golden solution, which states the effect is nonmonotonic: small/moderate C_T allows flicker noise upconversion and class-C-like operation, while excessive C_T causes low-frequency instability. The candidate identifies one relevant mechanism (tail-node 2ω₀ and noise upconversion) but reaches the wrong main conclusion by missing the nonmonotonic behavior, class-C region, triode push-out, and instability at large C_T.",
+          "rationale": "The candidate presents a textbook (Hegazi/Razavi) explanation of the tail capacitor as a simple bypass at 2ω₀, claiming monotonically improved phase noise. The golden solution emphasizes a nonmonotonic effect, class-C-like switching with peak currents exceeding ISS, triode-region risk, and possible low-frequency instability at large CT. The candidate misses the dominant mechanism (class-C-like switching delivering peak tank currents) and gives an incorrect main conclusion (monotonic improvement rather than optimization). Only a small amount of relevant circuit understanding (tail node at 2ω₀, bypass concept) is present, so a score of 1 is appropriate.",
           "golden_solution_sha256": "dd56e65a07c867b659613174e21aca895658b1f76e05430d79ceee5c9bbfadd9",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         },
         "deepseek_v4_pro": {
           "score_0_to_4": 1,
           "is_full_credit": false,
-          "rationale": "The answer claims a monotonic improvement in phase noise by adding CT, missing the nonmonotonic tradeoff and potential degradation or instability described in the golden solution. It only discusses bypassing tail noise at 2ω0, ignoring flicker-noise upconversion at small/moderate CT, class-C-like improvement, and low-frequency instability at large CT. This one-sided conclusion contradicts the central result.",
+          "rationale": "The answer claims a monotonic improvement in phase noise by bypassing the tail node at 2ω0, missing the nonmonotonic behavior and potential degradation or instability described in the golden solution. It does not address flicker-noise upconversion at small/moderate CT, class-C-like improvement, or low-frequency instability, and thus reaches a fundamentally incomplete conclusion.",
           "golden_solution_sha256": "dd56e65a07c867b659613174e21aca895658b1f76e05430d79ceee5c9bbfadd9",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
@@ -3817,14 +3817,14 @@
         "minimax_m3": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "The candidate correctly identifies the diode-connected NMOS with VGS = VDS = VX, correctly states IX ≈ 0 for VX ≤ VTH, correctly identifies saturation operation when on, and provides the correct quadratic expression (1/2)μCox(W/L)(VX-VTH)^2. The sketch shows zero below threshold and quadratic rise above, matching the golden solution exactly. Topology, device roles, dominant mechanism, and key assumptions are all correct.",
+          "rationale": "The answer correctly identifies the diode-connected NMOS with VGS=VDS=VX, properly states IX=0 below threshold and the quadratic saturation current IX = (1/2)μnCox(W/L)(VX-VTH)^2 above threshold, and sketches the characteristic accurately. All essential circuit analysis matches the golden solution.",
           "golden_solution_sha256": "bfea619964059498c81e339b724f52ee5be4d15612b8ccbbb4260542c7f763d0",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         },
         "deepseek_v4_pro": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "The answer correctly identifies the diode-connected NMOS, states V_GS=V_DS=V_X, describes cutoff for V_X<V_th, saturation for V_X>V_th, gives the quadratic equation, and sketches the zero-then-quadratic curve. All essential points match the golden solution.",
+          "rationale": "The answer correctly identifies the diode-connected NMOS, states V_GS=V_DS=V_X, describes cutoff for V_X<V_th, saturation for V_X>V_th, gives the quadratic equation, and sketches the zero-then-quadratic shape. All essential points match the golden solution.",
           "golden_solution_sha256": "bfea619964059498c81e339b724f52ee5be4d15612b8ccbbb4260542c7f763d0",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
@@ -5021,14 +5021,14 @@
         "minimax_m3": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "The candidate answer correctly identifies that the Miller effect is reduced because the drain of M1 sees a low impedance (1/gm2) set by the common-gate M2, giving a local gain of approximately -1 across Cgd1 and yielding an effective Miller multiplication of ~2Cgd. This matches the golden solution's explanation and the Razavi comment that the effective gain is around -2. Topology, device roles, dominant mechanism, and trends are all correct.",
+          "rationale": "The answer correctly identifies that the cascode's common-gate device presents a low impedance (~1/gm) at the drain of the input transistor, reducing the voltage gain across Cgd1 to approximately -1 (the candidate notes ≈-2... actually -1, which is in the right ballpark; Razavi mentions ≈-2 but both reflect the small local gain). The key mechanism—Miller multiplication being suppressed because the gain across Cgd is small rather than the full output gain—is correctly explained. The topology, device roles, and dominant mechanism are all right. The final conclusion matches the golden solution.",
           "golden_solution_sha256": "116d68c2d1000a9d062b36020338810742ef4c569416a030f3903e97255aedaf",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         },
         "deepseek_v4_pro": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "The answer correctly identifies the key mechanism: the low impedance at the drain of M1 reduces the gain across Cgd1, suppressing Miller multiplication. It provides a clear explanation, correct approximate gain of -1, and contrasts with a simple CS stage. The reasoning aligns with the golden solution, and any minor imprecisions (e.g., exact gain of -2 vs -1) are within acceptable tolerance.",
+          "rationale": "The answer correctly identifies the key mechanism: the low impedance at the drain of M1 reduces the gain across Cgd1, suppressing Miller multiplication. It provides a clear explanation, correct approximate gain of -1, and contrasts with a simple CS stage. The reasoning aligns with the golden solution, and any minor imprecisions (e.g., exact gain of -2 vs -1) do not change the essential conclusion.",
           "golden_solution_sha256": "116d68c2d1000a9d062b36020338810742ef4c569416a030f3903e97255aedaf",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
@@ -5421,24 +5421,24 @@
       "source_experiment": "2026-08-01-direct-qa",
       "scores": {
         "minimax_m3": {
-          "score_0_to_4": 1,
+          "score_0_to_4": 2,
           "is_full_credit": false,
-          "rationale": "The candidate goes through multiple contradictory topology guesses and never converges on the correct one. The golden solution has M1 as common-source (gate at X, drain at Vout via RD1), M2 with gate at Vout and drain at X. The candidate's final equations treat M1 as common-gate with gate at Vout, which contradicts the correct topology. While the candidate eventually derives a positive feedback expression involving gm2*RD1 in the denominator (somewhat similar in spirit), it is based on an incorrect topology. The key correct relationship G_in ~ gds2 - gm1*gm2*RD1 is not obtained, and the device roles/signal paths are fundamentally wrong in the final analysis.",
+          "rationale": "The candidate identifies positive feedback and derives a transresistance expression, showing some relevant circuit understanding. However, the topology identification is confused and self-contradictory: the candidate wavers between common-source and common-gate for M1, and between different gate connections, ultimately settling on a topology inconsistent with the golden solution. The golden solution specifies M1 as common-source (gate at X, drain loaded by RD1) with M2's gate tied to Vout and drain at X, yielding Gin ~ gds2 - gm1*gm2*RD1. The candidate's final equations assume a different topology (M1 common-gate with vx-vout) and derive R_trans = RD1/(1 - gm2*RD1), which does not match the golden solution's input conductance form. The core device roles and feedback path description are partially right but the specific analysis is based on a wrong/uncertain topology, missing the key result about input resistance becoming very large or negative.",
           "golden_solution_sha256": "8725dfc04d82712368d6e8dfe8641cd376fdfa70aa0623e55d004d2a3b5fd988",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         },
         "deepseek_v4_pro": {
           "score_0_to_4": 1,
           "is_full_credit": false,
-          "rationale": "The candidate misidentifies the topology: M1 is common-source (gate at X, drain at Vout), not common-gate, and M2's gate is at Vout, not X. The derived transresistance expression is incorrect and does not match the golden solution's input conductance analysis. The answer misses the dominant positive feedback mechanism at the input node and the resulting negative input conductance. While it mentions positive feedback, the core circuit understanding is fundamentally wrong.",
+          "rationale": "The candidate misidentifies the topology: M1 is common-source (gate at X, drain at Vout), not common-gate, and M2's gate is at Vout, not X. The derived transresistance expression is incorrect and does not match the golden solution's input conductance form. The answer misses the dominant positive feedback mechanism at the input node and the resulting negative input conductance. While it mentions positive feedback, the analysis is fundamentally flawed, leading to a wrong conclusion.",
           "golden_solution_sha256": "8725dfc04d82712368d6e8dfe8641cd376fdfa70aa0623e55d004d2a3b5fd988",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
       "active_score": {
         "policy": "mean(minimax_m3,deepseek_v4_pro)",
-        "score_0_to_4": 1,
-        "score_percent": 25,
+        "score_0_to_4": 1.5,
+        "score_percent": 37.5,
         "is_full_credit": false
       },
       "tokens": {

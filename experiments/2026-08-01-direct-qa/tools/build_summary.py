@@ -20,6 +20,11 @@ MODELS = {
     "Grok 4.5": "default",
     "Gemini 3.6 Flash": "default",
     "Inkling Small": "default",
+    "Inkling": "disabled",
+    "Llama 4 Maverick": "default",
+    "Qwen 3.7 Flash": "default",
+    "Qwen 3.7 Plus": "default",
+    "Step 3.7 Flash": "default",
     "GPT-5.6 Terra": "max",
 }
 JUDGES = {"MiniMax-M3": "MiniMax M3", "deepseek-v4-pro": "DeepSeek V4 Pro"}

@@ -610,14 +610,14 @@
         "minimax_m3": {
           "score_0_to_4": 0,
           "is_full_credit": false,
-          "rationale": "The candidate incorrectly concludes 'Yes' — the golden solution says 'No.' The device is diode-connected (gate-drain shorted), presenting low resistance ~1/gm, not acting as a current source. The candidate's main conclusion is wrong, and it misidentifies the device configuration (claims gate connected to ground rather than to drain), so the fundamental topology is misread.",
+          "rationale": "The candidate answer contradicts the golden solution. It claims the device can act as a current source, whereas the golden solution states it cannot because the diode-connected MOSFET presents low small-signal resistance (~1/gm). Additionally, the candidate's topology description is wrong - it describes gate and source grounded (which would be a different configuration), not a diode-connected device. Both the conclusion and the circuit understanding are fundamentally incorrect.",
           "golden_solution_sha256": "c68ae81f6db628588daf721db5f50dcda0e30ccf15d07f2aa122c69f77cb6630",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         },
         "deepseek_v4_pro": {
           "score_0_to_4": 0,
           "is_full_credit": false,
-          "rationale": "The candidate misidentifies the topology as a MOSFET with gate and source grounded, but the figure shows a diode-connected device (gate and drain tied). The answer claims saturation and constant current, which is wrong for a diode-connected MOSFET. The conclusion contradicts the golden solution's central result that it cannot act as a good current source.",
+          "rationale": "The candidate misidentifies the topology as a MOSFET with gate and source grounded, but the figure shows a diode-connected device (gate and drain tied). The answer claims saturation and constant current, which is fundamentally wrong for a diode-connected MOSFET. The conclusion contradicts the golden solution's central result.",
           "golden_solution_sha256": "c68ae81f6db628588daf721db5f50dcda0e30ccf15d07f2aa122c69f77cb6630",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
@@ -1615,7 +1615,7 @@
         "minimax_m3": {
           "score_0_to_4": 0,
           "is_full_credit": false,
-          "rationale": "The candidate answer concludes 'Yes, it is a cascode structure,' which directly contradicts the golden solution's central answer ('No, it is not a cascode in the usual sense'). The candidate fails to recognize that M1 operates as a source follower rather than a common-source input device feeding a common-gate cascode. Since the main conclusion is wrong, the answer merits score 0.",
+          "rationale": "The candidate answer incorrectly concludes that the circuit is a cascode structure, directly contradicting the golden solution which states it is not a cascode in the usual sense because M1 acts as a source follower. The answer misses the dominant mechanism entirely.",
           "golden_solution_sha256": "4e4f5566d59f894b1c9da376d4cca1d5f1a3a87065e2121de8d602e1a096f087",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         },
@@ -2819,14 +2819,14 @@
         "minimax_m3": {
           "score_0_to_4": 2,
           "is_full_credit": false,
-          "rationale": "The answer correctly identifies that speed initially improves with wider M5/M6, but it does not explain the regenerative/cross-coupled PMOS mechanism or the fact that added parasitic capacitance eventually limits the benefit. It frames the answer generically ('lower on-resistance, charging/discharging capacitive loads') rather than identifying M5/M6 as cross-coupled regenerative devices. It also misses the optimum-width caveat entirely, which is an important design consequence per the golden solution.",
+          "rationale": "The candidate correctly identifies that increasing widths of M5/M6 initially improves speed, matching the golden solution's primary trend. However, the reasoning is generic ('lower on-resistance, charge/discharge faster') rather than identifying M5/M6 as cross-coupled PMOS regenerative devices whose transconductance strengthens latch regeneration. Most importantly, the answer misses the optimum-width caveat: it states speed improves with no mention of diminishing returns or eventual degradation due to parasitic capacitance dominating at nodes X and Y. This is a meaningful omission per the rubric ('mostly correct on the initial trend but incomplete, because it misses the sizing limit'). Partial credit is warranted for correct trend and some relevant circuit understanding, but the missing optimum and incorrect mechanism identification prevent a score of 3.",
           "golden_solution_sha256": "5eed0194a609e5504312082df6fe7d71e18f6abfa8d0ff1bc1936ac8f33e2388",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         },
         "deepseek_v4_pro": {
           "score_0_to_4": 3,
           "is_full_credit": false,
-          "rationale": "The answer correctly states that speed improves, which matches the golden solution's initial trend. However, it misses the key mechanism (regenerative action of cross-coupled PMOS) and the existence of an optimum width due to parasitic capacitance. It mentions lower on-resistance and faster charging/discharging, which is a generic but not entirely accurate explanation for this latch. The conclusion is right, but the reasoning is incomplete and lacks the dominant mechanism, making it mostly correct (score 3).",
+          "rationale": "The candidate correctly states that speed improves, which matches the golden solution's initial trend. However, the explanation is generic (lower on-resistance, faster charging/discharging) and misses the key regenerative mechanism of the cross-coupled PMOS pair. It also omits the important caveat that improvement is not unlimited and that an optimum width exists due to added parasitic capacitance. This makes the answer mostly correct but incomplete, lacking the specific circuit insight required for a full score.",
           "golden_solution_sha256": "5eed0194a609e5504312082df6fe7d71e18f6abfa8d0ff1bc1936ac8f33e2388",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
@@ -2953,14 +2953,14 @@
         "minimax_m3": {
           "score_0_to_4": 1,
           "is_full_credit": false,
-          "rationale": "The candidate gives a confident 'yes' without recognizing the nominal divide-by-two mechanism in detail, and fails to identify the two key non-idealities: the extra Inv3 delay from Y to Z and the unequal latch loading including Miller-multiplied capacitance. The claim about 'capacitive coupling' is fabricated and irrelevant. While it gets the direction right (it does nominally provide quadrature), the reasoning is wrong and it misses the central caveat about accuracy/robustness, which the golden solution identifies as essential.",
+          "rationale": "The answer gives an unconditional 'yes' without recognizing that the circuit only nominally provides quadrature as a divide-by-two. It misses both key nonidealities: the extra Inv3 delay from Y to Z, and the unequal latch loading (especially Miller-multiplied capacitance). The reasoning is vague and largely incorrect regarding the dominant mechanism and design consequence.",
           "golden_solution_sha256": "6da6b223d9f98ad0bc088099f8187b5c9939545ab681adce94ab58baed13609c",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         },
         "deepseek_v4_pro": {
           "score_0_to_4": 1,
           "is_full_credit": false,
-          "rationale": "The answer claims quadrature outputs but provides no analog reasoning about the divide-by-two mechanism, the extra inverter delay, or unequal loading. It misses the dominant nonidealities and gives a generic description, making it mostly incorrect.",
+          "rationale": "The answer states the circuit provides quadrature outputs but gives no analog reasoning about the divide-by-two mechanism, the extra inverter delay, or unequal loading. It misses the key nonidealities and provides only a generic description, making it mostly incorrect.",
           "golden_solution_sha256": "6da6b223d9f98ad0bc088099f8187b5c9939545ab681adce94ab58baed13609c",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
@@ -5156,7 +5156,7 @@
         "minimax_m3": {
           "score_0_to_4": 1,
           "is_full_credit": false,
-          "rationale": "The candidate counts capacitances as poles rather than counting independent dynamic nodes. The correct answer is two poles (input node and cascode/output node). The candidate enumerates five capacitances and claims five poles, which fundamentally misses the dominant reasoning (node counting vs. capacitance counting) and arrives at the wrong conclusion. Only small credit for recognizing the cascode topology and naming relevant capacitances.",
+          "rationale": "The candidate counts five poles by treating each capacitance as a separate pole, which directly contradicts the golden solution's central point that poles correspond to independent dynamic nodes, not capacitor labels. The correct answer is two poles (input/gate-side node and output/cascode node). The candidate shows some relevant circuit understanding by identifying the capacitances present in the cascode, but the main conclusion (five poles) is wrong, warranting a score of 1.",
           "golden_solution_sha256": "72fa059e1c3503faf2e652be9d4502478a02de83b67344ae9de4f5d3d140d5e9",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         },

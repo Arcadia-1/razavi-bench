@@ -15,12 +15,12 @@
       "overall": {
         "active": {
           "response_count": 150,
-          "correct_count": 89,
-          "incorrect_count": 61,
-          "partial_credit_count": 57,
+          "correct_count": 88,
+          "incorrect_count": 62,
+          "partial_credit_count": 58,
           "zero_count": 4,
-          "mean_score_0_to_4": 3.03,
-          "score_percent": 75.75,
+          "mean_score_0_to_4": 3.026666666666667,
+          "score_percent": 75.66666666666667,
           "score_distribution": {
             "0": 4,
             "0.5": 8,
@@ -29,24 +29,24 @@
             "2": 7,
             "2.5": 3,
             "3": 4,
-            "3.5": 8,
-            "4": 89
+            "3.5": 9,
+            "4": 88
           }
         },
         "minimax_m3": {
           "response_count": 150,
-          "correct_count": 93,
-          "incorrect_count": 57,
-          "partial_credit_count": 46,
+          "correct_count": 92,
+          "incorrect_count": 58,
+          "partial_credit_count": 47,
           "zero_count": 11,
-          "mean_score_0_to_4": 2.993333333333333,
-          "score_percent": 74.83333333333333,
+          "mean_score_0_to_4": 2.986666666666667,
+          "score_percent": 74.66666666666667,
           "score_distribution": {
             "0": 11,
             "1": 26,
             "2": 9,
-            "3": 11,
-            "4": 93
+            "3": 12,
+            "4": 92
           }
         },
         "deepseek_v4_pro": {
@@ -69,12 +69,12 @@
       "part1": {
         "active": {
           "response_count": 90,
-          "correct_count": 65,
-          "incorrect_count": 25,
-          "partial_credit_count": 21,
+          "correct_count": 64,
+          "incorrect_count": 26,
+          "partial_credit_count": 22,
           "zero_count": 4,
-          "mean_score_0_to_4": 3.316666666666667,
-          "score_percent": 82.91666666666667,
+          "mean_score_0_to_4": 3.311111111111111,
+          "score_percent": 82.77777777777777,
           "score_distribution": {
             "0": 4,
             "0.5": 5,
@@ -82,24 +82,24 @@
             "1.5": 1,
             "2": 3,
             "3": 2,
-            "3.5": 5,
-            "4": 65
+            "3.5": 6,
+            "4": 64
           }
         },
         "minimax_m3": {
           "response_count": 90,
-          "correct_count": 67,
-          "incorrect_count": 23,
-          "partial_credit_count": 15,
+          "correct_count": 66,
+          "incorrect_count": 24,
+          "partial_credit_count": 16,
           "zero_count": 8,
-          "mean_score_0_to_4": 3.3,
-          "score_percent": 82.5,
+          "mean_score_0_to_4": 3.2888888888888888,
+          "score_percent": 82.22222222222221,
           "score_distribution": {
             "0": 8,
             "1": 6,
             "2": 4,
-            "3": 5,
-            "4": 67
+            "3": 6,
+            "4": 66
           }
         },
         "deepseek_v4_pro": {
@@ -175,20 +175,20 @@
     "by_rollout": {
       "1": {
         "response_count": 50,
-        "correct_count": 31,
-        "incorrect_count": 19,
-        "partial_credit_count": 17,
+        "correct_count": 30,
+        "incorrect_count": 20,
+        "partial_credit_count": 18,
         "zero_count": 2,
-        "mean_score_0_to_4": 2.99,
-        "score_percent": 74.75,
+        "mean_score_0_to_4": 2.98,
+        "score_percent": 74.5,
         "score_distribution": {
           "0": 2,
           "0.5": 4,
           "1": 4,
           "1.5": 3,
           "2": 4,
-          "3.5": 2,
-          "4": 31
+          "3.5": 3,
+          "4": 30
         }
       },
       "2": {
@@ -404,9 +404,9 @@
       "source_experiment": "direct-mm-current-thinking-full50-doubao-kimi",
       "scores": {
         "minimax_m3": {
-          "score_0_to_4": 4,
-          "is_full_credit": true,
-          "rationale": "The candidate correctly identifies that the PMOS small-signal model has the same form as the NMOS model, lists the same elements (gm*vgs, ro, gmb*vbs with terminal capacitances implied), and correctly notes the sign convention differences due to opposite carrier type. The formulas use |I_D| which properly accounts for sign. The conclusion matches the golden solution.",
+          "score_0_to_4": 3,
+          "is_full_credit": false,
+          "rationale": "The candidate correctly identifies that the small-signal model topology and form are identical between PMOS and NMOS, lists the same elements (gm, ro, gmb), and discusses sign conventions. However, there are some minor issues: (1) the formula gm = |I_D|/(|V_OV|/2) is dimensionally wrong (denominator should be |V_OV| or the numerator should be 2|I_D|), and (2) the claim that 'gm for PMOS is negative in value' is a bit confused - gm is always defined as positive by convention. The essential answer (model is identical in form with sign convention differences) matches the golden solution, but the mathematical expressions contain errors that represent minor imprecisions.",
           "golden_solution_sha256": "3efff1057bca28f59c691e6a7b1b35b9aef015475c1aa91f716113f27e63976f",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         },
@@ -420,9 +420,9 @@
       },
       "active_score": {
         "policy": "mean(minimax_m3,deepseek_v4_pro)",
-        "score_0_to_4": 4,
-        "score_percent": 100,
-        "is_full_credit": true
+        "score_0_to_4": 3.5,
+        "score_percent": 87.5,
+        "is_full_credit": false
       },
       "tokens": {
         "cached_input_tokens": 0,
@@ -1677,14 +1677,14 @@
         "minimax_m3": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "The candidate correctly identifies that the cascode's common-gate device presents a low impedance (~1/gm) at the input transistor's drain, shielding it from the large output swing and reducing the voltage gain across Cgd to a small value (order of 1). This matches the golden solution's essential explanation. The reasoning, topology recognition, device roles, and dominant mechanism are all correct.",
+          "rationale": "The candidate answer correctly identifies all the essential mechanisms: the cascode shields the input transistor's drain via the low-impedance (~1/gm) of the common-gate stage, the voltage gain from gate to input transistor's drain is small (≈1 or less), Miller multiplication of Cgd is therefore small, and the large gain is developed at the cascode output node. This matches the golden solution's central points precisely, including topology, device roles, dominant mechanism, and design consequence (bandwidth improvement).",
           "golden_solution_sha256": "116d68c2d1000a9d062b36020338810742ef4c569416a030f3903e97255aedaf",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         },
         "deepseek_v4_pro": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "The answer correctly identifies the low-impedance node at the input transistor's drain, the small voltage gain across Cgd, and the resulting reduction in Miller multiplication. It matches the golden solution's key points and reasoning.",
+          "rationale": "The answer correctly identifies the low-impedance node at the input transistor's drain, the small voltage gain across Cgd, and the resulting reduction in Miller multiplication. It aligns with the golden solution's key points and includes the essential reasoning without errors.",
           "golden_solution_sha256": "116d68c2d1000a9d062b36020338810742ef4c569416a030f3903e97255aedaf",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
@@ -3683,14 +3683,14 @@
         "minimax_m3": {
           "score_0_to_4": 3,
           "is_full_credit": false,
-          "rationale": "The candidate correctly identifies the main conclusion (Student A correct under fixed W/L), provides both relevant formulas (gm = μCox(W/L)Vov and gm = 2ID/Vov), and notes the inverse relationship at fixed ID. However, it does not explicitly state that Student B could be correct under fixed drain current—it only mentions it parenthetically in the 'or inversely proportional to Vov for a fixed drain current' clause, without resolving that Student B is then correct. The golden solution explicitly recognizes both conditions and both students. The candidate's final answer of 'Student A is right' is incomplete relative to the golden solution's balanced view, though the main conclusion is right and the reasoning is sound.",
+          "rationale": "The candidate correctly identifies the dominant result (Student A correct for fixed W/L) and provides both relevant gm expressions. However, it does not fully articulate that Student B's statement is also valid under a fixed ID condition—it only parenthetically mentions the inverse proportionality for fixed ID in passing, rather than explicitly stating that both students can be correct depending on the constraint. This is a minor omission of the golden solution's key nuance, so it's mostly correct but not fully complete.",
           "golden_solution_sha256": "facd7a0e127d62601f7a97e0174170be36ff21c242c7c410c1b3db48c1fc94d5",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         },
         "deepseek_v4_pro": {
           "score_0_to_4": 3,
           "is_full_credit": false,
-          "rationale": "The candidate correctly identifies that Student A is right under fixed device geometry, which matches the golden solution's usual interpretation. However, the answer does not explicitly discuss the condition of fixed drain current where Student B would be correct, missing the nuance that both can be true depending on what is held constant. This is a minor omission, so the score is 3.",
+          "rationale": "The candidate correctly identifies that Student A is right under the usual interpretation (fixed device size), and provides the correct gm formulas. However, the answer does not explicitly discuss the condition of fixed drain current where Student B would be correct, which is a minor omission. The conclusion is correct, but the reasoning is slightly incomplete.",
           "golden_solution_sha256": "facd7a0e127d62601f7a97e0174170be36ff21c242c7c410c1b3db48c1fc94d5",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
@@ -5019,7 +5019,7 @@
         "minimax_m3": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "The candidate correctly identifies that the cascode's common-gate device presents a low impedance (~1/gm) at the input transistor's drain, shielding it from the large output swing and reducing the voltage gain across Cgd to a small value (order of 1). This matches the golden solution's essential explanation. The reasoning, topology recognition, device roles, and dominant mechanism are all correct.",
+          "rationale": "The answer correctly identifies that the cascode places a common-gate transistor above the input transistor, presenting a low impedance (~1/gm) at the input transistor's drain, which shields it from the large output voltage swing. This reduces the voltage gain across the input transistor's Cgd, thereby reducing Miller multiplication. The reasoning is sound, the topology is correct, and the design consequence (wider bandwidth) is accurate. It is consistent with the golden solution.",
           "golden_solution_sha256": "116d68c2d1000a9d062b36020338810742ef4c569416a030f3903e97255aedaf",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         },

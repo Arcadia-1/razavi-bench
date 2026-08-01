@@ -154,6 +154,8 @@ async def main_async(args: argparse.Namespace) -> int:
             "max_tokens": args.max_tokens,
             "stream": False,
         }
+        if args.disable_reasoning:
+            payload["reasoning"] = {"enabled": False, "exclude": True}
 
         error = ""
         async with semaphore:
@@ -262,6 +264,7 @@ async def main_async(args: argparse.Namespace) -> int:
         "api_format": "openai_chat_completions",
         "temperature": args.temperature,
         "max_tokens": args.max_tokens,
+        "reasoning": "disabled" if args.disable_reasoning else "provider_default",
         "rollouts": args.rollout,
         "concurrency": args.concurrency,
         "expected_answers": total_expected,
@@ -294,6 +297,7 @@ def main() -> None:
     parser.add_argument("--timeout", type=int, default=900)
     parser.add_argument("--max-tokens", type=int, default=65536)
     parser.add_argument("--temperature", type=float, default=0)
+    parser.add_argument("--disable-reasoning", action="store_true")
     parser.add_argument("--resume", action="store_true")
     args = parser.parse_args()
     raise SystemExit(asyncio.run(main_async(args)))
