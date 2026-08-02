@@ -34,10 +34,18 @@ PROVIDER_STYLE = {
 }
 
 LABEL_OFFSETS = {
-    "claude_opus_48": (9, -13),
+    "claude_sonnet_46": (-8, 8),
+    "claude_fable_5": (-8, 8),
+    "claude_opus_48": (-8, -13),
+    "gemini_31": (-8, 10),
     "gemini_35_flash": (-8, 13),
-    "doubao_seed_21_pro": (8, -8),
+    "gemma_4_31b_it": (-8, -12),
+    "doubao_seed_21_pro": (-8, -8),
+    "gpt_54_mini": (8, -10),
+    "gpt_55": (-8, 8),
     "llama_4_maverick": (-8, 0),
+    "minimax_m3": (8, 12),
+    "qwen_37_plus": (-8, 20),
 }
 
 RECENT_LABEL_Y = {
@@ -174,12 +182,12 @@ def plot(rows: list[dict[str, object]], output: Path) -> None:
         figsize=(20, 15),
         dpi=180,
         sharey=True,
-        gridspec_kw={"width_ratios": [1.25, 4.75], "wspace": 0.035},
+        gridspec_kw={"width_ratios": [426, 268], "wspace": 0.035},
     )
     old_ax.set_xlim(date(2024, 4, 1), date(2025, 6, 1))
     recent_ax.set_xlim(date(2025, 11, 15), date(2026, 8, 10))
-    old_ax.xaxis.set_major_locator(mdates.MonthLocator(interval=4))
-    recent_ax.xaxis.set_major_locator(mdates.MonthLocator(interval=1))
+    old_ax.xaxis.set_major_locator(mdates.MonthLocator(interval=3))
+    recent_ax.xaxis.set_major_locator(mdates.MonthLocator(bymonth=[2, 4, 6, 8, 10, 12]))
     style_axis(old_ax)
     style_axis(recent_ax)
     recent_ax.spines["left"].set_visible(False)
