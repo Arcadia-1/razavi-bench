@@ -171,7 +171,7 @@ def plot(rows: list[dict[str, object]], output: Path) -> None:
     figure, (old_ax, recent_ax) = plt.subplots(
         1,
         2,
-        figsize=(20, 11),
+        figsize=(20, 17.5),
         dpi=180,
         sharey=True,
         gridspec_kw={"width_ratios": [1.25, 4.75], "wspace": 0.035},
@@ -200,11 +200,11 @@ def plot(rows: list[dict[str, object]], output: Path) -> None:
         annotate(axis, row)
 
     old_ax.set_ylabel("Active Overall Score (%)", fontsize=14, fontweight="bold", color="#111827")
-    figure.supxlabel("Model Release Date", y=0.074, fontsize=14, fontweight="bold", color="#111827")
+    figure.supxlabel("Model Release Date", y=0.068, fontsize=14, fontweight="bold", color="#111827")
     figure.suptitle(
         "Razavi-Bench: Multimodal QA — Overall Score vs. Model Release Date",
         x=0.055,
-        y=0.965,
+        y=0.975,
         ha="left",
         fontsize=23,
         fontweight="bold",
@@ -212,7 +212,7 @@ def plot(rows: list[dict[str, object]], output: Path) -> None:
     )
     figure.text(
         0.056,
-        0.918,
+        0.942,
         "32 Direct QA configurations · 3 rollouts · active score is the mean of MiniMax M3 and DeepSeek V4 Pro judges",
         fontsize=11.5,
         color="#4B5563",
@@ -237,7 +237,7 @@ def plot(rows: list[dict[str, object]], output: Path) -> None:
     figure.legend(
         handles=providers,
         loc="lower center",
-        bbox_to_anchor=(0.53, 0.015),
+        bbox_to_anchor=(0.53, 0.018),
         ncol=6,
         frameon=False,
         fontsize=10,
@@ -246,7 +246,7 @@ def plot(rows: list[dict[str, object]], output: Path) -> None:
     )
 
     output.parent.mkdir(parents=True, exist_ok=True)
-    figure.subplots_adjust(left=0.06, right=0.79, top=0.875, bottom=0.135)
+    figure.subplots_adjust(left=0.06, right=0.79, top=0.91, bottom=0.11)
     figure.savefig(output, bbox_inches="tight", facecolor="white")
     plt.close(figure)
 
