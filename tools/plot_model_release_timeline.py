@@ -41,20 +41,20 @@ LABEL_OFFSETS = {
 }
 
 RECENT_LABEL_Y = {
-    "claude_opus_5_high": 96.2,
+    "claude_opus_5_high": 96.4,
     "claude_opus_5_xhigh": 93.6,
-    "claude_opus_5": 91.0,
-    "claude_opus_5_medium": 88.4,
-    "qwen_38": 86.0,
-    "gemini_36_flash": 83.9,
-    "gpt_56": 81.8,
-    "gpt_56_terra": 79.7,
-    "grok_45": 77.6,
-    "gpt_56_luna": 75.5,
-    "qwen_37_flash": 73.4,
-    "kimi_k3": 71.3,
-    "inkling_small": 69.2,
-    "inkling": 65.0,
+    "claude_opus_5": 90.8,
+    "claude_opus_5_medium": 88.0,
+    "qwen_38": 85.5,
+    "gemini_36_flash": 83.3,
+    "gpt_56": 81.1,
+    "gpt_56_terra": 78.9,
+    "grok_45": 76.7,
+    "gpt_56_luna": 74.5,
+    "qwen_37_flash": 72.3,
+    "kimi_k3": 70.1,
+    "inkling_small": 67.9,
+    "inkling": 64.8,
 }
 
 
@@ -118,7 +118,7 @@ def annotate(ax: plt.Axes, row: dict[str, object]) -> None:
             textcoords=ax.get_yaxis_transform(),
             ha="left",
             va="center",
-            fontsize=9.2,
+            fontsize=11.5,
             color="#111827",
             linespacing=1.05,
             arrowprops={"arrowstyle": "-", "color": "#9CA3AF", "lw": 0.6},
@@ -137,7 +137,7 @@ def annotate(ax: plt.Axes, row: dict[str, object]) -> None:
         textcoords="offset points",
         ha=horizontal_alignment,
         va="center",
-        fontsize=9.2,
+        fontsize=11.5,
         color="#111827",
         linespacing=1.05,
         arrowprops={"arrowstyle": "-", "color": "#9CA3AF", "lw": 0.55},
@@ -153,7 +153,7 @@ def style_axis(ax: plt.Axes) -> None:
     ax.set_yticks(range(40, 101, 10))
     ax.grid(axis="y", color="#E5E7EB", linewidth=0.8)
     ax.grid(axis="x", color="#F0F2F5", linewidth=0.7)
-    ax.tick_params(colors="#6B7280", labelsize=10.5)
+    ax.tick_params(colors="#6B7280", labelsize=13)
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
     ax.spines["left"].set_color("#D1D5DB")
@@ -171,7 +171,7 @@ def plot(rows: list[dict[str, object]], output: Path) -> None:
     figure, (old_ax, recent_ax) = plt.subplots(
         1,
         2,
-        figsize=(20, 17.5),
+        figsize=(20, 15),
         dpi=180,
         sharey=True,
         gridspec_kw={"width_ratios": [1.25, 4.75], "wspace": 0.035},
@@ -199,22 +199,22 @@ def plot(rows: list[dict[str, object]], output: Path) -> None:
         )
         annotate(axis, row)
 
-    old_ax.set_ylabel("Active Overall Score (%)", fontsize=14, fontweight="bold", color="#111827")
-    figure.supxlabel("Model Release Date", y=0.068, fontsize=14, fontweight="bold", color="#111827")
+    old_ax.set_ylabel("Active Overall Score (%)", fontsize=17, fontweight="bold", color="#111827")
+    figure.supxlabel("Model Release Date", y=0.105, fontsize=17, fontweight="bold", color="#111827")
     figure.suptitle(
         "Razavi-Bench: Multimodal QA — Overall Score vs. Model Release Date",
         x=0.055,
-        y=0.975,
+        y=0.972,
         ha="left",
-        fontsize=23,
+        fontsize=27,
         fontweight="bold",
         color="#0B1220",
     )
     figure.text(
         0.056,
-        0.942,
+        0.925,
         "32 Direct QA configurations · 3 rollouts · active score is the mean of MiniMax M3 and DeepSeek V4 Pro judges",
-        fontsize=11.5,
+        fontsize=14,
         color="#4B5563",
     )
 
@@ -234,19 +234,22 @@ def plot(rows: list[dict[str, object]], output: Path) -> None:
             Line2D([0], [0], marker="o", color="none", markerfacecolor=color,
                    markeredgecolor="white", markersize=7, label=legend_name)
         )
-    figure.legend(
+    recent_ax.legend(
         handles=providers,
         loc="lower center",
-        bbox_to_anchor=(0.53, 0.018),
+        bbox_to_anchor=(0.50, 0.012),
         ncol=6,
-        frameon=False,
-        fontsize=10,
+        frameon=True,
+        facecolor="white",
+        edgecolor="none",
+        framealpha=0.90,
+        fontsize=12,
         handletextpad=0.4,
         columnspacing=1.3,
     )
 
     output.parent.mkdir(parents=True, exist_ok=True)
-    figure.subplots_adjust(left=0.06, right=0.79, top=0.91, bottom=0.11)
+    figure.subplots_adjust(left=0.06, right=0.76, top=0.88, bottom=0.18)
     figure.savefig(output, bbox_inches="tight", facecolor="white")
     plt.close(figure)
 

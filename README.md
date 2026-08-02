@@ -240,5 +240,5 @@ marks preview or first-public-availability dates in the
 [model release-date table](docs/data/direct_qa/model_release_dates.csv).
 
 <p align="center">
-  <img src="docs/assets/direct_qa_score_vs_release_date.png?v=20260802-square-plot" alt="Razavi-Bench score versus model release date" title="Razavi-Bench score versus model release date" width="96%"/>
+  <img src="docs/assets/direct_qa_score_vs_release_date.png?v=20260802-four-by-three" alt="Razavi-Bench score versus model release date" title="Razavi-Bench score versus model release date" width="96%"/>
 </p>
