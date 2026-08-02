@@ -113,6 +113,12 @@ async def main_async(args: argparse.Namespace) -> int:
     task_dirs = sorted(path for path in (REPO_ROOT / "tasks").iterdir() if path.is_dir())
     if len(task_dirs) != 50:
         raise SystemExit(f"expected 50 tasks, found {len(task_dirs)}")
+    if args.task_slug:
+        tasks_by_slug = {path.name: path for path in task_dirs}
+        missing = sorted(set(args.task_slug) - tasks_by_slug.keys())
+        if missing:
+            raise SystemExit(f"unknown task slug(s): {', '.join(missing)}")
+        task_dirs = [tasks_by_slug[slug] for slug in sorted(set(args.task_slug))]
 
     output_dir = args.output_dir.resolve()
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -292,6 +298,7 @@ def main() -> None:
     parser.add_argument("--output-prefix", required=True)
     parser.add_argument("--raw-dir", type=Path, required=True)
     parser.add_argument("--rollout", type=int, action="append", required=True)
+    parser.add_argument("--task-slug", action="append")
     parser.add_argument("--concurrency", type=int, default=4)
     parser.add_argument("--attempts", type=int, default=5)
     parser.add_argument("--timeout", type=int, default=900)
