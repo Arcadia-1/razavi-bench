@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - 'docs/data/direct_qa/index.json'
+      - 'docs/**'
       - 'worker/**'
       - '.github/workflows/deploy-cloudflare.yml'
   workflow_dispatch:
@@ -45,3 +45,11 @@ jobs:
             cat /tmp/r2_upload.json
             exit 1
           fi
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy docs --project-name=razavi-bench --branch=main
+
