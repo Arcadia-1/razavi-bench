@@ -6,7 +6,6 @@ on:
       - main
     paths:
       - 'docs/**'
-      - 'worker/**'
       - '.github/workflows/deploy-cloudflare.yml'
   workflow_dispatch:
 
@@ -26,7 +25,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          workingDirectory: worker
+          workingDirectory: docs/worker
           command: deploy
 
       - name: Upload index.json to R2
