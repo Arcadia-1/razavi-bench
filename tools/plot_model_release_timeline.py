@@ -42,18 +42,18 @@ LABEL_OFFSETS = {
 
 RECENT_LABEL_Y = {
     "claude_opus_5_high": 96.2,
-    "claude_opus_5_xhigh": 93.9,
-    "claude_opus_5": 91.6,
-    "claude_opus_5_medium": 89.3,
-    "qwen_38": 87.4,
-    "gemini_36_flash": 85.7,
-    "gpt_56": 84.0,
-    "gpt_56_terra": 82.3,
-    "grok_45": 80.6,
-    "gpt_56_luna": 78.9,
-    "qwen_37_flash": 77.2,
-    "kimi_k3": 75.5,
-    "inkling_small": 73.8,
+    "claude_opus_5_xhigh": 93.6,
+    "claude_opus_5": 91.0,
+    "claude_opus_5_medium": 88.4,
+    "qwen_38": 86.0,
+    "gemini_36_flash": 83.9,
+    "gpt_56": 81.8,
+    "gpt_56_terra": 79.7,
+    "grok_45": 77.6,
+    "gpt_56_luna": 75.5,
+    "qwen_37_flash": 73.4,
+    "kimi_k3": 71.3,
+    "inkling_small": 69.2,
     "inkling": 65.0,
 }
 
@@ -118,7 +118,7 @@ def annotate(ax: plt.Axes, row: dict[str, object]) -> None:
             textcoords=ax.get_yaxis_transform(),
             ha="left",
             va="center",
-            fontsize=7.2,
+            fontsize=9.2,
             color="#111827",
             linespacing=1.05,
             arrowprops={"arrowstyle": "-", "color": "#9CA3AF", "lw": 0.6},
@@ -137,7 +137,7 @@ def annotate(ax: plt.Axes, row: dict[str, object]) -> None:
         textcoords="offset points",
         ha=horizontal_alignment,
         va="center",
-        fontsize=7.2,
+        fontsize=9.2,
         color="#111827",
         linespacing=1.05,
         arrowprops={"arrowstyle": "-", "color": "#9CA3AF", "lw": 0.55},
@@ -153,7 +153,7 @@ def style_axis(ax: plt.Axes) -> None:
     ax.set_yticks(range(40, 101, 10))
     ax.grid(axis="y", color="#E5E7EB", linewidth=0.8)
     ax.grid(axis="x", color="#F0F2F5", linewidth=0.7)
-    ax.tick_params(colors="#6B7280", labelsize=8)
+    ax.tick_params(colors="#6B7280", labelsize=10.5)
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
     ax.spines["left"].set_color("#D1D5DB")
@@ -199,30 +199,22 @@ def plot(rows: list[dict[str, object]], output: Path) -> None:
         )
         annotate(axis, row)
 
-    old_ax.set_ylabel("Active Overall Score (%)", fontsize=11, fontweight="bold", color="#111827")
-    figure.supxlabel("Model Release Date", y=0.075, fontsize=11, fontweight="bold", color="#111827")
+    old_ax.set_ylabel("Active Overall Score (%)", fontsize=14, fontweight="bold", color="#111827")
+    figure.supxlabel("Model Release Date", y=0.074, fontsize=14, fontweight="bold", color="#111827")
     figure.suptitle(
-        "Razavi-Bench: Multimodal QA",
+        "Razavi-Bench: Multimodal QA — Overall Score vs. Model Release Date",
         x=0.055,
-        y=0.97,
+        y=0.965,
         ha="left",
-        fontsize=25,
+        fontsize=23,
         fontweight="bold",
         color="#0B1220",
     )
     figure.text(
         0.056,
-        0.927,
-        "Overall Score vs. Model Release Date",
-        fontsize=14,
-        fontweight="bold",
-        color="#111827",
-    )
-    figure.text(
-        0.056,
-        0.899,
+        0.918,
         "32 Direct QA configurations · 3 rollouts · active score is the mean of MiniMax M3 and DeepSeek V4 Pro judges",
-        fontsize=9.5,
+        fontsize=11.5,
         color="#4B5563",
     )
 
@@ -248,13 +240,13 @@ def plot(rows: list[dict[str, object]], output: Path) -> None:
         bbox_to_anchor=(0.53, 0.015),
         ncol=6,
         frameon=False,
-        fontsize=8,
+        fontsize=10,
         handletextpad=0.4,
         columnspacing=1.3,
     )
 
     output.parent.mkdir(parents=True, exist_ok=True)
-    figure.subplots_adjust(left=0.055, right=0.80, top=0.86, bottom=0.13)
+    figure.subplots_adjust(left=0.06, right=0.79, top=0.875, bottom=0.135)
     figure.savefig(output, bbox_inches="tight", facecolor="white")
     plt.close(figure)
 
