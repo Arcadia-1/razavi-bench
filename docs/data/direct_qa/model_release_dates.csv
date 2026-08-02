@@ -1,0 +1,33 @@
+model_key,display_name,provider,thinking_effort,source_model_id,release_date,date_basis,source_url,notes
+claude_opus_5_high,Claude Opus 5,anthropic,high,vela:209904,2026-07-24,official_release,https://www.anthropic.com/news/claude-opus-5,
+claude_opus_5_xhigh,Claude Opus 5,anthropic,xhigh,vela:209900,2026-07-24,official_release,https://www.anthropic.com/news/claude-opus-5,
+claude_fable_5,Claude Fable 5,anthropic,max,vela:208665,2026-06-09,official_release,https://www.anthropic.com/news/claude-fable-5-mythos-5,Initial release date; access was later suspended and restored.
+claude_opus_5,Claude Opus 5,anthropic,max,vela:209903,2026-07-24,official_release,https://www.anthropic.com/news/claude-opus-5,
+claude_opus_5_medium,Claude Opus 5,anthropic,medium,vela:209905,2026-07-24,official_release,https://www.anthropic.com/news/claude-opus-5,
+claude_opus_48,Claude Opus 4.8,anthropic,max,vela:208430,2026-05-28,official_release,https://www.anthropic.com/news/claude-opus-4-8,
+qwen_38,Qwen 3.8 Max Preview,alibaba,default,qwen3.8-max-preview,2026-07-19,first_public_availability,https://nano-gpt.com/blog/qwen3-8-max-preview-benchmarks,No dated official launch post or model card was publicly discoverable; uses the earliest independently documented availability date.
+gemini_35_flash,Gemini 3.5 Flash,google,default,vela:207594,2026-05-19,official_release,https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5/,
+gpt_56,GPT 5.6 Sol,openai,max,vela:209351,2026-07-09,official_release,https://openai.com/index/gpt-5-6/,Uses the general-availability date rather than the earlier limited preview.
+gemini_36_flash,Gemini 3.6 Flash,google,default,google/gemini-3.6-flash,2026-07-21,official_release,https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-6-flash-3-5-flash-lite-3-5-flash-cyber/,
+gpt_56_terra,GPT-5.6 Terra,openai,max,vela:210144,2026-07-09,official_release,https://openai.com/index/gpt-5-6/,Uses the general-availability date rather than the earlier limited preview.
+grok_45,Grok 4.5,xai,default,x-ai/grok-4.5,2026-07-16,official_release,https://x.ai/news/grok-4-5,
+doubao_seed_21_pro,Doubao Seed 2.1 Pro,bytedance,default,vela:208906;vela:208917,2026-06-23,official_release,https://seed.bytedance.com/seed2_1,Release date corroborated by contemporaneous Volcengine model documentation coverage.
+gpt_56_luna,GPT-5.6 Luna,openai,max,vela:210156,2026-07-09,official_release,https://openai.com/index/gpt-5-6/,Uses the general-availability date rather than the earlier limited preview.
+gemini_31,Gemini 3.1 Pro,google,high,vela:204723,2026-02-19,official_preview,https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-pro/,
+qwen_37_plus,Qwen 3.7 Plus,qwen,default,qwen/qwen3.7-plus,2026-06-01,official_release,https://docs.qwencloud.com/changelog/models,
+gpt_55,GPT-5.5,openai,max,vela:204765,2026-04-23,official_release,https://openai.com/index/introducing-gpt-5-5/,
+gpt_53,GPT-5.3,openai,default,openai/gpt-5.3-codex,2026-02-05,official_release,https://openai.com/index/introducing-gpt-5-3-codex/,The evaluated provider model is GPT-5.3-Codex; the benchmark display name is GPT-5.3.
+qwen_37_flash,Qwen 3.7 Flash,qwen,default,qwen/qwen3.7-flash,2026-07-25,official_release,https://docs.qwencloud.com/changelog/models,
+kimi_k3,Kimi K3,moonshot,max,vela:209566,2026-07-16,official_release,https://www.moonshot.ai/,
+kimi_k27,Kimi K2.7,moonshot,default,vela:208717,2026-06-16,official_release,https://forum.moonshot.ai/t/here-comes-kimi-k2-7-code-better-coding-with-more-efficiency/441,The evaluated provider model is Kimi K2.7 Code.
+gpt_54_thinking_high,GPT-5.4,openai,high,vela:204202,2026-03-05,official_release,https://openai.com/index/introducing-gpt-5-4/,
+inkling_small,Inkling Small,thinkingmachines,default,thinkingmachines/inkling-small,2026-07-15,official_preview,https://thinkingmachines.ai/news/introducing-inkling/,Announced as a preview alongside Inkling.
+gpt_52,GPT-5.2,openai,disabled,vela:204306,2025-12-11,official_release,https://openai.com/index/introducing-gpt-5-2/,
+step_37_flash,Step 3.7 Flash,stepfun,default,stepfun/step-3.7-flash,2026-05-29,official_release,https://static.stepfun.com/blog/step-3.7-flash/,
+inkling,Inkling,thinkingmachines,default,thinkingmachines/inkling,2026-07-15,official_release,https://thinkingmachines.ai/news/introducing-inkling/,
+claude_sonnet_46,Claude Sonnet 4.6,anthropic,disabled,vela:208907,2026-02-17,official_release,https://www.anthropic.com/news/claude-sonnet-4-6,
+gpt_54_mini,GPT-5.4 Mini,openai,default,vela:204451,2026-03-17,official_release,https://openai.com/index/introducing-gpt-5-4-mini-and-nano/,
+minimax_m3,MiniMax M3,minimax,default,vela:209249,2026-06-01,official_release,https://www.minimax.io/blog/minimax-m3,
+gemma_4_31b_it,Gemma 4 31B IT,google,default,google/gemma-4-31b-it,2026-04-02,official_model_repository,https://huggingface.co/google/gemma-4-31B-it,Uses the publication date of Google's official model repository.
+llama_4_maverick,Llama 4 Maverick,meta,default,meta-llama/llama-4-maverick,2025-04-05,official_release,https://ai.meta.com/blog/llama-4-multimodal-intelligence/,
+gpt_4o,GPT-4o,openai,default,openai/gpt-4o,2024-05-13,official_release,https://openai.com/index/hello-gpt-4o/,

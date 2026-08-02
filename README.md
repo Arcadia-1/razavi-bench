@@ -234,3 +234,11 @@ hard-rule correction applied consistently.
 <p align="center">
   <img src="docs/assets/direct_qa_rollout_mean_all_metrics.png?v=20260802-gemma-4-31b-it" alt="2026-08-02 Razavi-Bench Multimodal QA snapshot" title="2026-08-02 Razavi-Bench Multimodal QA snapshot" width="92%"/>
 </p>
+
+The release-date view uses vendor announcements where available and explicitly
+marks preview or first-public-availability dates in the
+[model release-date table](docs/data/direct_qa/model_release_dates.csv).
+
+<p align="center">
+  <img src="docs/assets/direct_qa_score_vs_release_date.png?v=20260802" alt="Razavi-Bench score versus model release date" title="Razavi-Bench score versus model release date" width="96%"/>
+</p>
