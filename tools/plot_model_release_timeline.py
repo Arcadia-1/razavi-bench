@@ -184,6 +184,31 @@ def plot(rows: list[dict[str, object]], output: Path) -> None:
     ax.xaxis.set_major_locator(mdates.MonthLocator(bymonth=[2, 5, 8, 11]))
     style_axis(ax)
 
+    best_by_date: dict[date, dict[str, object]] = {}
+    for row in rows:
+        release_date = row["release_date"]
+        previous = best_by_date.get(release_date)
+        if previous is None or row["score"] > previous["score"]:
+            best_by_date[release_date] = row
+    frontier = []
+    running_best = float("-inf")
+    for row in sorted(best_by_date.values(), key=lambda item: item["release_date"]):
+        if row["score"] > running_best:
+            frontier.append(row)
+            running_best = float(row["score"])
+    frontier_dates = [row["release_date"] for row in frontier] + [date(2026, 8, 10)]
+    frontier_scores = [row["score"] for row in frontier] + [running_best]
+    ax.step(
+        frontier_dates,
+        frontier_scores,
+        where="post",
+        color="#64748B",
+        linewidth=2.0,
+        linestyle=(0, (5, 4)),
+        alpha=0.85,
+        zorder=2,
+    )
+
     for row in rows:
         _, color = PROVIDER_STYLE[str(row["provider"])]
         ax.scatter(
@@ -227,19 +252,24 @@ def plot(rows: list[dict[str, object]], output: Path) -> None:
             Line2D([0], [0], marker="o", color="none", markerfacecolor=color,
                    markeredgecolor="white", markersize=7, label=legend_name)
         )
-    ax.legend(
+    providers.append(
+        Line2D([0], [0], color="#64748B", linewidth=2.0,
+               linestyle=(0, (5, 4)), label="Score frontier")
+    )
+    legend = ax.legend(
         handles=providers,
-        loc="lower center",
-        bbox_to_anchor=(0.60, 0.012),
-        ncol=6,
+        loc="upper left",
+        bbox_to_anchor=(0.015, 0.985),
+        ncol=3,
         frameon=True,
         facecolor="white",
-        edgecolor="none",
-        framealpha=0.90,
+        edgecolor="#CBD5E1",
+        framealpha=0.96,
         fontsize=12,
         handletextpad=0.4,
         columnspacing=1.3,
     )
+    legend.get_frame().set_linewidth(1.0)
 
     output.parent.mkdir(parents=True, exist_ok=True)
     figure.subplots_adjust(left=0.06, right=0.76, top=0.88, bottom=0.18)
