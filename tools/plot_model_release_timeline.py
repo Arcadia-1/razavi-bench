@@ -176,27 +176,17 @@ def plot(rows: list[dict[str, object]], output: Path) -> None:
         "figure.facecolor": "white",
         "axes.facecolor": "white",
     })
-    figure, (old_ax, recent_ax) = plt.subplots(
-        1,
-        2,
+    figure, ax = plt.subplots(
         figsize=(20, 15),
         dpi=180,
-        sharey=True,
-        gridspec_kw={"width_ratios": [426, 268], "wspace": 0.035},
     )
-    old_ax.set_xlim(date(2024, 4, 1), date(2025, 6, 1))
-    recent_ax.set_xlim(date(2025, 11, 15), date(2026, 8, 10))
-    old_ax.xaxis.set_major_locator(mdates.MonthLocator(interval=3))
-    recent_ax.xaxis.set_major_locator(mdates.MonthLocator(bymonth=[2, 4, 6, 8, 10, 12]))
-    style_axis(old_ax)
-    style_axis(recent_ax)
-    recent_ax.spines["left"].set_visible(False)
-    recent_ax.tick_params(axis="y", left=False, labelleft=False)
+    ax.set_xlim(date(2024, 4, 15), date(2026, 8, 10))
+    ax.xaxis.set_major_locator(mdates.MonthLocator(bymonth=[2, 5, 8, 11]))
+    style_axis(ax)
 
     for row in rows:
-        axis = old_ax if row["release_date"] < date(2025, 6, 1) else recent_ax
         _, color = PROVIDER_STYLE[str(row["provider"])]
-        axis.scatter(
+        ax.scatter(
             row["release_date"],
             row["score"],
             s=72,
@@ -205,9 +195,9 @@ def plot(rows: list[dict[str, object]], output: Path) -> None:
             linewidth=1.4,
             zorder=5,
         )
-        annotate(axis, row)
+        annotate(ax, row)
 
-    old_ax.set_ylabel("Active Overall Score (%)", fontsize=17, fontweight="bold", color="#111827")
+    ax.set_ylabel("Active Overall Score (%)", fontsize=17, fontweight="bold", color="#111827")
     figure.supxlabel("Model Release Date", y=0.105, fontsize=17, fontweight="bold", color="#111827")
     figure.suptitle(
         "Razavi-Bench: Multimodal QA — Overall Score vs. Model Release Date",
@@ -226,11 +216,6 @@ def plot(rows: list[dict[str, object]], output: Path) -> None:
         color="#4B5563",
     )
 
-    diagonal = 0.012
-    kwargs = {"color": "#6B7280", "clip_on": False, "linewidth": 1.1}
-    old_ax.plot((1 - diagonal, 1 + diagonal), (-diagonal, +diagonal), transform=old_ax.transAxes, **kwargs)
-    recent_ax.plot((-diagonal, +diagonal), (-diagonal, +diagonal), transform=recent_ax.transAxes, **kwargs)
-
     providers = []
     seen = set()
     for row in rows:
@@ -242,10 +227,10 @@ def plot(rows: list[dict[str, object]], output: Path) -> None:
             Line2D([0], [0], marker="o", color="none", markerfacecolor=color,
                    markeredgecolor="white", markersize=7, label=legend_name)
         )
-    recent_ax.legend(
+    ax.legend(
         handles=providers,
         loc="lower center",
-        bbox_to_anchor=(0.50, 0.012),
+        bbox_to_anchor=(0.60, 0.012),
         ncol=6,
         frameon=True,
         facecolor="white",
