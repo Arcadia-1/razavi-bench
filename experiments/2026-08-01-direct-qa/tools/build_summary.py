@@ -20,7 +20,6 @@ MODELS = {
     "Grok 4.5": "default",
     "Gemini 3.6 Flash": "default",
     "Inkling Small": "default",
-    "Inkling": "disabled",
     "Llama 4 Maverick": "default",
     "Qwen 3.7 Flash": "default",
     "Qwen 3.7 Plus": "default",

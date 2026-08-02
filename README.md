@@ -214,7 +214,7 @@ overlay applied to Part 1 Q15; all non-Q15 task scores are unchanged.
 | Gemini | MiniMax-M3 | 79.67% | 88.89% | 65.83% |
 | Gemini | DeepSeek-V4-Pro | 81.83% | 91.11% | 67.92% |
 
-The current active aggregate below is the August 1 snapshot. Each value is the
+The current active aggregate below is the August 2 snapshot. Each value is the
 mean of DeepSeek V4 Pro and MiniMax M3 scores over three rollouts, with the Q15
 hard-rule correction applied consistently.
 
@@ -232,5 +232,5 @@ hard-rule correction applied consistently.
 | 10 | Gemini 3.6 Flash | default | 85.92% | 92.92% | 75.42% |
 
 <p align="center">
-  <img src="docs/assets/direct_qa_rollout_mean_all_metrics.png?v=20260801-five-model-refresh" alt="2026-08-01 Razavi-Bench Multimodal QA snapshot" title="2026-08-01 Razavi-Bench Multimodal QA snapshot" width="92%"/>
+  <img src="docs/assets/direct_qa_rollout_mean_all_metrics.png?v=20260802-inkling-fair" alt="2026-08-02 Razavi-Bench Multimodal QA snapshot" title="2026-08-02 Razavi-Bench Multimodal QA snapshot" width="92%"/>
 </p>
