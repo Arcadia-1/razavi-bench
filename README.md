@@ -232,5 +232,5 @@ hard-rule correction applied consistently.
 | 10 | Gemini 3.6 Flash | default | 85.92% | 92.92% | 75.42% |
 
 <p align="center">
-  <img src="docs/assets/direct_qa_rollout_mean_all_metrics.png?v=20260802-kimi-k3-usage-repair" alt="2026-08-02 Razavi-Bench Multimodal QA snapshot" title="2026-08-02 Razavi-Bench Multimodal QA snapshot" width="92%"/>
+  <img src="docs/assets/direct_qa_rollout_mean_all_metrics.png?v=20260802-gemma-4-31b-it" alt="2026-08-02 Razavi-Bench Multimodal QA snapshot" title="2026-08-02 Razavi-Bench Multimodal QA snapshot" width="92%"/>
 </p>

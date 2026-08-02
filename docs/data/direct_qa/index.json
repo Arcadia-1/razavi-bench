@@ -1,6 +1,6 @@
 {
   "schema_version": "razavi-bench.direct-qa.v1",
-  "generated_at": "2026-08-02T02:30:11.495236+00:00",
+  "generated_at": "2026-08-02T02:59:12.555875+00:00",
   "benchmark": {
     "mode": "direct_qa",
     "question_count": 50,
@@ -7292,6 +7292,265 @@
         }
       },
       "detail_file": "models/minimax_m3.json"
+    },
+    {
+      "model_key": "gemma_4_31b_it",
+      "display_name": "Gemma 4 31B IT",
+      "provider": "google",
+      "evaluation_model_ids": [],
+      "thinking_effort": "default",
+      "configuration_note": null,
+      "mode": "direct_qa",
+      "summary": {
+        "rollout_count": 3,
+        "answer_count": 150,
+        "scores": {
+          "overall": {
+            "active": {
+              "response_count": 150,
+              "correct_count": 29,
+              "incorrect_count": 121,
+              "partial_credit_count": 119,
+              "zero_count": 2,
+              "mean_score_0_to_4": 2.1133333333333333,
+              "score_percent": 52.83333333333333,
+              "score_distribution": {
+                "0": 2,
+                "0.5": 13,
+                "1": 51,
+                "1.5": 5,
+                "2": 12,
+                "2.5": 13,
+                "3": 16,
+                "3.5": 9,
+                "4": 29
+              }
+            },
+            "minimax_m3": {
+              "response_count": 150,
+              "correct_count": 31,
+              "incorrect_count": 119,
+              "partial_credit_count": 115,
+              "zero_count": 4,
+              "mean_score_0_to_4": 2.1266666666666665,
+              "score_percent": 53.166666666666664,
+              "score_distribution": {
+                "0": 4,
+                "1": 65,
+                "2": 20,
+                "3": 30,
+                "4": 31
+              }
+            },
+            "deepseek_v4_pro": {
+              "response_count": 150,
+              "correct_count": 36,
+              "incorrect_count": 114,
+              "partial_credit_count": 100,
+              "zero_count": 14,
+              "mean_score_0_to_4": 2.1,
+              "score_percent": 52.5,
+              "score_distribution": {
+                "0": 14,
+                "1": 54,
+                "2": 21,
+                "3": 25,
+                "4": 36
+              }
+            }
+          },
+          "part1": {
+            "active": {
+              "response_count": 90,
+              "correct_count": 24,
+              "incorrect_count": 66,
+              "partial_credit_count": 65,
+              "zero_count": 1,
+              "mean_score_0_to_4": 2.2777777777777777,
+              "score_percent": 56.94444444444444,
+              "score_distribution": {
+                "0": 1,
+                "0.5": 6,
+                "1": 30,
+                "1.5": 2,
+                "2": 6,
+                "2.5": 10,
+                "3": 5,
+                "3.5": 6,
+                "4": 24
+              }
+            },
+            "minimax_m3": {
+              "response_count": 90,
+              "correct_count": 26,
+              "incorrect_count": 64,
+              "partial_credit_count": 63,
+              "zero_count": 1,
+              "mean_score_0_to_4": 2.3,
+              "score_percent": 57.49999999999999,
+              "score_distribution": {
+                "0": 1,
+                "1": 37,
+                "2": 12,
+                "3": 14,
+                "4": 26
+              }
+            },
+            "deepseek_v4_pro": {
+              "response_count": 90,
+              "correct_count": 28,
+              "incorrect_count": 62,
+              "partial_credit_count": 54,
+              "zero_count": 8,
+              "mean_score_0_to_4": 2.2555555555555555,
+              "score_percent": 56.388888888888886,
+              "score_distribution": {
+                "0": 8,
+                "1": 30,
+                "2": 11,
+                "3": 13,
+                "4": 28
+              }
+            }
+          },
+          "part2": {
+            "active": {
+              "response_count": 60,
+              "correct_count": 5,
+              "incorrect_count": 55,
+              "partial_credit_count": 54,
+              "zero_count": 1,
+              "mean_score_0_to_4": 1.8666666666666667,
+              "score_percent": 46.666666666666664,
+              "score_distribution": {
+                "0": 1,
+                "0.5": 7,
+                "1": 21,
+                "1.5": 3,
+                "2": 6,
+                "2.5": 3,
+                "3": 11,
+                "3.5": 3,
+                "4": 5
+              }
+            },
+            "minimax_m3": {
+              "response_count": 60,
+              "correct_count": 5,
+              "incorrect_count": 55,
+              "partial_credit_count": 52,
+              "zero_count": 3,
+              "mean_score_0_to_4": 1.8666666666666667,
+              "score_percent": 46.666666666666664,
+              "score_distribution": {
+                "0": 3,
+                "1": 28,
+                "2": 8,
+                "3": 16,
+                "4": 5
+              }
+            },
+            "deepseek_v4_pro": {
+              "response_count": 60,
+              "correct_count": 8,
+              "incorrect_count": 52,
+              "partial_credit_count": 46,
+              "zero_count": 6,
+              "mean_score_0_to_4": 1.8666666666666667,
+              "score_percent": 46.666666666666664,
+              "score_distribution": {
+                "0": 6,
+                "1": 24,
+                "2": 10,
+                "3": 12,
+                "4": 8
+              }
+            }
+          }
+        },
+        "by_rollout": {
+          "1": {
+            "response_count": 50,
+            "correct_count": 11,
+            "incorrect_count": 39,
+            "partial_credit_count": 39,
+            "zero_count": 0,
+            "mean_score_0_to_4": 2.16,
+            "score_percent": 54.0,
+            "score_distribution": {
+              "0.5": 4,
+              "1": 19,
+              "1.5": 1,
+              "2": 3,
+              "2.5": 3,
+              "3": 7,
+              "3.5": 2,
+              "4": 11
+            }
+          },
+          "2": {
+            "response_count": 50,
+            "correct_count": 9,
+            "incorrect_count": 41,
+            "partial_credit_count": 40,
+            "zero_count": 1,
+            "mean_score_0_to_4": 2.11,
+            "score_percent": 52.75,
+            "score_distribution": {
+              "0": 1,
+              "0.5": 3,
+              "1": 18,
+              "1.5": 1,
+              "2": 6,
+              "2.5": 3,
+              "3": 5,
+              "3.5": 4,
+              "4": 9
+            }
+          },
+          "3": {
+            "response_count": 50,
+            "correct_count": 9,
+            "incorrect_count": 41,
+            "partial_credit_count": 40,
+            "zero_count": 1,
+            "mean_score_0_to_4": 2.07,
+            "score_percent": 51.74999999999999,
+            "score_distribution": {
+              "0": 1,
+              "0.5": 6,
+              "1": 14,
+              "1.5": 3,
+              "2": 3,
+              "2.5": 7,
+              "3": 4,
+              "3.5": 3,
+              "4": 9
+            }
+          }
+        },
+        "tokens": {
+          "response_count": 150,
+          "usage_record_count": 150,
+          "complete_usage_count": 150,
+          "missing_usage_count": 0,
+          "missing_cached_input_count": 0,
+          "complete": true,
+          "totals": {
+            "cached_input_tokens": 1274,
+            "input_tokens": 46518,
+            "output_tokens": 86982,
+            "total_tokens": 133500
+          },
+          "known_totals": {
+            "cached_input_tokens": 1274,
+            "input_tokens": 46518,
+            "output_tokens": 86982,
+            "total_tokens": 133500
+          }
+        }
+      },
+      "detail_file": "models/gemma_4_31b_it.json"
     },
     {
       "model_key": "llama_4_maverick",
