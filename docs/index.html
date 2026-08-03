@@ -1,33 +1,676 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="refresh" content="0; url=./razavi-dashboard-v3.html">
-  <link rel="canonical" href="./razavi-dashboard-v3.html">
-  <title>Razavi-Bench Dashboard</title>
-  <style>
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #ffffff;
-      color: #1a1a1a;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Razavi-Bench -- Analog Design Reasoning Benchmark</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Cpolygon points='5,3 17,9 5,15' fill='none' stroke='%231a1a1a' stroke-width='2'/%3E%3Cpolygon points='23,13 11,19 23,25' fill='none' stroke='%231a1a1a' stroke-width='2'/%3E%3Cline x1='17' y1='9' x2='11' y2='19' stroke='%231a1a1a' stroke-width='2.5'/%3E%3Cline x1='2' y1='5' x2='5' y2='5' stroke='%231a1a1a' stroke-width='2'/%3E%3Cline x1='26' y1='21' x2='23' y2='21' stroke='%231a1a1a' stroke-width='2'/%3E%3C/svg%3E">
+<meta name="description" content="An expert-curated benchmark that tests whether frontier AI models can reason about analog circuit design.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<style>
+:root{--bg-primary:#ffffff;--bg-card:#f5f5f5;--bg-card-hover:#eaeaea;--border:#d5d5d5;--border-light:#bbbbbb;--text-primary:#1a1a1a;--text-secondary:#1a1a1a;--text-muted:#333333;--radius-lg:0;--max-width:825px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg-primary);color:var(--text-primary);line-height:1.6;-webkit-font-smoothing:antialiased}
 
-    a {
-      color: #1d4ed8;
-    }
-  </style>
+nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 24px}
+nav .nav-inner{max-width:var(--max-width);margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:56px}
+nav .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:17px;color:var(--text-primary);text-decoration:none}
+nav .logo svg{width:28px;height:28px}
+nav .nav-links{display:flex;gap:24px;align-items:center}
+nav .nav-links a{color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:color .15s}
+nav .nav-links a:hover{color:var(--text-primary)}
+nav .btn-gh{background:transparent;border:1px solid var(--border-light);color:var(--text-primary);padding:6px 14px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;transition:all .15s;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+nav .btn-gh:hover{background:var(--bg-card);border-color:var(--text-muted)}
+nav .btn-gh svg{width:15px;height:15px;opacity:0.7}
+
+.hero{max-width:var(--max-width);margin:0 auto;padding:56px 24px 64px}
+.hero-row1{display:flex;align-items:flex-start;justify-content:space-between;gap:48px}
+.hero-left{display:flex;align-items:flex-start;gap:16px}
+.hero-left .hero-icon{flex-shrink:0;margin-top:8px}
+.hero-left .hero-icon svg{width:44px;height:44px}
+.hero-left h1{font-size:clamp(44px,7vw,64px);font-weight:500;letter-spacing:-0.03em;line-height:1.0;margin-bottom:0;color:var(--text-primary)}
+.hero-divider{height:2px;background:#ccc;margin:6px 0 18px}
+.hero-row2{display:flex;justify-content:space-between;align-items:flex-start;gap:48px}
+.hero-left .hero-sub{color:#1a1a1a;font-size:18px;line-height:1.6;margin-bottom:0;max-width:580px}
+.hero-meta{flex-shrink:0;padding-top:0}
+.hero-meta .meta-row{display:flex;justify-content:space-between;gap:24px;font-size:13px;line-height:1.7}
+.hero-meta .meta-row .meta-key{color:var(--text-muted);text-align:left}
+.hero-meta .meta-row .meta-val{color:var(--text-primary);font-weight:600;text-align:right}
+
+section{max-width:var(--max-width);margin:0 auto;padding:0 24px 56px}
+.sec-head{margin-bottom:20px}
+.sec-head h2{margin:0 0 14px 0;font-size:24px;font-weight:700;letter-spacing:-0.02em;color:var(--text-primary)}
+section h3{font-size:15px;font-weight:600;margin-bottom:16px;color:var(--text-secondary)}
+
+.toggle-group{display:flex;gap:4px;background:var(--bg-card);border-radius:0;padding:3px;border:1px solid var(--border)}
+.toggle-group button{padding:6px 14px;border:none;border-radius:0;font-size:13px;font-weight:600;cursor:pointer;background:transparent;color:var(--text-secondary);transition:all .15s;font-family:inherit;white-space:nowrap}
+.toggle-group button.active{background:var(--text-primary);color:#fff}
+
+.table-wrap{overflow-x:auto;overflow-y:hidden;border-radius:var(--radius-lg);border:1px solid var(--border);overscroll-behavior-inline:contain;-webkit-overflow-scrolling:touch}
+.no-scroll{overflow-y:hidden !important}
+table{width:100%;min-width:680px;border-collapse:separate;border-spacing:0;font-size:13px;table-layout:fixed}
+thead th{text-align:left;padding:10px 8px;font-size:10px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.05em;background:var(--bg-card);border-bottom:1px solid var(--border)}
+thead th:nth-child(1){width:28px;text-align:right;padding-right:6px}
+thead th:nth-child(2){width:200px}
+thead th:nth-child(3){text-align:left}
+thead th:nth-child(4){width:72px;text-align:left}
+thead th:nth-child(5){width:64px;text-align:left}
+thead th:nth-child(6){width:56px;text-align:left}
+thead th.sortable{cursor:pointer;user-select:none}
+thead th.sortable:hover{color:var(--text-primary)}
+.sort-arrow{display:inline-block;font-size:9px;margin-left:3px;color:var(--text-muted)}
+th.sort-desc .sort-arrow::after{content:'▼'}
+th.sort-asc .sort-arrow::after{content:'▲'}
+tbody td{padding:4px 8px;border-bottom:1px solid rgba(0,0,0,0.06);font-size:14px}
+tbody tr{transition:background .15s,transform .2s,box-shadow .2s}
+tbody tr:hover{background:var(--bg-card-hover);transform:translateY(-1px);box-shadow:0 2px 8px rgba(0,0,0,0.1);position:relative;z-index:1}
+tbody tr:last-child td{border-bottom:none}
+tbody .rank{text-align:right;font-weight:600;font-size:12px;width:28px;padding-right:6px;color:var(--text-muted);font-variant-numeric:tabular-nums}
+.rank-1{color:#0f172a}
+.rank-2{color:#475569}
+.rank-3{color:#64748b}
+.rank-n{color:var(--text-muted)}
+.rank-badge{font-weight:600;font-size:12px}
+.model-col{font-weight:500;white-space:nowrap;font-size:13px;line-height:1.3}
+.model-effort{font-size:13px;color:var(--text-muted);font-weight:400;margin-left:4px}
+.part-col{display:none}
+.score-col{padding:4px 8px !important}
+.score-bar{display:flex;align-items:center;gap:6px}
+.score-bar .bar-track{flex:1;height:6px;background:rgba(0,0,0,0.04);position:relative;min-width:60px;border-radius:2px;background-image:repeating-linear-gradient(-45deg,transparent,transparent 4px,rgba(0,0,0,0.03) 4px,rgba(0,0,0,0.03) 6px)}
+.score-bar .bar-base{position:absolute;left:0;top:0;bottom:0;width:100%;background:transparent;border-radius:2px}
+.score-bar .bar-fill{height:100%;top:0;position:absolute;left:0;transition:width .4s cubic-bezier(.4,0,.2,1);border-radius:2px;background-image:var(--bar-pattern);background-size:6px 6px}
+.score-bar .bar-fill.pat-overall{--bar-pattern:none}
+.score-bar .bar-fill.pat-part1{--bar-pattern:repeating-linear-gradient(-45deg,transparent,transparent 3px,rgba(0,0,0,0.08) 3px,rgba(0,0,0,0.08) 5px)}
+.score-bar .bar-fill.pat-part2{--bar-pattern:repeating-linear-gradient(-45deg,transparent,transparent 1.5px,rgba(0,0,0,0.10) 1.5px,rgba(0,0,0,0.10) 3px)}
+.score-bar .bar-err{position:absolute;top:50%;height:2px;background:rgba(0,0,0,0.5);transition:left .4s,width .4s;transform:translateY(-50%)}
+.score-bar .bar-err::before,.score-bar .bar-err::after{content:'';position:absolute;width:4px;height:4px;border-radius:50%;top:50%;transform:translate(-50%,-50%);background:var(--dot-color);box-shadow:0 0 0 1.5px rgba(0,0,0,0.5)}
+.score-bar .bar-err::before{left:0}
+.score-bar .bar-err::after{left:100%}
+.score-bar .bar-val{font-weight:600;font-size:13px;width:44px;text-align:right;font-variant-numeric:tabular-nums;color:var(--text-primary);flex-shrink:0}
+.range-col{font-size:12px;color:var(--text-muted);text-align:right;padding-right:8px !important;white-space:nowrap;line-height:1.3}
+.token-col{font-size:12px;color:var(--text-muted);text-align:left;white-space:nowrap}
+.cost-col{font-size:12px;color:var(--text-muted);text-align:left;white-space:nowrap}
+
+tr.lb-row{transition:transform .4s cubic-bezier(.25,.8,.25,1),opacity .35s ease}
+tr.lb-row td{overflow:hidden;white-space:nowrap}
+tr.lb-row.out{opacity:0;transform:translateX(-20px);pointer-events:none}
+tr.lb-row.in{animation:slideIn .40s cubic-bezier(.25,.8,.25,1) both}
+@keyframes slideIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
+
+.chart-card{background:transparent;border:1px solid var(--border);border-radius:0;padding:24px;margin-top:0}
+.chart-card .chart-wrap{position:relative;height:640px;font-size:14px}
+.chart-subtitle{margin:6px 0 0;color:var(--text-muted);font-size:13px;line-height:1.45;max-width:720px}
+
+.task-card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.task-card{background:var(--bg-card);border:1px solid var(--border);border-radius:0;padding:16px;display:flex;gap:12px;align-items:flex-start;transition:border-color .2s,background .2s}
+.task-card:hover{border-color:var(--border-light);background:var(--bg-card-hover)}
+.task-card-id{flex-shrink:0;width:40px;height:40px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--text-muted);background:var(--bg-primary);border:1px solid var(--border);border-radius:0;font-variant-numeric:tabular-nums}
+.task-card-body{font-size:13px;color:var(--text-secondary);line-height:1.5;white-space:pre-wrap}
+
+.task-accordion{border:1px solid var(--border);border-radius:0;margin-bottom:8px;overflow:hidden;transition:border-color .2s}
+.task-accordion:hover{border-color:var(--border-light)}
+.task-accordion .ta-header{display:flex;gap:12px;align-items:flex-start;width:100%;padding:14px 16px;border:0;background:transparent;color:inherit;text-align:left;font-family:inherit;cursor:pointer;user-select:none}
+.task-accordion .ta-header:hover{background:var(--bg-card-hover)}
+.task-accordion .ta-id{flex-shrink:0;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--text-muted);background:var(--bg-primary);border:1px solid var(--border);border-radius:0}
+.task-accordion .ta-q{flex:1;font-size:13px;color:var(--text-primary);line-height:1.5;white-space:pre-wrap}
+.task-accordion .ta-arrow{flex-shrink:0;color:var(--text-muted);font-size:14px;transition:transform .25s;line-height:36px}
+.task-accordion.open .ta-arrow{transform:rotate(180deg)}
+.task-accordion .ta-body{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.25,.8,.25,1)}
+.task-accordion.open .ta-body{max-height:9999px}
+.task-accordion .ta-content{padding:0 16px 16px 64px;font-size:13px;line-height:1.7}
+.task-accordion .ta-content h4{font-size:12px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.05em;margin:0 0 6px 0}
+.task-accordion .ta-content img{max-width:100%;border-radius:6px;margin:8px 0}
+.task-accordion .ta-content code{background:rgba(0,0,0,0.06);padding:1px 5px;border-radius:3px;font-size:12px}
+.task-accordion .ta-content .answer-text{color:var(--text-secondary);font-size:13px;line-height:1.7;white-space:pre-wrap}
+.task-loading{color:var(--text-muted);font-size:13px;padding:12px 0}
+
+.modal-overlay{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,0.5);backdrop-filter:blur(8px);display:flex;align-items:flex-start;justify-content:center;padding:48px 24px;overflow-y:auto;opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s}
+.modal-overlay.open{opacity:1;visibility:visible}
+.modal-inner{max-width:900px;width:100%;background:var(--bg-primary);border:1px solid var(--border);border-radius:0;padding:40px}
+.modal-inner h2{font-size:22px;margin-bottom:8px}
+.modal-close{position:absolute;top:16px;right:24px;background:none;border:none;color:var(--text-muted);font-size:24px;cursor:pointer;font-family:inherit}
+.modal-close:hover{color:var(--text-primary)}
+
+.rubric-table{min-width:640px;table-layout:fixed !important}
+.rubric-table td:first-child{font-weight:700;font-size:18px;text-align:center;width:130px;min-width:130px;color:var(--text-primary)}
+.rubric-table td:nth-child(2){font-weight:600;white-space:nowrap;width:130px;min-width:130px}
+.rubric-table td:nth-child(3){color:var(--text-secondary);font-size:13px}
+
+footer{border-top:1px solid var(--border);padding:32px 24px;text-align:center;color:var(--text-muted);font-size:13px;max-width:var(--max-width);margin:0 auto}
+footer a{color:var(--text-secondary);text-decoration:underline}
+footer a:hover{color:var(--text-primary)}
+footer .footer-row{margin-bottom:6px}
+
+@media(max-width:768px){.hero{padding:40px 24px 48px}.hero-row1{flex-direction:column;gap:20px}.hero-row2 br{display:none}.chart-card{padding:16px}.modal-inner{padding:28px 18px}.task-accordion .ta-content{padding:0 14px 14px}}
+@media(max-width:480px){nav .nav-links a:not(.btn-gh){display:none}}
+</style>
 </head>
 <body>
-  <main>
-    <p>Opening the <a href="./razavi-dashboard-v3.html">Razavi-Bench dashboard</a>...</p>
-  </main>
-  <script>
-    window.location.replace("./razavi-dashboard-v3.html");
-  </script>
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo"><svg viewBox="0 0 28 28" fill="none"><rect x="2" y="2" width="11" height="8" rx="2" fill="#1a1a1a"/><rect x="15" y="2" width="11" height="8" rx="2" fill="#555"/><rect x="2" y="12" width="7" height="14" rx="2" fill="#f5f5f5" stroke="#bbb" stroke-width="1"/><rect x="15" y="12" width="7" height="14" rx="2" fill="#f5f5f5" stroke="#bbb" stroke-width="1"/><path d="M11 18 L15 18" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round"/></svg>Razavi-Bench</a>
+    <div class="nav-links">
+      <a href="#leaderboard">Leaderboard</a><a href="#tasks">Tasks</a><a href="#rubric">Rubric</a>
+      <a href="https://analog-design-bench.tokenzhang.com/" class="btn-gh" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="none"><polygon points="3,2 11,8 3,14" fill="none" stroke="currentColor" stroke-width="1.6"/><line x1="1" y1="4" x2="3" y2="4" stroke="currentColor" stroke-width="1.6"/><line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="1.6"/><line x1="11" y1="8" x2="14" y2="8" stroke="currentColor" stroke-width="1.6"/></svg>Analog</a>
+      <a href="https://github.com/Arcadia-1/razavi-bench" class="btn-gh" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a>
+    </div>
+  </div>
+</nav>
+<header class="hero">
+  <div class="hero-row1">
+    <div class="hero-left">
+      <div class="hero-icon"><svg viewBox="0 0 36 36" fill="none"><rect x="3" y="3" width="13" height="9" rx="3" fill="#1a1a1a"/><rect x="19" y="3" width="13" height="9" rx="3" fill="#555"/><rect x="3" y="16" width="8" height="17" rx="3" fill="#f5f5f5" stroke="#bbb" stroke-width="1.5"/><rect x="19" y="16" width="8" height="17" rx="3" fill="#f5f5f5" stroke="#bbb" stroke-width="1.5"/><path d="M13 24 L19 24" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round"/></svg></div>
+      <h1>Razavi-Bench</h1>
+    </div>
+    <div class="hero-meta">
+      <div class="meta-row"><span class="meta-key">Tasks</span><span class="meta-val">50</span></div>
+      <div class="meta-row"><span class="meta-key">Models</span><span class="meta-val">32</span></div>
+      <div class="meta-row"><span class="meta-key">Multimodal</span><span class="meta-val">Yes</span></div>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+  <div class="hero-row2">
+    <p class="hero-sub">An expert-curated benchmark that tests whether frontier AI<br>models can reason about analog circuit design.</p>
+  </div>
+</header>
+<section id="leaderboard">
+  <div class="sec-head">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+      <h2 style="margin:0;">Direct QA Leaderboard</h2>
+      <div class="toggle-group" id="directPartToggle"><button class="active" data-part="o">All</button><button data-part="p1">Part 1</button><button data-part="p2">Part 2</button></div>
+    </div>
+  </div>
+  <div class="table-wrap"><table><thead><tr><th>#</th><th>Model</th><th class="sortable" data-key="score">Score <span class="sort-arrow"></span></th><th>Range</th><th class="sortable" data-key="token">Token <span class="sort-arrow"></span></th><th class="sortable" data-key="cost">Cost <span class="sort-arrow"></span></th></tr></thead><tbody class="lb-table" id="lbDirectBody"></tbody></table></div>
+  <div class="sec-head" style="margin-top:56px;">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+      <div>
+        <h2 style="margin:0;">Overall Active Score vs Resource Usage</h2>
+        <p class="chart-subtitle">Mean of MiniMax M3 and DeepSeek V4 Pro across 50 tasks &times; 3 rollouts &middot; Resource usage covers answer-model attempts only.</p>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+        <div class="toggle-group" id="effToggle"><button class="active" data-axis="token">Token</button><button data-axis="cost">Cost</button></div>
+        <div class="toggle-group" id="effScaleToggle"><button data-scale="linear">Linear</button><button class="active" data-scale="log">Log</button></div>
+      </div>
+    </div>
+  </div>
+  <div class="chart-card">
+    <div class="chart-wrap" id="effChartWrap" style="height:400px;"><canvas id="effChart"></canvas></div>
+  </div>
+  <div class="sec-head" style="margin-top:56px;">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+      <h2 style="margin:0;">Token Composition</h2>
+      <div class="toggle-group" id="tokToggle"><button class="active" data-metric="token">Token</button><button data-metric="cost">Cost</button></div>
+    </div>
+  </div>
+  <div class="chart-card">
+    <div class="chart-wrap"><canvas id="tokChart"></canvas></div>
+  </div>
+  <div class="sec-head" style="margin-top:56px;">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+      <h2 style="margin:0;">Score Distribution</h2>
+      <div class="toggle-group" id="distSubsetToggle"><button class="active" data-subset="o">All</button><button data-subset="p1">Part 1</button><button data-subset="p2">Part 2</button></div>
+    </div>
+  </div>
+  <div class="chart-card">
+    <div class="chart-wrap"><canvas id="distChart"></canvas></div>
+  </div>
+</section>
+<section id="tasks">
+  <div class="sec-head">
+    <h2>Task Examples</h2>
+  </div>
+  <div style="margin-bottom:32px;">
+    <h3 style="font-size:14px;font-weight:600;color:var(--text-secondary);margin-bottom:12px;">Part 1 -- Fundamentals (first 6 of 30)</h3>
+    <div class="task-card-grid" id="part1Examples"><div class="task-loading">Loading canonical task data...</div></div>
+    <a href="#" onclick="openTaskModal('part1');return false" style="display:inline-block;margin-top:12px;font-size:13px;color:var(--text-secondary);text-decoration:underline;">View all 30 Part 1 tasks →</a>
+  </div>
+  <div>
+    <h3 style="font-size:14px;font-weight:600;color:var(--text-secondary);margin-bottom:12px;">Part 2 -- Design & Simulation (first 6 of 20)</h3>
+    <div class="task-card-grid" id="part2Examples"><div class="task-loading">Loading canonical task data...</div></div>
+    <a href="#" onclick="openTaskModal('part2');return false" style="display:inline-block;margin-top:12px;font-size:13px;color:var(--text-secondary);text-decoration:underline;">View all 20 Part 2 tasks →</a>
+  </div>
+</section>
+<section id="rubric">
+  <h2 style="margin-bottom:20px;">Evaluation Rubric</h2>
+  <div class="table-wrap">
+    <table class="rubric-table">
+      <thead><tr><th style="width:100px;text-align:center">Score</th><th style="width:160px">Meaning</th><th>Criteria</th></tr></thead>
+      <tbody>
+        <tr><td>4</td><td style="color:#22c55e;">Correct</td><td>Correct conclusion and reasoning; topology, device roles, dominant mechanism, trend, and key assumptions are right.</td></tr>
+        <tr><td>3</td><td style="color:#86efac;">Mostly correct</td><td>Main conclusion is right, with a minor omission, imprecision, or modeling flaw that does not change the result.</td></tr>
+        <tr><td>2</td><td style="color:#fbbf24;">Partially correct</td><td>Identifies some relevant mechanism, but misses an important circuit detail, trend, or design consequence.</td></tr>
+        <tr><td>1</td><td style="color:#f97316;">Mostly incorrect</td><td>Main conclusion is wrong, but the answer contains a small amount of relevant circuit understanding.</td></tr>
+        <tr><td>0</td><td style="color:#ef4444;">Incorrect / unusable</td><td>Fundamentally wrong, internally inconsistent, or based on a mistaken topology/device/connection.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="color:var(--text-muted);font-size:13px;margin-top:12px;">Judges evaluate against golden solutions prioritizing analog-circuit reasoning over surface similarity. See <a href="https://github.com/Arcadia-1/razavi-bench" style="color:var(--text-secondary);">GitHub</a> for full details.</p>
+</section>
+<section id="citation">
+  <h2 style="margin-bottom:20px;">Citation</h2>
+  <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:0;padding:24px;font-size:14px;color:var(--text-secondary);font-family:'SF Mono','Fira Code','Cascadia Code','JetBrains Mono',monospace;line-height:1.8;overflow-x:auto;">
+@misc{zhang2026razavibench,<br>
+&nbsp;&nbsp;title&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= {Razavi-Bench: An Expert-Curated Benchmark for Analog-Design Reasoning},<br>
+&nbsp;&nbsp;author&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= {Zhishuai Zhang and Behzad Razavi},<br>
+&nbsp;&nbsp;year&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= {2026},<br>
+&nbsp;&nbsp;howpublished = {\url{<a href="https://github.com/Arcadia-1/razavi-bench" style="color:var(--text-secondary);">https://github.com/Arcadia-1/razavi-bench</a>}},<br>
+&nbsp;&nbsp;url&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= {<a href="https://razavi-bench.tokenzhang.com/" style="color:var(--text-secondary);">https://razavi-bench.tokenzhang.com/</a>},<br>
+&nbsp;&nbsp;note&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= {Benchmark repository}<br>
+}
+  </div>
+</section>
+<footer>
+  <div class="footer-row"><strong>Razavi-Bench</strong> -- An expert-curated analog-design reasoning benchmark.</div>
+  <div class="footer-row">Questions &amp; figures adapted with permission from Behzad Razavi, <em>Analog Design Experiments With AI</em>, IEEE Solid-State Circuits Magazine (2025-2026).</div>
+  <div class="footer-row">Benchmark materials: research reference only, no redistribution · Code: <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache-2.0</a> · <a href="https://github.com/Arcadia-1/razavi-bench">GitHub</a></div>
+</footer>
+
+<script>
+// ==== BENCHMARK DATA (loaded from docs/data/direct_qa/index.json) ====
+var S=["Incorrect","Mostly incorrect","Partially correct","Mostly correct","Correct"];
+var SC=["#ef4444","#f97316","#fbbf24","#86efac","#22c55e"];
+var DD=[],BC={};
+// API prices per 1M tokens: [input, output, cached]. Add new models here.
+var PRICE={
+  claude_opus_5:[5,25,0.5], claude_fable_5:[10,50,1], claude_opus_48:[5,25,0.5], claude_sonnet_46:[3,15,0.3],
+  gpt_56:[5,30,0.5], gpt_56_terra:[2,12,0.2], gpt_56_luna:[0.2,1.2,0.02],
+  gpt_55:[5,30,0.5], gpt_53:[1.75,14,0.175], gpt_52:[1.75,14,0.175],
+  gpt_54_thinking_high:[2.5,15,0.25], gpt_54_mini:[0.75,4.5,0.075], gpt_4o:[2.5,10,0.25],
+  qwen_38:[1,6,0.1], gemini_35_flash:[1.5,9,0.15], gemini_36_flash:[1.5,7.5,0.15],
+  gemini_31:[2,12,0.2], grok_45:[2,6,0.5], doubao_seed_21_pro:[0.88,4.42,0.088],
+  kimi_k3:[3,15,0.3], kimi_k27:[0.95,4,0.19], minimax_m3:[0.6,2.4,0.06], inkling_small:[0.5,1.2,0.12],
+  qwen_37_plus:[0.32,1.28,0.064], qwen_37_flash:[0.03,0.13,0.006], step_37_flash:[0.2,1.15,0.02],
+  inkling:[1,4.05,0.2], gemma_4_31b_it:[0.09,0.34,0.018], llama_4_maverick:[0.2,0.8,0.04]
+};
+var PALETTE=["#7c8ba0","#426b8f","#5b7fa5","#6b9eb3","#6b9e7a","#c4956a","#c47a6a","#8b7ba5","#b38b6b","#7a7a85","#3a7d8c","#9a6f9e","#c97b84","#6a8f4e","#b5733d","#4f7fb3","#a8747b","#6f8f6f","#9b8a5f","#7d6f9c","#578a8f","#b3855a","#8a5f7d","#5f8a6a","#a06a6a","#6a7f9c"];
+var EFFORT_LABELS={max:"max",high:"high",medium:"med",xhigh:"xhigh",default:"",disabled:"",low:"low"};
+var DATA_INDEX_URL=["https://razavi-bench-data.arcadia16zzs.workers.dev/api/index.json","https://razavi-bench.tokenzhang.com/api/index.json","data/direct_qa/index.json","https://raw.githubusercontent.com/Arcadia-1/razavi-bench/main/docs/data/direct_qa/index.json"];
+function fetchData(urls){var i=0;function attempt(){return fetch(urls[i],{cache:"no-cache"}).then(function(r){if(r.ok)return r.json();throw new Error("Status "+r.status)}).catch(function(err){i++;if(i<urls.length)return attempt();throw err});}return attempt();}
+function scoreBuckets(dist){var counts=[0,0,0,0,0],raw=dist||{};Object.keys(raw).forEach(function(k){var score=Number(k),count=Number(raw[k]);if(score===0)counts[0]+=count;else if(score===1)counts[1]+=count;else if(score===2)counts[2]+=count;else if(score===3)counts[3]+=count;else if(score===4)counts[4]+=count;});var total=counts.reduce(function(a,c){return a+c},0)||1;return{counts:counts,percents:counts.map(function(c){return Math.round(c/total*10000)/100})};}
+function computeCost(modelKey,tk){var p=PRICE[modelKey];if(!p&&modelKey){var keys=Object.keys(PRICE);for(var i=0;i<keys.length;i++){if(modelKey.indexOf(keys[i])===0){p=PRICE[keys[i]];break;}}}if(!p||!tk)return null;var cached=tk.cached_input_tokens||0;var cost=((tk.input_tokens-cached)*p[0]+cached*p[2]+tk.output_tokens*p[1])/1e6;return Math.round(cost*100)/100;}
+function breakdown(modelKey,tk){
+  // returns {tok:[freshInput,cachedInput,output], cost:[freshCost,cachedCost,outCost]} or null
+  var p=PRICE[modelKey];if(!p&&modelKey){var keys=Object.keys(PRICE);for(var i=0;i<keys.length;i++){if(modelKey.indexOf(keys[i])===0){p=PRICE[keys[i]];break;}}}
+  if(!tk)return null;
+  var cached=tk.cached_input_tokens||0;
+  var fresh=Math.max(0,(tk.input_tokens||0)-cached);
+  var out=tk.output_tokens||0;
+  var tok=[fresh,cached,out];
+  var cost=null;
+  if(p){cost=[fresh*p[0],cached*p[2],out*p[1]].map(function(v){return Math.round(v/1e6*1000)/1000;});}
+  return{tok:tok,cost:cost};
+}
+function loadBenchmarkData(){
+  return fetchData(DATA_INDEX_URL).then(function(data){
+    if(!data||!data.models)throw new Error("Invalid benchmark data");
+    DD=data.models.map(function(m){
+      var sum=m.summary||{},scores=sum.scores||{};
+      function section(key){
+        var act=scores[key]&&scores[key].active||{};
+        var judges=[scores[key]&&scores[key].minimax_m3,scores[key]&&scores[key].deepseek_v4_pro].filter(Boolean);
+        var buckets=scoreBuckets(act.score_distribution);
+        var vals=judges.map(function(j){return j.score_percent}).filter(function(v){return v!=null});
+        var roll=key==="overall"&&sum.by_rollout?Object.keys(sum.by_rollout).map(function(k){return sum.by_rollout[k].score_percent}).filter(function(v){return v!=null}):[];
+        var pool=roll.length?roll:vals;
+        return{mn:+(act.score_percent!=null?act.score_percent:(act.mean_score_0_to_4!=null?act.mean_score_0_to_4/4*100:0)),d:buckets.counts,dp:buckets.percents,lo:pool.length?Math.round(Math.min.apply(null,pool)*100)/100:0,hi:pool.length?Math.round(Math.max.apply(null,pool)*100)/100:0};
+      }
+      var tk=(sum.tokens&&(sum.tokens.totals||sum.tokens.known_totals))||null;
+      var bd=breakdown(m.model_key,tk);
+      var eff=EFFORT_LABELS[m.thinking_effort];if(eff===undefined)eff=m.thinking_effort||"";
+      return{m:m.model_key,d:m.display_name,e:eff,t:tk?Math.round(tk.total_tokens/1000)+"k":"",cost:computeCost(m.model_key,tk),tok:bd?bd.tok:null,costParts:bd?bd.cost:null,o:section("overall"),p1:section("part1"),p2:section("part2")};
+    });
+    DD.forEach(function(d,i){BC[d.m]=PALETTE[i%PALETTE.length]});
+    return DD;
+  }).catch(function(err){
+    console.error("Failed to load benchmark data:",err);
+    document.querySelectorAll(".lb-table").forEach(function(t){t.innerHTML="<tr><td colspan=6 class=task-loading>Benchmark data could not be loaded.</td></tr>"});
+    throw err;
+  });
+}
+
+
+// ==== CANONICAL TASK DATA ====
+var RAW_REPO_BASE="https://raw.githubusercontent.com/Arcadia-1/razavi-bench/main";
+var TASK_DATA_URLS=/^(localhost|127\.0\.0\.1)$/.test(location.hostname)?["../data/tasks.jsonl",RAW_REPO_BASE+"/data/tasks.jsonl"]:[RAW_REPO_BASE+"/data/tasks.jsonl"];
+var taskGroups={part1:[],part2:[]};
+var taskDataPromise=null;
+
+function esc(value){
+  return String(value).replace(/[&<>"']/g,function(char){return{"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[char]});
+}
+function taskId(row){
+  var n=Number(row.question_number)+(row.part==="part2"?200:0);
+  return String(n).padStart(3,"0");
+}
+function questionText(instruction){
+  var text=String(instruction||""),marker="## Question";
+  if(text.indexOf(marker)>=0)text=text.slice(text.indexOf(marker)+marker.length);
+  return text.split(/\n## Figures/)[0].trim();
+}
+function goldenText(solution){
+  return String(solution||"").replace(/^#[^\n]*\n+/,"").trim();
+}
+function renderTaskExamples(){
+  [["part1","part1Examples"],["part2","part2Examples"]].forEach(function(pair){
+    var rows=taskGroups[pair[0]].slice(0,6),container=document.getElementById(pair[1]);
+    container.innerHTML=rows.map(function(task){
+      return"<div class=task-card><div class=task-card-id>"+task.id+"</div><div class=task-card-body>"+esc(task.question)+"</div></div>";
+    }).join("");
+  });
+}
+function showTaskLoadError(message){
+  ["part1Examples","part2Examples"].forEach(function(id){
+    document.getElementById(id).innerHTML="<div class=task-loading>Task data could not be loaded. <a href=\"https://github.com/Arcadia-1/razavi-bench/tree/main/tasks\">Browse tasks on GitHub</a>.</div>";
+  });
+  console.error(message);
+}
+function loadTasks(){
+  if(taskDataPromise)return taskDataPromise;
+  taskDataPromise=(async function(){
+    var response=null,lastError=null;
+    for(var i=0;i<TASK_DATA_URLS.length;i++){
+      try{
+        response=await fetch(TASK_DATA_URLS[i],{cache:"no-cache"});
+        if(response.ok)break;
+        lastError=new Error("Task data request failed with status "+response.status);
+      }catch(error){lastError=error}
+    }
+    if(!response||!response.ok)throw lastError||new Error("Task data request failed");
+    var rows=(await response.text()).split(/\r?\n/).filter(Boolean).map(function(line){return JSON.parse(line)});
+    if(rows.length!==50)throw new Error("Expected 50 canonical tasks, received "+rows.length);
+    taskGroups={part1:[],part2:[]};
+    rows.forEach(function(row){
+      taskGroups[row.part].push({
+        id:taskId(row),
+        slug:row.task_slug,
+        question:questionText(row.instruction),
+        answer:goldenText(row.golden_solution),
+        figure:Array.isArray(row.figures)&&row.figures.length?row.figures[0]:""
+      });
+    });
+    renderTaskExamples();
+    return taskGroups;
+  })().catch(function(error){
+    taskDataPromise=null;
+    showTaskLoadError(error.message);
+    throw error;
+  });
+  return taskDataPromise;
+}
+
+// ==== RENDER HELPERS ====
+var dP="o",dS="o",sortKey="score",sortDir="desc";
+function bar(v,bc,pc){return"<div class=score-bar><div class=bar-track><div class=bar-base></div><div class=\"bar-fill "+pc+"\" style=\"width:"+v.mn+"%;background-color:"+bc+"\"></div><div class=bar-err style=\"left:"+v.lo+"%;width:"+(v.hi-v.lo)+"%;--dot-color:"+bc+"\"></div></div><span class=bar-val>"+v.mn.toFixed(1)+"</span></div>";}
+function rnk(rk){var rc=rk===1?"rank-1":rk===2?"rank-2":rk===3?"rank-3":"rank-n";return"<span class=\"rank-badge "+rc+"\">"+rk+"</span>";}
+function rng(v){return v.lo.toFixed(1)+" - "+v.hi.toFixed(1);}
+function sortValue(d,k,part){
+  if(k==="score")return d[part].mn;
+  if(k==="token"){var t=parseInt(d.t,10);return isNaN(t)?-1:t;}
+  if(k==="cost")return d.cost!=null?d.cost:-1;
+  return 0;
+}
+
+function bDL(part){
+  var s=DD.slice(),k=part==="o"?"o":part;
+  var dir=sortDir==="asc"?1:-1;
+  s.sort(function(a,b){
+    var va=sortValue(a,sortKey,k),vb=sortValue(b,sortKey,k);
+    if(va===vb)return b[k].mn-a[k].mn;
+    return (va-vb)*dir;
+  });
+  var tb=document.getElementById("lbDirectBody"),wr=tb.closest(".table-wrap");
+  wr.classList.add("no-scroll");
+  setTimeout(function(){
+    var h=s.map(function(d,i){
+      var v=d[k],pc=k==="o"?"pat-overall":k==="p1"?"pat-part1":"pat-part2";
+      return"<tr class=\"lb-row in\" style=\"animation-delay:"+(i*0.03)+"s\"><td class=rank>"+rnk(i+1)+"</td><td class=model-col>"+d.d+(d.e?" <span class=model-effort>["+d.e+"]</span>":"")+"</td><td class=score-col>"+bar(v,BC[d.m],pc)+"</td><td class=range-col>"+rng(v)+"</td><td class=token-col>"+(d.t||"")+"</td><td class=cost-col>"+(d.cost!=null?"$"+d.cost:"")+"</td></tr>";
+    }).join("");
+    tb.innerHTML=h;
+    setTimeout(function(){wr.classList.remove("no-scroll")},500);
+  },200);
+}
+
+function bDC(subset){
+  var cv=document.getElementById("distChart");var old=Chart.getChart(cv);if(old)old.destroy();
+  var ctx=cv.getContext("2d");
+  var ds=[0,1,2,3,4].map(function(sc){return{label:S[sc],data:DD.map(function(m){return m[subset].dp[sc]}),rawCounts:DD.map(function(m){return Math.round(m[subset].d[sc])}),backgroundColor:SC[sc],borderColor:"#ffffff",borderWidth:2,barPercentage:0.9,categoryPercentage:0.9}});
+    var ch=new Chart(ctx,{type:"bar",data:{labels:DD.map(function(m){return m.d+(m.e?" ["+m.e+"]":"")}),datasets:ds},options:{responsive:true,maintainAspectRatio:false,indexAxis:"y",plugins:{legend:{position:"bottom",labels:{usePointStyle:false,boxWidth:10,boxHeight:10,padding:16,font:{size:13},color:"#1a1a1a"}},tooltip:{callbacks:{label:function(c){return c.dataset.label+": "+c.dataset.rawCounts[c.dataIndex]+" questions"}}}},scales:{x:{stacked:true,max:100,grid:{color:"#e5e5e5"},ticks:{font:{size:13},color:"#333",callback:function(v){return v+"%"}}},y:{stacked:true,position:"left",grid:{display:false},ticks:{font:{size:14},autoSkip:false,color:"#1a1a1a",align:"start"}}}}});
+  ctx._chart=ch;
+}
+
+// ==== TOKEN / COST COMPOSITION STACKED BAR ====
+var tokMetric="token";
+var TOK_PARTS=["Fresh input","Cached input","Output"];
+var TOK_COLORS=["#c9d4e0","#e6ecf2","#a9b8c8"];
+var COST_COLORS=["#d8a0a0","#e8c8c8","#c08080"];
+function bTok(){
+  var cv=document.getElementById("tokChart");var old=Chart.getChart(cv);if(old)old.destroy();
+  var ctx=cv.getContext("2d");
+  var labels=DD.map(function(m){return m.d+(m.e?" ["+m.e+"]":"")});
+  var parts=TOK_PARTS.map(function(name,i){
+    var data=DD.map(function(m){return tokMetric==="token"?(m.tok?m.tok[i]:0):(m.costParts?m.costParts[i]:0)});
+    return{label:name,data:data,backgroundColor:tokMetric==="token"?TOK_COLORS[i]:COST_COLORS[i],borderColor:"#ffffff",borderWidth:1,barPercentage:0.9,categoryPercentage:0.9};
+  });
+  var isCost=tokMetric==="cost";
+  var ch=new Chart(ctx,{type:"bar",data:{labels:labels,datasets:parts},options:{responsive:true,maintainAspectRatio:false,indexAxis:"y",animation:false,plugins:{legend:{position:"bottom",labels:{usePointStyle:false,boxWidth:10,boxHeight:10,padding:16,font:{size:13},color:"#1a1a1a"}},tooltip:{callbacks:{label:function(c){var v=c.parsed.x;return" "+c.dataset.label+": "+(isCost?"$"+fmt(v):fmtK(v));}}}},scales:{x:{stacked:true,grid:{color:"#e5e5e5"},ticks:{font:{size:12},color:"#333",callback:function(v){return isCost?"$"+fmt(v):fmtK(v)}}},y:{stacked:true,position:"left",grid:{display:false},ticks:{font:{size:14},autoSkip:false,color:"#1a1a1a",align:"start"}}}}});
+  ctx._chart=ch;
+}
+function fmt(v){if(v>=1000)return(v/1000).toFixed(1)+"k";if(v>=100)return Math.round(v)+"";return v.toFixed(2);}
+
+var effAxis="token",effScale="log";
+var pointLabelPlugin={
+  id:"pointLabels",
+  afterDatasetsDraw:function(chart,args,opts){
+    var ctx=chart.ctx;
+    ctx.save();
+    ctx.font="11px Inter,system-ui,sans-serif";
+    var placed=[];
+    var chartArea=chart.chartArea;
+    chart.data.datasets.forEach(function(ds,di){
+      var meta=chart.getDatasetMeta(di);
+      ds.data.forEach(function(pt,pi){
+        var el=meta.data[pi];
+        if(!el)return;
+        // 同一模型族只标注第一个点（沿 x 轴靠左的），其余变体点不标文字
+        if(pi>0)return;
+        var pos=el.getCenterPoint();
+        var label=ds.label;
+        var tw=ctx.measureText(label).width;
+        // 默认放点右侧；靠右边缘时放左侧
+        var side=(pos.x+8+tw>chartArea.right-4)?"left":"right";
+        var lx=side==="right"?pos.x+8:pos.x-8-tw;
+        var ly=pos.y-4;
+        // 碰撞检测：与已放置标签垂直/水平重叠则下移
+        var placedHere=null;
+        for(var guard=0;guard<12;guard++){
+          var overlap=false;
+          for(var j=0;j<placed.length;j++){
+            var p=placed[j];
+            if(Math.abs(p.y-ly)<11&&!(lx+tw<p.x||lx>p.x+p.w)){
+              overlap=true;break;
+            }
+          }
+          if(!overlap)break;
+          ly+=11;
+        }
+        // 超出下边缘则向上回退到点上方
+        if(ly>chartArea.bottom-2)ly=pos.y-14;
+        placed.push({x:lx,y:ly,w:tw});
+        // 引导线（从标签到点）
+        ctx.strokeStyle="rgba(0,0,0,0.28)";
+        ctx.lineWidth=1;
+        ctx.beginPath();
+        ctx.moveTo(pos.x,pos.y);
+        ctx.lineTo(side==="right"?lx-2:lx+tw+2,ly+4);
+        ctx.stroke();
+        // 标签文字：先画白色窄描边（光晕），再叠加模型颜色
+        var isHover=chart.$hoverTarget===ds.label;
+        ctx.font=isHover?"bold 13px Inter,system-ui,sans-serif":"11px Inter,system-ui,sans-serif";
+        ctx.lineWidth=isHover?3.5:3;
+        ctx.lineJoin="round";
+        ctx.strokeStyle="#ffffff";
+        ctx.strokeText(label,lx,ly);
+        ctx.lineWidth=1;
+        ctx.fillStyle=ds.borderColor;
+        ctx.fillText(label,lx,ly);
+      });
+    });
+    ctx.restore();
+  }
+};
+var effHoverPlugin={
+  id:"effHover",
+  beforeDatasetsDraw:function(chart,args,opts){
+    if(!chart.$hoverOrig)chart.$hoverOrig=chart.data.datasets.map(function(ds){return{pr:ds.pointRadius,bg:ds.backgroundColor}});
+    // 实时读取 Chart.js 当前 hover 状态
+    var active=chart.getActiveElements();
+    var target=null;
+    if(active&&active.length&&active[0].datasetIndex!=null)target=chart.data.datasets[active[0].datasetIndex].label;
+    chart.$hoverTarget=target;
+    chart.data.datasets.forEach(function(ds,i){
+      var activeDS=target&&ds.label===target;
+      // 仅目标散点放大，其他完全不动
+      ds.pointRadius=activeDS?7:chart.$hoverOrig[i].pr;
+      ds.backgroundColor=chart.$hoverOrig[i].bg;
+      ds.pointBackgroundColor=chart.$hoverOrig[i].bg;
+    });
+  }
+};
+function bEff(){
+  var canvas=document.getElementById("effChart");
+  var old=Chart.getChart(canvas);if(old)old.destroy();
+  var ctx=canvas.getContext("2d");
+  var k="o";
+  // group models by display name (family), each family = one line
+  var families={};
+  DD.forEach(function(m){
+    if(!families[m.d])families[m.d]=[];
+    families[m.d].push(m);
+  });
+  var names=Object.keys(families).sort();
+  var ch=new Chart(ctx,{type:"scatter",data:{datasets:names.map(function(name){
+    var members=families[name].slice().sort(function(a,b){return sortEff(a.e)-sortEff(b.e)});
+    var lineColor=BC[members[0].m];
+    return{
+      label:name,
+      data:members.map(function(m){
+        var raw;
+        if(effAxis==="token"){
+          var tv=m.t||"";
+          var n=parseFloat(tv);
+          if(tv.indexOf("M")>=0)raw=n*1e6;
+          else if(tv.indexOf("k")>=0)raw=n*1e3;
+          else raw=n||0;
+        }else{
+          raw=m.cost!=null?m.cost:null;
+        }
+        var x=effScale==="log"&&(!raw||raw<=0)?null:raw;
+        return{x:x,y:m[k].mn,effort:m.e||"default"};
+      }),
+      backgroundColor:lineColor,
+      borderColor:lineColor,
+      pointRadius:4,
+      pointHoverRadius:6,
+      pointBackgroundColor:lineColor,
+      showLine:false
+    };
+  })},options:{responsive:true,maintainAspectRatio:false,animation:false,interaction:{mode:"nearest",intersect:false},
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){
+      var m=c.dataset.data[c.dataIndex];
+      var rx=c.parsed.x;
+      return" "+c.dataset.label+" ["+m.effort+"]: "+c.parsed.y.toFixed(1)+"% / "+(effAxis==="token"?fmtK(rx):"$"+rx.toFixed(2));
+    }}}},
+    scales:{x:{type:effScale==="log"?"logarithmic":"linear",position:"bottom",grid:{color:"#e5e5e5"},
+      title:{display:true,text:effAxis==="token"?"Total answer-model tokens (50 tasks × 3 rollouts)":"Estimated API cost (USD; judge cost excluded)",color:"#333",font:{size:12,weight:"500"},padding:{top:10}},
+      ticks:{font:{size:12},color:"#333",autoSkip:true,maxTicksLimit:8,callback:function(v){
+        var real=Number(v);
+        if(effScale==="log"&&!showLogTick(real))return"";
+        if(effAxis==="token")return fmtTokenAxis(real);
+        return"$"+fmt(real);
+      }}},
+      y:{min:20,max:100,grid:{color:"#e5e5e5"},title:{display:true,text:"Active score (%)",color:"#333",font:{size:12,weight:"500"}},ticks:{font:{size:12},color:"#333",callback:function(v){return v+"%"}}}}
+  },plugins:[pointLabelPlugin,effHoverPlugin]});
+  ch.$hoverOrig=ch.data.datasets.map(function(ds){return{borderColor:ds.borderColor,bg:ds.backgroundColor}});
+}
+function showLogTick(v){
+  if(v<=0)return false;
+  var base=Math.pow(10,Math.floor(Math.log10(v)));
+  var n=v/base;
+  return Math.abs(n-1)<1e-8||Math.abs(n-2)<1e-8||Math.abs(n-5)<1e-8;
+}
+function sortEff(e){
+  var order={xhigh:0,high:1,max:2,med:3,low:4,"":5};
+  return order[e]!=null?order[e]:6;
+}
+function fmtK(n){if(n>=1000)return Math.round(n/1000)+"k";return Math.round(n)+"";}
+function fmtTokenAxis(n){if(n>=1e6)return(n/1e6).toFixed(n%1e6===0?0:1)+"M";if(n>=1e3)return Math.round(n/1e3)+"k";return Math.round(n)+"";}
+
+// ==== TASK MODAL ====
+async function openTaskModal(part){
+  var lb=part==="part1"?"Part 1 - Fundamentals (30 tasks)":"Part 2 - Design & Simulation (20 tasks)";
+  document.getElementById("modalTitle").textContent=lb;
+  document.getElementById("modalContent").innerHTML="<div class=task-loading>Loading canonical task data...</div>";
+  document.getElementById("taskModal").classList.add("open");
+  document.body.style.overflow="hidden";
+  try{
+    var groups=await loadTasks(),ts=groups[part];
+    document.getElementById("modalContent").innerHTML=ts.map(function(t,i){
+      var imageUrl=t.figure?"https://razavi-bench-data.arcadia16zzs.workers.dev/figures/"+t.figure:"";
+      var fh=imageUrl?"<div><h4>Figure</h4><img src=\""+esc(imageUrl)+"\" loading=lazy onerror=\"this.parentElement.style.display='none'\" alt=\"Figure for "+esc(t.slug)+"\"></div>":"";
+      var pid="ta-"+part+"-"+i;
+      return"<div class=task-accordion id=\""+pid+"\"><button class=ta-header type=button aria-expanded=false onclick=\"toggleAccordion('"+part+"',"+i+")\"><div class=ta-id>"+t.id+"</div><div class=ta-q>"+esc(t.question)+"</div><div class=ta-arrow aria-hidden=true>▼</div></button><div class=ta-body><div class=ta-content>"+fh+"<h4>Golden Solution</h4><div class=answer-text>"+esc(t.answer)+"</div></div></div></div>";
+    }).join("");
+  }catch(error){
+    document.getElementById("modalContent").innerHTML="<div class=task-loading>Task data could not be loaded. <a href=\"https://github.com/Arcadia-1/razavi-bench/tree/main/tasks\">Browse tasks on GitHub</a>.</div>";
+  }
+}
+function toggleAccordion(part,idx){
+  var el=document.getElementById("ta-"+part+"-"+idx);
+  if(!el)return;
+  el.parentElement.querySelectorAll(".task-accordion.open").forEach(function(x){
+    if(x!==el){x.classList.remove("open");x.querySelector(".ta-header").setAttribute("aria-expanded","false")}
+  });
+  el.classList.toggle("open");
+  el.querySelector(".ta-header").setAttribute("aria-expanded",String(el.classList.contains("open")));
+}
+function closeModal(){document.getElementById("taskModal").classList.remove("open");document.body.style.overflow="";}
+document.addEventListener("keydown",function(e){if(e.key==="Escape")closeModal()});
+
+// ==== INIT ====
+function R(){bDL(dP);bDC(dS);bEff();bTok()}
+document.querySelectorAll("#directPartToggle button").forEach(function(b){b.onclick=function(){this.parentElement.querySelectorAll("button").forEach(function(x){x.classList.remove("active")});this.classList.add("active");dP=this.dataset.part;bDL(dP);bTok()}});
+document.querySelectorAll("#distSubsetToggle button").forEach(function(b){b.onclick=function(){this.parentElement.querySelectorAll("button").forEach(function(x){x.classList.remove("active")});this.classList.add("active");dS=this.dataset.subset;bDC(dS)}});
+document.querySelectorAll("#effToggle button").forEach(function(b){b.onclick=function(){this.parentElement.querySelectorAll("button").forEach(function(x){x.classList.remove("active")});this.classList.add("active");effAxis=this.dataset.axis;bEff()}});
+document.querySelectorAll("#effScaleToggle button").forEach(function(b){b.onclick=function(){this.parentElement.querySelectorAll("button").forEach(function(x){x.classList.remove("active")});this.classList.add("active");effScale=this.dataset.scale;bEff()}});
+document.querySelectorAll("#tokToggle button").forEach(function(b){b.onclick=function(){this.parentElement.querySelectorAll("button").forEach(function(x){x.classList.remove("active")});this.classList.add("active");tokMetric=this.dataset.metric;bTok()}});
+document.querySelectorAll("thead th.sortable").forEach(function(th){
+  th.onclick=function(){
+    var key=this.dataset.key;
+    if(sortKey===key){sortDir=sortDir==="asc"?"desc":"asc";}
+    else{sortKey=key;sortDir="desc";}
+    document.querySelectorAll("thead th.sortable").forEach(function(x){x.classList.remove("sort-asc","sort-desc")});
+    this.classList.add(sortDir==="asc"?"sort-asc":"sort-desc");
+    bDL(dP);
+  };
+});
+Chart.defaults.color="#1a1a1a";Chart.defaults.borderColor="#d5d5d5";Chart.defaults.font={family:"Inter,system-ui,sans-serif",size:13};
+document.querySelector('thead th.sortable[data-key="score"]').classList.add("sort-desc");
+loadBenchmarkData().then(function(){R()}).catch(function(){});
+loadTasks().catch(function(){});
+</script>
+
+<!-- ========== TASK MODAL ========== -->
+<div class="modal-overlay" id="taskModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" onclick="if(event.target===this)closeModal()">
+  <div class="modal-inner" onclick="event.stopPropagation()">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;">
+      <h2 id="modalTitle" style="margin:0;"></h2>
+      <button class="modal-close" aria-label="Close task browser" onclick="closeModal()">&times;</button>
+    </div>
+    <div id="modalContent" style="font-size:13px;color:var(--text-secondary);line-height:1.7;"></div>
+  </div>
+</div>
 </body>
 </html>
