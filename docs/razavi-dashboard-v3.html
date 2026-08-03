@@ -164,20 +164,13 @@ footer .footer-row{margin-bottom:6px}
     </div>
     <div class="hero-meta">
       <div class="meta-row"><span class="meta-key">Tasks</span><span class="meta-val">50</span></div>
-      <div class="meta-row"><span class="meta-key">Rubric</span><span class="meta-val">0-4</span></div>
-      <div class="meta-row"><span class="meta-key">Models</span><span class="meta-val">26</span></div>
-      <div class="meta-row"><span class="meta-key">Judges</span><span class="meta-val">2</span></div>
+      <div class="meta-row"><span class="meta-key">Models</span><span class="meta-val">32</span></div>
+      <div class="meta-row"><span class="meta-key">Multimodal</span><span class="meta-val">Yes</span></div>
     </div>
   </div>
   <div class="hero-divider"></div>
   <div class="hero-row2">
     <p class="hero-sub">An expert-curated benchmark that tests whether frontier AI<br>models can reason about analog circuit design.</p>
-  </div>
-  <div style="max-width:900px;margin-top:28px;">
-    <p class="hero-sub" style="font-size:15px;max-width:900px;text-align:justify;">
-      Razavi-Bench covers 26 frontier models as of August 2026 -- including Claude Fable 5, Claude Opus 5, GPT 5.6, Qwen 3.8 Max Preview, Kimi K3, and Gemini 3.1 Pro -- on 50 expert-written analog design questions,
-      with all scores recalculated using a corrected rubric after a careful audit of Q15.
-    </p>
   </div>
 </header>
 <section id="leaderboard">
@@ -191,7 +184,10 @@ footer .footer-row{margin-bottom:6px}
   <div class="sec-head" style="margin-top:56px;">
     <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
       <h2 style="margin:0;">Score vs Efficiency</h2>
-      <div class="toggle-group" id="effToggle"><button class="active" data-axis="token">Token</button><button data-axis="cost">Cost</button></div>
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+        <div class="toggle-group" id="effToggle"><button class="active" data-axis="token">Token</button><button data-axis="cost">Cost</button></div>
+        <div class="toggle-group" id="effScaleToggle"><button class="active" data-scale="linear">Linear</button><button data-scale="log">Log</button></div>
+      </div>
     </div>
   </div>
   <div class="chart-card">
@@ -458,7 +454,7 @@ function bTok(){
 }
 function fmt(v){if(v>=1000)return(v/1000).toFixed(1)+"k";if(v>=100)return Math.round(v)+"";return v.toFixed(2);}
 
-var effAxis="token";
+var effAxis="token",effScale="linear";
 var pointLabelPlugin={
   id:"pointLabels",
   afterDatasetsDraw:function(chart,args,opts){
@@ -522,7 +518,7 @@ var pointLabelPlugin={
 var effHoverPlugin={
   id:"effHover",
   beforeDatasetsDraw:function(chart,args,opts){
-    if(!chart.$hoverOrig)chart.$hoverOrig=chart.data.datasets.map(function(ds){return{borderColor:ds.borderColor,bg:ds.backgroundColor,bw:ds.borderWidth,pr:ds.pointRadius}});
+    if(!chart.$hoverOrig)chart.$hoverOrig=chart.data.datasets.map(function(ds){return{pr:ds.pointRadius,bg:ds.backgroundColor}});
     // 实时读取 Chart.js 当前 hover 状态
     var active=chart.getActiveElements();
     var target=null;
@@ -530,12 +526,10 @@ var effHoverPlugin={
     chart.$hoverTarget=target;
     chart.data.datasets.forEach(function(ds,i){
       var activeDS=target&&ds.label===target;
-      // 仅目标浮动加粗放大，其他完全不动
-      ds.borderWidth=activeDS?4:chart.$hoverOrig[i].bw;
-      ds.pointRadius=activeDS?6:chart.$hoverOrig[i].pr;
-      ds.borderColor=chart.$hoverOrig[i].borderColor;
+      // 仅目标散点放大，其他完全不动
+      ds.pointRadius=activeDS?7:chart.$hoverOrig[i].pr;
       ds.backgroundColor=chart.$hoverOrig[i].bg;
-      ds.pointBackgroundColor=chart.$hoverOrig[i].borderColor;
+      ds.pointBackgroundColor=chart.$hoverOrig[i].bg;
     });
   }
 };
@@ -551,32 +545,63 @@ function bEff(){
     families[m.d].push(m);
   });
   var names=Object.keys(families).sort();
-  var ch=new Chart(ctx,{type:"line",data:{datasets:names.map(function(name){
+  var ch=new Chart(ctx,{type:"scatter",data:{datasets:names.map(function(name){
     var members=families[name].slice().sort(function(a,b){return sortEff(a.e)-sortEff(b.e)});
     var lineColor=BC[members[0].m];
     return{
       label:name,
       data:members.map(function(m){
-        var x=effAxis==="token"?(parseInt(m.t,10)||0):(m.cost!=null?m.cost:null);
+        var raw;
+        if(effAxis==="token"){
+          var tv=m.t||"";
+          var n=parseFloat(tv);
+          if(tv.indexOf("M")>=0)raw=n*1e6;
+          else if(tv.indexOf("k")>=0)raw=n*1e3;
+          else raw=n||0;
+        }else{
+          raw=m.cost!=null?m.cost:null;
+        }
+        // log 模式：x 存 log10(实际值)，轴用线性，标签回显真实值
+        var x;
+        if(effScale==="log"&&raw&&raw>0)x=Math.log10(raw);
+        else if(effScale==="log")x=null;
+        else x=raw;
         return{x:x,y:m[k].mn,effort:m.e||"default"};
       }),
-      borderColor:lineColor,
       backgroundColor:lineColor,
-      borderWidth:2,
+      borderColor:lineColor,
       pointRadius:4,
       pointHoverRadius:6,
       pointBackgroundColor:lineColor,
-      tension:0.2,
-      spanGaps:true
+      showLine:false
     };
   })},options:{responsive:true,maintainAspectRatio:false,animation:false,interaction:{mode:"nearest",intersect:false},
     plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){
       var m=c.dataset.data[c.dataIndex];
-      return" "+c.dataset.label+" ["+m.effort+"]: "+c.parsed.y.toFixed(1)+"% / "+(effAxis==="token"?fmtK(c.parsed.x):"$"+c.parsed.x.toFixed(2));
+      var rx=effScale==="log"?Math.pow(10,c.parsed.x):c.parsed.x;
+      return" "+c.dataset.label+" ["+m.effort+"]: "+c.parsed.y.toFixed(1)+"% / "+(effAxis==="token"?fmtK(rx):"$"+rx.toFixed(2));
     }}}},
-    scales:{x:{type:"linear",position:"bottom",grid:{color:"#e5e5e5"},ticks:{font:{size:12},color:"#333",callback:function(v){return effAxis==="token"?fmtK(v):"$"+v}}},y:{min:0,max:100,grid:{color:"#e5e5e5"},ticks:{font:{size:12},color:"#333",callback:function(v){return v+"%"}}}}
+    scales:{x:{type:"linear",position:"bottom",grid:{color:"#e5e5e5"},
+      ticks:{font:{size:12},color:"#333",autoSkip:true,maxTicksLimit:8,callback:function(v){
+        // log 模式：v 是 log10 值，转回真实值并规整到 1-2-5；linear 模式直接用原值
+        var real=effScale==="log"?niceNum(Math.pow(10,v)):v;
+        if(effAxis==="token"){if(real>=1e6)return(real/1e6).toFixed(0)+"M";if(real>=1e3)return(real/1e3).toFixed(0)+"k";return Math.round(real)}
+        return"$"+fmt(real);
+      }}},
+      y:{min:0,max:100,grid:{color:"#e5e5e5"},ticks:{font:{size:12},color:"#333",callback:function(v){return v+"%"}}}}
   },plugins:[pointLabelPlugin,effHoverPlugin]});
   ch.$hoverOrig=ch.data.datasets.map(function(ds){return{borderColor:ds.borderColor,bg:ds.backgroundColor}});
+}
+function niceNum(v){
+  // 就近取整到 1-2-5 序列（1, 2, 5, 10, 20, 50, 100, 200, 500, 1000...）
+  if(v<=0)return 0;
+  var exp=Math.floor(Math.log10(v));
+  var base=Math.pow(10,exp);
+  var n=v/base;
+  if(n<1.5)return 1*base;
+  if(n<3.5)return 2*base;
+  if(n<7.5)return 5*base;
+  return 10*base;
 }
 function sortEff(e){
   var order={xhigh:0,high:1,max:2,med:3,low:4,"":5};
@@ -594,7 +619,7 @@ async function openTaskModal(part){
   try{
     var groups=await loadTasks(),ts=groups[part];
     document.getElementById("modalContent").innerHTML=ts.map(function(t,i){
-      var imageUrl=t.figure?RAW_REPO_BASE+"/"+t.figure:"";
+      var imageUrl=t.figure?"https://razavi-bench-data.arcadia16zzs.workers.dev/figures/"+t.figure:"";
       var fh=imageUrl?"<div><h4>Figure</h4><img src=\""+esc(imageUrl)+"\" loading=lazy onerror=\"this.parentElement.style.display='none'\" alt=\"Figure for "+esc(t.slug)+"\"></div>":"";
       var pid="ta-"+part+"-"+i;
       return"<div class=task-accordion id=\""+pid+"\"><button class=ta-header type=button aria-expanded=false onclick=\"toggleAccordion('"+part+"',"+i+")\"><div class=ta-id>"+t.id+"</div><div class=ta-q>"+esc(t.question)+"</div><div class=ta-arrow aria-hidden=true>▼</div></button><div class=ta-body><div class=ta-content>"+fh+"<h4>Golden Solution</h4><div class=answer-text>"+esc(t.answer)+"</div></div></div></div>";
@@ -620,6 +645,7 @@ function R(){bDL(dP);bDC(dS);bEff();bTok()}
 document.querySelectorAll("#directPartToggle button").forEach(function(b){b.onclick=function(){this.parentElement.querySelectorAll("button").forEach(function(x){x.classList.remove("active")});this.classList.add("active");dP=this.dataset.part;bDL(dP);bEff();bTok()}});
 document.querySelectorAll("#distSubsetToggle button").forEach(function(b){b.onclick=function(){this.parentElement.querySelectorAll("button").forEach(function(x){x.classList.remove("active")});this.classList.add("active");dS=this.dataset.subset;bDC(dS)}});
 document.querySelectorAll("#effToggle button").forEach(function(b){b.onclick=function(){this.parentElement.querySelectorAll("button").forEach(function(x){x.classList.remove("active")});this.classList.add("active");effAxis=this.dataset.axis;bEff()}});
+document.querySelectorAll("#effScaleToggle button").forEach(function(b){b.onclick=function(){this.parentElement.querySelectorAll("button").forEach(function(x){x.classList.remove("active")});this.classList.add("active");effScale=this.dataset.scale;bEff()}});
 document.querySelectorAll("#tokToggle button").forEach(function(b){b.onclick=function(){this.parentElement.querySelectorAll("button").forEach(function(x){x.classList.remove("active")});this.classList.add("active");tokMetric=this.dataset.metric;bTok()}});
 document.querySelectorAll("thead th.sortable").forEach(function(th){
   th.onclick=function(){
