@@ -103,6 +103,13 @@ tr.lb-row.in{animation:slideIn .40s cubic-bezier(.25,.8,.25,1) both}
 .chart-card{background:transparent;border:1px solid var(--border);border-radius:0;padding:24px;margin-top:0}
 .chart-card .chart-wrap{position:relative;height:640px;font-size:14px}
 .chart-subtitle{margin:6px 0 0;color:var(--text-muted);font-size:13px;line-height:1.45;max-width:720px}
+.timeline-action{border:1px solid var(--border-light);background:var(--bg-primary);color:var(--text-primary);padding:7px 12px;border-radius:4px;font:600 12px/1 'Inter',sans-serif;cursor:pointer;white-space:nowrap}
+.timeline-action:hover{background:var(--bg-card)}
+.timeline-legend{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin:0 0 18px}
+.timeline-legend button{display:flex;align-items:center;justify-content:center;gap:7px;min-width:0;padding:4px;border:0;background:transparent;color:var(--text-primary);font:500 12px/1.25 'Inter',sans-serif;cursor:pointer;white-space:nowrap}
+.timeline-legend button:hover{background:var(--bg-card)}
+.timeline-legend button.is-hidden{color:var(--text-muted);text-decoration:line-through}
+.timeline-legend-dot{width:10px;height:10px;border-radius:50%;flex:0 0 10px}
 
 .task-card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
 .task-card{background:var(--bg-card);border:1px solid var(--border);border-radius:0;padding:16px;display:flex;gap:12px;align-items:flex-start;transition:border-color .2s,background .2s}
@@ -144,7 +151,7 @@ footer a{color:var(--text-secondary);text-decoration:underline}
 footer a:hover{color:var(--text-primary)}
 footer .footer-row{margin-bottom:6px}
 
-@media(max-width:768px){.hero{padding:40px 24px 48px}.hero-row1{flex-direction:column;gap:20px}.hero-row2 br{display:none}.chart-card{padding:16px}.modal-inner{padding:28px 18px}.task-accordion .ta-content{padding:0 14px 14px}}
+@media(max-width:768px){.hero{padding:40px 24px 48px}.hero-row1{flex-direction:column;gap:20px}.hero-row2 br{display:none}.chart-card{padding:16px}.timeline-legend{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}.timeline-legend button{font-size:11px}.modal-inner{padding:28px 18px}.task-accordion .ta-content{padding:0 14px 14px}}
 @media(max-width:480px){nav .nav-links a:not(.btn-gh){display:none}}
 </style>
 </head>
@@ -180,10 +187,12 @@ footer .footer-row{margin-bottom:6px}
   <div class="sec-head">
     <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
       <h2 style="margin:0;">Score vs. Model Release Date</h2>
+      <button class="timeline-action" id="tlToggleAll" type="button">Disable all</button>
     </div>
     <p class="chart-subtitle">Active overall score (mean of MiniMax M3 and DeepSeek V4 Pro judges across 50 tasks &times; 3 rollouts) against model release date. Dashed step line shows the score frontier &mdash; the best score achieved at each point in time.</p>
   </div>
   <div class="chart-card">
+    <div class="timeline-legend" id="tlLegend" aria-label="Company filters"></div>
     <div class="chart-wrap" id="tlChartWrap" style="height:600px;"><canvas id="tlChart"></canvas></div>
   </div>
 </section>
@@ -674,6 +683,34 @@ function relTickLabel(ts){
   var d=new Date(ts),y=d.getUTCFullYear(),m=String(d.getUTCMonth()+1).padStart(2,"0");
   return y+"-"+m;
 }
+function timelineProviderIndexes(chart){
+  return chart.data.datasets.map(function(dataset,index){return dataset.type==="scatter"?index:-1}).filter(function(index){return index>=0});
+}
+function renderTimelineLegend(chart){
+  var legend=document.getElementById("tlLegend"),indexes=timelineProviderIndexes(chart);
+  legend.innerHTML=indexes.map(function(index){
+    var dataset=chart.data.datasets[index],visible=chart.isDatasetVisible(index);
+    return"<button type=\"button\" data-dataset-index=\""+index+"\" class=\""+(visible?"":"is-hidden")+"\" aria-pressed=\""+visible+"\"><span class=\"timeline-legend-dot\" style=\"background:"+dataset.backgroundColor+"\"></span><span>"+esc(dataset.label)+"</span></button>";
+  }).join("");
+  legend.querySelectorAll("button").forEach(function(button){
+    button.onclick=function(){
+      var index=Number(this.dataset.datasetIndex);
+      chart.setDatasetVisibility(index,!chart.isDatasetVisible(index));
+      chart.update();
+      renderTimelineLegend(chart);
+    };
+  });
+  var anyVisible=indexes.some(function(index){return chart.isDatasetVisible(index)}),toggle=document.getElementById("tlToggleAll");
+  toggle.textContent=anyVisible?"Disable all":"Enable all";
+  toggle.setAttribute("aria-label",anyVisible?"Disable all companies":"Enable all companies");
+}
+function toggleAllTimelineProviders(){
+  var chart=Chart.getChart("tlChart");if(!chart)return;
+  var indexes=timelineProviderIndexes(chart),showAll=!indexes.some(function(index){return chart.isDatasetVisible(index)});
+  indexes.forEach(function(index){chart.setDatasetVisibility(index,showAll)});
+  chart.update();
+  renderTimelineLegend(chart);
+}
 function bTL(){
   var canvas=document.getElementById("tlChart");
   if(!canvas||!DD.length)return;
@@ -704,12 +741,13 @@ function bTL(){
   });
   var ch=new Chart(canvas,{type:"scatter",data:{datasets:datasets},options:{
     responsive:true,maintainAspectRatio:false,
-    plugins:{legend:{position:"top",labels:{usePointStyle:true,boxWidth:10,boxHeight:10,padding:16,font:{size:13},filter:function(item){return item.text!=="Score frontier"}}},
+    plugins:{legend:{display:false},
       tooltip:{callbacks:{title:function(items){var it=items[0];return it.raw.d?(it.raw.d+(it.raw.e?" ["+it.raw.e+"]":"")):""},label:function(c){if(c.dataset.type!=="scatter")return"Score frontier";return" Active score: "+c.parsed.y.toFixed(1)+"%"}}}},
     scales:{x:{type:"linear",min:relDateToTs("2024-04-15"),max:relDateToTs("2026-08-10"),grid:{color:"#F0F2F5"},ticks:{maxTicksLimit:12,font:{size:12},color:"#333",callback:function(v){return relTickLabel(v)}},title:{display:true,text:"Model Release Date",color:"#333",font:{size:12,weight:"500"},padding:{top:8}}},
       y:{min:35,max:100,grid:{color:"#e5e5e5"},ticks:{font:{size:12},color:"#333",callback:function(v){return v+"%"}},title:{display:true,text:"Active Overall Score (%)",color:"#333",font:{size:12,weight:"500"},padding:{bottom:8}}}},
     animation:false
   }});
+  renderTimelineLegend(ch);
 }
 
 // ==== INIT ====
@@ -719,6 +757,7 @@ document.querySelectorAll("#distSubsetToggle button").forEach(function(b){b.oncl
 document.querySelectorAll("#effToggle button").forEach(function(b){b.onclick=function(){this.parentElement.querySelectorAll("button").forEach(function(x){x.classList.remove("active")});this.classList.add("active");effAxis=this.dataset.axis;bEff()}});
 document.querySelectorAll("#effScaleToggle button").forEach(function(b){b.onclick=function(){this.parentElement.querySelectorAll("button").forEach(function(x){x.classList.remove("active")});this.classList.add("active");effScale=this.dataset.scale;bEff()}});
 document.querySelectorAll("#tokToggle button").forEach(function(b){b.onclick=function(){this.parentElement.querySelectorAll("button").forEach(function(x){x.classList.remove("active")});this.classList.add("active");tokMetric=this.dataset.metric;bTok()}});
+document.getElementById("tlToggleAll").onclick=toggleAllTimelineProviders;
 document.querySelectorAll("thead th.sortable").forEach(function(th){
   th.onclick=function(){
     var key=this.dataset.key;
