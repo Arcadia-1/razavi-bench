@@ -1,4 +1,5 @@
 const INDEX_KEY = "direct_qa/index.json";
+const TASKS_KEY = "tasks/tasks.jsonl";
 const RAW_BASE = "https://raw.githubusercontent.com/Arcadia-1/razavi-bench/main";
 
 export default {
@@ -19,6 +20,27 @@ export default {
           headers: {
             "Content-Type": "application/json",
             "Cache-Control": "public, max-age=60, s-maxage=60",
+            "Access-Control-Allow-Origin": "*",
+          },
+        });
+      } catch (err) {
+        return new Response("Internal error", { status: 500 });
+      }
+    }
+
+    // task 数据接口：/api/tasks.jsonl 从 R2 返回
+    if (request.method === "GET" && path === "/api/tasks.jsonl") {
+      try {
+        const object = await env.BENCH_DATA.get(TASKS_KEY);
+        if (object === null) {
+          return new Response("Not found", { status: 404 });
+        }
+        const body = await object.arrayBuffer();
+        return new Response(body, {
+          status: 200,
+          headers: {
+            "Content-Type": "application/json",
+            "Cache-Control": "public, max-age=300, s-maxage=300",
             "Access-Control-Allow-Origin": "*",
           },
         });

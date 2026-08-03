@@ -45,6 +45,23 @@ jobs:
             exit 1
           fi
 
+      - name: Upload tasks.jsonl to R2
+        env:
+          CF_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          curl -s -X PUT \
+            "https://api.cloudflare.com/client/v4/accounts/${CF_ACCOUNT_ID}/r2/buckets/analog-design-bench-data/objects/tasks/tasks.jsonl" \
+            -H "Authorization: Bearer ${CF_API_TOKEN}" \
+            -H "Content-Type: application/x-ndjson" \
+            --data-binary "@data/tasks.jsonl" \
+            | tee /tmp/r2_tasks_upload.json
+          if ! grep -q '"success":true' /tmp/r2_tasks_upload.json; then
+            echo "R2 tasks.jsonl upload failed"
+            cat /tmp/r2_tasks_upload.json
+            exit 1
+          fi
+
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
