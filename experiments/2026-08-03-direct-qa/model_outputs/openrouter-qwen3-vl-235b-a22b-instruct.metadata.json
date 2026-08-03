@@ -1,0 +1,23 @@
+{
+  "benchmark": "razavi-bench",
+  "experiment": "2026-08-03-direct-qa",
+  "run_date": "2026-08-03",
+  "repo_commit": "e00e8774e9428ef480f591d492a2e3e004628188",
+  "mode": "direct_multimodal_qa",
+  "model_name": "Qwen3-VL-235B-A22B Instruct",
+  "provider_model": "qwen/qwen3-vl-235b-a22b-instruct",
+  "api_format": "openai_chat_completions",
+  "temperature": 0,
+  "max_tokens": 16384,
+  "reasoning": "provider_default",
+  "rollouts": [
+    1,
+    2,
+    3
+  ],
+  "concurrency": 10,
+  "expected_answers": 150,
+  "completed_answers": 150,
+  "failed_answers": 0,
+  "raw_responses_retained_locally": true
+}

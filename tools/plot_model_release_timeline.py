@@ -157,7 +157,7 @@ def annotate(ax: plt.Axes, row: dict[str, object]) -> None:
 
 
 def style_axis(ax: plt.Axes) -> None:
-    ax.set_ylim(38, 97)
+    ax.set_ylim(35, 97)
     ax.set_yticks(range(40, 101, 10))
     ax.grid(axis="y", color="#E5E7EB", linewidth=0.8)
     ax.grid(axis="x", color="#F0F2F5", linewidth=0.7)
@@ -236,7 +236,7 @@ def plot(rows: list[dict[str, object]], output: Path) -> None:
     figure.text(
         0.056,
         0.925,
-        "32 Direct QA configurations · 3 rollouts · active score is the mean of MiniMax M3 and DeepSeek V4 Pro judges",
+        f"{len(rows)} Direct QA configurations · 3 rollouts · active score is the mean of MiniMax M3 and DeepSeek V4 Pro judges",
         fontsize=14,
         color="#4B5563",
     )
@@ -280,8 +280,8 @@ def plot(rows: list[dict[str, object]], output: Path) -> None:
 def main() -> None:
     args = parse_args()
     rows = load_rows(args.index, args.dates)
-    if len(rows) != 32:
-        raise ValueError(f"Expected 32 active configurations, got {len(rows)}")
+    if not rows:
+        raise ValueError("No active configurations found")
     plot(rows, args.output)
     print(f"wrote {args.output} ({len(rows)} points)")
 

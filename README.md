@@ -214,9 +214,10 @@ overlay applied to Part 1 Q15; all non-Q15 task scores are unchanged.
 | Gemini | MiniMax-M3 | 79.67% | 88.89% | 65.83% |
 | Gemini | DeepSeek-V4-Pro | 81.83% | 91.11% | 67.92% |
 
-The current active aggregate below is the August 2 snapshot. Each value is the
-mean of DeepSeek V4 Pro and MiniMax M3 scores over three rollouts, with the Q15
-hard-rule correction applied consistently.
+The current active aggregate below is the August 3 snapshot covering 40 model
+configurations and 6,000 answers. Each value is the mean of DeepSeek V4 Pro and
+MiniMax M3 scores over three rollouts, with the Q15 hard-rule correction applied
+consistently.
 
 | Rank | Answer Model | Thinking Effort | Overall | Part 1 | Part 2 |
 |---:|---|---|---:|---:|---:|
@@ -232,7 +233,7 @@ hard-rule correction applied consistently.
 | 10 | Gemini 3.6 Flash | default | 85.92% | 92.92% | 75.42% |
 
 <p align="center">
-  <img src="docs/assets/direct_qa_rollout_mean_all_metrics.png?v=20260802-gemma-4-31b-it" alt="2026-08-02 Razavi-Bench Multimodal QA snapshot" title="2026-08-02 Razavi-Bench Multimodal QA snapshot" width="92%"/>
+  <img src="docs/assets/direct_qa_rollout_mean_all_metrics.png?v=20260803-40-models" alt="2026-08-03 Razavi-Bench Multimodal QA snapshot" title="2026-08-03 Razavi-Bench Multimodal QA snapshot" width="92%"/>
 </p>
 
 The release-date view uses vendor announcements where available and explicitly
@@ -240,5 +241,5 @@ marks preview or first-public-availability dates in the
 [model release-date table](docs/data/direct_qa/model_release_dates.csv).
 
 <p align="center">
-  <img src="docs/assets/direct_qa_score_vs_release_date.png?v=20260802-frontier" alt="Razavi-Bench score versus model release date" title="Razavi-Bench score versus model release date" width="96%"/>
+  <img src="docs/assets/direct_qa_score_vs_release_date.png?v=20260803-40-models" alt="Razavi-Bench score versus model release date" title="Razavi-Bench score versus model release date" width="96%"/>
 </p>
