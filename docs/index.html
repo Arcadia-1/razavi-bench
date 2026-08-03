@@ -101,6 +101,7 @@ tr.lb-row.in{animation:slideIn .40s cubic-bezier(.25,.8,.25,1) both}
 
 .chart-card{background:transparent;border:1px solid var(--border);border-radius:0;padding:24px;margin-top:0}
 .chart-card .chart-wrap{position:relative;height:640px;font-size:14px}
+.chart-subtitle{margin:6px 0 0;color:var(--text-muted);font-size:13px;line-height:1.45;max-width:720px}
 
 .task-card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
 .task-card{background:var(--bg-card);border:1px solid var(--border);border-radius:0;padding:16px;display:flex;gap:12px;align-items:flex-start;transition:border-color .2s,background .2s}
@@ -183,10 +184,13 @@ footer .footer-row{margin-bottom:6px}
   <div class="table-wrap"><table><thead><tr><th>#</th><th>Model</th><th class="sortable" data-key="score">Score <span class="sort-arrow"></span></th><th>Range</th><th class="sortable" data-key="token">Token <span class="sort-arrow"></span></th><th class="sortable" data-key="cost">Cost <span class="sort-arrow"></span></th></tr></thead><tbody class="lb-table" id="lbDirectBody"></tbody></table></div>
   <div class="sec-head" style="margin-top:56px;">
     <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
-      <h2 style="margin:0;">Score vs Efficiency</h2>
+      <div>
+        <h2 style="margin:0;">Overall Active Score vs Resource Usage</h2>
+        <p class="chart-subtitle">Mean of MiniMax M3 and DeepSeek V4 Pro across 50 tasks &times; 3 rollouts &middot; Resource usage covers answer-model attempts only.</p>
+      </div>
       <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
         <div class="toggle-group" id="effToggle"><button class="active" data-axis="token">Token</button><button data-axis="cost">Cost</button></div>
-        <div class="toggle-group" id="effScaleToggle"><button class="active" data-scale="linear">Linear</button><button data-scale="log">Log</button></div>
+        <div class="toggle-group" id="effScaleToggle"><button data-scale="linear">Linear</button><button class="active" data-scale="log">Log</button></div>
       </div>
     </div>
   </div>
@@ -454,7 +458,7 @@ function bTok(){
 }
 function fmt(v){if(v>=1000)return(v/1000).toFixed(1)+"k";if(v>=100)return Math.round(v)+"";return v.toFixed(2);}
 
-var effAxis="token",effScale="linear";
+var effAxis="token",effScale="log";
 var pointLabelPlugin={
   id:"pointLabels",
   afterDatasetsDraw:function(chart,args,opts){
@@ -537,7 +541,7 @@ function bEff(){
   var canvas=document.getElementById("effChart");
   var old=Chart.getChart(canvas);if(old)old.destroy();
   var ctx=canvas.getContext("2d");
-  var k=dP==="o"?"o":dP;
+  var k="o";
   // group models by display name (family), each family = one line
   var families={};
   DD.forEach(function(m){
@@ -561,11 +565,7 @@ function bEff(){
         }else{
           raw=m.cost!=null?m.cost:null;
         }
-        // log 模式：x 存 log10(实际值)，轴用线性，标签回显真实值
-        var x;
-        if(effScale==="log"&&raw&&raw>0)x=Math.log10(raw);
-        else if(effScale==="log")x=null;
-        else x=raw;
+        var x=effScale==="log"&&(!raw||raw<=0)?null:raw;
         return{x:x,y:m[k].mn,effort:m.e||"default"};
       }),
       backgroundColor:lineColor,
@@ -578,36 +578,33 @@ function bEff(){
   })},options:{responsive:true,maintainAspectRatio:false,animation:false,interaction:{mode:"nearest",intersect:false},
     plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){
       var m=c.dataset.data[c.dataIndex];
-      var rx=effScale==="log"?Math.pow(10,c.parsed.x):c.parsed.x;
+      var rx=c.parsed.x;
       return" "+c.dataset.label+" ["+m.effort+"]: "+c.parsed.y.toFixed(1)+"% / "+(effAxis==="token"?fmtK(rx):"$"+rx.toFixed(2));
     }}}},
-    scales:{x:{type:"linear",position:"bottom",grid:{color:"#e5e5e5"},
+    scales:{x:{type:effScale==="log"?"logarithmic":"linear",position:"bottom",grid:{color:"#e5e5e5"},
+      title:{display:true,text:effAxis==="token"?"Total answer-model tokens (50 tasks × 3 rollouts)":"Estimated API cost (USD; judge cost excluded)",color:"#333",font:{size:12,weight:"500"},padding:{top:10}},
       ticks:{font:{size:12},color:"#333",autoSkip:true,maxTicksLimit:8,callback:function(v){
-        // log 模式：v 是 log10 值，转回真实值并规整到 1-2-5；linear 模式直接用原值
-        var real=effScale==="log"?niceNum(Math.pow(10,v)):v;
-        if(effAxis==="token"){if(real>=1e6)return(real/1e6).toFixed(0)+"M";if(real>=1e3)return(real/1e3).toFixed(0)+"k";return Math.round(real)}
+        var real=Number(v);
+        if(effScale==="log"&&!showLogTick(real))return"";
+        if(effAxis==="token")return fmtTokenAxis(real);
         return"$"+fmt(real);
       }}},
-      y:{min:0,max:100,grid:{color:"#e5e5e5"},ticks:{font:{size:12},color:"#333",callback:function(v){return v+"%"}}}}
+      y:{min:20,max:100,grid:{color:"#e5e5e5"},title:{display:true,text:"Active score (%)",color:"#333",font:{size:12,weight:"500"}},ticks:{font:{size:12},color:"#333",callback:function(v){return v+"%"}}}}
   },plugins:[pointLabelPlugin,effHoverPlugin]});
   ch.$hoverOrig=ch.data.datasets.map(function(ds){return{borderColor:ds.borderColor,bg:ds.backgroundColor}});
 }
-function niceNum(v){
-  // 就近取整到 1-2-5 序列（1, 2, 5, 10, 20, 50, 100, 200, 500, 1000...）
-  if(v<=0)return 0;
-  var exp=Math.floor(Math.log10(v));
-  var base=Math.pow(10,exp);
+function showLogTick(v){
+  if(v<=0)return false;
+  var base=Math.pow(10,Math.floor(Math.log10(v)));
   var n=v/base;
-  if(n<1.5)return 1*base;
-  if(n<3.5)return 2*base;
-  if(n<7.5)return 5*base;
-  return 10*base;
+  return Math.abs(n-1)<1e-8||Math.abs(n-2)<1e-8||Math.abs(n-5)<1e-8;
 }
 function sortEff(e){
   var order={xhigh:0,high:1,max:2,med:3,low:4,"":5};
   return order[e]!=null?order[e]:6;
 }
 function fmtK(n){if(n>=1000)return Math.round(n/1000)+"k";return Math.round(n)+"";}
+function fmtTokenAxis(n){if(n>=1e6)return(n/1e6).toFixed(n%1e6===0?0:1)+"M";if(n>=1e3)return Math.round(n/1e3)+"k";return Math.round(n)+"";}
 
 // ==== TASK MODAL ====
 async function openTaskModal(part){
@@ -642,7 +639,7 @@ document.addEventListener("keydown",function(e){if(e.key==="Escape")closeModal()
 
 // ==== INIT ====
 function R(){bDL(dP);bDC(dS);bEff();bTok()}
-document.querySelectorAll("#directPartToggle button").forEach(function(b){b.onclick=function(){this.parentElement.querySelectorAll("button").forEach(function(x){x.classList.remove("active")});this.classList.add("active");dP=this.dataset.part;bDL(dP);bEff();bTok()}});
+document.querySelectorAll("#directPartToggle button").forEach(function(b){b.onclick=function(){this.parentElement.querySelectorAll("button").forEach(function(x){x.classList.remove("active")});this.classList.add("active");dP=this.dataset.part;bDL(dP);bTok()}});
 document.querySelectorAll("#distSubsetToggle button").forEach(function(b){b.onclick=function(){this.parentElement.querySelectorAll("button").forEach(function(x){x.classList.remove("active")});this.classList.add("active");dS=this.dataset.subset;bDC(dS)}});
 document.querySelectorAll("#effToggle button").forEach(function(b){b.onclick=function(){this.parentElement.querySelectorAll("button").forEach(function(x){x.classList.remove("active")});this.classList.add("active");effAxis=this.dataset.axis;bEff()}});
 document.querySelectorAll("#effScaleToggle button").forEach(function(b){b.onclick=function(){this.parentElement.querySelectorAll("button").forEach(function(x){x.classList.remove("active")});this.classList.add("active");effScale=this.dataset.scale;bEff()}});
