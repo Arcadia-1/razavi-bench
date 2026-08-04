@@ -129,7 +129,7 @@ def annotate(ax: plt.Axes, row: dict[str, object]) -> None:
             textcoords=ax.get_yaxis_transform(),
             ha="left",
             va="center",
-            fontsize=18,
+            fontsize=13.5,
             color="#111827",
             linespacing=1.05,
             arrowprops={"arrowstyle": "-", "color": "#9CA3AF", "lw": 0.6},
@@ -148,7 +148,7 @@ def annotate(ax: plt.Axes, row: dict[str, object]) -> None:
         textcoords="offset points",
         ha=horizontal_alignment,
         va="center",
-        fontsize=18,
+        fontsize=13.5,
         color="#111827",
         linespacing=1.05,
         arrowprops={"arrowstyle": "-", "color": "#9CA3AF", "lw": 0.55},
@@ -237,14 +237,6 @@ def plot(rows: list[dict[str, object]], output: Path) -> None:
         fontweight="bold",
         color="#0B1220",
     )
-    figure.text(
-        0.056,
-        0.925,
-        f"{len(rows)} Direct QA configurations · 3 rollouts · active score is the mean of MiniMax M3 and DeepSeek V4 Pro judges",
-        fontsize=22,
-        color="#4B5563",
-    )
-
     providers = []
     seen = set()
     for row in rows:
