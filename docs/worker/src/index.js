@@ -1,11 +1,53 @@
+import { queryVisitStats, recordPageView } from "./analytics.js";
+
+export { VisitStatsDurableObject } from "./analytics.js";
+
 const INDEX_KEY = "direct_qa/index.json";
 const TASKS_KEY = "tasks/tasks.jsonl";
 const RAW_BASE = "https://raw.githubusercontent.com/Arcadia-1/razavi-bench/main";
+const VISITOR_ID_PATTERN = /^[0-9a-f-]{36}$/i;
+
+function apiHeaders(cacheControl = "no-store") {
+  return {
+    "Access-Control-Allow-Headers": "Content-Type",
+    "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+    "Access-Control-Allow-Origin": "*",
+    "Cache-Control": cacheControl,
+    "Content-Type": "application/json",
+  };
+}
 
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
     const path = url.pathname;
+
+    if (request.method === "OPTIONS" && path.startsWith("/api/")) {
+      return new Response(null, { status: 204, headers: apiHeaders() });
+    }
+
+    if (request.method === "POST" && path === "/api/hit") {
+      const body = await request.json().catch(() => null);
+      const visitorId = typeof body?.visitorId === "string" ? body.visitorId : "";
+      if (!VISITOR_ID_PATTERN.test(visitorId)) {
+        return Response.json({ error: "Invalid visitor ID" }, { status: 400, headers: apiHeaders() });
+      }
+      try {
+        const stats = await recordPageView(env.VISIT_STATS, visitorId);
+        return Response.json(stats, { headers: apiHeaders() });
+      } catch (err) {
+        return Response.json({ error: "Visit tracking unavailable" }, { status: 502, headers: apiHeaders() });
+      }
+    }
+
+    if (request.method === "GET" && path === "/api/stats") {
+      try {
+        const stats = await queryVisitStats(env.VISIT_STATS);
+        return Response.json(stats, { headers: apiHeaders("public, max-age=300") });
+      } catch (err) {
+        return Response.json({ error: "Visit stats unavailable" }, { status: 502, headers: apiHeaders() });
+      }
+    }
 
     // 数据接口
     if (request.method === "GET" && path === "/api/index.json") {

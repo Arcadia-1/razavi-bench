@@ -37,15 +37,18 @@ LABEL_OFFSETS = {
     "claude_sonnet_46": (-8, 8),
     "claude_fable_5": (-8, 8),
     "claude_opus_48": (-8, -13),
-    "gemini_31": (-8, 10),
+    "gemini_31": (-8, 30),
     "gemini_35_flash": (-8, 13),
+    "gemini_25_flash_lite": (8, -15),
     "gemma_4_31b_it": (-8, -12),
-    "doubao_seed_21_pro": (-8, -8),
+    "claude_haiku_45": (8, 18),
+    "doubao_seed_21_pro": (-8, 14),
     "gpt_54_mini": (8, -10),
-    "gpt_55": (-8, 8),
+    "gpt_55": (-8, 4),
     "llama_4_maverick": (-8, 0),
     "minimax_m3": (8, 12),
-    "qwen_37_plus": (-8, 20),
+    "qwen_37_plus": (-8, -20),
+    "qwen3_vl_235b_a22b_instruct": (8, 18),
 }
 
 RECENT_LABEL_Y = {
@@ -126,7 +129,7 @@ def annotate(ax: plt.Axes, row: dict[str, object]) -> None:
             textcoords=ax.get_yaxis_transform(),
             ha="left",
             va="center",
-            fontsize=11.5,
+            fontsize=13.5,
             color="#111827",
             linespacing=1.05,
             arrowprops={"arrowstyle": "-", "color": "#9CA3AF", "lw": 0.6},
@@ -145,7 +148,7 @@ def annotate(ax: plt.Axes, row: dict[str, object]) -> None:
         textcoords="offset points",
         ha=horizontal_alignment,
         va="center",
-        fontsize=11.5,
+        fontsize=13.5,
         color="#111827",
         linespacing=1.05,
         arrowprops={"arrowstyle": "-", "color": "#9CA3AF", "lw": 0.55},
@@ -161,7 +164,7 @@ def style_axis(ax: plt.Axes) -> None:
     ax.set_yticks(range(40, 101, 10))
     ax.grid(axis="y", color="#E5E7EB", linewidth=0.8)
     ax.grid(axis="x", color="#F0F2F5", linewidth=0.7)
-    ax.tick_params(colors="#6B7280", labelsize=13)
+    ax.tick_params(colors="#6B7280", labelsize=20)
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
     ax.spines["left"].set_color("#D1D5DB")
@@ -180,8 +183,9 @@ def plot(rows: list[dict[str, object]], output: Path) -> None:
         figsize=(20, 15),
         dpi=180,
     )
-    ax.set_xlim(date(2024, 4, 15), date(2026, 8, 10))
-    ax.xaxis.set_major_locator(mdates.MonthLocator(bymonth=[2, 5, 8, 11]))
+    timeline_end = date(2026, 9, 30)
+    ax.set_xlim(date(2024, 4, 15), timeline_end)
+    ax.xaxis.set_major_locator(mdates.MonthLocator(bymonth=[3, 6, 9, 12]))
     style_axis(ax)
 
     best_by_date: dict[date, dict[str, object]] = {}
@@ -196,7 +200,7 @@ def plot(rows: list[dict[str, object]], output: Path) -> None:
         if row["score"] > running_best:
             frontier.append(row)
             running_best = float(row["score"])
-    frontier_dates = [row["release_date"] for row in frontier] + [date(2026, 8, 10)]
+    frontier_dates = [row["release_date"] for row in frontier] + [timeline_end]
     frontier_scores = [row["score"] for row in frontier] + [running_best]
     ax.step(
         frontier_dates,
@@ -222,25 +226,17 @@ def plot(rows: list[dict[str, object]], output: Path) -> None:
         )
         annotate(ax, row)
 
-    ax.set_ylabel("Active Overall Score (%)", fontsize=17, fontweight="bold", color="#111827")
-    figure.supxlabel("Model Release Date", y=0.105, fontsize=17, fontweight="bold", color="#111827")
+    ax.set_ylabel("Active Overall Score (%)", fontsize=26, fontweight="bold", color="#111827")
+    figure.supxlabel("Model Release Date", y=0.105, fontsize=26, fontweight="bold", color="#111827")
     figure.suptitle(
-        "Razavi-Bench: Multimodal QA — Overall Score vs. Model Release Date",
+        "Razavi-Bench: Multimodal QA",
         x=0.055,
         y=0.972,
         ha="left",
-        fontsize=27,
+        fontsize=40,
         fontweight="bold",
         color="#0B1220",
     )
-    figure.text(
-        0.056,
-        0.925,
-        f"{len(rows)} Direct QA configurations · 3 rollouts · active score is the mean of MiniMax M3 and DeepSeek V4 Pro judges",
-        fontsize=14,
-        color="#4B5563",
-    )
-
     providers = []
     seen = set()
     for row in rows:
@@ -250,7 +246,7 @@ def plot(rows: list[dict[str, object]], output: Path) -> None:
         seen.add(legend_name)
         providers.append(
             Line2D([0], [0], marker="o", color="none", markerfacecolor=color,
-                   markeredgecolor="white", markersize=7, label=legend_name)
+                   markeredgecolor="white", markersize=9, label=legend_name)
         )
     providers.append(
         Line2D([0], [0], color="#64748B", linewidth=2.0,
@@ -265,7 +261,7 @@ def plot(rows: list[dict[str, object]], output: Path) -> None:
         facecolor="white",
         edgecolor="#CBD5E1",
         framealpha=0.96,
-        fontsize=12,
+        fontsize=19,
         handletextpad=0.4,
         columnspacing=1.3,
     )

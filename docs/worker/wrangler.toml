@@ -6,3 +6,11 @@ workers_dev = true
 [[r2_buckets]]
 binding = "BENCH_DATA"
 bucket_name = "analog-design-bench-data"
+
+[[durable_objects.bindings]]
+name = "VISIT_STATS"
+class_name = "VisitStatsDurableObject"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["VisitStatsDurableObject"]
