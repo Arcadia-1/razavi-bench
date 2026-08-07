@@ -52,7 +52,6 @@ answer. Cleaned public AI model outputs are stored separately under
 | Part 1 | 30 questions, Q1-Q30 |
 | Part 2 | 20 questions, Q1-Q20 |
 | `task.toml` files | 0 |
-| Source PDFs | Included under `docs/papers/` with permission |
 
 ## Repository Layout
 
