@@ -62,6 +62,9 @@ jobs:
             exit 1
           fi
 
+      - name: Regenerate per-question aggregate data
+        run: node tools/aggregate_questions.js
+
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
