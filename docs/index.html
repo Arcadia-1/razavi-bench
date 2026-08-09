@@ -317,7 +317,7 @@ function fetchWithTimeout(url,ms){
   var timer=controller?setTimeout(function(){controller.abort()},ms):null;
   return fetch(url,{cache:"no-cache",signal:controller?controller.signal:undefined}).then(function(r){if(timer)clearTimeout(timer);return r}).catch(function(e){if(timer)clearTimeout(timer);throw e});
 }
-function scoreBuckets(dist){var counts=[0,0,0,0,0],raw=dist||{};Object.keys(raw).forEach(function(k){var score=Number(k),count=Number(raw[k]);if(score===0)counts[0]+=count;else if(score===1)counts[1]+=count;else if(score===2)counts[2]+=count;else if(score===3)counts[3]+=count;else if(score===4)counts[4]+=count;});var total=counts.reduce(function(a,c){return a+c},0)||1;return{counts:counts,percents:counts.map(function(c){return Math.round(c/total*10000)/100})};}
+function scoreBuckets(dist){var counts=[0,0,0,0,0],raw=dist||{};Object.keys(raw).forEach(function(k){var score=Number(k),count=Number(raw[k]);var bucket=Math.min(4,Math.max(0,Math.floor(score)));counts[bucket]+=count;});var total=counts.reduce(function(a,c){return a+c},0)||1;return{counts:counts,percents:counts.map(function(c){return Math.round(c/total*10000)/100})};}
 function computeCost(modelKey,tk){var p=PRICE[modelKey];if(!p&&modelKey){var keys=Object.keys(PRICE);for(var i=0;i<keys.length;i++){if(modelKey.indexOf(keys[i])===0){p=PRICE[keys[i]];break;}}}if(!p||!tk)return null;var cached=tk.cached_input_tokens||0;var cost=((tk.input_tokens-cached)*p[0]+cached*p[2]+tk.output_tokens*p[1])/1e6;return Math.round(cost*100)/100;}
 function breakdown(modelKey,tk){
   // returns {tok:[freshInput,cachedInput,output], cost:[freshCost,cachedCost,outCost]} or null
@@ -467,7 +467,7 @@ function bDC(subset){
   var cv=document.getElementById("distChart");var old=Chart.getChart(cv);if(old)old.destroy();
   var ctx=cv.getContext("2d");
   var ds=[0,1,2,3,4].map(function(sc){return{label:S[sc],data:DD.map(function(m){return m[subset].dp[sc]}),rawCounts:DD.map(function(m){return Math.round(m[subset].d[sc])}),backgroundColor:SC[sc],borderColor:"#ffffff",borderWidth:2,barPercentage:0.9,categoryPercentage:0.9}});
-    var ch=new Chart(ctx,{type:"bar",data:{labels:DD.map(function(m){return m.d+(m.e?" ["+m.e+"]":"")}),datasets:ds},options:{responsive:true,maintainAspectRatio:false,indexAxis:"y",plugins:{legend:{position:"bottom",labels:{usePointStyle:false,boxWidth:10,boxHeight:10,padding:16,font:{size:13},color:"#1a1a1a"}},tooltip:{callbacks:{label:function(c){return c.dataset.label+": "+c.dataset.rawCounts[c.dataIndex]+" questions"}}}},scales:{x:{stacked:true,max:100,grid:{color:"#e5e5e5"},ticks:{font:{size:13},color:"#333",callback:function(v){return v+"%"}}},y:{stacked:true,position:"left",grid:{display:false},ticks:{font:{size:14},autoSkip:false,color:"#1a1a1a",align:"start"}}}}});
+    var ch=new Chart(ctx,{type:"bar",data:{labels:DD.map(function(m){return m.d+(m.e?" ["+m.e+"]":"")}),datasets:ds},options:{responsive:true,maintainAspectRatio:false,indexAxis:"y",plugins:{legend:{position:"bottom",labels:{usePointStyle:false,boxWidth:10,boxHeight:10,padding:16,font:{size:13},color:"#1a1a1a"}},tooltip:{callbacks:{label:function(c){return c.dataset.label+": "+c.dataset.rawCounts[c.dataIndex]+" responses"}}}},scales:{x:{stacked:true,max:100,grid:{color:"#e5e5e5"},ticks:{font:{size:13},color:"#333",callback:function(v){return v+"%"}}},y:{stacked:true,position:"left",grid:{display:false},ticks:{font:{size:14},autoSkip:false,color:"#1a1a1a",align:"start"}}}}});
   ctx._chart=ch;
 }
 
