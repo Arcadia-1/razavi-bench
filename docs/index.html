@@ -674,7 +674,7 @@ async function openTaskModal(part){
       var imageUrl=t.figure?t.figure:"";
       var fh=imageUrl?"<div><h4>Figure</h4><img src=\""+esc(imageUrl)+"\" loading=lazy onerror=\"this.parentElement.style.display='none'\" alt=\"Figure for "+esc(t.slug)+"\"></div>":"";
       var pid="ta-"+part+"-"+i;
-      var link="<a href=\"/data/v1/tasks/"+encodeURIComponent(t.slug)+"\" class=\"q-answers-link\" target=\"_blank\">View all model answers &amp; scores &rarr;</a>";
+      var link="<a href=\"/data/v1/tasks/"+encodeURIComponent(t.slug)+"\" class=\"q-answers-link\">View all model answers &amp; scores &rarr;</a>";
       return"<div class=task-accordion id=\""+pid+"\"><button class=ta-header type=button aria-expanded=false onclick=\"toggleAccordion('"+part+"',"+i+")\"><div class=ta-id>"+t.id+"</div><div class=ta-q>"+esc(t.question)+"</div><div class=ta-arrow aria-hidden=true>▼</div></button><div class=ta-body><div class=ta-content>"+link+fh+"<h4>Golden Solution</h4><div class=answer-text>"+esc(t.answer)+"</div></div></div></div>";
     }).join("");
   }catch(error){
