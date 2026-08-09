@@ -13,7 +13,8 @@
 <style>
 :root{--bg-primary:#ffffff;--bg-card:#f5f5f5;--bg-card-hover:#eaeaea;--border:#d5d5d5;--border-light:#bbbbbb;--text-primary:#1a1a1a;--text-secondary:#1a1a1a;--text-muted:#333333;--radius-lg:0;--max-width:825px}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg-primary);color:var(--text-primary);line-height:1.6;-webkit-font-smoothing:antialiased}
+html{overflow-x:hidden}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg-primary);color:var(--text-primary);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 
 nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 24px}
 nav .nav-inner{max-width:var(--max-width);margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:56px}
@@ -49,7 +50,8 @@ section h3{font-size:15px;font-weight:600;margin-bottom:16px;color:var(--text-se
 .toggle-group button{padding:6px 14px;border:none;border-radius:0;font-size:13px;font-weight:600;cursor:pointer;background:transparent;color:var(--text-secondary);transition:all .15s;font-family:inherit;white-space:nowrap}
 .toggle-group button.active{background:var(--text-primary);color:#fff}
 
-.table-wrap{overflow-x:auto;overflow-y:hidden;border-radius:var(--radius-lg);border:1px solid var(--border);overscroll-behavior-inline:contain;-webkit-overflow-scrolling:touch}
+.table-wrap{overflow-x:auto;overflow-y:hidden;border-radius:var(--radius-lg);border:1px solid var(--border);overscroll-behavior-inline:contain;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.table-wrap::-webkit-scrollbar{display:none}
 .no-scroll{overflow-y:hidden !important}
 table{width:100%;min-width:680px;border-collapse:separate;border-spacing:0;font-size:13px;table-layout:fixed}
 thead th{text-align:left;padding:10px 8px;font-size:10px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.05em;background:var(--bg-card);border-bottom:1px solid var(--border)}
@@ -74,7 +76,7 @@ tbody .rank{text-align:right;font-weight:600;font-size:12px;width:28px;padding-r
 .rank-3{color:#64748b}
 .rank-n{color:var(--text-muted)}
 .rank-badge{font-weight:600;font-size:12px}
-.model-col{font-weight:500;white-space:nowrap;font-size:13px;line-height:1.3}
+.model-col{font-weight:500;white-space:nowrap;font-size:13px;line-height:1.3;overflow:hidden;text-overflow:ellipsis}
 .model-effort{font-size:13px;color:var(--text-muted);font-weight:400;margin-left:4px}
 .part-col{display:none}
 .score-col{padding:4px 8px !important}
@@ -217,7 +219,7 @@ footer .footer-row{margin-bottom:6px}
   </div>
   <div class="sec-head" style="margin-top:56px;">
     <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
-      <h2 style="margin:0;">Token Composition</h2>
+      <h2 style="margin:0;">Token / Cost Composition</h2>
       <div class="toggle-group" id="tokToggle"><button class="active" data-metric="token">Token</button><button data-metric="cost">Cost</button></div>
     </div>
   </div>
@@ -456,7 +458,7 @@ function bDL(part){
   setTimeout(function(){
     var h=s.map(function(d,i){
       var v=d[k],pc=k==="o"?"pat-overall":k==="p1"?"pat-part1":"pat-part2";
-      return"<tr class=\"lb-row in\" style=\"animation-delay:"+(i*0.03)+"s\"><td class=rank>"+rnk(i+1)+"</td><td class=model-col>"+d.d+(d.e?" <span class=model-effort>["+d.e+"]</span>":"")+"</td><td class=score-col>"+bar(v,BC[d.m],pc)+"</td><td class=range-col>"+rng(v)+"</td><td class=token-col>"+(d.t||"")+"</td><td class=cost-col>"+(d.cost!=null?"$"+d.cost:"")+"</td></tr>";
+      return"<tr class=\"lb-row in\" style=\"animation-delay:"+(i*0.03)+"s\"><td class=rank>"+rnk(i+1)+"</td><td class=model-col title=\""+esc(d.d+(d.e?" ["+d.e+"]":""))+"\">"+d.d+(d.e?" <span class=model-effort>["+d.e+"]</span>":"")+"</td><td class=score-col>"+bar(v,BC[d.m],pc)+"</td><td class=range-col>"+rng(v)+"</td><td class=token-col>"+(d.t||"")+"</td><td class=cost-col>"+(d.cost!=null?"$"+d.cost:"")+"</td></tr>";
     }).join("");
     tb.innerHTML=h;
     setTimeout(function(){wr.classList.remove("no-scroll")},500);
@@ -467,25 +469,46 @@ function bDC(subset){
   var cv=document.getElementById("distChart");var old=Chart.getChart(cv);if(old)old.destroy();
   var ctx=cv.getContext("2d");
   var ds=[0,1,2,3,4].map(function(sc){return{label:S[sc],data:DD.map(function(m){return m[subset].dp[sc]}),rawCounts:DD.map(function(m){return Math.round(m[subset].d[sc])}),backgroundColor:SC[sc],borderColor:"#ffffff",borderWidth:2,barPercentage:0.9,categoryPercentage:0.9}});
-    var ch=new Chart(ctx,{type:"bar",data:{labels:DD.map(function(m){return m.d+(m.e?" ["+m.e+"]":"")}),datasets:ds},options:{responsive:true,maintainAspectRatio:false,indexAxis:"y",plugins:{legend:{position:"bottom",labels:{usePointStyle:false,boxWidth:10,boxHeight:10,padding:16,font:{size:13},color:"#1a1a1a"}},tooltip:{callbacks:{title:function(c){return c[0]?c[0].label:""},label:function(c){return c.dataset.label+": "+c.dataset.rawCounts[c.dataIndex]+" responses"}}}},scales:{x:{stacked:true,max:100,grid:{color:"#e5e5e5"},ticks:{font:{size:13},color:"#333",callback:function(v){return v+"%"}}},y:{stacked:true,position:"left",grid:{display:false},ticks:{font:{size:14},autoSkip:false,color:"#1a1a1a",align:"start",callback:function(v){var full=this.getLabels()[v]||String(v);if(full.length>22)return full.slice(0,21)+"...";return full}}}}}})
+    var ch=new Chart(ctx,{type:"bar",data:{labels:DD.map(function(m){return m.d+(m.e?" ["+m.e+"]":"")}),datasets:ds},options:{responsive:true,maintainAspectRatio:false,indexAxis:"y",plugins:{legend:{position:"bottom",labels:{usePointStyle:false,boxWidth:10,boxHeight:10,padding:16,font:{size:13},color:"#1a1a1a"}},tooltip:{callbacks:{title:function(c){return c[0]?c[0].label:""},label:function(c){return c.dataset.label+": "+c.dataset.rawCounts[c.dataIndex]+" responses"}}}},scales:{x:{stacked:true,max:100,grid:{color:"#e5e5e5"},ticks:{font:{size:13},color:"#333",callback:function(v){return v+"%"}}},y:{stacked:true,position:"left",grid:{display:false},ticks:{font:{size:13,weight:500},autoSkip:false,color:"#1a1a1a",align:"center"}}}}})
   ctx._chart=ch;
 }
 
 // ==== TOKEN / COST COMPOSITION STACKED BAR ====
 var tokMetric="token";
+var tokHidden={};
 var TOK_PARTS=["Fresh input","Cached input","Output"];
 var TOK_COLORS=["#c9d4e0","#e6ecf2","#a9b8c8"];
 var COST_COLORS=["#d8a0a0","#e8c8c8","#c08080"];
 function bTok(){
   var cv=document.getElementById("tokChart");var old=Chart.getChart(cv);if(old)old.destroy();
   var ctx=cv.getContext("2d");
-  var labels=DD.map(function(m){return m.d+(m.e?" ["+m.e+"]":"")});
-  var parts=TOK_PARTS.map(function(name,i){
-    var data=DD.map(function(m){return tokMetric==="token"?(m.tok?m.tok[i]:0):(m.costParts?m.costParts[i]:0)});
-    return{label:name,data:data,backgroundColor:tokMetric==="token"?TOK_COLORS[i]:COST_COLORS[i],borderColor:"#ffffff",borderWidth:1,barPercentage:0.9,categoryPercentage:0.9};
-  });
   var isCost=tokMetric==="cost";
-  var ch=new Chart(ctx,{type:"bar",data:{labels:labels,datasets:parts},options:{responsive:true,maintainAspectRatio:false,indexAxis:"y",animation:false,plugins:{legend:{position:"bottom",labels:{usePointStyle:false,boxWidth:10,boxHeight:10,padding:16,font:{size:13},color:"#1a1a1a"}},tooltip:{callbacks:{label:function(c){var v=c.parsed.x;return" "+c.dataset.label+": "+(isCost?"$"+fmt(v):fmtK(v));}}}},scales:{x:{stacked:true,grid:{color:"#e5e5e5"},ticks:{font:{size:12},color:"#333",callback:function(v){return isCost?"$"+fmt(v):fmtK(v)}}},y:{stacked:true,position:"left",grid:{display:false},ticks:{font:{size:14},autoSkip:false,color:"#1a1a1a",align:"start"}}}}});
+  function visTotal(m){
+    var parts=tokMetric==="token"?(m.tok||[0,0,0]):(m.costParts||[0,0,0]);
+    var s=0;for(var i=0;i<3;i++){if(!tokHidden[TOK_PARTS[i]])s+=parts[i];}
+    return s;
+  }
+  function buildData(){
+    var sorted=DD.slice().sort(function(a,b){return visTotal(b)-visTotal(a)});
+    var labels=sorted.map(function(m){return m.d+(m.e?" ["+m.e+"]":"")});
+    var parts=TOK_PARTS.map(function(name,i){
+      var data=sorted.map(function(m){return tokMetric==="token"?(m.tok?m.tok[i]:0):(m.costParts?m.costParts[i]:0)});
+      return{label:name,data:data,backgroundColor:tokMetric==="token"?TOK_COLORS[i]:COST_COLORS[i],borderColor:"#ffffff",borderWidth:1,barPercentage:0.9,categoryPercentage:0.9,hidden:!!tokHidden[name]};
+    });
+    return{labels:labels,parts:parts};
+  }
+  var data=buildData();
+  var ch=new Chart(ctx,{type:"bar",data:{labels:data.labels,datasets:data.parts},options:{responsive:true,maintainAspectRatio:false,indexAxis:"y",plugins:{legend:{position:"bottom",labels:{usePointStyle:false,boxWidth:10,boxHeight:10,padding:16,font:{size:13},color:"#1a1a1a"},onClick:function(e,item,legend){
+        var idx=item.datasetIndex;
+        var name=TOK_PARTS[idx];
+        tokHidden[name]=!tokHidden[name];
+        var ch=legend.chart;
+        // re-sort by visible totals and update in place
+        var nd=buildData();
+        ch.data.labels=nd.labels;
+        nd.parts.forEach(function(p,i){ch.data.datasets[i].data=p.data;ch.data.datasets[i].hidden=!!tokHidden[p.label];});
+        ch.update();
+      }},tooltip:{callbacks:{label:function(c){var v=c.parsed.x;return" "+c.dataset.label+": "+(isCost?"$"+fmt(v):fmtK(v));}}}},scales:{x:{stacked:true,grid:{color:"#e5e5e5"},ticks:{font:{size:12},color:"#333",callback:function(v){return isCost?"$"+fmt(v):fmtK(v)}}},y:{stacked:true,position:"left",grid:{display:false},ticks:{font:{size:13,weight:500},autoSkip:false,color:"#1a1a1a",align:"center"}}}}});
   ctx._chart=ch;
 }
 function fmt(v){if(v>=1000)return(v/1000).toFixed(1)+"k";if(v>=100)return Math.round(v)+"";return v.toFixed(2);}
