@@ -66,11 +66,11 @@ table.rollout-grid{width:100%;border-collapse:separate;border-spacing:0;font-siz
 .rbox{width:26px;height:26px;border-radius:4px;display:inline-flex;align-items:center;justify-content:center;background:var(--bg-card);font-size:11px;font-weight:700;cursor:pointer;border:1px solid var(--border);transition:transform .12s}
 .rbox:hover{transform:scale(1.12);border-color:var(--text-muted)}
 .rbox.empty{background:transparent;border:1px dashed var(--border);cursor:default;color:var(--text-muted)}
-.rbox.score-4{color:#22c55e}.rbox.score-3{color:#86efac}.rbox.score-2{color:#fbbf24}.rbox.score-1{color:#f97316}.rbox.score-0{color:#ef4444}
+.rbox.score-4{color:#22c55e}.rbox.score-3{color:#a3e635}.rbox.score-2{color:#fbbf24}.rbox.score-1{color:#f97316}.rbox.score-0{color:#ef4444}
 .score-col{white-space:nowrap}
 .avg-score{font-weight:600;font-size:12px}
 .score-badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;background:var(--bg-card);border:1px solid var(--border)}
-.score-badge.b4{color:#22c55e}.score-badge.b3{color:#86efac}.score-badge.b2{color:#fbbf24}.score-badge.b1{color:#f97316}.score-badge.b0{color:#ef4444}
+.score-badge.b4{color:#22c55e}.score-badge.b3{color:#a3e635}.score-badge.b2{color:#fbbf24}.score-badge.b1{color:#f97316}.score-badge.b0{color:#ef4444}
 /* answer detail */
 .answer-detail{display:none;background:var(--bg-primary);border:1px solid var(--border);border-top:none;padding:20px}
 tr.open .answer-detail{display:table-row}
@@ -254,7 +254,7 @@ function render(){
   // legend
   html+='<div class="section-title">Trials</div>';
   html+='<div class="score-legend"><span style="margin-right:4px">Score:</span>';
-  html+='<span class="sw" style="background:#22c55e"></span>4<span class="sw" style="background:#86efac"></span>3<span class="sw" style="background:#fbbf24"></span>2<span class="sw" style="background:#f97316"></span>1<span class="sw" style="background:#ef4444"></span>0</div>';
+  html+='<span class="sw" style="background:#22c55e"></span>4<span class="sw" style="background:#a3e635"></span>3<span class="sw" style="background:#fbbf24"></span>2<span class="sw" style="background:#f97316"></span>1<span class="sw" style="background:#ef4444"></span>0</div>';
   // grid
   html+='<table class="rollout-grid"><thead><tr><th>Model</th><th style="width:120px">Avg</th><th colspan="3">Trials</th></tr></thead><tbody>';
   sorted.forEach(function(mk){

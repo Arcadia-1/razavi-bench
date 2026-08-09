@@ -256,7 +256,7 @@ footer .footer-row{margin-bottom:6px}
       <thead><tr><th style="width:100px;text-align:center">Score</th><th style="width:160px">Meaning</th><th>Criteria</th></tr></thead>
       <tbody>
         <tr><td>4</td><td style="color:#22c55e;">Correct</td><td>Correct conclusion and reasoning; topology, device roles, dominant mechanism, trend, and key assumptions are right.</td></tr>
-        <tr><td>3</td><td style="color:#86efac;">Mostly correct</td><td>Main conclusion is right, with a minor omission, imprecision, or modeling flaw that does not change the result.</td></tr>
+        <tr><td>3</td><td style="color:#a3e635;">Mostly correct</td><td>Main conclusion is right, with a minor omission, imprecision, or modeling flaw that does not change the result.</td></tr>
         <tr><td>2</td><td style="color:#fbbf24;">Partially correct</td><td>Identifies some relevant mechanism, but misses an important circuit detail, trend, or design consequence.</td></tr>
         <tr><td>1</td><td style="color:#f97316;">Mostly incorrect</td><td>Main conclusion is wrong, but the answer contains a small amount of relevant circuit understanding.</td></tr>
         <tr><td>0</td><td style="color:#ef4444;">Incorrect / unusable</td><td>Fundamentally wrong, internally inconsistent, or based on a mistaken topology/device/connection.</td></tr>
@@ -289,7 +289,7 @@ footer .footer-row{margin-bottom:6px}
 <script>
 // ==== BENCHMARK DATA (loaded from docs/data/direct_qa/index.json) ====
 var S=["Incorrect","Mostly incorrect","Partially correct","Mostly correct","Correct"];
-var SC=["#ef4444","#f97316","#fbbf24","#86efac","#22c55e"];
+var SC=["#ef4444","#f97316","#fbbf24","#a3e635","#22c55e"];
 var DD=[],BC={};
 // API prices per 1M tokens: [input, output, cached]. Add new models here.
 var PRICE={
