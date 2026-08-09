@@ -42,7 +42,7 @@ nav .btn-gh svg{width:15px;height:15px;opacity:0.7}
 
 section{max-width:var(--max-width);margin:0 auto;padding:0 24px 56px}
 .sec-head{margin-bottom:20px}
-.sec-head h2{margin:0 0 14px 0;font-size:24px;font-weight:500;letter-spacing:-0.02em;color:var(--text-primary);font-family:'Georgia','Times New Roman',serif}
+.sec-head h2{margin:0 0 14px 0;font-size:24px;font-weight:700;letter-spacing:-0.02em;color:var(--text-primary);font-family:'Georgia','Times New Roman',serif}
 section h3{font-size:15px;font-weight:600;margin-bottom:16px;color:var(--text-secondary)}
 
 .toggle-group{display:flex;gap:4px;background:var(--bg-card);border-radius:0;padding:3px;border:1px solid var(--border)}
@@ -101,7 +101,7 @@ tr.lb-row.in{animation:slideIn .40s cubic-bezier(.25,.8,.25,1) both}
 @keyframes slideIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
 
 .chart-card{background:transparent;border:1px solid var(--border);border-radius:0;padding:24px;margin-top:0}
-.chart-card .chart-wrap{position:relative;height:640px;font-size:14px}
+.chart-card .chart-wrap{position:relative;height:640px;font-size:14px;overflow:hidden}
 .chart-subtitle{margin:6px 0 0;color:var(--text-muted);font-size:13px;line-height:1.45;max-width:720px}
 
 .task-card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
@@ -467,7 +467,7 @@ function bDC(subset){
   var cv=document.getElementById("distChart");var old=Chart.getChart(cv);if(old)old.destroy();
   var ctx=cv.getContext("2d");
   var ds=[0,1,2,3,4].map(function(sc){return{label:S[sc],data:DD.map(function(m){return m[subset].dp[sc]}),rawCounts:DD.map(function(m){return Math.round(m[subset].d[sc])}),backgroundColor:SC[sc],borderColor:"#ffffff",borderWidth:2,barPercentage:0.9,categoryPercentage:0.9}});
-    var ch=new Chart(ctx,{type:"bar",data:{labels:DD.map(function(m){return m.d+(m.e?" ["+m.e+"]":"")}),datasets:ds},options:{responsive:true,maintainAspectRatio:false,indexAxis:"y",plugins:{legend:{position:"bottom",labels:{usePointStyle:false,boxWidth:10,boxHeight:10,padding:16,font:{size:13},color:"#1a1a1a"}},tooltip:{callbacks:{label:function(c){return c.dataset.label+": "+c.dataset.rawCounts[c.dataIndex]+" responses"}}}},scales:{x:{stacked:true,max:100,grid:{color:"#e5e5e5"},ticks:{font:{size:13},color:"#333",callback:function(v){return v+"%"}}},y:{stacked:true,position:"left",grid:{display:false},ticks:{font:{size:14},autoSkip:false,color:"#1a1a1a",align:"start"}}}}});
+    var ch=new Chart(ctx,{type:"bar",data:{labels:DD.map(function(m){return m.d+(m.e?" ["+m.e+"]":"")}),datasets:ds},options:{responsive:true,maintainAspectRatio:false,indexAxis:"y",plugins:{legend:{position:"bottom",labels:{usePointStyle:false,boxWidth:10,boxHeight:10,padding:16,font:{size:13},color:"#1a1a1a"}},tooltip:{callbacks:{title:function(c){return c[0]?c[0].label:""},label:function(c){return c.dataset.label+": "+c.dataset.rawCounts[c.dataIndex]+" responses"}}}},scales:{x:{stacked:true,max:100,grid:{color:"#e5e5e5"},ticks:{font:{size:13},color:"#333",callback:function(v){return v+"%"}}},y:{stacked:true,position:"left",grid:{display:false},ticks:{font:{size:14},autoSkip:false,color:"#1a1a1a",align:"start",callback:function(v){var full=this.getLabels()[v]||String(v);if(full.length>22)return full.slice(0,21)+"...";return full}}}}}})
   ctx._chart=ch;
 }
 
