@@ -42,13 +42,24 @@ nav .btn-gh svg{width:15px;height:15px;opacity:0.7}
 .hero-meta .meta-row .meta-val{color:var(--text-primary);font-weight:600;text-align:right}
 
 section{max-width:var(--max-width);margin:0 auto;padding:0 24px 56px}
-.sec-head{margin-bottom:20px}
+.sec-head{position:relative;margin-bottom:20px}
 .sec-head h2{margin:0 0 14px 0;font-size:24px;font-weight:700;letter-spacing:-0.02em;color:var(--text-primary);font-family:'Georgia','Times New Roman',serif}
 section h3{font-size:15px;font-weight:600;margin-bottom:16px;color:var(--text-secondary)}
 
 .toggle-group{display:flex;gap:4px;background:var(--bg-card);border-radius:0;padding:3px;border:1px solid var(--border)}
 .toggle-group button{padding:6px 14px;border:none;border-radius:0;font-size:13px;font-weight:600;cursor:pointer;background:transparent;color:var(--text-secondary);transition:all .15s;font-family:inherit;white-space:nowrap}
 .toggle-group button.active{background:var(--text-primary);color:#fff}
+.filter-btn{padding:6px 14px;border:1px solid var(--border);border-radius:0;font-size:13px;font-weight:600;cursor:pointer;background:var(--bg-card);color:var(--text-secondary);transition:all .15s;font-family:inherit;white-space:nowrap}
+.filter-btn:hover{background:var(--bg-card-hover)}
+.filter-btn.filtering{background:var(--text-primary);color:#fff;border-color:var(--text-primary)}
+.filter-pop{position:absolute;z-index:200;display:none;background:var(--bg-primary);border:1px solid var(--border);box-shadow:0 8px 24px rgba(0,0,0,0.12);width:320px;max-height:400px;padding:12px;display:none;flex-direction:column}
+.filter-pop.open{display:flex}
+.filter-pop .fp-head{flex-shrink:0;display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.filter-pop .fp-head button{background:none;border:none;color:var(--text-secondary);font-size:12px;cursor:pointer;text-decoration:underline}
+.filter-pop #modelFilterList{flex:1;overflow-y:auto;padding-right:4px}
+.filter-pop label{display:flex;align-items:center;gap:8px;font-size:13px;padding:4px 0;cursor:pointer}
+.filter-pop label:hover{background:var(--bg-card)}
+.filter-pop input{margin:0;accent-color:#1a1a1a}
 
 .table-wrap{overflow-x:auto;overflow-y:hidden;border-radius:var(--radius-lg);border:1px solid var(--border);overscroll-behavior-inline:contain;-webkit-overflow-scrolling:touch;scrollbar-width:none}
 .table-wrap::-webkit-scrollbar{display:none}
@@ -188,6 +199,7 @@ footer .footer-row{margin-bottom:6px}
   <div class="sec-head">
     <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
       <h2 style="margin:0;">Score vs. Model Release Date</h2>
+      <button type="button" class="filter-btn" data-filter-target="tlChart" onclick="toggleFilterPop(this)">Model</button>
     </div>
   </div>
   <div class="chart-card">
@@ -198,7 +210,10 @@ footer .footer-row{margin-bottom:6px}
   <div class="sec-head">
     <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
       <h2 style="margin:0;">Direct QA Leaderboard</h2>
-      <div class="toggle-group" id="directPartToggle"><button class="active" data-part="o">All</button><button data-part="p1">Part 1</button><button data-part="p2">Part 2</button></div>
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+        <div class="toggle-group" id="directPartToggle"><button class="active" data-part="o">All</button><button data-part="p1">Part 1</button><button data-part="p2">Part 2</button></div>
+        <button type="button" class="filter-btn" data-filter-target="leaderboard" onclick="toggleFilterPop(this)">Model</button>
+      </div>
     </div>
   </div>
   <div class="table-wrap"><table><thead><tr><th>#</th><th>Model</th><th class="sortable" data-key="score">Score <span class="sort-arrow"></span></th><th>Range</th><th class="sortable" data-key="token">Token <span class="sort-arrow"></span></th><th class="sortable" data-key="cost">Cost <span class="sort-arrow"></span></th></tr></thead><tbody class="lb-table" id="lbDirectBody"></tbody></table></div>
@@ -212,6 +227,7 @@ footer .footer-row{margin-bottom:6px}
         <div class="toggle-group" id="effToggle"><button class="active" data-axis="token">Token</button><button data-axis="cost">Cost</button></div>
         <div class="toggle-group" id="effScaleToggle"><button data-scale="linear">Linear</button><button class="active" data-scale="log">Log</button></div>
       </div>
+      <button type="button" class="filter-btn" data-filter-target="effChart" onclick="toggleFilterPop(this)">Model</button>
     </div>
   </div>
   <div class="chart-card">
@@ -220,7 +236,10 @@ footer .footer-row{margin-bottom:6px}
   <div class="sec-head" style="margin-top:56px;">
     <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
       <h2 style="margin:0;">Token / Cost Composition</h2>
-      <div class="toggle-group" id="tokToggle"><button class="active" data-metric="token">Token</button><button data-metric="cost">Cost</button></div>
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+        <div class="toggle-group" id="tokToggle"><button class="active" data-metric="token">Token</button><button data-metric="cost">Cost</button></div>
+        <button type="button" class="filter-btn" data-filter-target="tokChart" onclick="toggleFilterPop(this)">Model</button>
+      </div>
     </div>
   </div>
   <div class="chart-card">
@@ -229,7 +248,10 @@ footer .footer-row{margin-bottom:6px}
   <div class="sec-head" style="margin-top:56px;">
     <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
       <h2 style="margin:0;">Score Distribution</h2>
-      <div class="toggle-group" id="distSubsetToggle"><button class="active" data-subset="o">All</button><button data-subset="p1">Part 1</button><button data-subset="p2">Part 2</button></div>
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+        <div class="toggle-group" id="distSubsetToggle"><button class="active" data-subset="o">All</button><button data-subset="p1">Part 1</button><button data-subset="p2">Part 2</button></div>
+        <button type="button" class="filter-btn" data-filter-target="distChart" onclick="toggleFilterPop(this)">Model</button>
+      </div>
     </div>
   </div>
   <div class="chart-card">
@@ -293,6 +315,10 @@ footer .footer-row{margin-bottom:6px}
 var S=["Incorrect","Mostly incorrect","Partially correct","Mostly correct","Correct"];
 var SC=["#ef4444","#f97316","#fbbf24","#a3e635","#22c55e"];
 var DD=[],BC={};
+var modelFilter=null;
+var modelFilters={};
+function getFilter(target){return target&&modelFilters[target]?modelFilters[target]:null;}
+function filteredDD(target){var f=getFilter(target);return f?DD.filter(function(m){return f.has(m.m)}):DD;}
 // API prices per 1M tokens: [input, output, cached]. Add new models here.
 var PRICE={
   claude_opus_5:[5,25,0.5], claude_fable_5:[10,50,1], claude_opus_48:[5,25,0.5], claude_sonnet_46:[3,15,0.3],
@@ -446,7 +472,7 @@ function sortValue(d,k,part){
 }
 
 function bDL(part){
-  var s=DD.slice(),k=part==="o"?"o":part;
+  var s=filteredDD("leaderboard").slice(),k=part==="o"?"o":part;
   var dir=sortDir==="asc"?1:-1;
   s.sort(function(a,b){
     var va=sortValue(a,sortKey,k),vb=sortValue(b,sortKey,k);
@@ -468,8 +494,8 @@ function bDL(part){
 function bDC(subset){
   var cv=document.getElementById("distChart");var old=Chart.getChart(cv);if(old)old.destroy();
   var ctx=cv.getContext("2d");
-  var ds=[0,1,2,3,4].map(function(sc){return{label:S[sc],data:DD.map(function(m){return m[subset].dp[sc]}),rawCounts:DD.map(function(m){return Math.round(m[subset].d[sc])}),backgroundColor:SC[sc],borderColor:"#ffffff",borderWidth:2,barPercentage:0.9,categoryPercentage:0.9}});
-    var ch=new Chart(ctx,{type:"bar",data:{labels:DD.map(function(m){return m.d+(m.e?" ["+m.e+"]":"")}),datasets:ds},options:{responsive:true,maintainAspectRatio:false,indexAxis:"y",plugins:{legend:{position:"bottom",labels:{usePointStyle:false,boxWidth:10,boxHeight:10,padding:16,font:{size:13},color:"#1a1a1a"}},tooltip:{callbacks:{title:function(c){return c[0]?c[0].label:""},label:function(c){return c.dataset.label+": "+c.dataset.rawCounts[c.dataIndex]+" responses"}}}},scales:{x:{stacked:true,max:100,grid:{color:"#e5e5e5"},ticks:{font:{size:13},color:"#333",callback:function(v){return v+"%"}}},y:{stacked:true,position:"left",grid:{display:false},ticks:{font:{size:13,weight:500},autoSkip:false,color:"#1a1a1a",align:"center"}}}}})
+  var ds=[0,1,2,3,4].map(function(sc){return{label:S[sc],data:filteredDD("distChart").map(function(m){return m[subset].dp[sc]}),rawCounts:filteredDD("distChart").map(function(m){return Math.round(m[subset].d[sc])}),backgroundColor:SC[sc],borderColor:"#ffffff",borderWidth:2,barPercentage:0.9,categoryPercentage:0.9}});
+    var ch=new Chart(ctx,{type:"bar",data:{labels:filteredDD("distChart").map(function(m){return m.d+(m.e?" ["+m.e+"]":"")}),datasets:ds},options:{responsive:true,maintainAspectRatio:false,indexAxis:"y",plugins:{legend:{position:"bottom",labels:{usePointStyle:false,boxWidth:10,boxHeight:10,padding:16,font:{size:13},color:"#1a1a1a"}},tooltip:{callbacks:{title:function(c){return c[0]?c[0].label:""},label:function(c){return c.dataset.label+": "+c.dataset.rawCounts[c.dataIndex]+" responses"}}}},scales:{x:{stacked:true,max:100,grid:{color:"#e5e5e5"},ticks:{font:{size:13},color:"#333",callback:function(v){return v+"%"}}},y:{stacked:true,position:"left",grid:{display:false},ticks:{font:{size:13,weight:500},autoSkip:false,color:"#1a1a1a",align:"center"}}}}})
   ctx._chart=ch;
 }
 
@@ -489,7 +515,7 @@ function bTok(){
     return s;
   }
   function buildData(){
-    var sorted=DD.slice().sort(function(a,b){return visTotal(b)-visTotal(a)});
+    var sorted=filteredDD("tokChart").slice().sort(function(a,b){return visTotal(b)-visTotal(a)});
     var labels=sorted.map(function(m){return m.d+(m.e?" ["+m.e+"]":"")});
     var parts=TOK_PARTS.map(function(name,i){
       var data=sorted.map(function(m){return tokMetric==="token"?(m.tok?m.tok[i]:0):(m.costParts?m.costParts[i]:0)});
@@ -599,7 +625,7 @@ function bEff(){
   var k="o";
   // group models by display name (family), each family = one line
   var families={};
-  DD.forEach(function(m){
+  filteredDD("effChart").forEach(function(m){
     if(!families[m.d])families[m.d]=[];
     families[m.d].push(m);
   });
@@ -798,7 +824,7 @@ function bTL(){
   if(!canvas||!DD.length)return;
   var old=Chart.getChart(canvas);if(old)old.destroy();
   var points=[];
-  DD.forEach(function(m){
+  filteredDD("tlChart").forEach(function(m){
     var d=REL_DATE[m.m];if(!d)return;
     points.push({m:m.m,d:m.d,pv:m.pv,e:m.e,date:relDateToTs(d),score:m.o.mn});
   });
@@ -861,6 +887,74 @@ document.querySelector('thead th.sortable[data-key="score"]').classList.add("sor
 loadBenchmarkData().then(function(){R()}).catch(function(){});
 loadTasks().catch(function(){});
 loadVisitStats();
+
+// ==== MODEL FILTER ====
+function currentFilter(){var t=window._filterTarget;if(!t)return null;if(!modelFilters[t])modelFilters[t]=new Set(DD.map(function(m){return m.m}));return modelFilters[t];}
+function renderFilterList(){
+  var list=document.getElementById("modelFilterList");
+  if(!list)return;
+  var f=currentFilter();
+  list.innerHTML=DD.map(function(m){
+    var checked=!f||f.has(m.m);
+    return"<label><input type=checkbox data-model=\""+esc(m.m)+"\" "+(checked?"checked":"")+">"+esc(m.d)+(m.e?" <span style=color:var(--text-muted)>["+esc(m.e)+"]</span>":"")+"</label>";
+  }).join("");
+  list.querySelectorAll("input").forEach(function(inp){
+    inp.onchange=function(){
+      var f=currentFilter();if(!f)return;
+      if(this.checked)f.add(this.dataset.model);
+      else f.delete(this.dataset.model);
+      applyFilterUI();
+      refreshCurrent();
+    };
+  });
+}
+function toggleFilterPop(btn){
+  var pop=document.getElementById("modelFilterPop");
+  var wasOpen=pop.classList.contains("open");
+  pop.classList.remove("open");
+  if(wasOpen){window._filterTarget=null;window._filterBtn=null;return;}
+  window._filterTarget=btn.dataset.filterTarget;
+  window._filterBtn=btn;
+  // append pop to the button's section so it scrolls with the page
+  var sec=btn.closest(".sec-head")||btn.closest("section")||document.body;
+  sec.appendChild(pop);
+  pop.style.position="absolute";
+  var btnRect=btn.getBoundingClientRect();
+  var secRect=sec.getBoundingClientRect();
+  pop.style.top=(btnRect.bottom-secRect.top+6)+"px";
+  pop.style.left=(btnRect.left-secRect.left)+"px";
+  renderFilterList();
+  pop.classList.add("open");
+}
+function filterAll(on){
+  var f=currentFilter();if(!f)return;
+  f.clear();
+  if(on)DD.forEach(function(m){f.add(m.m)});
+  renderFilterList();
+  applyFilterUI();
+  refreshCurrent();
+}
+function applyFilterUI(){
+  document.querySelectorAll(".filter-btn").forEach(function(b){
+    var t=b.dataset.filterTarget;
+    var f=modelFilters[t];
+    b.classList.toggle("filtering",!!(f&&f.size>0&&f.size<DD.length));
+  });
+}
+function refreshCurrent(){
+  var t=window._filterTarget;
+  if(t==="leaderboard")bDL(dP);
+  else if(t==="distChart")bDC(dS);
+  else if(t==="tokChart")bTok();
+  else if(t==="effChart")bEff();
+  else if(t==="tlChart")bTL();
+}
+document.addEventListener("click",function(e){
+  var pop=document.getElementById("modelFilterPop");
+  if(pop&&pop.classList.contains("open")&&!pop.contains(e.target)&&!e.target.closest(".filter-btn")){
+    pop.classList.remove("open");
+  }
+});
 </script>
 
 <!-- ========== TASK MODAL ========== -->
@@ -872,6 +966,16 @@ loadVisitStats();
     </div>
     <div id="modalContent" style="font-size:13px;color:var(--text-secondary);line-height:1.7;"></div>
   </div>
+</div>
+<div class="filter-pop" id="modelFilterPop">
+  <div class="fp-head">
+    <span style="font-weight:600;font-size:13px;">Filter models</span>
+    <div>
+      <button type="button" onclick="filterAll(true)">All</button>
+      <button type="button" onclick="filterAll(false)">None</button>
+    </div>
+  </div>
+  <div id="modelFilterList"></div>
 </div>
 </body>
 </html>
