@@ -242,7 +242,7 @@ function render(){
     html+='<div class="section-title">Task</div>';
     html+='<div class="panel">';
     html+='<div class="md-body q-question collapsible'+(tooLong?' collapsed':'')+'" id="qInstruction">'+qmd+figHtml+'</div>';
-    if(tooLong)html+='<button type="button" class="view-all-btn" id="qViewAll">View all</button>';
+    if(tooLong)html+='<button type="button" class="view-all-btn" id="qViewAll">Show more</button>';
     html+='</div>';
   }
   // golden solution
@@ -252,7 +252,7 @@ function render(){
     var gLong=gText.length>250;
     html+='<div class="section-title">Golden Solution</div>';
     html+='<div class="panel"><div class="md-body q-question collapsible'+(gLong?' collapsed':'')+'" id="gSolution">'+gmd+'</div>';
-    if(gLong)html+='<button type="button" class="view-all-btn" id="gViewAll">View all</button>';
+    if(gLong)html+='<button type="button" class="view-all-btn" id="gViewAll">Show more</button>';
     html+='</div>';
   }
   // legend
@@ -265,7 +265,7 @@ function render(){
     var m=data.models[mk];
     var ro=Object.keys(m.rollouts);
     html+='<tr data-model="'+esc(mk)+'">';
-    html+='<td class="model-name">'+esc(m.display_name)+(m.thinking_effort?' <span class="model-effort">['+esc(m.thinking_effort)+']</span>':'')+'</td>';
+    html+='<td class="model-name">'+esc(m.display_name)+(function(){var ef=EFFORT_LABELS[m.thinking_effort];if(ef===undefined)ef=m.thinking_effort||"";return ef?' <span class="model-effort">['+esc(ef)+']</span>':''})()+'</td>';
     var scores=ro.map(function(r){return activeScore(m.rollouts[r])});
     var avg=scores.reduce(function(a,b){return a+b},0)/(scores.length||1);
     html+='<td class="score-col"><span class="score-badge '+scoreClass(avg)+'">'+avg.toFixed(1)+'</span></td>';
@@ -289,7 +289,7 @@ function render(){
       var sol=document.getElementById("gSolution");
       var isCollapsed=sol.classList.contains("collapsed");
       sol.classList.toggle("collapsed");
-      this.textContent=isCollapsed?"Show less":"View all";
+      this.textContent=isCollapsed?"Show less":"Show more";
     });
   }
   // render LaTeX in question instruction
@@ -302,7 +302,7 @@ function render(){
       var ins=document.getElementById("qInstruction");
       var isCollapsed=ins.classList.contains("collapsed");
       ins.classList.toggle("collapsed");
-      this.textContent=isCollapsed?"Show less":"View all";
+      this.textContent=isCollapsed?"Show less":"Show more";
     });
   }
   // bind rollout clicks
@@ -338,7 +338,7 @@ function renderDetail(mk,ro,container){
   var cost=computeCost(mk,t);
   var html='';
   html+='<div class="ad-head">';
-  html+='<div class="ad-title">'+esc(m.display_name)+' <span class="model-effort">['+esc(m.thinking_effort||"default")+']</span> &middot; Rollout '+ro+'</div>';
+  html+='<div class="ad-title">'+esc(m.display_name)+(function(){var ef=EFFORT_LABELS[m.thinking_effort];if(ef===undefined)ef=m.thinking_effort||"";return ef?' <span class="model-effort">['+esc(ef)+']</span>':''})()+' &middot; Rollout '+ro+'</div>';
   html+='</div>';
   // metrics
   html+='<h4>Metrics</h4>';
