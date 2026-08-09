@@ -125,8 +125,9 @@ tr.lb-row.in{animation:slideIn .40s cubic-bezier(.25,.8,.25,1) both}
 .task-accordion .ta-content img{max-width:100%;border-radius:6px;margin:8px 0}
 .task-accordion .ta-content code{background:rgba(0,0,0,0.06);padding:1px 5px;border-radius:3px;font-size:12px}
 .task-accordion .ta-content .answer-text{color:var(--text-secondary);font-size:13px;line-height:1.7;white-space:pre-wrap}
-.task-accordion .q-answers-link{display:inline-block;margin:0 0 10px 0;font-size:13px;font-weight:600;color:var(--text-primary);text-decoration:none;border:1px solid var(--border-light);padding:6px 12px;border-radius:4px;background:var(--bg-primary)}
-.task-accordion .q-answers-link:hover{background:var(--bg-card);border-color:var(--text-muted)}
+.task-accordion .ta-linkbar{padding:2px 16px 8px 64px}
+.task-accordion .q-answers-link{display:inline-block;margin:0;font-size:13px;font-weight:600;color:var(--text-primary);text-decoration:underline;cursor:pointer}
+.task-accordion .q-answers-link:hover{color:var(--text-muted)}
 .task-loading{color:var(--text-muted);font-size:13px;padding:12px 0}
 
 .modal-overlay{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,0.5);backdrop-filter:blur(8px);display:flex;align-items:flex-start;justify-content:center;padding:48px 24px;overflow-y:auto;opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s}
@@ -675,7 +676,7 @@ async function openTaskModal(part){
       var fh=imageUrl?"<div><h4>Figure</h4><img src=\""+esc(imageUrl)+"\" loading=lazy onerror=\"this.parentElement.style.display='none'\" alt=\"Figure for "+esc(t.slug)+"\"></div>":"";
       var pid="ta-"+part+"-"+i;
       var link="<a href=\"/data/v1/tasks/"+encodeURIComponent(t.slug)+"\" class=\"q-answers-link\">View all model answers &amp; scores &rarr;</a>";
-      return"<div class=task-accordion id=\""+pid+"\"><button class=ta-header type=button aria-expanded=false onclick=\"toggleAccordion('"+part+"',"+i+")\"><div class=ta-id>"+t.id+"</div><div class=ta-q>"+esc(t.question)+"</div><div class=ta-arrow aria-hidden=true>▼</div></button><div class=ta-body><div class=ta-content>"+link+fh+"<h4>Golden Solution</h4><div class=answer-text>"+esc(t.answer)+"</div></div></div></div>";
+      return"<div class=task-accordion id=\""+pid+"\"><button class=ta-header type=button aria-expanded=false onclick=\"toggleAccordion('"+part+"',"+i+")\"><div class=ta-id>"+t.id+"</div><div class=ta-q>"+esc(t.question)+"</div><div class=ta-arrow aria-hidden=true>▼</div></button><div class=ta-linkbar>"+link+"</div><div class=ta-body><div class=ta-content>"+fh+"<h4>Golden Solution</h4><div class=answer-text>"+esc(t.answer)+"</div></div></div></div>";
     }).join("");
   }catch(error){
     document.getElementById("modalContent").innerHTML="<div class=task-loading>Task data could not be loaded. <a href=\"https://github.com/Arcadia-1/razavi-bench/tree/main/tasks\">Browse tasks on GitHub</a>.</div>";
