@@ -52,6 +52,7 @@ LABEL_OFFSETS = {
     "llama_4_maverick": (-8, 0),
     "minimax_m3": (8, 12),
     "qwen_37_plus": (-8, -20),
+    "qwen_38_27b": (8, 18),
     "qwen3_vl_235b_a22b_instruct": (8, 18),
 }
 

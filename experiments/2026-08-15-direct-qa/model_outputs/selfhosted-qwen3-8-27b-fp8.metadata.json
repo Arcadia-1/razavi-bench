@@ -1,0 +1,51 @@
+{
+  "api_format": "openai_chat_completions",
+  "benchmark": "razavi-bench",
+  "checkpoint_precision": "FP8",
+  "completed_answers": 150,
+  "concurrency_per_replica": 8,
+  "experiment": "2026-08-15-direct-qa",
+  "failed_answers": 0,
+  "image_answer_count": 138,
+  "input_cache": "disabled",
+  "license": "Apache-2.0",
+  "max_model_len": 131072,
+  "max_tokens": 65536,
+  "mode": "direct_multimodal_qa",
+  "model_name": "Qwen 3.8 27B",
+  "model_repository": "https://huggingface.co/Qwen/Qwen3.8-27B-FP8",
+  "model_revision": "017b9c7af6b5689d5dd426a76e0bc077eb5ca20a",
+  "output_file_sha256": {
+    "selfhosted-qwen3-8-27b-fp8-rollout-1.jsonl": "b1d722ef4c2aa6af612b24cedb626b22a6b4c729c35c72c35972a2eaad07d735",
+    "selfhosted-qwen3-8-27b-fp8-rollout-2.jsonl": "54f492190a6200fe8b8007c2e5de4251b3b4838df8ae879d8a1e2e59b7aeb000",
+    "selfhosted-qwen3-8-27b-fp8-rollout-3.jsonl": "6df1406048cdeac71476a0e9f70084a9183b8f101906b669fd36e314fb4b8f7d"
+  },
+  "provider_model": "Qwen/Qwen3.8-27B-FP8",
+  "reasoning": "provider_default",
+  "reasoning_parser": "qwen3",
+  "repo_commit": "5ebdd336b83fee3202650a54a55c261eff240c03",
+  "replica_count": 3,
+  "rollouts": [
+    1,
+    2,
+    3
+  ],
+  "run_date": "2026-08-15",
+  "runtime": {
+    "gpu": "NVIDIA H200",
+    "kv_cache_dtype": "bfloat16",
+    "torch": "2.13.0+cu129",
+    "transformers": "5.15.0",
+    "vllm": "0.27.1+cu129"
+  },
+  "temperature": 0.0,
+  "token_usage": {
+    "cached_input_tokens": 0,
+    "input_tokens": 248766,
+    "output_tokens": 1681715,
+    "total_tokens": 1930481
+  },
+  "active_slot_repair_count": 1,
+  "superseded_generation_attempt_count": 1,
+  "raw_responses_retained_locally": true
+}
