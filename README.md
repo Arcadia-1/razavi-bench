@@ -216,7 +216,9 @@ overlay applied to Part 1 Q15; all non-Q15 task scores are unchanged.
 The current active aggregate below is the August 15 snapshot covering 39 model
 configurations and 5,850 answers. Each value is the mean of DeepSeek V4 Pro and
 MiniMax M3 scores over three rollouts, with the Q15 hard-rule correction applied
-consistently.
+consistently. GPT-5.2, Doubao Seed 2.1 Pro, and the prior GPT-5.4 High
+configuration are excluded because no exact route was available for a
+thinking-enabled rerun.
 
 | Rank | Answer Model | Thinking Effort | Overall | Part 1 | Part 2 |
 |---:|---|---|---:|---:|---:|
