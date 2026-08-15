@@ -499,7 +499,10 @@ async def run(args: argparse.Namespace) -> None:
     if not items:
         raise SystemExit("No input records matched the requested filters")
 
-    rows = load_jsonl(output_path) if args.resume and output_path.exists() else []
+    rows = [
+        row for row in load_jsonl(output_path)
+        if not row.get("parse_error")
+    ] if args.resume and output_path.exists() else []
     done = {row.get("source_key") for row in rows if not row.get("parse_error")}
     pending = [item for item in items if source_key(item) not in done]
 

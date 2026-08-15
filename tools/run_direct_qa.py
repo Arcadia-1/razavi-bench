@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run Razavi-Bench Direct QA against an OpenAI-compatible multimodal API."""
+"""Run Razavi-Bench Direct QA against a supported multimodal API."""
 
 from __future__ import annotations
 
@@ -32,16 +32,33 @@ def sha256_file(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def image_content(path: Path) -> dict[str, Any]:
+def image_content(path: Path, api_format: str) -> dict[str, Any]:
     media_type = mimetypes.guess_type(path.name)[0] or "image/png"
     encoded = base64.b64encode(path.read_bytes()).decode("ascii")
+    if api_format == "anthropic_messages":
+        return {
+            "type": "image",
+            "source": {
+                "type": "base64",
+                "media_type": media_type,
+                "data": encoded,
+            },
+        }
     return {
         "type": "image_url",
         "image_url": {"url": f"data:{media_type};base64,{encoded}"},
     }
 
 
-def response_text(body: dict[str, Any]) -> tuple[str, str]:
+def response_text(body: dict[str, Any], api_format: str) -> tuple[str, str]:
+    if api_format == "anthropic_messages":
+        content = body.get("content") or []
+        text = "\n".join(
+            part.get("text", "")
+            for part in content
+            if isinstance(part, dict) and isinstance(part.get("text"), str)
+        )
+        return text, str(body.get("stop_reason") or "")
     choices = body.get("choices") or []
     if not choices:
         return "", ""
@@ -60,15 +77,21 @@ def response_text(body: dict[str, Any]) -> tuple[str, str]:
 
 
 def post_json(
-    url: str, api_key: str, payload: dict[str, Any], timeout: int
+    url: str,
+    api_key: str,
+    payload: dict[str, Any],
+    timeout: int,
+    api_format: str,
 ) -> dict[str, Any]:
+    headers = {"Content-Type": "application/json"}
+    if api_format == "anthropic_messages":
+        headers.update({"x-api-key": api_key, "anthropic-version": "2023-06-01"})
+    else:
+        headers["Authorization"] = f"Bearer {api_key}"
     request = urllib.request.Request(
         url,
         data=json.dumps(payload).encode("utf-8"),
-        headers={
-            "Authorization": f"Bearer {api_key}",
-            "Content-Type": "application/json",
-        },
+        headers=headers,
         method="POST",
     )
     with urllib.request.urlopen(request, timeout=timeout) as response:
@@ -145,13 +168,14 @@ async def main_async(args: argparse.Namespace) -> int:
     semaphore = asyncio.Semaphore(args.concurrency)
     write_lock = asyncio.Lock()
     counters = {"completed": len(completed), "failed": 0}
-    api_url = args.base_url.rstrip("/") + "/chat/completions"
+    api_path = "/v1/messages" if args.api_format == "anthropic_messages" else "/chat/completions"
+    api_url = args.base_url.rstrip("/") + api_path
     commit = git_commit()
 
     async def run_one(rollout: int, task_dir: Path) -> None:
         instruction = (task_dir / "instruction.md").read_text(encoding="utf-8")
         images = sorted(task_dir.glob("*.png"))
-        content = [image_content(path) for path in images]
+        content = [image_content(path, args.api_format) for path in images]
         content.append({"type": "text", "text": instruction})
         payload = {
             "model": args.model,
@@ -160,19 +184,21 @@ async def main_async(args: argparse.Namespace) -> int:
             "max_tokens": args.max_tokens,
             "stream": False,
         }
-        if args.disable_reasoning:
-            payload["reasoning"] = {"enabled": False, "exclude": True}
-
         error = ""
         async with semaphore:
             for attempt in range(1, args.attempts + 1):
                 started = time.monotonic()
                 try:
                     body = await asyncio.to_thread(
-                        post_json, api_url, api_key, payload, args.timeout
+                        post_json,
+                        api_url,
+                        api_key,
+                        payload,
+                        args.timeout,
+                        args.api_format,
                     )
                     elapsed = round(time.monotonic() - started, 3)
-                    answer, finish_reason = response_text(body)
+                    answer, finish_reason = response_text(body, args.api_format)
                     if not answer.strip():
                         raise ValueError("empty model response")
 
@@ -267,10 +293,10 @@ async def main_async(args: argparse.Namespace) -> int:
         "mode": "direct_multimodal_qa",
         "model_name": args.model_name,
         "provider_model": args.model,
-        "api_format": "openai_chat_completions",
+        "api_format": args.api_format,
         "temperature": args.temperature,
         "max_tokens": args.max_tokens,
-        "reasoning": "disabled" if args.disable_reasoning else "provider_default",
+        "reasoning": "provider_default",
         "rollouts": args.rollout,
         "concurrency": args.concurrency,
         "expected_answers": total_expected,
@@ -288,6 +314,11 @@ async def main_async(args: argparse.Namespace) -> int:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--base-url", required=True)
+    parser.add_argument(
+        "--api-format",
+        choices=("openai_chat_completions", "anthropic_messages"),
+        default="openai_chat_completions",
+    )
     parser.add_argument("--api-key-env", default="RAZAVI_DIRECT_API_KEY")
     parser.add_argument("--model", required=True)
     parser.add_argument("--model-name", required=True)
@@ -304,7 +335,6 @@ def main() -> None:
     parser.add_argument("--timeout", type=int, default=900)
     parser.add_argument("--max-tokens", type=int, default=65536)
     parser.add_argument("--temperature", type=float, default=0)
-    parser.add_argument("--disable-reasoning", action="store_true")
     parser.add_argument("--resume", action="store_true")
     args = parser.parse_args()
     raise SystemExit(asyncio.run(main_async(args)))
