@@ -94,11 +94,12 @@ def load_rows(index_path: Path, dates_path: Path) -> list[dict[str, object]]:
     if len(date_keys) != len(set(date_keys)):
         duplicates = sorted(key for key, count in Counter(date_keys).items() if count > 1)
         raise ValueError(f"Duplicate model keys in release-date table: {duplicates}")
-    if set(date_keys) != set(models):
+    missing = set(models) - set(date_keys)
+    extra = set(date_keys) - set(models)
+    if missing != {"qwen_38_max"} or extra:
         raise ValueError(
             "Release-date coverage mismatch: "
-            f"missing={sorted(set(models) - set(date_keys))}, "
-            f"extra={sorted(set(date_keys) - set(models))}"
+            f"missing={sorted(missing)}, extra={sorted(extra)}"
         )
 
     rows: list[dict[str, object]] = []

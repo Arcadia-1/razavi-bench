@@ -312,6 +312,7 @@ def call_judge_once(
     max_tokens: int,
     temperature: float | None,
     json_mode: bool,
+    thinking_mode: str,
 ) -> tuple[str, dict[str, Any]]:
     messages = [
         {"role": "system", "content": JUDGE_SYSTEM},
@@ -327,6 +328,8 @@ def call_judge_once(
             payload["temperature"] = temperature
         if json_mode:
             payload["response_format"] = {"type": "json_object"}
+        if thinking_mode != "provider_default":
+            payload["thinking"] = {"type": thinking_mode}
         body = post_json(api_url, api_key, payload, timeout)
         return response_text_from_chat(body), body
 
@@ -340,6 +343,8 @@ def call_judge_once(
             payload["temperature"] = temperature
         if json_mode:
             payload["text"] = {"format": {"type": "json_object"}}
+        if thinking_mode != "provider_default":
+            payload["thinking"] = {"type": thinking_mode}
         body = post_json(api_url, api_key, payload, timeout)
         return response_text_from_responses(body), body
 
@@ -360,6 +365,7 @@ def call_judge_with_retries(args: argparse.Namespace, api_key: str, prompt: str)
                 max_tokens=args.max_tokens,
                 temperature=args.temperature,
                 json_mode=args.json_mode,
+                thinking_mode=args.thinking_mode,
             )
             result = normalize_score(extract_json_object(text))
             if args.include_raw_response:
@@ -566,6 +572,7 @@ async def run(args: argparse.Namespace) -> None:
         "max_tokens": args.max_tokens,
         "temperature": args.temperature,
         "json_mode": args.json_mode,
+        "thinking_mode": args.thinking_mode,
         "max_retries": args.max_retries,
         "timeout": args.timeout,
         "concurrency": args.concurrency,
@@ -597,6 +604,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--max-tokens", type=int, default=2048)
     parser.add_argument("--temperature", type=float, default=0.0)
     parser.add_argument("--json-mode", action="store_true")
+    parser.add_argument(
+        "--thinking-mode",
+        choices=("provider_default", "enabled", "disabled"),
+        default="provider_default",
+    )
     parser.add_argument("--max-retries", type=int, default=5)
     parser.add_argument("--flush-every", type=int, default=10)
     parser.add_argument("--progress-every", type=int, default=10)

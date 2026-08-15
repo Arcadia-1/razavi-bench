@@ -184,6 +184,14 @@ async def main_async(args: argparse.Namespace) -> int:
             "max_tokens": args.max_tokens,
             "stream": False,
         }
+        if args.api_format == "openai_chat_completions":
+            payload["reasoning"] = (
+                {"enabled": True, "exclude": False}
+                if args.reasoning_effort == "default"
+                else {"effort": args.reasoning_effort, "exclude": False}
+            )
+        else:
+            payload["thinking"] = {"type": "enabled"}
         error = ""
         async with semaphore:
             for attempt in range(1, args.attempts + 1):
@@ -296,7 +304,8 @@ async def main_async(args: argparse.Namespace) -> int:
         "api_format": args.api_format,
         "temperature": args.temperature,
         "max_tokens": args.max_tokens,
-        "reasoning": "provider_default",
+        "reasoning": "enabled",
+        "reasoning_effort": args.reasoning_effort,
         "rollouts": args.rollout,
         "concurrency": args.concurrency,
         "expected_answers": total_expected,
@@ -334,6 +343,11 @@ def main() -> None:
     parser.add_argument("--attempts", type=int, default=5)
     parser.add_argument("--timeout", type=int, default=900)
     parser.add_argument("--max-tokens", type=int, default=65536)
+    parser.add_argument(
+        "--reasoning-effort",
+        choices=("default", "minimal", "low", "medium", "high", "xhigh", "max"),
+        default="default",
+    )
     parser.add_argument("--temperature", type=float, default=0)
     parser.add_argument("--resume", action="store_true")
     args = parser.parse_args()

@@ -213,8 +213,8 @@ overlay applied to Part 1 Q15; all non-Q15 task scores are unchanged.
 | Gemini | MiniMax-M3 | 79.67% | 88.89% | 65.83% |
 | Gemini | DeepSeek-V4-Pro | 81.83% | 91.11% | 67.92% |
 
-The current active aggregate below is the August 15 snapshot covering 42 model
-configurations and 6,300 answers. Each value is the mean of DeepSeek V4 Pro and
+The current active aggregate below is the August 15 snapshot covering 39 model
+configurations and 5,850 answers. Each value is the mean of DeepSeek V4 Pro and
 MiniMax M3 scores over three rollouts, with the Q15 hard-rule correction applied
 consistently.
 
@@ -227,12 +227,12 @@ consistently.
 | 5 | Claude Opus 5 | medium | 88.83% | 92.78% | 82.92% |
 | 6 | Claude Opus 4.8 | max | 87.75% | 92.50% | 80.62% |
 | 7 | Qwen 3.8 Max Preview | default | 87.42% | 97.92% | 71.67% |
-| 8 | Gemini 3.5 Flash | default | 87.42% | 95.69% | 75.00% |
+| 8 | Gemini 3.5 Flash | default | 86.83% | 95.69% | 73.54% |
 | 9 | GPT 5.6 Sol | max | 85.92% | 91.81% | 77.08% |
 | 10 | Gemini 3.6 Flash | default | 85.92% | 92.92% | 75.42% |
 
 <p align="center">
-  <img src="docs/assets/direct_qa_rollout_mean_all_metrics.png?v=20260815-42-models" alt="2026-08-15 Razavi-Bench Multimodal QA snapshot" title="2026-08-15 Razavi-Bench Multimodal QA snapshot" width="92%"/>
+  <img src="docs/assets/direct_qa_rollout_mean_all_metrics.png?v=20260815-39-models-thinking-rerun" alt="2026-08-15 Razavi-Bench Multimodal QA snapshot" title="2026-08-15 Razavi-Bench Multimodal QA snapshot" width="92%"/>
 </p>
 
 The release-date view uses vendor announcements where available and explicitly
@@ -240,5 +240,5 @@ marks preview or first-public-availability dates in the
 [model release-date table](docs/data/direct_qa/model_release_dates.csv).
 
 <p align="center">
-  <img src="docs/assets/direct_qa_score_vs_release_date.png?v=20260815-41-models" alt="Razavi-Bench score versus model release date" title="Razavi-Bench score versus model release date" width="96%"/>
+  <img src="docs/assets/direct_qa_score_vs_release_date.png?v=20260815-38-models" alt="Razavi-Bench score versus model release date" title="Razavi-Bench score versus model release date" width="96%"/>
 </p>
