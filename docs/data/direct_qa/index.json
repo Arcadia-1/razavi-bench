@@ -1,6 +1,6 @@
 {
   "schema_version": "razavi-bench.direct-qa.v1",
-  "generated_at": "2026-08-15T12:44:42.089655+00:00",
+  "generated_at": "2026-08-15T21:37:40.553293+00:00",
   "benchmark": {
     "mode": "direct_qa",
     "question_count": 50,
@@ -1210,6 +1210,247 @@
         }
       },
       "detail_file": "models/gemini_37_flash.json"
+    },
+    {
+      "model_key": "muse_spark_12",
+      "display_name": "Muse Spark 1.2",
+      "provider": "meta",
+      "evaluation_model_ids": [],
+      "thinking_effort": "xhigh",
+      "configuration_note": null,
+      "mode": "direct_qa",
+      "summary": {
+        "rollout_count": 3,
+        "answer_count": 150,
+        "scores": {
+          "overall": {
+            "active": {
+              "response_count": 150,
+              "correct_count": 117,
+              "incorrect_count": 33,
+              "partial_credit_count": 32,
+              "zero_count": 1,
+              "mean_score_0_to_4": 3.62,
+              "score_percent": 90.5,
+              "score_distribution": {
+                "0": 1,
+                "0.5": 1,
+                "1": 3,
+                "1.5": 9,
+                "2": 1,
+                "2.5": 4,
+                "3": 6,
+                "3.5": 8,
+                "4": 117
+              }
+            },
+            "minimax_m3": {
+              "response_count": 150,
+              "correct_count": 119,
+              "incorrect_count": 31,
+              "partial_credit_count": 30,
+              "zero_count": 1,
+              "mean_score_0_to_4": 3.56,
+              "score_percent": 89.0,
+              "score_distribution": {
+                "0": 1,
+                "1": 14,
+                "2": 4,
+                "3": 12,
+                "4": 119
+              }
+            },
+            "deepseek_v4_pro": {
+              "response_count": 150,
+              "correct_count": 129,
+              "incorrect_count": 21,
+              "partial_credit_count": 19,
+              "zero_count": 2,
+              "mean_score_0_to_4": 3.68,
+              "score_percent": 92.0,
+              "score_distribution": {
+                "0": 2,
+                "1": 3,
+                "2": 15,
+                "3": 1,
+                "4": 129
+              }
+            }
+          },
+          "part1": {
+            "active": {
+              "response_count": 90,
+              "correct_count": 78,
+              "incorrect_count": 12,
+              "partial_credit_count": 11,
+              "zero_count": 1,
+              "mean_score_0_to_4": 3.8444444444444446,
+              "score_percent": 96.11111111111111,
+              "score_distribution": {
+                "0": 1,
+                "0.5": 1,
+                "2.5": 1,
+                "3": 1,
+                "3.5": 8,
+                "4": 78
+              }
+            },
+            "minimax_m3": {
+              "response_count": 90,
+              "correct_count": 78,
+              "incorrect_count": 12,
+              "partial_credit_count": 11,
+              "zero_count": 1,
+              "mean_score_0_to_4": 3.7777777777777777,
+              "score_percent": 94.44444444444444,
+              "score_distribution": {
+                "0": 1,
+                "1": 2,
+                "2": 1,
+                "3": 8,
+                "4": 78
+              }
+            },
+            "deepseek_v4_pro": {
+              "response_count": 90,
+              "correct_count": 88,
+              "incorrect_count": 2,
+              "partial_credit_count": 0,
+              "zero_count": 2,
+              "mean_score_0_to_4": 3.911111111111111,
+              "score_percent": 97.77777777777777,
+              "score_distribution": {
+                "0": 2,
+                "4": 88
+              }
+            }
+          },
+          "part2": {
+            "active": {
+              "response_count": 60,
+              "correct_count": 39,
+              "incorrect_count": 21,
+              "partial_credit_count": 21,
+              "zero_count": 0,
+              "mean_score_0_to_4": 3.283333333333333,
+              "score_percent": 82.08333333333333,
+              "score_distribution": {
+                "1": 3,
+                "1.5": 9,
+                "2": 1,
+                "2.5": 3,
+                "3": 5,
+                "4": 39
+              }
+            },
+            "minimax_m3": {
+              "response_count": 60,
+              "correct_count": 41,
+              "incorrect_count": 19,
+              "partial_credit_count": 19,
+              "zero_count": 0,
+              "mean_score_0_to_4": 3.2333333333333334,
+              "score_percent": 80.83333333333333,
+              "score_distribution": {
+                "1": 12,
+                "2": 3,
+                "3": 4,
+                "4": 41
+              }
+            },
+            "deepseek_v4_pro": {
+              "response_count": 60,
+              "correct_count": 41,
+              "incorrect_count": 19,
+              "partial_credit_count": 19,
+              "zero_count": 0,
+              "mean_score_0_to_4": 3.3333333333333335,
+              "score_percent": 83.33333333333334,
+              "score_distribution": {
+                "1": 3,
+                "2": 15,
+                "3": 1,
+                "4": 41
+              }
+            }
+          }
+        },
+        "by_rollout": {
+          "1": {
+            "response_count": 50,
+            "correct_count": 42,
+            "incorrect_count": 8,
+            "partial_credit_count": 8,
+            "zero_count": 0,
+            "mean_score_0_to_4": 3.69,
+            "score_percent": 92.25,
+            "score_distribution": {
+              "1": 1,
+              "1.5": 3,
+              "2.5": 2,
+              "3": 2,
+              "4": 42
+            }
+          },
+          "2": {
+            "response_count": 50,
+            "correct_count": 38,
+            "incorrect_count": 12,
+            "partial_credit_count": 12,
+            "zero_count": 0,
+            "mean_score_0_to_4": 3.6,
+            "score_percent": 90.0,
+            "score_distribution": {
+              "0.5": 1,
+              "1": 1,
+              "1.5": 3,
+              "2": 1,
+              "3": 2,
+              "3.5": 4,
+              "4": 38
+            }
+          },
+          "3": {
+            "response_count": 50,
+            "correct_count": 37,
+            "incorrect_count": 13,
+            "partial_credit_count": 12,
+            "zero_count": 1,
+            "mean_score_0_to_4": 3.57,
+            "score_percent": 89.25,
+            "score_distribution": {
+              "0": 1,
+              "1": 1,
+              "1.5": 3,
+              "2.5": 2,
+              "3": 2,
+              "3.5": 4,
+              "4": 37
+            }
+          }
+        },
+        "tokens": {
+          "response_count": 150,
+          "usage_record_count": 150,
+          "complete_usage_count": 150,
+          "missing_usage_count": 0,
+          "missing_cached_input_count": 0,
+          "complete": true,
+          "totals": {
+            "cached_input_tokens": 31879,
+            "input_tokens": 301506,
+            "output_tokens": 1371681,
+            "total_tokens": 1673187
+          },
+          "known_totals": {
+            "cached_input_tokens": 31879,
+            "input_tokens": 301506,
+            "output_tokens": 1371681,
+            "total_tokens": 1673187
+          }
+        }
+      },
+      "detail_file": "models/muse_spark_12.json"
     },
     {
       "model_key": "claude_opus_5_medium",

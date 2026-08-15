@@ -1,0 +1,24 @@
+{
+  "benchmark": "razavi-bench",
+  "experiment": "2026-08-16-direct-qa",
+  "run_date": "2026-08-16",
+  "repo_commit": "7c1a41a4f70732c04e5a9a239f79f6e4428b0469",
+  "mode": "direct_multimodal_qa",
+  "model_name": "Muse Spark 1.2",
+  "provider_model": "meta/muse-spark-1.2",
+  "api_format": "openai_chat_completions",
+  "temperature": 0.0,
+  "max_tokens": 131072,
+  "reasoning": "enabled",
+  "reasoning_effort": "xhigh",
+  "rollouts": [
+    1,
+    2,
+    3
+  ],
+  "concurrency": 20,
+  "expected_answers": 150,
+  "completed_answers": 150,
+  "failed_answers": 0,
+  "raw_responses_retained_locally": true
+}

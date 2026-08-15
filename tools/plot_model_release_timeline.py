@@ -59,6 +59,7 @@ LABEL_OFFSETS = {
 RECENT_LABEL_Y = {
     "claude_opus_5_high": 96.4,
     "claude_opus_5_xhigh": 93.6,
+    "muse_spark_12": 92.0,
     "claude_opus_5": 90.8,
     "claude_opus_5_medium": 88.0,
     "qwen_38": 85.5,
