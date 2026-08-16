@@ -62,7 +62,7 @@ RECENT_LABEL_Y = {
     "muse_spark_12": 92.0,
     "claude_opus_5": 90.8,
     "claude_opus_5_medium": 88.0,
-    "qwen_38": 85.5,
+    "qwen_38_max": 85.5,
     "gemini_36_flash": 83.3,
     "gpt_56": 81.1,
     "gpt_56_terra": 78.9,
@@ -97,7 +97,7 @@ def load_rows(index_path: Path, dates_path: Path) -> list[dict[str, object]]:
         raise ValueError(f"Duplicate model keys in release-date table: {duplicates}")
     missing = set(models) - set(date_keys)
     extra = set(date_keys) - set(models)
-    if missing != {"qwen_38_max"} or extra:
+    if missing or extra:
         raise ValueError(
             "Release-date coverage mismatch: "
             f"missing={sorted(missing)}, extra={sorted(extra)}"

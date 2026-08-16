@@ -171,7 +171,7 @@ footer .footer-row{margin-bottom:6px}
   </div>
   <div style="max-width:900px;margin-top:28px;">
     <p class="hero-sub" style="font-size:15px;max-width:900px;text-align:justify;">
-      Razavi-Bench covers 10 frontier models as of July 25, 2026 -- including Claude Fable 5, Claude Opus 5, GPT 5.6 Sol Pro, Qwen 3.8 Max Preview, Kimi K3, and MiniMax M3 -- on 50 expert-written analog design questions,
+      Razavi-Bench covers 10 frontier models as of August 16, 2026 -- including Claude Fable 5, Claude Opus 5, GPT 5.6 Sol Pro, Qwen 3.8 Max, Kimi K3, and MiniMax M3 -- on 50 expert-written analog design questions,
       with all scores recalculated using a corrected rubric after a careful audit of Q15. The update also introduces agentic results: four models paired with an ngspice simulator,
       showing that tool access helps some models while introducing new failure modes for others.
     </p>
@@ -268,7 +268,7 @@ var DD=[
 {m:"claude_fable5",d:"Claude Fable 5",e:"max",o:{mn:92.25,lo:90,hi:95.5,d:[1,2.3,1.5,1.5,43.7],dp:[2,4.6,3,3,87.4]},p1:{mn:95.83,lo:94.17,hi:96.67,d:[1,0,0.2,0.7,28.2],dp:[3.3,0,0.7,2.3,93.7]},p2:{mn:86.88,lo:82.5,hi:93.75,d:[0,2.3,1.3,0.8,15.5],dp:[0,11.6,6.5,4,77.9]}},
 {m:"claude_opus5",d:"Claude Opus 5",e:"max",o:{mn:92.17,lo:91.5,hi:93,d:[1,1.8,1.7,2.8,42.7],dp:[2,3.7,3.3,5.7,85.3]},p1:{mn:95,lo:92.5,hi:96.67,d:[1,0.3,0.2,0.7,27.8],dp:[3.3,1.1,0.6,2.2,92.8]},p2:{mn:87.92,lo:85,hi:92.5,d:[0,1.5,1.5,2.2,14.8],dp:[0,7.5,7.5,10.8,74.2]}},
 {m:"claude_opus48",d:"Claude Opus 4.8",e:"max",o:{mn:87.75,lo:85.5,hi:89.5,d:[1.8,2.8,2.5,3.7,39.2],dp:[3.6,5.6,5,7.4,78.4]},p1:{mn:92.5,lo:91.67,hi:93.33,d:[1.7,0.3,0,1.3,26.7],dp:[5.7,1,0,4.3,89]},p2:{mn:80.63,lo:75,hi:85,d:[0.2,2.5,2.5,2.3,12.5],dp:[1,12.5,12.5,11.5,62.5]}},
-{m:"qwen38",d:"Qwen 3.8 Max Preview",e:"high",o:{mn:87.42,lo:85.75,hi:89.75,d:[0,6.7,2.7,1.7,40],dp:[0,13.1,5.3,3.3,78.4]},p1:{mn:97.92,lo:96.67,hi:99.58,d:[0,0.7,0.3,1,29.7],dp:[0,2.2,1,3.2,93.7]},p2:{mn:71.67,lo:69.38,hi:75,d:[0,6,2.3,1,11.3],dp:[0,29,11.3,4.9,54.9]}},
+{m:"qwen38",d:"Qwen 3.8 Max",e:"default",o:{mn:85.67,lo:83.5,hi:89.25,d:[0,7.7,1.7,2.3,38.3],dp:[0,15.3,3.3,4.7,76.7]},p1:{mn:97.78,lo:97.08,hi:98.33,d:[0,0.3,0,1.7,28],dp:[0,1.1,0,5.6,93.3]},p2:{mn:67.5,lo:63.13,hi:75.63,d:[0,7.3,1.7,0.7,10.3],dp:[0,36.7,8.3,3.3,51.7]}},
 {m:"gpt56",d:"GPT 5.6 Sol Pro",e:"high",o:{mn:85.92,lo:85,hi:87.5,d:[1,4,4,4.2,36.8],dp:[2,8,8,8.4,73.6]},p1:{mn:91.81,lo:90,hi:93.33,d:[1,1.3,0.3,1.2,26.2],dp:[3.3,4.3,1,4,87.3]},p2:{mn:77.08,lo:72.5,hi:80,d:[0,2.7,3.7,3,10.7],dp:[0,13.4,18.4,14.9,53.2]}},
 {m:"gemini31",d:"Gemini 3.1 Pro",e:"high",o:{mn:80.75,lo:77,hi:84.5,d:[1.7,5.8,3.5,7.3,31.7],dp:[3.4,11.6,7,14.6,63.4]},p1:{mn:90,lo:86.67,hi:94.17,d:[1.3,0.3,0.7,4.3,23.3],dp:[4.3,1,2.3,14.4,77.9]},p2:{mn:66.88,lo:62.5,hi:70,d:[0.3,5.5,2.8,3,8.3],dp:[1.5,27.6,14.1,15.1,41.7]}},
 {m:"gpt55",d:"GPT-5.5",e:"high",o:{mn:79.83,lo:75,hi:84.5,d:[2.8,6,3.5,4,33.7],dp:[5.6,12,7,8,67.4]},p1:{mn:85,lo:82.5,hi:86.67,d:[2.5,1.7,0.8,1.3,23.7],dp:[8.3,5.7,2.7,4.3,79]},p2:{mn:72.08,lo:60,hi:82.5,d:[0.3,4.3,2.7,2.7,10],dp:[1.5,21.5,13.5,13.5,50]}},
