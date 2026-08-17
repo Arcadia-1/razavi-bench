@@ -200,7 +200,7 @@ function countryName(code){
 
 // ==== ENDPOINTS ====
 var local=/^(localhost|127\.0\.0\.1)$/.test(location.hostname);
-var STATS_URL=local?"http://127.0.0.1:8788/api/stats":"https://razavi-bench-data.arcadia16zzs.workers.dev/api/stats";
+var STATS_URL=local?"http://127.0.0.1:8788/api/stats":"https://razavi-bench.tokenzhang.com/api/stats";
 
 function fetchJSON(url,ms){
   var ctrl=typeof AbortController!=="undefined"?new AbortController():null;
@@ -459,7 +459,7 @@ var DATA=null;
 // Content pages only: the root page + each task page. Shell pages
 // (analytics/question/index aliases) are excluded and normalized away.
 var KNOWN_PAGES=["/"];
-var TASK_URLS=["data/tasks.jsonl","https://razavi-bench.tokenzhang.com/data/tasks.jsonl","https://razavi-bench-data.arcadia16zzs.workers.dev/api/tasks.jsonl","https://raw.githubusercontent.com/Arcadia-1/razavi-bench/main/data/tasks.jsonl"];
+var TASK_URLS=["data/tasks.jsonl","https://razavi-bench.tokenzhang.com/data/tasks.jsonl","https://razavi-bench.tokenzhang.com/api/tasks.jsonl","https://raw.githubusercontent.com/Arcadia-1/razavi-bench/main/data/tasks.jsonl"];
 function loadKnownPages(){
   var attempts=TASK_URLS.map(function(u){
     return fetch(u,{cache:"no-cache"}).then(function(r){if(r.ok)return r.text();throw new Error()}).catch(function(){return null});
@@ -558,7 +558,7 @@ function visitId(){
   return current;
 }
 function loadVisitStats(){
-  var hitEndpoint=local?"http://127.0.0.1:8788/api/hit":"https://razavi-bench-data.arcadia16zzs.workers.dev/api/hit";
+  var hitEndpoint=local?"http://127.0.0.1:8788/api/hit":"https://razavi-bench.tokenzhang.com/api/hit";
   try{
     var ctrl=typeof AbortController!=="undefined"?new AbortController():null;
     var params=new URLSearchParams(location.search);

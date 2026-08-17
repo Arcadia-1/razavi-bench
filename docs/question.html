@@ -215,7 +215,7 @@ function loadData(){
   var urls=[];
   if(!isFile)urls.push("/data/direct_qa/questions/"+qid+".json");
   urls.push("https://razavi-bench.tokenzhang.com/data/direct_qa/questions/"+qid+".json");
-  urls.push("https://razavi-bench-data.arcadia16zzs.workers.dev/api/questions/"+qid+".json");
+  urls.push("https://razavi-bench.tokenzhang.com/api/questions/"+qid+".json");
   var attempts=urls.map(function(u){
     return fetch(u,{cache:"no-cache"}).then(function(r){if(r.ok)return r.json();throw new Error()}).catch(function(){return null});
   });
@@ -391,8 +391,8 @@ function visitId(){
 }
 function loadVisitStats(){
   var local=/^(localhost|127\.0\.0\.1)$/.test(location.hostname);
-  var hitEndpoint=local?"http://127.0.0.1:8788/api/hit":"https://razavi-bench-data.arcadia16zzs.workers.dev/api/hit";
-  var statsEndpoint=local?"http://127.0.0.1:8788/api/stats":"https://razavi-bench-data.arcadia16zzs.workers.dev/api/stats";
+  var hitEndpoint=local?"http://127.0.0.1:8788/api/hit":"https://razavi-bench.tokenzhang.com/api/hit";
+  var statsEndpoint=local?"http://127.0.0.1:8788/api/stats":"https://razavi-bench.tokenzhang.com/api/stats";
   function timed(url,opts,ms){
     var ctrl=typeof AbortController!=="undefined"?new AbortController():null;
     var timer=ctrl?setTimeout(function(){ctrl.abort()},ms):null;
@@ -428,7 +428,7 @@ loadData().then(function(d){
 
 // ==== PREV / NEXT QUESTION NAVIGATION ====
 var NAV_SLUGS=null;
-var NAV_URLS=["/data/tasks.jsonl","https://razavi-bench.tokenzhang.com/data/tasks.jsonl","https://razavi-bench-data.arcadia16zzs.workers.dev/api/tasks.jsonl","https://raw.githubusercontent.com/Arcadia-1/razavi-bench/main/data/tasks.jsonl"];
+var NAV_URLS=["/data/tasks.jsonl","https://razavi-bench.tokenzhang.com/data/tasks.jsonl","https://razavi-bench.tokenzhang.com/api/tasks.jsonl","https://raw.githubusercontent.com/Arcadia-1/razavi-bench/main/data/tasks.jsonl"];
 function loadNav(){
   if(NAV_SLUGS){
     renderNav();
