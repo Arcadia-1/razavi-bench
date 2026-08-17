@@ -66,7 +66,7 @@ Top-level files:
 
 | Path | Purpose |
 |---|---|
-| `data/` | Hugging Face Dataset Viewer friendly JSONL exports |
+| `data/` | Hugging Face Dataset Viewer friendly task export and human-reviewed visual-facts JSONL |
 | `evaluation_rubric.md` | 0-4 evaluation guide used by judge scripts |
 | `agentic/` | Public agentic evaluation modes, harness examples, and skill assets |
 | `netlists/` | Curated executable SPICE representations of the 38 unique schematic figures |
@@ -96,6 +96,25 @@ scores, and explanatory commentary.
 Each `golden_solution.md` contains the expected reasoning and final answer for
 evaluation. The golden answers were reviewed against the source articles,
 figures, and circuit analysis.
+
+## Human-Reviewed Visual Facts
+
+[`data/visual_facts.jsonl`](data/visual_facts.jsonl) contains 41 human-reviewed
+schematic visual units with paired Chinese and English visual-only annotations,
+covering all 46 figure tasks. Each row reuses an original image under `tasks/`
+through `source_figure_path` and `crop_box`, and points to the canonical
+executable topology under `netlists/` through `netlist_paths`. The annotations
+record presentation facts that executable netlists do not represent cleanly,
+such as arrows, colors, omitted terminals, duplicate labels, and subfigure
+boundaries. The dataset stores no copied images and no second topology
+transcription.
+
+[`tools/run_visual_ablation.py`](tools/run_visual_ablation.py) runs independent
+visual-extraction or netlist-plus-visual-annotation reasoning ablations, and
+[`tools/validate_visual_facts.py`](tools/validate_visual_facts.py) checks the
+dataset structure, coverage, image crops, and netlist references. These tracks
+remain separate from official Direct and Agentic evaluation. See
+[`tools/README.md`](tools/README.md) for usage.
 
 ## Evaluation Tools
 
