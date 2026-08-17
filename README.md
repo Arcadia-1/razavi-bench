@@ -213,12 +213,15 @@ overlay applied to Part 1 Q15; all non-Q15 task scores are unchanged.
 | Gemini | MiniMax-M3 | 79.67% | 88.89% | 65.83% |
 | Gemini | DeepSeek-V4-Pro | 81.83% | 91.11% | 67.92% |
 
-The current active aggregate below is the August 16 snapshot covering 41 model
-configurations and 6,150 answers. Each value is the mean of DeepSeek V4 Pro and
+The current active aggregate below is the August 17 snapshot covering 42 model
+configurations and 6,300 answers. Each value is the mean of DeepSeek V4 Pro and
 MiniMax M3 scores over three rollouts, with the Q15 hard-rule correction applied
-consistently. GPT-5.2, Doubao Seed 2.1 Pro, and the prior GPT-5.4 High
-configuration are excluded because no exact route was available for a
-thinking-enabled rerun.
+consistently. GPT-5.2 remains excluded because all 150 published answers were
+generated without reasoning. Doubao Seed 2.1 Pro also remains excluded because
+one repair answer in its otherwise reasoning-enabled batch was generated with
+reasoning disabled, and no exact route is currently available to replace that
+slot. GPT-5.4 High is active after its original Vela logs were verified to use
+`reasoning.effort=high` for all 150 answers.
 
 | Rank | Answer Model | Thinking Effort | Overall | Part 1 | Part 2 |
 |---:|---|---|---:|---:|---:|
@@ -234,7 +237,7 @@ thinking-enabled rerun.
 | 10 | GPT 5.6 Sol | max | 85.92% | 91.81% | 77.08% |
 
 <p align="center">
-  <img src="docs/assets/direct_qa_rollout_mean_all_metrics.png?v=20260816-41-models" alt="2026-08-16 Razavi-Bench Multimodal QA snapshot" title="2026-08-16 Razavi-Bench Multimodal QA snapshot" width="92%"/>
+  <img src="docs/assets/direct_qa_rollout_mean_all_metrics.png?v=20260817-gpt54-high-restored" alt="2026-08-17 Razavi-Bench Multimodal QA snapshot" title="2026-08-17 Razavi-Bench Multimodal QA snapshot" width="92%"/>
 </p>
 
 The release-date view uses vendor announcements where available and explicitly
@@ -242,5 +245,5 @@ marks preview or first-public-availability dates in the
 [model release-date table](docs/data/direct_qa/model_release_dates.csv).
 
 <p align="center">
-  <img src="docs/assets/direct_qa_score_vs_release_date.png?v=20260816-41-dated-models" alt="Razavi-Bench score versus model release date" title="Razavi-Bench score versus model release date" width="96%"/>
+  <img src="docs/assets/direct_qa_score_vs_release_date.png?v=20260817-gpt54-high-restored" alt="Razavi-Bench score versus model release date" title="Razavi-Bench score versus model release date" width="96%"/>
 </p>
