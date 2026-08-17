@@ -352,7 +352,7 @@ var PRICE={
 var NO_API_COST={qwen_38_27b:true};
 var PALETTE=["#7c8ba0","#426b8f","#5b7fa5","#6b9eb3","#6b9e7a","#c4956a","#c47a6a","#8b7ba5","#b38b6b","#7a7a85","#3a7d8c","#9a6f9e","#c97b84","#6a8f4e","#b5733d","#4f7fb3","#a8747b","#6f8f6f","#9b8a5f","#7d6f9c","#578a8f","#b3855a","#8a5f7d","#5f8a6a","#a06a6a","#6a7f9c"];
 var EFFORT_LABELS={max:"max",high:"high",medium:"med",xhigh:"xhigh",default:"",disabled:"",low:"low"};
-var DATA_INDEX_URL=["https://razavi-bench.tokenzhang.com/data/direct_qa/index.json","https://razavi-bench-data.arcadia16zzs.workers.dev/api/index.json","https://razavi-bench.tokenzhang.com/api/index.json","data/direct_qa/index.json","https://raw.githubusercontent.com/Arcadia-1/razavi-bench/main/docs/data/direct_qa/index.json"];
+var DATA_INDEX_URL=["https://razavi-bench.tokenzhang.com/data/direct_qa/index.json","https://razavi-bench.tokenzhang.com/api/index.json","data/direct_qa/index.json","https://raw.githubusercontent.com/Arcadia-1/razavi-bench/main/docs/data/direct_qa/index.json"];
 function fetchData(urls){var attempts=urls.map(function(u){return fetchWithTimeout(u,10000).then(function(r){if(r&&r.ok)return r.json();throw new Error("Status")}).catch(function(){return null})});return new Promise(function(res,rej){var done=0;attempts.forEach(function(p){p.then(function(v){if(v){res(v)}else{done++;if(done===attempts.length)rej(new Error("All data sources failed"))}})});});}
 function fetchWithTimeout(url,ms){
   if(location.protocol==="file:"){return fetch(url,{cache:"no-cache"});}
@@ -405,10 +405,10 @@ function loadBenchmarkData(){
 
 
 // ==== CANONICAL TASK DATA ====
-var TASK_DATA_URLS=["data/tasks.jsonl","https://razavi-bench.tokenzhang.com/data/tasks.jsonl","https://razavi-bench-data.arcadia16zzs.workers.dev/api/tasks.jsonl","https://razavi-bench.tokenzhang.com/api/tasks.jsonl","https://raw.githubusercontent.com/Arcadia-1/razavi-bench/main/data/tasks.jsonl"];
+var TASK_DATA_URLS=["data/tasks.jsonl","https://razavi-bench.tokenzhang.com/data/tasks.jsonl","https://razavi-bench.tokenzhang.com/api/tasks.jsonl","https://raw.githubusercontent.com/Arcadia-1/razavi-bench/main/data/tasks.jsonl"];
 var taskGroups={part1:[],part2:[]};
 var taskDataPromise=null;
-var TASK_STATS_URLS=["data/task_stats.json","https://razavi-bench.tokenzhang.com/data/task_stats.json","https://razavi-bench-data.arcadia16zzs.workers.dev/api/task_stats.json","https://raw.githubusercontent.com/Arcadia-1/razavi-bench/main/docs/data/task_stats.json"];
+var TASK_STATS_URLS=["data/task_stats.json","https://razavi-bench.tokenzhang.com/data/task_stats.json","https://razavi-bench.tokenzhang.com/api/task_stats.json","https://raw.githubusercontent.com/Arcadia-1/razavi-bench/main/docs/data/task_stats.json"];
 var taskStatsCache=null;
 function loadTaskStats(){
   if(taskStatsCache)return taskStatsCache;
@@ -749,8 +749,8 @@ function visitId(){
 }
 function loadVisitStats(){
   var local=/^(localhost|127\.0\.0\.1)$/.test(location.hostname);
-  var hitEndpoint=local?"http://127.0.0.1:8788/api/hit":"https://razavi-bench-data.arcadia16zzs.workers.dev/api/hit";
-  var statsEndpoint=local?"http://127.0.0.1:8788/api/stats":"https://razavi-bench-data.arcadia16zzs.workers.dev/api/stats";
+  var hitEndpoint=local?"http://127.0.0.1:8788/api/hit":"https://razavi-bench.tokenzhang.com/api/hit";
+  var statsEndpoint=local?"http://127.0.0.1:8788/api/stats":"https://razavi-bench.tokenzhang.com/api/stats";
   // fire-and-forget the hit (may be slow on some networks)
   try{
     var ctrl=typeof AbortController!=="undefined"?new AbortController():null;
