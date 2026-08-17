@@ -6,6 +6,7 @@ const INDEX_KEY = "direct_qa/index.json";
 const TASKS_KEY = "tasks/tasks.jsonl";
 const RAW_BASE = "https://raw.githubusercontent.com/Arcadia-1/razavi-bench/main";
 const VISITOR_ID_PATTERN = /^[0-9a-f-]{36}$/i;
+const COUNTRY_PATTERN = /^[A-Z]{2}$/;
 
 function apiHeaders(cacheControl = "no-store") {
   return {
@@ -32,8 +33,20 @@ export default {
       if (!VISITOR_ID_PATTERN.test(visitorId)) {
         return Response.json({ error: "Invalid visitor ID" }, { status: 400, headers: apiHeaders() });
       }
+      const country =
+        (typeof body?.country === "string" && COUNTRY_PATTERN.test(body.country)
+          ? body.country
+          : "") ||
+        (typeof request.headers.get("CF-IPCountry") === "string" &&
+        COUNTRY_PATTERN.test(request.headers.get("CF-IPCountry"))
+          ? request.headers.get("CF-IPCountry")
+          : "");
+      const referrer = typeof body?.referrer === "string" ? body.referrer : "";
+      const utmSource = typeof body?.utmSource === "string" ? body.utmSource : "";
+      const path = normalizePath(typeof body?.path === "string" ? body.path : "");
+      const source = utmSource || referrerOrigin(referrer);
       try {
-        const stats = await recordPageView(env.VISIT_STATS, visitorId);
+        const stats = await recordPageView(env.VISIT_STATS, visitorId, { country, source, path });
         return Response.json(stats, { headers: apiHeaders() });
       } catch (err) {
         return Response.json({ error: "Visit tracking unavailable" }, { status: 502, headers: apiHeaders() });
@@ -41,8 +54,9 @@ export default {
     }
 
     if (request.method === "GET" && path === "/api/stats") {
+      const days = clampDays(url.searchParams.get("days"));
       try {
-        const stats = await queryVisitStats(env.VISIT_STATS);
+        const stats = await queryVisitStats(env.VISIT_STATS, days);
         return Response.json(stats, { headers: apiHeaders("public, max-age=300") });
       } catch (err) {
         return Response.json({ error: "Visit stats unavailable" }, { status: 502, headers: apiHeaders() });
@@ -115,3 +129,30 @@ export default {
     return new Response("Not found", { status: 404 });
   },
 };
+
+// 统一页面路径：/index.html -> /，/analytics.html -> /analytics，去掉尾部斜杠和 query
+function normalizePath(p) {
+  if (!p) return "/";
+  p = p.split("?")[0].split("#")[0];
+  if (p === "/index.html" || p === "/index.htm") p = "/";
+  if (p === "/analytics.html") p = "/analytics";
+  if (p.length > 1 && p.endsWith("/")) p = p.slice(0, -1);
+  return p || "/";
+}
+
+// utm_source 优先；否则取 referrer 的 host（去掉 www.）；无则 "direct"
+function referrerOrigin(referrer) {
+  if (!referrer) return "direct";
+  try {
+    const host = new URL(referrer).hostname;
+    return host ? host.replace(/^www\./, "") : "direct";
+  } catch (err) {
+    return "direct";
+  }
+}
+
+function clampDays(raw) {
+  const n = Number.parseInt(raw, 10);
+  if (!Number.isFinite(n) || n < 1) return 0;
+  return Math.min(n, 365);
+}
