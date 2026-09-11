@@ -103,6 +103,62 @@ footer .footer-row{margin-bottom:6px}
 .visit-stats{margin-top:14px;font-family:'SF Mono','Fira Code','Cascadia Code','JetBrains Mono',monospace;font-size:11px;font-variant-numeric:tabular-nums;color:var(--text-muted)}
 
 @media(max-width:768px){.stat-cards{grid-template-columns:repeat(2,1fr);gap:20px}.chart-card{padding:12px}.tables-row{grid-template-columns:1fr}}
+
+/* Layout and typographic parity with Analog Design Bench analytics. */
+:root{
+  --bg:#ffffff;--card:#ffffff;--border:#e5e7eb;--border-light:#c7cbd1;
+  --text:#131a26;--text-muted:#6b7280;--muted-soft:#8b93a1;--accent:#184ec8;
+  --accent-soft:rgba(24,78,200,.09);--grid:#e5e7eb;--rowline:rgba(17,24,39,.12);--max-width:1076px;
+}
+body.dark{--bg:#10141c;--card:#10141c;--border:#303744;--border-light:#4b5563;--text:#f4f7fb;--text-muted:#a8b0bd;--muted-soft:#7c8797;--accent:#77a5ff;--accent-soft:rgba(119,165,255,.12);--grid:#303744;--rowline:rgba(255,255,255,.13)}
+body{font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,sans-serif;line-height:1.5;letter-spacing:-.005em}
+nav{position:absolute;top:0;left:0;right:0;height:64px;padding:0 28px;background:transparent;border:0;z-index:10}
+nav .nav-inner{max-width:none;height:64px}
+nav .logo{display:none}
+nav .nav-right{width:100%;display:flex;align-items:center;gap:0}
+nav .nav-right a{order:2;margin-left:auto;font-family:Georgia,"Times New Roman",serif;color:var(--text-muted);font-size:15px;font-weight:400}
+.nav-moon{order:1;width:24px;height:24px;border:0;border-radius:50%;font-size:0;padding:0;color:var(--text)}
+.nav-moon::before{content:"";display:block;width:13px;height:13px;margin:auto;border-radius:50%;box-shadow:-4px 2px 0 0 currentColor;transform:translate(2px,-1px)}
+body.dark .nav-moon::before{box-shadow:none;background:currentColor}
+main{max-width:var(--max-width);padding:80px 0 80px}
+.page-head{display:block;margin-bottom:38px}
+.page-head h1{font-size:48px;font-weight:750;line-height:1.05;letter-spacing:-.045em}
+.page-head .updated{display:block;margin-top:10px;font-size:15px;color:var(--text-muted);font-variant-numeric:tabular-nums}
+.page-head .updated::before{content:"First-party counts · UTC days · updated "}
+.stat-cards{grid-template-columns:repeat(4,1fr);gap:0;margin-bottom:40px;padding-top:4px;border-top:1.5px solid var(--text);border-bottom:1px solid var(--border)}
+.stat-card{padding:2px 0 8px}
+.stat-card .stat-label{font-family:Georgia,"Times New Roman",serif;font-size:14px;letter-spacing:0;color:var(--text-muted);margin-bottom:2px}
+.stat-card .stat-value{font-family:ui-monospace,"SFMono-Regular",Consolas,monospace;font-size:30px;font-weight:700;letter-spacing:.025em;line-height:1.2}
+.section{padding-top:0;margin:0 0 39px}
+.section:first-of-type{margin-top:0}
+.sec-head{min-height:46px;margin:0 0 19px;padding:0 0 9px;border-bottom:2px solid var(--text);flex-wrap:nowrap}
+.sec-head h2,.table-block h3{font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,sans-serif;font-size:26px;font-weight:730;letter-spacing:-.035em;line-height:1.2}
+.map-legend{font-family:ui-monospace,"SFMono-Regular",Consolas,monospace;font-size:12px;letter-spacing:.04em;text-transform:none;color:var(--text-muted)}
+.map-wrap{border:0;border-radius:0;background:#afc3dc;aspect-ratio:1076/425}
+.map-wrap svg{width:100%;height:100%}
+.chart-card{border:0;border-radius:0;padding:0;overflow:visible}
+.chart-card .chart-wrap{height:235px}
+.range-controls{margin:-7px 0 12px;justify-content:flex-end;font-family:Georgia,"Times New Roman",serif;font-size:13px}
+.range-controls input[type=date]{border:1px solid var(--border-light);border-radius:4px;padding:3px 6px;font-size:12px;background:var(--bg)}
+.range-controls button{border:0;border-radius:0;padding:4px 3px;background:transparent;color:var(--text-muted);font:13px Georgia,"Times New Roman",serif;text-decoration:underline;text-underline-offset:3px}
+.range-controls button:hover{background:transparent;color:var(--text)}
+.tables-row{grid-template-columns:1fr 1fr;gap:36px;padding-top:0;margin:0 0 39px}
+.tables-row.full{grid-template-columns:1fr;padding-top:0;margin-bottom:0}
+.table-block h3{margin:0 0 0;padding:0 0 9px;border-bottom:2px solid var(--text)}
+.table-wrap{overflow-x:auto}
+table{font-family:Georgia,"Times New Roman",serif;font-size:13px}
+thead th{padding:9px 10px;font-size:12px;font-weight:400;letter-spacing:0;text-transform:none;color:var(--text-muted);border-bottom:1px solid var(--border)}
+tbody td{padding:7px 10px;font-size:13px;border-bottom:1px solid var(--rowline)}
+tbody td.name{font-weight:400}
+tbody tr:hover{background:var(--accent-soft)}
+tbody td.right,#pagesTable tbody td.right{font-family:ui-monospace,"SFMono-Regular",Consolas,monospace;font-size:13px;font-weight:500}
+td .pct,#pagesTable tbody td.name .pct,#pagesTable tbody td.right .pct{display:block;margin:0;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:400;color:var(--text-muted)}
+.table-mask .mask-fade{height:74px;padding-bottom:8px;background:linear-gradient(180deg,transparent,var(--bg) 76%)}
+.table-mask .mask-fade button{font-family:Georgia,"Times New Roman",serif;font-weight:400;text-decoration:none;color:var(--text-muted)}
+footer{display:none}
+@media(max-width:1124px){main{padding-left:28px;padding-right:28px}}
+@media(max-width:768px){nav{padding:0 18px}main{padding:72px 18px 54px}.page-head h1{font-size:40px}.stat-cards{grid-template-columns:repeat(2,1fr)}.stat-card{padding:8px 0 10px}.tables-row{grid-template-columns:1fr;gap:38px}.map-wrap{aspect-ratio:16/8}.range-controls{justify-content:flex-start}.sec-head{align-items:flex-end}.stat-card .stat-value{font-size:26px}}
+@media(max-width:430px){.page-head h1{font-size:36px}.stat-card .stat-label{font-size:13px}.stat-card .stat-value{font-size:24px}.sec-head h2,.table-block h3{font-size:23px}.map-legend{font-size:10px}.range-controls{display:grid;grid-template-columns:1fr 1fr}.range-controls button,.range-controls .utc{justify-self:start}}
 </style>
 </head>
 <body>
@@ -134,14 +190,12 @@ footer .footer-row{margin-bottom:6px}
   </section>
 
   <section class="section">
-    <div class="sec-head">
-      <h2>Daily traffic</h2>
-      <div class="range-controls">
-        <label>From <input type="date" id="dateFrom"></label>
-        <label>To <input type="date" id="dateTo"></label>
-        <button type="button" id="last90">Last 90 days</button>
-        <span class="utc">UTC</span>
-      </div>
+    <div class="sec-head"><h2>Daily traffic</h2><span class="map-legend">VIEWS · VISITORS&nbsp;&nbsp;&nbsp; 90 DAYS</span></div>
+    <div class="range-controls">
+      <label>From <input type="date" id="dateFrom"></label>
+      <label>To <input type="date" id="dateTo"></label>
+      <button type="button" id="last90">Last 90 days</button>
+      <span class="utc">UTC</span>
     </div>
     <div class="chart-card">
       <div class="chart-wrap"><canvas id="dailyChart"></canvas></div>
@@ -160,7 +214,7 @@ footer .footer-row{margin-bottom:6px}
       <div class="no-data" id="regionEmpty" style="display:none;">No region data yet.</div>
     </div>
     <div class="table-block">
-      <h3>Source</h3>
+      <h3>Sources</h3>
       <div class="table-mask" id="sourceMask">
         <div class="table-wrap">
           <table><thead><tr><th>Source</th><th class="right">Unique Visitors</th><th class="right">Page Views</th></tr></thead><tbody id="sourceBody"></tbody></table>
@@ -200,7 +254,8 @@ function countryName(code){
 
 // ==== ENDPOINTS ====
 var local=/^(localhost|127\.0\.0\.1)$/.test(location.hostname);
-var STATS_URL=local?"http://127.0.0.1:8788/api/stats":"https://razavi-bench.tokenzhang.com/api/stats";
+var livePreview=local&&new URLSearchParams(location.search).has("live");
+var STATS_URL=local&&!livePreview?"http://127.0.0.1:8788/api/stats":"https://razavi-bench.tokenzhang.com/api/stats";
 
 function fetchJSON(url,ms){
   var ctrl=typeof AbortController!=="undefined"?new AbortController():null;
@@ -240,8 +295,8 @@ function ensureWorld(){
   });
 }
 function mapColors(){
-  if(isDark())return{land:"#3a3a3a",landStroke:"none",ocean:"#232323",dot:"rgba(110,168,255,"};
-  return{land:"#b9bcc2",landStroke:"none",ocean:"#f2f4f6",dot:"rgba(37,99,235,"};
+  if(isDark())return{land:"#303b4b",landStroke:"none",ocean:"#17243a",dot:"rgba(119,165,255,"};
+  return{land:"#dbe5ef",landStroke:"none",ocean:"#afc3dc",dot:"rgba(24,78,200,"};
 }
 // equirectangular projection, latitude capped at 60°S (no Antarctica).
 // Map spans 90°N..60°S (150°), so height = W * 150/360.
@@ -526,8 +581,7 @@ function updateUpdated(){
   if(!el)return;
   var now=new Date();
   var opts={month:"short",day:"numeric",year:"numeric",hour:"numeric",minute:"2-digit"};
-  var label="First-party counts · UTC days · updated "+now.toLocaleString("en-US",opts);
-  el.textContent=label;
+  el.textContent=now.toLocaleString("en-US",opts);
 }
 loadKnownPages();
 function syncDateInputs(){
