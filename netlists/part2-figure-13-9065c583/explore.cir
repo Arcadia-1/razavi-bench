@@ -1,0 +1,43 @@
+* Temporary sizing probe: reviewed Figure 13 topology
+.include "../../simulator/ngspice-sky130/models/sky130.lib.spice"
+
+VDD VDD 0 1.8
+VSRC VSRC 0 DC 0 AC 1
+RS VSRC VIN_PORT 50
+C1 VIN_PORT NIN 1u
+RF NIN NOUT 1500
+XMN1 NOUT NIN 0 0 sky130_fd_pr__nfet_01v8 w=100u l=0.15u
+XMN2 NOUT NIN 0 0 sky130_fd_pr__nfet_01v8 w=100u l=0.15u
+XMN3 NOUT NIN 0 0 sky130_fd_pr__nfet_01v8 w=100u l=0.15u
+XMN4 NOUT NIN 0 0 sky130_fd_pr__nfet_01v8 w=100u l=0.15u
+XMP1 NOUT NIN VDD VDD sky130_fd_pr__pfet_01v8 w=100u l=0.15u
+XMP2 NOUT NIN VDD VDD sky130_fd_pr__pfet_01v8 w=100u l=0.15u
+XMP3 NOUT NIN VDD VDD sky130_fd_pr__pfet_01v8 w=100u l=0.15u
+XMP4 NOUT NIN VDD VDD sky130_fd_pr__pfet_01v8 w=100u l=0.15u
+XMP5 NOUT NIN VDD VDD sky130_fd_pr__pfet_01v8 w=100u l=0.15u
+XMP6 NOUT NIN VDD VDD sky130_fd_pr__pfet_01v8 w=100u l=0.15u
+XMP7 NOUT NIN VDD VDD sky130_fd_pr__pfet_01v8 w=100u l=0.15u
+XMP8 NOUT NIN VDD VDD sky130_fd_pr__pfet_01v8 w=100u l=0.15u
+CL NOUT 0 20f
+
+.op
+.control
+run
+let gm_n=4*@m.xmn1.msky130_fd_pr__nfet_01v8[gm]
+let gds_n=4*@m.xmn1.msky130_fd_pr__nfet_01v8[gds]
+let gm_p=8*@m.xmp1.msky130_fd_pr__pfet_01v8[gm]
+let gds_p=8*@m.xmp1.msky130_fd_pr__pfet_01v8[gds]
+print v(nin) v(nout) gm_n gds_n gm_p gds_p
+ac lin 1 100meg 100meg
+let zin=v(vin_port)/(-i(vsrc))
+let gain=v(nout)/v(vsrc)
+print zin gain
+noise v(nout) VSRC dec 1 100meg 101meg
+setplot noise1
+let fourktr=4*1.380649e-23*300*50
+let nf_lin=inoise_spectrum*inoise_spectrum/fourktr
+let nf_db=10*log10(nf_lin)
+print frequency onoise_spectrum inoise_spectrum nf_lin nf_db
+quit
+.endc
+.end

@@ -1,0 +1,8 @@
+* RC charging transient
+Vin in 0 DC {vin}
+R1 in out {r}
+C1 out 0 {c} IC=0
+
+.tran {tstep} {tstop} UIC
+.print tran v(out) i(Vin)
+.end

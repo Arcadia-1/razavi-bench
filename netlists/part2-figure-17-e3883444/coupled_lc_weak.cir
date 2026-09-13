@@ -1,0 +1,69 @@
+* Razavi-Bench part2-figure-17-e3883444 -- weak-coupling transient
+* Simulation intent: measure oscillation frequency at fixed L, Cnode, Rp, ISS
+* while setting I1/ISS=0.025, then compare with the strong-coupling deck.
+.include "../../simulator/ngspice-sky130/models/sky130.lib.spice"
+
+* Assumption: separately retained VTOP rails use independent ideal 1.8 V supplies.
+VTOP1_SRC VTOP1 0 1.8
+VTOP2_SRC VTOP2 0 1.8
+
+* Reviewed upper oscillator topology. D/G/S/B order is preserved exactly.
+L_X1 VTOP1 X1 10n
+L_Y1 VTOP1 Y1 10n
+X_X1_CORE X1 Y1 TAIL_ISS1 TAIL_ISS1 sky130_fd_pr__nfet_01v8 w=7u l=0.15u
+X_Y1_CORE Y1 X1 TAIL_ISS1 TAIL_ISS1 sky130_fd_pr__nfet_01v8 w=7u l=0.15u
+X_X1_CPL X1 Y2 TAIL_I1_1 TAIL_I1_1 sky130_fd_pr__nfet_01v8 w=2.52u l=0.15u
+X_Y1_CPL Y1 X2 TAIL_I1_1 TAIL_I1_1 sky130_fd_pr__nfet_01v8 w=2.52u l=0.15u
+I_SS1 TAIL_ISS1 0 DC 0.8m
+I_1_1 TAIL_I1_1 0 DC 20u
+
+* Reviewed lower oscillator topology. D/G/S/B order is preserved exactly.
+L_X2 VTOP2 X2 10n
+L_Y2 VTOP2 Y2 10n
+X_X2_CORE X2 Y2 TAIL_ISS2 TAIL_ISS2 sky130_fd_pr__nfet_01v8 w=7u l=0.15u
+X_Y2_CORE Y2 X2 TAIL_ISS2 TAIL_ISS2 sky130_fd_pr__nfet_01v8 w=7u l=0.15u
+X_X2_CPL X2 X1 TAIL_I1_2 TAIL_I1_2 sky130_fd_pr__nfet_01v8 w=2.52u l=0.15u
+X_Y2_CPL Y2 Y1 TAIL_I1_2 TAIL_I1_2 sky130_fd_pr__nfet_01v8 w=2.52u l=0.15u
+I_SS2 TAIL_ISS2 0 DC 0.8m
+I_1_2 TAIL_I1_2 0 DC 20u
+
+* Added tank-model assumptions: effective node capacitance and parallel loss.
+C_X1 X1 0 1p
+C_Y1 Y1 0 1p
+C_X2 X2 0 1p
+C_Y2 Y2 0 1p
+R_X1 X1 VTOP1 1k
+R_Y1 Y1 VTOP1 1k
+R_X2 X2 VTOP2 1k
+R_Y2 Y2 VTOP2 1k
+
+* Added deterministic startup perturbation; opposite polarities select a mode.
+.ic v(X1)=1.805 v(Y1)=1.795 v(X2)=1.795 v(Y2)=1.805
+
+.control
+set noaskquit
+tran 10p 14n 0 10p uic
+let vdiff1=v(X1)-v(Y1)
+let vdiff2=v(X2)-v(Y2)
+meas tran t_first when vdiff1=0 rise=8
+meas tran t_last  when vdiff1=0 rise=18
+meas tran vdiff1_pp pp vdiff1 from=10n to=14n
+meas tran vdiff2_pp pp vdiff2 from=10n to=14n
+let cycles=10
+let f_meas=cycles/(t_last-t_first)
+let pi=3.141592653589793
+let l_tank=10e-9
+let c_node=1e-12
+let r_parallel=1000
+let iss=0.8e-3
+let i1=20e-6
+let f0=1/(2*pi*sqrt(l_tank*c_node))
+let q=r_parallel*sqrt(c_node/l_tank)
+let alpha=i1/iss
+let delta_f=alpha*f0/(2*q)
+let f_est_plus=f0+delta_f
+print f0 q alpha delta_f f_est_plus f_meas
+quit
+.endc
+
+.end

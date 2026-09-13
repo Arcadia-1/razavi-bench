@@ -1,0 +1,33 @@
+* Razavi-Bench part2 Figure 12(b) -- red inverter feedforward timing fixture
+* Outputs are separated only for measurement: main path includes the visible
+* CK switch plus Inv1; red path directly drives the later node through one INV.
+
+.include "../../simulator/ngspice-sky130/models/sky130.lib.spice"
+
+.subckt INV in out vdd vss
+XP out in vdd vdd sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XN out in vss vss sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+.ends INV
+.model SWCLK sw ron=2k roff=1e12 vt=0.9 vh=0.05
+
+VDD vdd 0 1.8
+VFB fb 0 PULSE(0 1.8 1n 20p 20p 4n 8n)
+VON on 0 1.8
+SMAIN fb main_in on 0 SWCLK
+XMAIN main_in main_out vdd 0 INV
+XRED fb red_out vdd 0 INV
+CMAIN main_out 0 100f
+CRED red_out 0 100f
+CHOLD main_in 0 20f
+
+.control
+set noaskquit
+tran 2p 12n
+meas tran td_main trig v(fb) val=0.9 rise=1 targ v(main_out) val=0.9 fall=1
+meas tran td_red trig v(fb) val=0.9 rise=1 targ v(red_out) val=0.9 fall=1
+let bypass_advantage=td_main-td_red
+print td_main td_red bypass_advantage
+quit
+.endc
+
+.end

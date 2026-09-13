@@ -1,0 +1,42 @@
+* ============================================================================
+* Razavi-Bench part1-figure-04  (task part1-007)
+* PMOS common-source with source degeneration -- TRANSIENT  (BEHAVIORAL)
+* ----------------------------------------------------------------------------
+* Same linear small-signal model as pmos_cs_degen_ac_behavioral.cir.
+* A minimal Sky130 transient probe on this stage is NOT physical: the non-
+* physical model capacitances (cgg ~ 5e-2 F) dominate, and v(out) is dragged
+* the WRONG way (it follows the gate instead of inverting).  So dynamics are
+* shown here with the explicitly linearized (generic) small-signal model.
+* This deck is a GENERIC behavioral model, NOT a Sky130 result.
+*
+* Drive a small 10 mV, 1 MHz sine into the gate (1 MHz << the ~32 MHz pole).
+* Expected: v(out) is an inverted, amplified copy, amplitude ~ |Av|*10mV
+*           ~ 2.14 * 10 mV ~ 21 mV, 180 deg out of phase with the input.
+* ============================================================================
+
+.param gm  = 7.5495e-4   $ from Sky130 .op
+.param ro  = 4.7634e5    $ = 1/gds
+.param RS_V = 1k
+.param RD_V = 5k
+.param CL   = 1p
+
+Vin in 0 0 SIN(0 10m 1e6)
+Rs  s   0 {RS_V}
+G1  out s in s {gm}
+Ro  out s {ro}
+Rd  out 0 {RD_V}
+Cl  out 0 {CL}
+
+.tran 5n 5u
+.control
+run
+* peak input and output, and the inverting gain from their extrema
+meas tran vin_max  max v(in)
+meas tran vout_min min v(out)
+meas tran vout_max max v(out)
+let vout_pp = vout_max - vout_min
+let gain_tran = -vout_pp/(2*vin_max)
+print vin_max vout_min vout_max gain_tran
+quit
+.endc
+.end

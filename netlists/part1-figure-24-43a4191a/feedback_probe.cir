@@ -1,0 +1,54 @@
+* Razavi Figure 24: Sky130 current-input feedback probe
+* Reviewed MOS order is D G S B; terminal connections are preserved exactly.
+* Added assumptions: VDD=1.8 V, VB=1.20 V, I1=20 uA,
+* input-node sink=40 uA, nominal IIN=0, and explicit illustrative geometry.
+
+.include "../../simulator/ngspice-sky130/models/sky130.lib.spice"
+
+VDD_SRC VDD 0 1.8
+VB_SRC  VB  0 1.20
+
+* D G S B -- bulk ties are the reviewed, documented assumptions.
+XM1 VOUT   VB   VIN_SUM VIN_SUM sky130_fd_pr__nfet_01v8 w=4.20u l=0.50u
+XM2 VIN_SUM VOUT VDD     VDD     sky130_fd_pr__pfet_01v8 w=42.0u l=0.50u
+
+I1       VDD     VOUT    DC 20u
+IBIAS_IN VIN_SUM 0       DC 40u
+IIN      0       VIN_SUM DC 0 AC 1
+
+.control
+set noaskquit
+op
+let gm1  = @m.xm1.msky130_fd_pr__nfet_01v8[gm]
+let gds1 = @m.xm1.msky130_fd_pr__nfet_01v8[gds]
+let gm2  = @m.xm2.msky130_fd_pr__pfet_01v8[gm]
+let gds2 = @m.xm2.msky130_fd_pr__pfet_01v8[gds]
+let id1  = @m.xm1.msky130_fd_pr__nfet_01v8[id]
+let id2  = @m.xm2.msky130_fd_pr__pfet_01v8[id]
+let vdsat1 = @m.xm1.msky130_fd_pr__nfet_01v8[vdsat]
+let vdsat2 = @m.xm2.msky130_fd_pr__pfet_01v8[vdsat]
+let vds1 = v(VOUT)-v(VIN_SUM)
+let vsd2 = v(VDD)-v(VIN_SUM)
+let zt_asymptotic = 1/gm2
+let rin_high_gain = gds1/(gm1*gm2)
+print v(VIN_SUM) v(VOUT) gm1 gds1 gm2 gds2 id1 id2
+print vds1 vdsat1 vsd2 vdsat2 zt_asymptotic rin_high_gain
+
+ac lin 1 1 1
+let rin_1hz = real(v(VIN_SUM))
+let zt_1hz  = real(v(VOUT))
+print rin_1hz zt_1hz
+
+dc IIN -2u 2u 0.2u
+meas dc vin_m1u  find v(VIN_SUM) at=-1u
+meas dc vin_p1u  find v(VIN_SUM) at=1u
+meas dc vout_m1u find v(VOUT)   at=-1u
+meas dc vout_p1u find v(VOUT)   at=1u
+let rin_dc = (vin_p1u-vin_m1u)/2u
+let zt_dc  = (vout_p1u-vout_m1u)/2u
+print rin_dc zt_dc
+wrdata feedback_probe_dc.dat v(VIN_SUM) v(VOUT)
+quit
+.endc
+
+.end

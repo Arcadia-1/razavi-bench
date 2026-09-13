@@ -1,0 +1,20 @@
+* Sky130 common-source operating point and approximate small-signal gain
+.include "../models/sky130.lib.spice"
+
+Vdd vdd 0 1.8
+Vin in 0 0.9 AC 1
+Rd vdd out 20k
+
+Xn out in 0 0 sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+
+.op
+.control
+run
+let gm=@m.xn.msky130_fd_pr__nfet_01v8[gm]
+let gds=@m.xn.msky130_fd_pr__nfet_01v8[gds]
+let gain_est=-gm/(gds+1/20000)
+print gm gds gain_est v(out)
+quit
+.endc
+
+.end

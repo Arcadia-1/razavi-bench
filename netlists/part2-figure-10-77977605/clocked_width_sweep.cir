@@ -1,0 +1,89 @@
+* Razavi-Bench part2 Figure 10 -- C2MOS divider clock-device width sweep
+* The two four-transistor clocked inverters and Inv3 follow the reviewed PNG.
+
+.include "../../simulator/ngspice-sky130/models/sky130.lib.spice"
+
+.subckt DIV10_N ck ckb x y z vdd vss
+XLPD lp z vdd vdd sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XLPC x ckb lp vdd sky130_fd_pr__pfet_01v8 w=0.84u l=0.15u
+XLNC x ck ln vss sky130_fd_pr__nfet_01v8 w=0.42u l=0.15u
+XLND ln z vss vss sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+XRPD rp x vdd vdd sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XRPC y ck rp vdd sky130_fd_pr__pfet_01v8 w=0.84u l=0.15u
+XRNC y ckb rn vss sky130_fd_pr__nfet_01v8 w=0.42u l=0.15u
+XRND rn x vss vss sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+XIP z y vdd vdd sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XIN z y vss vss sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+CX x vss 15f
+CY y vss 15f
+CZ z vss 15f
+.ends DIV10_N
+
+.subckt DIV10_M ck ckb x y z vdd vss
+XLPD lp z vdd vdd sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XLPC x ckb lp vdd sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XLNC x ck ln vss sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+XLND ln z vss vss sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+XRPD rp x vdd vdd sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XRPC y ck rp vdd sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XRNC y ckb rn vss sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+XRND rn x vss vss sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+XIP z y vdd vdd sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XIN z y vss vss sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+CX x vss 15f
+CY y vss 15f
+CZ z vss 15f
+.ends DIV10_M
+
+.subckt DIV10_W ck ckb x y z vdd vss
+XLPD lp z vdd vdd sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XLPC x ckb lp vdd sky130_fd_pr__pfet_01v8 w=20.16u l=0.15u
+XLNC x ck ln vss sky130_fd_pr__nfet_01v8 w=10.08u l=0.15u
+XLND ln z vss vss sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+XRPD rp x vdd vdd sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XRPC y ck rp vdd sky130_fd_pr__pfet_01v8 w=20.16u l=0.15u
+XRNC y ckb rn vss sky130_fd_pr__nfet_01v8 w=10.08u l=0.15u
+XRND rn x vss vss sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+XIP z y vdd vdd sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XIN z y vss vss sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+CX x vss 15f
+CY y vss 15f
+CZ z vss 15f
+.ends DIV10_W
+
+VDD vdd 0 1.8
+VCK cks 0 PULSE(0 1.8 20p 20p 20p 0.96n 2n)
+VCKB ckbs 0 PULSE(1.8 0 20p 20p 20p 0.96n 2n)
+RCK cks ck 10
+RCKB ckbs ckb 10
+
+* Narrow, nominal, and very-wide clocked devices; data devices are fixed.
+XDN ck ckb xn yn zn vdd 0 DIV10_N
+XDM ck ckb xm ym zm vdd 0 DIV10_M
+XDW ck ckb xw yw zw vdd 0 DIV10_W
+
+.ic v(xn)=0 v(yn)=1.8 v(zn)=0
+.ic v(xm)=0 v(ym)=1.8 v(zm)=0
+.ic v(xw)=0 v(yw)=1.8 v(zw)=0
+
+.control
+set noaskquit
+option method=gear reltol=1e-3
+tran 2p 30n
+* A correct divide-by-two has output period 4 ns for the 2 ns input clock.
+meas tran per_n trig v(zn) val=0.9 rise=3 targ v(zn) val=0.9 rise=4
+meas tran per_m trig v(zm) val=0.9 rise=3 targ v(zm) val=0.9 rise=4
+meas tran per_w trig v(zw) val=0.9 rise=3 targ v(zw) val=0.9 rise=4
+* Falling X transitions follow every other rising CK edge.
+meas tran dly_n trig v(ck) val=0.9 rise=6 targ v(xn) val=0.9 fall=3
+meas tran dly_m trig v(ck) val=0.9 rise=6 targ v(xm) val=0.9 fall=3
+meas tran dly_w trig v(ck) val=0.9 rise=6 targ v(xw) val=0.9 fall=3
+meas tran xpp_n pp v(xn) from=10n to=30n
+meas tran xpp_m pp v(xm) from=10n to=30n
+meas tran xpp_w pp v(xw) from=10n to=30n
+print per_n per_m per_w dly_n dly_m dly_w xpp_n xpp_m xpp_w
+write clocked_width_sweep.raw v(ck) v(xn) v(xm) v(xw) v(zn) v(zm) v(zw)
+quit
+.endc
+
+.end

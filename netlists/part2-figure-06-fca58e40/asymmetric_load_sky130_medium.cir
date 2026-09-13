@@ -1,0 +1,29 @@
+* Razavi-Bench part2 Figure 6 -- transistor-level asymmetric CL, medium case
+* Each visible inverter is exactly one Sky130 PMOS plus one Sky130 NMOS.
+
+.include "../../simulator/ngspice-sky130/models/sky130.lib.spice"
+
+VDD vdd 0 1.8
+XP1 n1 n3 vdd vdd sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XN1 n1 n3 0 0 sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+XP2 n2 n1 vdd vdd sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XN2 n2 n1 0 0 sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+XP3 n3 n2 vdd vdd sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XN3 n3 n2 0 0 sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+CBASE1 n1 0 20f
+CBASE2 n2 0 20f
+CBASE3 n3 0 20f
+CL n1 0 10p
+.ic v(n1)=1.8 v(n2)=0 v(n3)=0
+
+.control
+set noaskquit
+tran 50p 2u 0 50p uic
+meas tran early_pp pp v(n1) from=0 to=500n
+meas tran late_pp pp v(n1) from=1.5u to=2u
+meas tran late_avg avg v(n1) from=1.5u to=2u
+print early_pp late_pp late_avg
+quit
+.endc
+
+.end

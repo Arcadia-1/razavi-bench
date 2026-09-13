@@ -1,0 +1,37 @@
+mode,model,model_key,rollout,metric,deepseek_percent,minimax_percent,judge_mean_percent
+agentic_multimodal,Claude Opus 4.8 + Claude Code,claude_opus_48_cc,1,overall,88.5,86.0,87.25
+agentic_multimodal,Claude Opus 4.8 + Claude Code,claude_opus_48_cc,2,overall,87.0,84.5,85.75
+agentic_multimodal,Claude Opus 4.8 + Claude Code,claude_opus_48_cc,3,overall,90.5,86.0,88.25
+agentic_multimodal,Claude Opus 4.8 + Claude Code,claude_opus_48_cc,1,part1,93.3333,91.6667,92.5
+agentic_multimodal,Claude Opus 4.8 + Claude Code,claude_opus_48_cc,2,part1,90.8333,88.3333,89.5833
+agentic_multimodal,Claude Opus 4.8 + Claude Code,claude_opus_48_cc,3,part1,95.0,93.3333,94.1667
+agentic_multimodal,Claude Opus 4.8 + Claude Code,claude_opus_48_cc,1,part2,81.25,77.5,79.375
+agentic_multimodal,Claude Opus 4.8 + Claude Code,claude_opus_48_cc,2,part2,81.25,78.75,80.0
+agentic_multimodal,Claude Opus 4.8 + Claude Code,claude_opus_48_cc,3,part2,83.75,75.0,79.375
+agentic_multimodal,GPT + Codex,gpt_codex,1,overall,84.0,81.5,82.75
+agentic_multimodal,GPT + Codex,gpt_codex,2,overall,90.5,89.5,90.0
+agentic_multimodal,GPT + Codex,gpt_codex,3,overall,88.5,87.5,88.0
+agentic_multimodal,GPT + Codex,gpt_codex,1,part1,89.1667,87.5,88.3333
+agentic_multimodal,GPT + Codex,gpt_codex,2,part1,88.3333,88.3333,88.3333
+agentic_multimodal,GPT + Codex,gpt_codex,3,part1,87.5,85.8333,86.6667
+agentic_multimodal,GPT + Codex,gpt_codex,1,part2,76.25,72.5,74.375
+agentic_multimodal,GPT + Codex,gpt_codex,2,part2,93.75,91.25,92.5
+agentic_multimodal,GPT + Codex,gpt_codex,3,part2,90.0,90.0,90.0
+agentic_multimodal,Kimi K2.7 + Claude Code,kimi_k27_cc,1,overall,73.0,73.0,73.0
+agentic_multimodal,Kimi K2.7 + Claude Code,kimi_k27_cc,2,overall,71.5,70.5,71.0
+agentic_multimodal,Kimi K2.7 + Claude Code,kimi_k27_cc,3,overall,72.5,65.5,69.0
+agentic_multimodal,Kimi K2.7 + Claude Code,kimi_k27_cc,1,part1,75.0,75.0,75.0
+agentic_multimodal,Kimi K2.7 + Claude Code,kimi_k27_cc,2,part1,77.5,79.1667,78.3333
+agentic_multimodal,Kimi K2.7 + Claude Code,kimi_k27_cc,3,part1,75.8333,70.8333,73.3333
+agentic_multimodal,Kimi K2.7 + Claude Code,kimi_k27_cc,1,part2,70.0,70.0,70.0
+agentic_multimodal,Kimi K2.7 + Claude Code,kimi_k27_cc,2,part2,62.5,57.5,60.0
+agentic_multimodal,Kimi K2.7 + Claude Code,kimi_k27_cc,3,part2,67.5,57.5,62.5
+agentic_multimodal,MiniMax M3 + Claude Code,minimax_m3_cc,1,overall,64.5,64.5,64.5
+agentic_multimodal,MiniMax M3 + Claude Code,minimax_m3_cc,2,overall,74.5,71.5,73.0
+agentic_multimodal,MiniMax M3 + Claude Code,minimax_m3_cc,3,overall,76.5,74.0,75.25
+agentic_multimodal,MiniMax M3 + Claude Code,minimax_m3_cc,1,part1,68.3333,70.8333,69.5833
+agentic_multimodal,MiniMax M3 + Claude Code,minimax_m3_cc,2,part1,80.0,79.1667,79.5833
+agentic_multimodal,MiniMax M3 + Claude Code,minimax_m3_cc,3,part1,83.3333,83.3333,83.3333
+agentic_multimodal,MiniMax M3 + Claude Code,minimax_m3_cc,1,part2,58.75,55.0,56.875
+agentic_multimodal,MiniMax M3 + Claude Code,minimax_m3_cc,2,part2,66.25,60.0,63.125
+agentic_multimodal,MiniMax M3 + Claude Code,minimax_m3_cc,3,part2,66.25,60.0,63.125

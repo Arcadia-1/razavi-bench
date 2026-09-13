@@ -1,0 +1,80 @@
+* Razavi-Bench part1-figure-19-4812969f
+* Purpose: compare the reviewed two-series-NMOS branch against independent
+* single-device L and 2L reference branches at low, nearly fixed VDS.
+*
+* Simulation assumptions omitted by Figure 19:
+* - TT bundled Sky130 1.8 V primitive model, nominal temperature 27 C.
+* - M1.B=M2.B=0, as required by the reviewed topology/audit.
+* - Equal devices: W=2.00 um, L1=L2=1.00 um.
+* - VDD=0.10 V and RD=1 ohm make the test approximately fixed-VDS and
+*   emphasize triode-region channel conductance rather than saturation gain.
+* - VIN is swept from 0.60 V to 1.80 V; the initial 1.20 V value is used
+*   for the operating-point check.
+* - The two single-device branches are electrically independent testbench
+*   references and do not modify the reviewed RD/M2/M1 connectivity.
+
+.include "../../simulator/ngspice-sky130/models/sky130.lib.spice"
+.temp 27
+
+* Common gate stimulus.
+VIN Vin 0 1.20
+
+* Reviewed topology: RD--Vout--M2--NX--M1--0; both gates at Vin.
+VDD_SERIES VDD 0 0.10
+R_D VDD Vout 1
+XM2 Vout Vin NX 0 sky130_fd_pr__nfet_01v8 w=2.00u l=1.00u
+XM1 NX Vin 0 0 sky130_fd_pr__nfet_01v8 w=2.00u l=1.00u
+
+* Independent one-device reference with Lref=L1+L2=2.00 um.
+VDD_LONG VDD_long 0 0.10
+R_LONG VDD_long Vout_long 1
+XREF_LONG Vout_long Vin 0 0 sky130_fd_pr__nfet_01v8 w=2.00u l=2.00u
+
+* Independent one-device reference with the same L as either M1 or M2.
+VDD_SHORT VDD_short 0 0.10
+R_SHORT VDD_short Vout_short 1
+XREF_SHORT Vout_short Vin 0 0 sky130_fd_pr__nfet_01v8 w=2.00u l=1.00u
+
+.control
+set noaskquit
+
+* Concrete OP sanity check at VIN=1.20 V.
+op
+let id_series_op = -i(VDD_SERIES)
+let id_long_op = -i(VDD_LONG)
+let id_short_op = -i(VDD_SHORT)
+let ratio_series_long_op = id_series_op/id_long_op
+let ratio_short_series_op = id_short_op/id_series_op
+let m1_vds_op = v(NX)
+let m2_vds_op = v(Vout)-v(NX)
+let m1_vgs_op = v(Vin)
+let m2_vgs_op = v(Vin)-v(NX)
+let m1_vdsat_op = @m.xm1.msky130_fd_pr__nfet_01v8[vdsat]
+let m2_vdsat_op = @m.xm2.msky130_fd_pr__nfet_01v8[vdsat]
+let m1_vth_op = @m.xm1.msky130_fd_pr__nfet_01v8[vth]
+let m2_vth_op = @m.xm2.msky130_fd_pr__nfet_01v8[vth]
+print v(Vin) v(Vout) v(NX) id_series_op id_long_op id_short_op
+print ratio_series_long_op ratio_short_series_op
+print m1_vgs_op m1_vds_op m2_vgs_op m2_vds_op
+print m1_vth_op m1_vdsat_op m2_vth_op m2_vdsat_op
+
+* Gate sweep: compare current trends while all branch drain biases are held
+* at 0.10 V through only 1 ohm of sense resistance.
+dc VIN 0.60 1.80 0.10
+let id_series = -i(VDD_SERIES)
+let id_long = -i(VDD_LONG)
+let id_short = -i(VDD_SHORT)
+let ratio_series_long = id_series/id_long
+let ratio_short_series = id_short/id_series
+print v(Vin) id_series id_long id_short ratio_series_long ratio_short_series
+
+meas dc id_series_1p2 find id_series at=1.20
+meas dc id_long_1p2 find id_long at=1.20
+meas dc id_short_1p2 find id_short at=1.20
+meas dc series_to_long_1p2 find ratio_series_long at=1.20
+meas dc short_to_series_1p2 find ratio_short_series at=1.20
+
+quit
+.endc
+
+.end

@@ -1,0 +1,23 @@
+{
+  "benchmark": "razavi-bench",
+  "experiment": "2026-08-01-direct-qa",
+  "run_date": "2026-08-01",
+  "repo_commit": "3e0e57cb210d9ff1ba3e2215b635d9f0bda36a0d",
+  "mode": "direct_multimodal_qa",
+  "model_name": "Qwen 3.7 Flash",
+  "provider_model": "qwen/qwen3.7-flash",
+  "api_format": "openai_chat_completions",
+  "temperature": 0.0,
+  "max_tokens": 8192,
+  "rollouts": [
+    1,
+    2,
+    3
+  ],
+  "concurrency": 20,
+  "expected_answers": 150,
+  "completed_answers": 150,
+  "failed_answers": 0,
+  "raw_responses_retained_locally": true,
+  "reasoning": "provider_default"
+}

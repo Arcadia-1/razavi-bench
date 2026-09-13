@@ -1,0 +1,55 @@
+* Razavi Figure 14: PMOS current-source/cascode stack Rout probe
+* Reviewed topology is preserved exactly:
+*   M2 D=X   G=Vb2 S=VDD B=VDD
+*   M1 D=OUT G=Vb1 S=X   B=X
+*
+* Added simulation assumptions:
+* - Sky130 TT primitive, identical explicit geometry W=10 um, L=1 um.
+* - VDD=1.8 V, Vb2=0.70 V, Vb1=0 V, OUT DC bias=0.20 V.
+* - VTEST is an ideal 1 V small-signal port fixture (not a drawn device).
+* - Bias supplies are AC grounds.  Rout is measured at 1 kHz, well below
+*   device poles, as Re{-V(OUT)/I(VTEST)} with the SPICE source-current sign.
+
+.include "../../simulator/ngspice-sky130/models/sky130.lib.spice"
+
+VDD_SRC VDD 0 1.8
+VB2_SRC Vb2 0 0.70
+VB1_SRC Vb1 0 0
+VTEST OUT 0 DC 0.20 AC 1
+
+XM2 X   Vb2 VDD VDD sky130_fd_pr__pfet_01v8 w=10u l=1u
+XM1 OUT Vb1 X   X   sky130_fd_pr__pfet_01v8 w=10u l=1u
+
+.op
+.control
+set noaskquit
+op
+let gm1 = @m.xm1.msky130_fd_pr__pfet_01v8[gm]
+let gds1 = @m.xm1.msky130_fd_pr__pfet_01v8[gds]
+let gm2 = @m.xm2.msky130_fd_pr__pfet_01v8[gm]
+let gds2 = @m.xm2.msky130_fd_pr__pfet_01v8[gds]
+let id1 = abs(@m.xm1.msky130_fd_pr__pfet_01v8[id])
+let id2 = abs(@m.xm2.msky130_fd_pr__pfet_01v8[id])
+let vth1 = abs(@m.xm1.msky130_fd_pr__pfet_01v8[vth])
+let vth2 = abs(@m.xm2.msky130_fd_pr__pfet_01v8[vth])
+let vdsat1 = abs(@m.xm1.msky130_fd_pr__pfet_01v8[vdsat])
+let vdsat2 = abs(@m.xm2.msky130_fd_pr__pfet_01v8[vdsat])
+let vsg1 = v(X)-v(Vb1)
+let vsd1 = v(X)-v(OUT)
+let vsg2 = v(VDD)-v(Vb2)
+let vsd2 = v(VDD)-v(X)
+let ro1 = 1/gds1
+let ro2 = 1/gds2
+let rout_without_gm = ro1+ro2
+let rout_gm_term = gm1*ro1*ro2
+let rout_formula = ro1+ro2+gm1*ro1*ro2
+print v(OUT) v(X) id1 id2 vsg1 vsd1 vth1 vdsat1 vsg2 vsd2 vth2 vdsat2
+print gm1 gds1 gm2 gds2 ro1 ro2 rout_without_gm rout_gm_term rout_formula
+
+ac lin 1 1k 1k
+let rout_measured = real(-v(OUT)/i(VTEST))
+print frequency rout_measured
+quit
+.endc
+
+.end

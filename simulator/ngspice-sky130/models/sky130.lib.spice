@@ -1,0 +1,10 @@
+* Minimal SKY130 model bundle for Razavi-Bench analog tasks.
+* Derived from the open-source SkyWater SKY130 primitive models.
+* Copyright 2020 The SkyWater PDK Authors, Apache License 2.0.
+
+.include "sky130_fd_pr__nfet_01v8__mismatch.corner.spice"
+.include "sky130_fd_pr__pfet_01v8__mismatch.corner.spice"
+.include "sky130_nominal_defaults.spice"
+.include "sky130_fd_pr__nfet_01v8__tt.corner.spice"
+.include "sky130_fd_pr__pfet_01v8__tt.corner.spice"
+.include "bjt.lib"

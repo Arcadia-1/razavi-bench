@@ -1,0 +1,69 @@
+* Razavi-Bench part1-figure-09-043fb6f7
+* Source-input NMOS voltage amplifier with resistive drain-to-gate feedback.
+* Reviewed MOS terminal order is preserved exactly: D G S B = Vout VF Vin Vin.
+*
+* Simulation assumptions (the source figure supplies no numerical values):
+*   VDD=1.8 V; Vin DC=0.15 V with AC magnitude 1 V.
+*   RD=3 kohm; R1=60 kohm; R2=60 kohm initially (beta=0.5).
+*   M1 uses the bundled 1.8 V NMOS, W=200 um, L=0.50 um.
+*   M1 bulk is tied to its source at Vin, as provisionally reviewed.
+* The control block repeats AC/OP analysis for three divider ratios while
+* holding R1+R2=120 kohm, RD, supply, input bias, and geometry fixed.
+
+.include "../../simulator/ngspice-sky130/models/sky130.lib.spice"
+
+VDD_SRC VDD 0 1.8
+VIN_SRC Vin 0 DC 0.15 AC 1
+
+RD VDD Vout 3k
+R1 Vout VF 60k
+R2 VF 0 60k
+XM1 Vout VF Vin Vin sky130_fd_pr__nfet_01v8 w=200u l=0.50u
+
+.control
+set noaskquit
+
+echo === CASE beta_0p500 R1_60k R2_60k ===
+op
+print v(vin) v(vf) v(vout)
+print @m.xm1.msky130_fd_pr__nfet_01v8[vgs] @m.xm1.msky130_fd_pr__nfet_01v8[vds]
+print @m.xm1.msky130_fd_pr__nfet_01v8[vth] @m.xm1.msky130_fd_pr__nfet_01v8[vdsat]
+print @m.xm1.msky130_fd_pr__nfet_01v8[gm] @m.xm1.msky130_fd_pr__nfet_01v8[gds]
+let ideal_0p500 = @m.xm1.msky130_fd_pr__nfet_01v8[gm]*2926.829268/(1+@m.xm1.msky130_fd_pr__nfet_01v8[gm]*0.5*2926.829268)
+print ideal_0p500
+ac lin 1 1k 1k
+let gain_0p500 = real(v(vout)/v(vin))
+print gain_0p500
+
+alter R1 40k
+alter R2 80k
+echo === CASE beta_0p667 R1_40k R2_80k ===
+op
+print v(vin) v(vf) v(vout)
+print @m.xm1.msky130_fd_pr__nfet_01v8[vgs] @m.xm1.msky130_fd_pr__nfet_01v8[vds]
+print @m.xm1.msky130_fd_pr__nfet_01v8[vth] @m.xm1.msky130_fd_pr__nfet_01v8[vdsat]
+print @m.xm1.msky130_fd_pr__nfet_01v8[gm] @m.xm1.msky130_fd_pr__nfet_01v8[gds]
+let ideal_0p667 = @m.xm1.msky130_fd_pr__nfet_01v8[gm]*2926.829268/(1+@m.xm1.msky130_fd_pr__nfet_01v8[gm]*(2/3)*2926.829268)
+print ideal_0p667
+ac lin 1 1k 1k
+let gain_0p667 = real(v(vout)/v(vin))
+print gain_0p667
+
+alter R1 30k
+alter R2 90k
+echo === CASE beta_0p750 R1_30k R2_90k ===
+op
+print v(vin) v(vf) v(vout)
+print @m.xm1.msky130_fd_pr__nfet_01v8[vgs] @m.xm1.msky130_fd_pr__nfet_01v8[vds]
+print @m.xm1.msky130_fd_pr__nfet_01v8[vth] @m.xm1.msky130_fd_pr__nfet_01v8[vdsat]
+print @m.xm1.msky130_fd_pr__nfet_01v8[gm] @m.xm1.msky130_fd_pr__nfet_01v8[gds]
+let ideal_0p750 = @m.xm1.msky130_fd_pr__nfet_01v8[gm]*2926.829268/(1+@m.xm1.msky130_fd_pr__nfet_01v8[gm]*0.75*2926.829268)
+print ideal_0p750
+ac lin 1 1k 1k
+let gain_0p750 = real(v(vout)/v(vin))
+print gain_0p750
+
+quit
+.endc
+
+.end

@@ -1,0 +1,66 @@
+* Razavi-Bench Figure 22: current-input positive-feedback circuit
+* Reviewed topology is preserved in D/G/S/B order.
+* Test intent: sweep the input-node voltage and measure the current required
+* to hold it, demonstrating the feedback-created negative input conductance.
+
+.include "../../simulator/ngspice-sky130/models/sky130.lib.spice"
+.temp 27
+
+* Added simulation assumptions (the figure omits all numerical values):
+* 1.8 V external supply, 20 kohm RD1, equal 10.0 um / 0.50 um NMOS devices,
+* and conventional NMOS bulks tied to their grounded sources.
+VDD_SRC VDD 0 1.8
+RD1 VDD Vout 20k
+XM1 Vout X    0 0 sky130_fd_pr__nfet_01v8 w=10.0u l=0.50u
+XM2 X    Vout 0 0 sky130_fd_pr__nfet_01v8 w=10.0u l=0.50u
+
+* Reviewed input source orientation: positive current is injected 0 -> X.
+* Its DC value is zero during voltage-clamped characterization.  IREQ below
+* is the nonzero current that this source would need at each swept bias.
+IIN 0 X DC 0
+
+* Measurement fixture (not part of the reviewed circuit): clamp/sweep X.
+VX X 0 0
+
+.options gmin=1e-12
+
+.control
+set wr_singlescale
+set wr_vecnames
+dc VX 0.40 0.90 1m
+let ireq = -i(VX)
+let gin = deriv(ireq)
+let rin = 1/gin
+let av = deriv(v(Vout))
+wrdata figure22_dc_sweep.dat v(X) v(Vout) ireq gin rin av
+meas dc x_lo find v(X) at=0.60
+meas dc vout_lo find v(Vout) at=0.60
+meas dc ireq_lo find ireq at=0.60
+meas dc gin_lo find gin at=0.60
+meas dc rin_lo find rin at=0.60
+meas dc x_mid find v(X) at=0.70
+meas dc vout_mid find v(Vout) at=0.70
+meas dc ireq_mid find ireq at=0.70
+meas dc gin_mid find gin at=0.70
+meas dc rin_mid find rin at=0.70
+meas dc av_mid find av at=0.70
+meas dc x_hi find v(X) at=0.80
+meas dc vout_hi find v(Vout) at=0.80
+meas dc ireq_hi find ireq at=0.80
+meas dc gin_hi find gin at=0.80
+meas dc rin_hi find rin at=0.80
+
+* Independent local small-signal cross-check at X=0.70 V.  For this
+* topology, Gin = gds2 - gm1*gm2/(1/RD1 + gds1).
+alter VX=0.70
+op
+let gm1_mid = @m.xm1.msky130_fd_pr__nfet_01v8[gm]
+let gds1_mid = @m.xm1.msky130_fd_pr__nfet_01v8[gds]
+let gm2_mid = @m.xm2.msky130_fd_pr__nfet_01v8[gm]
+let gds2_mid = @m.xm2.msky130_fd_pr__nfet_01v8[gds]
+let gin_ss_mid = gds2_mid-gm1_mid*gm2_mid/(5e-5+gds1_mid)
+print gm1_mid gds1_mid gm2_mid gds2_mid gin_ss_mid
+quit
+.endc
+
+.end

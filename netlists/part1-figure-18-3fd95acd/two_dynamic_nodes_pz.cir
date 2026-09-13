@@ -1,0 +1,26 @@
+* Razavi-Bench part1 Figure 18 -- pole count of the shown small-signal model
+* The question supplies an explicit small-signal capacitance drawing, so a
+* linear gm/ro representation is more faithful than inventing a DC bias circuit.
+
+* Assumptions omitted by the figure: representative positive values only.
+* They do not alter the number of independent capacitive nodes.
+RDC vin 0 1T
+RS vin g1 10k
+CGS g1 0 1p
+CGD g1 vout 200f
+CDB vout 0 500f
+CGD2 vout 0 150f
+CDB2 vout 0 500f
+
+* M1 common-source transconductance and total output resistance.
+G_M1 vout 0 g1 0 1m
+R_OUT vout 0 100k
+
+.control
+set noaskquit
+pz vin 0 vout 0 vol pz
+print all
+quit
+.endc
+
+.end

@@ -1,0 +1,8 @@
+* RC low-pass AC response
+Vin in 0 AC 1
+R1 in out {r}
+C1 out 0 {c}
+
+.ac dec 100 {fstart} {fstop}
+.print ac v(out)
+.end

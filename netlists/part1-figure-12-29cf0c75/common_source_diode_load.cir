@@ -1,0 +1,49 @@
+* Razavi Figure 12: common-source NMOS with diode-connected PMOS load
+* Reviewed connectivity is preserved exactly (D G S B order):
+* M1: Vout Vi 0 0, M2: Vout Vout VDD VDD.
+*
+* Added simulation assumptions (the source figure specifies none):
+* - VDD = 1.8 V.
+* - Vi has a 0.80 V DC bias and a 1 V AC small-signal magnitude.
+* - M1 uses the bundled 1.8 V NMOS primitive, W/L = 1.26 um/0.15 um.
+* - M2 uses the bundled 1.8 V PMOS primitive, W/L = 2.52 um/0.15 um.
+* - Both bulks are tied to their respective sources, per the reviewed topology.
+
+.include "../../simulator/ngspice-sky130/models/sky130.lib.spice"
+
+VDD VDD 0 1.8
+VIN Vi 0 DC 0.80 AC 1
+
+XM1 Vout Vi 0 0 sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+XM2 Vout Vout VDD VDD sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+
+.control
+set noaskquit
+op
+let gm1=@m.xm1.msky130_fd_pr__nfet_01v8[gm]
+let gds1=@m.xm1.msky130_fd_pr__nfet_01v8[gds]
+let gm2=@m.xm2.msky130_fd_pr__pfet_01v8[gm]
+let gds2=@m.xm2.msky130_fd_pr__pfet_01v8[gds]
+let id1=@m.xm1.msky130_fd_pr__nfet_01v8[id]
+let id2=@m.xm2.msky130_fd_pr__pfet_01v8[id]
+let vds1=@m.xm1.msky130_fd_pr__nfet_01v8[vds]
+let vdsat1=@m.xm1.msky130_fd_pr__nfet_01v8[vdsat]
+let vds2=@m.xm2.msky130_fd_pr__pfet_01v8[vds]
+let vdsat2=@m.xm2.msky130_fd_pr__pfet_01v8[vdsat]
+let av_est=-gm1/(gds1+gds2+gm2)
+echo === OPERATING_POINT_AND_GM_GDS_ESTIMATE ===
+print v(vi) v(vout) id1 id2 gm1 gds1 gm2 gds2 vds1 vdsat1 vds2 vdsat2 av_est
+
+ac lin 1 1k 1k
+let av_1k=real(v(vout)/v(vi))
+let av_mag_1k=mag(v(vout)/v(vi))
+echo === SMALL_SIGNAL_GAIN_AT_1KHZ ===
+print av_1k av_mag_1k
+
+dc VIN 0.65 0.95 0.05
+echo === DC_TRANSFER_SWEEP ===
+print v(vi) v(vout)
+quit
+.endc
+
+.end

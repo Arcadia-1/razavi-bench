@@ -1,0 +1,64 @@
+* Figure 9 StrongARM comparator: added P/Q capacitance versus decision delay.
+* Two complete copies have identical devices and stimuli. Only the explicit,
+* assumed capacitance from each of P and Q to VSS changes (2 fF versus 20 fF).
+
+.include "../../simulator/ngspice-sky130/models/sky130.lib.spice"
+.option method=gear reltol=1e-4 abstol=1e-12 vntol=1e-6
+
+VDD VDD 0 1.8
+VCK CK 0 PULSE(0 1.8 20p 20p 20p 1n 2n)
+VIN1 VIN1 0 0.901
+VIN2 VIN2 0 0.899
+
+* Copy L: 2 fF added at each of P and Q.
+XM1L PL VIN1 TAILL 0 sky130_fd_pr__nfet_01v8 w=2.52u l=0.15u
+XM2L QL VIN2 TAILL 0 sky130_fd_pr__nfet_01v8 w=2.52u l=0.15u
+XM3L XL YL PL 0 sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+XM4L YL XL QL 0 sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+XM5L XL YL VDD VDD sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XM6L YL XL VDD VDD sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XM7L TAILL CK 0 0 sky130_fd_pr__nfet_01v8 w=1.68u l=0.15u
+XS1L PL CK VDD VDD sky130_fd_pr__pfet_01v8 w=1.26u l=0.15u
+XS2L QL CK VDD VDD sky130_fd_pr__pfet_01v8 w=1.26u l=0.15u
+XS3L XL CK VDD VDD sky130_fd_pr__pfet_01v8 w=1.26u l=0.15u
+XS4L YL CK VDD VDD sky130_fd_pr__pfet_01v8 w=1.26u l=0.15u
+CPL PL 0 2f
+CQL QL 0 2f
+CXL XL 0 20f
+CYL YL 0 20f
+
+* Copy H: 20 fF added at each of P and Q.
+XM1H PH VIN1 TAILH 0 sky130_fd_pr__nfet_01v8 w=2.52u l=0.15u
+XM2H QH VIN2 TAILH 0 sky130_fd_pr__nfet_01v8 w=2.52u l=0.15u
+XM3H XH YH PH 0 sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+XM4H YH XH QH 0 sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+XM5H XH YH VDD VDD sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XM6H YH XH VDD VDD sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XM7H TAILH CK 0 0 sky130_fd_pr__nfet_01v8 w=1.68u l=0.15u
+XS1H PH CK VDD VDD sky130_fd_pr__pfet_01v8 w=1.26u l=0.15u
+XS2H QH CK VDD VDD sky130_fd_pr__pfet_01v8 w=1.26u l=0.15u
+XS3H XH CK VDD VDD sky130_fd_pr__pfet_01v8 w=1.26u l=0.15u
+XS4H YH CK VDD VDD sky130_fd_pr__pfet_01v8 w=1.26u l=0.15u
+CPH PH 0 20f
+CQH QH 0 20f
+CXH XH 0 20f
+CYH YH 0 20f
+
+* Explicit precharged initial state avoids an artificial floating-tail DC solve.
+.ic v(PL)=1.8 v(QL)=1.8 v(XL)=1.8 v(YL)=1.8 v(TAILL)=0
+.ic v(PH)=1.8 v(QH)=1.8 v(XH)=1.8 v(YH)=1.8 v(TAILH)=0
+
+.control
+tran 2p 800p uic
+let vdiff_low=v(yl)-v(xl)
+let vdiff_high=v(yh)-v(xh)
+meas tran t_lowcap when vdiff_low=0.08 rise=1
+meas tran t_highcap when vdiff_high=0.08 rise=1
+let delay_lowcap=t_lowcap-40p
+let delay_highcap=t_highcap-40p
+let delay_ratio=delay_highcap/delay_lowcap
+print t_lowcap t_highcap delay_lowcap delay_highcap delay_ratio
+quit
+.endc
+
+.end

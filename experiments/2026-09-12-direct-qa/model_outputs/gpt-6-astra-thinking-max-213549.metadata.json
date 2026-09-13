@@ -1,0 +1,29 @@
+{
+  "benchmark": "razavi-bench",
+  "experiment": "2026-09-12-direct-qa",
+  "run_date": "2026-09-12",
+  "source_repo_commit": "a2e90f14ff91729ff309eb4dc3f4378bcf4e10aa",
+  "mode": "direct_multimodal_qa",
+  "model_name": "GPT-6 Astra",
+  "provider_model": "gpt-6-astra",
+  "vela_model_id": 213549,
+  "api_format": "openai_responses",
+  "temperature": null,
+  "max_tokens": 65536,
+  "reasoning": "enabled",
+  "reasoning_effort": "max",
+  "rollouts": [
+    1,
+    2,
+    3
+  ],
+  "concurrency": 50,
+  "expected_answers": 150,
+  "completed_answers": 150,
+  "failed_answers": 0,
+  "evalforge_task_id": 22646,
+  "agent_task_id": 474450,
+  "process_snippet_id": 11915,
+  "process_snippet_version": 17,
+  "raw_responses_retained_locally": true
+}

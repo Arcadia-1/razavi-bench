@@ -1,0 +1,42 @@
+* Razavi-Bench part1-figure-07-35ca37c4
+* Purpose: verify that Vin cannot drive M1 because the depicted source is node 0.
+* Reviewed M1 connectivity is preserved exactly: D/G/S/B = vout/vb/0/0.
+
+.include "../../simulator/ngspice-sky130/models/sky130.lib.spice"
+
+* Documented simulation assumptions for values omitted by the figure:
+* - nominal 1.8 V supply and 0.80 V ideal gate bias
+* - RD = 10 kohm, C1 = 1 pF
+* - M1 uses the bundled 1.8 V NMOS primitive with W=2.00 um, L=0.15 um
+* - M1 bulk is tied to its depicted grounded source
+* - Vin has 0 V DC and 1 V small-signal AC magnitude
+VDD vdd 0 1.8
+VB  vb  0 0.80
+VVIN vin 0 DC 0 AC 1
+C1 vin 0 1p
+RD vdd vout 10k
+XM1 vout vb 0 0 sky130_fd_pr__nfet_01v8 w=2.00u l=0.15u
+
+.control
+set noaskquit
+op
+echo ===== DC operating-point sanity check =====
+print v(vout)
+let m1_id=@m.xm1.msky130_fd_pr__nfet_01v8[id]
+let m1_gm=@m.xm1.msky130_fd_pr__nfet_01v8[gm]
+let m1_gds=@m.xm1.msky130_fd_pr__nfet_01v8[gds]
+let m1_vth=@m.xm1.msky130_fd_pr__nfet_01v8[vth]
+let m1_vdsat=@m.xm1.msky130_fd_pr__nfet_01v8[vdsat]
+print m1_id m1_gm m1_gds m1_vth m1_vdsat
+
+ac lin 1 1Meg 1Meg
+echo ===== AC evidence at 1 MHz =====
+let vin_mag=mag(v(vin))
+let vout_mag=mag(v(vout))
+let gain_mag=mag(v(vout)/v(vin))
+let input_current_mag=mag(i(vvin))
+print vin_mag vout_mag gain_mag input_current_mag
+quit
+.endc
+
+.end

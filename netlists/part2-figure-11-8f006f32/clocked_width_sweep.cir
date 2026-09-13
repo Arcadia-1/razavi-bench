@@ -1,0 +1,86 @@
+* Razavi-Bench part2 Figure 11 -- alternate C2MOS divider width sweep
+* Visible D/G/S connectivity is preserved; only omitted sizes/stimuli are added.
+
+.include "../../simulator/ngspice-sky130/models/sky130.lib.spice"
+
+.subckt DIV11_N ck ckb nl nr nfb vdd vss
+XLCP nlp ckb vdd vdd sky130_fd_pr__pfet_01v8 w=0.84u l=0.15u
+XLDP nl nfb nlp vdd sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XLDN nl nfb nln vss sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+XLCN nln ck vss vss sky130_fd_pr__nfet_01v8 w=0.42u l=0.15u
+XRCP nrp ck vdd vdd sky130_fd_pr__pfet_01v8 w=0.84u l=0.15u
+XRDP nr nl nrp vdd sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XRDN nr nl nrn vss sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+XRCN nrn ckb vss vss sky130_fd_pr__nfet_01v8 w=0.42u l=0.15u
+XIP nfb nr vdd vdd sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XIN nfb nr vss vss sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+CNL nl vss 15f
+CNR nr vss 15f
+CNF nfb vss 15f
+.ends DIV11_N
+
+.subckt DIV11_M ck ckb nl nr nfb vdd vss
+XLCP nlp ckb vdd vdd sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XLDP nl nfb nlp vdd sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XLDN nl nfb nln vss sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+XLCN nln ck vss vss sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+XRCP nrp ck vdd vdd sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XRDP nr nl nrp vdd sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XRDN nr nl nrn vss sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+XRCN nrn ckb vss vss sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+XIP nfb nr vdd vdd sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XIN nfb nr vss vss sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+CNL nl vss 15f
+CNR nr vss 15f
+CNF nfb vss 15f
+.ends DIV11_M
+
+.subckt DIV11_W ck ckb nl nr nfb vdd vss
+XLCP nlp ckb vdd vdd sky130_fd_pr__pfet_01v8 w=20.16u l=0.15u
+XLDP nl nfb nlp vdd sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XLDN nl nfb nln vss sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+XLCN nln ck vss vss sky130_fd_pr__nfet_01v8 w=10.08u l=0.15u
+XRCP nrp ck vdd vdd sky130_fd_pr__pfet_01v8 w=20.16u l=0.15u
+XRDP nr nl nrp vdd sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XRDN nr nl nrn vss sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+XRCN nrn ckb vss vss sky130_fd_pr__nfet_01v8 w=10.08u l=0.15u
+XIP nfb nr vdd vdd sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XIN nfb nr vss vss sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+CNL nl vss 15f
+CNR nr vss 15f
+CNF nfb vss 15f
+.ends DIV11_W
+
+VDD vdd 0 1.8
+VCK cks 0 PULSE(0 1.8 20p 20p 20p 0.96n 2n)
+VCKB ckbs 0 PULSE(1.8 0 20p 20p 20p 0.96n 2n)
+RCK cks ck 10
+RCKB ckbs ckb 10
+
+XDN ck ckb nlnr nrr nfr vdd 0 DIV11_N
+XDM ck ckb nlm nrm nfm vdd 0 DIV11_M
+XDW ck ckb nlw nrw nfw vdd 0 DIV11_W
+
+.ic v(nlnr)=0 v(nrr)=1.8 v(nfr)=0
+.ic v(nlm)=0 v(nrm)=1.8 v(nfm)=0
+.ic v(nlw)=0 v(nrw)=1.8 v(nfw)=0
+
+.control
+set noaskquit
+option method=gear reltol=1e-3
+tran 2p 30n
+meas tran per_n trig v(nfr) val=0.9 rise=3 targ v(nfr) val=0.9 rise=4
+meas tran per_m trig v(nfm) val=0.9 rise=3 targ v(nfm) val=0.9 rise=4
+meas tran per_w trig v(nfw) val=0.9 rise=3 targ v(nfw) val=0.9 rise=4
+meas tran dly_n trig v(ck) val=0.9 rise=6 targ v(nlnr) val=0.9 fall=3
+meas tran dly_m trig v(ck) val=0.9 rise=6 targ v(nlm) val=0.9 fall=3
+meas tran dly_w trig v(ck) val=0.9 rise=6 targ v(nlw) val=0.9 fall=3
+meas tran swing_n pp v(nlnr) from=10n to=30n
+meas tran swing_m pp v(nlm) from=10n to=30n
+meas tran swing_w pp v(nlw) from=10n to=30n
+print per_n per_m per_w dly_n dly_m dly_w swing_n swing_m swing_w
+write clocked_width_sweep.raw v(ck) v(nlnr) v(nlm) v(nlw) v(nfr) v(nfm) v(nfw)
+quit
+.endc
+
+.end

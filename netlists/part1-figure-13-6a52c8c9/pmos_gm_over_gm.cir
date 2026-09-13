@@ -1,0 +1,27 @@
+* Razavi-Bench part1 Figure 13 -- PMOS common-source with PMOS diode load
+* Both visible devices are instantiated as real Sky130 PMOS transistors.
+
+.include "../../simulator/ngspice-sky130/models/sky130.lib.spice"
+
+* Assumptions omitted by the figure: VDD=1.8 V, Vin(dc)=0.80 V, equal W/L.
+VDD vdd 0 1.8
+VIN vin 0 DC 0.80 AC 1
+
+* MOS order is D G S B. M1 gate and drain are both node 0.
+XM2 vout vin vdd vdd sky130_fd_pr__pfet_01v8 w=5.04u l=0.15u
+XM1 0 0 vout vout sky130_fd_pr__pfet_01v8 w=5.04u l=0.15u
+CLOAD vout 0 20f
+
+.control
+set noaskquit
+op
+print v(vout)
+ac dec 50 10 10G
+meas ac gain_1khz find vm(vout) at=1k
+meas ac phase_1khz find vp(vout) at=1k
+meas ac gain_1khz_db find vdb(vout) at=1k
+print gain_1khz phase_1khz gain_1khz_db
+quit
+.endc
+
+.end

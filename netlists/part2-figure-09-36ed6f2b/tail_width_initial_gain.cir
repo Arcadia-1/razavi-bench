@@ -1,0 +1,86 @@
+* Figure 9 StrongARM comparator: initial-gain proxy versus M7 width.
+* Held fixed: all other geometry, 1.8 V supply, 0.9 V input common mode,
+* 2 mV differential input, clock waveform, and explicit node capacitors.
+* Proxy follows Razavi's Av_initial ~= gm(input)*VTHN/I_CM; VTHN=0.45 V.
+
+.include "../../simulator/ngspice-sky130/models/sky130.lib.spice"
+.option method=gear reltol=1e-4 abstol=1e-12 vntol=1e-6
+
+VDD VDD 0 1.8
+VCK CK 0 PULSE(0 1.8 20p 20p 20p 1n 2n)
+VIN1 VIN1 0 0.901
+VIN2 VIN2 0 0.899
+
+* Copy A: M7 width = 0.84 um.
+XM1A PA VIN1 TAILA 0 sky130_fd_pr__nfet_01v8 w=2.52u l=0.15u
+XM2A QA VIN2 TAILA 0 sky130_fd_pr__nfet_01v8 w=2.52u l=0.15u
+XM3A XA YA PA 0 sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+XM4A YA XA QA 0 sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+XM5A XA YA VDD VDD sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XM6A YA XA VDD VDD sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XM7A TAILA CK 0 0 sky130_fd_pr__nfet_01v8 w=0.84u l=0.15u
+XS1A PA CK VDD VDD sky130_fd_pr__pfet_01v8 w=1.26u l=0.15u
+XS2A QA CK VDD VDD sky130_fd_pr__pfet_01v8 w=1.26u l=0.15u
+XS3A XA CK VDD VDD sky130_fd_pr__pfet_01v8 w=1.26u l=0.15u
+XS4A YA CK VDD VDD sky130_fd_pr__pfet_01v8 w=1.26u l=0.15u
+CPA PA 0 5f
+CQA QA 0 5f
+CXA XA 0 20f
+CYA YA 0 20f
+
+* Copy B: M7 width = 1.68 um.
+XM1B PB VIN1 TAILB 0 sky130_fd_pr__nfet_01v8 w=2.52u l=0.15u
+XM2B QB VIN2 TAILB 0 sky130_fd_pr__nfet_01v8 w=2.52u l=0.15u
+XM3B XB YB PB 0 sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+XM4B YB XB QB 0 sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+XM5B XB YB VDD VDD sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XM6B YB XB VDD VDD sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XM7B TAILB CK 0 0 sky130_fd_pr__nfet_01v8 w=1.68u l=0.15u
+XS1B PB CK VDD VDD sky130_fd_pr__pfet_01v8 w=1.26u l=0.15u
+XS2B QB CK VDD VDD sky130_fd_pr__pfet_01v8 w=1.26u l=0.15u
+XS3B XB CK VDD VDD sky130_fd_pr__pfet_01v8 w=1.26u l=0.15u
+XS4B YB CK VDD VDD sky130_fd_pr__pfet_01v8 w=1.26u l=0.15u
+CPB PB 0 5f
+CQB QB 0 5f
+CXB XB 0 20f
+CYB YB 0 20f
+
+* Copy C: M7 width = 3.36 um.
+XM1C PC VIN1 TAILC 0 sky130_fd_pr__nfet_01v8 w=2.52u l=0.15u
+XM2C QC VIN2 TAILC 0 sky130_fd_pr__nfet_01v8 w=2.52u l=0.15u
+XM3C XC YC PC 0 sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+XM4C YC XC QC 0 sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+XM5C XC YC VDD VDD sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XM6C YC XC VDD VDD sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XM7C TAILC CK 0 0 sky130_fd_pr__nfet_01v8 w=3.36u l=0.15u
+XS1C PC CK VDD VDD sky130_fd_pr__pfet_01v8 w=1.26u l=0.15u
+XS2C QC CK VDD VDD sky130_fd_pr__pfet_01v8 w=1.26u l=0.15u
+XS3C XC CK VDD VDD sky130_fd_pr__pfet_01v8 w=1.26u l=0.15u
+XS4C YC CK VDD VDD sky130_fd_pr__pfet_01v8 w=1.26u l=0.15u
+CPC PC 0 5f
+CQC QC 0 5f
+CXC XC 0 20f
+CYC YC 0 20f
+
+* Explicit precharged initial state avoids an artificial floating-tail DC solve.
+.ic v(PA)=1.8 v(QA)=1.8 v(XA)=1.8 v(YA)=1.8 v(TAILA)=0
+.ic v(PB)=1.8 v(QB)=1.8 v(XB)=1.8 v(YB)=1.8 v(TAILB)=0
+.ic v(PC)=1.8 v(QC)=1.8 v(XC)=1.8 v(YC)=1.8 v(TAILC)=0
+
+.control
+save all @m.xm1a.msky130_fd_pr__nfet_01v8[gm] @m.xm1b.msky130_fd_pr__nfet_01v8[gm] @m.xm1c.msky130_fd_pr__nfet_01v8[gm] @m.xm7a.msky130_fd_pr__nfet_01v8[id] @m.xm7b.msky130_fd_pr__nfet_01v8[id] @m.xm7c.msky130_fd_pr__nfet_01v8[id]
+tran 2p 800p uic
+meas tran gm_a find @m.xm1a.msky130_fd_pr__nfet_01v8[gm] at=120p
+meas tran gm_b find @m.xm1b.msky130_fd_pr__nfet_01v8[gm] at=120p
+meas tran gm_c find @m.xm1c.msky130_fd_pr__nfet_01v8[gm] at=120p
+meas tran itail_a find @m.xm7a.msky130_fd_pr__nfet_01v8[id] at=120p
+meas tran itail_b find @m.xm7b.msky130_fd_pr__nfet_01v8[id] at=120p
+meas tran itail_c find @m.xm7c.msky130_fd_pr__nfet_01v8[id] at=120p
+let avproxy_a=gm_a*0.45/itail_a
+let avproxy_b=gm_b*0.45/itail_b
+let avproxy_c=gm_c*0.45/itail_c
+print gm_a gm_b gm_c itail_a itail_b itail_c avproxy_a avproxy_b avproxy_c
+quit
+.endc
+
+.end

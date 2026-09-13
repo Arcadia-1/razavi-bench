@@ -1,0 +1,63 @@
+* ============================================================================
+* Razavi-Bench part1-figure-04  (task part1-007)
+* PMOS common-source stage with source degeneration -- OPERATING POINT
+* ----------------------------------------------------------------------------
+* Topology (faithful to Figure 4):
+*   VDD --[RS]-- s(source) ; M1 is a PMOS
+*   Vin -> gate of M1
+*   drain of M1 = Vout ; Vout --[RD]-- GND
+* The source sits near VDD through the degeneration resistor RS, the drain is
+* loaded to ground by RD, the gate is the input, the output is the drain.
+* Small-signal (VDD is ac ground):  Av = vout/vin ~= -gm*RD / (1 + gm*RS).
+* Bulk is tied to the source (3-terminal Razavi symbol) so there is no body
+* effect (Vsb = 0), matching the golden-solution gain expression.
+* ============================================================================
+.include "../../simulator/ngspice-sky130/models/sky130.lib.spice"
+
+* --- nominal assumptions (values absent from schematic) ---
+.param VDD_V = 1.8      $ Sky130 1.8 V rail
+.param VB    = 0.35     $ gate dc bias for saturation, ~115 uA
+.param RS_V  = 1k       $ source-degeneration resistor
+.param RD_V  = 5k       $ drain load resistor
+.param WP    = 20       $ PMOS width  (um)
+.param LP    = 0.5      $ PMOS length (um)
+
+Vdd vdd 0 {VDD_V}
+Vin in  0 {VB} AC 1
+Rs  vdd s   {RS_V}
+Xm1 out in  s s sky130_fd_pr__pfet_01v8 w=20u l=0.5u
+Rd  out 0   {RD_V}
+
+.op
+.control
+run
+* control-scope copies of the resistor values (.param is netlist-scope only)
+let rsv = 1e3
+let rdv = 5e3
+* --- operating-point device parameters (ngspice reports PMOS magnitudes) ---
+let id    = @m.xm1.msky130_fd_pr__pfet_01v8[id]
+let gm    = @m.xm1.msky130_fd_pr__pfet_01v8[gm]
+let gds   = @m.xm1.msky130_fd_pr__pfet_01v8[gds]
+let gmbs  = @m.xm1.msky130_fd_pr__pfet_01v8[gmbs]
+let vgs   = @m.xm1.msky130_fd_pr__pfet_01v8[vgs]
+let vds   = @m.xm1.msky130_fd_pr__pfet_01v8[vds]
+let vth   = @m.xm1.msky130_fd_pr__pfet_01v8[vth]
+let vdsat = @m.xm1.msky130_fd_pr__pfet_01v8[vdsat]
+let ro    = 1/gds
+let gmrs  = gm*rsv
+* degenerated common-source gain, neglecting ro (golden-solution form)
+let av_simple = -gm*rdv/(1+gm*rsv)
+* effective transconductance and gain including ro (body tied to source)
+let Gm_eff = gm/(1 + gm*rsv + rsv/ro)
+let Rout   = ro*(1+gm*rsv) + rsv
+let av_ro  = -Gm_eff*(rdv*Rout/(rdv+Rout))
+print v(s) v(out) id
+print gm gds gmbs ro
+print vgs vds vth vdsat
+print gmrs av_simple av_ro
+* saturation margin for the PMOS:  |VDS| - |VDSAT|  must be > 0
+let sat_margin = vds - vdsat
+print sat_margin
+quit
+.endc
+.end

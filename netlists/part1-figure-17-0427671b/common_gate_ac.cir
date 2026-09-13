@@ -1,0 +1,50 @@
+* Razavi-Bench Figure 17: common-gate NMOS with PMOS current-source load
+* Simulation purpose: test gain sign, low input resistance, and gm*Rout scale.
+* Reviewed D/G/S/B connectivity is preserved exactly; only omitted bulks,
+* geometry, ground-referenced sources, and numerical biases are supplied.
+
+.include "../../simulator/ngspice-sky130/models/sky130.lib.spice"
+
+* Documented simulation assumptions
+* - 1.8 V nominal supply and TT model defaults from the bundled include.
+* - Conventional bulk-CMOS ties: PMOS bulk to VDD, NMOS bulk to ground.
+* - Long-ish 0.50 um channels make finite output resistance observable.
+* - No output load is added; Vout contains only the two reviewed drains.
+VDD  VDD   0  1.8
+VB1  Vb1   0  0.9155
+VB2  Vb2   0  0.80
+VIN  Vin   0  DC 0.30 AC 1
+
+* Reviewed topology, conventional subcircuit port order D G S B
+XM1  Vout  Vb2  VDD  VDD  sky130_fd_pr__pfet_01v8  w=8.00u l=0.50u
+XM2  Vout  Vb1  Vin  0      sky130_fd_pr__nfet_01v8  w=4.00u l=0.50u
+
+.control
+op
+let gm1   = @m.xm1.msky130_fd_pr__pfet_01v8[gm]
+let gds1  = @m.xm1.msky130_fd_pr__pfet_01v8[gds]
+let gm2   = @m.xm2.msky130_fd_pr__nfet_01v8[gm]
+let gmb2  = @m.xm2.msky130_fd_pr__nfet_01v8[gmbs]
+let gds2  = @m.xm2.msky130_fd_pr__nfet_01v8[gds]
+let id1   = @m.xm1.msky130_fd_pr__pfet_01v8[id]
+let id2   = @m.xm2.msky130_fd_pr__nfet_01v8[id]
+let vds1  = @m.xm1.msky130_fd_pr__pfet_01v8[vds]
+let vds2  = @m.xm2.msky130_fd_pr__nfet_01v8[vds]
+let vdsat1 = @m.xm1.msky130_fd_pr__pfet_01v8[vdsat]
+let vdsat2 = @m.xm2.msky130_fd_pr__nfet_01v8[vdsat]
+let av_gmro = gm2/(gds1+gds2)
+let av_gmro_body = (gm2+gmb2)/(gds1+gds2)
+let rin_gm = 1/gm2
+let rin_gm_body = 1/(gm2+gmb2)
+print v(Vout) id1 id2 gm1 gm2 gmb2 gds1 gds2 vds1 vdsat1 vds2 vdsat2
+print av_gmro av_gmro_body rin_gm rin_gm_body
+
+* One low-frequency point isolates the small-signal (near-DC) mechanism.
+ac lin 1 1 1
+let gain = v(Vout)/v(Vin)
+let zin  = -v(Vin)/i(VIN)
+print frequency gain zin
+quit
+.endc
+
+.end

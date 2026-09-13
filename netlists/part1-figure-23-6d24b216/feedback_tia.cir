@@ -1,0 +1,71 @@
+* Razavi Figure 23: two-stage NMOS feedback transimpedance amplifier
+* Simulation intent: probe low-frequency transimpedance and the sign of each
+* internal-node response while the assumed bias, sizing, and loads are fixed.
+*
+* Reviewed topology is preserved exactly:
+*   M1 D/G/S/B = X/Vb/IN/0
+*   M2 D/G/S/B = Vout/X/0/0
+*   RF connects Vout to IN; positive IIN flows from 0 to IN.
+*
+* Added simulation assumptions (the source figure gives no numerical values):
+*   VDD=1.8 V, Vb=1.5 V, IIN(dc)=1 uA, IIN(ac)=1 A.
+*   RD1=100 kohm, RD2=10 kohm, RF=20 kohm.
+*   Both drawn NMOS devices use the bundled 1.8-V typical primitive model.
+*   Both bulks are grounded because the figure omits body connections.
+*   M1 geometry is 4.0 um/0.50 um; M2 geometry is 4.0 um/1.00 um.
+*   The 1-A AC magnitude is a linear-analysis normalization only: AC node
+*   voltages numerically equal impedances/transimpedances in ohms.
+
+.include "../../simulator/ngspice-sky130/models/sky130.lib.spice"
+.temp 27
+
+VDD VDD 0 1.8
+VB  Vb  0 1.5
+
+XM1 X    Vb IN 0 sky130_fd_pr__nfet_01v8 w=4.0u l=0.50u
+XM2 Vout X  0  0 sky130_fd_pr__nfet_01v8 w=4.0u l=1.00u
+
+RD1 VDD  X    100k
+RD2 VDD  Vout 10k
+RF  Vout IN   20k
+
+* Positive input current is injected upward from ground into IN.
+IIN 0 IN DC 1u AC 1
+
+.op
+.ac lin 1 1k 1k
+
+.control
+set noaskquit
+op
+
+echo === DC_OPERATING_POINT ===
+print v(in) v(x) v(vout) i(vdd)
+let m1_gm  = @m.xm1.msky130_fd_pr__nfet_01v8[gm]
+let m1_gds = @m.xm1.msky130_fd_pr__nfet_01v8[gds]
+let m2_gm  = @m.xm2.msky130_fd_pr__nfet_01v8[gm]
+let m2_gds = @m.xm2.msky130_fd_pr__nfet_01v8[gds]
+let m1_vth   = @m.xm1.msky130_fd_pr__nfet_01v8[vth]
+let m1_vdsat = @m.xm1.msky130_fd_pr__nfet_01v8[vdsat]
+let m2_vth   = @m.xm2.msky130_fd_pr__nfet_01v8[vth]
+let m2_vdsat = @m.xm2.msky130_fd_pr__nfet_01v8[vdsat]
+let m1_vgs = v(vb)-v(in)
+let m1_vds = v(x)-v(in)
+let m2_vgs = v(x)
+let m2_vds = v(vout)
+print m1_gm m1_gds m1_vgs m1_vds m1_vth m1_vdsat
+print m2_gm m2_gds m2_vgs m2_vds m2_vth m2_vdsat
+
+ac lin 1 1k 1k
+echo === AC_1KHZ_WITH_1A_INJECTED_CURRENT ===
+let zin       = v(in)
+let zx        = v(x)
+let ztrans    = v(vout)
+let irf_opp   = (v(in)-v(vout))/20000
+let rf_fraction = irf_opp
+print zin zx ztrans irf_opp rf_fraction
+
+quit
+.endc
+
+.end

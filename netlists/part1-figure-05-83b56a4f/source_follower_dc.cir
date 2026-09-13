@@ -1,0 +1,34 @@
+* Figure 5 (part1-008-source-follower): NMOS source follower -- DC transfer characteristic
+* Sweeps the gate input Vin and reports the output (source) node Vout.
+*
+* Purpose: show the large-signal follower behaviour -- Vout tracks Vin with a
+* roughly constant VGS level shift once M1 conducts, and the local slope
+* dVout/dVin (the incremental gain) is positive and below unity. This is a DC
+* sweep (no time integration), so it stays within the minimal Sky130 subset.
+*
+* Nominal assumptions: VDD = 1.8 V, M1 = sky130_fd_pr__nfet_01v8 W=4.2u L=0.15u,
+* RS = 10 kOhm. Vin swept 0 -> 1.8 V.
+
+.include "../../simulator/ngspice-sky130/models/sky130.lib.spice"
+
+Vdd  vdd 0 1.8
+Vin  in  0 0.9
+
+Xn   vdd in out 0 sky130_fd_pr__nfet_01v8 w=4.2u l=0.15u
+Rs   out 0 10k
+
+.dc Vin 0 1.8 0.05
+
+.control
+run
+* Incremental (small-signal) gain as the local slope of the transfer curve:
+let av_dc = deriv(v(out))
+print v(out)
+print av_dc
+* Report a mid-range sample where the device is clearly on:
+meas dc vout_at_0p9  find v(out) at=0.9
+meas dc slope_max    max av_dc
+quit
+.endc
+
+.end

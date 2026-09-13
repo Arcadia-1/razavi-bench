@@ -1,0 +1,107 @@
+* Razavi-Bench part2-figure-16-6b3b4480
+* Cross-coupled NMOS LC oscillator: transient comparison versus tail CT.
+* Reviewed MOS order and connectivity are preserved: D G S B MODEL.
+* Three isolated copies hold all assumptions fixed except CT.
+
+.include "../../simulator/ngspice-sky130/models/sky130.lib.spice"
+
+* Documented implementation/testbench assumptions:
+* VDD=1.8 V, ISS=200 uA, L1=L2=10 nH.
+* M1=M2 are 20.0 um/0.15 um Sky130 1.8-V NMOS; bulks are grounded.
+* CX/CY=1.0 pF are equal drain-node implementation parasitics omitted by figure.
+* RPX/RPY=1.0 kohm model finite tank loss without changing reviewed connections.
+* Slightly unequal initial X/Y voltages seed the differential mode.
+
+VDD vdd 0 1.8
+
+* Case S: small CT = 1 pF.
+XS_M1 xs ys ps 0 sky130_fd_pr__nfet_01v8 w=20.0u l=0.15u
+XS_M2 ys xs ps 0 sky130_fd_pr__nfet_01v8 w=20.0u l=0.15u
+LS1 vdd xs 10n
+LS2 vdd ys 10n
+IS_S ps 0 DC 200u
+CTS ps 0 1p
+CXS xs 0 1.0p
+CYS ys 0 1.0p
+RXS xs 0 1k
+RYS ys 0 1k
+
+* Case M: moderate CT = 10 pF.
+XM_M1 xm ym pm 0 sky130_fd_pr__nfet_01v8 w=20.0u l=0.15u
+XM_M2 ym xm pm 0 sky130_fd_pr__nfet_01v8 w=20.0u l=0.15u
+LM1 vdd xm 10n
+LM2 vdd ym 10n
+IS_M pm 0 DC 200u
+CTM pm 0 10p
+CXM xm 0 1.0p
+CYM ym 0 1.0p
+RXM xm 0 1k
+RYM ym 0 1k
+
+* Case L: large CT = 100 pF.
+XL_M1 xl yl pl 0 sky130_fd_pr__nfet_01v8 w=20.0u l=0.15u
+XL_M2 yl xl pl 0 sky130_fd_pr__nfet_01v8 w=20.0u l=0.15u
+LL1 vdd xl 10n
+LL2 vdd yl 10n
+IS_L pl 0 DC 200u
+CTL pl 0 100p
+CXL xl 0 1.0p
+CYL yl 0 1.0p
+RXL xl 0 1k
+RYL yl 0 1k
+
+.ic v(xs)=1.81 v(ys)=1.79 v(ps)=0.45
+.ic v(xm)=1.81 v(ym)=1.79 v(pm)=0.45
+.ic v(xl)=1.81 v(yl)=1.79 v(pl)=0.45
+
+.control
+set noaskquit
+save v(xs) v(ys) v(ps) v(xm) v(ym) v(pm) v(xl) v(yl) v(pl)
++ i(LS1) i(LM1) i(LL1)
++ @m.xs_m1.msky130_fd_pr__nfet_01v8[id]
++ @m.xm_m1.msky130_fd_pr__nfet_01v8[id]
++ @m.xl_m1.msky130_fd_pr__nfet_01v8[id]
+tran 10p 20n uic
+
+* Differential amplitude and period after startup.
+let vds_s = v(xs)-v(ys)
+let vds_m = v(xm)-v(ym)
+let vds_l = v(xl)-v(yl)
+meas tran amp_s_pp pp vds_s from=12n to=20n
+meas tran amp_m_pp pp vds_m from=12n to=20n
+meas tran amp_l_pp pp vds_l from=12n to=20n
+meas tran per_s trig vds_s val=0 rise=12 targ vds_s val=0 rise=13
+meas tran per_m trig vds_m val=0 rise=12 targ vds_m val=0 rise=13
+meas tran per_l trig vds_l val=0 rise=12 targ vds_l val=0 rise=13
+
+* Tail-node ripple and peak inductor/tank current magnitude.
+meas tran tail_s_pp pp v(ps) from=12n to=20n
+meas tran tail_m_pp pp v(pm) from=12n to=20n
+meas tran tail_l_pp pp v(pl) from=12n to=20n
+meas tran x_s_min min v(xs) from=12n to=20n
+meas tran x_s_max max v(xs) from=12n to=20n
+meas tran x_m_min min v(xm) from=12n to=20n
+meas tran x_m_max max v(xm) from=12n to=20n
+meas tran x_l_min min v(xl) from=12n to=20n
+meas tran x_l_max max v(xl) from=12n to=20n
+let ils_abs = abs(i(LS1))
+let ilm_abs = abs(i(LM1))
+let ill_abs = abs(i(LL1))
+let ids_s_abs = abs(@m.xs_m1.msky130_fd_pr__nfet_01v8[id])
+let ids_m_abs = abs(@m.xm_m1.msky130_fd_pr__nfet_01v8[id])
+let ids_l_abs = abs(@m.xl_m1.msky130_fd_pr__nfet_01v8[id])
+meas tran peak_il_s max ils_abs from=12n to=20n
+meas tran peak_il_m max ilm_abs from=12n to=20n
+meas tran peak_il_l max ill_abs from=12n to=20n
+meas tran peak_ids_s max ids_s_abs from=12n to=20n
+meas tran peak_ids_m max ids_m_abs from=12n to=20n
+meas tran peak_ids_l max ids_l_abs from=12n to=20n
+
+print amp_s_pp amp_m_pp amp_l_pp per_s per_m per_l
+print tail_s_pp tail_m_pp tail_l_pp peak_il_s peak_il_m peak_il_l
+print x_s_min x_s_max x_m_min x_m_max x_l_min x_l_max
+print peak_ids_s peak_ids_m peak_ids_l
+quit
+.endc
+
+.end

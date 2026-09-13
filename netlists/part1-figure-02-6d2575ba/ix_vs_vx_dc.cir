@@ -1,0 +1,27 @@
+* Figure 2 (Razavi) -- NMOS I-V test structure: IX versus VX
+* Topology: VX drives the gate of NMOS M1, the source is grounded, and the
+* drain is held at a fixed 1 V by an ideal supply. IX is the drain current,
+* sensed by a 0 V ammeter (Vmeas) in series with the 1 V drain supply so that
+* i(Vmeas) is positive when current flows from the 1 V source into the drain,
+* matching the arrow in the figure.
+.include "../../simulator/ngspice-sky130/models/sky130.lib.spice"
+
+.param W=5u
+.param L=1u
+.param VDRAIN=1
+
+VX    g  0  0
+Vd    dd 0  {VDRAIN}
+Vmeas dd d  0
+
+* NMOS M1: drain=d gate=g source=0 bulk=0
+X1 d g 0 0 sky130_fd_pr__nfet_01v8 w=5u l=1u
+
+.dc VX 0 1.8 0.05
+.control
+run
+let ix = i(vmeas)
+print v(g) ix
+quit
+.endc
+.end

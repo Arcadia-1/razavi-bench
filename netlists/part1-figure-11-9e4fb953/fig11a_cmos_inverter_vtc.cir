@@ -1,0 +1,23 @@
+* Razavi-Bench Figure 11(a) - CMOS inverter, DC voltage transfer characteristic
+* Topology (from figure-11.png, subfigure a):
+*   M2 = PMOS pull-up : source->VDD, gate->Vin, drain->Vout, body->VDD
+*   M1 = NMOS pull-down: source->GND, gate->Vin, drain->Vout, body->GND
+*   Vin drives both gates; Vout is the common drain node.
+* Purpose: sweep Vin 0->VDD and show the sharp, rail-to-rail INVERTING transfer
+*   characteristic (Vout high when Vin low, Vout low when Vin high).
+* Nominal assumptions (values absent in the schematic):
+*   Sky130 1.8 V primitives (TT corner), VDD = 1.8 V, L = 0.15 um,
+*   Wn = 1.26 um, Wp = 3.0 um (~2.4x to partially offset hole mobility).
+.include "../../simulator/ngspice-sky130/models/sky130.lib.spice"
+
+Vdd vdd 0 1.8
+Vin in  0 0.9
+
+* subckt pin order: d g s b
+Xm2 out in vdd vdd sky130_fd_pr__pfet_01v8 w=3.0u  l=0.15u
+Xm1 out in 0   0   sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+
+.dc Vin 0 1.8 0.02
+.print dc v(out)
+
+.end

@@ -1,0 +1,74 @@
+{
+  "answers": 150,
+  "judges": {
+    "DeepSeek V4 Pro": {
+      "1": {
+        "overall": 95.5,
+        "part1": 98.33333333333333,
+        "part2": 91.25
+      },
+      "2": {
+        "overall": 94.5,
+        "part1": 97.5,
+        "part2": 90.0
+      },
+      "3": {
+        "overall": 94.5,
+        "part1": 100.0,
+        "part2": 86.25
+      },
+      "weighted": {
+        "overall": 94.83333333333334,
+        "part1": 98.61111111111111,
+        "part2": 89.16666666666667
+      }
+    },
+    "MiniMax M3 no-thinking": {
+      "1": {
+        "overall": 92.0,
+        "part1": 97.5,
+        "part2": 83.75
+      },
+      "2": {
+        "overall": 92.5,
+        "part1": 97.5,
+        "part2": 85.0
+      },
+      "3": {
+        "overall": 95.0,
+        "part1": 99.16666666666667,
+        "part2": 88.75
+      },
+      "weighted": {
+        "overall": 93.16666666666666,
+        "part1": 98.05555555555556,
+        "part2": 85.83333333333333
+      }
+    }
+  },
+  "mean_of_judges": {
+    "1": {
+      "overall": 93.75,
+      "part1": 97.91666666666666,
+      "part2": 87.5
+    },
+    "2": {
+      "overall": 93.5,
+      "part1": 97.5,
+      "part2": 87.5
+    },
+    "3": {
+      "overall": 94.75,
+      "part1": 99.58333333333334,
+      "part2": 87.5
+    },
+    "weighted": {
+      "overall": 94.0,
+      "part1": 98.33333333333334,
+      "part2": 87.5
+    }
+  },
+  "model_id": 209904,
+  "model_name": "Claude Opus 5",
+  "thinking_effort": "high"
+}

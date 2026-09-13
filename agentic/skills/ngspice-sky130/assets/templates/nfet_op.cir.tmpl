@@ -1,0 +1,21 @@
+* Sky130 NFET operating-point probe
+.include "{sky130_lib}"
+
+Vd d 0 1.8
+Vg g 0 0.9
+Vs s 0 0
+
+Xn d g s 0 sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+
+.op
+.control
+run
+let gm=@m.xn.msky130_fd_pr__nfet_01v8[gm]
+let gds=@m.xn.msky130_fd_pr__nfet_01v8[gds]
+let gmbs=@m.xn.msky130_fd_pr__nfet_01v8[gmbs]
+let gain_int=gm/gds
+print gm gds gmbs gain_int v(d) v(g) v(s)
+quit
+.endc
+
+.end

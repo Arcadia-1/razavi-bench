@@ -1,0 +1,25 @@
+* Razavi-Bench Figure 11(b) - malformed two-NMOS "inverter", DC transfer characteristic
+* Topology (from figure-11.png, subfigure b):
+*   M1 = upper NMOS source follower: drain->VDD, gate->Vin, source->Vout, body->GND
+*   M2 = lower NMOS common-source pull-down: drain->Vout, gate->Vin, source->GND, body->GND
+*   Vin drives both gates; Vout is the shared source/drain node.
+* Purpose: sweep Vin 0->VDD to expose the malformed behaviour described in the
+*   golden solution. This is not a complementary CMOS inverter: M1 can only pull
+*   Vout up as a source follower, while M2 pulls Vout down when it conducts, so
+*   Vout is set by current balance and does not show a regenerative rail-to-rail
+*   CMOS inverter transfer characteristic.
+* Nominal assumptions: Sky130 1.8 V primitives (TT), VDD=1.8 V, L=0.15 um,
+*   W=1.26 um for both NMOS devices.
+.include "../../simulator/ngspice-sky130/models/sky130.lib.spice"
+
+Vdd vdd 0 1.8
+Vin in  0 0.9
+
+* subckt pin order: d g s b
+Xm1 vdd in out 0   sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+Xm2 out in 0   0   sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+
+.dc Vin 0 1.8 0.02
+.print dc v(out)
+
+.end

@@ -1,0 +1,51 @@
+* Figure 5 - Three-stage CMOS ring oscillator (nominal load)
+* Razavi-Bench part2-figure-05-54a711b5
+*
+* Three CMOS inverters in a loop; each output node loaded by C_L to ground.
+* Odd stage count => no stable DC state => sustained oscillation.
+* This nominal deck fixes C_L and measures the oscillation frequency f0.
+*
+* Sky130 1.8V primitives. Geometry given directly on each instance in
+* micrometers (Bin 000 nominal device W=1.26u/L=0.15u for the NMOS,
+* PMOS widened ~2x for a roughly symmetric inverter threshold).
+
+.include "../../simulator/ngspice-sky130/models/sky130.lib.spice"
+
+.param vdd_val = 1.8
+.param cl_val  = 100f
+
+Vdd vdd 0 DC {vdd_val}
+
+* --- Inverter 1: in = n3 (feedback), out = n1 ---
+XP1 n1 n3 vdd vdd sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XN1 n1 n3 0   0   sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+C1  n1 0 {cl_val}
+
+* --- Inverter 2: in = n1, out = n2 ---
+XP2 n2 n1 vdd vdd sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XN2 n2 n1 0   0   sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+C2  n2 0 {cl_val}
+
+* --- Inverter 3: in = n2, out = n3 ---
+XP3 n3 n2 vdd vdd sky130_fd_pr__pfet_01v8 w=2.52u l=0.15u
+XN3 n3 n2 0   0   sky130_fd_pr__nfet_01v8 w=1.26u l=0.15u
+C3  n3 0 {cl_val}
+
+* Break the metastable equilibrium so oscillation starts deterministically.
+.ic v(n1)=1.8 v(n2)=0 v(n3)=0
+
+.control
+tran 5p 60n uic
+* oscillation period from two successive rising mid-supply crossings
+meas tran t1 WHEN v(n1)=0.9 RISE=3
+meas tran t2 WHEN v(n1)=0.9 RISE=4
+let period = t2 - t1
+let freq = 1 / period
+* confirm the swing is large-signal (rail-to-rail), not a decaying ringback
+meas tran vhi MAX v(n1) FROM=10n TO=60n
+meas tran vlo MIN v(n1) FROM=10n TO=60n
+print period freq vhi vlo
+quit
+.endc
+
+.end
