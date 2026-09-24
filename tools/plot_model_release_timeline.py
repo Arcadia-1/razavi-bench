@@ -57,6 +57,7 @@ LABEL_OFFSETS = {
 }
 
 RECENT_LABEL_Y = {
+    "claude_opus_55": 101.5,
     "claude_opus_5_high": 96.4,
     "gpt_6_astra": 94.9,
     "claude_opus_5_xhigh": 93.6,
@@ -73,6 +74,7 @@ RECENT_LABEL_Y = {
     "kimi_k3": 70.1,
     "inkling_small": 67.9,
     "inkling": 64.8,
+    "claude_fable_51": 62.0,
 }
 
 

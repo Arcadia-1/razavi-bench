@@ -328,7 +328,7 @@ tbody tr:hover{background:linear-gradient(90deg,rgba(37,99,235,.055),rgba(37,99,
     </div>
     <div class="hero-meta">
       <div class="meta-row"><span class="meta-key">Tasks</span><span class="meta-val">50</span></div>
-      <div class="meta-row"><span class="meta-key">Models</span><span class="meta-val" id="modelCount">43</span></div>
+      <div class="meta-row"><span class="meta-key">Models</span><span class="meta-val" id="modelCount">45</span></div>
       <div class="meta-row"><span class="meta-key">Multimodal</span><span class="meta-val">Yes</span></div>
     </div>
   </div>
@@ -463,6 +463,7 @@ function getFilter(target){return target&&modelFilters[target]?modelFilters[targ
 function filteredDD(target){var f=getFilter(target);return f?DD.filter(function(m){return f.has(m.m)}):DD;}
 // API prices per 1M tokens: [input, output, cached]. Add new models here.
 var PRICE={
+  claude_opus_55:[4,20,0.2], claude_fable_51:[10,50,0.25],
   claude_opus_5:[5,25,0.5], claude_fable_5:[10,50,1], claude_opus_48:[5,25,0.5], claude_sonnet_46:[3,15,0.3],
   gpt_6_astra:[10,50,1],
   gpt_56:[5,30,0.5], gpt_56_terra:[2,12,0.2], gpt_56_luna:[0.2,1.2,0.02],

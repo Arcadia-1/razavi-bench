@@ -1,6 +1,6 @@
 {
   "schema_version": "razavi-bench.direct-qa.v1",
-  "generated_at": "2026-09-13T18:47:11.429575+00:00",
+  "generated_at": "2026-09-24T21:28:01.629105+00:00",
   "benchmark": {
     "mode": "direct_qa",
     "question_count": 50,
@@ -482,6 +482,238 @@
         }
       },
       "detail_file": "models/gpt_6_astra.json"
+    },
+    {
+      "model_key": "claude_opus_55",
+      "display_name": "Claude Opus 5.5",
+      "provider": "anthropic",
+      "evaluation_model_ids": [
+        215423
+      ],
+      "thinking_effort": "max",
+      "configuration_note": null,
+      "mode": "direct_qa",
+      "summary": {
+        "rollout_count": 3,
+        "answer_count": 150,
+        "scores": {
+          "overall": {
+            "active": {
+              "response_count": 150,
+              "correct_count": 125,
+              "incorrect_count": 25,
+              "partial_credit_count": 25,
+              "zero_count": 0,
+              "mean_score_0_to_4": 3.7466666666666666,
+              "score_percent": 93.66666666666667,
+              "score_distribution": {
+                "1": 2,
+                "1.5": 6,
+                "2": 1,
+                "2.5": 4,
+                "3": 6,
+                "3.5": 6,
+                "4": 125
+              }
+            },
+            "minimax_m3": {
+              "response_count": 150,
+              "correct_count": 126,
+              "incorrect_count": 24,
+              "partial_credit_count": 24,
+              "zero_count": 0,
+              "mean_score_0_to_4": 3.68,
+              "score_percent": 92.0,
+              "score_distribution": {
+                "1": 9,
+                "2": 6,
+                "3": 9,
+                "4": 126
+              }
+            },
+            "deepseek_v4_pro": {
+              "response_count": 150,
+              "correct_count": 137,
+              "incorrect_count": 13,
+              "partial_credit_count": 13,
+              "zero_count": 0,
+              "mean_score_0_to_4": 3.8133333333333335,
+              "score_percent": 95.33333333333334,
+              "score_distribution": {
+                "1": 2,
+                "2": 11,
+                "4": 137
+              }
+            }
+          },
+          "part1": {
+            "active": {
+              "response_count": 90,
+              "correct_count": 86,
+              "incorrect_count": 4,
+              "partial_credit_count": 4,
+              "zero_count": 0,
+              "mean_score_0_to_4": 3.9555555555555557,
+              "score_percent": 98.88888888888889,
+              "score_distribution": {
+                "2.5": 1,
+                "3": 2,
+                "3.5": 1,
+                "4": 86
+              }
+            },
+            "minimax_m3": {
+              "response_count": 90,
+              "correct_count": 86,
+              "incorrect_count": 4,
+              "partial_credit_count": 4,
+              "zero_count": 0,
+              "mean_score_0_to_4": 3.911111111111111,
+              "score_percent": 97.77777777777777,
+              "score_distribution": {
+                "1": 1,
+                "2": 2,
+                "3": 1,
+                "4": 86
+              }
+            },
+            "deepseek_v4_pro": {
+              "response_count": 90,
+              "correct_count": 90,
+              "incorrect_count": 0,
+              "partial_credit_count": 0,
+              "zero_count": 0,
+              "mean_score_0_to_4": 4.0,
+              "score_percent": 100.0,
+              "score_distribution": {
+                "4": 90
+              }
+            }
+          },
+          "part2": {
+            "active": {
+              "response_count": 60,
+              "correct_count": 39,
+              "incorrect_count": 21,
+              "partial_credit_count": 21,
+              "zero_count": 0,
+              "mean_score_0_to_4": 3.433333333333333,
+              "score_percent": 85.83333333333333,
+              "score_distribution": {
+                "1": 2,
+                "1.5": 6,
+                "2": 1,
+                "2.5": 3,
+                "3": 4,
+                "3.5": 5,
+                "4": 39
+              }
+            },
+            "minimax_m3": {
+              "response_count": 60,
+              "correct_count": 40,
+              "incorrect_count": 20,
+              "partial_credit_count": 20,
+              "zero_count": 0,
+              "mean_score_0_to_4": 3.3333333333333335,
+              "score_percent": 83.33333333333334,
+              "score_distribution": {
+                "1": 8,
+                "2": 4,
+                "3": 8,
+                "4": 40
+              }
+            },
+            "deepseek_v4_pro": {
+              "response_count": 60,
+              "correct_count": 47,
+              "incorrect_count": 13,
+              "partial_credit_count": 13,
+              "zero_count": 0,
+              "mean_score_0_to_4": 3.533333333333333,
+              "score_percent": 88.33333333333333,
+              "score_distribution": {
+                "1": 2,
+                "2": 11,
+                "4": 47
+              }
+            }
+          }
+        },
+        "by_rollout": {
+          "1": {
+            "response_count": 50,
+            "correct_count": 42,
+            "incorrect_count": 8,
+            "partial_credit_count": 8,
+            "zero_count": 0,
+            "mean_score_0_to_4": 3.74,
+            "score_percent": 93.5,
+            "score_distribution": {
+              "1.5": 2,
+              "2": 1,
+              "2.5": 2,
+              "3": 3,
+              "4": 42
+            }
+          },
+          "2": {
+            "response_count": 50,
+            "correct_count": 42,
+            "incorrect_count": 8,
+            "partial_credit_count": 8,
+            "zero_count": 0,
+            "mean_score_0_to_4": 3.72,
+            "score_percent": 93.0,
+            "score_distribution": {
+              "1": 1,
+              "1.5": 3,
+              "2.5": 1,
+              "3": 1,
+              "3.5": 2,
+              "4": 42
+            }
+          },
+          "3": {
+            "response_count": 50,
+            "correct_count": 41,
+            "incorrect_count": 9,
+            "partial_credit_count": 9,
+            "zero_count": 0,
+            "mean_score_0_to_4": 3.78,
+            "score_percent": 94.5,
+            "score_distribution": {
+              "1": 1,
+              "1.5": 1,
+              "2.5": 1,
+              "3": 2,
+              "3.5": 4,
+              "4": 41
+            }
+          }
+        },
+        "tokens": {
+          "response_count": 150,
+          "usage_record_count": 150,
+          "complete_usage_count": 150,
+          "missing_usage_count": 0,
+          "missing_cached_input_count": 0,
+          "complete": true,
+          "totals": {
+            "cached_input_tokens": 0,
+            "input_tokens": 317817,
+            "output_tokens": 3648673,
+            "total_tokens": 3966490
+          },
+          "known_totals": {
+            "cached_input_tokens": 0,
+            "input_tokens": 317817,
+            "output_tokens": 3648673,
+            "total_tokens": 3966490
+          }
+        }
+      },
+      "detail_file": "models/claude_opus_55.json"
     },
     {
       "model_key": "claude_opus_5_xhigh",
@@ -1204,6 +1436,246 @@
         }
       },
       "detail_file": "models/claude_opus_5.json"
+    },
+    {
+      "model_key": "claude_fable_51",
+      "display_name": "Claude Fable 5.1",
+      "provider": "anthropic",
+      "evaluation_model_ids": [
+        213099
+      ],
+      "thinking_effort": "max",
+      "configuration_note": null,
+      "mode": "direct_qa",
+      "summary": {
+        "rollout_count": 3,
+        "answer_count": 150,
+        "scores": {
+          "overall": {
+            "active": {
+              "response_count": 150,
+              "correct_count": 123,
+              "incorrect_count": 27,
+              "partial_credit_count": 24,
+              "zero_count": 3,
+              "mean_score_0_to_4": 3.683333333333333,
+              "score_percent": 92.08333333333333,
+              "score_distribution": {
+                "0": 3,
+                "1": 4,
+                "1.5": 1,
+                "2": 5,
+                "2.5": 3,
+                "3": 2,
+                "3.5": 9,
+                "4": 123
+              }
+            },
+            "minimax_m3": {
+              "response_count": 150,
+              "correct_count": 124,
+              "incorrect_count": 26,
+              "partial_credit_count": 23,
+              "zero_count": 3,
+              "mean_score_0_to_4": 3.6466666666666665,
+              "score_percent": 91.16666666666666,
+              "score_distribution": {
+                "0": 3,
+                "1": 5,
+                "2": 8,
+                "3": 10,
+                "4": 124
+              }
+            },
+            "deepseek_v4_pro": {
+              "response_count": 150,
+              "correct_count": 132,
+              "incorrect_count": 18,
+              "partial_credit_count": 15,
+              "zero_count": 3,
+              "mean_score_0_to_4": 3.72,
+              "score_percent": 93.0,
+              "score_distribution": {
+                "0": 3,
+                "1": 4,
+                "2": 7,
+                "3": 4,
+                "4": 132
+              }
+            }
+          },
+          "part1": {
+            "active": {
+              "response_count": 90,
+              "correct_count": 83,
+              "incorrect_count": 7,
+              "partial_credit_count": 4,
+              "zero_count": 3,
+              "mean_score_0_to_4": 3.8333333333333335,
+              "score_percent": 95.83333333333334,
+              "score_distribution": {
+                "0": 3,
+                "2.5": 1,
+                "3.5": 3,
+                "4": 83
+              }
+            },
+            "minimax_m3": {
+              "response_count": 90,
+              "correct_count": 83,
+              "incorrect_count": 7,
+              "partial_credit_count": 4,
+              "zero_count": 3,
+              "mean_score_0_to_4": 3.811111111111111,
+              "score_percent": 95.27777777777777,
+              "score_distribution": {
+                "0": 3,
+                "2": 1,
+                "3": 3,
+                "4": 83
+              }
+            },
+            "deepseek_v4_pro": {
+              "response_count": 90,
+              "correct_count": 86,
+              "incorrect_count": 4,
+              "partial_credit_count": 1,
+              "zero_count": 3,
+              "mean_score_0_to_4": 3.8555555555555556,
+              "score_percent": 96.38888888888889,
+              "score_distribution": {
+                "0": 3,
+                "3": 1,
+                "4": 86
+              }
+            }
+          },
+          "part2": {
+            "active": {
+              "response_count": 60,
+              "correct_count": 40,
+              "incorrect_count": 20,
+              "partial_credit_count": 20,
+              "zero_count": 0,
+              "mean_score_0_to_4": 3.4583333333333335,
+              "score_percent": 86.45833333333334,
+              "score_distribution": {
+                "1": 4,
+                "1.5": 1,
+                "2": 5,
+                "2.5": 2,
+                "3": 2,
+                "3.5": 6,
+                "4": 40
+              }
+            },
+            "minimax_m3": {
+              "response_count": 60,
+              "correct_count": 41,
+              "incorrect_count": 19,
+              "partial_credit_count": 19,
+              "zero_count": 0,
+              "mean_score_0_to_4": 3.4,
+              "score_percent": 85.0,
+              "score_distribution": {
+                "1": 5,
+                "2": 7,
+                "3": 7,
+                "4": 41
+              }
+            },
+            "deepseek_v4_pro": {
+              "response_count": 60,
+              "correct_count": 46,
+              "incorrect_count": 14,
+              "partial_credit_count": 14,
+              "zero_count": 0,
+              "mean_score_0_to_4": 3.5166666666666666,
+              "score_percent": 87.91666666666667,
+              "score_distribution": {
+                "1": 4,
+                "2": 7,
+                "3": 3,
+                "4": 46
+              }
+            }
+          }
+        },
+        "by_rollout": {
+          "1": {
+            "response_count": 50,
+            "correct_count": 40,
+            "incorrect_count": 10,
+            "partial_credit_count": 9,
+            "zero_count": 1,
+            "mean_score_0_to_4": 3.67,
+            "score_percent": 91.75,
+            "score_distribution": {
+              "0": 1,
+              "1": 2,
+              "2": 2,
+              "3.5": 5,
+              "4": 40
+            }
+          },
+          "2": {
+            "response_count": 50,
+            "correct_count": 43,
+            "incorrect_count": 7,
+            "partial_credit_count": 7,
+            "zero_count": 0,
+            "mean_score_0_to_4": 3.78,
+            "score_percent": 94.5,
+            "score_distribution": {
+              "1": 1,
+              "2": 1,
+              "2.5": 3,
+              "3": 1,
+              "3.5": 1,
+              "4": 43
+            }
+          },
+          "3": {
+            "response_count": 50,
+            "correct_count": 40,
+            "incorrect_count": 10,
+            "partial_credit_count": 8,
+            "zero_count": 2,
+            "mean_score_0_to_4": 3.6,
+            "score_percent": 90.0,
+            "score_distribution": {
+              "0": 2,
+              "1": 1,
+              "1.5": 1,
+              "2": 2,
+              "3": 1,
+              "3.5": 3,
+              "4": 40
+            }
+          }
+        },
+        "tokens": {
+          "response_count": 150,
+          "usage_record_count": 150,
+          "complete_usage_count": 150,
+          "missing_usage_count": 0,
+          "missing_cached_input_count": 0,
+          "complete": true,
+          "totals": {
+            "cached_input_tokens": 0,
+            "input_tokens": 317817,
+            "output_tokens": 1868701,
+            "total_tokens": 2186518
+          },
+          "known_totals": {
+            "cached_input_tokens": 0,
+            "input_tokens": 317817,
+            "output_tokens": 1868701,
+            "total_tokens": 2186518
+          }
+        }
+      },
+      "detail_file": "models/claude_fable_51.json"
     },
     {
       "model_key": "gemini_37_flash",
