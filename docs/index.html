@@ -486,6 +486,7 @@ var NO_API_COST={qwen_38_27b:true};
 var PALETTE=["#7c8ba0","#426b8f","#5b7fa5","#6b9eb3","#6b9e7a","#c4956a","#c47a6a","#8b7ba5","#b38b6b","#7a7a85","#3a7d8c","#9a6f9e","#c97b84","#6a8f4e","#b5733d","#4f7fb3","#a8747b","#6f8f6f","#9b8a5f","#7d6f9c","#578a8f","#b3855a","#8a5f7d","#5f8a6a","#a06a6a","#6a7f9c"];
 var EFFORT_LABELS={max:"max",high:"high",medium:"med",xhigh:"xhigh",default:"",disabled:"",low:"low"};
 var DATA_INDEX_URL=["https://razavi-bench.tokenzhang.com/data/direct_qa/index.json","https://razavi-bench.tokenzhang.com/api/index.json","data/direct_qa/index.json","https://raw.githubusercontent.com/Arcadia-1/razavi-bench/main/docs/data/direct_qa/index.json"];
+var RELEASE_DATES_URL=["data/direct_qa/model_release_dates.json","https://razavi-bench.tokenzhang.com/data/direct_qa/model_release_dates.json","https://raw.githubusercontent.com/Arcadia-1/razavi-bench/main/docs/data/direct_qa/model_release_dates.json"];
 function fetchData(urls){var attempts=urls.map(function(u){return fetchWithTimeout(u,10000).then(function(r){if(r&&r.ok)return r.json();throw new Error("Status")}).catch(function(){return null})});return new Promise(function(res,rej){var done=0;attempts.forEach(function(p){p.then(function(v){if(v){res(v)}else{done++;if(done===attempts.length)rej(new Error("All data sources failed"))}})});});}
 function fetchWithTimeout(url,ms){
   if(location.protocol==="file:"){return fetch(url,{cache:"no-cache"});}
@@ -947,19 +948,17 @@ function closeModal(){document.getElementById("taskModal").classList.remove("ope
 document.addEventListener("keydown",function(e){if(e.key==="Escape")closeModal()});
 
 // ==== SCORE VS RELEASE DATE TIMELINE ====
-var REL_DATE={
-  gpt_6_astra:"2026-09-03",
-  claude_opus_5_high:"2026-07-24",claude_opus_5_xhigh:"2026-07-24",claude_opus_5:"2026-07-24",claude_opus_5_medium:"2026-07-24",
-  claude_fable_5:"2026-06-09",claude_opus_48:"2026-05-28",claude_sonnet_46:"2026-02-17",claude_sonnet_4:"2025-05-22",
-  claude_haiku_45:"2025-10-15",gemini_35_flash:"2026-05-19",gemini_36_flash:"2026-07-21",gemini_31:"2026-02-19",
-  gemini_25_pro:"2025-06-17",gemini_25_flash_lite:"2025-06-17",gemma_4_31b_it:"2026-04-02",qwen_38_max:"2026-08-03",
-  gemini_37_flash:"2026-08-13",grok_46:"2026-08-12",muse_spark_12:"2026-08-05",qwen_38_27b:"2026-08-13",
-  qwen_37_plus:"2026-06-01",qwen_37_flash:"2026-07-25",qwen25_vl_72b_instruct:"2025-01-26",qwen3_vl_235b_a22b_instruct:"2025-09-23",
-  gpt_56:"2026-07-09",gpt_56_terra:"2026-07-09",gpt_56_luna:"2026-07-09",gpt_55:"2026-04-23",gpt_53:"2026-02-05",
-  gpt_52:"2025-12-11",gpt_54_thinking_high:"2026-03-05",gpt_54_mini:"2026-03-17",gpt_5:"2025-08-07",gpt_4o:"2024-05-13",
-  gpt_4o_mini:"2024-07-18",grok_45:"2026-07-16",doubao_seed_21_pro:"2026-06-23",kimi_k3:"2026-07-16",kimi_k27:"2026-06-16",
-  inkling:"2026-07-15",inkling_small:"2026-07-15",step_37_flash:"2026-05-29",minimax_m3:"2026-06-01",llama_4_maverick:"2025-04-05"
-};
+var REL_DATE={};
+function loadReleaseDates(){
+  return fetchData(RELEASE_DATES_URL).then(function(dates){
+    var keys=new Set(DD.map(function(m){return m.m}));
+    var missing=DD.filter(function(m){return !dates[m.m]}).map(function(m){return m.m});
+    var extra=Object.keys(dates).filter(function(key){return !keys.has(key)});
+    if(missing.length||extra.length)throw new Error("Release-date coverage mismatch: missing="+missing+", extra="+extra);
+    REL_DATE=dates;
+    bTL();
+  });
+}
 var REL_PROVIDER_COLOR={anthropic:"#C8611A",openai:"#2F9B60",google:"#2F7ED8",qwen:"#148C83",alibaba:"#148C83",xai:"#374151",bytedance:"#D97706",moonshot:"#7C5CC4",thinkingmachines:"#D63384",stepfun:"#9333EA",minimax:"#D04F5F",meta:"#8B1E1E"};
 var REL_ORDER=["anthropic","openai","google","qwen","alibaba","xai","bytedance","moonshot","thinkingmachines","stepfun","minimax","meta"];
 var REL_LABEL_NAME={anthropic:"Anthropic",openai:"OpenAI",google:"Google",qwen:"Qwen",alibaba:"Qwen",xai:"xAI",bytedance:"ByteDance",moonshot:"Moonshot",thinkingmachines:"Thinking Machines",stepfun:"StepFun",minimax:"MiniMax",meta:"Meta"};
@@ -1030,8 +1029,7 @@ function bTL(){
   var old=Chart.getChart(canvas);if(old)old.destroy();
   var points=[];
   filteredDD("tlChart").forEach(function(m){
-    var d=REL_DATE[m.m];if(!d)return;
-    points.push({m:m.m,d:m.d,pv:m.pv,e:m.e,date:relDateToTs(d),score:m.o.mn});
+    points.push({m:m.m,d:m.d,pv:m.pv,e:m.e,date:relDateToTs(REL_DATE[m.m]),score:m.o.mn});
   });
   points.sort(function(a,b){return a.date-b.date});
   var timelineEnd=points.length?points[points.length-1].date+45*24*60*60*1000:relDateToTs("2026-09-15");
@@ -1039,11 +1037,11 @@ function bTL(){
   var byProv={};
   points.forEach(function(p){var k=p.pv==="alibaba"?"qwen":p.pv;if(!byProv[k])byProv[k]=[];byProv[k].push(p)});
   var datasets=[];
-  REL_ORDER.forEach(function(prov){
+  REL_ORDER.concat(Object.keys(byProv).filter(function(prov){return REL_ORDER.indexOf(prov)<0})).forEach(function(prov){
     var list=byProv[prov];if(!list||!list.length)return;
     datasets.push({
-      type:"scatter",label:REL_LABEL_NAME[prov],data:list.map(function(p){return{x:p.date,y:p.score,m:p.m,d:p.d,e:p.e}}),
-      backgroundColor:REL_PROVIDER_COLOR[prov],borderColor:"#fff",borderWidth:1.4,pointRadius:5,pointHoverRadius:7
+      type:"scatter",label:REL_LABEL_NAME[prov]||prov,data:list.map(function(p){return{x:p.date,y:p.score,m:p.m,d:p.d,e:p.e}}),
+      backgroundColor:REL_PROVIDER_COLOR[prov]||"#374151",borderColor:"#fff",borderWidth:1.4,pointRadius:5,pointHoverRadius:7
     });
   });
   // score frontier (stepped line)
@@ -1072,7 +1070,7 @@ function bTL(){
 }
 
 // ==== INIT ====
-function R(){bDL(dP);bDC(dS);bEff();bTok();bTL()}
+function R(){bDL(dP);bDC(dS);bEff();bTok()}
 document.querySelectorAll("#directPartToggle button").forEach(function(b){b.onclick=function(){this.parentElement.querySelectorAll("button").forEach(function(x){x.classList.remove("active")});this.classList.add("active");dP=this.dataset.part;bDL(dP);bTok()}});
 document.querySelectorAll("#distSubsetToggle button").forEach(function(b){b.onclick=function(){this.parentElement.querySelectorAll("button").forEach(function(x){x.classList.remove("active")});this.classList.add("active");dS=this.dataset.subset;bDC(dS)}});
 document.querySelectorAll("#effToggle button").forEach(function(b){b.onclick=function(){this.parentElement.querySelectorAll("button").forEach(function(x){x.classList.remove("active")});this.classList.add("active");effAxis=this.dataset.axis;bEff()}});
@@ -1090,7 +1088,7 @@ document.querySelectorAll("thead th.sortable").forEach(function(th){
 });
 Chart.defaults.color="#1a1a1a";Chart.defaults.borderColor="#d5d5d5";Chart.defaults.font={family:"Inter,system-ui,sans-serif",size:13};
 document.querySelector('thead th.sortable[data-key="score"]').classList.add("sort-desc");
-loadBenchmarkData().then(function(){R()}).catch(function(){});
+loadBenchmarkData().then(function(){R();return loadReleaseDates()}).catch(function(error){console.error("Chart data unavailable:",error)});
 loadTasks().catch(function(){});
 loadVisitStats();
 

@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - docs/**
+      - tools/build_release_date_index.py
       - .github/workflows/deploy-pages.yml
   workflow_dispatch:
 
@@ -27,6 +28,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Build homepage release dates
+        run: python3 tools/build_release_date_index.py
 
       - name: Configure Pages
         uses: actions/configure-pages@v5

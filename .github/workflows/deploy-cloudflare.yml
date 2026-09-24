@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - 'docs/**'
+      - 'tools/build_release_date_index.py'
       - '.github/workflows/deploy-cloudflare.yml'
   workflow_dispatch:
 
@@ -19,6 +20,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Build homepage release dates
+        run: python3 tools/build_release_date_index.py
 
       - name: Deploy Worker
         uses: cloudflare/wrangler-action@v3
@@ -71,4 +75,3 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy docs --project-name=razavi-bench --branch=main
-

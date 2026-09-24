@@ -16,10 +16,13 @@ import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
 
+from build_release_date_index import write_dates
+
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_INDEX = ROOT / "docs/data/direct_qa/index.json"
 DEFAULT_DATES = ROOT / "docs/data/direct_qa/model_release_dates.csv"
+DEFAULT_DATE_JSON = ROOT / "docs/data/direct_qa/model_release_dates.json"
 DEFAULT_OUTPUT = ROOT / "docs/assets/direct_qa_score_vs_release_date.png"
 
 PROVIDER_STYLE = {
@@ -84,6 +87,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--index", type=Path, default=DEFAULT_INDEX)
     parser.add_argument("--dates", type=Path, default=DEFAULT_DATES)
+    parser.add_argument("--date-json", type=Path, default=DEFAULT_DATE_JSON)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     return parser.parse_args()
 
@@ -289,7 +293,9 @@ def main() -> None:
     if not rows:
         raise ValueError("No active configurations found")
     plot(rows, args.output)
+    count = write_dates(args.index, args.dates, args.date_json)
     print(f"wrote {args.output} ({len(rows)} points)")
+    print(f"wrote {args.date_json} ({count} dates)")
 
 
 if __name__ == "__main__":
