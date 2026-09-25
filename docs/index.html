@@ -289,6 +289,16 @@ tbody tr:hover{background:linear-gradient(90deg,rgba(12,159,110,.06),rgba(12,159
 #timeline .chart-card::before{display:none}
 #tlChartWrap{height:clamp(380px,calc(100vh - 310px),600px)}
 @media(min-width:1100px){#tasks>.sec-head,#taskGrid{width:min(1320px,100vw - 48px);margin-left:calc((100% - min(1320px,100vw - 48px))/2)}}
+/* Hero: the title never wraps. Between phone and desktop widths the three stats stack beside it. */
+.hero-left h1{white-space:nowrap}
+@media(min-width:560px) and (max-width:1059px){
+  .hero-row1{flex-direction:row;align-items:center;gap:24px}
+  .hero-left h1{font-size:clamp(44px,8.5vw,82px)}
+  .hero-meta{width:auto;display:flex;flex-direction:column;gap:2px}
+  .hero-meta .meta-row{display:flex;align-items:baseline;justify-content:space-between;gap:18px;min-width:0;padding:1px 0 1px 14px}
+  .hero-meta .meta-row .meta-val{font-size:16px;margin-top:0}
+}
+@media(max-width:559px){.hero-left h1{font-size:clamp(34px,11vw,60px)}}
 </style>
 </head>
 <body>
@@ -625,8 +635,8 @@ function loadTasks(){
 
 // ==== RENDER HELPERS ====
 var dP="o",dS="o",sortKey="score",sortDir="desc";
-// Row pitch and bar thickness of the leaderboard, shared by the per-model bar charts below it.
-var LB_ROW_PX=25.5,LB_BAR_PX=6.25;
+// Leaderboard row pitch and bar thickness; the per-model bar charts below it use the same bars on rows 15% closer.
+var LB_ROW_PX=25.5,LB_BAR_PX=6.25,CHART_ROW_PX=LB_ROW_PX*0.85;
 // Bar to the mean, then (as on Analog Design Bench) a thin line across the spread and one dot per rollout.
 function bar(v,bc,pc){
   var marks=v.rs.length>1?"<span class=bar-span style=\"left:"+v.lo+"%;width:"+(v.hi-v.lo)+"%\"></span>":"";
@@ -669,7 +679,7 @@ function bDC(subset){
   var cv=document.getElementById("distChart");var old=Chart.getChart(cv);if(old)old.destroy();
   var ctx=cv.getContext("2d");
   var models=filteredDD("distChart");
-  cv.parentElement.style.height=(models.length*LB_ROW_PX+91)+"px";
+  cv.parentElement.style.height=(models.length*CHART_ROW_PX+91)+"px";
   var ds=[4,3,2,1,0].map(function(sc){return{label:S[sc],data:models.map(function(m){return m[subset].dp[sc]}),rawCounts:models.map(function(m){return Math.round(m[subset].d[sc])}),backgroundColor:SC[sc],borderColor:"#f7f8fb",borderWidth:{right:1},barThickness:LB_BAR_PX}});
     var ch=new Chart(ctx,{type:"bar",data:{labels:models.map(axisModelLabel),datasets:ds},options:{responsive:true,maintainAspectRatio:false,indexAxis:"y",layout:{padding:{left:8,right:8}},plugins:{legend:{position:"bottom",labels:{usePointStyle:true,pointStyle:"rectRounded",boxWidth:9,boxHeight:9,padding:18,font:{size:12},color:"#475467"}},tooltip:{callbacks:{title:function(c){return c[0]?fullModelLabel(models[c[0].dataIndex]):""},label:function(c){return c.dataset.label+": "+c.dataset.rawCounts[c.dataIndex]+" responses"}}}},scales:{x:{stacked:true,max:100,border:{display:false},grid:{color:"rgba(15,23,42,.08)",drawTicks:false},ticks:{padding:8,font:{size:12},color:"#667085",callback:function(v){return v+"%"}}},y:{stacked:true,position:"left",afterFit:function(scale){scale.width=238},border:{display:false},grid:{display:false},ticks:{padding:12,font:{size:13,weight:500},autoSkip:false,color:"#263348",align:"center",maxRotation:0,minRotation:0}}}}})
   ctx._chart=ch;
@@ -700,7 +710,7 @@ function bTok(){
     return{labels:labels,parts:parts,models:sorted};
   }
   var data=buildData();
-  cv.parentElement.style.height=(data.models.length*LB_ROW_PX+91)+"px";
+  cv.parentElement.style.height=(data.models.length*CHART_ROW_PX+91)+"px";
   var ch=new Chart(ctx,{type:"bar",data:{labels:data.labels,datasets:data.parts},options:{responsive:true,maintainAspectRatio:false,indexAxis:"y",layout:{padding:{left:8,right:8}},plugins:{legend:{position:"bottom",labels:{usePointStyle:true,pointStyle:"rectRounded",boxWidth:9,boxHeight:9,padding:18,font:{size:12},color:"#475467"},onClick:function(e,item,legend){
         var idx=item.datasetIndex;
         var name=TOK_PARTS[idx];
