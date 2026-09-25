@@ -962,11 +962,8 @@ function loadReleaseDates(){
 var REL_PROVIDER_COLOR={anthropic:"#C8611A",openai:"#2F9B60",google:"#2F7ED8",qwen:"#148C83",alibaba:"#148C83",xai:"#374151",bytedance:"#D97706",moonshot:"#7C5CC4",thinkingmachines:"#D63384",stepfun:"#9333EA",minimax:"#D04F5F",meta:"#8B1E1E"};
 var REL_ORDER=["anthropic","openai","google","qwen","alibaba","xai","bytedance","moonshot","thinkingmachines","stepfun","minimax","meta"];
 var REL_LABEL_NAME={anthropic:"Anthropic",openai:"OpenAI",google:"Google",qwen:"Qwen",alibaba:"Qwen",xai:"xAI",bytedance:"ByteDance",moonshot:"Moonshot",thinkingmachines:"Thinking Machines",stepfun:"StepFun",minimax:"MiniMax",meta:"Meta"};
-function relDateToTs(s){return Date.parse(s+"T00:00:00Z")}
-function relTickLabel(ts){
-  var d=new Date(ts),y=d.getUTCFullYear(),m=String(d.getUTCMonth()+1).padStart(2,"0");
-  return y+"-"+m;
-}
+function relMonthIndex(s){return Number(s.slice(0,4))*12+Number(s.slice(5,7))-1}
+function relMonthLabel(n){return Math.floor(n/12)+"-"+String(n%12+1).padStart(2,"0")}
 var tlLabelPlugin={
   id:"tlLabels",
   afterDatasetsDraw:function(chart,args,opts){
@@ -1029,10 +1026,13 @@ function bTL(){
   var old=Chart.getChart(canvas);if(old)old.destroy();
   var points=[];
   filteredDD("tlChart").forEach(function(m){
-    points.push({m:m.m,d:m.d,pv:m.pv,e:m.e,date:relDateToTs(REL_DATE[m.m]),score:m.o.mn});
+    var release=REL_DATE[m.m];
+    points.push({m:m.m,d:m.d,pv:m.pv,e:m.e,release:release,month:release.slice(0,7),score:m.o.mn});
   });
-  points.sort(function(a,b){return a.date-b.date});
-  var timelineEnd=points.length?points[points.length-1].date+45*24*60*60*1000:relDateToTs("2026-09-15");
+  points.sort(function(a,b){return a.release.localeCompare(b.release)});
+  var firstMonth=relMonthIndex("2024-04");
+  var lastMonth=points.length?relMonthIndex(points[points.length-1].month):firstMonth;
+  var months=Array.from({length:lastMonth-firstMonth+1},function(_,i){return relMonthLabel(firstMonth+i)});
   // provider -> datasets
   var byProv={};
   points.forEach(function(p){var k=p.pv==="alibaba"?"qwen":p.pv;if(!byProv[k])byProv[k]=[];byProv[k].push(p)});
@@ -1040,17 +1040,19 @@ function bTL(){
   REL_ORDER.concat(Object.keys(byProv).filter(function(prov){return REL_ORDER.indexOf(prov)<0})).forEach(function(prov){
     var list=byProv[prov];if(!list||!list.length)return;
     datasets.push({
-      type:"scatter",label:REL_LABEL_NAME[prov]||prov,data:list.map(function(p){return{x:p.date,y:p.score,m:p.m,d:p.d,e:p.e}}),
+      type:"scatter",label:REL_LABEL_NAME[prov]||prov,data:list.map(function(p){return{x:p.month,y:p.score,m:p.m,d:p.d,e:p.e,release:p.release}}),
       backgroundColor:REL_PROVIDER_COLOR[prov]||"#374151",borderColor:"#fff",borderWidth:1.4,pointRadius:5,pointHoverRadius:7
     });
   });
-  // score frontier (stepped line)
+  // One frontier value per month, even when several models share a column.
+  var bestByMonth={};
+  points.forEach(function(p){if(!bestByMonth[p.month]||p.score>bestByMonth[p.month].score)bestByMonth[p.month]=p});
   var frontier=[],running=-1;
-  points.forEach(function(p){if(p.score>running){frontier.push(p);running=p.score}});
-  var frDates=frontier.map(function(p){return p.date}).concat([timelineEnd]);
+  Object.keys(bestByMonth).sort().forEach(function(month){var p=bestByMonth[month];if(p.score>running){frontier.push(p);running=p.score}});
+  var frMonths=frontier.map(function(p){return p.month}).concat([months[months.length-1]]);
   var frScores=frontier.map(function(p){return p.score}).concat([running]);
   datasets.push({
-    type:"line",label:"Score frontier",data:frDates.map(function(ts,i){return{x:ts,y:frScores[i]}}),
+    type:"line",label:"Score frontier",data:frMonths.map(function(month,i){return{x:month,y:frScores[i]}}),
     borderColor:"#64748B",borderWidth:2,borderDash:[5,4],pointRadius:0,fill:false,tension:0,stepped:"before",order:1
   });
   // 记录 frontier 上的模型（用于标签标注）
@@ -1059,8 +1061,8 @@ function bTL(){
   var ch=new Chart(canvas,{type:"scatter",data:{datasets:datasets},options:{
     responsive:true,maintainAspectRatio:false,
     plugins:{legend:{position:"top",labels:{usePointStyle:true,boxWidth:10,boxHeight:10,padding:16,font:{size:13},filter:function(item){return item.text!=="Score frontier"}}},
-      tooltip:{callbacks:{title:function(items){var it=items[0];return it.raw.d?(it.raw.d+(it.raw.e?" ["+it.raw.e+"]":"")):""},label:function(c){if(c.dataset.type!=="scatter")return"Score frontier";return" Active score: "+c.parsed.y.toFixed(1)+"%"}}}},
-    scales:{x:{type:"linear",min:relDateToTs("2024-04-15"),max:timelineEnd,grid:{color:"#F0F2F5"},ticks:{maxTicksLimit:12,font:{size:12},color:"#333",callback:function(v){return relTickLabel(v)}},title:{display:true,text:"Model Release Date",color:"#333",font:{size:12,weight:"500"},padding:{top:8}}},
+      tooltip:{callbacks:{title:function(items){var it=items[0];return it.raw.d?(it.raw.d+(it.raw.e?" ["+it.raw.e+"]":"")+" | "+it.raw.release):""},label:function(c){if(c.dataset.type!=="scatter")return"Score frontier";return" Active score: "+c.parsed.y.toFixed(1)+"%"}}}},
+    scales:{x:{type:"category",labels:months,offset:true,grid:{color:"#F0F2F5"},ticks:{maxTicksLimit:12,maxRotation:0,font:{size:12},color:"#333"},title:{display:true,text:"Model Release Month",color:"#333",font:{size:12,weight:"500"},padding:{top:8}}},
       y:{min:35,max:100,grid:{color:"#e5e5e5"},ticks:{font:{size:12},color:"#333",callback:function(v){return v+"%"}},title:{display:true,text:"Active Overall Score (%)",color:"#333",font:{size:12,weight:"500"},padding:{bottom:8}}}},
     animation:false
   },plugins:[tlLabelPlugin]});
