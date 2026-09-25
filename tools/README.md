@@ -100,7 +100,8 @@ auditability, but use this directory for new scoring runs.
 QA data (default: `deepseek_v4_pro`). It sets every answer's `active_score` from
 that judge, recomputes each model's summaries, including per-rollout scores for
 each part (`summary.by_rollout_part`), rewrites `docs/data/direct_qa/models/` and
-`index.json`, and re-ranks the index. Other judges' scores are kept for audit.
+`index.json`, and re-ranks the index. New model JSON files are added to the
+index automatically. Other judges' scores are kept for audit.
 Run it after publishing new results, then refresh the question files:
 
 ```bash

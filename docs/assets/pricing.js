@@ -3,7 +3,7 @@
 var PRICE={
   claude_opus_55:[4,20,0.2], claude_fable_51:[10,50,0.25],
   claude_opus_5:[5,25,0.5], claude_fable_5:[10,50,1], claude_opus_48:[5,25,0.5], claude_sonnet_46:[3,15,0.3],
-  gpt_6_astra:[10,50,1],
+  gpt_6_astra:[10,50,1], gpt_6_sol:[2,10,0.2],
   gpt_56:[5,30,0.5], gpt_56_terra:[2,12,0.2], gpt_56_luna:[0.2,1.2,0.02],
   gpt_55:[5,30,0.5], gpt_53:[1.75,14,0.175], gpt_52:[1.75,14,0.175],
   gpt_54_thinking_high:[2.5,15,0.25], gpt_54_mini:[0.75,4.5,0.075], gpt_4o:[2.5,10,0.25],

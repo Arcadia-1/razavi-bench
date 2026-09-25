@@ -92,6 +92,18 @@ def main() -> None:
 
     index_path = DATA / "index.json"
     index = json.loads(index_path.read_text(encoding="utf-8"))
+    known_keys = {entry["model_key"] for entry in index["models"]}
+    for model_path in sorted((DATA / "models").glob("*.json")):
+        if model_path.stem in known_keys:
+            continue
+        model = json.loads(model_path.read_text(encoding="utf-8"))
+        if model["model_key"] != model_path.stem:
+            raise ValueError(f"model key does not match filename: {model_path}")
+        index["models"].append({
+            key: model.get(key)
+            for key in ("model_key", "display_name", "provider", "evaluation_model_ids", "thinking_effort", "configuration_note", "mode")
+        } | {"detail_file": f"models/{model_path.name}"})
+        known_keys.add(model_path.stem)
     for entry in index["models"]:
         model_path = DATA / entry["detail_file"]
         model = json.loads(model_path.read_text(encoding="utf-8"))
