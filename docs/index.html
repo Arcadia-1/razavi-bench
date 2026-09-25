@@ -129,10 +129,6 @@ tr.lb-row.in{animation:slideIn .40s cubic-bezier(.25,.8,.25,1) both}
 .chart-subtitle{margin:6px 0 0;color:var(--text-muted);font-size:13px;line-height:1.45;max-width:720px}
 
 .task-card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:0}
-.modal-grid{grid-template-columns:repeat(3,1fr);gap:0}
-.modal-grid .task-card{min-height:0}
-@media(max-width:900px){.modal-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:600px){.modal-grid{grid-template-columns:1fr}}
 .task-card{background:#ffffff;border:1px solid #e5e5e5;border-radius:0;padding:18px 20px;display:flex;flex-direction:column;gap:10px;text-decoration:none;color:inherit;transition:border-color .2s,box-shadow .2s;min-height:150px}
 .task-card:hover{border-color:#c9c9c9;box-shadow:0 2px 10px rgba(0,0,0,0.06);position:relative;z-index:1}
 .task-card .tc-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
@@ -143,32 +139,8 @@ tr.lb-row.in{animation:slideIn .40s cubic-bezier(.25,.8,.25,1) both}
 .task-card.compact{padding:14px 16px;gap:8px;min-height:0}
 .task-card.compact .tc-title{font-size:13px;-webkit-line-clamp:4}
 
-.task-accordion{border:1px solid var(--border);border-radius:0;margin-bottom:8px;overflow:hidden;transition:border-color .2s}
-.task-accordion:hover{border-color:var(--border-light)}
-.task-accordion .ta-header{display:flex;gap:12px;align-items:flex-start;width:100%;padding:14px 16px;border:0;background:transparent;color:inherit;text-align:left;font-family:inherit;cursor:pointer;user-select:none}
-.task-accordion .ta-header:hover{background:var(--bg-card-hover)}
-.task-accordion .ta-id{flex-shrink:0;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--text-muted);background:var(--bg-primary);border:1px solid var(--border);border-radius:0}
-.task-accordion .ta-q{flex:1;font-size:13px;color:var(--text-primary);line-height:1.5;white-space:pre-wrap}
-.task-accordion .ta-arrow{flex-shrink:0;color:var(--text-muted);font-size:14px;transition:transform .25s;line-height:36px}
-.task-accordion.open .ta-arrow{transform:rotate(180deg)}
-.task-accordion .ta-body{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.25,.8,.25,1)}
-.task-accordion.open .ta-body{max-height:9999px}
-.task-accordion .ta-content{padding:0 16px 16px 64px;font-size:13px;line-height:1.7}
-.task-accordion .ta-content h4{font-size:12px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.05em;margin:0 0 6px 0}
-.task-accordion .ta-content img{max-width:100%;border-radius:6px;margin:8px 0}
-.task-accordion .ta-content code{background:rgba(0,0,0,0.06);padding:1px 5px;border-radius:3px;font-size:12px}
-.task-accordion .ta-content .answer-text{color:var(--text-secondary);font-size:13px;line-height:1.7;white-space:pre-wrap}
-.task-accordion .ta-linkbar{padding:2px 16px 8px 64px}
-.task-accordion .q-answers-link{display:inline-block;margin:0;font-size:13px;font-weight:600;color:var(--text-primary);text-decoration:underline;cursor:pointer}
-.task-accordion .q-answers-link:hover{color:var(--text-muted)}
 .task-loading{color:var(--text-muted);font-size:13px;padding:12px 0}
 
-.modal-overlay{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,0.5);backdrop-filter:blur(8px);display:flex;align-items:flex-start;justify-content:center;padding:48px 24px;overflow-y:auto;opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s}
-.modal-overlay.open{opacity:1;visibility:visible}
-.modal-inner{max-width:900px;width:100%;background:var(--bg-primary);border:1px solid var(--border);border-radius:0;padding:40px}
-.modal-inner h2{font-size:22px;margin-bottom:8px}
-.modal-close{position:absolute;top:16px;right:24px;background:none;border:none;color:var(--text-muted);font-size:24px;cursor:pointer;font-family:inherit}
-.modal-close:hover{color:var(--text-primary)}
 
 .rubric-table{min-width:640px;table-layout:fixed !important}
 .rubric-table td:first-child{font-weight:700;font-size:18px;text-align:center;width:130px;min-width:130px;color:var(--text-primary)}
@@ -183,7 +155,7 @@ footer .footer-row{margin-bottom:6px}
 .visit-stats a{color:#667085;text-decoration:underline;text-underline-offset:4px;transition:color .15s}
 .visit-stats a:hover{color:var(--text-primary)}
 
-@media(max-width:768px){.hero{padding:40px 24px 48px}.hero-row1{flex-direction:column;gap:20px}.hero-row2 br{display:none}.chart-card{padding:16px}.modal-inner{padding:28px 18px}.task-accordion .ta-content{padding:0 14px 14px}}
+@media(max-width:768px){.hero{padding:40px 24px 48px}.hero-row1{flex-direction:column;gap:20px}.hero-row2 br{display:none}.chart-card{padding:16px}}
 
 /* 2026 visual system: a quiet, high-density instrument surface. */
 :root{
@@ -239,8 +211,6 @@ tbody tr:hover{background:rgba(236,253,245,.72);transform:none;box-shadow:none}
 .task-card .tc-tag{font-size:10px;color:#7b8494}
 .task-card .tc-title{font-size:12.5px;line-height:1.48;-webkit-line-clamp:4;color:#202b3c}
 .task-card .tc-meta{font-size:10px;color:#98a2b3}
-.modal-overlay{background:rgba(15,23,42,.45);backdrop-filter:blur(18px)}
-.modal-inner{border-radius:28px;border-color:rgba(255,255,255,.72);background:rgba(250,251,253,.96);box-shadow:0 32px 100px rgba(15,23,42,.22)}
 .rubric-table td:first-child{color:#047857}
 footer{border-top-color:rgba(15,23,42,.08);padding:38px 24px 46px;color:#667085}
 @keyframes heroPulse{0%,100%{transform:translate3d(0,0,0) scale(.98);opacity:.72}50%{transform:translate3d(-24px,16px,0) scale(1.06);opacity:1}}
@@ -307,6 +277,7 @@ tbody tr:hover{background:linear-gradient(90deg,rgba(12,159,110,.06),rgba(12,159
 .task-card .tc-fig{border:1px solid rgba(15,23,42,.06);border-radius:10px;overflow:hidden;background:#fff}
 .task-card .tc-fig img{display:block;width:100%;height:auto}
 .task-card .tc-meta{white-space:nowrap}
+@media(min-width:1100px){#tasks>.sec-head,#taskGrid{width:min(1320px,100vw - 48px);margin-left:calc((100% - min(1320px,100vw - 48px))/2)}}
 </style>
 </head>
 <body>
@@ -408,16 +379,7 @@ tbody tr:hover{background:linear-gradient(90deg,rgba(12,159,110,.06),rgba(12,159
   <div class="sec-head">
     <h2>Tasks</h2>
   </div>
-  <div style="margin-bottom:32px;">
-    <h3 style="font-size:14px;font-weight:600;color:var(--text-secondary);margin-bottom:12px;">Part 1 -- Fundamentals (30 tasks)</h3>
-    <div class="task-card-grid" id="part1Examples"><div class="task-loading">Loading canonical task data...</div></div>
-    <a href="#" onclick="openTaskModal('part1');return false" style="display:inline-block;margin-top:12px;font-size:13px;color:var(--text-secondary);text-decoration:underline;">View all 30 Part 1 tasks →</a>
-  </div>
-  <div>
-    <h3 style="font-size:14px;font-weight:600;color:var(--text-secondary);margin-bottom:12px;">Part 2 -- Design & Simulation (20 tasks)</h3>
-    <div class="task-card-grid" id="part2Examples"><div class="task-loading">Loading canonical task data...</div></div>
-    <a href="#" onclick="openTaskModal('part2');return false" style="display:inline-block;margin-top:12px;font-size:13px;color:var(--text-secondary);text-decoration:underline;">View all 20 Part 2 tasks →</a>
-  </div>
+  <div class="task-card-grid" id="taskGrid"><div class="task-loading">Loading canonical task data...</div></div>
 </section>
 <section id="rubric">
   <h2 style="margin-bottom:20px;">Evaluation Rubric</h2>
@@ -603,7 +565,7 @@ function layoutTaskGrid(container,html){
 function placeTaskGrid(container){
   var cards=container._cards;if(!cards||!cards.length)return;
   var gap=parseFloat(getComputedStyle(container).columnGap)||10;
-  var n=Math.max(2,Math.floor((container.clientWidth+gap)/(210+gap)));
+  var n=Math.max(2,Math.floor((container.clientWidth+gap)/(220+gap)));
   var cols=[];
   container.innerHTML="";
   for(var i=0;i<n;i++){var col=document.createElement("div");col.className="tc-col";container.appendChild(col);cols.push(col)}
@@ -619,14 +581,11 @@ window.addEventListener("resize",function(){
   taskGridTimer=setTimeout(function(){document.querySelectorAll(".task-card-grid").forEach(placeTaskGrid)},150);
 });
 function renderTaskExamples(){
-  [["part1","part1Examples"],["part2","part2Examples"]].forEach(function(pair){
-    layoutTaskGrid(document.getElementById(pair[1]),taskGroups[pair[0]].map(function(task){return taskCard(task,true);}).join(""));
-  });
+  var all=[].concat(taskGroups.part1,taskGroups.part2);
+  layoutTaskGrid(document.getElementById("taskGrid"),all.map(function(task){return taskCard(task,true);}).join(""));
 }
 function showTaskLoadError(message){
-  ["part1Examples","part2Examples"].forEach(function(id){
-    document.getElementById(id).innerHTML="<div class=task-loading>Task data could not be loaded. <a href=\"https://github.com/Arcadia-1/razavi-bench/tree/main/tasks\">Browse tasks on GitHub</a>.</div>";
-  });
+  document.getElementById("taskGrid").innerHTML="<div class=task-loading>Task data could not be loaded. <a href=\"https://github.com/Arcadia-1/razavi-bench/tree/main/tasks\">Browse tasks on GitHub</a>.</div>";
   console.error(message);
 }
 function loadTasks(){
@@ -955,33 +914,6 @@ function loadVisitStats(){
   show();
 }
 
-// ==== TASK MODAL ====
-async function openTaskModal(part){
-  var lb=part==="part1"?"Part 1 - Fundamentals (30 tasks)":"Part 2 - Design & Simulation (20 tasks)";
-  document.getElementById("modalTitle").textContent=lb;
-  document.getElementById("modalContent").innerHTML="<div class=task-loading>Loading canonical task data...</div>";
-  document.getElementById("taskModal").classList.add("open");
-  document.body.style.overflow="hidden";
-  try{
-    var groups=await loadTasks(),ts=groups[part];
-    document.getElementById("modalContent").innerHTML='<div class="task-card-grid modal-grid"></div>';
-    layoutTaskGrid(document.querySelector("#modalContent .task-card-grid"),ts.map(function(t){return taskCard(t,true);}).join(''));
-  }catch(error){
-    document.getElementById("modalContent").innerHTML="<div class=task-loading>Task data could not be loaded. <a href=\"https://github.com/Arcadia-1/razavi-bench/tree/main/tasks\">Browse tasks on GitHub</a>.</div>";
-  }
-}
-function toggleAccordion(part,idx){
-  var el=document.getElementById("ta-"+part+"-"+idx);
-  if(!el)return;
-  el.parentElement.querySelectorAll(".task-accordion.open").forEach(function(x){
-    if(x!==el){x.classList.remove("open");x.querySelector(".ta-header").setAttribute("aria-expanded","false")}
-  });
-  el.classList.toggle("open");
-  el.querySelector(".ta-header").setAttribute("aria-expanded",String(el.classList.contains("open")));
-}
-function closeModal(){document.getElementById("taskModal").classList.remove("open");document.body.style.overflow="";}
-document.addEventListener("keydown",function(e){if(e.key==="Escape")closeModal()});
-
 // ==== SCORE VS RELEASE DATE TIMELINE ====
 var REL_DATE={};
 function loadReleaseDates(){
@@ -1230,15 +1162,6 @@ document.addEventListener("click",function(e){
 </script>
 
 <!-- ========== TASK MODAL ========== -->
-<div class="modal-overlay" id="taskModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" onclick="if(event.target===this)closeModal()">
-  <div class="modal-inner" onclick="event.stopPropagation()">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;">
-      <h2 id="modalTitle" style="margin:0;"></h2>
-      <button class="modal-close" aria-label="Close task browser" onclick="closeModal()">&times;</button>
-    </div>
-    <div id="modalContent" style="font-size:13px;color:var(--text-secondary);line-height:1.7;"></div>
-  </div>
-</div>
 <div class="filter-pop" id="modelFilterPop">
   <div class="fp-head">
     <span style="font-weight:600;font-size:13px;">Filter models</span>
