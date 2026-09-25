@@ -275,6 +275,16 @@ tbody tr:hover{background:linear-gradient(90deg,rgba(12,159,110,.06),rgba(12,159
 .task-card .tc-fig{border:1px solid rgba(15,23,42,.06);border-radius:10px;overflow:hidden;background:#fff}
 .task-card .tc-fig img{display:block;width:100%;height:auto}
 .task-card .tc-meta{white-space:nowrap}
+/* Release-date chart: legend and Models filter in one row, and a height that keeps the hero and the whole chart on one screen. */
+#timeline .tl-head{display:flex;align-items:flex-start;gap:12px;margin-bottom:4px}
+#timeline .tl-legend{flex:1;display:flex;flex-wrap:wrap;justify-content:center;gap:6px 16px;padding-top:7px}
+#timeline .tl-legend button{display:flex;align-items:center;gap:6px;padding:0;border:0;background:none;font:inherit;font-size:13px;color:#1a1a1a;cursor:pointer}
+#timeline .tl-legend button.off{color:#98a2b3;text-decoration:line-through}
+#timeline .tl-legend i{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+#timeline .tl-legend button.off i{opacity:.35}
+#timeline .chart-card{padding:0 0 18px}
+#timeline .chart-card::before{display:none}
+#tlChartWrap{height:clamp(380px,calc(100vh - 310px),600px)}
 @media(min-width:1100px){#tasks>.sec-head,#taskGrid{width:min(1320px,100vw - 48px);margin-left:calc((100% - min(1320px,100vw - 48px))/2)}}
 </style>
 </head>
@@ -311,14 +321,12 @@ tbody tr:hover{background:linear-gradient(90deg,rgba(12,159,110,.06),rgba(12,159
   </div>
 </header>
 <section id="timeline">
-  <div class="sec-head">
-    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
-      <h2 style="margin:0;">Score vs. Model Release Date</h2>
-      <button type="button" class="filter-btn" data-filter-target="tlChart" onclick="toggleFilterPop(this)">Models</button>
-    </div>
+  <div class="tl-head">
+    <div class="tl-legend" id="tlLegend"></div>
+    <button type="button" class="filter-btn" data-filter-target="tlChart" onclick="toggleFilterPop(this)">Models</button>
   </div>
   <div class="chart-card">
-    <div class="chart-wrap" id="tlChartWrap" style="height:600px;"><canvas id="tlChart"></canvas></div>
+    <div class="chart-wrap" id="tlChartWrap"><canvas id="tlChart"></canvas></div>
   </div>
 </section>
 <section id="leaderboard">
@@ -1062,7 +1070,7 @@ function bTL(){
       var ch=c.chart,f=(REL_FUTURE_MONTHS+0.5)/months.length,left=ch.chartArea?ch.chartArea.left:60;
       return{right:newestW?Math.max(0,Math.ceil((newestW+16-(ch.width-left)*f)/(1-f))):0};
     }},
-    plugins:{legend:{position:"top",labels:{usePointStyle:true,boxWidth:10,boxHeight:10,padding:16,font:{size:13},filter:function(item){return item.text!=="Score frontier"}}},
+    plugins:{legend:{display:false},
       tooltip:{callbacks:{title:function(items){var it=items[0];return it.raw.d?(relLabelText(it.raw)+" | "+it.raw.release):""},label:function(c){if(c.dataset.type!=="scatter")return"Score frontier";return" Active score: "+c.parsed.y.toFixed(1)+"%"}}}},
     scales:{x:{type:"category",labels:months,offset:true,grid:{color:"#F0F2F5"},ticks:{maxTicksLimit:12,maxRotation:0,font:{size:12},color:"#333"},title:{display:true,text:"Model Release Month",color:"#333",font:{size:12,weight:"500"},padding:{top:8}}},
       y:{min:35,max:100,grid:{color:"#e5e5e5"},ticks:{font:{size:12},color:"#333",callback:function(v){return v+"%"}},title:{display:true,text:"Active Overall Score (%)",color:"#333",font:{size:12,weight:"500"},padding:{bottom:8}}}},
@@ -1070,6 +1078,23 @@ function bTL(){
   },plugins:[tlLabelPlugin]});
   ch.$labelModes=labelModes;
   ch.render();
+  renderTlLegend(ch);
+}
+// HTML legend, so the Models button can sit at the end of the same row; clicking a provider toggles it.
+function renderTlLegend(ch){
+  var box=document.getElementById("tlLegend");
+  box.innerHTML=ch.data.datasets.map(function(ds,i){
+    if(ds.type!=="scatter")return"";
+    return'<button type="button" data-i="'+i+'"'+(ch.isDatasetVisible(i)?'':' class="off"')+'><i style="background:'+ds.backgroundColor+'"></i>'+esc(ds.label)+'</button>';
+  }).join("");
+  box.querySelectorAll("button").forEach(function(b){
+    b.onclick=function(){
+      var i=+b.dataset.i;
+      ch.setDatasetVisibility(i,!ch.isDatasetVisible(i));
+      ch.update();
+      b.classList.toggle("off",!ch.isDatasetVisible(i));
+    };
+  });
 }
 
 // ==== INIT ====
