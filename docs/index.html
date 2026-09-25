@@ -37,8 +37,6 @@ nav .nav-ext svg,nav .nav-short{display:none}
 .hero{max-width:var(--max-width);margin:0 auto;padding:56px 24px 64px}
 .hero-row1{display:flex;align-items:flex-start;justify-content:space-between;gap:48px}
 .hero-left{display:flex;align-items:flex-start;gap:16px}
-.hero-left .hero-icon{flex-shrink:0;margin-top:8px}
-.hero-left .hero-icon svg{width:44px;height:44px}
 .hero-left h1{font-size:clamp(44px,7vw,64px);font-weight:500;letter-spacing:-0.03em;line-height:1.0;margin-bottom:0;color:var(--text-primary)}
 .hero-divider{height:2px;background:#ccc;margin:6px 0 18px}
 .hero-row2{display:flex;justify-content:space-between;align-items:flex-start;gap:48px}
@@ -200,8 +198,6 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.32;z
 .hero::after{content:"";position:absolute;width:300px;height:300px;right:4%;top:0;border-radius:50%;background:radial-gradient(circle,rgba(37,99,235,.14),rgba(124,58,237,.05) 48%,transparent 70%);filter:blur(2px);z-index:-1;animation:heroPulse 8s ease-in-out infinite}
 .hero-row1,.hero-row2,.hero-divider{margin-left:44px;margin-right:44px}
 .hero-left{align-items:center;gap:18px}
-.hero-left .hero-icon{margin-top:0;width:64px;height:64px;display:grid;place-items:center;border-radius:20px;background:linear-gradient(145deg,#fff,rgba(226,232,240,.72));border:1px solid rgba(255,255,255,.9);box-shadow:0 16px 36px rgba(37,99,235,.13),inset 0 0 0 1px rgba(15,23,42,.04)}
-.hero-left .hero-icon svg{width:38px;height:38px}
 .hero-left h1{font-size:clamp(52px,7vw,82px);font-weight:650;letter-spacing:-.06em;line-height:.95;background:linear-gradient(115deg,#0b1220 12%,#30466c 58%,#345fd1);-webkit-background-clip:text;background-clip:text;color:transparent}
 .hero-divider{height:1px;background:linear-gradient(90deg,rgba(15,23,42,.16),rgba(37,99,235,.16),transparent);margin-top:30px;margin-bottom:22px}
 .hero-left .hero-sub{font-size:18px;line-height:1.65;color:#475467;letter-spacing:-.01em}
@@ -247,7 +243,7 @@ footer{border-top-color:rgba(15,23,42,.08);padding:38px 24px 46px;color:#667085}
 @media(max-width:820px){
   .hero{padding:58px 16px 58px}.hero::before{left:12px;right:12px;top:22px;bottom:22px;border-radius:28px}.hero-row1,.hero-row2,.hero-divider{margin-left:20px;margin-right:20px}.hero-row1{gap:28px}.hero-left h1{font-size:clamp(42px,12vw,64px)}.hero-meta{width:100%;grid-template-columns:repeat(3,1fr)}.hero-meta .meta-row{min-width:0}.chart-card{padding:15px;border-radius:19px}.task-card-grid{grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:8px}section{padding-left:16px;padding-right:16px;padding-bottom:60px}
 }
-@media(max-width:520px){.hero-left .hero-icon{width:52px;height:52px;border-radius:16px}.hero-left .hero-icon svg{width:31px;height:31px}.hero-meta .meta-row{padding:10px}.hero-meta .meta-row .meta-val{font-size:16px}.hero-left .hero-sub{font-size:16px}.task-card-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.task-card{padding:13px;min-height:126px}.task-card .tc-title{font-size:12px}.chart-card .chart-wrap{min-width:640px}.chart-card{overflow-x:auto}}
+@media(max-width:520px){.hero-meta .meta-row{padding:10px}.hero-meta .meta-row .meta-val{font-size:16px}.hero-left .hero-sub{font-size:16px}.task-card-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.task-card{padding:13px;min-height:126px}.task-card .tc-title{font-size:12px}.chart-card .chart-wrap{min-width:640px}.chart-card{overflow-x:auto}}
 
 /* Linear data surfaces: hierarchy comes from rules, whitespace and type. */
 body::after{content:"";position:fixed;top:21vh;left:-6vw;width:112vw;height:160px;pointer-events:none;z-index:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 160' preserveAspectRatio='none'%3E%3Cdefs%3E%3ClinearGradient id='sg' x1='0' y1='0' x2='1600' y2='0' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%232563eb' stop-opacity='.2'/%3E%3Cstop offset='.28' stop-color='%232563eb' stop-opacity='.42'/%3E%3Cstop offset='.55' stop-color='%237c3aed' stop-opacity='.34'/%3E%3Cstop offset='.78' stop-color='%230ea5a8' stop-opacity='.3'/%3E%3Cstop offset='1' stop-color='%232563eb' stop-opacity='.18'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M0 80 H115 L158 52 L201 80 H326 L374 28 L422 80 H574 L614 59 L654 80 H793 L848 22 L903 80 H1060 L1104 43 L1148 80 H1305 L1345 57 L1385 80 H1600' fill='none' stroke='url(%23sg)' stroke-width='1.65' stroke-linecap='round' stroke-linejoin='round' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E") center/100% 100% no-repeat;-webkit-mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.12) 12%,#000 28%,#000 82%,rgba(0,0,0,.32) 94%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.12) 12%,#000 28%,#000 82%,rgba(0,0,0,.32) 94%,transparent 100%);-webkit-mask-size:48% 100%;mask-size:48% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:-92% 0;mask-position:-92% 0;filter:drop-shadow(0 0 1px rgba(78,203,255,.42)) drop-shadow(0 0 5px rgba(37,99,235,.27)) drop-shadow(0 0 15px rgba(124,58,237,.11));opacity:.88;will-change:mask-position;-webkit-animation:signalSweep 15s linear infinite;animation:signalSweep 15s linear infinite}
@@ -282,8 +278,6 @@ tbody tr:hover{background:linear-gradient(90deg,rgba(37,99,235,.055),rgba(37,99,
 .hero::before{display:none}
 .hero::after{right:-5%;top:-28px;opacity:.72}
 .hero-row1,.hero-row2,.hero-divider{margin-left:0;margin-right:0}
-.hero-left .hero-icon{width:auto;height:auto;margin-top:0;border:0;border-radius:0;background:transparent;box-shadow:none}
-.hero-left .hero-icon svg{display:block;width:clamp(38px,5.1vw,60px);height:clamp(38px,5.1vw,60px)}
 .hero-divider{margin-top:26px;margin-bottom:20px;background:linear-gradient(90deg,rgba(15,23,42,.72),rgba(37,99,235,.18) 62%,transparent)}
 .hero-sub{max-width:620px;color:#475467;font-size:17px;line-height:1.65;letter-spacing:-.01em}
 .hero-meta{gap:0}
@@ -296,7 +290,6 @@ tbody tr:hover{background:linear-gradient(90deg,rgba(37,99,235,.055),rgba(37,99,
   .hero{padding-top:56px;padding-bottom:58px}
   .hero-row1,.hero-row2,.hero-divider{margin-left:0;margin-right:0}
   .hero-meta .meta-row{padding:4px 10px}
-  .hero-left .hero-icon svg{width:clamp(31px,8.8vw,47px);height:clamp(31px,8.8vw,47px)}
 }
 @media(max-width:520px){
   .hero-meta .meta-row{padding:4px 7px}
@@ -321,7 +314,6 @@ tbody tr:hover{background:linear-gradient(90deg,rgba(37,99,235,.055),rgba(37,99,
 <header class="hero">
   <div class="hero-row1">
     <div class="hero-left">
-      <div class="hero-icon"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#edf1f6"/><path d="M10 24.2V6.2h6.8a5 5 0 0 1 0 10H10M15.5 16.2l5.8 7.2" stroke="#0c9f6e" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="22.1" cy="24.3" r="2.3" fill="#0c9f6e"/><circle cx="10" cy="24.8" r="2.3" fill="#0c9f6e"/></svg></div>
       <h1>Razavi-Bench</h1>
     </div>
     <div class="hero-meta">
