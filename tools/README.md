@@ -93,3 +93,29 @@ python3 tools/evaluate_answers.py \
 Historical scripts under `experiments/<experiment>/tools/` are snapshots of the
 code used for those experiments. Keep them with their experiment artifacts for
 auditability, but use this directory for new scoring runs.
+
+## `apply_active_judge.py`
+
+`apply_active_judge.py` makes one judge authoritative for the published Direct
+QA data (default: `deepseek_v4_pro`). It sets every answer's `active_score` from
+that judge, recomputes each model's summaries, including per-rollout scores for
+each part (`summary.by_rollout_part`), rewrites `docs/data/direct_qa/models/` and
+`index.json`, and re-ranks the index. Other judges' scores are kept for audit.
+Run it after publishing new results, then refresh the question files:
+
+```bash
+python3 tools/apply_active_judge.py
+node tools/aggregate_questions.js
+```
+
+## `plot_rollout_scores.py`
+
+`plot_rollout_scores.py` draws the README figure
+`docs/assets/direct_qa_rollout_mean_all_metrics.png` from `index.json`: Overall,
+Part 1 and Part 2 per model, with one dot per rollout.
+
+## `build_task_thumbnails.py`
+
+`build_task_thumbnails.py` shrinks each task's first figure into
+`docs/assets/task-thumbs/` for the homepage task cards and records their sizes in
+`docs/data/task_thumbnails.json`. Re-run it after adding or changing figures.

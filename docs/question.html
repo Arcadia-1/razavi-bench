@@ -147,6 +147,7 @@ footer .footer-row{margin-bottom:6px}
 <script src="/assets/pricing.js"></script>
 <script>
 var EFFORT_LABELS={max:"max",high:"high",medium:"med",xhigh:"xhigh",default:"",disabled:"",low:"low"};
+var JUDGE_NAMES={deepseek_v4_pro:"DeepSeek V4 Pro",minimax_m3:"MiniMax M3"};
 
 function esc(value){
   return String(value).replace(/[&<>"']/g,function(char){return{"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[char]});
@@ -355,12 +356,14 @@ function renderDetail(mk,ro,container){
   html+='<h4>Model Response</h4>';
   html+='<div class="md-body md-answer">'+renderMarkdown(r.answer.text)+'</div>';
   // scores
-  html+='<h4>Judges</h4>';
-  var jkeys=Object.keys(r.scores||{});
+  // Only the judge behind the active score is shown; the other judge's scores stay in the data for audit.
+  var pol=r.active_score&&r.active_score.policy;
+  var jkeys=Object.keys(r.scores||{}).filter(function(k){return !r.scores[pol]||k===pol});
+  html+='<h4>'+(jkeys.length===1?'Judge':'Judges')+'</h4>';
   if(jkeys.length){
     jkeys.forEach(function(jk){
       var j=r.scores[jk];
-      html+='<div class="judge-score"><span class="js-label">'+esc(jk)+'</span><div><span class="score-badge '+scoreClass(j.score_0_to_4)+'">'+j.score_0_to_4+'/4</span><div class="js-rationale">'+esc(j.rationale||"No rationale")+'</div></div></div>';
+      html+='<div class="judge-score"><span class="js-label">'+esc(JUDGE_NAMES[jk]||jk)+'</span><div><span class="score-badge '+scoreClass(j.score_0_to_4)+'">'+j.score_0_to_4+'/4</span><div class="js-rationale">'+esc(j.rationale||"No rationale")+'</div></div></div>';
     });
   }
   container.innerHTML=html;

@@ -354,7 +354,7 @@ tbody tr:hover{background:linear-gradient(90deg,rgba(12,159,110,.06),rgba(12,159
     <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
       <div>
         <h2 style="margin:0;">Overall Active Score vs Resource Usage</h2>
-        <p class="chart-subtitle">Mean of MiniMax M3 and DeepSeek V4 Pro across 50 tasks &times; 3 rollouts &middot; Resource usage covers answer-model attempts only.</p>
+        <p class="chart-subtitle">Scored by DeepSeek V4 Pro across 50 tasks &times; 3 rollouts &middot; Resource usage covers answer-model attempts only.</p>
       </div>
       <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
         <div class="toggle-group" id="effToggle"><button class="active" data-axis="token">Token</button><button data-axis="cost">Cost</button></div>
@@ -411,7 +411,7 @@ tbody tr:hover{background:linear-gradient(90deg,rgba(12,159,110,.06),rgba(12,159
       </tbody>
     </table>
   </div>
-  <p style="color:var(--text-muted);font-size:13px;margin-top:12px;">Judges evaluate against golden solutions prioritizing analog-circuit reasoning over surface similarity. See <a href="https://github.com/Arcadia-1/razavi-bench" style="color:var(--text-secondary);">GitHub</a> for full details.</p>
+  <p style="color:var(--text-muted);font-size:13px;margin-top:12px;">DeepSeek V4 Pro scores every answer against the golden solution, prioritizing analog-circuit reasoning over surface similarity. See <a href="https://github.com/Arcadia-1/razavi-bench" style="color:var(--text-secondary);">GitHub</a> for full details.</p>
 </section>
 <section id="citation">
   <h2 style="margin-bottom:20px;">Citation</h2>
@@ -475,11 +475,10 @@ function loadBenchmarkData(){
       var sum=m.summary||{},scores=sum.scores||{};
       function section(key){
         var act=scores[key]&&scores[key].active||{};
-        var judges=[scores[key]&&scores[key].minimax_m3,scores[key]&&scores[key].deepseek_v4_pro].filter(Boolean);
         var buckets=scoreBuckets(act.score_distribution);
-        var vals=judges.map(function(j){return j.score_percent}).filter(function(v){return v!=null});
-        var roll=key==="overall"&&sum.by_rollout?Object.keys(sum.by_rollout).map(function(k){return sum.by_rollout[k].score_percent}).filter(function(v){return v!=null}):[];
-        var pool=roll.length?roll:vals;
+        // Spread across the three rollouts: overall from by_rollout, Part 1 / Part 2 from by_rollout_part.
+        var byR=key==="overall"?sum.by_rollout:(sum.by_rollout_part||{})[key];
+        var pool=byR?Object.keys(byR).map(function(k){return byR[k].score_percent}).filter(function(v){return v!=null}):[];
         return{mn:+(act.score_percent!=null?act.score_percent:(act.mean_score_0_to_4!=null?act.mean_score_0_to_4/4*100:0)),rs:pool.map(function(v){return Math.round(v*100)/100}),d:buckets.counts,dp:buckets.percents,lo:pool.length?Math.round(Math.min.apply(null,pool)*100)/100:0,hi:pool.length?Math.round(Math.max.apply(null,pool)*100)/100:0};
       }
       var tk=(sum.tokens&&(sum.tokens.totals||sum.tokens.known_totals))||null;

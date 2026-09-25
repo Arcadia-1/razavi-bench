@@ -54,31 +54,32 @@ LABEL_OFFSETS = {
     "gpt_55": (-8, 4),
     "llama_4_maverick": (-8, 0),
     "minimax_m3": (8, 12),
-    "qwen_37_plus": (-8, -20),
-    "qwen_38_27b": (8, 18),
+    "qwen_37_plus": (-8, 14),
     "qwen3_vl_235b_a22b_instruct": (8, 18),
 }
 
-RECENT_LABEL_Y = {
-    "claude_opus_55": 101.5,
-    "claude_opus_5_high": 96.4,
-    "gpt_6_astra": 94.9,
-    "claude_opus_5_xhigh": 93.6,
-    "muse_spark_12": 92.0,
-    "claude_opus_5": 90.8,
-    "claude_opus_5_medium": 88.0,
-    "qwen_38_max": 85.5,
-    "gemini_36_flash": 83.3,
-    "gpt_56": 81.1,
-    "gpt_56_terra": 78.9,
-    "grok_45": 76.7,
-    "gpt_56_luna": 74.5,
-    "qwen_37_flash": 72.3,
-    "kimi_k3": 70.1,
-    "inkling_small": 67.9,
-    "inkling": 64.8,
-    "claude_fable_51": 62.0,
+# Recent models are labelled in a column right of the plot, stacked in score order.
+RECENT_LABEL_KEYS = {
+    "claude_opus_55", "claude_opus_5_high", "gpt_6_astra", "claude_opus_5_xhigh", "muse_spark_12",
+    "claude_opus_5", "claude_opus_5_medium", "qwen_38_max", "gemini_36_flash", "gemini_37_flash",
+    "gpt_56", "gpt_56_terra", "grok_45", "grok_46", "gpt_56_luna", "qwen_37_flash", "kimi_k3",
+    "inkling_small", "inkling", "claude_fable_51", "qwen_38_27b",
 }
+RECENT_LABEL_TOP = 101.5
+LABEL_LINE_HEIGHT = 2.5  # score-axis units per text line
+
+
+def recent_label_positions(rows: list[dict[str, object]]) -> dict[str, float]:
+    """Stack the right-hand labels from the top in score order so leader lines never cross."""
+    recent = sorted((r for r in rows if r["model_key"] in RECENT_LABEL_KEYS), key=lambda r: -float(r["score"]))
+    positions: dict[str, float] = {}
+    y, prev_half = RECENT_LABEL_TOP, 0.0
+    for row in recent:
+        half = LABEL_LINE_HEIGHT * (str(row["label"]).count("\n") + 1) / 2
+        y -= prev_half + half if positions else 0.0
+        positions[str(row["model_key"])] = y
+        prev_half = half
+    return positions
 
 
 def parse_args() -> argparse.Namespace:
@@ -133,13 +134,13 @@ def load_rows(index_path: Path, dates_path: Path) -> list[dict[str, object]]:
     return rows
 
 
-def annotate(ax: plt.Axes, row: dict[str, object]) -> None:
+def annotate(ax: plt.Axes, row: dict[str, object], recent_y: dict[str, float]) -> None:
     key = str(row["model_key"])
-    if key in RECENT_LABEL_Y:
+    if key in recent_y:
         ax.annotate(
             str(row["label"]),
             (row["release_date"], row["score"]),
-            xytext=(1.018, RECENT_LABEL_Y[key]),
+            xytext=(1.018, recent_y[key]),
             textcoords=ax.get_yaxis_transform(),
             ha="left",
             va="center",
@@ -187,6 +188,7 @@ def style_axis(ax: plt.Axes) -> None:
 
 
 def plot(rows: list[dict[str, object]], output: Path) -> None:
+    recent_y = recent_label_positions(rows)
     plt.rcParams.update({
         "font.family": "DejaVu Sans",
         "axes.titleweight": "bold",
@@ -238,7 +240,7 @@ def plot(rows: list[dict[str, object]], output: Path) -> None:
             linewidth=1.4,
             zorder=5,
         )
-        annotate(ax, row)
+        annotate(ax, row, recent_y)
 
     ax.set_ylabel("Active Overall Score (%)", fontsize=26, fontweight="bold", color="#111827")
     figure.supxlabel("Model Release Date", y=0.105, fontsize=26, fontweight="bold", color="#111827")

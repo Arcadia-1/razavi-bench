@@ -19,6 +19,12 @@ Current Direct QA data is published under `data/direct_qa/`:
 - `index.json` contains the ranked model summaries and links to detail files.
 - `models/<model_key>.json` contains three rollouts for one model, including the
   question, raw answer, both judge results, active score, and token usage.
+
+The active score is DeepSeek V4 Pro's (`benchmark.active_score_policy` in
+`index.json`); MiniMax M3 results are kept for reference. `summary.by_rollout`
+gives each rollout's overall score and `summary.by_rollout_part` splits it by
+part. After publishing new results, run `tools/apply_active_judge.py` and then
+`tools/aggregate_questions.js` to refresh these files.
 - `model_release_dates.csv` is the release-date source. Running
   `python3 tools/plot_model_release_timeline.py` generates both the timeline
   PNG and `model_release_dates.json` used by the homepage chart. Both website

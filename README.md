@@ -213,31 +213,33 @@ overlay applied to Part 1 Q15; all non-Q15 task scores are unchanged.
 | Gemini | MiniMax-M3 | 79.67% | 88.89% | 65.83% |
 | Gemini | DeepSeek-V4-Pro | 81.83% | 91.11% | 67.92% |
 
-The current active aggregate below is the September 25 snapshot covering 45 model
-configurations and 6,750 answers. Each value is the mean of DeepSeek V4 Pro and
-MiniMax M3 scores over three rollouts, with the Q15 hard-rule correction applied
-consistently. GPT-5.2 remains excluded because all 150 published answers were
-generated without reasoning. Doubao Seed 2.1 Pro also remains excluded because
-one repair answer in its otherwise reasoning-enabled batch was generated with
-reasoning disabled, and no exact route is currently available to replace that
-slot. GPT-5.4 High is active after its original Vela logs were verified to use
-`reasoning.effort=high` for all 150 answers.
+The current active leaderboard below is the September 26 snapshot covering 45
+model configurations and 6,750 answers. From this snapshot on, the active score
+is DeepSeek V4 Pro alone: each value is its mean score over three rollouts, with
+the Q15 hard-rule correction applied consistently. MiniMax M3 scores stay in the
+published data for reference but no longer count. GPT-5.2 remains excluded
+because all 150 published answers were generated without reasoning. Doubao Seed
+2.1 Pro also remains excluded because one repair answer in its otherwise
+reasoning-enabled batch was generated with reasoning disabled, and no exact
+route is currently available to replace that slot. GPT-5.4 High is active after
+its original Vela logs were verified to use `reasoning.effort=high` for all 150
+answers.
 
 | Rank | Answer Model | Thinking Effort | Overall | Part 1 | Part 2 |
 |---:|---|---|---:|---:|---:|
-| 1 | Claude Opus 5 | high | 94.00% | 98.33% | 87.50% |
-| 2 | GPT-6 Astra | max | 94.00% | 99.44% | 85.83% |
-| 3 | Claude Opus 5.5 | max | 93.67% | 98.89% | 85.83% |
-| 4 | Claude Opus 5 | xhigh | 93.25% | 95.42% | 90.00% |
-| 5 | Claude Fable 5 | max | 92.25% | 95.83% | 86.88% |
-| 6 | Claude Opus 5 | max | 92.17% | 95.00% | 87.92% |
-| 7 | Claude Fable 5.1 | max | 92.08% | 95.83% | 86.46% |
-| 8 | Gemini 3.7 Flash | high | 90.75% | 97.50% | 80.62% |
-| 9 | Muse Spark 1.2 | xhigh | 90.50% | 96.11% | 82.08% |
-| 10 | Claude Opus 5 | medium | 88.83% | 92.78% | 82.92% |
+| 1 | GPT-6 Astra | max | 95.50% | 100.00% | 88.75% |
+| 2 | Claude Opus 5.5 | max | 95.33% | 100.00% | 88.33% |
+| 3 | Claude Opus 5 | high | 94.83% | 98.61% | 89.17% |
+| 4 | Claude Opus 5 | xhigh | 94.00% | 95.28% | 92.08% |
+| 5 | Claude Fable 5 | max | 93.17% | 96.67% | 87.92% |
+| 6 | Claude Fable 5.1 | max | 93.00% | 96.39% | 87.92% |
+| 7 | Claude Opus 5 | max | 92.50% | 94.72% | 89.17% |
+| 8 | Muse Spark 1.2 | xhigh | 92.00% | 97.78% | 83.33% |
+| 9 | Gemini 3.7 Flash | high | 91.83% | 97.78% | 82.92% |
+| 10 | Claude Opus 5 | medium | 88.67% | 92.50% | 82.92% |
 
 <p align="center">
-  <img src="docs/assets/direct_qa_rollout_mean_all_metrics.png?v=20260925-claude" alt="2026-09-25 Razavi-Bench Multimodal QA snapshot" title="2026-09-25 Razavi-Bench Multimodal QA snapshot" width="92%"/>
+  <img src="docs/assets/direct_qa_rollout_mean_all_metrics.png?v=20260926-deepseek" alt="2026-09-26 Razavi-Bench Multimodal QA snapshot" title="2026-09-26 Razavi-Bench Multimodal QA snapshot" width="92%"/>
 </p>
 
 The release-date view uses vendor announcements where available and explicitly
@@ -245,5 +247,5 @@ marks preview or first-public-availability dates in the
 [model release-date table](docs/data/direct_qa/model_release_dates.csv).
 
 <p align="center">
-  <img src="docs/assets/direct_qa_score_vs_release_date.png?v=20260925-claude" alt="Razavi-Bench score versus model release date" title="Razavi-Bench score versus model release date" width="96%"/>
+  <img src="docs/assets/direct_qa_score_vs_release_date.png?v=20260926-deepseek" alt="Razavi-Bench score versus model release date" title="Razavi-Bench score versus model release date" width="96%"/>
 </p>
