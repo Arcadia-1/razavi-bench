@@ -81,4 +81,17 @@ for (const [qid, data] of byQuestion) {
   written++;
 }
 console.log(`Wrote ${written} question files to ${OUT_DIR}`);
+
+// Per-task counts for the homepage task cards, taken from the same answers as the question files.
+const STATS_FILE = path.join(ROOT, "docs/data/task_stats.json");
+const stats = {};
+for (const qid of [...byQuestion.keys()].sort()) {
+  const models = Object.values(byQuestion.get(qid).models);
+  stats[qid] = {
+    models: models.length,
+    trials: models.reduce((n, m) => n + Object.keys(m.rollouts).length, 0),
+  };
+}
+fs.writeFileSync(STATS_FILE, JSON.stringify(stats, null, 2) + "\n");
+console.log(`Wrote task stats for ${Object.keys(stats).length} tasks to ${STATS_FILE}`);
 console.log(`Sample: ${fs.readFileSync(path.join(OUT_DIR, "part1-001-double-length-and-width-mosfet-its-intrinsic.json"), "utf-8").slice(0, 200)}`);
