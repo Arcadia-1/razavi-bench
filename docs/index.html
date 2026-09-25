@@ -279,12 +279,12 @@ tbody tr:hover{background:linear-gradient(90deg,rgba(12,159,110,.06),rgba(12,159
 
 /* Compact editorial frame: one shared left edge, no hero card shell. */
 :root{--max-width:1060px}
-.hero{padding-top:76px;padding-bottom:68px}
+.hero{padding-top:40px;padding-bottom:28px}
 .hero::before{display:none}
 .hero::after{right:-5%;top:-28px;opacity:.72}
 .hero-row1,.hero-row2,.hero-divider{margin-left:0;margin-right:0}
-.hero-divider{margin-top:26px;margin-bottom:20px;background:linear-gradient(90deg,rgba(15,23,42,.72),rgba(12,159,110,.18) 62%,transparent)}
-.hero-sub{max-width:620px;color:#475467;font-size:17px;line-height:1.65;letter-spacing:-.01em}
+.hero-divider{margin-top:22px;margin-bottom:16px;background:linear-gradient(90deg,rgba(15,23,42,.72),rgba(12,159,110,.18) 62%,transparent)}
+.hero-sub{max-width:none;color:#475467;font-size:17px;line-height:1.65;letter-spacing:-.01em}
 .hero-meta{gap:0}
 .hero-meta .meta-row{min-width:92px;padding:4px 16px;border:0;border-left:1px solid rgba(15,23,42,.14);border-radius:0;background:transparent;box-shadow:none}
 #tasks{max-width:var(--max-width)}
@@ -292,7 +292,7 @@ tbody tr:hover{background:linear-gradient(90deg,rgba(12,159,110,.06),rgba(12,159
 #tasks>h3{max-width:none;margin-left:0;margin-right:0}
 #tasks>a{max-width:none;margin-left:0}
 @media(max-width:820px){
-  .hero{padding-top:56px;padding-bottom:58px}
+  .hero{padding-top:28px;padding-bottom:20px}
   .hero-row1,.hero-row2,.hero-divider{margin-left:0;margin-right:0}
   .hero-meta .meta-row{padding:4px 10px}
 }
@@ -338,7 +338,7 @@ tbody tr:hover{background:linear-gradient(90deg,rgba(12,159,110,.06),rgba(12,159
   </div>
   <div class="hero-divider"></div>
   <div class="hero-row2">
-    <p class="hero-sub">An expert-curated benchmark that tests whether frontier AI <br>models can reason about analog circuit design.</p>
+    <p class="hero-sub">An expert-curated benchmark that tests whether frontier AI models can reason about analog circuit design.</p>
   </div>
 </header>
 <section id="timeline">
