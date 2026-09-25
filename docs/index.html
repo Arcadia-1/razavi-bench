@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Razavi-Bench -- Analog Design Reasoning Benchmark</title>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Cpolygon points='5,3 17,9 5,15' fill='none' stroke='%231a1a1a' stroke-width='2'/%3E%3Cpolygon points='23,13 11,19 23,25' fill='none' stroke='%231a1a1a' stroke-width='2'/%3E%3Cline x1='17' y1='9' x2='11' y2='19' stroke='%231a1a1a' stroke-width='2.5'/%3E%3Cline x1='2' y1='5' x2='5' y2='5' stroke='%231a1a1a' stroke-width='2'/%3E%3Cline x1='26' y1='21' x2='23' y2='21' stroke='%231a1a1a' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' fill='none'%3E%3Crect width='32' height='32' rx='7.5' fill='%230b1220'/%3E%3Cpath d='M10 24.2V6.2h6.8a5 5 0 0 1 0 10H10' stroke='%23fff' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M15.5 16.2l5.8 7.2' stroke='%2360a5fa' stroke-width='2.6' stroke-linecap='round'/%3E%3Ccircle cx='22.1' cy='24.3' r='2.3' fill='%2360a5fa'/%3E%3Ccircle cx='10' cy='24.8' r='2.3' fill='%23fff'/%3E%3C/svg%3E">
 <meta name="description" content="An expert-curated benchmark that tests whether frontier AI models can reason about analog circuit design.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -282,8 +282,8 @@ tbody tr:hover{background:linear-gradient(90deg,rgba(37,99,235,.055),rgba(37,99,
 .hero::before{display:none}
 .hero::after{right:-5%;top:-28px;opacity:.72}
 .hero-row1,.hero-row2,.hero-divider{margin-left:0;margin-right:0}
-.hero-left .hero-icon{width:48px;height:48px;margin-top:0;border:0;border-radius:0;background:transparent;box-shadow:none}
-.hero-left .hero-icon svg{width:38px;height:38px}
+.hero-left .hero-icon{width:auto;height:auto;margin-top:0;border:0;border-radius:0;background:transparent;box-shadow:none}
+.hero-left .hero-icon svg{display:block;width:clamp(38px,5.1vw,60px);height:clamp(38px,5.1vw,60px)}
 .hero-divider{margin-top:26px;margin-bottom:20px;background:linear-gradient(90deg,rgba(15,23,42,.72),rgba(37,99,235,.18) 62%,transparent)}
 .hero-sub{max-width:620px;color:#475467;font-size:17px;line-height:1.65;letter-spacing:-.01em}
 .hero-meta{gap:0}
@@ -296,10 +296,9 @@ tbody tr:hover{background:linear-gradient(90deg,rgba(37,99,235,.055),rgba(37,99,
   .hero{padding-top:56px;padding-bottom:58px}
   .hero-row1,.hero-row2,.hero-divider{margin-left:0;margin-right:0}
   .hero-meta .meta-row{padding:4px 10px}
+  .hero-left .hero-icon svg{width:clamp(31px,8.8vw,47px);height:clamp(31px,8.8vw,47px)}
 }
 @media(max-width:520px){
-  .hero-left .hero-icon{width:42px;height:42px;border-radius:0}
-  .hero-left .hero-icon svg{width:32px;height:32px}
   .hero-meta .meta-row{padding:4px 7px}
 }
 </style>
@@ -309,7 +308,7 @@ tbody tr:hover{background:linear-gradient(90deg,rgba(37,99,235,.055),rgba(37,99,
 <nav>
   <div class="nav-inner">
     <div class="nav-main">
-      <a href="#" class="logo"><svg viewBox="0 0 28 28" fill="none"><polygon points="5,3 17,9 5,15" fill="none" stroke="#1a1a1a" stroke-width="2"/><polygon points="23,13 11,19 23,25" fill="none" stroke="#1a1a1a" stroke-width="2"/><line x1="17" y1="9" x2="11" y2="19" stroke="#1a1a1a" stroke-width="2.5"/><line x1="2" y1="5" x2="5" y2="5" stroke="#1a1a1a" stroke-width="2"/><line x1="26" y1="21" x2="23" y2="21" stroke="#1a1a1a" stroke-width="2"/></svg>Razavi-Bench</a>
+      <a href="#" class="logo"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect width="32" height="32" rx="7.5" fill="#0b1220"/><path d="M10 24.2V6.2h6.8a5 5 0 0 1 0 10H10" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M15.5 16.2l5.8 7.2" stroke="#60a5fa" stroke-width="2.6" stroke-linecap="round"/><circle cx="22.1" cy="24.3" r="2.3" fill="#60a5fa"/><circle cx="10" cy="24.8" r="2.3" fill="#fff"/></svg>Razavi-Bench</a>
       <div class="nav-sections"><a href="#leaderboard">Leaderboard</a><a href="#tasks">Tasks</a><a href="#rubric">Rubric</a></div>
     </div>
     <div class="nav-links">
@@ -322,7 +321,7 @@ tbody tr:hover{background:linear-gradient(90deg,rgba(37,99,235,.055),rgba(37,99,
 <header class="hero">
   <div class="hero-row1">
     <div class="hero-left">
-      <div class="hero-icon"><svg viewBox="0 0 36 36" fill="none"><polygon points="6,4 22,12 6,20" fill="none" stroke="#1a1a1a" stroke-width="2.4"/><polygon points="30,16 14,24 30,32" fill="none" stroke="#1a1a1a" stroke-width="2.4"/><line x1="22" y1="12" x2="14" y2="24" stroke="#1a1a1a" stroke-width="3"/><line x1="2" y1="6" x2="6" y2="6" stroke="#1a1a1a" stroke-width="2.4"/><line x1="34" y1="28" x2="30" y2="28" stroke="#1a1a1a" stroke-width="2.4"/></svg></div>
+      <div class="hero-icon"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect width="32" height="32" rx="7.5" fill="#0b1220"/><path d="M10 24.2V6.2h6.8a5 5 0 0 1 0 10H10" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M15.5 16.2l5.8 7.2" stroke="#60a5fa" stroke-width="2.6" stroke-linecap="round"/><circle cx="22.1" cy="24.3" r="2.3" fill="#60a5fa"/><circle cx="10" cy="24.8" r="2.3" fill="#fff"/></svg></div>
       <h1>Razavi-Bench</h1>
     </div>
     <div class="hero-meta">
