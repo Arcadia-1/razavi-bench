@@ -1031,7 +1031,7 @@ function bTL(){
   });
   points.sort(function(a,b){return a.release.localeCompare(b.release)});
   var firstMonth=relMonthIndex("2024-04");
-  var lastMonth=points.length?relMonthIndex(points[points.length-1].month):firstMonth;
+  var lastMonth=points.length?relMonthIndex(points[points.length-1].month)+1:firstMonth+1;
   var months=Array.from({length:lastMonth-firstMonth+1},function(_,i){return relMonthLabel(firstMonth+i)});
   // provider -> datasets
   var byProv={};
