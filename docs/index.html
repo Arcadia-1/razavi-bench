@@ -357,6 +357,18 @@ tbody tr:hover{background:linear-gradient(90deg,rgba(12,159,110,.06),rgba(12,159
   <div class="table-wrap"><table><thead><tr><th>#</th><th>Model</th><th class="sortable" data-key="score">Score <span class="sort-arrow"></span></th><th>Range</th><th class="sortable" data-key="token">Token <span class="sort-arrow"></span></th><th class="sortable" data-key="cost">Cost <span class="sort-arrow"></span></th></tr></thead><tbody class="lb-table" id="lbDirectBody"></tbody></table></div>
   <div class="sec-head" style="margin-top:56px;">
     <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+      <h2 style="margin:0;">Score Distribution</h2>
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+        <div class="toggle-group" id="distSubsetToggle"><button class="active" data-subset="o">All</button><button data-subset="p1">Part 1</button><button data-subset="p2">Part 2</button></div>
+        <button type="button" class="filter-btn" data-filter-target="distChart" onclick="toggleFilterPop(this)">Models</button>
+      </div>
+    </div>
+  </div>
+  <div class="chart-card">
+    <div class="chart-wrap"><canvas id="distChart"></canvas></div>
+  </div>
+  <div class="sec-head" style="margin-top:56px;">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
       <div>
         <h2 style="margin:0;">Overall Active Score vs Resource Usage</h2>
         <p class="chart-subtitle">Scored by DeepSeek V4 Pro across 50 tasks &times; 3 rollouts &middot; Resource usage covers answer-model attempts only.</p>
@@ -382,18 +394,6 @@ tbody tr:hover{background:linear-gradient(90deg,rgba(12,159,110,.06),rgba(12,159
   </div>
   <div class="chart-card">
     <div class="chart-wrap"><canvas id="tokChart"></canvas></div>
-  </div>
-  <div class="sec-head" style="margin-top:56px;">
-    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
-      <h2 style="margin:0;">Score Distribution</h2>
-      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
-        <div class="toggle-group" id="distSubsetToggle"><button class="active" data-subset="o">All</button><button data-subset="p1">Part 1</button><button data-subset="p2">Part 2</button></div>
-        <button type="button" class="filter-btn" data-filter-target="distChart" onclick="toggleFilterPop(this)">Models</button>
-      </div>
-    </div>
-  </div>
-  <div class="chart-card">
-    <div class="chart-wrap"><canvas id="distChart"></canvas></div>
   </div>
 </section>
 <section id="tasks">
