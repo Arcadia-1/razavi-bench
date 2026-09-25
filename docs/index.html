@@ -1146,7 +1146,10 @@ function toggleFilterPop(btn){
   var btnRect=btn.getBoundingClientRect();
   var secRect=sec.getBoundingClientRect();
   pop.style.top=(btnRect.bottom-secRect.top+6)+"px";
-  pop.style.left=(btnRect.left-secRect.left)+"px";
+  // Right-align under the button (they sit at the right edge) and keep 8px clear of both viewport edges.
+  var vw=document.documentElement.clientWidth,w=Math.min(320,vw-16);
+  pop.style.width=w+"px";
+  pop.style.left=(Math.max(8,Math.min(btnRect.right-w,vw-8-w))-secRect.left)+"px";
   renderFilterList();
   pop.classList.add("open");
 }
