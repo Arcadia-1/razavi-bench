@@ -132,7 +132,6 @@ tr.lb-row.in{animation:slideIn .40s cubic-bezier(.25,.8,.25,1) both}
 .task-card .tc-id{font-family:'SF Mono','Fira Code','Cascadia Code','JetBrains Mono',monospace;font-size:12px;color:#666666;font-variant-numeric:tabular-nums}
 .task-card .tc-tag{font-family:'SF Mono','Fira Code','Cascadia Code','JetBrains Mono',monospace;font-size:11px;color:#888888;text-transform:uppercase;letter-spacing:0.04em}
 .task-card .tc-title{font-size:14px;font-weight:600;color:#1a1a1a;line-height:1.5;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;white-space:normal}
-.task-card .tc-meta{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:8px;font-family:'SF Mono','Fira Code','Cascadia Code','JetBrains Mono',monospace;font-size:11px;color:#999999}
 .task-card.compact{padding:14px 16px;gap:8px;min-height:0}
 .task-card.compact .tc-title{font-size:13px;-webkit-line-clamp:4}
 
@@ -207,7 +206,6 @@ tbody tr:hover{background:rgba(236,253,245,.72);transform:none;box-shadow:none}
 .task-card .tc-id{font-size:11px;color:#047857;font-weight:700}
 .task-card .tc-tag{font-size:10px;color:#7b8494}
 .task-card .tc-title{font-size:12.5px;line-height:1.48;-webkit-line-clamp:4;color:#202b3c}
-.task-card .tc-meta{font-size:10px;color:#98a2b3}
 .rubric-table td:first-child{color:#047857}
 footer{border-top-color:rgba(15,23,42,.08);padding:38px 24px 46px;color:#667085}
 @keyframes heroPulse{0%,100%{transform:translate3d(0,0,0) scale(.98);opacity:.72}50%{transform:translate3d(-24px,16px,0) scale(1.06);opacity:1}}
@@ -277,7 +275,6 @@ tbody tr:hover{background:linear-gradient(90deg,rgba(12,159,110,.06),rgba(12,159
 .task-card-grid .task-card .tc-title{display:block;-webkit-line-clamp:unset;overflow:visible}
 .task-card .tc-fig{border:1px solid rgba(15,23,42,.06);border-radius:10px;overflow:hidden;background:#fff}
 .task-card .tc-fig img{display:block;width:100%;height:auto}
-.task-card .tc-meta{white-space:nowrap}
 /* Release-date chart: legend and Models filter in one row, and a height that keeps the hero and the whole chart on one screen. */
 #timeline .tl-head{display:flex;align-items:flex-start;gap:12px;margin-bottom:4px}
 #timeline .tl-legend{flex:1;display:flex;flex-wrap:wrap;justify-content:center;gap:6px 16px;padding-top:7px}
@@ -506,21 +503,6 @@ var TASK_THUMB_URLS=["data/task_thumbnails.json","https://razavi-bench.tokenzhan
 var TASK_DATA_URLS=["data/tasks.jsonl","https://razavi-bench.tokenzhang.com/data/tasks.jsonl","https://razavi-bench.tokenzhang.com/api/tasks.jsonl","https://raw.githubusercontent.com/Arcadia-1/razavi-bench/main/data/tasks.jsonl"];
 var taskGroups={part1:[],part2:[]};
 var taskDataPromise=null;
-var TASK_STATS_URLS=["data/task_stats.json","https://razavi-bench.tokenzhang.com/data/task_stats.json","https://razavi-bench.tokenzhang.com/api/task_stats.json","https://raw.githubusercontent.com/Arcadia-1/razavi-bench/main/docs/data/task_stats.json"];
-var taskStatsCache=null;
-function loadTaskStats(){
-  if(taskStatsCache)return taskStatsCache;
-  taskStatsCache=new Promise(function(res){
-    var attempts=TASK_STATS_URLS.map(function(u){
-      return fetchWithTimeout(u,4000).then(function(r){if(r&&r.ok)return r.json();throw new Error()}).catch(function(){return null});
-    });
-    var done=0;
-    attempts.forEach(function(p){
-      p.then(function(v){if(v){res(v)}else{done++;if(done===attempts.length)res(null)}});
-    });
-  });
-  return taskStatsCache;
-}
 
 function esc(value){
   return String(value).replace(/[&<>"']/g,function(char){return{"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[char]});
@@ -543,15 +525,12 @@ function taskCard(task,compact){
   // One running number across both parts, as on the question pages: Part 2 is 31-50.
   var num=String((task.part==="part2"?taskGroups.part1.length:0)+(task.number||0)).padStart(2,"0");
   var cls=compact?"task-card compact":"task-card";
-  var stats=task.stats||{};
-  var meta=stats.trials?('Trials '+stats.trials+' <span class="tc-sep">·</span> Models '+stats.models):'';
   // width/height let the masonry measure cards before the lazy preview loads
   var th=task.thumb,fig=th?'<div class="tc-fig"><img src="'+th.src+'" width="'+th.width+'" height="'+th.height+'" loading="lazy" decoding="async" alt=""></div>':'';
   return'<a class="'+cls+'" href="'+href+'">'
     +'<div class="tc-top"><span class="tc-id">'+num+'</span><span class="tc-tag">'+partLabel+'</span></div>'
-    +fig
     +'<div class="tc-title">'+esc(task.question)+'</div>'
-    +'<div class="tc-meta">'+meta+'</div>'
+    +fig
     +'</a>';
 }
 // Masonry: equal-width columns, each card dropped into the currently shortest column.
@@ -616,12 +595,6 @@ function loadTasks(){
         figure:Array.isArray(row.figures)&&row.figures.length?row.figures[0]:"",
         thumb:thumbs[row.task_slug]||null
       });
-    });
-    loadTaskStats().then(function(stats){
-      [].concat(taskGroups.part1,taskGroups.part2).forEach(function(t){
-        if(stats&&stats[t.slug])t.stats=stats[t.slug];
-      });
-      renderTaskExamples();
     });
     renderTaskExamples();
     return taskGroups;
