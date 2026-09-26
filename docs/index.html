@@ -286,7 +286,6 @@ tbody tr:hover{background:linear-gradient(90deg,rgba(12,159,110,.06),rgba(12,159
 #timeline .chart-card{padding:0 0 18px}
 #timeline .chart-card::before{display:none}
 #tlChartWrap{height:clamp(380px,calc(100vh - 310px),600px)}
-@media(min-width:1100px){#tasks>.sec-head,#taskGrid{width:min(1320px,100vw - 48px);margin-left:calc((100% - min(1320px,100vw - 48px))/2)}}
 /* Hero: the title never wraps. Between phone and desktop widths the three stats stack beside it. */
 .hero-left h1{white-space:nowrap}
 @media(min-width:560px) and (max-width:1059px){
@@ -311,6 +310,14 @@ footer .footer-links a:hover{color:#17212e}
 footer .footer-links .visit-stats{margin:0;font-family:"Google Sans Code",ui-monospace,"SF Mono",monospace;font-size:11px;font-variant-numeric:tabular-nums;text-decoration:underline;text-underline-offset:4px}
 @media(min-width:640px){footer .footer-bottom{flex-direction:row;align-items:center;justify-content:space-between}}
 @media(max-width:820px){footer{padding:0 16px}}
+/* Page width as on Analog Design Bench: a 1152px container with 32px gutters (20px on
+   phones), so every page's content spans at most 1088px. */
+:root{--max-width:1152px;--gutter:32px}
+@media(max-width:639px){:root{--gutter:20px}}
+nav,footer{padding-left:var(--gutter);padding-right:var(--gutter)}
+nav .nav-inner,footer .footer-inner{max-width:calc(var(--max-width) - 2 * var(--gutter))}
+section{padding-left:var(--gutter);padding-right:var(--gutter)}
+.hero{padding-left:var(--gutter);padding-right:var(--gutter)}
 </style>
 </head>
 <body>
@@ -558,7 +565,8 @@ function layoutTaskGrid(container,html){
 function placeTaskGrid(container){
   var cards=container._cards;if(!cards||!cards.length)return;
   var gap=parseFloat(getComputedStyle(container).columnGap)||10;
-  var n=Math.max(2,Math.floor((container.clientWidth+gap)/(220+gap)));
+  // Cards at least 200px wide: five columns across the full 1088px page.
+  var n=Math.max(2,Math.floor((container.clientWidth+gap)/(200+gap)));
   var cols=[];
   container.innerHTML="";
   for(var i=0;i<n;i++){var col=document.createElement("div");col.className="tc-col";container.appendChild(col);cols.push(col)}
