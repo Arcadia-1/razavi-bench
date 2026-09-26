@@ -64,25 +64,6 @@ const REFERRER_CATEGORIES = [
   ["social:xiaohongshu", ["xiaohongshu.com", "xhslink.com"]],
 ];
 
-// Hits recorded before coarse locations were kept fall back to their country's centre.
-const COUNTRY_CENTROIDS = {
-  AE: [24, 54], AM: [40, 45], AR: [-34, -64], AT: [47, 14], AU: [-25, 134], AZ: [40, 48],
-  BD: [24, 90], BE: [50, 5], BG: [43, 25], BR: [-14, -55], BY: [53, 28], CA: [56, -106],
-  CH: [47, 8], CL: [-33, -71], CN: [35, 104], CO: [4, -74], CZ: [50, 15], DE: [51, 10],
-  DK: [56, 10], DZ: [28, 3], EE: [59, 26], EG: [27, 30], ES: [40, -4], ET: [9, 40],
-  FI: [64, 26], FR: [47, 2], GB: [54, -2], GE: [42, 43], GH: [8, -1], GR: [39, 22],
-  HK: [22, 114], HR: [45, 16], HU: [47, 19], ID: [-2, 118], IE: [53, -8], IL: [31, 35],
-  IN: [21, 78], IQ: [33, 44], IR: [32, 53], IS: [65, -18], IT: [42, 12], JO: [31, 36],
-  JP: [36, 138], KE: [1, 38], KR: [36, 128], KW: [29, 48], KZ: [48, 68], LB: [34, 36],
-  LK: [7, 81], LT: [55, 24], LU: [50, 6], LV: [57, 25], MA: [31, -7], MO: [22, 114],
-  MX: [23, -102], MY: [4, 102], NG: [9, 8], NL: [52, 5], NO: [61, 9], NP: [28, 84],
-  NZ: [-41, 174], OM: [21, 57], PE: [-10, -76], PH: [13, 122], PK: [30, 70], PL: [52, 20],
-  PT: [40, -8], QA: [25, 51], RO: [46, 25], RS: [44, 21], RU: [60, 90], SA: [24, 45],
-  SE: [62, 15], SG: [1, 104], SI: [46, 15], SK: [49, 19], TH: [15, 101], TN: [34, 9],
-  TR: [39, 35], TW: [24, 121], UA: [49, 31], US: [39, -98], UZ: [41, 64], VE: [7, -66],
-  VN: [16, 107], ZA: [-29, 25],
-};
-
 export class VisitStatsDurableObject {
   constructor(ctx) {
     this.ctx = ctx;
@@ -332,10 +313,11 @@ export class VisitStatsDurableObject {
       tally(countries, country, isNewVisitor);
       tally(sources, source, isNewVisitor);
       tally(pages, path, isNewVisitor);
-      const point = hit.lat != null && hit.lng != null
-        ? [Number(hit.lat), Number(hit.lng)]
-        : COUNTRY_CENTROIDS[country];
-      if (point) points.set(point.join(","), (points.get(point.join(",")) ?? 0) + 1);
+      // Only hits recorded with a location are mapped; older hits kept just the country.
+      if (hit.lat != null && hit.lng != null) {
+        const key = `${hit.lat},${hit.lng}`;
+        points.set(key, (points.get(key) ?? 0) + 1);
+      }
     }
 
     const pageViews = [...pages.values()].reduce((sum, row) => sum + row.pv, 0);
