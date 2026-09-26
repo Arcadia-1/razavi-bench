@@ -113,8 +113,11 @@ tbody .rank{text-align:right;font-weight:600;font-size:12px;width:28px;padding-r
 .mobile-cost{display:none}
 @media(max-width:768px){
   .lb-table .lb-model{display:block;overflow:hidden;text-overflow:ellipsis}
-  .lb-table .mobile-cost{display:block;margin-top:2px;font-size:11px;color:var(--text-muted)}
 }
+/* From 640px the leaderboard shrinks to fit, so the Cost column stays in view; on phones the
+   table scrolls sideways and the cost repeats under the model name instead. */
+@media(min-width:640px){#leaderboard table{min-width:0}}
+@media(max-width:639px){.lb-table .mobile-cost{display:block;margin-top:2px;font-size:11px;color:var(--text-muted)}}
 
 tr.lb-row{transition:transform .4s cubic-bezier(.25,.8,.25,1),opacity .35s ease}
 tr.lb-row td{overflow:hidden;white-space:nowrap}
