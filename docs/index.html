@@ -74,11 +74,11 @@ section h3{font-size:15px;font-weight:600;margin-bottom:16px;color:var(--text-se
 table{width:100%;min-width:680px;border-collapse:separate;border-spacing:0;font-size:13px;table-layout:fixed}
 thead th{text-align:left;padding:10px 8px;font-size:10px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.05em;background:var(--bg-card);border-bottom:1px solid var(--border)}
 thead th:nth-child(1){width:28px;text-align:right;padding-right:6px}
-thead th:nth-child(2){width:200px}
+thead th:nth-child(2){width:180px}
 thead th:nth-child(3){text-align:left}
 thead th:nth-child(4){width:104px;text-align:right}
-thead th:nth-child(5){width:64px;text-align:left}
-thead th:nth-child(6){width:56px;text-align:left}
+thead th:nth-child(5){width:72px;text-align:left}
+thead th:nth-child(6){width:68px;text-align:left}
 thead th.sortable{cursor:pointer;user-select:none}
 thead th.sortable:hover{color:var(--text-primary)}
 .sort-arrow{display:inline-block;font-size:9px;margin-left:3px;color:var(--text-muted)}
@@ -336,7 +336,7 @@ section h2{line-height:1.2}
    tall as a data row. */
 #leaderboard>.sec-head:first-child{margin-bottom:0}
 #leaderboard .table-wrap{border-top:0}
-#leaderboard thead th{padding-top:4px;padding-bottom:4px}
+#leaderboard thead th{padding-top:4px;padding-bottom:4px;white-space:nowrap}
 </style>
 </head>
 <body>
@@ -663,7 +663,16 @@ function modelHref(key){return"/data/v1/models/"+encodeURIComponent(key)}
 function rnk(rk){var rc=rk===1?"rank-1":rk===2?"rank-2":rk===3?"rank-3":"rank-n";return"<span class=\"rank-badge "+rc+"\">"+rk+"</span>";}
 function rng(v){return v.lo.toFixed(1)+" - "+v.hi.toFixed(1);}
 function fullModelLabel(m){return m.d+(m.e?" ["+m.e+"]":"");}
-function axisModelLabel(m){return fullModelLabel(m);}
+// Chart axes cut long names with an ellipsis at the width the leaderboard leaves them (the
+// 180px axis less its 12px tick padding); tooltips keep the full name.
+var AXIS_LABEL_WIDTH=168,axisMeasure=document.createElement("canvas").getContext("2d");
+function axisModelLabel(m){
+  var label=fullModelLabel(m);
+  axisMeasure.font="500 13px Inter,system-ui,sans-serif";
+  if(axisMeasure.measureText(label).width<=AXIS_LABEL_WIDTH)return label;
+  while(label.length>1&&axisMeasure.measureText(label+"…").width>AXIS_LABEL_WIDTH)label=label.slice(0,-1);
+  return label.trimEnd()+"…";
+}
 function sortValue(d,k,part){
   if(k==="score")return d[part].mn;
   if(k==="token"){var t=parseInt(d.t,10);return isNaN(t)?-1:t;}
@@ -715,7 +724,7 @@ function bDC(subset){
   var models=filteredDD("distChart").slice().sort(function(a,b){return b[subset].mn-a[subset].mn});
   cv.parentElement.style.height=(models.length*CHART_ROW_PX+71)+"px";
   var ds=[4,3,2,1,0].map(function(sc){return{label:S[sc],data:models.map(function(m){return m[subset].dp[sc]}),rawCounts:models.map(function(m){return Math.round(m[subset].d[sc])}),backgroundColor:SC[sc],borderColor:"#f7f8fb",borderWidth:{right:1},barThickness:LB_BAR_PX}});
-    var ch=new Chart(ctx,{type:"bar",data:{labels:models.map(axisModelLabel),datasets:ds},options:{responsive:true,maintainAspectRatio:false,indexAxis:"y",layout:{padding:{left:36,right:8}},plugins:{legend:{position:"bottom",labels:{usePointStyle:true,pointStyle:"rectRounded",boxWidth:9,boxHeight:9,padding:18,font:{size:12},color:"#475467"}},tooltip:{callbacks:{title:function(c){return c[0]?fullModelLabel(models[c[0].dataIndex]):""},label:function(c){return c.dataset.label+": "+c.dataset.rawCounts[c.dataIndex]+" responses"}}}},scales:{x:{stacked:true,max:100,border:{display:false},grid:{color:"rgba(15,23,42,.08)",drawTicks:false},ticks:{padding:8,font:{size:12},color:"#667085",callback:function(v){return v+"%"}}},y:{stacked:true,position:"left",afterFit:function(scale){scale.width=200;scale.paddingTop=0;scale.paddingBottom=0},border:{display:false},grid:{display:false},ticks:{padding:12,font:{size:13,weight:500},autoSkip:false,color:"#263348",align:"center",crossAlign:"far",maxRotation:0,minRotation:0}}}},plugins:[chartRankPlugin]})
+    var ch=new Chart(ctx,{type:"bar",data:{labels:models.map(axisModelLabel),datasets:ds},options:{responsive:true,maintainAspectRatio:false,indexAxis:"y",layout:{padding:{left:36,right:8}},plugins:{legend:{position:"bottom",labels:{usePointStyle:true,pointStyle:"rectRounded",boxWidth:9,boxHeight:9,padding:18,font:{size:12},color:"#475467"}},tooltip:{callbacks:{title:function(c){return c[0]?fullModelLabel(models[c[0].dataIndex]):""},label:function(c){return c.dataset.label+": "+c.dataset.rawCounts[c.dataIndex]+" responses"}}}},scales:{x:{stacked:true,max:100,border:{display:false},grid:{color:"rgba(15,23,42,.08)",drawTicks:false},ticks:{padding:8,font:{size:12},color:"#667085",callback:function(v){return v+"%"}}},y:{stacked:true,position:"left",afterFit:function(scale){scale.width=180;scale.paddingTop=0;scale.paddingBottom=0},border:{display:false},grid:{display:false},ticks:{padding:12,font:{size:13,weight:500},autoSkip:false,color:"#263348",align:"center",crossAlign:"far",maxRotation:0,minRotation:0}}}},plugins:[chartRankPlugin]})
   ctx._chart=ch;
 }
 
@@ -756,7 +765,7 @@ function bTok(){
         ch.$models=nd.models;
         nd.parts.forEach(function(p,i){ch.data.datasets[i].data=p.data;ch.data.datasets[i].hidden=!!tokHidden[p.label];});
         ch.update();
-      }},tooltip:{callbacks:{title:function(c){var m=c[0]&&c[0].chart.$models?c[0].chart.$models[c[0].dataIndex]:null;return m?fullModelLabel(m):""},label:function(c){var v=c.parsed.x;return" "+c.dataset.label+": "+(isCost?"$"+fmt(v):fmtK(v));}}}},scales:{x:{stacked:true,border:{display:false},grid:{color:"rgba(15,23,42,.08)",drawTicks:false},ticks:{padding:8,font:{size:12},color:"#667085",callback:function(v){return isCost?"$"+fmt(v):fmtK(v)}}},y:{stacked:true,position:"left",afterFit:function(scale){scale.width=200;scale.paddingTop=0;scale.paddingBottom=0},border:{display:false},grid:{display:false},ticks:{padding:12,font:{size:13,weight:500},autoSkip:false,color:"#263348",align:"center",crossAlign:"far",maxRotation:0,minRotation:0}}}}});
+      }},tooltip:{callbacks:{title:function(c){var m=c[0]&&c[0].chart.$models?c[0].chart.$models[c[0].dataIndex]:null;return m?fullModelLabel(m):""},label:function(c){var v=c.parsed.x;return" "+c.dataset.label+": "+(isCost?"$"+fmt(v):fmtK(v));}}}},scales:{x:{stacked:true,border:{display:false},grid:{color:"rgba(15,23,42,.08)",drawTicks:false},ticks:{padding:8,font:{size:12},color:"#667085",callback:function(v){return isCost?"$"+fmt(v):fmtK(v)}}},y:{stacked:true,position:"left",afterFit:function(scale){scale.width=180;scale.paddingTop=0;scale.paddingBottom=0},border:{display:false},grid:{display:false},ticks:{padding:12,font:{size:13,weight:500},autoSkip:false,color:"#263348",align:"center",crossAlign:"far",maxRotation:0,minRotation:0}}}}});
   ch.$models=data.models;
   ctx._chart=ch;
 }
