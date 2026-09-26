@@ -38,6 +38,7 @@ PROVIDER_STYLE = {
     "stepfun": ("StepFun", "#9333EA"),
     "minimax": ("MiniMax", "#D04F5F"),
     "meta": ("Meta", "#8B1E1E"),
+    "deepseek": ("DeepSeek", "#2563EB"),
 }
 
 LABEL_OFFSETS = {
@@ -63,7 +64,7 @@ RECENT_LABEL_KEYS = {
     "claude_opus_55", "claude_opus_5_high", "gpt_6_astra", "gpt_6_sol", "claude_opus_5_xhigh", "muse_spark_12",
     "claude_opus_5", "claude_opus_5_medium", "qwen_38_max", "gemini_36_flash", "gemini_37_flash",
     "gpt_56", "gpt_56_terra", "grok_45", "grok_46", "gpt_56_luna", "qwen_37_flash", "kimi_k3",
-    "inkling_small", "inkling", "claude_fable_51", "qwen_38_27b",
+    "inkling_small", "inkling", "claude_fable_51", "qwen_38_27b", "deepseek_v41_flash",
 }
 RECENT_LABEL_TOP = 101.5
 LABEL_LINE_HEIGHT = 2.5  # score-axis units per text line

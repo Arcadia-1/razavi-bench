@@ -42,6 +42,7 @@ PROVIDER_SHADES = {
     "minimax": ["#D04F5F"],
     "meta": ["#8B1E1E"],
     "bytedance": ["#D97706"],
+    "deepseek": ["#2563EB"],
 }
 FALLBACK = "#64748B"
 
