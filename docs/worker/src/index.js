@@ -1,4 +1,4 @@
-import { queryVisitStats, recordPageView } from "./analytics.js";
+import { queryAnalyticsSummary, queryVisitStats, recordPageView } from "./analytics.js";
 
 export { VisitStatsDurableObject } from "./analytics.js";
 
@@ -45,8 +45,15 @@ export default {
       const utmSource = typeof body?.utmSource === "string" ? body.utmSource : "";
       const path = normalizePath(typeof body?.path === "string" ? body.path : "");
       const source = utmSource || referrerOrigin(referrer);
+      const cf = request.cf || {};
       try {
-        const stats = await recordPageView(env.VISIT_STATS, visitorId, { country, source, path });
+        const stats = await recordPageView(env.VISIT_STATS, visitorId, {
+          country,
+          source,
+          path,
+          lat: cf.latitude,
+          lng: cf.longitude,
+        });
         return Response.json(stats, { headers: apiHeaders() });
       } catch (err) {
         return Response.json({ error: "Visit tracking unavailable" }, { status: 502, headers: apiHeaders() });
@@ -60,6 +67,16 @@ export default {
         return Response.json(stats, { headers: apiHeaders("public, max-age=300") });
       } catch (err) {
         return Response.json({ error: "Visit stats unavailable" }, { status: 502, headers: apiHeaders() });
+      }
+    }
+
+    // Summary behind /analytics, in the same shape as Analog Design Bench's /api/analytics.
+    if (request.method === "GET" && path === "/api/analytics") {
+      try {
+        const summary = await queryAnalyticsSummary(env.VISIT_STATS);
+        return Response.json(summary, { headers: apiHeaders() });
+      } catch (err) {
+        return Response.json({ error: "Analytics unavailable" }, { status: 502, headers: apiHeaders() });
       }
     }
 
