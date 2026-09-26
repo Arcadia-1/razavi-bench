@@ -328,12 +328,17 @@ section{padding-left:var(--gutter);padding-right:var(--gutter)}
 section{padding-bottom:48px}
 @media(max-width:820px){section{padding-bottom:40px}}
 /* Charts start just under their heading's rule, without a second rule of their own. */
-.chart-card{padding-top:12px;padding-bottom:16px}
+.chart-card{padding-top:0;padding-bottom:16px}
 .chart-card::before{display:none}
 #tasks .sec-head h2{margin-bottom:0}
 #citation{padding-bottom:32px}
 /* Headings keep a tight line box: the body's 1.6 left 10px of air above and below each one. */
 section h2{line-height:1.2}
+/* The leaderboard heading's rule doubles as the table's top rule, and the header row is as
+   tall as a data row. */
+#leaderboard>.sec-head:first-child{margin-bottom:0}
+#leaderboard .table-wrap{border-top:0}
+#leaderboard thead th{padding-top:4px;padding-bottom:4px}
 </style>
 </head>
 <body>
@@ -692,9 +697,9 @@ function bDC(subset){
   var cv=document.getElementById("distChart");var old=Chart.getChart(cv);if(old)old.destroy();
   var ctx=cv.getContext("2d");
   var models=filteredDD("distChart");
-  cv.parentElement.style.height=(models.length*CHART_ROW_PX+91)+"px";
+  cv.parentElement.style.height=(models.length*CHART_ROW_PX+71)+"px";
   var ds=[4,3,2,1,0].map(function(sc){return{label:S[sc],data:models.map(function(m){return m[subset].dp[sc]}),rawCounts:models.map(function(m){return Math.round(m[subset].d[sc])}),backgroundColor:SC[sc],borderColor:"#f7f8fb",borderWidth:{right:1},barThickness:LB_BAR_PX}});
-    var ch=new Chart(ctx,{type:"bar",data:{labels:models.map(axisModelLabel),datasets:ds},options:{responsive:true,maintainAspectRatio:false,indexAxis:"y",layout:{padding:{left:8,right:8}},plugins:{legend:{position:"bottom",labels:{usePointStyle:true,pointStyle:"rectRounded",boxWidth:9,boxHeight:9,padding:18,font:{size:12},color:"#475467"}},tooltip:{callbacks:{title:function(c){return c[0]?fullModelLabel(models[c[0].dataIndex]):""},label:function(c){return c.dataset.label+": "+c.dataset.rawCounts[c.dataIndex]+" responses"}}}},scales:{x:{stacked:true,max:100,border:{display:false},grid:{color:"rgba(15,23,42,.08)",drawTicks:false},ticks:{padding:8,font:{size:12},color:"#667085",callback:function(v){return v+"%"}}},y:{stacked:true,position:"left",afterFit:function(scale){scale.width=238},border:{display:false},grid:{display:false},ticks:{padding:12,font:{size:13,weight:500},autoSkip:false,color:"#263348",align:"center",maxRotation:0,minRotation:0}}}}})
+    var ch=new Chart(ctx,{type:"bar",data:{labels:models.map(axisModelLabel),datasets:ds},options:{responsive:true,maintainAspectRatio:false,indexAxis:"y",layout:{padding:{left:36,right:8}},plugins:{legend:{position:"bottom",labels:{usePointStyle:true,pointStyle:"rectRounded",boxWidth:9,boxHeight:9,padding:18,font:{size:12},color:"#475467"}},tooltip:{callbacks:{title:function(c){return c[0]?fullModelLabel(models[c[0].dataIndex]):""},label:function(c){return c.dataset.label+": "+c.dataset.rawCounts[c.dataIndex]+" responses"}}}},scales:{x:{stacked:true,max:100,border:{display:false},grid:{color:"rgba(15,23,42,.08)",drawTicks:false},ticks:{padding:8,font:{size:12},color:"#667085",callback:function(v){return v+"%"}}},y:{stacked:true,position:"left",afterFit:function(scale){scale.width=200;scale.paddingTop=0;scale.paddingBottom=0},border:{display:false},grid:{display:false},ticks:{padding:12,font:{size:13,weight:500},autoSkip:false,color:"#263348",align:"center",crossAlign:"far",maxRotation:0,minRotation:0}}}}})
   ctx._chart=ch;
 }
 
@@ -723,8 +728,8 @@ function bTok(){
     return{labels:labels,parts:parts,models:sorted};
   }
   var data=buildData();
-  cv.parentElement.style.height=(data.models.length*CHART_ROW_PX+91)+"px";
-  var ch=new Chart(ctx,{type:"bar",data:{labels:data.labels,datasets:data.parts},options:{responsive:true,maintainAspectRatio:false,indexAxis:"y",layout:{padding:{left:8,right:8}},plugins:{legend:{position:"bottom",labels:{usePointStyle:true,pointStyle:"rectRounded",boxWidth:9,boxHeight:9,padding:18,font:{size:12},color:"#475467"},onClick:function(e,item,legend){
+  cv.parentElement.style.height=(data.models.length*CHART_ROW_PX+71)+"px";
+  var ch=new Chart(ctx,{type:"bar",data:{labels:data.labels,datasets:data.parts},options:{responsive:true,maintainAspectRatio:false,indexAxis:"y",layout:{padding:{left:36,right:8}},plugins:{legend:{position:"bottom",labels:{usePointStyle:true,pointStyle:"rectRounded",boxWidth:9,boxHeight:9,padding:18,font:{size:12},color:"#475467"},onClick:function(e,item,legend){
         var idx=item.datasetIndex;
         var name=TOK_PARTS[idx];
         tokHidden[name]=!tokHidden[name];
@@ -735,7 +740,7 @@ function bTok(){
         ch.$models=nd.models;
         nd.parts.forEach(function(p,i){ch.data.datasets[i].data=p.data;ch.data.datasets[i].hidden=!!tokHidden[p.label];});
         ch.update();
-      }},tooltip:{callbacks:{title:function(c){var m=c[0]&&c[0].chart.$models?c[0].chart.$models[c[0].dataIndex]:null;return m?fullModelLabel(m):""},label:function(c){var v=c.parsed.x;return" "+c.dataset.label+": "+(isCost?"$"+fmt(v):fmtK(v));}}}},scales:{x:{stacked:true,border:{display:false},grid:{color:"rgba(15,23,42,.08)",drawTicks:false},ticks:{padding:8,font:{size:12},color:"#667085",callback:function(v){return isCost?"$"+fmt(v):fmtK(v)}}},y:{stacked:true,position:"left",afterFit:function(scale){scale.width=238},border:{display:false},grid:{display:false},ticks:{padding:12,font:{size:13,weight:500},autoSkip:false,color:"#263348",align:"center",maxRotation:0,minRotation:0}}}}});
+      }},tooltip:{callbacks:{title:function(c){var m=c[0]&&c[0].chart.$models?c[0].chart.$models[c[0].dataIndex]:null;return m?fullModelLabel(m):""},label:function(c){var v=c.parsed.x;return" "+c.dataset.label+": "+(isCost?"$"+fmt(v):fmtK(v));}}}},scales:{x:{stacked:true,border:{display:false},grid:{color:"rgba(15,23,42,.08)",drawTicks:false},ticks:{padding:8,font:{size:12},color:"#667085",callback:function(v){return isCost?"$"+fmt(v):fmtK(v)}}},y:{stacked:true,position:"left",afterFit:function(scale){scale.width=200;scale.paddingTop=0;scale.paddingBottom=0},border:{display:false},grid:{display:false},ticks:{padding:12,font:{size:13,weight:500},autoSkip:false,color:"#263348",align:"center",crossAlign:"far",maxRotation:0,minRotation:0}}}}});
   ch.$models=data.models;
   ctx._chart=ch;
 }
