@@ -693,13 +693,31 @@ function bDL(part){
   },200);
 }
 
+// Rank numbers where the leaderboard's # column puts them: right-aligned 6px inside a 28px
+// column, in the same weight and shades.
+var RANK_COLORS=["#0f172a","#475569","#64748b"];
+var chartRankPlugin={
+  id:"chartRanks",
+  afterDraw:function(chart){
+    var y=chart.scales.y,ctx=chart.ctx;
+    ctx.save();
+    ctx.font="600 12px Inter,system-ui,sans-serif";
+    ctx.textAlign="right";
+    ctx.textBaseline="middle";
+    chart.data.labels.forEach(function(_,i){
+      ctx.fillStyle=RANK_COLORS[i]||"#667085";
+      ctx.fillText(String(i+1),22,y.getPixelForTick(i));
+    });
+    ctx.restore();
+  }
+};
 function bDC(subset){
   var cv=document.getElementById("distChart");var old=Chart.getChart(cv);if(old)old.destroy();
   var ctx=cv.getContext("2d");
-  var models=filteredDD("distChart");
+  var models=filteredDD("distChart").slice().sort(function(a,b){return b[subset].mn-a[subset].mn});
   cv.parentElement.style.height=(models.length*CHART_ROW_PX+71)+"px";
   var ds=[4,3,2,1,0].map(function(sc){return{label:S[sc],data:models.map(function(m){return m[subset].dp[sc]}),rawCounts:models.map(function(m){return Math.round(m[subset].d[sc])}),backgroundColor:SC[sc],borderColor:"#f7f8fb",borderWidth:{right:1},barThickness:LB_BAR_PX}});
-    var ch=new Chart(ctx,{type:"bar",data:{labels:models.map(axisModelLabel),datasets:ds},options:{responsive:true,maintainAspectRatio:false,indexAxis:"y",layout:{padding:{left:36,right:8}},plugins:{legend:{position:"bottom",labels:{usePointStyle:true,pointStyle:"rectRounded",boxWidth:9,boxHeight:9,padding:18,font:{size:12},color:"#475467"}},tooltip:{callbacks:{title:function(c){return c[0]?fullModelLabel(models[c[0].dataIndex]):""},label:function(c){return c.dataset.label+": "+c.dataset.rawCounts[c.dataIndex]+" responses"}}}},scales:{x:{stacked:true,max:100,border:{display:false},grid:{color:"rgba(15,23,42,.08)",drawTicks:false},ticks:{padding:8,font:{size:12},color:"#667085",callback:function(v){return v+"%"}}},y:{stacked:true,position:"left",afterFit:function(scale){scale.width=200;scale.paddingTop=0;scale.paddingBottom=0},border:{display:false},grid:{display:false},ticks:{padding:12,font:{size:13,weight:500},autoSkip:false,color:"#263348",align:"center",crossAlign:"far",maxRotation:0,minRotation:0}}}}})
+    var ch=new Chart(ctx,{type:"bar",data:{labels:models.map(axisModelLabel),datasets:ds},options:{responsive:true,maintainAspectRatio:false,indexAxis:"y",layout:{padding:{left:36,right:8}},plugins:{legend:{position:"bottom",labels:{usePointStyle:true,pointStyle:"rectRounded",boxWidth:9,boxHeight:9,padding:18,font:{size:12},color:"#475467"}},tooltip:{callbacks:{title:function(c){return c[0]?fullModelLabel(models[c[0].dataIndex]):""},label:function(c){return c.dataset.label+": "+c.dataset.rawCounts[c.dataIndex]+" responses"}}}},scales:{x:{stacked:true,max:100,border:{display:false},grid:{color:"rgba(15,23,42,.08)",drawTicks:false},ticks:{padding:8,font:{size:12},color:"#667085",callback:function(v){return v+"%"}}},y:{stacked:true,position:"left",afterFit:function(scale){scale.width=200;scale.paddingTop=0;scale.paddingBottom=0},border:{display:false},grid:{display:false},ticks:{padding:12,font:{size:13,weight:500},autoSkip:false,color:"#263348",align:"center",crossAlign:"far",maxRotation:0,minRotation:0}}}},plugins:[chartRankPlugin]})
   ctx._chart=ch;
 }
 
