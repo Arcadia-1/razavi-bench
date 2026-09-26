@@ -327,6 +327,13 @@ section{padding-left:var(--gutter);padding-right:var(--gutter)}
 /* Sections sit 48px apart (40px on narrow screens), and the last one as far from the footer. */
 section{padding-bottom:48px}
 @media(max-width:820px){section{padding-bottom:40px}}
+/* Charts start just under their heading's rule, without a second rule of their own. */
+.chart-card{padding-top:12px;padding-bottom:16px}
+.chart-card::before{display:none}
+#tasks .sec-head h2{margin-bottom:0}
+#citation{padding-bottom:32px}
+/* Headings keep a tight line box: the body's 1.6 left 10px of air above and below each one. */
+section h2{line-height:1.2}
 </style>
 </head>
 <body>
@@ -378,7 +385,7 @@ section{padding-bottom:48px}
     </div>
   </div>
   <div class="table-wrap"><table><thead><tr><th>#</th><th>Model</th><th class="sortable" data-key="score">Score <span class="sort-arrow"></span></th><th>Range</th><th class="sortable" data-key="token">Token <span class="sort-arrow"></span></th><th class="sortable" data-key="cost">Cost <span class="sort-arrow"></span></th></tr></thead><tbody class="lb-table" id="lbDirectBody"></tbody></table></div>
-  <div class="sec-head" style="margin-top:56px;">
+  <div class="sec-head" style="margin-top:40px;">
     <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
       <h2 style="margin:0;">Score Distribution</h2>
       <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
@@ -390,7 +397,7 @@ section{padding-bottom:48px}
   <div class="chart-card">
     <div class="chart-wrap"><canvas id="distChart"></canvas></div>
   </div>
-  <div class="sec-head" style="margin-top:56px;">
+  <div class="sec-head" style="margin-top:40px;">
     <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
       <h2 style="margin:0;">Overall Active Score vs Resource Usage</h2>
       <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
@@ -404,7 +411,7 @@ section{padding-bottom:48px}
   <div class="chart-card">
     <div class="chart-wrap" id="effChartWrap" style="height:400px;"><canvas id="effChart"></canvas></div>
   </div>
-  <div class="sec-head" style="margin-top:56px;">
+  <div class="sec-head" style="margin-top:40px;">
     <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
       <h2 style="margin:0;">Token / Cost Composition</h2>
       <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
