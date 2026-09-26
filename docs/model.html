@@ -259,7 +259,7 @@ function render(){
   var html='';
   html+='<a href="/#leaderboard" class="back">&larr; Back to leaderboard</a>';
   html+='<div class="q-nav" id="qNav"></div>';
-  html+='<div class="breadcrumb">Razavi-Bench &middot; Direct QA &middot; <span class="crumb-id">'+esc(data.model_key)+'</span></div>';
+  html+='<div class="breadcrumb">Razavi-Bench &middot; <span class="crumb-id">'+esc(data.model_key)+'</span></div>';
   html+='<div class="q-head"><h1 class="model-title">'+esc(data.display_name)+(eff?' <span class="model-effort">['+esc(eff)+']</span>':'')+'</h1></div>';
   html+='<div class="metrics-grid model-summary">'+metric("Overall",pct("overall"))+metric("Part 1",pct("part1"))+metric("Part 2",pct("part2"))
     +(roll.length?metric("Rollout range",Math.min.apply(null,roll).toFixed(1)+" – "+Math.max.apply(null,roll).toFixed(1)):"")
