@@ -920,7 +920,7 @@ var tlLabelPlugin={
   id:"tlLabels",
   afterDatasetsDraw:function(chart){
     var modes=chart.$labelModes;if(!modes)return;
-    var ctx=chart.ctx,area=chart.chartArea,H=12,obstacles=[],items=[];
+    var ctx=chart.ctx,area=chart.chartArea,H=12,obstacles=[],items=[],dots=[];
     chart.data.datasets.forEach(function(ds,di){
       if(!chart.isDatasetVisible(di))return;
       var els=chart.getDatasetMeta(di).data;
@@ -935,9 +935,13 @@ var tlLabelPlugin={
       els.forEach(function(el,pi){
         var pt=ds.data[pi];
         obstacles.push({x:el.x-5,y:el.y-5,w:10,h:10});
+        dots.push({el:el,score:pt.y});
         if(modes[pt.m])items.push({pt:pt,x:el.x,y:el.y,mode:modes[pt.m],color:ds.backgroundColor});
       });
     });
+    // Chart.js stacks dots by provider; redraw them from the lowest score up so that, where
+    // dots overlap, the higher score is the one on top.
+    dots.sort(function(a,b){return a.score-b.score}).forEach(function(d){d.el.draw(ctx,area)});
     // Frontier labels in time order, then the newest column from the top down.
     items.sort(function(a,b){
       if(a.mode!==b.mode)return a.mode==="frontier"?-1:1;
@@ -1036,7 +1040,9 @@ function bTL(){
       return{right:newestW?Math.max(0,Math.ceil((newestW+16-(ch.width-left)*f)/(1-f))):0};
     }},
     plugins:{legend:{display:false},
-      tooltip:{callbacks:{title:function(items){var it=items[0];return it.raw.d?(relLabelText(it.raw)+" | "+it.raw.release):""},label:function(c){if(c.dataset.type!=="scatter")return"Score frontier";return" Active score: "+c.parsed.y.toFixed(1)+"%"}}}},
+      // Dots only. Overlapping dots share one tooltip, highest score first, each line naming its model.
+      tooltip:{filter:function(it){return it.dataset.type==="scatter"},itemSort:function(a,b){return b.parsed.y-a.parsed.y},
+        callbacks:{title:function(items){var it=items[0];if(!it)return"";return items.length>1?it.raw.x:relLabelText(it.raw)+" | "+it.raw.release},label:function(c){var score=c.parsed.y.toFixed(1)+"%";return c.chart.tooltip.dataPoints.length>1?" "+relLabelText(c.raw)+": "+score:" Active score: "+score}}}},
     scales:{x:{type:"category",labels:months,offset:true,grid:{color:"#F0F2F5"},ticks:{maxTicksLimit:12,maxRotation:0,font:{size:12},color:"#333"},title:{display:true,text:"Model Release Month",color:"#333",font:{size:12,weight:"500"},padding:{top:8}}},
       y:{min:35,max:100,grid:{color:"#e5e5e5"},ticks:{font:{size:12},color:"#333",callback:function(v){return v+"%"}},title:{display:true,text:"Active Overall Score (%)",color:"#333",font:{size:12,weight:"500"},padding:{bottom:8}}}},
     animation:false
