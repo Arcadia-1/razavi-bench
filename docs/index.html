@@ -1093,9 +1093,38 @@ document.querySelectorAll("thead th.sortable").forEach(function(th){
 });
 Chart.defaults.color="#1a1a1a";Chart.defaults.borderColor="#d5d5d5";Chart.defaults.font={family:"Inter,system-ui,sans-serif",size:13};
 document.querySelector('thead th.sortable[data-key="score"]').classList.add("sort-desc");
-loadBenchmarkData().then(function(){R();return loadReleaseDates()}).catch(function(error){console.error("Chart data unavailable:",error)});
-loadTasks().catch(function(){});
+Promise.all([
+  loadBenchmarkData().then(function(){R();return loadReleaseDates()}).catch(function(error){console.error("Chart data unavailable:",error)}),
+  loadTasks().catch(function(){})
+]).then(settleSectionHash);
 loadVisitStats();
+
+// ==== SECTION LINKS ====
+// A link such as /#tasks arrives before the leaderboard, charts and task cards have rendered, so
+// the browser's own jump stops short. Once they exist, jump again: on fresh visits, or when a
+// reload or back navigation left the page at the top. A reader who already scrolled is left alone.
+// Scrolling back up to the top drops the #section from the address bar.
+var readerScrolled=false,lastScrollY=window.scrollY;
+["wheel","touchmove","keydown"].forEach(function(t){window.addEventListener(t,function(){readerScrolled=true},{once:true,passive:true})});
+function dropHash(){if(location.href.indexOf("#")>=0)history.replaceState(history.state,"",location.pathname+location.search)}
+function settleSectionHash(){
+  var nav=performance.getEntriesByType?performance.getEntriesByType("navigation")[0]:null;
+  var target=location.hash&&document.getElementById(location.hash.slice(1));
+  if(target&&!readerScrolled&&(!nav||nav.type==="navigate"||window.scrollY<8)){
+    var root=document.documentElement;
+    root.style.scrollBehavior="auto";
+    target.scrollIntoView();
+    root.style.scrollBehavior="";
+  }else if(!target&&window.scrollY<8)dropHash();
+  lastScrollY=window.scrollY;
+  window.addEventListener("scroll",function(){
+    var y=window.scrollY;
+    if(y<8&&y<lastScrollY)dropHash();
+    lastScrollY=y;
+  },{passive:true});
+  // The logo links to a bare "#": already at the top, clicking it scrolls nothing.
+  window.addEventListener("hashchange",function(){if(!location.hash&&window.scrollY<8)dropHash()});
+}
 
 // ==== MODEL FILTER ====
 function currentFilter(){var t=window._filterTarget;if(!t)return null;if(!modelFilters[t])modelFilters[t]=new Set(DD.map(function(m){return m.m}));return modelFilters[t];}
