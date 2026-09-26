@@ -938,6 +938,8 @@ function relMonthLabel(n){return Math.floor(n/12)+"-"+String(n%12+1).padStart(2,
 // models all score lower, later ones sit further right), so they never cover future models.
 // The newest month is labelled on its right, in the empty months reserved after it.
 var REL_FUTURE_MONTHS=2,REL_LABEL_FONT="10px Inter,system-ui,sans-serif";
+// Room above the 100% line, so labels of frontier points near the top still fit in short charts.
+var REL_LABEL_HEADROOM=24;
 function relLabelText(p){return p.d+(p.e?" ["+p.e+"]":"")}
 function relRectsHit(a,b){return a.x<b.x+b.w&&b.x<a.x+a.w&&a.y<b.y+b.h&&b.y<a.y+a.h}
 var tlLabelPlugin={
@@ -985,7 +987,7 @@ var tlLabelPlugin={
       }
       for(var c=0;c<cands.length&&!box;c++){
         var r={x:cands[c].x,y:cands[c].y,w:w,h:H};
-        if(r.y<area.top||r.y+H>area.bottom||r.x+w>chart.width-2)continue;
+        if(r.y<area.top-REL_LABEL_HEADROOM||r.y+H>area.bottom||r.x+w>chart.width-2)continue;
         if(!obstacles.some(function(o){return relRectsHit(r,o)}))box=r;
       }
       if(!box)box={x:cands[0].x,y:cands[0].y,w:w,h:H};
@@ -1061,7 +1063,7 @@ function bTL(){
     // Widen the right margin just enough for the newest labels to fit past the last month.
     layout:{padding:function(c){
       var ch=c.chart,f=(REL_FUTURE_MONTHS+0.5)/months.length,left=ch.chartArea?ch.chartArea.left:60;
-      return{right:newestW?Math.max(0,Math.ceil((newestW+16-(ch.width-left)*f)/(1-f))):0};
+      return{top:REL_LABEL_HEADROOM,right:newestW?Math.max(0,Math.ceil((newestW+16-(ch.width-left)*f)/(1-f))):0};
     }},
     plugins:{legend:{display:false},
       // Dots only. Overlapping dots share one tooltip, highest score first, each line naming its model.
