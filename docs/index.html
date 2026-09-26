@@ -324,6 +324,9 @@ nav,footer{padding-left:var(--gutter);padding-right:var(--gutter)}
 nav .nav-inner,footer .footer-inner{max-width:calc(var(--max-width) - 2 * var(--gutter))}
 section{padding-left:var(--gutter);padding-right:var(--gutter)}
 .hero{padding-left:var(--gutter);padding-right:var(--gutter)}
+/* Sections sit 48px apart (40px on narrow screens), and the last one as far from the footer. */
+section{padding-bottom:48px}
+@media(max-width:820px){section{padding-bottom:40px}}
 </style>
 </head>
 <body>
