@@ -34,6 +34,7 @@ PROVIDER_STYLE = {
     "xai": ("xAI", "#374151"),
     "bytedance": ("ByteDance", "#D97706"),
     "zhipu": ("Zhipu AI", "#2F7ED8"),
+    "xiaomi": ("Xiaomi", "#FF6700"),
     "moonshot": ("Moonshot", "#7C5CC4"),
     "thinkingmachines": ("Thinking Machines", "#D63384"),
     "stepfun": ("StepFun", "#9333EA"),

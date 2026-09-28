@@ -10,7 +10,7 @@ var PRICE={
   qwen_38_max:[1,6,0.1], qwen_38_27b:[0.4,3,0.08], gemini_35_flash:[1.5,9,0.15], gemini_36_flash:[1.5,7.5,0.15],
   gemini_37_flash:[0.375,1.875,0.0375], gemini_31:[2,12,0.2],
   grok_45:[2,6,0.5], grok_46:[2,6,0.5], grok_4_7:[1.6,4.8,0.4], doubao_seed_21_pro:[0.88,4.42,0.088], doubao_seed_21_pro_260915_max:[0.88,4.42,0.088],
-  kimi_k3:[3,15,0.3], kimi_k27:[0.95,4,0.19], minimax_m3:[0.6,2.4,0.06], inkling_small:[0.5,1.2,0.12],
+  kimi_k3:[3,15,0.3], kimi_k27:[0.95,4,0.19], minimax_m3:[0.6,2.4,0.06], mimo_2_6_pro:[0.435,0.87,0.0036], inkling_small:[0.5,1.2,0.12],
   qwen_37_plus:[0.32,1.28,0.064], qwen_37_flash:[0.03,0.13,0.006], step_37_flash:[0.2,1.15,0.02],
   inkling:[1,4.05,0.2], gemma_4_31b_it:[0.09,0.34,0.018], llama_4_maverick:[0.2,0.8,0.04],
   muse_spark_12:[1.25,4.25,0.15], deepseek_v41_flash:[0.15,0.6,0.003],

@@ -1,6 +1,6 @@
 {
   "schema_version": "razavi-bench.direct-qa.v1",
-  "generated_at": "2026-09-28T17:38:43.015948+00:00",
+  "generated_at": "2026-09-28T17:52:30.920687+00:00",
   "benchmark": {
     "mode": "direct_qa",
     "question_count": 50,
@@ -11176,6 +11176,291 @@
         }
       },
       "detail_file": "models/inkling_small.json"
+    },
+    {
+      "model_key": "mimo_2_6_pro",
+      "display_name": "Mimo 2.6 Pro",
+      "provider": "xiaomi",
+      "evaluation_model_ids": [
+        215643
+      ],
+      "thinking_effort": "default",
+      "configuration_note": "MiMo-V2.6-Pro with deep thinking enabled by default; Xiaomi exposes only enabled/disabled and no effort tier. One initially empty record was recovered by a successful local non-streaming Chat Completions retry with the same model, image, prompt, and 131072 max-token contract. Overseas real-time pricing: input $0.435/M, cached input $0.0036/M, output $0.87/M. DeepSeek V4 Pro is the published judge.",
+      "mode": "direct_qa",
+      "detail_file": "models/mimo_2_6_pro.json",
+      "summary": {
+        "rollout_count": 3,
+        "answer_count": 150,
+        "scores": {
+          "overall": {
+            "active": {
+              "response_count": 150,
+              "correct_count": 76,
+              "incorrect_count": 74,
+              "partial_credit_count": 71,
+              "zero_count": 3,
+              "mean_score_0_to_4": 2.9266666666666667,
+              "score_percent": 73.16666666666667,
+              "score_distribution": {
+                "0": 3,
+                "1": 29,
+                "2": 20,
+                "3": 22,
+                "4": 76
+              }
+            },
+            "deepseek_v4_pro": {
+              "response_count": 150,
+              "correct_count": 76,
+              "incorrect_count": 74,
+              "partial_credit_count": 71,
+              "zero_count": 3,
+              "mean_score_0_to_4": 2.9266666666666667,
+              "score_percent": 73.16666666666667,
+              "score_distribution": {
+                "0": 3,
+                "1": 29,
+                "2": 20,
+                "3": 22,
+                "4": 76
+              }
+            }
+          },
+          "part1": {
+            "active": {
+              "response_count": 90,
+              "correct_count": 58,
+              "incorrect_count": 32,
+              "partial_credit_count": 29,
+              "zero_count": 3,
+              "mean_score_0_to_4": 3.2222222222222223,
+              "score_percent": 80.55555555555556,
+              "score_distribution": {
+                "0": 3,
+                "1": 11,
+                "2": 7,
+                "3": 11,
+                "4": 58
+              }
+            },
+            "deepseek_v4_pro": {
+              "response_count": 90,
+              "correct_count": 58,
+              "incorrect_count": 32,
+              "partial_credit_count": 29,
+              "zero_count": 3,
+              "mean_score_0_to_4": 3.2222222222222223,
+              "score_percent": 80.55555555555556,
+              "score_distribution": {
+                "0": 3,
+                "1": 11,
+                "2": 7,
+                "3": 11,
+                "4": 58
+              }
+            }
+          },
+          "part2": {
+            "active": {
+              "response_count": 60,
+              "correct_count": 18,
+              "incorrect_count": 42,
+              "partial_credit_count": 42,
+              "zero_count": 0,
+              "mean_score_0_to_4": 2.4833333333333334,
+              "score_percent": 62.083333333333336,
+              "score_distribution": {
+                "1": 18,
+                "2": 13,
+                "3": 11,
+                "4": 18
+              }
+            },
+            "deepseek_v4_pro": {
+              "response_count": 60,
+              "correct_count": 18,
+              "incorrect_count": 42,
+              "partial_credit_count": 42,
+              "zero_count": 0,
+              "mean_score_0_to_4": 2.4833333333333334,
+              "score_percent": 62.083333333333336,
+              "score_distribution": {
+                "1": 18,
+                "2": 13,
+                "3": 11,
+                "4": 18
+              }
+            }
+          }
+        },
+        "by_rollout": {
+          "1": {
+            "response_count": 50,
+            "correct_count": 26,
+            "incorrect_count": 24,
+            "partial_credit_count": 24,
+            "zero_count": 0,
+            "mean_score_0_to_4": 3.04,
+            "score_percent": 76.0,
+            "score_distribution": {
+              "1": 9,
+              "2": 6,
+              "3": 9,
+              "4": 26
+            }
+          },
+          "2": {
+            "response_count": 50,
+            "correct_count": 23,
+            "incorrect_count": 27,
+            "partial_credit_count": 27,
+            "zero_count": 0,
+            "mean_score_0_to_4": 2.86,
+            "score_percent": 71.5,
+            "score_distribution": {
+              "1": 11,
+              "2": 8,
+              "3": 8,
+              "4": 23
+            }
+          },
+          "3": {
+            "response_count": 50,
+            "correct_count": 27,
+            "incorrect_count": 23,
+            "partial_credit_count": 20,
+            "zero_count": 3,
+            "mean_score_0_to_4": 2.88,
+            "score_percent": 72.0,
+            "score_distribution": {
+              "0": 3,
+              "1": 9,
+              "2": 6,
+              "3": 5,
+              "4": 27
+            }
+          }
+        },
+        "tokens": {
+          "response_count": 150,
+          "usage_record_count": 150,
+          "complete_usage_count": 150,
+          "missing_usage_count": 0,
+          "missing_cached_input_count": 0,
+          "complete": true,
+          "totals": {
+            "cached_input_tokens": 129792,
+            "input_tokens": 241848,
+            "output_tokens": 481472,
+            "total_tokens": 723320,
+            "cache_creation_input_tokens": 0
+          },
+          "known_totals": {
+            "cached_input_tokens": 129792,
+            "input_tokens": 241848,
+            "output_tokens": 481472,
+            "total_tokens": 723320,
+            "cache_creation_input_tokens": 0
+          }
+        },
+        "by_rollout_part": {
+          "part1": {
+            "1": {
+              "response_count": 30,
+              "correct_count": 20,
+              "incorrect_count": 10,
+              "partial_credit_count": 10,
+              "zero_count": 0,
+              "mean_score_0_to_4": 3.3666666666666667,
+              "score_percent": 84.16666666666667,
+              "score_distribution": {
+                "1": 4,
+                "2": 1,
+                "3": 5,
+                "4": 20
+              }
+            },
+            "2": {
+              "response_count": 30,
+              "correct_count": 19,
+              "incorrect_count": 11,
+              "partial_credit_count": 11,
+              "zero_count": 0,
+              "mean_score_0_to_4": 3.2666666666666666,
+              "score_percent": 81.66666666666667,
+              "score_distribution": {
+                "1": 4,
+                "2": 3,
+                "3": 4,
+                "4": 19
+              }
+            },
+            "3": {
+              "response_count": 30,
+              "correct_count": 19,
+              "incorrect_count": 11,
+              "partial_credit_count": 8,
+              "zero_count": 3,
+              "mean_score_0_to_4": 3.033333333333333,
+              "score_percent": 75.83333333333333,
+              "score_distribution": {
+                "0": 3,
+                "1": 3,
+                "2": 3,
+                "3": 2,
+                "4": 19
+              }
+            }
+          },
+          "part2": {
+            "1": {
+              "response_count": 20,
+              "correct_count": 6,
+              "incorrect_count": 14,
+              "partial_credit_count": 14,
+              "zero_count": 0,
+              "mean_score_0_to_4": 2.55,
+              "score_percent": 63.74999999999999,
+              "score_distribution": {
+                "1": 5,
+                "2": 5,
+                "3": 4,
+                "4": 6
+              }
+            },
+            "2": {
+              "response_count": 20,
+              "correct_count": 4,
+              "incorrect_count": 16,
+              "partial_credit_count": 16,
+              "zero_count": 0,
+              "mean_score_0_to_4": 2.25,
+              "score_percent": 56.25,
+              "score_distribution": {
+                "1": 7,
+                "2": 5,
+                "3": 4,
+                "4": 4
+              }
+            },
+            "3": {
+              "response_count": 20,
+              "correct_count": 8,
+              "incorrect_count": 12,
+              "partial_credit_count": 12,
+              "zero_count": 0,
+              "mean_score_0_to_4": 2.65,
+              "score_percent": 66.25,
+              "score_distribution": {
+                "1": 6,
+                "2": 3,
+                "3": 3,
+                "4": 8
+              }
+            }
+          }
+        }
+      }
     },
     {
       "model_key": "claude_sonnet_46",
