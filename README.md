@@ -213,8 +213,8 @@ overlay applied to Part 1 Q15; all non-Q15 task scores are unchanged.
 | Gemini | MiniMax-M3 | 79.67% | 88.89% | 65.83% |
 | Gemini | DeepSeek-V4-Pro | 81.83% | 91.11% | 67.92% |
 
-The current active leaderboard is the September 28 snapshot covering 49 model
-configurations and 7,350 answers. The active score is DeepSeek V4 Pro alone:
+The current active leaderboard is the September 29 snapshot covering 50 model
+configurations and 7,500 answers. The active score is DeepSeek V4 Pro alone:
 each value is its mean score over three rollouts, with the Q15 hard-rule
 correction applied consistently. Legacy entries may retain MiniMax M3 results
 for audit, while new entries may publish DeepSeek only; MiniMax never counts
@@ -240,7 +240,7 @@ answers.
 | 10 | GPT-6 Sol | max | 90.33% | 96.94% | 80.42% |
 
 <p align="center">
-  <img src="docs/assets/direct_qa_rollout_mean_all_metrics.png?v=20260928-grok-4-7" alt="2026-09-28 Razavi-Bench Multimodal QA snapshot" title="2026-09-28 Razavi-Bench Multimodal QA snapshot" width="92%"/>
+  <img src="docs/assets/direct_qa_rollout_mean_all_metrics.png?v=20260929-gpt-6-sol-high" alt="2026-09-28 Razavi-Bench Multimodal QA snapshot" title="2026-09-28 Razavi-Bench Multimodal QA snapshot" width="92%"/>
 </p>
 
 The release-date view uses vendor announcements where available and explicitly
@@ -248,5 +248,5 @@ marks preview or first-public-availability dates in the
 [model release-date table](docs/data/direct_qa/model_release_dates.csv).
 
 <p align="center">
-  <img src="docs/assets/direct_qa_score_vs_release_date.png?v=20260928-grok-4-7" alt="Razavi-Bench score versus model release date" title="Razavi-Bench score versus model release date" width="96%"/>
+  <img src="docs/assets/direct_qa_score_vs_release_date.png?v=20260929-gpt-6-sol-high" alt="Razavi-Bench score versus model release date" title="Razavi-Bench score versus model release date" width="96%"/>
 </p>
