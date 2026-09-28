@@ -240,7 +240,7 @@ answers.
 | 10 | GPT-6 Sol | max | 90.33% | 96.94% | 80.42% |
 
 <p align="center">
-  <img src="docs/assets/direct_qa_rollout_mean_all_metrics.png?v=20260929-doubao-glm-flash" alt="2026-09-28 Razavi-Bench Multimodal QA snapshot" title="2026-09-28 Razavi-Bench Multimodal QA snapshot" width="92%"/>
+  <img src="docs/assets/direct_qa_rollout_mean_all_metrics.png?v=20260929-clean-model-names" alt="2026-09-28 Razavi-Bench Multimodal QA snapshot" title="2026-09-28 Razavi-Bench Multimodal QA snapshot" width="92%"/>
 </p>
 
 The release-date view uses vendor announcements where available and explicitly
@@ -248,5 +248,5 @@ marks preview or first-public-availability dates in the
 [model release-date table](docs/data/direct_qa/model_release_dates.csv).
 
 <p align="center">
-  <img src="docs/assets/direct_qa_score_vs_release_date.png?v=20260929-doubao-glm-flash" alt="Razavi-Bench score versus model release date" title="Razavi-Bench score versus model release date" width="96%"/>
+  <img src="docs/assets/direct_qa_score_vs_release_date.png?v=20260929-clean-model-names" alt="Razavi-Bench score versus model release date" title="Razavi-Bench score versus model release date" width="96%"/>
 </p>
