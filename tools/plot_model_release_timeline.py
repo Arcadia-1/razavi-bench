@@ -26,22 +26,22 @@ DEFAULT_DATE_JSON = ROOT / "docs/data/direct_qa/model_release_dates.json"
 DEFAULT_OUTPUT = ROOT / "docs/assets/direct_qa_score_vs_release_date.png"
 
 PROVIDER_STYLE = {
-    "anthropic": ("Anthropic", "#C8611A"),
-    "openai": ("OpenAI", "#2F9B60"),
-    "google": ("Google", "#2F7ED8"),
-    "alibaba": ("Qwen", "#148C83"),
-    "qwen": ("Qwen", "#148C83"),
-    "xai": ("xAI", "#374151"),
-    "bytedance": ("ByteDance", "#D97706"),
-    "zhipu": ("Zhipu AI", "#2F7ED8"),
+    "anthropic": ("Anthropic", "#D97757"),
+    "openai": ("OpenAI", "#10A37F"),
+    "google": ("Google", "#4285F4"),
+    "alibaba": ("Qwen", "#FF6A00"),
+    "qwen": ("Qwen", "#6C5CE7"),
+    "xai": ("xAI", "#000000"),
+    "bytedance": ("ByteDance", "#325AB4"),
+    "zhipu": ("Zhipu AI", "#000000"),
     "xiaomi": ("Xiaomi", "#FF6700"),
     "moonshot": ("Moonshot", "#7C5CC4"),
-    "thinkingmachines": ("Thinking Machines", "#D63384"),
-    "stepfun": ("StepFun", "#9333EA"),
-    "minimax": ("MiniMax", "#D04F5F"),
-    "meta": ("Meta", "#8B1E1E"),
-    "deepseek": ("DeepSeek", "#2563EB"),
-    "mistral": ("Mistral", "#F97316"),
+    "thinkingmachines": ("Thinking Machines", "#D946EF"),
+    "stepfun": ("StepFun", "#4F46E5"),
+    "minimax": ("MiniMax", "#E01878"),
+    "meta": ("Meta", "#0668E1"),
+    "deepseek": ("DeepSeek", "#4D6BFE"),
+    "mistral": ("Mistral", "#FF7000"),
 }
 
 LABEL_OFFSETS = {
