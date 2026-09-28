@@ -14,6 +14,7 @@ var PRICE={
   qwen_37_plus:[0.32,1.28,0.064], qwen_37_flash:[0.03,0.13,0.006], step_37_flash:[0.2,1.15,0.02],
   inkling:[1,4.05,0.2], gemma_4_31b_it:[0.09,0.34,0.018], llama_4_maverick:[0.2,0.8,0.04],
   muse_spark_12:[1.25,4.25,0.15], deepseek_v41_flash:[0.15,0.6,0.003],
+  mistral_medium_35:[1.5,7.5,1.5],
   gpt_5:[1.25,10,0.125], gpt_4o_mini:[0.15,0.6,0.075],
   gemini_25_pro:[1.25,12,0.125], gemini_25_flash_lite:[0.1,0.4,0.01],
   claude_sonnet_4:[3,15,0.3], claude_haiku_45:[1,5,0.2],
@@ -22,3 +23,4 @@ var PRICE={
 // Self-hosted checkpoints retain token accounting but have no comparable API bill.
 var NO_API_COST={qwen_38_27b:true};
 function computeCost(modelKey,tk){if(NO_API_COST[modelKey])return null;var p=PRICE[modelKey];if(!p&&modelKey){var keys=Object.keys(PRICE);for(var i=0;i<keys.length;i++){if(modelKey.indexOf(keys[i])===0){p=PRICE[keys[i]];break;}}}if(!p||!tk)return null;var cached=tk.cached_input_tokens||0;var cost=((tk.input_tokens-cached)*p[0]+cached*p[2]+tk.output_tokens*p[1])/1e6;return Math.round(cost*100)/100;}
+function priceSummary(modelKey){var p=PRICE[modelKey];if(!p&&modelKey){var keys=Object.keys(PRICE);for(var i=0;i<keys.length;i++){if(modelKey.indexOf(keys[i])===0){p=PRICE[keys[i]];break;}}}if(!p)return "";return "$"+p[0].toFixed(2)+"/M in · $"+p[1].toFixed(2)+"/M out";}

@@ -178,7 +178,7 @@ main{padding-left:var(--gutter);padding-right:var(--gutter)}
   </div>
 </footer>
 
-<script src="/assets/pricing.js?v=20260927-deepseek-v41-flash"></script>
+<script src="/assets/pricing.js?v=20260928-mistral-medium-35"></script>
 <script>
 var EFFORT_LABELS={max:"max",high:"high",medium:"med",xhigh:"xhigh",default:"",disabled:"",low:"low"};
 var JUDGE_NAMES={deepseek_v4_pro:"DeepSeek V4 Pro",minimax_m3:"MiniMax M3"};
@@ -277,6 +277,7 @@ function render(){
   var roll=s.by_rollout?Object.keys(s.by_rollout).map(function(k){return s.by_rollout[k].score_percent}).filter(function(v){return v!=null}):[];
   var tk=(s.tokens&&(s.tokens.totals||s.tokens.known_totals))||null;
   var cost=computeCost(data.model_key,tk);
+  var rate=priceSummary(data.model_key);
   var eff=effortLabel(data.thinking_effort);
   document.title=data.display_name+(eff?" ["+eff+"]":"")+" -- Razavi-Bench";
   var html='';
@@ -286,6 +287,7 @@ function render(){
   html+='<div class="q-head"><h1 class="model-title">'+esc(data.display_name)+(eff?' <span class="model-effort">['+esc(eff)+']</span>':'')+'</h1></div>';
   html+='<div class="metrics-grid model-summary">'+metric("Overall",pct("overall"))+metric("Part 1",pct("part1"))+metric("Part 2",pct("part2"))
     +(roll.length?metric("Rollout range",Math.min.apply(null,roll).toFixed(1)+" – "+Math.max.apply(null,roll).toFixed(1)):"")
+    +(rate?metric("API price",rate):"")
     +(tk?metric("Tokens",Math.round(tk.total_tokens/1000)+"k"):"")
     +(cost!=null?metric("Cost","$"+cost):"")+'</div>';
   html+='<div class="section-title">Tasks</div>';
