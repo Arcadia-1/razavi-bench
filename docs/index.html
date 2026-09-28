@@ -281,7 +281,7 @@ tbody tr:hover{background:linear-gradient(90deg,rgba(12,159,110,.06),rgba(12,159
 #timeline .tl-head{display:flex;align-items:flex-start;gap:12px;margin-bottom:4px}
 #timeline .tl-legend{flex:1;display:flex;flex-wrap:wrap;justify-content:center;gap:6px 16px;padding-top:7px}
 #timeline .tl-legend button{display:flex;align-items:center;gap:6px;padding:0;border:0;background:none;font:inherit;font-size:13px;color:#1a1a1a;cursor:pointer}
-#timeline .tl-legend button.legend-clear{font-weight:600;padding-right:12px;margin-right:2px;border-right:1px solid #d0d5dd}
+#timeline .tl-legend button.legend-clear{font-weight:600;padding-left:12px;margin-left:2px;border-left:1px solid #d0d5dd}
 #timeline .tl-legend button.off{color:#98a2b3;text-decoration:line-through}
 #timeline .tl-legend i{width:10px;height:10px;border-radius:50%;flex-shrink:0}
 #timeline .tl-legend button.off i{opacity:.35}
@@ -478,7 +478,7 @@ section h2{line-height:1.2}
   </div>
 </footer>
 
-<script src="assets/pricing.js?v=20260929-brand-colors"></script>
+<script src="assets/pricing.js?v=20260929-brand-colors-clear-last"></script>
 <script>
 // ==== BENCHMARK DATA (loaded from docs/data/direct_qa/index.json) ====
 var S=["Incorrect","Mostly incorrect","Partially correct","Mostly correct","Correct"];
@@ -1131,9 +1131,9 @@ function renderTlLegend(ch){
   var items=ch.data.datasets.map(function(ds,i){
     return ds.type==="scatter"?{index:i,label:ds.label,color:ds.backgroundColor,visible:ch.isDatasetVisible(i)}:null;
   }).filter(Boolean).sort(function(a,b){return a.label.localeCompare(b.label)});
-  box.innerHTML='<button type="button" class="legend-clear">Clear all</button>'+items.map(function(item){
+  box.innerHTML=items.map(function(item){
     return'<button type="button" data-i="'+item.index+'"'+(item.visible?'':' class="off"')+'><i style="background:'+item.color+'"></i>'+esc(item.label)+'</button>';
-  }).join("");
+  }).join("")+'<button type="button" class="legend-clear">Clear all</button>';
   var clear=box.querySelector(".legend-clear");
   clear.onclick=function(){
     ch.data.datasets.forEach(function(ds,i){if(ds.type==="scatter")ch.setDatasetVisibility(i,false)});
