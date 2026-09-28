@@ -39,6 +39,7 @@ PROVIDER_STYLE = {
     "minimax": ("MiniMax", "#D04F5F"),
     "meta": ("Meta", "#8B1E1E"),
     "deepseek": ("DeepSeek", "#2563EB"),
+    "mistral": ("Mistral", "#F97316"),
 }
 
 LABEL_OFFSETS = {
