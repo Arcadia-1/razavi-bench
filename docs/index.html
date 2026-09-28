@@ -477,7 +477,7 @@ section h2{line-height:1.2}
   </div>
 </footer>
 
-<script src="assets/pricing.js?v=20260929-mimo-2-6-pro"></script>
+<script src="assets/pricing.js?v=20260929-filter-clear-thinking"></script>
 <script>
 // ==== BENCHMARK DATA (loaded from docs/data/direct_qa/index.json) ====
 var S=["Incorrect","Mostly incorrect","Partially correct","Mostly correct","Correct"];
@@ -488,7 +488,7 @@ var modelFilters={};
 function getFilter(target){return target&&modelFilters[target]?modelFilters[target]:null;}
 function filteredDD(target){var f=getFilter(target);return f?DD.filter(function(m){return f.has(m.m)}):DD;}
 var PALETTE=["#7c8ba0","#426b8f","#5b7fa5","#6b9eb3","#6b9e7a","#c4956a","#c47a6a","#8b7ba5","#b38b6b","#7a7a85","#3a7d8c","#9a6f9e","#c97b84","#6a8f4e","#b5733d","#4f7fb3","#a8747b","#6f8f6f","#9b8a5f","#7d6f9c","#578a8f","#b3855a","#8a5f7d","#5f8a6a","#a06a6a","#6a7f9c"];
-var EFFORT_LABELS={max:"max",high:"high",medium:"med",xhigh:"xhigh",default:"",disabled:"",low:"low"};
+var EFFORT_LABELS={max:"max",high:"high",medium:"med",xhigh:"xhigh",thinking:"thinking",default:"",disabled:"",low:"low"};
 var DATA_INDEX_URL=["https://razavi-bench.tokenzhang.com/data/direct_qa/index.json","https://razavi-bench.tokenzhang.com/api/index.json","data/direct_qa/index.json","https://raw.githubusercontent.com/Arcadia-1/razavi-bench/main/docs/data/direct_qa/index.json"];
 var RELEASE_DATES_URL=["data/direct_qa/model_release_dates.json","https://razavi-bench.tokenzhang.com/data/direct_qa/model_release_dates.json","https://raw.githubusercontent.com/Arcadia-1/razavi-bench/main/docs/data/direct_qa/model_release_dates.json"];
 function fetchData(urls){var attempts=urls.map(function(u){return fetchWithTimeout(u,10000).then(function(r){if(r&&r.ok)return r.json();throw new Error("Status")}).catch(function(){return null})});return new Promise(function(res,rej){var done=0;attempts.forEach(function(p){p.then(function(v){if(v){res(v)}else{done++;if(done===attempts.length)rej(new Error("All data sources failed"))}})});});}
@@ -1275,8 +1275,8 @@ document.addEventListener("click",function(e){
   <div class="fp-head">
     <span style="font-weight:600;font-size:13px;">Filter models</span>
     <div>
-      <button type="button" onclick="filterAll(true)">All</button>
-      <button type="button" onclick="filterAll(false)">None</button>
+      <button type="button" onclick="filterAll(false)">Clear all</button>
+      <button type="button" onclick="filterAll(true)">Select all</button>
     </div>
   </div>
   <div id="modelFilterList"></div>
