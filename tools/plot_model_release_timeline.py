@@ -33,6 +33,7 @@ PROVIDER_STYLE = {
     "qwen": ("Qwen", "#148C83"),
     "xai": ("xAI", "#374151"),
     "bytedance": ("ByteDance", "#D97706"),
+    "zhipu": ("Zhipu AI", "#2F7ED8"),
     "moonshot": ("Moonshot", "#7C5CC4"),
     "thinkingmachines": ("Thinking Machines", "#D63384"),
     "stepfun": ("StepFun", "#9333EA"),
