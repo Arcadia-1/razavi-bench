@@ -6,7 +6,7 @@
     215335
   ],
   "thinking_effort": "max",
-  "configuration_note": "GLM 5.3 Flash 260828 evaluated through the Volcengine Ark Anthropic-compatible route with thinking budget 65,536 and effort=max. Ark public model metadata did not expose a per-token price, so cost is omitted. DeepSeek V4 Pro is the published judge.",
+  "configuration_note": "GLM 5.3 Flash 260828 evaluated through the Volcengine Ark Anthropic-compatible route with thinking budget 65,536 and effort=max. Cost uses Z.ai's published GLM-5.3-Flash API price ($0.15 input, $0.03 cached input, $0.50 output per 1M tokens). DeepSeek V4 Pro is the published judge.",
   "mode": "direct_qa",
   "summary": {
     "rollout_count": 3,
