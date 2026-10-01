@@ -1,0 +1,24 @@
+{
+  "benchmark": "razavi-bench",
+  "experiment": "2026-10-01-direct-qa",
+  "run_date": "2026-10-01",
+  "repo_commit": "415d2356d10107e62d8e2276dabacc08fea86fb4",
+  "mode": "direct_multimodal_qa",
+  "model_name": "GPT-6.1 Sol",
+  "provider_model": "openai/gpt-6.1-sol",
+  "api_format": "openai_chat_completions",
+  "temperature": 0,
+  "max_tokens": 65536,
+  "reasoning": "enabled",
+  "reasoning_effort": "max",
+  "rollouts": [
+    1,
+    2,
+    3
+  ],
+  "concurrency": 10,
+  "expected_answers": 150,
+  "completed_answers": 150,
+  "failed_answers": 0,
+  "raw_responses_retained_locally": true
+}

@@ -1,6 +1,6 @@
 {
   "schema_version": "razavi-bench.direct-qa.v1",
-  "generated_at": "2026-09-28T17:52:30.920687+00:00",
+  "generated_at": "2026-10-01T10:26:29.051246+00:00",
   "benchmark": {
     "mode": "direct_qa",
     "question_count": 50,
@@ -1245,6 +1245,266 @@
         }
       },
       "detail_file": "models/claude_opus_5_xhigh.json"
+    },
+    {
+      "model_key": "gpt_6_1_sol",
+      "display_name": "GPT-6.1 Sol",
+      "provider": "openai",
+      "evaluation_model_ids": [],
+      "thinking_effort": "max",
+      "configuration_note": "GPT-6.1 Sol answered all 50 tasks in three rollouts through OpenRouter's OpenAI-compatible chat completions route at maximum reasoning effort. Answers were graded by DeepSeek V4 Pro through OpenRouter with reasoning disabled. Cost uses OpenRouter's published GPT-6.1 Sol API price ($2 input, $0.10 cached input, $10 output per 1M tokens).",
+      "mode": "direct_qa",
+      "detail_file": "models/gpt_6_1_sol.json",
+      "summary": {
+        "rollout_count": 3,
+        "answer_count": 150,
+        "scores": {
+          "overall": {
+            "deepseek_v4_pro": {
+              "response_count": 150,
+              "correct_count": 129,
+              "incorrect_count": 21,
+              "partial_credit_count": 21,
+              "zero_count": 0,
+              "mean_score_0_to_4": 3.74,
+              "score_percent": 93.5,
+              "score_distribution": {
+                "1": 5,
+                "2": 8,
+                "3": 8,
+                "4": 129
+              }
+            },
+            "active": {
+              "response_count": 150,
+              "correct_count": 129,
+              "incorrect_count": 21,
+              "partial_credit_count": 21,
+              "zero_count": 0,
+              "mean_score_0_to_4": 3.74,
+              "score_percent": 93.5,
+              "score_distribution": {
+                "1": 5,
+                "2": 8,
+                "3": 8,
+                "4": 129
+              }
+            }
+          },
+          "part1": {
+            "deepseek_v4_pro": {
+              "response_count": 90,
+              "correct_count": 90,
+              "incorrect_count": 0,
+              "partial_credit_count": 0,
+              "zero_count": 0,
+              "mean_score_0_to_4": 4.0,
+              "score_percent": 100.0,
+              "score_distribution": {
+                "4": 90
+              }
+            },
+            "active": {
+              "response_count": 90,
+              "correct_count": 90,
+              "incorrect_count": 0,
+              "partial_credit_count": 0,
+              "zero_count": 0,
+              "mean_score_0_to_4": 4.0,
+              "score_percent": 100.0,
+              "score_distribution": {
+                "4": 90
+              }
+            }
+          },
+          "part2": {
+            "deepseek_v4_pro": {
+              "response_count": 60,
+              "correct_count": 39,
+              "incorrect_count": 21,
+              "partial_credit_count": 21,
+              "zero_count": 0,
+              "mean_score_0_to_4": 3.35,
+              "score_percent": 83.75,
+              "score_distribution": {
+                "1": 5,
+                "2": 8,
+                "3": 8,
+                "4": 39
+              }
+            },
+            "active": {
+              "response_count": 60,
+              "correct_count": 39,
+              "incorrect_count": 21,
+              "partial_credit_count": 21,
+              "zero_count": 0,
+              "mean_score_0_to_4": 3.35,
+              "score_percent": 83.75,
+              "score_distribution": {
+                "1": 5,
+                "2": 8,
+                "3": 8,
+                "4": 39
+              }
+            }
+          }
+        },
+        "by_rollout": {
+          "1": {
+            "response_count": 50,
+            "correct_count": 43,
+            "incorrect_count": 7,
+            "partial_credit_count": 7,
+            "zero_count": 0,
+            "mean_score_0_to_4": 3.74,
+            "score_percent": 93.5,
+            "score_distribution": {
+              "1": 2,
+              "2": 2,
+              "3": 3,
+              "4": 43
+            }
+          },
+          "2": {
+            "response_count": 50,
+            "correct_count": 43,
+            "incorrect_count": 7,
+            "partial_credit_count": 7,
+            "zero_count": 0,
+            "mean_score_0_to_4": 3.72,
+            "score_percent": 93.0,
+            "score_distribution": {
+              "1": 2,
+              "2": 3,
+              "3": 2,
+              "4": 43
+            }
+          },
+          "3": {
+            "response_count": 50,
+            "correct_count": 43,
+            "incorrect_count": 7,
+            "partial_credit_count": 7,
+            "zero_count": 0,
+            "mean_score_0_to_4": 3.76,
+            "score_percent": 94.0,
+            "score_distribution": {
+              "1": 1,
+              "2": 3,
+              "3": 3,
+              "4": 43
+            }
+          }
+        },
+        "tokens": {
+          "response_count": 150,
+          "usage_record_count": 150,
+          "complete_usage_count": 150,
+          "missing_usage_count": 0,
+          "missing_cached_input_count": 0,
+          "complete": true,
+          "totals": {
+            "cached_input_tokens": 188452,
+            "input_tokens": 292863,
+            "output_tokens": 649522,
+            "total_tokens": 942385
+          },
+          "known_totals": {
+            "cached_input_tokens": 188452,
+            "input_tokens": 292863,
+            "output_tokens": 649522,
+            "total_tokens": 942385
+          }
+        },
+        "by_rollout_part": {
+          "part1": {
+            "1": {
+              "response_count": 30,
+              "correct_count": 30,
+              "incorrect_count": 0,
+              "partial_credit_count": 0,
+              "zero_count": 0,
+              "mean_score_0_to_4": 4.0,
+              "score_percent": 100.0,
+              "score_distribution": {
+                "4": 30
+              }
+            },
+            "2": {
+              "response_count": 30,
+              "correct_count": 30,
+              "incorrect_count": 0,
+              "partial_credit_count": 0,
+              "zero_count": 0,
+              "mean_score_0_to_4": 4.0,
+              "score_percent": 100.0,
+              "score_distribution": {
+                "4": 30
+              }
+            },
+            "3": {
+              "response_count": 30,
+              "correct_count": 30,
+              "incorrect_count": 0,
+              "partial_credit_count": 0,
+              "zero_count": 0,
+              "mean_score_0_to_4": 4.0,
+              "score_percent": 100.0,
+              "score_distribution": {
+                "4": 30
+              }
+            }
+          },
+          "part2": {
+            "1": {
+              "response_count": 20,
+              "correct_count": 13,
+              "incorrect_count": 7,
+              "partial_credit_count": 7,
+              "zero_count": 0,
+              "mean_score_0_to_4": 3.35,
+              "score_percent": 83.75,
+              "score_distribution": {
+                "1": 2,
+                "2": 2,
+                "3": 3,
+                "4": 13
+              }
+            },
+            "2": {
+              "response_count": 20,
+              "correct_count": 13,
+              "incorrect_count": 7,
+              "partial_credit_count": 7,
+              "zero_count": 0,
+              "mean_score_0_to_4": 3.3,
+              "score_percent": 82.5,
+              "score_distribution": {
+                "1": 2,
+                "2": 3,
+                "3": 2,
+                "4": 13
+              }
+            },
+            "3": {
+              "response_count": 20,
+              "correct_count": 13,
+              "incorrect_count": 7,
+              "partial_credit_count": 7,
+              "zero_count": 0,
+              "mean_score_0_to_4": 3.4,
+              "score_percent": 85.0,
+              "score_distribution": {
+                "1": 1,
+                "2": 3,
+                "3": 3,
+                "4": 13
+              }
+            }
+          }
+        }
+      }
     },
     {
       "model_key": "claude_fable_5",
