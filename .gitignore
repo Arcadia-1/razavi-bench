@@ -10,3 +10,13 @@ sources/
 .wrangler/
 IEEE-Transactions-LaTeX2e-templates-and-instructions/
 *.pdf
+
+# Local Direct QA run artifacts and credentials
+.env
+.env.*
+*.key
+experiments/**/raw_logs.jsonl
+experiments/**/raw-responses/
+experiments/**/judge_outputs/
+experiments/**/validation_report.json
+experiments/**/audit.json
