@@ -35,10 +35,67 @@ python3 tools/run_direct_qa.py \
 The public metadata records that raw responses were retained locally, but does
 not record their machine-specific path.
 
+## Standalone OpenRouter Direct-QA Suite
+
+`direct_qa_openrouter.py` is a self-contained, standard-library-only runner for
+OpenRouter-compatible Chat Completions endpoints. It has no private SDK or
+internal-service dependency. The API key is read only from an environment
+variable and is never written to output files.
+
+Run the default text-plus-image probe:
+
+```bash
+export OPENROUTER_API_KEY=...
+python3 tools/direct_qa_openrouter.py probe \
+  --output-dir experiments/my-openrouter-smoke \
+  --output-prefix my-model \
+  --model google/my-model \
+  --model-name "My Model" \
+  --model-family google \
+  --experiment 2026-01-01-openrouter-smoke \
+  --run-date 2026-01-01 \
+  --effort high \
+  --max-tokens 131072
+```
+
+Run the full 50-task, three-rollout evaluation:
+
+```bash
+python3 tools/direct_qa_openrouter.py run \
+  --output-dir experiments/my-openrouter-full \
+  --output-prefix my-model \
+  --model google/my-model \
+  --model-name "My Model" \
+  --model-family google \
+  --experiment 2026-01-01-openrouter-full \
+  --run-date 2026-01-01 \
+  --rollout 1 --rollout 2 --rollout 3 \
+  --effort high \
+  --max-tokens 131072 \
+  --concurrency 20 \
+  --resume
+```
+
+The runner writes public answer JSONL, a redacted raw audit log, and a
+validation report under the selected output directory. Audit an existing run
+without making network requests:
+
+```bash
+python3 tools/direct_qa_openrouter.py audit \
+  --output-dir experiments/my-openrouter-full \
+  --output-prefix my-model \
+  --effort high \
+  --rollout 1 --rollout 2 --rollout 3
+```
+
+Raw logs, API responses, credentials, and local output directories should stay
+out of version control. The public repository contains only code and selected
+metadata; it does not contain local run artifacts.
+
 ## `evaluate_answers.py`
 
 `evaluate_answers.py` scores saved answer JSONL files after model generation.
-It does not run models, agents, simulators, or Vela tasks.
+It does not run models, agents, simulators, or internal tasks.
 
 Input rows must contain at least:
 
@@ -87,6 +144,19 @@ python3 tools/evaluate_answers.py \
   --api-url https://example.com/v1/responses \
   --api-format responses \
   --model my-judge-model \
+  --resume
+```
+
+For the standard Razavi-Bench DeepSeek V4 Pro judge, use the public launcher so
+the endpoint, model, key environment variable, JSON mode, and disabled thinking
+mode are consistent:
+
+```bash
+export DEEPSEEK_API_KEY=...
+python3 tools/run_deepseek_v4_pro.py \
+  --input experiments/my-openrouter-full/judge_input.jsonl \
+  --output experiments/my-openrouter-full/judge_outputs/deepseek-v4-pro.jsonl \
+  --concurrency 6 \
   --resume
 ```
 

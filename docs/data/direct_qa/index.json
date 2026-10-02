@@ -1,6 +1,6 @@
 {
   "schema_version": "razavi-bench.direct-qa.v1",
-  "generated_at": "2026-10-01T10:26:29.051246+00:00",
+  "generated_at": "2026-10-02T08:50:52.051456+00:00",
   "benchmark": {
     "mode": "direct_qa",
     "question_count": 50,
@@ -3411,6 +3411,282 @@
           }
         }
       }
+    },
+    {
+      "model_key": "gemini_38_flash",
+      "display_name": "Gemini 3.8 Flash",
+      "provider": "google",
+      "evaluation_model_ids": [
+        216348
+      ],
+      "thinking_effort": "high",
+      "configuration_note": "Direct OpenRouter Chat Completions with reasoning.effort=high; model release 2026-09-02; OpenRouter price $0.75/M input, $3.75/M output, $0.075/M cached. DeepSeek V4 Pro is the only judge.",
+      "mode": "direct_qa",
+      "summary": {
+        "rollout_count": 3,
+        "answer_count": 150,
+        "scores": {
+          "overall": {
+            "active": {
+              "response_count": 150,
+              "correct_count": 126,
+              "incorrect_count": 24,
+              "partial_credit_count": 21,
+              "zero_count": 3,
+              "mean_score_0_to_4": 3.6133333333333333,
+              "score_percent": 90.33333333333333,
+              "score_distribution": {
+                "0": 3,
+                "1": 10,
+                "2": 5,
+                "3": 6,
+                "4": 126
+              }
+            },
+            "deepseek_v4_pro": {
+              "response_count": 150,
+              "correct_count": 126,
+              "incorrect_count": 24,
+              "partial_credit_count": 21,
+              "zero_count": 3,
+              "mean_score_0_to_4": 3.6133333333333333,
+              "score_percent": 90.33333333333333,
+              "score_distribution": {
+                "0": 3,
+                "1": 10,
+                "2": 5,
+                "3": 6,
+                "4": 126
+              }
+            }
+          },
+          "part1": {
+            "active": {
+              "response_count": 90,
+              "correct_count": 84,
+              "incorrect_count": 6,
+              "partial_credit_count": 3,
+              "zero_count": 3,
+              "mean_score_0_to_4": 3.8333333333333335,
+              "score_percent": 95.83333333333334,
+              "score_distribution": {
+                "0": 3,
+                "3": 3,
+                "4": 84
+              }
+            },
+            "deepseek_v4_pro": {
+              "response_count": 90,
+              "correct_count": 84,
+              "incorrect_count": 6,
+              "partial_credit_count": 3,
+              "zero_count": 3,
+              "mean_score_0_to_4": 3.8333333333333335,
+              "score_percent": 95.83333333333334,
+              "score_distribution": {
+                "0": 3,
+                "3": 3,
+                "4": 84
+              }
+            }
+          },
+          "part2": {
+            "active": {
+              "response_count": 60,
+              "correct_count": 42,
+              "incorrect_count": 18,
+              "partial_credit_count": 18,
+              "zero_count": 0,
+              "mean_score_0_to_4": 3.283333333333333,
+              "score_percent": 82.08333333333333,
+              "score_distribution": {
+                "1": 10,
+                "2": 5,
+                "3": 3,
+                "4": 42
+              }
+            },
+            "deepseek_v4_pro": {
+              "response_count": 60,
+              "correct_count": 42,
+              "incorrect_count": 18,
+              "partial_credit_count": 18,
+              "zero_count": 0,
+              "mean_score_0_to_4": 3.283333333333333,
+              "score_percent": 82.08333333333333,
+              "score_distribution": {
+                "1": 10,
+                "2": 5,
+                "3": 3,
+                "4": 42
+              }
+            }
+          }
+        },
+        "by_rollout": {
+          "1": {
+            "response_count": 50,
+            "correct_count": 41,
+            "incorrect_count": 9,
+            "partial_credit_count": 8,
+            "zero_count": 1,
+            "mean_score_0_to_4": 3.6,
+            "score_percent": 90.0,
+            "score_distribution": {
+              "0": 1,
+              "1": 3,
+              "2": 2,
+              "3": 3,
+              "4": 41
+            }
+          },
+          "2": {
+            "response_count": 50,
+            "correct_count": 42,
+            "incorrect_count": 8,
+            "partial_credit_count": 7,
+            "zero_count": 1,
+            "mean_score_0_to_4": 3.6,
+            "score_percent": 90.0,
+            "score_distribution": {
+              "0": 1,
+              "1": 4,
+              "2": 1,
+              "3": 2,
+              "4": 42
+            }
+          },
+          "3": {
+            "response_count": 50,
+            "correct_count": 43,
+            "incorrect_count": 7,
+            "partial_credit_count": 6,
+            "zero_count": 1,
+            "mean_score_0_to_4": 3.64,
+            "score_percent": 91.0,
+            "score_distribution": {
+              "0": 1,
+              "1": 3,
+              "2": 2,
+              "3": 1,
+              "4": 43
+            }
+          }
+        },
+        "tokens": {
+          "response_count": 150,
+          "usage_record_count": 150,
+          "complete_usage_count": 150,
+          "missing_usage_count": 0,
+          "missing_cached_input_count": 0,
+          "complete": true,
+          "totals": {
+            "cached_input_tokens": 0,
+            "input_tokens": 158772,
+            "output_tokens": 1952175,
+            "total_tokens": 2110947
+          },
+          "known_totals": {
+            "cached_input_tokens": 0,
+            "input_tokens": 158772,
+            "output_tokens": 1952175,
+            "total_tokens": 2110947
+          }
+        },
+        "by_rollout_part": {
+          "part1": {
+            "1": {
+              "response_count": 30,
+              "correct_count": 28,
+              "incorrect_count": 2,
+              "partial_credit_count": 1,
+              "zero_count": 1,
+              "mean_score_0_to_4": 3.8333333333333335,
+              "score_percent": 95.83333333333334,
+              "score_distribution": {
+                "0": 1,
+                "3": 1,
+                "4": 28
+              }
+            },
+            "2": {
+              "response_count": 30,
+              "correct_count": 28,
+              "incorrect_count": 2,
+              "partial_credit_count": 1,
+              "zero_count": 1,
+              "mean_score_0_to_4": 3.8333333333333335,
+              "score_percent": 95.83333333333334,
+              "score_distribution": {
+                "0": 1,
+                "3": 1,
+                "4": 28
+              }
+            },
+            "3": {
+              "response_count": 30,
+              "correct_count": 28,
+              "incorrect_count": 2,
+              "partial_credit_count": 1,
+              "zero_count": 1,
+              "mean_score_0_to_4": 3.8333333333333335,
+              "score_percent": 95.83333333333334,
+              "score_distribution": {
+                "0": 1,
+                "3": 1,
+                "4": 28
+              }
+            }
+          },
+          "part2": {
+            "1": {
+              "response_count": 20,
+              "correct_count": 13,
+              "incorrect_count": 7,
+              "partial_credit_count": 7,
+              "zero_count": 0,
+              "mean_score_0_to_4": 3.25,
+              "score_percent": 81.25,
+              "score_distribution": {
+                "1": 3,
+                "2": 2,
+                "3": 2,
+                "4": 13
+              }
+            },
+            "2": {
+              "response_count": 20,
+              "correct_count": 14,
+              "incorrect_count": 6,
+              "partial_credit_count": 6,
+              "zero_count": 0,
+              "mean_score_0_to_4": 3.25,
+              "score_percent": 81.25,
+              "score_distribution": {
+                "1": 4,
+                "2": 1,
+                "3": 1,
+                "4": 14
+              }
+            },
+            "3": {
+              "response_count": 20,
+              "correct_count": 15,
+              "incorrect_count": 5,
+              "partial_credit_count": 5,
+              "zero_count": 0,
+              "mean_score_0_to_4": 3.35,
+              "score_percent": 83.75,
+              "score_distribution": {
+                "1": 3,
+                "2": 2,
+                "4": 15
+              }
+            }
+          }
+        }
+      },
+      "detail_file": "models/gemini_38_flash.json"
     },
     {
       "model_key": "claude_opus_5_medium",
