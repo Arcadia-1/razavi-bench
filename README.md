@@ -213,8 +213,8 @@ overlay applied to Part 1 Q15; all non-Q15 task scores are unchanged.
 | Gemini | MiniMax-M3 | 79.67% | 88.89% | 65.83% |
 | Gemini | DeepSeek-V4-Pro | 81.83% | 91.11% | 67.92% |
 
-The current active leaderboard is the September 29 snapshot covering 54 model
-configurations and 8,100 answers. The active score is DeepSeek V4 Pro alone:
+The current active leaderboard is the October 2 snapshot covering 56 model
+configurations and 8,400 answers. The active score is DeepSeek V4 Pro alone:
 each value is its mean score over three rollouts, with the Q15 hard-rule
 correction applied consistently. Legacy entries may retain MiniMax M3 results
 for audit, while new entries may publish DeepSeek only; MiniMax never counts
@@ -232,15 +232,15 @@ answers.
 | 2 | Claude Opus 5.5 | max | 95.33% | 100.00% | 88.33% |
 | 3 | Claude Opus 5 | high | 94.83% | 98.61% | 89.17% |
 | 4 | Claude Opus 5 | xhigh | 94.00% | 95.28% | 92.08% |
-| 5 | Claude Fable 5 | max | 93.17% | 96.67% | 87.92% |
-| 6 | Claude Fable 5.1 | max | 93.00% | 96.39% | 87.92% |
-| 7 | Claude Opus 5 | max | 92.50% | 94.72% | 89.17% |
-| 8 | Muse Spark 1.2 | xhigh | 92.00% | 97.78% | 83.33% |
-| 9 | Gemini 3.7 Flash | high | 91.83% | 97.78% | 82.92% |
-| 10 | GPT-6 Sol | max | 90.33% | 96.94% | 80.42% |
+| 5 | GPT-6.1 Sol | max | 93.50% | 100.00% | 83.75% |
+| 6 | Claude Fable 5 | max | 93.17% | 96.67% | 87.92% |
+| 7 | Claude Fable 5.1 | max | 93.00% | 96.39% | 87.92% |
+| 8 | Claude Opus 5 | max | 92.50% | 94.72% | 89.17% |
+| 9 | Muse Spark 1.2 | xhigh | 92.00% | 97.78% | 83.33% |
+| 10 | Gemini 3.7 Flash | high | 91.83% | 97.78% | 82.92% |
 
 <p align="center">
-  <img src="docs/assets/direct_qa_rollout_mean_all_metrics.png?v=20260929-mimo-2-6-pro" alt="2026-09-28 Razavi-Bench Multimodal QA snapshot" title="2026-09-28 Razavi-Bench Multimodal QA snapshot" width="92%"/>
+  <img src="docs/assets/direct_qa_rollout_mean_all_metrics.png?v=20261002-gpt-6-1-sol-gemini-38" alt="2026-10-02 Razavi-Bench Multimodal QA snapshot" title="2026-10-02 Razavi-Bench Multimodal QA snapshot" width="92%"/>
 </p>
 
 The release-date view uses vendor announcements where available and explicitly
@@ -248,5 +248,5 @@ marks preview or first-public-availability dates in the
 [model release-date table](docs/data/direct_qa/model_release_dates.csv).
 
 <p align="center">
-  <img src="docs/assets/direct_qa_score_vs_release_date.png?v=20260929-brand-colors" alt="Razavi-Bench score versus model release date" title="Razavi-Bench score versus model release date" width="96%"/>
+  <img src="docs/assets/direct_qa_score_vs_release_date.png?v=20261002-gpt-6-1-sol-gemini-38" alt="Razavi-Bench score versus model release date" title="Razavi-Bench score versus model release date" width="96%"/>
 </p>
