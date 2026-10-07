@@ -501,7 +501,9 @@ var PALETTE=["#7c8ba0","#426b8f","#5b7fa5","#6b9eb3","#6b9e7a","#c4956a","#c47a6
 var EFFORT_LABELS={max:"max",high:"high",medium:"med",xhigh:"xhigh",thinking:"thinking",default:"",disabled:"",low:"low"};
 var DATA_INDEX_URL=["https://razavi-bench.tokenzhang.com/data/direct_qa/index.json","https://razavi-bench.tokenzhang.com/api/index.json","data/direct_qa/index.json","https://raw.githubusercontent.com/Arcadia-1/razavi-bench/main/docs/data/direct_qa/index.json"];
 var RELEASE_DATES_URL=["data/direct_qa/model_release_dates.json","https://razavi-bench.tokenzhang.com/data/direct_qa/model_release_dates.json","https://raw.githubusercontent.com/Arcadia-1/razavi-bench/main/docs/data/direct_qa/model_release_dates.json"];
-function fetchData(urls){var attempts=urls.map(function(u){return fetchWithTimeout(u,10000).then(function(r){if(r&&r.ok)return r.json();throw new Error("Status")}).catch(function(){return null})});return new Promise(function(res,rej){var done=0;attempts.forEach(function(p){p.then(function(v){if(v){res(v)}else{done++;if(done===attempts.length)rej(new Error("All data sources failed"))}})});});}
+// Request every source at once but use them in priority order: a later fallback (e.g. the
+// raw GitHub copy, cached for 5 minutes) only wins once every source ahead of it has failed.
+function fetchData(urls){var attempts=urls.map(function(u){return fetchWithTimeout(u,10000).then(function(r){if(r&&r.ok)return r.json();throw new Error("Status")}).catch(function(){return null})});return attempts.reduce(function(prev,p){return prev.then(function(v){return v||p})},Promise.resolve(null)).then(function(v){if(!v)throw new Error("All data sources failed");return v});}
 function fetchWithTimeout(url,ms){
   if(location.protocol==="file:"){return fetch(url,{cache:"no-cache"});}
   var controller=typeof AbortController!=="undefined"?new AbortController():null;
