@@ -20,6 +20,10 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+UNANSWERED_RATIONALE = (
+    "No answer: every attempt ended without a final answer (for example, reasoning used the "
+    "whole max_tokens budget), so this slot scores 0 without being sent to the judge."
+)
 TOKEN_KEYS = ("cached_input_tokens", "input_tokens", "output_tokens", "total_tokens")
 
 
@@ -41,14 +45,14 @@ def read_jsonl(path: Path) -> list[dict]:
 
 
 def question_text(instruction: str) -> str:
+    """Return just the question, whether given a full instruction.md or the runner's
+    question field (which already starts after "## Question" but keeps "## Figures")."""
     marker = "## Question"
-    if marker in instruction:
-        text = instruction.split(marker, 1)[1]
-        for end_marker in ("## Figures", "## Notes", "## Instructions"):
-            if end_marker in text:
-                text = text.split(end_marker, 1)[0]
-        return text.strip()
-    return instruction.strip()
+    text = instruction.split(marker, 1)[1] if marker in instruction else instruction
+    for end_marker in ("## Figures", "## Notes", "## Instructions"):
+        if end_marker in text:
+            text = text.split(end_marker, 1)[0]
+    return text.strip()
 
 
 def sha256_text(text: str) -> str:
@@ -100,14 +104,23 @@ def load_tokens(args: argparse.Namespace) -> dict[str, tuple[dict, dict, int]]:
         manifest = json.loads(args.tokens.read_text(encoding="utf-8"))
         return {key: (record, dict(record), 1) for key, record in manifest.items()}
     tokens: dict[str, tuple[dict, dict, int]] = {}
+    failed: dict[str, list[dict]] = {}
     for row in read_jsonl(args.raw_log):
+        key = f"{row['rollout']}:{row['task_slug']}"
+        attempts = [a for a in row.get("attempts") or [] if a.get("status") == 200]
         if not row.get("ok"):
+            # Older raw rows keep usage only on the row; newer ones keep it per attempt.
+            usages = [a["usage"] for a in attempts if "usage" in a] or [row.get("usage") or {}]
+            failed.setdefault(key, []).extend(usage_record(u) for u in usages)
             continue
         selected = usage_record(row.get("usage") or {})
-        attempts = [a for a in row.get("attempts") or [] if a.get("status") == 200]
         earlier = [usage_record(a.get("usage") or {}) for a in attempts[:-1]]
         billed = sum_usage(earlier + [selected]) if earlier else selected
         tokens[f"{row['rollout']}:{row['task_slug']}"] = (billed, dict(selected), max(len(attempts), 1))
+    # A slot whose every attempt failed still cost tokens; bill them for --unanswered.
+    for key, records in failed.items():
+        if key not in tokens:
+            tokens[key] = (sum_usage(records), dict(records[-1]), len(records))
     return tokens
 
 
@@ -125,8 +138,37 @@ def build(args: argparse.Namespace) -> dict:
     scores = load_scores(args.scores)
     tokens_manifest = load_tokens(args)
 
-    task_slugs = {row["task_slug"] for row in read_jsonl(ROOT / "data/tasks.jsonl")}
+    tasks = {row["task_slug"]: row for row in read_jsonl(ROOT / "data/tasks.jsonl")}
+    task_slugs = set(tasks)
     rollouts = sorted({int(row["rollout"]) for row in answers})
+    unanswered = set()
+    for item in args.unanswered:
+        rollout, slug = item.split(":", 1)
+        if slug not in tasks or (slug, int(rollout)) in {(r["task_slug"], int(r["rollout"])) for r in answers}:
+            raise SystemExit(f"--unanswered {item} is not an unanswered task slot")
+        unanswered.add((slug, int(rollout)))
+        task = tasks[slug]
+        answers.append(
+            {
+                "task_slug": slug,
+                "task_path": task["task_path"],
+                "rollout": int(rollout),
+                "question": task["instruction"],
+                "figures": task.get("figures") or [],
+                "answer": "",
+                "model_call_attempts": tokens_manifest.get(f"{rollout}:{slug}", ({}, {}, 1))[2],
+            }
+        )
+        reference = next((row for (s, _), row in scores.items() if s == slug), None)
+        if reference is None:
+            raise SystemExit(f"no scored answer to {slug} to take its golden-solution hash from")
+        scores[(slug, int(rollout))] = {
+            "answer_sha256": sha256_text(""),
+            "score_0_to_4": 0,
+            "rationale": UNANSWERED_RATIONALE,
+            "golden_solution_sha256": reference["golden_solution_sha256"],
+            "rubric_sha256": reference["rubric_sha256"],
+        }
     expected = {(slug, rollout) for slug in task_slugs for rollout in rollouts}
     answered = {(row["task_slug"], int(row["rollout"])) for row in answers}
     if len(answered) != len(answers):
@@ -266,6 +308,13 @@ def main() -> None:
     usage = parser.add_mutually_exclusive_group(required=True)
     usage.add_argument("--raw-log", type=Path, help="raw_logs.jsonl written by direct_qa_openrouter.py")
     usage.add_argument("--tokens", type=Path, help='token manifest keyed "<rollout>:<task_slug>"')
+    parser.add_argument(
+        "--unanswered",
+        action="append",
+        default=[],
+        metavar="ROLLOUT:TASK_SLUG",
+        help="publish this slot as unanswered with score 0 after every retry failed; repeatable",
+    )
     parser.add_argument("--output", type=Path, help="defaults to docs/data/direct_qa/models/<model_key>.json")
     args = parser.parse_args()
 

@@ -201,6 +201,11 @@ python3 tools/build_model_json.py \
   --raw-log experiments/my-openrouter-full/raw_logs.jsonl
 ```
 
+If a slot still has no answer after re-running it (for example, the model keeps
+spending its whole `max_tokens` budget reasoning), pass
+`--unanswered <rollout>:<task_slug>` to publish it as unanswered with score 0;
+the tokens of its failed attempts in the raw log are still billed.
+
 Then, to publish:
 
 1. add the model's API price to `docs/assets/pricing.js` (keyed by `model_key`);
