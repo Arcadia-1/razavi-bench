@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import argparse
 import importlib.util
 import json
 import subprocess
@@ -63,6 +64,31 @@ class BuildModelJsonTests(unittest.TestCase):
         self.assertEqual(record["reasoning_output_tokens"], 30)
         self.assertTrue(record["complete"])
         self.assertFalse(module.usage_record({"prompt_tokens": 1})["complete"])
+
+    def test_raw_log_bills_retried_attempts(self) -> None:
+        spec = importlib.util.spec_from_file_location("build_model_json", ROOT / "tools/build_model_json.py")
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        truncated = {"prompt_tokens": 10, "completion_tokens": 128, "total_tokens": 138, "prompt_tokens_details": {"cached_tokens": 0}}
+        final = {"prompt_tokens": 10, "completion_tokens": 20, "total_tokens": 30, "prompt_tokens_details": {"cached_tokens": 5}}
+        row = {
+            "task_slug": "part1-001-x",
+            "rollout": 1,
+            "ok": True,
+            "usage": final,
+            "attempts": [
+                {"attempt": 1, "status": 200, "finish_reason": "length", "usage": truncated},
+                {"attempt": 2, "status": 200, "finish_reason": "stop", "usage": final},
+            ],
+        }
+        with tempfile.TemporaryDirectory() as tmp:
+            raw_log = Path(tmp) / "raw_logs.jsonl"
+            raw_log.write_text(json.dumps(row) + "\n", encoding="utf-8")
+            billed, selected, attempts = module.load_tokens(argparse.Namespace(tokens=None, raw_log=raw_log))["1:part1-001-x"]
+        self.assertEqual(attempts, 2)
+        self.assertEqual(billed["total_tokens"], 168)
+        self.assertEqual(billed["cached_input_tokens"], 5)
+        self.assertEqual(selected["total_tokens"], 30)
 
 
 if __name__ == "__main__":

@@ -78,13 +78,36 @@ def usage_record(usage: dict) -> dict:
     return record
 
 
-def load_tokens(args: argparse.Namespace) -> dict[str, dict]:
+def sum_usage(records: list[dict]) -> dict:
+    total = usage_record({})
+    for key in ("cached_input_tokens", "input_tokens", "output_tokens", "total_tokens", "reasoning_output_tokens"):
+        values = [record[key] for record in records]
+        total[key] = None if any(value is None for value in values) else sum(values)
+    missing = [key for key in ("input_tokens", "output_tokens", "total_tokens") if total[key] is None]
+    total["complete"] = not missing
+    total["availability"] = "complete" if not missing else "partial"
+    total["missing_fields"] = missing
+    return total
+
+
+def load_tokens(args: argparse.Namespace) -> dict[str, tuple[dict, dict, int]]:
+    """Map "<rollout>:<task_slug>" to (billed tokens, selected-response tokens, attempt count).
+
+    Billed tokens include retried attempts (e.g. answers truncated at max_tokens),
+    so the published cost covers every call the run paid for.
+    """
     if args.tokens:
-        return json.loads(args.tokens.read_text(encoding="utf-8"))
-    tokens: dict[str, dict] = {}
+        manifest = json.loads(args.tokens.read_text(encoding="utf-8"))
+        return {key: (record, dict(record), 1) for key, record in manifest.items()}
+    tokens: dict[str, tuple[dict, dict, int]] = {}
     for row in read_jsonl(args.raw_log):
-        if row.get("ok"):
-            tokens[f"{row['rollout']}:{row['task_slug']}"] = usage_record(row.get("usage") or {})
+        if not row.get("ok"):
+            continue
+        selected = usage_record(row.get("usage") or {})
+        attempts = [a for a in row.get("attempts") or [] if a.get("status") == 200]
+        earlier = [usage_record(a.get("usage") or {}) for a in attempts[:-1]]
+        billed = sum_usage(earlier + [selected]) if earlier else selected
+        tokens[f"{row['rollout']}:{row['task_slug']}"] = (billed, dict(selected), max(len(attempts), 1))
     return tokens
 
 
@@ -131,7 +154,7 @@ def build(args: argparse.Namespace) -> dict:
         judge = scores[(slug, rollout)]
         if sha256_text(row["answer"]) != judge["answer_sha256"]:
             raise SystemExit(f"answer hash mismatch for {slug} rollout {rollout}")
-        tokens = tokens_manifest[f"{rollout}:{slug}"]
+        tokens, selected_tokens, attempt_count = tokens_manifest[f"{rollout}:{slug}"]
         figures = [
             name if name.startswith(task_path + "/") else f"{task_path}/{name}"
             for name in sorted(row.get("figures") or [])
@@ -169,8 +192,8 @@ def build(args: argparse.Namespace) -> dict:
                     }
                 },
                 "tokens": tokens,
-                "selected_response_tokens": dict(tokens),
-                "attempt_count": 1,
+                "selected_response_tokens": selected_tokens,
+                "attempt_count": attempt_count,
             }
         )
     merged.sort(key=lambda a: (a["part"], a["question_number"], a["rollout"]))

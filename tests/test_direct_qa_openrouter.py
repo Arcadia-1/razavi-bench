@@ -50,6 +50,27 @@ class DirectQaOpenRouterTests(unittest.TestCase):
         self.assertEqual(len(result["attempts"]), 1)
         post.assert_called_once()
 
+    def test_call_model_retries_a_truncated_answer(self) -> None:
+        truncated = {
+            "model": "google/example",
+            "choices": [{"message": {"content": ""}, "finish_reason": "length"}],
+            "usage": {"prompt_tokens": 2, "completion_tokens": 128, "total_tokens": 130},
+        }
+        complete = {
+            "model": "google/example",
+            "choices": [{"message": {"content": "answer"}, "finish_reason": "stop"}],
+            "usage": {"prompt_tokens": 2, "completion_tokens": 3, "total_tokens": 5},
+        }
+        with mock.patch.object(COMMON, "post_json", side_effect=[truncated, complete]), mock.patch.object(COMMON.time, "sleep"):
+            result = DIRECT.call_model("https://example.test/v1/chat/completions", "not-a-real-key", {}, 5, 3)
+        self.assertTrue(result["ok"])
+        self.assertEqual(result["answer"], "answer")
+        self.assertEqual([a["finish_reason"] for a in result["attempts"]], ["length", "stop"])
+        with mock.patch.object(COMMON, "post_json", return_value=truncated) as post, mock.patch.object(COMMON.time, "sleep"):
+            result = DIRECT.call_model("https://example.test/v1/chat/completions", "not-a-real-key", {}, 5, 2)
+        self.assertFalse(result["ok"])
+        self.assertEqual(post.call_count, 2)
+
     def test_canonicalize_creates_empty_output(self) -> None:
         with tempfile.TemporaryDirectory() as temp:
             path = Path(temp) / "nested" / "answers.jsonl"

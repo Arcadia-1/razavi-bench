@@ -129,7 +129,12 @@ def call_model(url: str, key: str, body: dict[str, Any], timeout: int, retries: 
         model = str(response.get("model") or "")
         total = int(usage.get("total_tokens") or 0)
         valid = bool(answer.strip() and finish_reason == "stop" and model and total > 0)
-        attempts.append({"attempt": attempt, "status": 200})
+        attempts.append({"attempt": attempt, "status": 200, "finish_reason": finish_reason, "usage": usage})
+        # A truncated or empty answer (e.g. reasoning used the whole max_tokens budget)
+        # is a property of this sample, not the task, so draw a fresh one.
+        if not valid and attempt < retries:
+            time.sleep(1.5 * attempt)
+            continue
         return {"ok": valid, "answer": answer, "finish_reason": finish_reason, "response_model": model, "usage": usage, "attempts": attempts, "error": None if valid else "invalid provider response"}
     raise AssertionError("unreachable")
 
