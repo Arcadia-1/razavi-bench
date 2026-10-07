@@ -160,6 +160,54 @@ python3 tools/run_deepseek_v4_pro.py \
   --resume
 ```
 
+The judge can also run through OpenRouter, so one `OPENROUTER_API_KEY` covers
+both generation and grading. Recent runs use DeepSeek V4 Pro there with
+reasoning disabled:
+
+```bash
+python3 tools/evaluate_answers.py \
+  --input experiments/my-openrouter-full/judge_input.jsonl \
+  --output experiments/my-openrouter-full/judge_outputs/deepseek-v4-pro.scores.jsonl \
+  --api-url https://openrouter.ai/api/v1/chat/completions \
+  --model deepseek/deepseek-v4-pro \
+  --api-key-env OPENROUTER_API_KEY \
+  --json-mode --thinking-mode disabled --openrouter-reasoning \
+  --max-tokens 8192 --concurrency 5 --resume
+```
+
+## `build_model_json.py`
+
+`build_model_json.py` turns a finished run into the website's model file,
+`docs/data/direct_qa/models/<model_key>.json`. It merges the answer JSONL files,
+the judge's score JSONL, and token usage, and refuses to write anything unless
+every task has an answer, a score, and usage in every rollout and each score's
+answer hash matches. Token usage comes from the runner's local `raw_logs.jsonl`
+(`--raw-log`) or from a public manifest keyed `"<rollout>:<task_slug>"`
+(`--tokens`).
+
+```bash
+python3 tools/build_model_json.py \
+  --model-key my_model \
+  --display-name "My Model" \
+  --provider google \
+  --effort high \
+  --api-model google/my-model \
+  --source-experiment 2026-01-01-openrouter-full \
+  --configuration-note "My Model answered all 50 tasks in three rollouts through OpenRouter at high reasoning effort. Answers were graded by DeepSeek V4 Pro with reasoning disabled." \
+  --answers experiments/my-openrouter-full/model_outputs/my-model-rollout-1.jsonl \
+  --answers experiments/my-openrouter-full/model_outputs/my-model-rollout-2.jsonl \
+  --answers experiments/my-openrouter-full/model_outputs/my-model-rollout-3.jsonl \
+  --scores experiments/my-openrouter-full/judge_outputs/deepseek-v4-pro.scores.jsonl \
+  --raw-log experiments/my-openrouter-full/raw_logs.jsonl
+```
+
+Then, to publish:
+
+1. add the model's API price to `docs/assets/pricing.js` (keyed by `model_key`);
+2. add a release-date row to `docs/data/direct_qa/model_release_dates.csv` and
+   run `python3 tools/plot_model_release_timeline.py`;
+3. run `python3 tools/apply_active_judge.py` and `node tools/aggregate_questions.js`.
+
 Historical scripts under `experiments/<experiment>/tools/` are snapshots of the
 code used for those experiments. Keep them with their experiment artifacts for
 auditability, but use this directory for new scoring runs.
