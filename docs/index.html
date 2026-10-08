@@ -1136,6 +1136,10 @@ function bTL(){
     animation:false
   },plugins:[tlLabelPlugin]});
   ch.$labelModes=labelModes;
+  // The right padding is computed from the previous layout's y-axis width, which does not
+  // exist on the first pass; lay out once more so later updates (e.g. Clear all / Show all)
+  // do not nudge the plot area.
+  ch.update("none");
   ch.render();
   renderTlLegend(ch);
 }
