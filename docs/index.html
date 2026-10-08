@@ -797,10 +797,11 @@ var pointLabelPlugin={
       ds.data.forEach(function(pt,pi){
         var el=meta.data[pi];
         if(!el)return;
-        // 同一模型族只标注第一个点（沿 x 轴靠左的），其余变体点不标文字
-        if(pi>0)return;
+        // Each point carries its own label: the model name with its effort on the first point
+        // of a family, just the effort on the others, and nothing when there is no effort to show.
+        var label=pt&&pt.lab!=null?pt.lab:(pi===0?ds.label:"");
+        if(!label)return;
         var pos=el.getCenterPoint();
-        var label=ds.label;
         var tw=ctx.measureText(label).width;
         // 默认放点右侧；靠右边缘时放左侧
         var side=(pos.x+8+tw>chartArea.right-4)?"left":"right";
@@ -879,7 +880,7 @@ function bEff(){
     var lineColor=BC[members[0].m];
     return{
       label:name,
-      data:members.map(function(m){
+      data:members.map(function(m,i){
         var raw;
         if(effAxis==="token"){
           var tv=m.t||"";
@@ -891,7 +892,9 @@ function bEff(){
           raw=m.cost!=null?m.cost:null;
         }
         var x=effScale==="log"&&(!raw||raw<=0)?null:raw;
-        return{x:x,y:m[k].mn,effort:m.e||"default"};
+        // The first point carries the model name; the others only their effort, e.g. "[max]".
+        var tag=m.e?"["+m.e+"]":"";
+        return{x:x,y:m[k].mn,effort:m.e||"default",lab:i===0?(tag?name+" "+tag:name):tag};
       }),
       backgroundColor:lineColor,
       borderColor:lineColor,
