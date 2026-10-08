@@ -218,13 +218,7 @@ configurations and 8,700 answers. The active score is DeepSeek V4 Pro alone:
 each value is its mean score over three rollouts, with the Q15 hard-rule
 correction applied consistently. Legacy entries may retain MiniMax M3 results
 for audit, while new entries may publish DeepSeek only; MiniMax never counts
-toward the active score. GPT-5.2 remains excluded
-because all 150 published answers were generated without reasoning. Doubao Seed
-2.1 Pro also remains excluded because one repair answer in its otherwise
-reasoning-enabled batch was generated with reasoning disabled, and no exact
-route is currently available to replace that slot. GPT-5.4 High is active after
-its original Vela logs were verified to use `reasoning.effort=high` for all 150
-answers.
+toward the active score.
 
 | Rank | Answer Model | Thinking Effort | Overall | Part 1 | Part 2 |
 |---:|---|---|---:|---:|---:|
