@@ -6,7 +6,8 @@ Direct multimodal QA runs generated with the public standalone runner,
 ## Mistral Large 4
 
 - Answer model: `mistralai/mistral-large-4-0` through OpenRouter Chat Completions
-- Reasoning effort: max; `max_tokens` 131,072
+- Reasoning effort: high, the highest OpenRouter lists for this model (`max` was
+  requested and mapped to `high`); `max_tokens` 131,072
 - Rollouts: 3 × 50 tasks, generation concurrency 20
 - Judge: DeepSeek V4 Pro through OpenRouter, reasoning disabled
 

@@ -3,8 +3,8 @@
   "display_name": "Mistral Large 4",
   "provider": "mistral",
   "evaluation_model_ids": [],
-  "thinking_effort": "max",
-  "configuration_note": "Mistral Large 4 answered all 50 tasks in three rollouts through OpenRouter's chat completions route at maximum reasoning effort (max_tokens 131,072). Three answers that ended in a provider error or hit max_tokens were re-sampled; every attempt is counted in tokens and cost. Answers were graded by DeepSeek V4 Pro through OpenRouter with reasoning disabled. Cost uses OpenRouter's published Mistral Large 4 API price ($0.68 input, $0.07 cached input, $2.09 output per 1M tokens).",
+  "thinking_effort": "high",
+  "configuration_note": "Mistral Large 4 answered all 50 tasks in three rollouts through OpenRouter's chat completions route with reasoning effort max requested; OpenRouter lists only high and none for this model, so the run used high, its highest effort (max_tokens 131,072). Three answers that ended in a provider error or hit max_tokens were re-sampled; every attempt is counted in tokens and cost. Answers were graded by DeepSeek V4 Pro through OpenRouter with reasoning disabled. Cost uses OpenRouter's published Mistral Large 4 API price ($0.68 input, $0.07 cached input, $2.09 output per 1M tokens).",
   "mode": "direct_qa",
   "summary": {
     "rollout_count": 3,
@@ -287,7 +287,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -347,7 +347,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -407,7 +407,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -467,7 +467,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -527,7 +527,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -587,7 +587,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -647,7 +647,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -707,7 +707,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -767,7 +767,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -829,7 +829,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -891,7 +891,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -953,7 +953,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -1015,7 +1015,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -1077,7 +1077,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -1139,7 +1139,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -1201,7 +1201,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -1263,7 +1263,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -1325,7 +1325,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -1387,7 +1387,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -1449,7 +1449,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -1511,7 +1511,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -1573,7 +1573,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -1635,7 +1635,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -1697,7 +1697,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -1759,7 +1759,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -1821,7 +1821,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -1883,7 +1883,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -1945,7 +1945,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -2007,7 +2007,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -2069,7 +2069,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -2131,7 +2131,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -2193,7 +2193,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -2255,7 +2255,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -2317,7 +2317,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -2379,7 +2379,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -2441,7 +2441,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -2503,7 +2503,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -2565,7 +2565,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -2627,7 +2627,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -2689,7 +2689,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -2751,7 +2751,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -2813,7 +2813,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -2875,7 +2875,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -2937,7 +2937,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -2999,7 +2999,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -3061,7 +3061,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -3123,7 +3123,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -3185,7 +3185,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -3247,7 +3247,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -3309,7 +3309,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -3371,7 +3371,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -3433,7 +3433,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -3495,7 +3495,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -3557,7 +3557,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -3619,7 +3619,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -3681,7 +3681,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -3743,7 +3743,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -3805,7 +3805,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -3867,7 +3867,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -3929,7 +3929,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -3991,7 +3991,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -4053,7 +4053,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -4115,7 +4115,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -4175,7 +4175,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -4235,7 +4235,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -4295,7 +4295,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -4357,7 +4357,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -4419,7 +4419,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -4481,7 +4481,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -4543,7 +4543,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -4605,7 +4605,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -4667,7 +4667,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -4729,7 +4729,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -4791,7 +4791,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -4853,7 +4853,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -4915,7 +4915,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -4977,7 +4977,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -5039,7 +5039,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -5101,7 +5101,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -5163,7 +5163,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -5225,7 +5225,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -5287,7 +5287,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -5349,7 +5349,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -5411,7 +5411,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -5473,7 +5473,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -5535,7 +5535,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -5597,7 +5597,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -5659,7 +5659,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -5721,7 +5721,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -5783,7 +5783,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -5845,7 +5845,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -5907,7 +5907,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -5969,7 +5969,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -6031,7 +6031,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -6093,7 +6093,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -6155,7 +6155,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -6217,7 +6217,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -6279,7 +6279,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -6341,7 +6341,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -6403,7 +6403,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -6465,7 +6465,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -6527,7 +6527,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -6589,7 +6589,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -6651,7 +6651,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -6713,7 +6713,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -6775,7 +6775,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -6837,7 +6837,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -6899,7 +6899,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -6961,7 +6961,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -7023,7 +7023,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -7085,7 +7085,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -7147,7 +7147,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -7209,7 +7209,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -7271,7 +7271,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -7333,7 +7333,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -7395,7 +7395,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -7457,7 +7457,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -7519,7 +7519,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -7581,7 +7581,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -7643,7 +7643,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -7705,7 +7705,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -7767,7 +7767,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -7829,7 +7829,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -7891,7 +7891,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -7953,7 +7953,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -8015,7 +8015,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -8077,7 +8077,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -8139,7 +8139,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -8201,7 +8201,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -8263,7 +8263,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -8325,7 +8325,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -8387,7 +8387,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -8449,7 +8449,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -8511,7 +8511,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -8573,7 +8573,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -8635,7 +8635,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -8697,7 +8697,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -8759,7 +8759,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -8821,7 +8821,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -8883,7 +8883,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -8945,7 +8945,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -9007,7 +9007,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -9069,7 +9069,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -9131,7 +9131,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -9193,7 +9193,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -9255,7 +9255,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -9317,7 +9317,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -9379,7 +9379,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -9441,7 +9441,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },
@@ -9503,7 +9503,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "max",
+        "thinking_effort": "high",
         "api_model": "mistralai/mistral-large-4-0",
         "route": "openrouter_chat_completions"
       },

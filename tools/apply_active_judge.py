@@ -85,6 +85,9 @@ def write_json(path: Path, value: dict) -> None:
     path.write_text(json.dumps(value, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
 
+INDEX_FIELDS = ("model_key", "display_name", "provider", "evaluation_model_ids", "thinking_effort", "configuration_note", "mode")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--judge", default="deepseek_v4_pro", help="judge key whose scores become the active scores")
@@ -99,16 +102,15 @@ def main() -> None:
         model = json.loads(model_path.read_text(encoding="utf-8"))
         if model["model_key"] != model_path.stem:
             raise ValueError(f"model key does not match filename: {model_path}")
-        index["models"].append({
-            key: model.get(key)
-            for key in ("model_key", "display_name", "provider", "evaluation_model_ids", "thinking_effort", "configuration_note", "mode")
-        } | {"detail_file": f"models/{model_path.name}"})
+        index["models"].append({key: model.get(key) for key in INDEX_FIELDS} | {"detail_file": f"models/{model_path.name}"})
         known_keys.add(model_path.stem)
     for entry in index["models"]:
         model_path = DATA / entry["detail_file"]
         model = json.loads(model_path.read_text(encoding="utf-8"))
         apply(model, args.judge)
         write_json(model_path, model)
+        # The model file is the source of truth, so corrections there reach the index too.
+        entry.update({key: model.get(key) for key in INDEX_FIELDS})
         entry["summary"] = model["summary"]
 
     # Stable sort keeps the previous order for ties.

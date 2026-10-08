@@ -1,6 +1,6 @@
 {
   "schema_version": "razavi-bench.direct-qa.v1",
-  "generated_at": "2026-10-07T21:47:28.039043+00:00",
+  "generated_at": "2026-10-08T18:21:08.041854+00:00",
   "benchmark": {
     "mode": "direct_qa",
     "question_count": 50,
@@ -10001,8 +10001,8 @@
       "display_name": "Mistral Large 4",
       "provider": "mistral",
       "evaluation_model_ids": [],
-      "thinking_effort": "max",
-      "configuration_note": "Mistral Large 4 answered all 50 tasks in three rollouts through OpenRouter's chat completions route at maximum reasoning effort (max_tokens 131,072). Three answers that ended in a provider error or hit max_tokens were re-sampled; every attempt is counted in tokens and cost. Answers were graded by DeepSeek V4 Pro through OpenRouter with reasoning disabled. Cost uses OpenRouter's published Mistral Large 4 API price ($0.68 input, $0.07 cached input, $2.09 output per 1M tokens).",
+      "thinking_effort": "high",
+      "configuration_note": "Mistral Large 4 answered all 50 tasks in three rollouts through OpenRouter's chat completions route with reasoning effort max requested; OpenRouter lists only high and none for this model, so the run used high, its highest effort (max_tokens 131,072). Three answers that ended in a provider error or hit max_tokens were re-sampled; every attempt is counted in tokens and cost. Answers were graded by DeepSeek V4 Pro through OpenRouter with reasoning disabled. Cost uses OpenRouter's published Mistral Large 4 API price ($0.68 input, $0.07 cached input, $2.09 output per 1M tokens).",
       "mode": "direct_qa",
       "detail_file": "models/mistral_large_4_0.json",
       "summary": {
@@ -14571,7 +14571,7 @@
         216102
       ],
       "thinking_effort": "max",
-      "configuration_note": "Mistral Medium 3.5 via the OpenRouter Anthropic-compatible route; thinking budget 65,536 with effort=max. The published score is DeepSeek V4 Pro only.",
+      "configuration_note": "Mistral Medium 3.5 via the OpenRouter Anthropic-compatible route; thinking budget 65,536 with effort=max. OpenRouter standard price: $1.50/M input tokens and $7.50/M output tokens. The published score is DeepSeek V4 Pro only.",
       "mode": "direct_qa",
       "detail_file": "models/mistral_medium_35.json",
       "summary": {
