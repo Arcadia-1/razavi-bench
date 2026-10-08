@@ -21,9 +21,11 @@ from direct_qa_openrouter_common import (
     completed,
     endpoint as endpoint_for,
     load_tasks,
+    model_reasoning,
     payload as build_payload,
     read_jsonl,
     redact,
+    resolve_effort,
     write_json,
     write_jsonl,
 )
@@ -68,12 +70,32 @@ def public_record(task: dict[str, Any], rollout: int, figures: list[str], result
     }
 
 
+def check_effort(args: argparse.Namespace) -> dict[str, Any]:
+    """Resolve --effort against the efforts OpenRouter lists for the model, before any paid call."""
+    if args.skip_effort_check:
+        return {"checked": False, "effort": args.effort, "reason": "--skip-effort-check"}
+    reasoning = model_reasoning(args.base_url, args.model)
+    requested = args.effort
+    args.effort, notice = resolve_effort(requested, reasoning)
+    if notice:
+        print(f"note: {notice}", flush=True)
+    return {
+        "checked": True,
+        "requested": requested,
+        "effort": args.effort,
+        "supported_efforts": (reasoning or {}).get("supported_efforts"),
+        "notice": notice,
+    }
+
+
 def execute(args: argparse.Namespace, smoke: bool = False) -> dict[str, Any]:
     key = os.environ.get("OPENROUTER_API_KEY")
     if not key:
         raise ValueError("missing OPENROUTER_API_KEY")
     if min(args.concurrency, args.timeout, args.max_tokens, args.max_retries) < 1:
         raise ValueError("numeric arguments must be positive")
+
+    effort_check = check_effort(args)
 
     root = args.repo_root.resolve()
     output = args.output_dir.resolve()
@@ -122,6 +144,7 @@ def execute(args: argparse.Namespace, smoke: bool = False) -> dict[str, Any]:
         "valid_answers": len(rows),
         "text_answers": sum(not row["figures"] for row in rows),
         "image_answers": sum(bool(row["figures"]) for row in rows),
+        "effort_check": effort_check,
         "failures": failures,
         "judge_input": str(judge_input),
     }
@@ -178,7 +201,16 @@ def add_run_args(parser: argparse.ArgumentParser) -> None:
     parser.add_argument("--task-slug", action="append", default=[])
     parser.add_argument("--rollout", action="append", type=int, default=[])
     parser.add_argument("--base-url", default=DEFAULT_BASE_URL)
-    parser.add_argument("--effort", default="default")
+    parser.add_argument(
+        "--effort",
+        default="top",
+        help='reasoning effort: "top" (the highest the model lists, the default), "default" (provider default), or a listed effort such as high',
+    )
+    parser.add_argument(
+        "--skip-effort-check",
+        action="store_true",
+        help="do not check --effort against OpenRouter's model list (for endpoints that are not OpenRouter)",
+    )
     parser.add_argument("--max-tokens", type=int, default=131072)
     parser.add_argument("--timeout", type=int, default=5400)
     parser.add_argument("--concurrency", type=int, default=4)

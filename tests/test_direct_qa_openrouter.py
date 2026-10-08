@@ -71,6 +71,31 @@ class DirectQaOpenRouterTests(unittest.TestCase):
         self.assertFalse(result["ok"])
         self.assertEqual(post.call_count, 2)
 
+    def test_resolve_effort_checks_the_listed_efforts(self) -> None:
+        muse = {"supported_efforts": ["max", "xhigh", "high", "medium", "low", "minimal"]}
+        mistral = {"supported_efforts": ["high", "none"]}
+        self.assertEqual(COMMON.resolve_effort("top", muse), ("max", None))
+        self.assertEqual(COMMON.resolve_effort("max", muse), ("max", None))
+        effort, notice = COMMON.resolve_effort("xhigh", muse)
+        self.assertEqual(effort, "xhigh")
+        self.assertIn("below", notice)
+        with self.assertRaisesRegex(ValueError, "not supported"):
+            COMMON.resolve_effort("max", mistral)
+        self.assertEqual(COMMON.resolve_effort("top", mistral), ("high", None))
+        with self.assertRaisesRegex(ValueError, "does not expose"):
+            COMMON.resolve_effort("high", None)
+        self.assertEqual(COMMON.resolve_effort("default", None)[0], "default")
+        self.assertEqual(COMMON.resolve_effort("high", {"supported_efforts": None}), ("high", None))
+
+    def test_check_effort_rewrites_top_before_any_call(self) -> None:
+        args = argparse.Namespace(skip_effort_check=False, base_url="https://openrouter.ai/api", model="meta/example", effort="top")
+        with mock.patch.object(DIRECT, "model_reasoning", return_value={"supported_efforts": ["max", "high"]}):
+            report = DIRECT.check_effort(args)
+        self.assertEqual(args.effort, "max")
+        self.assertEqual(report["supported_efforts"], ["max", "high"])
+        skipped = argparse.Namespace(skip_effort_check=True, effort="high")
+        self.assertFalse(DIRECT.check_effort(skipped)["checked"])
+
     def test_canonicalize_creates_empty_output(self) -> None:
         with tempfile.TemporaryDirectory() as temp:
             path = Path(temp) / "nested" / "answers.jsonl"

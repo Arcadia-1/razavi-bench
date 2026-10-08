@@ -91,6 +91,46 @@ def payload(model: str, content: list[dict[str, Any]], effort: str, max_tokens: 
     return value
 
 
+def model_reasoning(base_url: str, model: str, timeout: int = 30) -> dict[str, Any] | None:
+    """Return the model's `reasoning` object from OpenRouter's public model list.
+
+    None means the model exposes no effort selection. Raises if the model is not listed.
+    """
+    base = base_url.rstrip("/")
+    url = f"{base}/models" if base.endswith("/v1") else f"{base}/v1/models"
+    with urllib.request.urlopen(url, timeout=timeout) as response:
+        models = json.loads(response.read().decode())["data"]
+    for entry in models:
+        if entry.get("id") == model:
+            return entry.get("reasoning")
+    raise ValueError(f"{model} is not in {url}; check the model id or pass --skip-effort-check")
+
+
+def resolve_effort(requested: str, reasoning: dict[str, Any] | None) -> tuple[str, str | None]:
+    """Check a requested effort against the efforts the model lists, highest first.
+
+    OpenRouter silently maps an unsupported effort to the nearest supported one, so an
+    unsupported request is an error here. "top" picks the highest listed effort; a lower
+    effort is allowed (some models are evaluated at several) but returns a notice.
+    """
+    supported = (reasoning or {}).get("supported_efforts")
+    if requested == "default":
+        return requested, "using the provider's default effort"
+    if reasoning is None:
+        raise ValueError(f"effort {requested!r} requested, but the model does not expose effort selection; use --effort default")
+    if not supported:
+        if requested == "top":
+            raise ValueError("the model accepts every effort without listing them; pass one explicitly")
+        return requested, None
+    if requested == "top":
+        return supported[0], None
+    if requested not in supported:
+        raise ValueError(f"effort {requested!r} is not supported; the model lists {', '.join(supported)} (highest first)")
+    if requested != supported[0]:
+        return requested, f"effort {requested!r} is below the model's highest effort {supported[0]!r}"
+    return requested, None
+
+
 def response_text(body: dict[str, Any]) -> tuple[str, str]:
     choice = (body.get("choices") or [{}])[0]
     message = choice.get("message") or {}

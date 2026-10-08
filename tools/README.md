@@ -54,7 +54,7 @@ python3 tools/direct_qa_openrouter.py probe \
   --model-family google \
   --experiment 2026-01-01-openrouter-smoke \
   --run-date 2026-01-01 \
-  --effort high \
+  --effort top \
   --max-tokens 131072
 ```
 
@@ -70,11 +70,20 @@ python3 tools/direct_qa_openrouter.py run \
   --experiment 2026-01-01-openrouter-full \
   --run-date 2026-01-01 \
   --rollout 1 --rollout 2 --rollout 3 \
-  --effort high \
+  --effort top \
   --max-tokens 131072 \
   --concurrency 20 \
   --resume
 ```
+
+Before any paid call, the runner checks `--effort` against the efforts
+OpenRouter lists for the model (`reasoning.supported_efforts` in its public
+model list), because OpenRouter silently maps an unsupported effort to the
+nearest supported one. `top` (the default) picks the highest listed effort; an
+explicit effort must be one the model lists, and one below the highest still
+runs (e.g. to compare several efforts) but prints a notice. The resolved effort
+and the listed efforts are recorded in `validation_report.json`. Pass
+`--skip-effort-check` only for endpoints that are not OpenRouter.
 
 The runner writes public answer JSONL, a redacted raw audit log, and a
 validation report under the selected output directory. Audit an existing run
@@ -84,9 +93,11 @@ without making network requests:
 python3 tools/direct_qa_openrouter.py audit \
   --output-dir experiments/my-openrouter-full \
   --output-prefix my-model \
-  --effort high \
+  --effort max \
   --rollout 1 --rollout 2 --rollout 3
 ```
+
+`audit` takes the effort the run resolved to (see `validation_report.json`).
 
 Raw logs, API responses, credentials, and local output directories should stay
 out of version control. The public repository contains only code and selected
