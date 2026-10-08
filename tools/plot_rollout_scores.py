@@ -2,7 +2,7 @@
 """Plot every model's Overall / Part 1 / Part 2 active score with its rollouts.
 
 Reads docs/data/direct_qa/index.json and writes two figures:
-docs/assets/direct_qa_rollout_mean_all_metrics.png (the README figure), where
+docs/assets/direct_qa_rollout_mean_all_metrics.png, where
 each model gets three bars, Overall (solid), Part 1 (lighter) and Part 2
 (hatched), and docs/assets/direct_qa_rollout_mean_overall.png, with only the
 Overall bar. Every bar has one dot per rollout and a black line across the

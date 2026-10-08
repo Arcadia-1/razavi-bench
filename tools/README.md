@@ -235,7 +235,7 @@ node tools/aggregate_questions.js
 ## `plot_rollout_scores.py`
 
 `plot_rollout_scores.py` draws two figures from `index.json`, each with one dot
-per rollout: the README figure `docs/assets/direct_qa_rollout_mean_all_metrics.png`
+per rollout: `docs/assets/direct_qa_rollout_mean_all_metrics.png`
 (Overall, Part 1 and Part 2 per model) and
 `docs/assets/direct_qa_rollout_mean_overall.png` (Overall only).
 
