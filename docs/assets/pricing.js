@@ -13,7 +13,7 @@ var PRICE={
   kimi_k3:[3,15,0.3], kimi_k27:[0.95,4,0.19], minimax_m3:[0.6,2.4,0.06], mimo_2_6_pro:[0.435,0.87,0.0036], inkling_small:[0.5,1.2,0.12],
   qwen_37_plus:[0.32,1.28,0.064], qwen_37_flash:[0.03,0.13,0.006], step_37_flash:[0.2,1.15,0.02],
   inkling:[1,4.05,0.2], gemma_4_31b_it:[0.09,0.34,0.018], llama_4_maverick:[0.2,0.8,0.04],
-  muse_spark_12:[1.25,4.25,0.15], deepseek_v41_flash:[0.15,0.6,0.003],
+  muse_spark_12:[1.25,4.25,0.15], muse_spark_13:[1.25,4.25,0.15], deepseek_v41_flash:[0.15,0.6,0.003],
   glm_5_3_flash:[0.15,0.5,0.03],
   mistral_medium_35:[1.5,7.5,1.5], mistral_large_2512:[0.5,1.5,0.05],
   mistral_large_4_0:[0.68,2.09,0.07],

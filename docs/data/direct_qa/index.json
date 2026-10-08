@@ -1,6 +1,6 @@
 {
   "schema_version": "razavi-bench.direct-qa.v1",
-  "generated_at": "2026-10-08T18:21:08.041854+00:00",
+  "generated_at": "2026-10-08T18:43:39.214055+00:00",
   "benchmark": {
     "mode": "direct_qa",
     "question_count": 50,
@@ -5535,6 +5535,274 @@
                 "2": 3,
                 "3": 2,
                 "4": 11
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "model_key": "muse_spark_13",
+      "display_name": "Muse Spark 1.3",
+      "provider": "meta",
+      "evaluation_model_ids": [],
+      "thinking_effort": "max",
+      "configuration_note": "Muse Spark 1.3 answered all 50 tasks in three rollouts through OpenRouter's chat completions route at reasoning effort max, the highest OpenRouter lists for this model (max_tokens 131,072). Two answers that ended in a provider error were re-sampled automatically; every attempt is counted in tokens and cost. Answers were graded by DeepSeek V4 Pro through OpenRouter with reasoning disabled. Cost uses OpenRouter's published Muse Spark 1.3 API price ($1.25 input, $0.15 cached input, $4.25 output per 1M tokens).",
+      "mode": "direct_qa",
+      "detail_file": "models/muse_spark_13.json",
+      "summary": {
+        "rollout_count": 3,
+        "answer_count": 150,
+        "scores": {
+          "overall": {
+            "deepseek_v4_pro": {
+              "response_count": 150,
+              "correct_count": 121,
+              "incorrect_count": 29,
+              "partial_credit_count": 23,
+              "zero_count": 6,
+              "mean_score_0_to_4": 3.466666666666667,
+              "score_percent": 86.66666666666667,
+              "score_distribution": {
+                "0": 6,
+                "1": 12,
+                "2": 9,
+                "3": 2,
+                "4": 121
+              }
+            },
+            "active": {
+              "response_count": 150,
+              "correct_count": 121,
+              "incorrect_count": 29,
+              "partial_credit_count": 23,
+              "zero_count": 6,
+              "mean_score_0_to_4": 3.466666666666667,
+              "score_percent": 86.66666666666667,
+              "score_distribution": {
+                "0": 6,
+                "1": 12,
+                "2": 9,
+                "3": 2,
+                "4": 121
+              }
+            }
+          },
+          "part1": {
+            "deepseek_v4_pro": {
+              "response_count": 90,
+              "correct_count": 84,
+              "incorrect_count": 6,
+              "partial_credit_count": 0,
+              "zero_count": 6,
+              "mean_score_0_to_4": 3.7333333333333334,
+              "score_percent": 93.33333333333333,
+              "score_distribution": {
+                "0": 6,
+                "4": 84
+              }
+            },
+            "active": {
+              "response_count": 90,
+              "correct_count": 84,
+              "incorrect_count": 6,
+              "partial_credit_count": 0,
+              "zero_count": 6,
+              "mean_score_0_to_4": 3.7333333333333334,
+              "score_percent": 93.33333333333333,
+              "score_distribution": {
+                "0": 6,
+                "4": 84
+              }
+            }
+          },
+          "part2": {
+            "deepseek_v4_pro": {
+              "response_count": 60,
+              "correct_count": 37,
+              "incorrect_count": 23,
+              "partial_credit_count": 23,
+              "zero_count": 0,
+              "mean_score_0_to_4": 3.066666666666667,
+              "score_percent": 76.66666666666667,
+              "score_distribution": {
+                "1": 12,
+                "2": 9,
+                "3": 2,
+                "4": 37
+              }
+            },
+            "active": {
+              "response_count": 60,
+              "correct_count": 37,
+              "incorrect_count": 23,
+              "partial_credit_count": 23,
+              "zero_count": 0,
+              "mean_score_0_to_4": 3.066666666666667,
+              "score_percent": 76.66666666666667,
+              "score_distribution": {
+                "1": 12,
+                "2": 9,
+                "3": 2,
+                "4": 37
+              }
+            }
+          }
+        },
+        "by_rollout": {
+          "1": {
+            "response_count": 50,
+            "correct_count": 39,
+            "incorrect_count": 11,
+            "partial_credit_count": 9,
+            "zero_count": 2,
+            "mean_score_0_to_4": 3.4,
+            "score_percent": 85.0,
+            "score_distribution": {
+              "0": 2,
+              "1": 5,
+              "2": 3,
+              "3": 1,
+              "4": 39
+            }
+          },
+          "2": {
+            "response_count": 50,
+            "correct_count": 41,
+            "incorrect_count": 9,
+            "partial_credit_count": 7,
+            "zero_count": 2,
+            "mean_score_0_to_4": 3.52,
+            "score_percent": 88.0,
+            "score_distribution": {
+              "0": 2,
+              "1": 3,
+              "2": 3,
+              "3": 1,
+              "4": 41
+            }
+          },
+          "3": {
+            "response_count": 50,
+            "correct_count": 41,
+            "incorrect_count": 9,
+            "partial_credit_count": 7,
+            "zero_count": 2,
+            "mean_score_0_to_4": 3.48,
+            "score_percent": 87.0,
+            "score_distribution": {
+              "0": 2,
+              "1": 4,
+              "2": 3,
+              "4": 41
+            }
+          }
+        },
+        "tokens": {
+          "response_count": 150,
+          "usage_record_count": 150,
+          "complete_usage_count": 150,
+          "missing_usage_count": 0,
+          "missing_cached_input_count": 0,
+          "complete": true,
+          "totals": {
+            "cached_input_tokens": 8588,
+            "input_tokens": 304516,
+            "output_tokens": 1409004,
+            "total_tokens": 1713520
+          },
+          "known_totals": {
+            "cached_input_tokens": 8588,
+            "input_tokens": 304516,
+            "output_tokens": 1409004,
+            "total_tokens": 1713520
+          }
+        },
+        "by_rollout_part": {
+          "part1": {
+            "1": {
+              "response_count": 30,
+              "correct_count": 28,
+              "incorrect_count": 2,
+              "partial_credit_count": 0,
+              "zero_count": 2,
+              "mean_score_0_to_4": 3.7333333333333334,
+              "score_percent": 93.33333333333333,
+              "score_distribution": {
+                "0": 2,
+                "4": 28
+              }
+            },
+            "2": {
+              "response_count": 30,
+              "correct_count": 28,
+              "incorrect_count": 2,
+              "partial_credit_count": 0,
+              "zero_count": 2,
+              "mean_score_0_to_4": 3.7333333333333334,
+              "score_percent": 93.33333333333333,
+              "score_distribution": {
+                "0": 2,
+                "4": 28
+              }
+            },
+            "3": {
+              "response_count": 30,
+              "correct_count": 28,
+              "incorrect_count": 2,
+              "partial_credit_count": 0,
+              "zero_count": 2,
+              "mean_score_0_to_4": 3.7333333333333334,
+              "score_percent": 93.33333333333333,
+              "score_distribution": {
+                "0": 2,
+                "4": 28
+              }
+            }
+          },
+          "part2": {
+            "1": {
+              "response_count": 20,
+              "correct_count": 11,
+              "incorrect_count": 9,
+              "partial_credit_count": 9,
+              "zero_count": 0,
+              "mean_score_0_to_4": 2.9,
+              "score_percent": 72.5,
+              "score_distribution": {
+                "1": 5,
+                "2": 3,
+                "3": 1,
+                "4": 11
+              }
+            },
+            "2": {
+              "response_count": 20,
+              "correct_count": 13,
+              "incorrect_count": 7,
+              "partial_credit_count": 7,
+              "zero_count": 0,
+              "mean_score_0_to_4": 3.2,
+              "score_percent": 80.0,
+              "score_distribution": {
+                "1": 3,
+                "2": 3,
+                "3": 1,
+                "4": 13
+              }
+            },
+            "3": {
+              "response_count": 20,
+              "correct_count": 13,
+              "incorrect_count": 7,
+              "partial_credit_count": 7,
+              "zero_count": 0,
+              "mean_score_0_to_4": 3.1,
+              "score_percent": 77.5,
+              "score_distribution": {
+                "1": 4,
+                "2": 3,
+                "4": 13
               }
             }
           }
