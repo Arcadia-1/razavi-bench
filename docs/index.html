@@ -1110,13 +1110,14 @@ function bTL(){
     type:"line",label:"Score frontier",data:frMonths.map(function(month,i){return{x:month,y:frScores[i]}}),
     borderColor:"#64748B",borderWidth:2,borderDash:[5,4],pointRadius:0,fill:false,tension:0,stepped:"before",order:1
   });
-  // Label the frontier models plus every model in the newest month.
+  // Label the frontier models plus every model in the newest month. A newest-month model
+  // that is also on the frontier is labelled on the right with the rest of its month.
   var labelModes={},newest=points.length?points[points.length-1].month:"",newestW=0;
   frontier.forEach(function(p){labelModes[p.m]="frontier"});
   var mctx=canvas.getContext("2d");
   mctx.font=REL_LABEL_FONT;
   points.forEach(function(p){
-    if(p.month!==newest||labelModes[p.m])return;
+    if(p.month!==newest)return;
     labelModes[p.m]="latest";
     newestW=Math.max(newestW,mctx.measureText(relLabelText(p)).width);
   });
