@@ -103,6 +103,35 @@ Raw logs, API responses, credentials, and local output directories should stay
 out of version control. The public repository contains only code and selected
 metadata; it does not contain local run artifacts.
 
+## Muse Code Direct-QA runner
+
+`direct_qa_muse_code.py` runs Meta models through the local Muse Code CLI
+(`muse exec`) on a Muse Code subscription and writes the same files as the
+OpenRouter runner, so judging and publishing are unchanged. Because Muse Code is
+a coding agent, each answer is locked down to one direct model call: shell,
+file writes, web tools and reminder agents are disabled and runs are capped at
+one model step. An attempt counts only if it completes with a non-empty answer
+from exactly one model call; otherwise (typically when the model tries to call a
+tool) it is re-sampled up to `--max-retries` times. The runner stops if Muse
+Code downgrades the requested effort. Token usage is read from Muse Code's
+session logs under `~/.local/share/muse/sessions`.
+
+```bash
+python3 tools/direct_qa_muse_code.py run \
+  --output-dir experiments/my-muse-run \
+  --output-prefix muse-code-my-model-max \
+  --model muse-wonder-full-1.0 \
+  --model-name "My Model" \
+  --experiment 2026-01-01-direct-qa \
+  --run-date 2026-01-01 \
+  --effort max \
+  --rollout 1 --rollout 2 --rollout 3 \
+  --concurrency 6 \
+  --resume
+```
+
+Pass `--route muse_code_exec` to `build_model_json.py` for these runs.
+
 ## `evaluate_answers.py`
 
 `evaluate_answers.py` scores saved answer JSONL files after model generation.
