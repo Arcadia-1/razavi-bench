@@ -18,7 +18,7 @@ Direct multimodal QA run generated with `tools/direct_qa_openrouter.py
 
 Rollout results are 83.50%, 87.00%, and 86.00%. Score distribution over 150
 answers: 113 fours, 11 threes, 7 twos, 14 ones, 5 zeros. The earlier DeepSeek
-V4.1 Flash entry (September snapshot, same judge) scored 80.50% (Part 1 86.11%,
+V4.1 Flash 0910 entry (September snapshot, same judge) scored 80.50% (Part 1 86.11%,
 Part 2 72.08%).
 
 One answer (`part1-020`, rollout 1) failed on its first request and was
