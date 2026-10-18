@@ -99,6 +99,12 @@ python3 tools/direct_qa_openrouter.py audit \
 
 `audit` takes the effort the run resolved to (see `validation_report.json`).
 
+The same runner calls other OpenAI-format APIs with `--provider`. With
+`--provider deepseek` it uses `https://api.deepseek.com` and `DEEPSEEK_API_KEY`,
+sends effort as `reasoning_effort` with thinking enabled, and accepts only
+`max`, `high` and `low` (`top` is `max`), because DeepSeek silently maps other
+efforts, e.g. `xhigh` to `high`.
+
 Raw logs, API responses, credentials, and local output directories should stay
 out of version control. The public repository contains only code and selected
 metadata; it does not contain local run artifacts.

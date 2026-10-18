@@ -79,7 +79,17 @@ def endpoint(base_url: str) -> str:
     return f"{base}/chat/completions" if base.endswith("/v1") else f"{base}/v1/chat/completions"
 
 
-def payload(model: str, content: list[dict[str, Any]], effort: str, max_tokens: int) -> dict[str, Any]:
+# Providers reachable with the same OpenAI-format Chat Completions request. Each entry
+# gives the default base URL, the key's environment variable and how effort is sent.
+PROVIDERS: dict[str, dict[str, Any]] = {
+    "openrouter": {"base_url": DEFAULT_BASE_URL, "key_env": "OPENROUTER_API_KEY"},
+    # DeepSeek silently maps unlisted efforts (xhigh -> high, ultra -> max), so only
+    # the efforts it actually distinguishes are accepted, highest first.
+    "deepseek": {"base_url": "https://api.deepseek.com", "key_env": "DEEPSEEK_API_KEY", "efforts": ["max", "high", "low"]},
+}
+
+
+def payload(model: str, content: list[dict[str, Any]], effort: str, max_tokens: int, provider: str = "openrouter") -> dict[str, Any]:
     value: dict[str, Any] = {
         "model": model,
         "messages": [{"role": "user", "content": content}],
@@ -87,7 +97,11 @@ def payload(model: str, content: list[dict[str, Any]], effort: str, max_tokens: 
         "stream": False,
     }
     if effort != "default":
-        value["reasoning"] = {"effort": effort}
+        if provider == "deepseek":
+            value["thinking"] = {"type": "enabled"}
+            value["reasoning_effort"] = effort
+        else:
+            value["reasoning"] = {"effort": effort}
     return value
 
 
@@ -166,6 +180,9 @@ def call_model(url: str, key: str, body: dict[str, Any], timeout: int, retries: 
             continue
         answer, finish_reason = response_text(response)
         usage = response.get("usage") or {}
+        if "prompt_cache_hit_tokens" in usage and not (usage.get("prompt_tokens_details") or {}).get("cached_tokens"):
+            # DeepSeek reports cache hits separately; publish them as cached input tokens.
+            usage = {**usage, "prompt_tokens_details": {**(usage.get("prompt_tokens_details") or {}), "cached_tokens": usage["prompt_cache_hit_tokens"]}}
         model = str(response.get("model") or "")
         total = int(usage.get("total_tokens") or 0)
         valid = bool(answer.strip() and finish_reason == "stop" and model and total > 0)

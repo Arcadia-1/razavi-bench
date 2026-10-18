@@ -22,6 +22,7 @@ from direct_qa_openrouter_common import (
     endpoint as endpoint_for,
     load_tasks,
     model_reasoning,
+    PROVIDERS,
     payload as build_payload,
     read_jsonl,
     redact,
@@ -74,7 +75,8 @@ def check_effort(args: argparse.Namespace) -> dict[str, Any]:
     """Resolve --effort against the efforts OpenRouter lists for the model, before any paid call."""
     if args.skip_effort_check:
         return {"checked": False, "effort": args.effort, "reason": "--skip-effort-check"}
-    reasoning = model_reasoning(args.base_url, args.model)
+    listed = PROVIDERS[args.provider].get("efforts")
+    reasoning = {"supported_efforts": listed} if listed else model_reasoning(args.base_url, args.model)
     requested = args.effort
     args.effort, notice = resolve_effort(requested, reasoning)
     if notice:
@@ -89,9 +91,11 @@ def check_effort(args: argparse.Namespace) -> dict[str, Any]:
 
 
 def execute(args: argparse.Namespace, smoke: bool = False) -> dict[str, Any]:
-    key = os.environ.get("OPENROUTER_API_KEY")
+    provider = PROVIDERS[args.provider]
+    args.base_url = args.base_url or provider["base_url"]
+    key = os.environ.get(provider["key_env"])
     if not key:
-        raise ValueError("missing OPENROUTER_API_KEY")
+        raise ValueError(f"missing {provider['key_env']}")
     if min(args.concurrency, args.timeout, args.max_tokens, args.max_retries) < 1:
         raise ValueError("numeric arguments must be positive")
 
@@ -113,9 +117,9 @@ def execute(args: argparse.Namespace, smoke: bool = False) -> dict[str, Any]:
     def one(job):
         rollout, task = job
         content, figures = build_content(root, task)
-        body = build_payload(args.model, content, args.effort, args.max_tokens)
+        body = build_payload(args.model, content, args.effort, args.max_tokens, args.provider)
         result = call_model(url, key, body, args.timeout, args.max_retries)
-        request = {"reasoning": body.get("reasoning"), "content_blocks": [part["type"] for part in content]}
+        request = {"reasoning": body.get("reasoning") or {"effort": body.get("reasoning_effort"), "thinking": body.get("thinking")}, "content_blocks": [part["type"] for part in content]}
         return rollout, task, figures, result, request
 
     with concurrent.futures.ThreadPoolExecutor(max_workers=args.concurrency) as pool:
@@ -200,7 +204,8 @@ def add_run_args(parser: argparse.ArgumentParser) -> None:
     parser.add_argument("--run-date", required=True)
     parser.add_argument("--task-slug", action="append", default=[])
     parser.add_argument("--rollout", action="append", type=int, default=[])
-    parser.add_argument("--base-url", default=DEFAULT_BASE_URL)
+    parser.add_argument("--provider", choices=sorted(PROVIDERS), default="openrouter", help="API to call; sets the default base URL, key variable and effort format")
+    parser.add_argument("--base-url", default=None, help="override the provider's base URL")
     parser.add_argument(
         "--effort",
         default="top",

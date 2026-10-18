@@ -88,13 +88,34 @@ class DirectQaOpenRouterTests(unittest.TestCase):
         self.assertEqual(COMMON.resolve_effort("high", {"supported_efforts": None}), ("high", None))
 
     def test_check_effort_rewrites_top_before_any_call(self) -> None:
-        args = argparse.Namespace(skip_effort_check=False, base_url="https://openrouter.ai/api", model="meta/example", effort="top")
+        args = argparse.Namespace(skip_effort_check=False, provider="openrouter", base_url="https://openrouter.ai/api", model="meta/example", effort="top")
         with mock.patch.object(DIRECT, "model_reasoning", return_value={"supported_efforts": ["max", "high"]}):
             report = DIRECT.check_effort(args)
         self.assertEqual(args.effort, "max")
         self.assertEqual(report["supported_efforts"], ["max", "high"])
         skipped = argparse.Namespace(skip_effort_check=True, effort="high")
         self.assertFalse(DIRECT.check_effort(skipped)["checked"])
+
+    def test_deepseek_sends_its_own_effort_fields(self) -> None:
+        body = COMMON.payload("deepseek-flash", [{"type": "text", "text": "q"}], "max", 128, "deepseek")
+        self.assertEqual(body["thinking"], {"type": "enabled"})
+        self.assertEqual(body["reasoning_effort"], "max")
+        self.assertNotIn("reasoning", body)
+        args = argparse.Namespace(skip_effort_check=False, provider="deepseek", base_url="https://api.deepseek.com", model="deepseek-flash", effort="top")
+        self.assertEqual(DIRECT.check_effort(args)["effort"], "max")
+        bad = argparse.Namespace(skip_effort_check=False, provider="deepseek", base_url="https://api.deepseek.com", model="deepseek-flash", effort="xhigh")
+        with self.assertRaisesRegex(ValueError, "not supported"):
+            DIRECT.check_effort(bad)
+
+    def test_deepseek_cache_hits_become_cached_input_tokens(self) -> None:
+        body = {
+            "model": "deepseek-flash",
+            "choices": [{"message": {"content": "answer"}, "finish_reason": "stop"}],
+            "usage": {"prompt_tokens": 100, "completion_tokens": 3, "total_tokens": 103, "prompt_cache_hit_tokens": 64},
+        }
+        with mock.patch.object(COMMON, "post_json", return_value=body):
+            result = DIRECT.call_model("https://api.deepseek.com/v1/chat/completions", "not-a-real-key", {}, 5, 1)
+        self.assertEqual(result["usage"]["prompt_tokens_details"]["cached_tokens"], 64)
 
     def test_canonicalize_creates_empty_output(self) -> None:
         with tempfile.TemporaryDirectory() as temp:
