@@ -1,6 +1,6 @@
 {
   "schema_version": "razavi-bench.direct-qa.v1",
-  "generated_at": "2026-10-14T09:44:26.581762+00:00",
+  "generated_at": "2026-10-18T15:02:00.976516+00:00",
   "benchmark": {
     "mode": "direct_qa",
     "question_count": 50,
@@ -6980,6 +6980,285 @@
         }
       },
       "detail_file": "models/qwen_38_max.json"
+    },
+    {
+      "model_key": "deepseek_v41_flash_1017",
+      "display_name": "DeepSeek V4.1 Flash 1017",
+      "provider": "deepseek",
+      "evaluation_model_ids": [],
+      "thinking_effort": "max",
+      "configuration_note": "DeepSeek V4.1 Flash 1017 (DeepSeek-V4.1-Flash-1017, released 2026-10-17) answered all 50 tasks in three rollouts through the official DeepSeek API (model deepseek-flash) with thinking enabled at reasoning effort max, the highest DeepSeek offers (max_tokens 131,072). One answer whose first request failed was re-sampled; every attempt is counted in tokens and cost. Answers were graded by DeepSeek V4 Pro through OpenRouter with reasoning disabled. Cost uses DeepSeek's off-peak API price, as for the earlier DeepSeek V4.1 Flash entry ($0.15 input, $0.003 cached input, $0.60 output per 1M tokens).",
+      "mode": "direct_qa",
+      "detail_file": "models/deepseek_v41_flash_1017.json",
+      "summary": {
+        "rollout_count": 3,
+        "answer_count": 150,
+        "scores": {
+          "overall": {
+            "deepseek_v4_pro": {
+              "response_count": 150,
+              "correct_count": 113,
+              "incorrect_count": 37,
+              "partial_credit_count": 32,
+              "zero_count": 5,
+              "mean_score_0_to_4": 3.42,
+              "score_percent": 85.5,
+              "score_distribution": {
+                "0": 5,
+                "1": 14,
+                "2": 7,
+                "3": 11,
+                "4": 113
+              }
+            },
+            "active": {
+              "response_count": 150,
+              "correct_count": 113,
+              "incorrect_count": 37,
+              "partial_credit_count": 32,
+              "zero_count": 5,
+              "mean_score_0_to_4": 3.42,
+              "score_percent": 85.5,
+              "score_distribution": {
+                "0": 5,
+                "1": 14,
+                "2": 7,
+                "3": 11,
+                "4": 113
+              }
+            }
+          },
+          "part1": {
+            "deepseek_v4_pro": {
+              "response_count": 90,
+              "correct_count": 79,
+              "incorrect_count": 11,
+              "partial_credit_count": 6,
+              "zero_count": 5,
+              "mean_score_0_to_4": 3.6222222222222222,
+              "score_percent": 90.55555555555556,
+              "score_distribution": {
+                "0": 5,
+                "1": 4,
+                "3": 2,
+                "4": 79
+              }
+            },
+            "active": {
+              "response_count": 90,
+              "correct_count": 79,
+              "incorrect_count": 11,
+              "partial_credit_count": 6,
+              "zero_count": 5,
+              "mean_score_0_to_4": 3.6222222222222222,
+              "score_percent": 90.55555555555556,
+              "score_distribution": {
+                "0": 5,
+                "1": 4,
+                "3": 2,
+                "4": 79
+              }
+            }
+          },
+          "part2": {
+            "deepseek_v4_pro": {
+              "response_count": 60,
+              "correct_count": 34,
+              "incorrect_count": 26,
+              "partial_credit_count": 26,
+              "zero_count": 0,
+              "mean_score_0_to_4": 3.1166666666666667,
+              "score_percent": 77.91666666666667,
+              "score_distribution": {
+                "1": 10,
+                "2": 7,
+                "3": 9,
+                "4": 34
+              }
+            },
+            "active": {
+              "response_count": 60,
+              "correct_count": 34,
+              "incorrect_count": 26,
+              "partial_credit_count": 26,
+              "zero_count": 0,
+              "mean_score_0_to_4": 3.1166666666666667,
+              "score_percent": 77.91666666666667,
+              "score_distribution": {
+                "1": 10,
+                "2": 7,
+                "3": 9,
+                "4": 34
+              }
+            }
+          }
+        },
+        "by_rollout": {
+          "1": {
+            "response_count": 50,
+            "correct_count": 35,
+            "incorrect_count": 15,
+            "partial_credit_count": 13,
+            "zero_count": 2,
+            "mean_score_0_to_4": 3.34,
+            "score_percent": 83.5,
+            "score_distribution": {
+              "0": 2,
+              "1": 4,
+              "2": 4,
+              "3": 5,
+              "4": 35
+            }
+          },
+          "2": {
+            "response_count": 50,
+            "correct_count": 39,
+            "incorrect_count": 11,
+            "partial_credit_count": 10,
+            "zero_count": 1,
+            "mean_score_0_to_4": 3.48,
+            "score_percent": 87.0,
+            "score_distribution": {
+              "0": 1,
+              "1": 5,
+              "2": 2,
+              "3": 3,
+              "4": 39
+            }
+          },
+          "3": {
+            "response_count": 50,
+            "correct_count": 39,
+            "incorrect_count": 11,
+            "partial_credit_count": 9,
+            "zero_count": 2,
+            "mean_score_0_to_4": 3.44,
+            "score_percent": 86.0,
+            "score_distribution": {
+              "0": 2,
+              "1": 5,
+              "2": 1,
+              "3": 3,
+              "4": 39
+            }
+          }
+        },
+        "tokens": {
+          "response_count": 150,
+          "usage_record_count": 150,
+          "complete_usage_count": 150,
+          "missing_usage_count": 0,
+          "missing_cached_input_count": 0,
+          "complete": true,
+          "totals": {
+            "cached_input_tokens": 66806,
+            "input_tokens": 125349,
+            "output_tokens": 3961397,
+            "total_tokens": 4086746
+          },
+          "known_totals": {
+            "cached_input_tokens": 66806,
+            "input_tokens": 125349,
+            "output_tokens": 3961397,
+            "total_tokens": 4086746
+          }
+        },
+        "by_rollout_part": {
+          "part1": {
+            "1": {
+              "response_count": 30,
+              "correct_count": 26,
+              "incorrect_count": 4,
+              "partial_credit_count": 2,
+              "zero_count": 2,
+              "mean_score_0_to_4": 3.6,
+              "score_percent": 90.0,
+              "score_distribution": {
+                "0": 2,
+                "1": 1,
+                "3": 1,
+                "4": 26
+              }
+            },
+            "2": {
+              "response_count": 30,
+              "correct_count": 27,
+              "incorrect_count": 3,
+              "partial_credit_count": 2,
+              "zero_count": 1,
+              "mean_score_0_to_4": 3.6666666666666665,
+              "score_percent": 91.66666666666666,
+              "score_distribution": {
+                "0": 1,
+                "1": 2,
+                "4": 27
+              }
+            },
+            "3": {
+              "response_count": 30,
+              "correct_count": 26,
+              "incorrect_count": 4,
+              "partial_credit_count": 2,
+              "zero_count": 2,
+              "mean_score_0_to_4": 3.6,
+              "score_percent": 90.0,
+              "score_distribution": {
+                "0": 2,
+                "1": 1,
+                "3": 1,
+                "4": 26
+              }
+            }
+          },
+          "part2": {
+            "1": {
+              "response_count": 20,
+              "correct_count": 9,
+              "incorrect_count": 11,
+              "partial_credit_count": 11,
+              "zero_count": 0,
+              "mean_score_0_to_4": 2.95,
+              "score_percent": 73.75,
+              "score_distribution": {
+                "1": 3,
+                "2": 4,
+                "3": 4,
+                "4": 9
+              }
+            },
+            "2": {
+              "response_count": 20,
+              "correct_count": 12,
+              "incorrect_count": 8,
+              "partial_credit_count": 8,
+              "zero_count": 0,
+              "mean_score_0_to_4": 3.2,
+              "score_percent": 80.0,
+              "score_distribution": {
+                "1": 3,
+                "2": 2,
+                "3": 3,
+                "4": 12
+              }
+            },
+            "3": {
+              "response_count": 20,
+              "correct_count": 13,
+              "incorrect_count": 7,
+              "partial_credit_count": 7,
+              "zero_count": 0,
+              "mean_score_0_to_4": 3.2,
+              "score_percent": 80.0,
+              "score_distribution": {
+                "1": 4,
+                "2": 1,
+                "3": 2,
+                "4": 13
+              }
+            }
+          }
+        }
+      }
     },
     {
       "model_key": "grok_45",
