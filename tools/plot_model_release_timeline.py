@@ -42,6 +42,7 @@ PROVIDER_STYLE = {
     "meta": ("Meta", "#0668E1"),
     "deepseek": ("DeepSeek", "#4D6BFE"),
     "mistral": ("Mistral", "#FF7000"),
+    "nvidia": ("NVIDIA", "#76B900"),
 }
 
 LABEL_OFFSETS = {
