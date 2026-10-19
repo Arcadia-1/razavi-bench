@@ -105,6 +105,12 @@ sends effort as `reasoning_effort` with thinking enabled, and accepts only
 `max`, `high` and `low` (`top` is `max`), because DeepSeek silently maps other
 efforts, e.g. `xhigh` to `high`.
 
+With `--provider nvidia` it calls NVIDIA's API catalog
+(`https://integrate.api.nvidia.com/v1`, `NVIDIA_API_KEY`). Nemotron models switch
+reasoning through the chat template, so the efforts are `high` (full thinking,
+`top`), `medium` (`medium_effort`) and `none`, and requests use the model card's
+reasoning sampling (temperature 1.0, top_p 0.95).
+
 Raw logs, API responses, credentials, and local output directories should stay
 out of version control. The public repository contains only code and selected
 metadata; it does not contain local run artifacts.

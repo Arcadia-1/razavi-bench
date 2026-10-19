@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import base64
+import http.client
 import json
 import mimetypes
 import re
@@ -86,6 +87,16 @@ PROVIDERS: dict[str, dict[str, Any]] = {
     # DeepSeek silently maps unlisted efforts (xhigh -> high, ultra -> max), so only
     # the efforts it actually distinguishes are accepted, highest first.
     "deepseek": {"base_url": "https://api.deepseek.com", "key_env": "DEEPSEEK_API_KEY", "efforts": ["max", "high", "low"]},
+    # NVIDIA's API catalog (build.nvidia.com). Nemotron models switch reasoning through the
+    # chat template: high is full thinking, medium adds medium_effort, none turns it off.
+    # Sampling follows the Nemotron 3.5 model card for reasoning: temperature 1.0, top_p 0.95.
+    "nvidia": {"base_url": "https://integrate.api.nvidia.com/v1", "key_env": "NVIDIA_API_KEY", "efforts": ["high", "medium", "none"],
+               "sampling": {"temperature": 1.0, "top_p": 0.95}},
+}
+NEMOTRON_THINKING = {
+    "high": {"enable_thinking": True},
+    "medium": {"enable_thinking": True, "medium_effort": True},
+    "none": {"enable_thinking": False},
 }
 
 
@@ -96,8 +107,11 @@ def payload(model: str, content: list[dict[str, Any]], effort: str, max_tokens: 
         "max_tokens": max_tokens,
         "stream": False,
     }
+    value.update(PROVIDERS.get(provider, {}).get("sampling", {}))
     if effort != "default":
-        if provider == "deepseek":
+        if provider == "nvidia":
+            value["chat_template_kwargs"] = NEMOTRON_THINKING[effort]
+        elif provider == "deepseek":
             value["thinking"] = {"type": "enabled"}
             value["reasoning_effort"] = effort
         else:
@@ -172,7 +186,9 @@ def call_model(url: str, key: str, body: dict[str, Any], timeout: int, retries: 
     for attempt in range(1, retries + 1):
         try:
             response = post_json(url, key, body, timeout)
-        except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError) as exc:
+        except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError, ConnectionError, http.client.HTTPException, json.JSONDecodeError) as exc:
+            # Long reasoning requests sometimes lose the connection mid-response
+            # (e.g. RemoteDisconnected); retry those like any other transient failure.
             attempts.append({"attempt": attempt, "error": redact(exc)})
             if attempt == retries:
                 return {"ok": False, "answer": "", "finish_reason": "", "response_model": "", "usage": {}, "attempts": attempts, "error": redact(exc)}

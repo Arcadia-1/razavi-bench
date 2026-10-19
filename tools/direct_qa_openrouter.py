@@ -119,7 +119,7 @@ def execute(args: argparse.Namespace, smoke: bool = False) -> dict[str, Any]:
         content, figures = build_content(root, task)
         body = build_payload(args.model, content, args.effort, args.max_tokens, args.provider)
         result = call_model(url, key, body, args.timeout, args.max_retries)
-        request = {"reasoning": body.get("reasoning") or {"effort": body.get("reasoning_effort"), "thinking": body.get("thinking")}, "content_blocks": [part["type"] for part in content]}
+        request = {"reasoning": body.get("reasoning") or {"effort": body.get("reasoning_effort"), "thinking": body.get("thinking"), "chat_template_kwargs": body.get("chat_template_kwargs")}, "sampling": {k: body[k] for k in ("temperature", "top_p") if k in body}, "content_blocks": [part["type"] for part in content]}
         return rollout, task, figures, result, request
 
     with concurrent.futures.ThreadPoolExecutor(max_workers=args.concurrency) as pool:

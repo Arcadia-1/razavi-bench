@@ -107,6 +107,15 @@ class DirectQaOpenRouterTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "not supported"):
             DIRECT.check_effort(bad)
 
+    def test_nvidia_switches_nemotron_thinking_through_the_chat_template(self) -> None:
+        body = COMMON.payload("nvidia/nemotron", [{"type": "text", "text": "q"}], "high", 128, "nvidia")
+        self.assertEqual(body["chat_template_kwargs"], {"enable_thinking": True})
+        self.assertEqual((body["temperature"], body["top_p"]), (1.0, 0.95))
+        medium = COMMON.payload("nvidia/nemotron", [], "medium", 128, "nvidia")
+        self.assertTrue(medium["chat_template_kwargs"]["medium_effort"])
+        args = argparse.Namespace(skip_effort_check=False, provider="nvidia", base_url=None, model="nvidia/nemotron", effort="top")
+        self.assertEqual(DIRECT.check_effort(args)["effort"], "high")
+
     def test_deepseek_cache_hits_become_cached_input_tokens(self) -> None:
         body = {
             "model": "deepseek-flash",
