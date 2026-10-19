@@ -17,6 +17,7 @@ var PRICE={
   glm_5_3_flash:[0.15,0.5,0.03],
   mistral_medium_35:[1.5,7.5,1.5], mistral_large_2512:[0.5,1.5,0.05],
   mistral_large_4_0:[0.68,2.09,0.07],
+  nemotron_35_super_vl:[0.1,0.4,0.08],
   gpt_5:[1.25,10,0.125], gpt_4o_mini:[0.15,0.6,0.075],
   gemini_25_pro:[1.25,12,0.125], gemini_25_flash_lite:[0.1,0.4,0.01],
   claude_sonnet_4:[3,15,0.3], claude_haiku_45:[1,5,0.2], claude_haiku_55:[0.1,0.5,0.01],
