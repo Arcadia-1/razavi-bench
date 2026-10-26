@@ -209,32 +209,35 @@ python3 tools/evaluate_answers.py \
   --resume
 ```
 
-For the standard Razavi-Bench DeepSeek V4 Pro judge, use the public launcher so
-the endpoint, model, key environment variable, JSON mode, and disabled thinking
-mode are consistent:
-
-```bash
-export DEEPSEEK_API_KEY=...
-python3 tools/run_deepseek_v4_pro.py \
-  --input experiments/my-openrouter-full/judge_input.jsonl \
-  --output experiments/my-openrouter-full/judge_outputs/deepseek-v4-pro.jsonl \
-  --concurrency 6 \
-  --resume
-```
-
-The judge can also run through OpenRouter, so one `OPENROUTER_API_KEY` covers
-both generation and grading. Recent runs use DeepSeek V4 Pro there with
-reasoning disabled:
+The standard Razavi-Bench judge is GPT-6 Luna at maximum reasoning effort,
+called through OpenRouter, so one `OPENROUTER_API_KEY` covers both generation
+and grading. Every published answer was re-graded with it on 2026-10-27; at
+about $0.0012 per answer, a 150-answer run costs roughly $0.20 to grade:
 
 ```bash
 python3 tools/evaluate_answers.py \
   --input experiments/my-openrouter-full/judge_input.jsonl \
-  --output experiments/my-openrouter-full/judge_outputs/deepseek-v4-pro.scores.jsonl \
+  --output experiments/my-openrouter-full/judge_outputs/gpt-6-luna-max.scores.jsonl \
   --api-url https://openrouter.ai/api/v1/chat/completions \
-  --model deepseek/deepseek-v4-pro \
+  --model openai/gpt-6-luna \
   --api-key-env OPENROUTER_API_KEY \
-  --json-mode --thinking-mode disabled --openrouter-reasoning \
-  --max-tokens 8192 --concurrency 5 --resume
+  --json-mode --reasoning-effort max \
+  --max-tokens 128000 --timeout 1800 --concurrency 15 --resume
+```
+
+Earlier entries were graded by DeepSeek V4 Pro with reasoning disabled
+(`tools/run_deepseek_v4_pro.py`, or `--model deepseek/deepseek-v4-pro
+--thinking-mode disabled --openrouter-reasoning` through OpenRouter); those
+scores stay in the model files under `deepseek_v4_pro` for audit.
+
+To add a judge's scores for already-published models, write one score file per
+model and import them, then make that judge active:
+
+```bash
+python3 tools/add_judge_scores.py --judge-key gpt_6_luna_max \
+  --judge-model openai/gpt-6-luna --scores-dir path/to/scores --suffix .scores.jsonl
+python3 tools/apply_active_judge.py --judge gpt_6_luna_max
+node tools/aggregate_questions.js
 ```
 
 ## `build_model_json.py`
@@ -259,7 +262,7 @@ python3 tools/build_model_json.py \
   --answers experiments/my-openrouter-full/model_outputs/my-model-rollout-1.jsonl \
   --answers experiments/my-openrouter-full/model_outputs/my-model-rollout-2.jsonl \
   --answers experiments/my-openrouter-full/model_outputs/my-model-rollout-3.jsonl \
-  --scores experiments/my-openrouter-full/judge_outputs/deepseek-v4-pro.scores.jsonl \
+  --scores experiments/my-openrouter-full/judge_outputs/gpt-6-luna-max.scores.jsonl \
   --raw-log experiments/my-openrouter-full/raw_logs.jsonl
 ```
 
@@ -282,7 +285,7 @@ auditability, but use this directory for new scoring runs.
 ## `apply_active_judge.py`
 
 `apply_active_judge.py` makes one judge authoritative for the published Direct
-QA data (default: `deepseek_v4_pro`). It sets every answer's `active_score` from
+QA data (default: `gpt_6_luna_max`). It sets every answer's `active_score` from
 that judge, recomputes each model's summaries, including per-rollout scores for
 each part (`summary.by_rollout_part`), rewrites `docs/data/direct_qa/models/` and
 `index.json`, and re-ranks the index. New model JSON files are added to the

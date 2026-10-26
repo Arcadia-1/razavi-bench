@@ -304,7 +304,7 @@ def main() -> None:
     parser.add_argument("--configuration-note", required=True, help="how the run was configured and priced")
     parser.add_argument("--answers", type=Path, action="append", required=True, help="answer JSONL; repeat once per rollout")
     parser.add_argument("--scores", type=Path, required=True, help="judge score JSONL from evaluate_answers.py")
-    parser.add_argument("--judge-key", default="deepseek_v4_pro")
+    parser.add_argument("--judge-key", default="gpt_6_luna_max")
     usage = parser.add_mutually_exclusive_group(required=True)
     usage.add_argument("--raw-log", type=Path, help="raw_logs.jsonl written by direct_qa_openrouter.py")
     usage.add_argument("--tokens", type=Path, help='token manifest keyed "<rollout>:<task_slug>"')

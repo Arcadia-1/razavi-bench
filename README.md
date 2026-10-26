@@ -35,8 +35,8 @@ curated golden answer under `tasks/`. The leaderboard, every model answer, and
 the judge's scores are on the website.
 
 To evaluate a model yourself, see [`tools/README.md`](tools/README.md): one
-OpenRouter key runs the 50 tasks, grades them with the DeepSeek V4 Pro judge,
-and builds the website data.
+OpenRouter key runs the 50 tasks, grades them with the GPT-6 Luna judge at
+maximum reasoning effort, and builds the website data.
 
 ## Citation
 

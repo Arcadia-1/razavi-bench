@@ -42,6 +42,7 @@ class BuildModelJsonTests(unittest.TestCase):
                 *answers,
                 "--scores", str(EXPERIMENT / "judge_outputs/openrouter-deepseek-v4-pro-no-thinking-20261001/openrouter-gpt-6-1-sol.scores.jsonl"),
                 "--tokens", str(outputs / "openrouter-gpt-6-1-sol-tokens.json"),
+                "--judge-key", "deepseek_v4_pro",
                 "--output", str(generic),
             )
             self.assertEqual(result.returncode, 0, result.stderr)

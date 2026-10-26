@@ -90,7 +90,7 @@ INDEX_FIELDS = ("model_key", "display_name", "provider", "evaluation_model_ids",
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    parser.add_argument("--judge", default="deepseek_v4_pro", help="judge key whose scores become the active scores")
+    parser.add_argument("--judge", default="gpt_6_luna_max", help="judge key whose scores become the active scores")
     args = parser.parse_args()
 
     index_path = DATA / "index.json"
