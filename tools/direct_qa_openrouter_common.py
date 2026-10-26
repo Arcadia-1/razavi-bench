@@ -94,7 +94,8 @@ PROVIDERS: dict[str, dict[str, Any]] = {
     # effort is silently treated as the default, so only the levels it distinguishes are accepted.
     "moonshot": {"base_url": "https://api.moonshot.ai/v1", "key_env": "MOONSHOT_API_KEY", "efforts": ["max", "high", "low"]},
     # MiniMax (mainland platform; Token Plan keys work there): reasoning_effort, thinking always on.
-    "minimax": {"base_url": "https://api.minimaxi.com/v1", "key_env": "MINIMAX_API_KEY", "efforts": ["max", "xhigh", "high", "medium", "low"]},
+    # Answers that reason for ~10 minutes lose an idle non-streamed connection, so stream.
+    "minimax": {"base_url": "https://api.minimaxi.com/v1", "key_env": "MINIMAX_API_KEY", "efforts": ["max", "xhigh", "high", "medium", "low"], "stream": True},
     "nvidia": {"base_url": "https://integrate.api.nvidia.com/v1", "key_env": "NVIDIA_API_KEY", "efforts": ["high", "medium", "none"],
                "sampling": {"temperature": 1.0, "top_p": 0.95}},
 }
@@ -113,6 +114,9 @@ def payload(model: str, content: list[dict[str, Any]], effort: str, max_tokens: 
         "stream": False,
     }
     value.update(PROVIDERS.get(provider, {}).get("sampling", {}))
+    if PROVIDERS.get(provider, {}).get("stream"):
+        value["stream"] = True
+        value["stream_options"] = {"include_usage": True}
     if effort != "default":
         if provider == "nvidia":
             value["chat_template_kwargs"] = NEMOTRON_THINKING[effort]
@@ -188,11 +192,42 @@ def post_json(url: str, key: str, body: dict[str, Any], timeout: int) -> dict[st
         return json.loads(response.read().decode())
 
 
+def post_stream(url: str, key: str, body: dict[str, Any], timeout: int) -> dict[str, Any]:
+    """POST a streaming request and reassemble it into a non-streamed response body.
+
+    A streamed connection keeps receiving data while the model reasons, so long answers
+    are not dropped as idle the way a silent non-streamed request can be.
+    """
+    request = urllib.request.Request(
+        url,
+        data=json.dumps(body, ensure_ascii=False).encode(),
+        headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json", "HTTP-Referer": "https://razavi-bench.tokenzhang.com", "X-Title": "Razavi-Bench Direct QA"},
+        method="POST",
+    )
+    content: list[str] = []
+    model, finish_reason, usage = "", None, None
+    with urllib.request.urlopen(request, timeout=timeout) as response:
+        for raw in response:
+            line = raw.decode().strip()
+            if not line.startswith("data:"):
+                continue
+            data = line[5:].strip()
+            if data == "[DONE]":
+                break
+            event = json.loads(data)
+            model = event.get("model") or model
+            usage = event.get("usage") or usage
+            for choice in event.get("choices") or []:
+                content.append((choice.get("delta") or {}).get("content") or "")
+                finish_reason = choice.get("finish_reason") or finish_reason
+    return {"model": model, "choices": [{"message": {"content": "".join(content)}, "finish_reason": finish_reason}], "usage": usage or {}}
+
+
 def call_model(url: str, key: str, body: dict[str, Any], timeout: int, retries: int) -> dict[str, Any]:
     attempts = []
     for attempt in range(1, retries + 1):
         try:
-            response = post_json(url, key, body, timeout)
+            response = (post_stream if body.get("stream") else post_json)(url, key, body, timeout)
         except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError, ConnectionError, http.client.HTTPException, json.JSONDecodeError) as exc:
             # Long reasoning requests sometimes lose the connection mid-response
             # (e.g. RemoteDisconnected); retry those like any other transient failure.

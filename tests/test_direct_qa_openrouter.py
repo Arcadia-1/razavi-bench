@@ -128,6 +128,26 @@ class DirectQaOpenRouterTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "not supported"):
             DIRECT.check_effort(bad)
 
+    def test_minimax_streams_and_reassembles_the_answer(self) -> None:
+        body = COMMON.payload("MiniMax-M", [], "max", 128, "minimax")
+        self.assertTrue(body["stream"])
+        self.assertEqual(body["stream_options"], {"include_usage": True})
+        self.assertFalse(COMMON.payload("deepseek-flash", [], "max", 128, "deepseek")["stream"])
+        events = [
+            b'data: {"model":"MiniMax-M","choices":[{"delta":{"reasoning_content":"thinking"}}]}\n',
+            b'data: {"model":"MiniMax-M","choices":[{"delta":{"content":"ans"}}]}\n',
+            b'data: {"model":"MiniMax-M","choices":[{"delta":{"content":"wer"},"finish_reason":"stop"}]}\n',
+            b'data: {"choices":[],"usage":{"prompt_tokens":5,"completion_tokens":7,"total_tokens":12}}\n',
+            b'data: [DONE]\n',
+        ]
+        response = mock.MagicMock()
+        response.__enter__.return_value = iter(events)
+        with mock.patch.object(COMMON.urllib.request, "urlopen", return_value=response):
+            result = DIRECT.call_model("https://api.minimaxi.com/v1/chat/completions", "not-a-real-key", body, 5, 1)
+        self.assertTrue(result["ok"])
+        self.assertEqual(result["answer"], "answer")
+        self.assertEqual(result["usage"]["total_tokens"], 12)
+
     def test_deepseek_cache_hits_become_cached_input_tokens(self) -> None:
         body = {
             "model": "deepseek-flash",
