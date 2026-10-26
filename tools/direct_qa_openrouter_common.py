@@ -90,6 +90,9 @@ PROVIDERS: dict[str, dict[str, Any]] = {
     # NVIDIA's API catalog (build.nvidia.com). Nemotron models switch reasoning through the
     # chat template: high is full thinking, medium adds medium_effort, none turns it off.
     # Sampling follows the Nemotron 3.5 model card for reasoning: temperature 1.0, top_p 0.95.
+    # Moonshot (Kimi): reasoning_effort only; thinking cannot be turned off, and an unknown
+    # effort is silently treated as the default, so only the levels it distinguishes are accepted.
+    "moonshot": {"base_url": "https://api.moonshot.ai/v1", "key_env": "MOONSHOT_API_KEY", "efforts": ["max", "high", "low"]},
     "nvidia": {"base_url": "https://integrate.api.nvidia.com/v1", "key_env": "NVIDIA_API_KEY", "efforts": ["high", "medium", "none"],
                "sampling": {"temperature": 1.0, "top_p": 0.95}},
 }
@@ -111,6 +114,8 @@ def payload(model: str, content: list[dict[str, Any]], effort: str, max_tokens: 
     if effort != "default":
         if provider == "nvidia":
             value["chat_template_kwargs"] = NEMOTRON_THINKING[effort]
+        elif provider == "moonshot":
+            value["reasoning_effort"] = effort
         elif provider == "deepseek":
             value["thinking"] = {"type": "enabled"}
             value["reasoning_effort"] = effort

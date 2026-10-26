@@ -105,6 +105,11 @@ sends effort as `reasoning_effort` with thinking enabled, and accepts only
 `max`, `high` and `low` (`top` is `max`), because DeepSeek silently maps other
 efforts, e.g. `xhigh` to `high`.
 
+With `--provider moonshot` it calls the Kimi API (`https://api.moonshot.ai/v1`,
+`MOONSHOT_API_KEY`) and sends `reasoning_effort`; thinking cannot be turned off,
+and Kimi silently treats an unknown effort as the default, so only `max`, `high`
+and `low` are accepted (`top` is `max`).
+
 With `--provider nvidia` it calls NVIDIA's API catalog
 (`https://integrate.api.nvidia.com/v1`, `NVIDIA_API_KEY`). Nemotron models switch
 reasoning through the chat template, so the efforts are `high` (full thinking,

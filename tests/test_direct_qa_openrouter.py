@@ -116,6 +116,15 @@ class DirectQaOpenRouterTests(unittest.TestCase):
         args = argparse.Namespace(skip_effort_check=False, provider="nvidia", base_url=None, model="nvidia/nemotron", effort="top")
         self.assertEqual(DIRECT.check_effort(args)["effort"], "high")
 
+    def test_moonshot_sends_reasoning_effort_only(self) -> None:
+        body = COMMON.payload("kimi-model", [{"type": "text", "text": "q"}], "max", 128, "moonshot")
+        self.assertEqual(body["reasoning_effort"], "max")
+        self.assertNotIn("thinking", body)
+        self.assertNotIn("reasoning", body)
+        bad = argparse.Namespace(skip_effort_check=False, provider="moonshot", base_url=None, model="kimi-model", effort="ultra")
+        with self.assertRaisesRegex(ValueError, "not supported"):
+            DIRECT.check_effort(bad)
+
     def test_deepseek_cache_hits_become_cached_input_tokens(self) -> None:
         body = {
             "model": "deepseek-flash",
