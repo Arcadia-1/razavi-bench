@@ -121,6 +121,9 @@ class DirectQaOpenRouterTests(unittest.TestCase):
         self.assertEqual(body["reasoning_effort"], "max")
         self.assertNotIn("thinking", body)
         self.assertNotIn("reasoning", body)
+        self.assertEqual(COMMON.payload("MiniMax-M", [], "max", 128, "minimax")["reasoning_effort"], "max")
+        top = argparse.Namespace(skip_effort_check=False, provider="minimax", base_url=None, model="MiniMax-M", effort="top")
+        self.assertEqual(DIRECT.check_effort(top)["effort"], "max")
         bad = argparse.Namespace(skip_effort_check=False, provider="moonshot", base_url=None, model="kimi-model", effort="ultra")
         with self.assertRaisesRegex(ValueError, "not supported"):
             DIRECT.check_effort(bad)

@@ -93,6 +93,8 @@ PROVIDERS: dict[str, dict[str, Any]] = {
     # Moonshot (Kimi): reasoning_effort only; thinking cannot be turned off, and an unknown
     # effort is silently treated as the default, so only the levels it distinguishes are accepted.
     "moonshot": {"base_url": "https://api.moonshot.ai/v1", "key_env": "MOONSHOT_API_KEY", "efforts": ["max", "high", "low"]},
+    # MiniMax (mainland platform; Token Plan keys work there): reasoning_effort, thinking always on.
+    "minimax": {"base_url": "https://api.minimaxi.com/v1", "key_env": "MINIMAX_API_KEY", "efforts": ["max", "xhigh", "high", "medium", "low"]},
     "nvidia": {"base_url": "https://integrate.api.nvidia.com/v1", "key_env": "NVIDIA_API_KEY", "efforts": ["high", "medium", "none"],
                "sampling": {"temperature": 1.0, "top_p": 0.95}},
 }
@@ -114,7 +116,7 @@ def payload(model: str, content: list[dict[str, Any]], effort: str, max_tokens: 
     if effort != "default":
         if provider == "nvidia":
             value["chat_template_kwargs"] = NEMOTRON_THINKING[effort]
-        elif provider == "moonshot":
+        elif provider in ("moonshot", "minimax"):
             value["reasoning_effort"] = effort
         elif provider == "deepseek":
             value["thinking"] = {"type": "enabled"}

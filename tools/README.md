@@ -110,6 +110,11 @@ With `--provider moonshot` it calls the Kimi API (`https://api.moonshot.ai/v1`,
 and Kimi silently treats an unknown effort as the default, so only `max`, `high`
 and `low` are accepted (`top` is `max`).
 
+With `--provider minimax` it calls MiniMax's mainland platform
+(`https://api.minimaxi.com/v1`, `MINIMAX_API_KEY`; Token Plan keys work there)
+and sends `reasoning_effort` (`max`, `xhigh`, `high`, `medium`, `low`; `top` is
+`max`). Thinking is always on and MiniMax rejects unknown efforts.
+
 With `--provider nvidia` it calls NVIDIA's API catalog
 (`https://integrate.api.nvidia.com/v1`, `NVIDIA_API_KEY`). Nemotron models switch
 reasoning through the chat template, so the efforts are `high` (full thinking,
