@@ -370,7 +370,7 @@ section h2{line-height:1.2}
     </div>
     <div class="hero-meta">
       <div class="meta-row"><span class="meta-key">Tasks</span><span class="meta-val">50</span></div>
-      <div class="meta-row"><span class="meta-key">Models</span><span class="meta-val" id="modelCount">54</span></div>
+      <div class="meta-row"><span class="meta-key">Models</span><span class="meta-val" id="modelCount" aria-busy="true">&nbsp;</span></div>
       <div class="meta-row"><span class="meta-key">Multimodal</span><span class="meta-val">Yes</span></div>
     </div>
   </div>
@@ -543,7 +543,8 @@ function loadBenchmarkData(){
       return{m:m.model_key,d:m.display_name,pv:m.provider||"",e:eff,t:tk?Math.round(tk.total_tokens/1000)+"k":"",cost:computeCost(m.model_key,tk),tok:bd?bd.tok:null,costParts:bd?bd.cost:null,o:section("overall"),p1:section("part1"),p2:section("part2")};
     });
     DD.forEach(function(d,i){BC[d.m]=PALETTE[i%PALETTE.length]});
-    var mc=document.getElementById("modelCount");if(mc)mc.textContent=String(DD.length);
+    // The count is filled in from the data, so the page never shows a stale hard-coded number.
+    var mc=document.getElementById("modelCount");if(mc){mc.textContent=String(DD.length);mc.removeAttribute("aria-busy");}
     return DD;
   }).catch(function(err){
     console.error("Failed to load benchmark data:",err);
