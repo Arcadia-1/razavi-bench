@@ -1,6 +1,6 @@
 {
   "schema_version": "razavi-bench.direct-qa.v1",
-  "generated_at": "2026-10-19T17:45:39.817134+00:00",
+  "generated_at": "2026-10-26T11:42:19.963339+00:00",
   "benchmark": {
     "mode": "direct_qa",
     "question_count": 50,
@@ -18259,7 +18259,7 @@
       "provider": "nvidia",
       "evaluation_model_ids": [],
       "thinking_effort": "high",
-      "configuration_note": "Nemotron 3.5 Super VL (NVIDIA-Nemotron-3.5-Super-VL-120B-A12B, released 2026-10-15) answered all 50 tasks in three rollouts through NVIDIA's API catalog with full reasoning (enable_thinking, the highest of its off / medium / on levels), temperature 1.0 and top_p 0.95 as its model card recommends (max_tokens 131,072). Its visible answers are very short: the median answer is about 30 characters and often just Yes or No, with the analysis left in the reasoning trace, which the judge does not see. Requests that hit server errors or dropped connections were retried. Answers were graded by DeepSeek V4 Pro through OpenRouter with reasoning disabled. Cost is computed at OpenRouter's Nemotron 3.5 Super VL price ($0.10 input, $0.08 cached input, $0.40 output per 1M tokens); NVIDIA's trial API itself is free.",
+      "configuration_note": "Nemotron 3.5 Super VL (NVIDIA-Nemotron-3.5-Super-VL-120B-A12B, released 2026-10-15) answered all 50 tasks in three rollouts through NVIDIA's API catalog with full reasoning (enable_thinking, the highest of its off / medium / on levels), temperature 1.0 and top_p 0.95 as its model card recommends (max_tokens 131,072). Its visible answers are very short (median about 30 characters, often just Yes or No), with the analysis left in the reasoning trace, which the judge does not see. A bare correct conclusion can still score 4; most lost credit comes from wrong conclusions and from open questions answered with only a topology name. Requests that hit server errors or dropped connections were retried. Answers were graded by DeepSeek V4 Pro through OpenRouter with reasoning disabled. Cost is computed at OpenRouter's Nemotron 3.5 Super VL price ($0.10 input, $0.08 cached input, $0.40 output per 1M tokens); NVIDIA's trial API itself is free.",
       "mode": "direct_qa",
       "detail_file": "models/nemotron_35_super_vl.json",
       "summary": {

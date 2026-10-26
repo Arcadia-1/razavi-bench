@@ -23,10 +23,14 @@ Each rollout scored 44.50%. Score distribution over 150 answers: 45 fours, 5
 threes, 9 twos, 54 ones, 37 zeros.
 
 The visible answers are very short: the median answer is about 30 characters
-and 65% are 40 characters or fewer, often just "Yes" or "No". The model keeps
-its analysis in the reasoning trace (median about 7,100 reasoning tokens per
-answer), which the judge does not see, so even correct conclusions earn little
-credit when they come without the mechanism. A direct re-check of `part1-006`
+and 65% are 40 characters or fewer, often just "Yes" or "No", with the analysis
+left in the reasoning trace (median about 7,100 reasoning tokens per answer),
+which the judge does not see. A bare correct conclusion can still earn full
+credit (a plain "No" to `part1-006` scored 4). The low score comes from wrong
+conclusions (33 of the 97 answers of 40 characters or fewer scored 0) and from
+open questions such as "Analyze the circuit" answered with only a topology name
+(for example "Source Follower", scored 1). Answers of 40 characters or fewer
+average 32.7%; longer answers average 66.0%. A direct re-check of `part1-006`
 showed a 36,689-character reasoning trace that planned a full explanation,
 followed by a final answer of "No". The chat template has no option to force a
 fuller final answer, and the benchmark prompt was not changed for this model.
