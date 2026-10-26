@@ -15,6 +15,7 @@ from __future__ import annotations
 import argparse
 import asyncio
 import hashlib
+import http.client
 import json
 import os
 import re
@@ -314,6 +315,7 @@ def call_judge_once(
     json_mode: bool,
     thinking_mode: str,
     openrouter_reasoning: bool,
+    reasoning_effort: str | None = None,
 ) -> tuple[str, dict[str, Any]]:
     messages = [
         {"role": "system", "content": JUDGE_SYSTEM},
@@ -334,6 +336,9 @@ def call_judge_once(
                 payload["reasoning"] = {"enabled": thinking_mode == "enabled"}
             else:
                 payload["thinking"] = {"type": thinking_mode}
+        if reasoning_effort:
+            # OpenRouter's unified effort control; it also turns reasoning on.
+            payload["reasoning"] = {"effort": reasoning_effort}
         body = post_json(api_url, api_key, payload, timeout)
         return response_text_from_chat(body), body
 
@@ -374,8 +379,11 @@ def call_judge_with_retries(args: argparse.Namespace, api_key: str, prompt: str)
                 json_mode=args.json_mode,
                 thinking_mode=args.thinking_mode,
                 openrouter_reasoning=args.openrouter_reasoning,
+                reasoning_effort=args.reasoning_effort,
             )
             result = normalize_score(extract_json_object(text))
+            # Keep the judge's own token usage so judging cost can be reported.
+            result["judge_usage"] = raw_body.get("usage") or {}
             if args.include_raw_response:
                 result["raw_response"] = raw_body
             return result
@@ -383,6 +391,8 @@ def call_judge_with_retries(args: argparse.Namespace, api_key: str, prompt: str)
             urllib.error.HTTPError,
             urllib.error.URLError,
             TimeoutError,
+            ConnectionError,
+            http.client.HTTPException,
             json.JSONDecodeError,
             KeyError,
             ValueError,
@@ -454,6 +464,8 @@ def build_score_record(
         "parse_error": judge_result["parse_error"],
         "answer_metadata": answer_metadata(record),
     }
+    if judge_result.get("judge_usage"):
+        out["judge_usage"] = judge_result["judge_usage"]
     if "raw_response" in judge_result:
         out["raw_response"] = judge_result["raw_response"]
     return out
@@ -581,6 +593,7 @@ async def run(args: argparse.Namespace) -> None:
         "temperature": args.temperature,
         "json_mode": args.json_mode,
         "thinking_mode": args.thinking_mode,
+        "reasoning_effort": args.reasoning_effort,
         "openrouter_reasoning": args.openrouter_reasoning,
         "max_retries": args.max_retries,
         "timeout": args.timeout,
@@ -622,6 +635,10 @@ def parse_args() -> argparse.Namespace:
         "--openrouter-reasoning",
         action="store_true",
         help="Send OpenRouter's reasoning:{enabled:...} control instead of a native thinking field",
+    )
+    parser.add_argument(
+        "--reasoning-effort",
+        help="OpenRouter reasoning effort for the judge (e.g. max); sends reasoning: {effort: ...}",
     )
     parser.add_argument("--max-retries", type=int, default=5)
     parser.add_argument("--flush-every", type=int, default=10)
