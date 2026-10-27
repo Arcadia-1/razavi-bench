@@ -81,11 +81,15 @@ def figure_tag(path: Path) -> str:
     return f"<MSWEA_MULTIMODAL_CONTENT><CONTENT_TYPE>image_url</CONTENT_TYPE>data:{media_type};base64,{encoded}</MSWEA_MULTIMODAL_CONTENT>"
 
 
-def task_text(root: Path, task: dict[str, Any], mode: str) -> str:
-    """The {{task}} of mini-swe-agent's instance template: question, figures as images, environment, deliverable."""
+def task_text(root: Path, task: dict[str, Any], mode: str, attach_figures: bool = True) -> str:
+    """The {{task}} of mini-swe-agent's instance template: question, figures as images, environment, deliverable.
+
+    Without attach_figures it is the text-only instruction of the exported Harbor tasks, whose
+    agent (agentic/harbor/mini_with_figures.py) adds the same figure section inside the container.
+    """
     parts = [task["instruction"].strip()]
     figures = task.get("figures") or []
-    if figures:
+    if figures and attach_figures:
         parts.append("## Attached Figures\n\nThe figures are shown below; the same PNG files are in /app.")
         parts.extend(f"{Path(relative).name}:\n{figure_tag(root / relative)}" for relative in figures)
     parts.append(f"## Environment\n\n{ENVIRONMENT[mode]}")

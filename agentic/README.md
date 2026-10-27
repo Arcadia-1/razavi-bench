@@ -68,3 +68,9 @@ public simulator bundle and skill (the `ngspice-sky130` image builds ngspice
 per run. The figures are also attached to the agent's first message as images,
 since a bash-only agent cannot view a PNG. See
 [`tools/README.md`](../tools/README.md#agentic-runner-on-mini-swe-agent).
+
+The same setup runs under Harbor: `tools/export_harbor_tasks.py` writes the
+tasks in Harbor's format, with the golden solution only in a separate verifier
+container, and `agentic/harbor/razavi_mini_swe_agent.py` is Harbor's
+mini-swe-agent with the figures sent as images. See
+[`tools/README.md`](../tools/README.md#harbor-tasks).

@@ -204,6 +204,54 @@ agent steps, exit status and number of ngspice commands, and
 with the inline figures removed, are written under `raw-responses/`, which is
 not committed.
 
+## Harbor tasks
+
+`export_harbor_tasks.py` writes the 50 tasks as
+[Harbor](https://github.com/harbor-framework/harbor) 0.25 tasks, one directory
+each under `output/harbor/<mode>/` (not committed):
+
+- `instruction.md`: the question, environment notes and deliverable, worded as
+  the mini-swe-agent runner words them, without the inline figures;
+- `environment/`: the runner's image for the mode plus the task's
+  `instruction.md` and figures in `/app`;
+- `tests/`: a separate verifier container with the golden solution, the rubric
+  and `evaluate_answers.py`. It grades `/app/answer.md`, the task's only
+  artifact, with GPT-6 Luna at max effort and writes the score divided by 4 as
+  the reward (a missing answer scores 0 with no judge call).
+
+Golden solutions never enter the agent's container. With the default
+`--network allowlist`, the agent reaches only the model API while it runs and
+the verifier only the judge API. That needs a sandbox that can switch network
+policy after start; Docker Desktop cannot (its kernel lacks nftables FIB
+support), so on a Mac export with `--network public`, which leaves the network
+open and asks the agent in the instruction not to use the internet.
+
+Run them with `agentic/harbor/razavi_mini_swe_agent.py`, Harbor's
+mini-swe-agent with the figures attached as images. Harbor passes the task as
+one command-line argument, too small for a figure's base64, so the agent
+uploads `mini_with_figures.py` and starts mini-swe-agent through it; the
+script adds the figures inside the container, exactly where the runner puts
+them. It also pins mini-swe-agent 2.4.6 and 500 steps, and adds the `mcp`
+package after Harbor's install: Harbor 0.25 installs LiteLLM without its proxy
+extra, but LiteLLM's tool-calling path imports the MCP client, so every model
+call fails without it.
+
+```bash
+python3 tools/export_harbor_tasks.py --network public
+PYTHONPATH=agentic/harbor harbor run -y \
+  -p output/harbor/ngspice-sky130-public \
+  --agent razavi_mini_swe_agent:RazaviMiniSweAgent \
+  -m deepseek/deepseek-flash \
+  --ak 'config={"model": {"model_kwargs": {"thinking": {"type": "enabled"}, "extra_body": {"reasoning_effort": "max"}, "max_tokens": 131072}}}' \
+  -o output/harbor-jobs -n 4 -k 3
+```
+
+`DEEPSEEK_API_KEY` and `OPENROUTER_API_KEY` (for the judge) must be set.
+LiteLLM, which mini-swe-agent uses here, turns a top-level `reasoning_effort`
+into "thinking on" for DeepSeek, so the effort level goes in `extra_body`.
+`harbor trial regrade <trial dir> -p <task dir>` re-runs only the verifier on
+a recorded trial; it also needs `PYTHONPATH=agentic/harbor`.
+
 ## `evaluate_answers.py`
 
 `evaluate_answers.py` scores saved answer JSONL files after model generation.
