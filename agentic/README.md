@@ -51,4 +51,20 @@ relevant.
 The bundled Sky130 subset is not a full PDK or benchmark ground truth. Many
 questions are qualitative or under-specified, so simulation supports rather
 than replaces circuit reasoning. Harness examples are provided as Dockerfiles
-under `agentic/harness/`.
+under `agentic/harness/`. Build them from the repository root. They hold only
+public files: each task's instruction and figures under `/benchmark/tasks`,
+plus the simulator bundle and skill for `ngspice-sky130`, whose images build
+ngspice 47, the latest release, from source. Golden solutions, the
+rubric, `data/tasks.jsonl`, `netlists/` and the rest of the repository never
+enter an image, since an agent with a shell can read anything in its container.
+
+## Running With mini-swe-agent
+
+`tools/run_agentic_miniswe.py` runs both modes on mini-swe-agent, configured
+like Artificial Analysis's Terminal-Bench 4.0 runs, in the
+`agentic/harness/miniswe-*.Dockerfile` images. Those images hold only the
+public simulator bundle and skill (the `ngspice-sky130` image builds ngspice
+47 from source), and the runner copies each task's instruction and figures in
+per run. The figures are also attached to the agent's first message as images,
+since a bash-only agent cannot view a PNG. See
+[`tools/README.md`](../tools/README.md#agentic-runner-on-mini-swe-agent).

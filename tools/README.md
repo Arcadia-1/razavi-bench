@@ -154,6 +154,56 @@ python3 tools/direct_qa_muse_code.py run \
 
 Pass `--route muse_code_exec` to `build_model_json.py` for these runs.
 
+## Agentic runner on mini-swe-agent
+
+`run_agentic_miniswe.py` runs the agentic modes in
+[`agentic/README.md`](../agentic/README.md) on
+[mini-swe-agent](https://github.com/SWE-agent/mini-swe-agent) 2.4.6, set up the
+way Artificial Analysis runs Terminal-Bench 4.0: mini-swe-agent's
+`DefaultAgent` with its `mini` config and prompts, the native bash tool, the
+full transcript with no compaction, 500 steps at most, and otherwise
+mini-swe-agent's defaults. Each rollout of each task gets a fresh Docker
+container without network, with the task's `instruction.md` and figures copied
+into `/app`; only `/app/answer.md` is kept.
+
+A bash-only agent cannot look at a PNG, so the figures are also attached to the
+first user message as images, through mini-swe-agent's multimodal tags. With no
+context compaction they stay in view for the whole run.
+
+The runner builds each mode's image (`agentic/harness/miniswe-*.Dockerfile`)
+from a context holding only that image's public files, tagged with their
+content hash, so golden solutions, rubrics and `netlists/` never reach the
+agent. The `ngspice-sky130` image builds ngspice 47, the latest release, from
+source. Docker must be running.
+
+```bash
+uv run --python 3.12 --with mini-swe-agent==2.4.6 python tools/run_agentic_miniswe.py run \
+  --mode ngspice-sky130 \
+  --provider deepseek \
+  --output-dir experiments/my-agentic-run \
+  --output-prefix my-model \
+  --model deepseek-flash \
+  --model-name "My Model" \
+  --model-family deepseek \
+  --experiment 2026-01-01-agentic-ngspice-sky130 \
+  --run-date 2026-01-01 \
+  --rollout 1 --rollout 2 --rollout 3 \
+  --max-tokens 131072 \
+  --concurrency 8 \
+  --resume
+```
+
+`--provider` and `--effort` work as in the OpenRouter Direct-QA runner,
+except for providers that need streaming. Only OpenRouter reports each call's
+cost, so mini-swe-agent's $3 per-run cost limit applies only there; other
+providers' runs record tokens only. A slot whose run leaves no `/app/answer.md`
+is re-run up to `--max-retries` times, and every attempt is kept in the raw log.
+Answer rows carry the same fields as Direct-QA rows plus the mode, harness,
+agent steps, exit status and number of ngspice commands, and
+`judge_input.jsonl` grades with `evaluate_answers.py` as usual. Trajectories,
+with the inline figures removed, are written under `raw-responses/`, which is
+not committed.
+
 ## `evaluate_answers.py`
 
 `evaluate_answers.py` scores saved answer JSONL files after model generation.
