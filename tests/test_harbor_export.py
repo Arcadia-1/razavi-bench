@@ -29,9 +29,9 @@ WRAPPER = load(ROOT / "agentic/harbor/mini_with_figures.py")
 GRADE = load(ROOT / "agentic/harbor/grade.py")
 
 
-def export_args(output_dir: Path, mode: str = "ngspice-sky130", network: str = "allowlist") -> argparse.Namespace:
+def export_args(output_dir: Path, mode: str = "ngspice-sky130", network: str = "allowlist", preinstall: tuple[str, ...] = ()) -> argparse.Namespace:
     return argparse.Namespace(
-        mode=mode, network=network, output_dir=output_dir, agent_timeout=3600, verifier_timeout=2400,
+        mode=mode, network=network, preinstall=list(preinstall), output_dir=output_dir, agent_timeout=3600, verifier_timeout=2400,
         judge_api_url="https://openrouter.ai/api/v1/chat/completions", judge_model="openai/gpt-6-luna",
         judge_key_env="OPENROUTER_API_KEY", judge_effort="max", judge_max_tokens=128000, judge_timeout=1800,
     )
@@ -88,6 +88,27 @@ class HarborExportTests(unittest.TestCase):
         self.assertEqual((config["agent"]["network_mode"], config["verifier"]["network_mode"]), ("public", "public"))
         self.assertNotIn(EXPORT.NO_INTERNET, instruction)
         self.assertIn(EXPORT.NO_INTERNET_REQUEST, instruction)
+
+    def test_preinstalled_gemini_cli_is_shared_by_all_tasks(self) -> None:
+        tasks = load_tasks(REPO_ROOT, ["part1-008-source-follower", "part1-001-double-length-and-width-mosfet-its-intrinsic"])
+        with tempfile.TemporaryDirectory() as tmp:
+            plain = (EXPORT.export_task(REPO_ROOT, tasks[0], export_args(Path(tmp) / "plain")) / "environment/Dockerfile").read_text(encoding="utf-8")
+            dockerfiles = [(EXPORT.export_task(REPO_ROOT, task, export_args(Path(tmp) / "gemini", preinstall=("gemini-cli",))) / "environment/Dockerfile").read_text(encoding="utf-8") for task in tasks]
+        self.assertNotIn("gemini-cli", plain)
+        for dockerfile in dockerfiles:
+            self.assertIn('npm install -g --fetch-retries=10', dockerfile)
+            self.assertLess(dockerfile.index("@google/gemini-cli"), dockerfile.index("COPY task/ /app/"))
+        # Identical up to the task files, so Docker builds the layer once for every task.
+        self.assertEqual(dockerfiles[0], dockerfiles[1])
+
+    def test_preinstalled_agents_share_one_node(self) -> None:
+        task = load_tasks(REPO_ROOT, ["part1-008-source-follower"])[0]
+        with tempfile.TemporaryDirectory() as tmp:
+            dockerfile = (EXPORT.export_task(REPO_ROOT, task, export_args(Path(tmp), preinstall=("codex", "gemini-cli", "codex"))) / "environment/Dockerfile").read_text(encoding="utf-8")
+        self.assertEqual(dockerfile.count("nodejs.org/dist"), 1)
+        self.assertEqual(dockerfile.count('"@openai/codex@'), 1)
+        self.assertLess(dockerfile.index("nodejs.org/dist"), dockerfile.index('"@openai/codex@'))
+        self.assertLess(dockerfile.index('"@google/gemini-cli@'), dockerfile.index("COPY task/ /app/"))
 
     def test_grader_scores_a_missing_answer_zero_without_the_judge(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

@@ -252,6 +252,42 @@ into "thinking on" for DeepSeek, so the effort level goes in `extra_body`.
 `harbor trial regrade <trial dir> -p <task dir>` re-runs only the verifier on
 a recorded trial; it also needs `PYTHONPATH=agentic/harbor`.
 
+Gemini runs through Harbor's own `gemini-cli` agent, which reads the figures
+from `/app` itself. Harbor installs Gemini CLI on every run by fetching nvm
+from GitHub, Node from nodejs.org and the CLI from npm, which fails on an
+unreliable connection. Export with `--preinstall gemini-cli` to build Node
+22.23.4 (checksum-pinned) and Gemini CLI 0.65.0 into the task image once, with
+retries, and run `agentic/harbor/razavi_gemini_cli.py`, which skips Harbor's
+install when `gemini` is already there. `GEMINI_FORCE_OAUTH=1` uses the Mac's
+"Login with Google" credentials (`~/.gemini/oauth_creds.json`); Harbor copies
+them into the container for the run and deletes them afterwards. Gemini CLI
+cannot log in non-interactively, so the local login must be current: run
+`gemini` once in a terminal if it has lapsed.
+
+```bash
+python3 tools/export_harbor_tasks.py --network public --preinstall gemini-cli
+GEMINI_FORCE_OAUTH=1 PYTHONPATH=agentic/harbor harbor run -y \
+  -p output/harbor/ngspice-sky130-public \
+  --agent razavi_gemini_cli:RazaviGeminiCli -m gemini/gemini-3.1-pro-preview \
+  -o output/harbor-jobs -n 4 -k 3 --max-retries 2
+```
+
+Codex runs through Harbor's own `codex` agent, which views the figures with
+its `view_image` tool. `--preinstall codex` builds Codex CLI 0.165.0 and
+ripgrep into the image (sharing the Node layer with `gemini-cli`), and Harbor
+then skips its own install. `CODEX_FORCE_AUTH_JSON=1` uses the Mac's ChatGPT
+login (`~/.codex/auth.json`). Harbor copies it into the container and never
+writes it back, so if Codex refreshes the login there, the Mac's copy may stop
+working and need `codex login`.
+
+```bash
+python3 tools/export_harbor_tasks.py --network public --preinstall codex
+CODEX_FORCE_AUTH_JSON=1 harbor run -y \
+  -p output/harbor/ngspice-sky130-public \
+  -a codex -m openai/gpt-6-astra --ak reasoning_effort=max \
+  -o output/harbor-jobs -n 4 -k 3 --max-retries 2
+```
+
 ## `evaluate_answers.py`
 
 `evaluate_answers.py` scores saved answer JSONL files after model generation.

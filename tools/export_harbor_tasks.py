@@ -6,7 +6,7 @@
   instruction.md   the question with the mode's environment notes and deliverable, worded as
                    tools/run_agentic_miniswe.py words them, without the inline figures
   environment/     the mode's image (agentic/harness/miniswe-<mode>.Dockerfile and its public
-                   files) plus the task's instruction and figures in /app
+                   files), any --preinstall agents, and the task's instruction and figures in /app
   tests/           the verifier image: agentic/harbor/grade.py, tools/evaluate_answers.py, the
                    rubric and this task's golden solution
 
@@ -28,12 +28,55 @@ from direct_qa_openrouter_common import REPO_ROOT, load_tasks
 from run_agentic_miniswe import MODES, context_files, task_text
 
 HARBOR_DIR = REPO_ROOT / "agentic/harbor"
-# Harbor's mini-swe-agent setup downloads uv with curl; the agent works in /app.
-ENVIRONMENT_SUFFIX = """
+# Harbor's mini-swe-agent setup downloads uv with curl.
+CURL_LAYER = """
 RUN apt-get update \\
     && apt-get install -y --no-install-recommends curl \\
     && rm -rf /var/lib/apt/lists/*
+"""
+# Node for the agents --preinstall builds in. Harbor's own installs fetch nvm from GitHub and
+# Node from nodejs.org on every run; here Node is fetched once, with retries. The checksums are
+# nodejs.org's SHASUMS256.txt entries for the tarballs.
+NODE_LAYER = """
+ARG NODE_VERSION=22.23.4
+ARG NODE_SHA256_X64=b8492284c76a54baf58d61668dd0e41ee0fc98adabf9503d30f05d08f55b4406
+ARG NODE_SHA256_ARM64=f7a1e486dbc8b286847815b477d4fb5e9fb963ed4489c3e1588853d685f589f9
 
+RUN set -eux; \\
+    case "$(dpkg --print-architecture)" in \\
+        amd64) arch=x64; sha256="${NODE_SHA256_X64}" ;; \\
+        arm64) arch=arm64; sha256="${NODE_SHA256_ARM64}" ;; \\
+        *) echo "unsupported architecture" >&2; exit 1 ;; \\
+    esac; \\
+    tarball="node-v${NODE_VERSION}-linux-${arch}.tar.gz"; \\
+    curl -fsSL --retry 10 --retry-all-errors --retry-delay 3 -o "/tmp/${tarball}" "https://nodejs.org/dist/v${NODE_VERSION}/${tarball}"; \\
+    echo "${sha256}  /tmp/${tarball}" | sha256sum -c -; \\
+    tar -xzf "/tmp/${tarball}" -C /usr/local --strip-components=1 --no-same-owner; \\
+    rm "/tmp/${tarball}"; \\
+    node --version
+"""
+NPM_INSTALL = "npm install -g --fetch-retries=10 --fetch-retry-mintimeout=5000 --fetch-retry-maxtimeout=60000"
+# Agents that --preinstall builds into the image after Node, so a run downloads nothing. They
+# come before the task files, so every task shares them once built.
+PREINSTALL_LAYERS = {
+    # Run with agentic/harbor/razavi_gemini_cli.py, which skips Harbor's install when gemini exists.
+    "gemini-cli": f"""
+ARG GEMINI_CLI_VERSION=0.65.0
+RUN {NPM_INSTALL} "@google/gemini-cli@${{GEMINI_CLI_VERSION}}" && gemini --version
+""",
+    # Harbor's codex agent skips its own install when codex is already on PATH. ripgrep is
+    # among the tools that install would otherwise add.
+    "codex": f"""
+ARG CODEX_VERSION=0.165.0
+RUN apt-get update \\
+    && apt-get install -y --no-install-recommends ripgrep \\
+    && rm -rf /var/lib/apt/lists/* \\
+    && {NPM_INSTALL} "@openai/codex@${{CODEX_VERSION}}" \\
+    && codex --version
+""",
+}
+# The agent works in /app.
+TASK_LAYER = """
 COPY task/ /app/
 """
 # The verifier inherits the task's workdir (/app), where Harbor also places the answer artifact.
@@ -112,7 +155,8 @@ def export_task(root: Path, task: dict[str, Any], args: argparse.Namespace) -> P
         destination.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(root / relative, destination)
     with (environment / "Dockerfile").open("a", encoding="utf-8") as dockerfile:
-        dockerfile.write(ENVIRONMENT_SUFFIX)
+        agents = sorted(set(args.preinstall))
+        dockerfile.write("".join([CURL_LAYER, *([NODE_LAYER] if agents else []), *(PREINSTALL_LAYERS[agent] for agent in agents), TASK_LAYER]))
     (environment / "task").mkdir(parents=True)
     for name in task_files:
         shutil.copy2(task_dir / name, environment / "task" / name)
@@ -148,6 +192,14 @@ def main() -> int:
         default="allowlist",
         help="allowlist: the agent reaches only the model API and the verifier only the judge API, which needs a "
         "sandbox that can switch network policy (not Docker Desktop); public: open throughout",
+    )
+    parser.add_argument(
+        "--preinstall",
+        action="append",
+        choices=sorted(PREINSTALL_LAYERS),
+        default=[],
+        help="build an agent into the task image so runs download nothing; repeatable (gemini-cli: run with "
+        "agentic/harbor/razavi_gemini_cli.py; codex: Harbor's codex agent)",
     )
     parser.add_argument("--output-dir", type=Path, default=None, help="default: output/harbor/<mode>, or <mode>-public")
     parser.add_argument("--task-slug", action="append", default=[])
