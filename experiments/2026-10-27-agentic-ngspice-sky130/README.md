@@ -50,12 +50,55 @@ across all 2,936 model calls: 107,839,903 input tokens (104,864,768 cached),
 the Direct-QA entry ($0.15 input, $0.003 cached input, $0.60 output per 1M
 tokens), the answer-model cost is about $4.36; judge cost is excluded.
 
+## Harbor parity run (2026-10-30)
+
+The same model and settings were run again through Harbor 0.25.0, to check
+that Harbor reproduces the runner. The tasks came from
+`tools/export_harbor_tasks.py --network public --preinstall mini-swe-agent`
+(Docker Desktop cannot restrict egress, so the network was open and the
+instruction asked the agent not to use the internet). The agent was
+`agentic/harbor/razavi_mini_swe_agent.py`: the same mini-swe-agent 2.4.6
+config, prompts and 500-step cap, with the figures attached as images. The run
+used 8 trials at a time, 3 attempts per task. Each answer was graded in a
+separate verifier container by the same GPT-6 Luna judge.
+
+| Run | Overall | Part 1 | Part 2 | Per rollout or attempt |
+|---|---:|---:|---:|---|
+| Harbor | **87.83%** | 96.11% | 75.42% | 86.50%, 88.50%, 88.50% |
+| Runner (above) | 87.50% | 96.39% | 74.17% | 84.50%, 90.50%, 87.50% |
+| Direct QA | 82.50% | 88.33% | 73.75% | |
+
+Harbor reproduces the runner: the overall scores differ by 0.33 points, less
+than the spread between rollouts. 40 of the 50 tasks have the same mean score
+in both, and the mean per-task difference is 0.11 on the 0–4 scale. The
+`part1-006` and `part1-015` gains over Direct QA reappear. Behaviour matches
+too: all 150 runs submitted, ngspice ran in 76 (runner: 81) and the agent
+decoded a figure PNG itself in 75 (runner: 79), with a median of 14 steps
+(runner: 17.5).
+
+The two setups still differ in ways that did not move the score: Harbor runs
+mini-swe-agent's CLI (its interactive agent in yolo mode) through LiteLLM,
+where the runner drives `DefaultAgent` with direct HTTP calls, and Harbor's
+container had network access. One attempt at `part2-007` used it to
+`pip install` Pillow and OpenCV to read the figure; it scored 1, like every
+other attempt at that task in both runs. No run looked anything up online.
+
+39 answers could not be graded at first: the judge's OpenRouter calls returned
+HTTP 403 for 33 minutes (07:21–07:54 UTC), and the verifier wrote no reward.
+`harbor trial regrade` re-ran only their verifiers, with the same answers.
+The run took 2 h 21 min. Usage: 103,380,518 input tokens (100,679,410
+cached) and 5,664,170 output tokens, about $4.11 at the DeepSeek price above
+(LiteLLM's own estimate is $8.21).
+
 ## Contents
 
 - `deepseek-v41-flash-1017/model_outputs/`: three 50-answer rollout JSONL
   files, with agent steps, exit status and ngspice command counts per answer
 - `deepseek-v41-flash-1017/judge_outputs/gpt-6-luna-max.scores.jsonl`:
   per-answer GPT-6 Luna scores and rationales
+- `harbor-deepseek-v41-flash-1017/scores.jsonl`: the Harbor run's 150 scores
+  and rationales, one row per trial, with the answer's SHA-256, agent steps
+  and ngspice command count; the Harbor job directories stay local
 
 Trajectories, raw logs, the judge's local metadata manifest and the validation
 report stay local.
