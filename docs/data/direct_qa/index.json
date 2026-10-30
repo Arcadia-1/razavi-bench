@@ -1,6 +1,6 @@
 {
   "schema_version": "razavi-bench.direct-qa.v1",
-  "generated_at": "2026-10-26T15:57:17.875502+00:00",
+  "generated_at": "2026-10-30T10:30:41.052716+00:00",
   "benchmark": {
     "mode": "direct_qa",
     "question_count": 50,
@@ -8099,6 +8099,286 @@
         }
       },
       "detail_file": "models/gemini_36_flash.json"
+    },
+    {
+      "model_key": "gpt_6_luna",
+      "display_name": "GPT-6 Luna",
+      "provider": "openai",
+      "evaluation_model_ids": [],
+      "thinking_effort": "max",
+      "configuration_note": "GPT-6 Luna answered all 50 tasks in three rollouts through OpenRouter's chat completions route at reasoning effort max, the highest OpenRouter lists for this model (max_tokens 128,000, the model's output limit). Two requests that timed out and two that ended in a provider error were re-sampled; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's published GPT-6 Luna API price ($0.10 input, $0.01 cached input, $0.50 output per 1M tokens).",
+      "mode": "direct_qa",
+      "detail_file": "models/gpt_6_luna.json",
+      "summary": {
+        "rollout_count": 3,
+        "answer_count": 150,
+        "scores": {
+          "overall": {
+            "gpt_6_luna_max": {
+              "response_count": 150,
+              "correct_count": 103,
+              "incorrect_count": 47,
+              "partial_credit_count": 41,
+              "zero_count": 6,
+              "mean_score_0_to_4": 3.32,
+              "score_percent": 83.0,
+              "score_distribution": {
+                "0": 6,
+                "1": 9,
+                "2": 19,
+                "3": 13,
+                "4": 103
+              }
+            },
+            "active": {
+              "response_count": 150,
+              "correct_count": 103,
+              "incorrect_count": 47,
+              "partial_credit_count": 41,
+              "zero_count": 6,
+              "mean_score_0_to_4": 3.32,
+              "score_percent": 83.0,
+              "score_distribution": {
+                "0": 6,
+                "1": 9,
+                "2": 19,
+                "3": 13,
+                "4": 103
+              }
+            }
+          },
+          "part1": {
+            "gpt_6_luna_max": {
+              "response_count": 90,
+              "correct_count": 77,
+              "incorrect_count": 13,
+              "partial_credit_count": 7,
+              "zero_count": 6,
+              "mean_score_0_to_4": 3.6222222222222222,
+              "score_percent": 90.55555555555556,
+              "score_distribution": {
+                "0": 6,
+                "2": 3,
+                "3": 4,
+                "4": 77
+              }
+            },
+            "active": {
+              "response_count": 90,
+              "correct_count": 77,
+              "incorrect_count": 13,
+              "partial_credit_count": 7,
+              "zero_count": 6,
+              "mean_score_0_to_4": 3.6222222222222222,
+              "score_percent": 90.55555555555556,
+              "score_distribution": {
+                "0": 6,
+                "2": 3,
+                "3": 4,
+                "4": 77
+              }
+            }
+          },
+          "part2": {
+            "gpt_6_luna_max": {
+              "response_count": 60,
+              "correct_count": 26,
+              "incorrect_count": 34,
+              "partial_credit_count": 34,
+              "zero_count": 0,
+              "mean_score_0_to_4": 2.8666666666666667,
+              "score_percent": 71.66666666666667,
+              "score_distribution": {
+                "1": 9,
+                "2": 16,
+                "3": 9,
+                "4": 26
+              }
+            },
+            "active": {
+              "response_count": 60,
+              "correct_count": 26,
+              "incorrect_count": 34,
+              "partial_credit_count": 34,
+              "zero_count": 0,
+              "mean_score_0_to_4": 2.8666666666666667,
+              "score_percent": 71.66666666666667,
+              "score_distribution": {
+                "1": 9,
+                "2": 16,
+                "3": 9,
+                "4": 26
+              }
+            }
+          }
+        },
+        "by_rollout": {
+          "1": {
+            "response_count": 50,
+            "correct_count": 36,
+            "incorrect_count": 14,
+            "partial_credit_count": 12,
+            "zero_count": 2,
+            "mean_score_0_to_4": 3.36,
+            "score_percent": 84.0,
+            "score_distribution": {
+              "0": 2,
+              "1": 3,
+              "2": 6,
+              "3": 3,
+              "4": 36
+            }
+          },
+          "2": {
+            "response_count": 50,
+            "correct_count": 34,
+            "incorrect_count": 16,
+            "partial_credit_count": 14,
+            "zero_count": 2,
+            "mean_score_0_to_4": 3.28,
+            "score_percent": 82.0,
+            "score_distribution": {
+              "0": 2,
+              "1": 3,
+              "2": 8,
+              "3": 3,
+              "4": 34
+            }
+          },
+          "3": {
+            "response_count": 50,
+            "correct_count": 33,
+            "incorrect_count": 17,
+            "partial_credit_count": 15,
+            "zero_count": 2,
+            "mean_score_0_to_4": 3.32,
+            "score_percent": 83.0,
+            "score_distribution": {
+              "0": 2,
+              "1": 3,
+              "2": 5,
+              "3": 7,
+              "4": 33
+            }
+          }
+        },
+        "tokens": {
+          "response_count": 150,
+          "usage_record_count": 150,
+          "complete_usage_count": 150,
+          "missing_usage_count": 0,
+          "missing_cached_input_count": 0,
+          "complete": true,
+          "totals": {
+            "cached_input_tokens": 121442,
+            "input_tokens": 295836,
+            "output_tokens": 1639152,
+            "total_tokens": 1934988
+          },
+          "known_totals": {
+            "cached_input_tokens": 121442,
+            "input_tokens": 295836,
+            "output_tokens": 1639152,
+            "total_tokens": 1934988
+          }
+        },
+        "by_rollout_part": {
+          "part1": {
+            "1": {
+              "response_count": 30,
+              "correct_count": 26,
+              "incorrect_count": 4,
+              "partial_credit_count": 2,
+              "zero_count": 2,
+              "mean_score_0_to_4": 3.6333333333333333,
+              "score_percent": 90.83333333333333,
+              "score_distribution": {
+                "0": 2,
+                "2": 1,
+                "3": 1,
+                "4": 26
+              }
+            },
+            "2": {
+              "response_count": 30,
+              "correct_count": 25,
+              "incorrect_count": 5,
+              "partial_credit_count": 3,
+              "zero_count": 2,
+              "mean_score_0_to_4": 3.6,
+              "score_percent": 90.0,
+              "score_distribution": {
+                "0": 2,
+                "2": 1,
+                "3": 2,
+                "4": 25
+              }
+            },
+            "3": {
+              "response_count": 30,
+              "correct_count": 26,
+              "incorrect_count": 4,
+              "partial_credit_count": 2,
+              "zero_count": 2,
+              "mean_score_0_to_4": 3.6333333333333333,
+              "score_percent": 90.83333333333333,
+              "score_distribution": {
+                "0": 2,
+                "2": 1,
+                "3": 1,
+                "4": 26
+              }
+            }
+          },
+          "part2": {
+            "1": {
+              "response_count": 20,
+              "correct_count": 10,
+              "incorrect_count": 10,
+              "partial_credit_count": 10,
+              "zero_count": 0,
+              "mean_score_0_to_4": 2.95,
+              "score_percent": 73.75,
+              "score_distribution": {
+                "1": 3,
+                "2": 5,
+                "3": 2,
+                "4": 10
+              }
+            },
+            "2": {
+              "response_count": 20,
+              "correct_count": 9,
+              "incorrect_count": 11,
+              "partial_credit_count": 11,
+              "zero_count": 0,
+              "mean_score_0_to_4": 2.8,
+              "score_percent": 70.0,
+              "score_distribution": {
+                "1": 3,
+                "2": 7,
+                "3": 1,
+                "4": 9
+              }
+            },
+            "3": {
+              "response_count": 20,
+              "correct_count": 7,
+              "incorrect_count": 13,
+              "partial_credit_count": 13,
+              "zero_count": 0,
+              "mean_score_0_to_4": 2.85,
+              "score_percent": 71.25,
+              "score_distribution": {
+                "1": 3,
+                "2": 4,
+                "3": 6,
+                "4": 7
+              }
+            }
+          }
+        }
+      }
     },
     {
       "model_key": "deepseek_v41_flash_1017",
