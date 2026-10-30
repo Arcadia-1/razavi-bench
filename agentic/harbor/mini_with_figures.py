@@ -5,8 +5,8 @@ Harbor hands mini-swe-agent the task as one command-line argument, and a
 figure's base64 is larger than Linux lets one argument be. This script takes
 mini-swe-agent's own arguments, adds every /app/figure-*.png to --task as a
 mini-swe-agent multimodal tag, and runs mini-swe-agent in this process, so the
-images never pass through a command line. The figures go before the task's
-"## Environment" section, where tools/run_agentic_miniswe.py puts them.
+images never pass through a command line. The figures go right after the
+question, before the task's "## Environment" section.
 
 It runs inside the task container with mini-swe-agent's own Python, so it uses
 only the standard library and mini-swe-agent.

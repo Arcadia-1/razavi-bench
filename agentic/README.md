@@ -58,19 +58,15 @@ ngspice 47, the latest release, from source. Golden solutions, the
 rubric, `data/tasks.jsonl`, `netlists/` and the rest of the repository never
 enter an image, since an agent with a shell can read anything in its container.
 
-## Running With mini-swe-agent
+## Running On Harbor
 
-`tools/run_agentic_miniswe.py` runs both modes on mini-swe-agent, configured
-like Artificial Analysis's Terminal-Bench 4.0 runs, in the
-`agentic/harness/miniswe-*.Dockerfile` images. Those images hold only the
-public simulator bundle and skill (the `ngspice-sky130` image builds ngspice
-47 from source), and the runner copies each task's instruction and figures in
-per run. The figures are also attached to the agent's first message as images,
-since a bash-only agent cannot view a PNG. See
-[`tools/README.md`](../tools/README.md#agentic-runner-on-mini-swe-agent).
-
-The same setup runs under Harbor: `tools/export_harbor_tasks.py` writes the
-tasks in Harbor's format, with the golden solution only in a separate verifier
-container, and `agentic/harbor/razavi_mini_swe_agent.py` is Harbor's
-mini-swe-agent with the figures sent as images. See
-[`tools/README.md`](../tools/README.md#harbor-tasks).
+Both modes run on Harbor. `tools/export_harbor_tasks.py` writes the tasks in
+Harbor's format, built on the `agentic/harness/harbor-*.Dockerfile` images:
+they hold only the public simulator bundle and skill (the `ngspice-sky130`
+image builds ngspice 47 from source) plus each task's instruction and figures,
+and the golden solution goes only into a separate verifier container. The
+reference agent, `agentic/harbor/razavi_mini_swe_agent.py`, is mini-swe-agent
+configured like Artificial Analysis's Terminal-Bench 4.0 runs, with the
+figures sent as images, since a bash-only agent cannot view a PNG; Codex,
+Claude Code and Gemini CLI run through Harbor's own agents. See
+[`tools/README.md`](../tools/README.md#agentic-runs-on-harbor).

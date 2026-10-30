@@ -2,7 +2,10 @@
 
 First run of the `ngspice-sky130` agentic mode on mini-swe-agent, generated
 with `tools/run_agentic_miniswe.py`. It is a trial of the harness and is not
-published on the website.
+published on the website. That standalone runner was retired once the Harbor
+run below reproduced its score; agentic runs now go through Harbor
+(`tools/export_harbor_tasks.py`), and the runner remains in the repository
+history (commit `a4c5321`).
 
 ## Harness
 
@@ -11,7 +14,8 @@ published on the website.
   tool, the full transcript with no compaction, at most 500 steps, and
   mini-swe-agent's defaults otherwise (30 s per command)
 - One fresh Docker container per run, without network, built from
-  `agentic/harness/miniswe-ngspice-sky130.Dockerfile`: ngspice 47 built from
+  `agentic/harness/miniswe-ngspice-sky130.Dockerfile` (since renamed
+  `harbor-ngspice-sky130.Dockerfile`): ngspice 47 built from
   source, the Sky130 bundle in `/tools/ngspice-sky130`, and the skill in
   `/app/.claude/skills/ngspice-sky130`. Each task's `instruction.md` and
   figures are copied into `/app`; nothing else from the repository is in the

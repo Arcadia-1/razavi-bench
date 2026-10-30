@@ -32,9 +32,9 @@ RUN apt-get update \
 COPY --from=ngspice /opt/ngspice /opt/ngspice
 RUN ln -s /opt/ngspice/bin/ngspice /usr/local/bin/ngspice
 
-# Only the public simulator bundle and skill. tools/run_agentic_miniswe.py builds
-# this image from a context holding just these paths and copies each task's
-# instruction and figures in per run, so golden solutions, rubrics and the
+# Only the public simulator bundle and skill. tools/export_harbor_tasks.py copies
+# this Dockerfile and just these paths into each Harbor task's environment and
+# adds the task's instruction and figures, so golden solutions, rubrics and the
 # curated netlists never reach the agent.
 COPY simulator/ngspice-sky130 /tools/ngspice-sky130
 COPY agentic/skills/ngspice-sky130 /app/.claude/skills/ngspice-sky130

@@ -10,7 +10,7 @@ COPY tasks /benchmark/tasks
 RUN find /benchmark/tasks -type f ! -name instruction.md ! -name 'figure-*.png' -delete
 
 # ngspice 47, the latest stable release (2026-08-11), built from the official
-# source as in miniswe-ngspice-sky130.Dockerfile; Debian bookworm only packages
+# source as in harbor-ngspice-sky130.Dockerfile; Debian bookworm only packages
 # ngspice 39. The checksum is the one Homebrew's ngspice formula pins for the
 # same tarball.
 FROM python:3.11-slim-bookworm AS ngspice

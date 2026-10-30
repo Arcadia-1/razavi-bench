@@ -8,9 +8,9 @@ Harbor gives mini-swe-agent the task as text on its command line, so a bash-only
 agent would never see the figures. Before the agent starts, this class uploads
 mini_with_figures.py and launches mini-swe-agent through it; the script adds the
 figures to the task inside the container and turns on mini-swe-agent's
-multimodal tags. Everything else is Harbor's MiniSweAgent, with the defaults
-tools/run_agentic_miniswe.py uses: mini-swe-agent 2.4.6 and at most 500 steps,
-as Artificial Analysis runs Terminal-Bench 4.0. A `config` agent kwarg is merged
+multimodal tags. Everything else is Harbor's MiniSweAgent, pinned to
+mini-swe-agent 2.4.6 and capped at 500 steps, as Artificial Analysis runs
+Terminal-Bench 4.0. A `config` agent kwarg is merged
 over these defaults. Tasks exported with `--preinstall mini-swe-agent` already
 contain that mini-swe-agent, and then Harbor's install is skipped.
 """

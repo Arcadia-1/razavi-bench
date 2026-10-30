@@ -1,8 +1,10 @@
 from __future__ import annotations
 
 import argparse
+import base64
 import importlib.util
 import json
+import re
 import shutil
 import sys
 import tempfile
@@ -14,7 +16,6 @@ from unittest import mock
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
 import export_harbor_tasks as EXPORT
-import run_agentic_miniswe as AGENTIC
 from direct_qa_openrouter_common import REPO_ROOT, load_tasks
 
 
@@ -38,15 +39,42 @@ def export_args(output_dir: Path, mode: str = "ngspice-sky130", network: str = "
 
 
 class HarborExportTests(unittest.TestCase):
-    def test_wrapper_gives_the_agent_the_runner_task(self) -> None:
-        """Inside the container the figures land where the direct runner puts them."""
+    def test_instruction_has_the_environment_and_no_solution(self) -> None:
+        for task in load_tasks(REPO_ROOT):
+            text = EXPORT.task_text(task, "ngspice-sky130")
+            self.assertTrue(text.startswith(task["instruction"].strip()), task["task_slug"])
+            self.assertIn("/app/answer.md", text)
+            self.assertIn("/app/.claude/skills/ngspice-sky130/SKILL.md", text)
+            self.assertNotIn("<MSWEA_MULTIMODAL_CONTENT>", text)
+            self.assertNotIn(task["golden_solution"].strip()[-80:], text)
+        multimodal = EXPORT.task_text(load_tasks(REPO_ROOT, ["part1-008-source-follower"])[0], "multimodal")
+        self.assertNotIn("ngspice", multimodal)
+
+    def test_image_files_are_public(self) -> None:
+        for mode in EXPORT.MODES:
+            files = EXPORT.context_files(REPO_ROOT, mode)
+            self.assertEqual(files[0], EXPORT.MODES[mode]["dockerfile"])
+            for relative in files:
+                self.assertFalse(relative.startswith(("tasks/", "netlists/", "data/", "experiments/")), relative)
+                self.assertNotIn("golden", relative)
+
+    def test_wrapper_attaches_every_figure_before_the_environment(self) -> None:
+        """Inside the container mini_with_figures.py adds each /app figure as an image after the question."""
         for slug in ("part1-008-source-follower", "part1-001-double-length-and-width-mosfet-its-intrinsic"):
             task = load_tasks(REPO_ROOT, [slug])[0]
+            instruction = EXPORT.task_text(task, "ngspice-sky130")
             with tempfile.TemporaryDirectory() as app:
                 for relative in task["figures"]:
                     shutil.copy2(REPO_ROOT / relative, Path(app) / Path(relative).name)
-                instruction = AGENTIC.task_text(REPO_ROOT, task, "ngspice-sky130", attach_figures=False)
-                self.assertEqual(WRAPPER.with_figures(instruction, Path(app)), AGENTIC.task_text(REPO_ROOT, task, "ngspice-sky130"))
+                text = WRAPPER.with_figures(instruction, Path(app))
+            if not task["figures"]:
+                self.assertEqual(text, instruction)
+                continue
+            head, rest = text.split("\n\n## Attached Figures", 1)
+            section, tail = rest.split("\n\n## Environment", 1)
+            self.assertEqual(f"{head}\n\n## Environment{tail}", instruction)
+            payloads = re.findall(r"data:image/png;base64,([A-Za-z0-9+/=]+)</MSWEA_MULTIMODAL_CONTENT>", section)
+            self.assertEqual([base64.b64decode(payload) for payload in payloads], [(REPO_ROOT / relative).read_bytes() for relative in sorted(task["figures"])])
 
     def test_export_keeps_answers_in_the_verifier(self) -> None:
         task = load_tasks(REPO_ROOT, ["part1-008-source-follower"])[0]
@@ -62,7 +90,7 @@ class HarborExportTests(unittest.TestCase):
             self.assertNotIn("<MSWEA_MULTIMODAL_CONTENT>", (target / "instruction.md").read_text(encoding="utf-8"))
             self.assertEqual(sorted(path.name for path in (target / "environment/task").iterdir()), ["figure-05.png", "instruction.md"])
             dockerfile = (target / "environment/Dockerfile").read_text(encoding="utf-8")
-            self.assertTrue(dockerfile.startswith((REPO_ROOT / AGENTIC.MODES["ngspice-sky130"]["dockerfile"]).read_text(encoding="utf-8")))
+            self.assertTrue(dockerfile.startswith((REPO_ROOT / EXPORT.MODES["ngspice-sky130"]["dockerfile"]).read_text(encoding="utf-8")))
             self.assertTrue(dockerfile.rstrip().endswith("COPY task/ /app/"))
             # Harbor runs the verifier in the task's workdir, so its image must have /app.
             self.assertIn("WORKDIR /app", (target / "tests/Dockerfile").read_text(encoding="utf-8"))

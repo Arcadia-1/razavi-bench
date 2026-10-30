@@ -154,66 +154,18 @@ python3 tools/direct_qa_muse_code.py run \
 
 Pass `--route muse_code_exec` to `build_model_json.py` for these runs.
 
-## Agentic runner on mini-swe-agent
+## Agentic runs on Harbor
 
-`run_agentic_miniswe.py` runs the agentic modes in
-[`agentic/README.md`](../agentic/README.md) on
-[mini-swe-agent](https://github.com/SWE-agent/mini-swe-agent) 2.4.6, set up the
-way Artificial Analysis runs Terminal-Bench 4.0: mini-swe-agent's
-`DefaultAgent` with its `mini` config and prompts, the native bash tool, the
-full transcript with no compaction, 500 steps at most, and otherwise
-mini-swe-agent's defaults. Each rollout of each task gets a fresh Docker
-container without network, with the task's `instruction.md` and figures copied
-into `/app`; only `/app/answer.md` is kept.
-
-A bash-only agent cannot look at a PNG, so the figures are also attached to the
-first user message as images, through mini-swe-agent's multimodal tags. With no
-context compaction they stay in view for the whole run.
-
-The runner builds each mode's image (`agentic/harness/miniswe-*.Dockerfile`)
-from a context holding only that image's public files, tagged with their
-content hash, so golden solutions, rubrics and `netlists/` never reach the
-agent. The `ngspice-sky130` image builds ngspice 47, the latest release, from
-source. Docker must be running.
-
-```bash
-uv run --python 3.12 --with mini-swe-agent==2.4.6 python tools/run_agentic_miniswe.py run \
-  --mode ngspice-sky130 \
-  --provider deepseek \
-  --output-dir experiments/my-agentic-run \
-  --output-prefix my-model \
-  --model deepseek-flash \
-  --model-name "My Model" \
-  --model-family deepseek \
-  --experiment 2026-01-01-agentic-ngspice-sky130 \
-  --run-date 2026-01-01 \
-  --rollout 1 --rollout 2 --rollout 3 \
-  --max-tokens 131072 \
-  --concurrency 8 \
-  --resume
-```
-
-`--provider` and `--effort` work as in the OpenRouter Direct-QA runner,
-except for providers that need streaming. Only OpenRouter reports each call's
-cost, so mini-swe-agent's $3 per-run cost limit applies only there; other
-providers' runs record tokens only. A slot whose run leaves no `/app/answer.md`
-is re-run up to `--max-retries` times, and every attempt is kept in the raw log.
-Answer rows carry the same fields as Direct-QA rows plus the mode, harness,
-agent steps, exit status and number of ngspice commands, and
-`judge_input.jsonl` grades with `evaluate_answers.py` as usual. Trajectories,
-with the inline figures removed, are written under `raw-responses/`, which is
-not committed.
-
-## Harbor tasks
-
-`export_harbor_tasks.py` writes the 50 tasks as
-[Harbor](https://github.com/harbor-framework/harbor) 0.25 tasks, one directory
+The agentic modes in [`agentic/README.md`](../agentic/README.md) run on
+[Harbor](https://github.com/harbor-framework/harbor) 0.25 with Docker.
+`export_harbor_tasks.py` writes the 50 tasks as Harbor tasks, one directory
 each under `output/harbor/<mode>/` (not committed):
 
-- `instruction.md`: the question, environment notes and deliverable, worded as
-  the mini-swe-agent runner words them, without the inline figures;
-- `environment/`: the runner's image for the mode plus the task's
-  `instruction.md` and figures in `/app`;
+- `instruction.md`: the question, the mode's environment notes and the
+  deliverable, `/app/answer.md`;
+- `environment/`: the mode's image (`agentic/harness/harbor-<mode>.Dockerfile`;
+  for `ngspice-sky130`, ngspice 47 built from source, the Sky130 bundle and the
+  skill) plus the task's `instruction.md` and figures in `/app`;
 - `tests/`: a separate verifier container with the golden solution, the rubric
   and `evaluate_answers.py`. It grades `/app/answer.md`, the task's only
   artifact, with GPT-6 Luna at max effort and writes the score divided by 4 as
@@ -226,15 +178,20 @@ policy after start; Docker Desktop cannot (its kernel lacks nftables FIB
 support), so on a Mac export with `--network public`, which leaves the network
 open and asks the agent in the instruction not to use the internet.
 
-Run them with `agentic/harbor/razavi_mini_swe_agent.py`, Harbor's
-mini-swe-agent with the figures attached as images. Harbor passes the task as
-one command-line argument, too small for a figure's base64, so the agent
-uploads `mini_with_figures.py` and starts mini-swe-agent through it; the
-script adds the figures inside the container, exactly where the runner puts
-them. It also pins mini-swe-agent 2.4.6 and 500 steps, and adds the `mcp`
-package after Harbor's install: Harbor 0.25 installs LiteLLM without its proxy
-extra, but LiteLLM's tool-calling path imports the MCP client, so every model
-call fails without it.
+The reference agent is `agentic/harbor/razavi_mini_swe_agent.py`: Harbor's
+mini-swe-agent set up the way Artificial Analysis runs Terminal-Bench 4.0
+(mini-swe-agent 2.4.6 with its `mini` config and prompts, the native bash tool,
+the full transcript with no compaction, at most 500 steps), with the figures
+attached as images. A bash-only agent cannot look at a PNG, and Harbor passes
+the task as one command-line argument, too small for a figure's base64, so the
+agent uploads `mini_with_figures.py` and starts mini-swe-agent through it; the
+script adds each figure in `/app` as a mini-swe-agent multimodal tag before
+the instruction's Environment section. It also adds the `mcp` package after
+Harbor's install: Harbor 0.25 installs LiteLLM without its proxy extra, but
+LiteLLM's tool-calling path imports the MCP client, so every model call fails
+without it. DeepSeek V4.1 Flash 1017 scored the same with this agent as with
+the standalone runner it replaced (87.83% against 87.50%; see
+`experiments/2026-10-27-agentic-ngspice-sky130`).
 
 Harbor installs every agent inside the container on every run, which fails on
 an unreliable connection. `--preinstall <agent>` (repeatable) builds the agent

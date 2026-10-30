@@ -3,9 +3,8 @@
 
 <output-dir>/<task_slug>/
   task.toml        /app/answer.md is the artifact; the verifier runs in its own container
-  instruction.md   the question with the mode's environment notes and deliverable, worded as
-                   tools/run_agentic_miniswe.py words them, without the inline figures
-  environment/     the mode's image (agentic/harness/miniswe-<mode>.Dockerfile and its public
+  instruction.md   the question with the mode's environment notes and deliverable
+  environment/     the mode's image (agentic/harness/harbor-<mode>.Dockerfile and its public
                    files), any --preinstall agents, and the task's instruction and figures in /app
   tests/           the verifier image: agentic/harbor/grade.py, tools/evaluate_answers.py, the
                    rubric and this task's golden solution
@@ -25,9 +24,32 @@ from typing import Any
 from urllib.parse import urlsplit
 
 from direct_qa_openrouter_common import REPO_ROOT, load_tasks
-from run_agentic_miniswe import MODES, context_files, task_text
 
 HARBOR_DIR = REPO_ROOT / "agentic/harbor"
+# Each mode's image: its Dockerfile and the only repository paths the task environment holds.
+MODES: dict[str, dict[str, Any]] = {
+    "multimodal": {"dockerfile": "agentic/harness/harbor-multimodal.Dockerfile", "context": []},
+    "ngspice-sky130": {
+        "dockerfile": "agentic/harness/harbor-ngspice-sky130.Dockerfile",
+        "context": ["simulator/ngspice-sky130", "agentic/skills/ngspice-sky130"],
+    },
+}
+ENVIRONMENT = {
+    "multimodal": "The task files are in /app: instruction.md and the figure PNGs. There is no internet access.",
+    "ngspice-sky130": (
+        "The task files are in /app: instruction.md and the figure PNGs. ngspice is installed with a Sky130 1.8 V "
+        "primitive model bundle: the models are in /tools/ngspice-sky130/models (include "
+        "/tools/ngspice-sky130/models/sky130.lib.spice) and example decks are in /tools/ngspice-sky130/examples. "
+        "Before deciding whether to simulate, read the skill at /app/.claude/skills/ngspice-sky130/SKILL.md and "
+        "follow it: simulation is optional supporting evidence, and the answer must rest on circuit reasoning. "
+        "There is no internet access."
+    ),
+}
+DELIVERABLE = (
+    "Write your final answer to /app/answer.md. Only /app/answer.md is graded; scratch files, decks and logs "
+    "are ignored. After writing it, finish with `echo COMPLETE_TASK_AND_SUBMIT_FINAL_OUTPUT`."
+)
+SKIP_PARTS = {".DS_Store", "__pycache__"}
 # Harbor's mini-swe-agent setup downloads uv with curl.
 CURL_LAYER = """
 RUN apt-get update \\
@@ -117,13 +139,32 @@ WORKDIR /app
 COPY . /tests/
 """
 # With --network public the agent's container can reach the internet, so the instruction asks
-# instead of stating; everything else matches the runner's wording.
+# instead of stating; everything else is the same.
 NO_INTERNET = "There is no internet access."
 NO_INTERNET_REQUEST = "Do not use the internet; work only with the files and tools in this container."
 TEST_SH = """#!/bin/bash
 # Grade /app/answer.md with the Razavi-Bench judge; see grade.py.
 exec python3 /tests/grade.py
 """
+
+
+def task_text(task: dict[str, Any], mode: str) -> str:
+    """The agent's instruction: the question, the mode's environment notes and the deliverable.
+
+    agentic/harbor/mini_with_figures.py adds the figures as images before "## Environment".
+    """
+    return "\n\n".join([task["instruction"].strip(), f"## Environment\n\n{ENVIRONMENT[mode]}", f"## Deliverable\n\n{DELIVERABLE}"])
+
+
+def context_files(root: Path, mode: str) -> list[str]:
+    """The mode's Dockerfile, then every public file its image copies from the repository."""
+    spec = MODES[mode]
+    files = [spec["dockerfile"]]
+    for relative in spec["context"]:
+        for path in sorted((root / relative).rglob("*")):
+            if path.is_file() and not SKIP_PARTS & set(path.relative_to(root).parts):
+                files.append(path.relative_to(root).as_posix())
+    return files
 
 
 def toml_value(value: Any) -> str:
@@ -206,7 +247,7 @@ def export_task(root: Path, task: dict[str, Any], args: argparse.Namespace) -> P
     judge = {"task_path": task["task_path"], "api_url": args.judge_api_url, "model": args.judge_model, "api_key_env": args.judge_key_env, "reasoning_effort": args.judge_effort, "max_tokens": args.judge_max_tokens, "timeout": args.judge_timeout}
     (tests / "judge.json").write_text(json.dumps(judge, indent=2) + "\n", encoding="utf-8")
 
-    instruction = task_text(root, task, args.mode, attach_figures=False)
+    instruction = task_text(task, args.mode)
     if args.network == "public":
         instruction = instruction.replace(NO_INTERNET, NO_INTERNET_REQUEST, 1)
     (target / "instruction.md").write_text(instruction + "\n", encoding="utf-8")
