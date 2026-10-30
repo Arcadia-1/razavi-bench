@@ -236,8 +236,16 @@ package after Harbor's install: Harbor 0.25 installs LiteLLM without its proxy
 extra, but LiteLLM's tool-calling path imports the MCP client, so every model
 call fails without it.
 
+Harbor installs every agent inside the container on every run, which fails on
+an unreliable connection. `--preinstall <agent>` (repeatable) builds the agent
+into the task image once instead, in layers before the task files so all tasks
+share them, and the run downloads nothing. For mini-swe-agent that is Harbor's
+own toolchain (uv 0.13.6, Python 3.12) with mini-swe-agent 2.4.6, LiteLLM
+1.106.4 and `mcp` pinned; the agent class then skips Harbor's install.
+
 ```bash
-python3 tools/export_harbor_tasks.py --network public
+python3 tools/export_harbor_tasks.py --network public \
+  --preinstall mini-swe-agent --preinstall claude-code --preinstall codex --preinstall gemini-cli
 PYTHONPATH=agentic/harbor harbor run -y \
   -p output/harbor/ngspice-sky130-public \
   --agent razavi_mini_swe_agent:RazaviMiniSweAgent \
@@ -262,10 +270,11 @@ install when `gemini` is already there. `GEMINI_FORCE_OAUTH=1` uses the Mac's
 "Login with Google" credentials (`~/.gemini/oauth_creds.json`); Harbor copies
 them into the container for the run and deletes them afterwards. Gemini CLI
 cannot log in non-interactively, so the local login must be current: run
-`gemini` once in a terminal if it has lapsed.
+`gemini` once in a terminal if it has lapsed. Google refuses Gemini CLI for
+free "Gemini Code Assist for individuals" accounts (`IneligibleTierError`,
+pointing to Antigravity), so those need a `GEMINI_API_KEY` instead.
 
 ```bash
-python3 tools/export_harbor_tasks.py --network public --preinstall gemini-cli
 GEMINI_FORCE_OAUTH=1 PYTHONPATH=agentic/harbor harbor run -y \
   -p output/harbor/ngspice-sky130-public \
   --agent razavi_gemini_cli:RazaviGeminiCli -m gemini/gemini-3.1-pro-preview \
@@ -281,12 +290,47 @@ writes it back, so if Codex refreshes the login there, the Mac's copy may stop
 working and need `codex login`.
 
 ```bash
-python3 tools/export_harbor_tasks.py --network public --preinstall codex
 CODEX_FORCE_AUTH_JSON=1 harbor run -y \
   -p output/harbor/ngspice-sky130-public \
   -a codex -m openai/gpt-6-astra --ak reasoning_effort=max \
   -o output/harbor-jobs -n 4 -k 3 --max-retries 2
 ```
+
+Claude Code runs through Harbor's own `claude-code` agent, which reads the
+figures with its Read tool. `--preinstall claude-code` builds Claude Code
+2.1.198 into the image, and Harbor skips its install when the requested
+`version` matches. Pointed at Moonshot's Anthropic-compatible endpoint, it runs
+Kimi:
+
+```bash
+harbor run -y \
+  --path=output/harbor/ngspice-sky130-public \
+  --agent=claude-code \
+  --model='kimi-31-pro-nuvora[1m]' \
+  --agent-kwarg=version=2.1.198 \
+  --agent-kwarg=disallowed_tools=EnterPlanMode,EnterWorktree,ExitPlanMode,ExitWorktree,AskUserQuestion \
+  --agent-env=ANTHROPIC_MODEL='kimi-31-pro-nuvora[1m]' \
+  --agent-env=ANTHROPIC_DEFAULT_FABLE_MODEL='kimi-31-pro-nuvora[1m]' \
+  --agent-env=ANTHROPIC_DEFAULT_OPUS_MODEL='kimi-31-pro-nuvora[1m]' \
+  --agent-env=ANTHROPIC_DEFAULT_SONNET_MODEL='kimi-31-pro-nuvora[1m]' \
+  --agent-env=ANTHROPIC_DEFAULT_HAIKU_MODEL='kimi-31-pro-nuvora[1m]' \
+  --agent-env=CLAUDE_CODE_SUBAGENT_MODEL='kimi-31-pro-nuvora[1m]' \
+  --agent-env=CLAUDE_CODE_AUTO_COMPACT_WINDOW='1048576' \
+  --agent-env=CLAUDE_CODE_EFFORT_LEVEL='max' \
+  --agent-env=FORCE_AUTO_BACKGROUND_TASKS='1' \
+  --agent-env=ENABLE_BACKGROUND_TASKS='1' \
+  --agent-env=ENABLE_TOOL_SEARCH='false' \
+  --agent-env=IS_SANDBOX='1' \
+  --agent-env=API_TIMEOUT_MS='12000000' \
+  --agent-env=BUN_CONFIG_HTTP_IDLE_TIMEOUT='2000' \
+  --agent-env=CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC='1' \
+  --agent-env=ANTHROPIC_BASE_URL='https://api.moonshot.ai/anthropic' \
+  --agent-env=ANTHROPIC_API_KEY="$MOONSHOT_API_KEY" \
+  -o output/harbor-jobs -n 4 -k 3 --max-retries 2
+```
+
+Pass keys from the environment, as above, rather than literally: Harbor redacts
+them in the job's saved config, but a literal key stays in the shell history.
 
 ## `evaluate_answers.py`
 

@@ -56,9 +56,40 @@ RUN set -eux; \\
     node --version
 """
 NPM_INSTALL = "npm install -g --fetch-retries=10 --fetch-retry-mintimeout=5000 --fetch-retry-maxtimeout=60000"
-# Agents that --preinstall builds into the image after Node, so a run downloads nothing. They
-# come before the task files, so every task shares them once built.
+# Agents that --preinstall builds into the image, so a run downloads nothing. They come before
+# the task files, so every task shares them once built; the npm-based ones follow NODE_LAYER.
+NODE_AGENTS = {"claude-code", "codex", "gemini-cli"}
 PREINSTALL_LAYERS = {
+    # Harbor's claude-code agent skips its own install when `claude` is at the requested
+    # version, so pass --agent-kwarg=version=2.1.198. procps is among the tools that install adds.
+    "claude-code": f"""
+ARG CLAUDE_CODE_VERSION=2.1.198
+RUN apt-get update \\
+    && apt-get install -y --no-install-recommends procps \\
+    && rm -rf /var/lib/apt/lists/* \\
+    && {NPM_INSTALL} "@anthropic-ai/claude-code@${{CLAUDE_CODE_VERSION}}" \\
+    && claude --version
+""",
+    # Run with agentic/harbor/razavi_mini_swe_agent.py, which skips Harbor's install when this
+    # toolchain is present. It is that install (uv, Python 3.12, mini-swe-agent with litellm,
+    # orjson and fastapi) with litellm pinned, plus mcp, which litellm's tool-calling path imports.
+    "mini-swe-agent": """
+ARG UV_VERSION=0.13.6
+ARG MINI_SWE_AGENT_VERSION=2.4.6
+ARG LITELLM_VERSION=1.106.4
+ARG ORJSON_VERSION=3.13.0
+ARG FASTAPI_VERSION=0.162.0
+ARG MCP_VERSION=2.3.0
+
+RUN set -eux; \\
+    export UV_HTTP_RETRIES=10; \\
+    pip install --no-cache-dir --retries=10 "uv==${UV_VERSION}"; \\
+    for attempt in 1 2 3 4 5 6; do uv python install 3.12 && break; sleep 5; done; \\
+    uv tool install --python 3.12 "mini-swe-agent==${MINI_SWE_AGENT_VERSION}" \\
+        --with "litellm==${LITELLM_VERSION}" --with "orjson==${ORJSON_VERSION}" \\
+        --with "fastapi==${FASTAPI_VERSION}" --with "mcp==${MCP_VERSION}"; \\
+    "$(uv tool dir)/mini-swe-agent/bin/python" -c "import minisweagent, mcp; print(minisweagent.__version__)"
+""",
     # Run with agentic/harbor/razavi_gemini_cli.py, which skips Harbor's install when gemini exists.
     "gemini-cli": f"""
 ARG GEMINI_CLI_VERSION=0.65.0
@@ -156,7 +187,8 @@ def export_task(root: Path, task: dict[str, Any], args: argparse.Namespace) -> P
         shutil.copy2(root / relative, destination)
     with (environment / "Dockerfile").open("a", encoding="utf-8") as dockerfile:
         agents = sorted(set(args.preinstall))
-        dockerfile.write("".join([CURL_LAYER, *([NODE_LAYER] if agents else []), *(PREINSTALL_LAYERS[agent] for agent in agents), TASK_LAYER]))
+        node = [NODE_LAYER] if NODE_AGENTS.intersection(agents) else []
+        dockerfile.write("".join([CURL_LAYER, *node, *(PREINSTALL_LAYERS[agent] for agent in agents), TASK_LAYER]))
     (environment / "task").mkdir(parents=True)
     for name in task_files:
         shutil.copy2(task_dir / name, environment / "task" / name)
@@ -198,8 +230,8 @@ def main() -> int:
         action="append",
         choices=sorted(PREINSTALL_LAYERS),
         default=[],
-        help="build an agent into the task image so runs download nothing; repeatable (gemini-cli: run with "
-        "agentic/harbor/razavi_gemini_cli.py; codex: Harbor's codex agent)",
+        help="build an agent into the task image so runs download nothing; repeatable (mini-swe-agent and "
+        "gemini-cli: run with agentic/harbor/razavi_*.py; codex, claude-code: Harbor's own agents)",
     )
     parser.add_argument("--output-dir", type=Path, default=None, help="default: output/harbor/<mode>, or <mode>-public")
     parser.add_argument("--task-slug", action="append", default=[])

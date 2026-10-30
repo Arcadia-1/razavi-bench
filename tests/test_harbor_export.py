@@ -104,11 +104,21 @@ class HarborExportTests(unittest.TestCase):
     def test_preinstalled_agents_share_one_node(self) -> None:
         task = load_tasks(REPO_ROOT, ["part1-008-source-follower"])[0]
         with tempfile.TemporaryDirectory() as tmp:
-            dockerfile = (EXPORT.export_task(REPO_ROOT, task, export_args(Path(tmp), preinstall=("codex", "gemini-cli", "codex"))) / "environment/Dockerfile").read_text(encoding="utf-8")
+            dockerfile = (EXPORT.export_task(REPO_ROOT, task, export_args(Path(tmp), preinstall=("codex", "gemini-cli", "claude-code", "codex"))) / "environment/Dockerfile").read_text(encoding="utf-8")
         self.assertEqual(dockerfile.count("nodejs.org/dist"), 1)
         self.assertEqual(dockerfile.count('"@openai/codex@'), 1)
-        self.assertLess(dockerfile.index("nodejs.org/dist"), dockerfile.index('"@openai/codex@'))
-        self.assertLess(dockerfile.index('"@google/gemini-cli@'), dockerfile.index("COPY task/ /app/"))
+        for package in ('"@anthropic-ai/claude-code@', '"@openai/codex@', '"@google/gemini-cli@'):
+            self.assertLess(dockerfile.index("nodejs.org/dist"), dockerfile.index(package))
+            self.assertLess(dockerfile.index(package), dockerfile.index("COPY task/ /app/"))
+
+    def test_preinstalled_mini_swe_agent_needs_no_node(self) -> None:
+        task = load_tasks(REPO_ROOT, ["part1-008-source-follower"])[0]
+        with tempfile.TemporaryDirectory() as tmp:
+            dockerfile = (EXPORT.export_task(REPO_ROOT, task, export_args(Path(tmp), preinstall=("mini-swe-agent",))) / "environment/Dockerfile").read_text(encoding="utf-8")
+        self.assertNotIn("nodejs.org/dist", dockerfile)
+        self.assertIn('"mini-swe-agent==${MINI_SWE_AGENT_VERSION}"', dockerfile)
+        self.assertIn('--with "mcp==${MCP_VERSION}"', dockerfile)
+        self.assertLess(dockerfile.index("uv tool install"), dockerfile.index("COPY task/ /app/"))
 
     def test_grader_scores_a_missing_answer_zero_without_the_judge(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

@@ -11,7 +11,8 @@ figures to the task inside the container and turns on mini-swe-agent's
 multimodal tags. Everything else is Harbor's MiniSweAgent, with the defaults
 tools/run_agentic_miniswe.py uses: mini-swe-agent 2.4.6 and at most 500 steps,
 as Artificial Analysis runs Terminal-Bench 4.0. A `config` agent kwarg is merged
-over these defaults.
+over these defaults. Tasks exported with `--preinstall mini-swe-agent` already
+contain that mini-swe-agent, and then Harbor's install is skipped.
 """
 
 from __future__ import annotations
@@ -24,6 +25,11 @@ from harbor.agents.installed.mini_swe_agent import MiniSweAgent
 MINI_SWE_AGENT_VERSION = "2.4.6"
 MULTIMODAL_REGEX = r"(?s)<MSWEA_MULTIMODAL_CONTENT><CONTENT_TYPE>(.+?)</CONTENT_TYPE>(.+?)</MSWEA_MULTIMODAL_CONTENT>"
 DEFAULT_CONFIG: dict[str, Any] = {"agent": {"step_limit": 500}, "model": {"multimodal_regex": MULTIMODAL_REGEX}}
+# Prints the version of a mini-swe-agent already installed with uv, failing if it or mcp is missing.
+PREINSTALLED_CHECK = (
+    'export PATH="$HOME/.local/bin:$PATH" MSWEA_SILENT_STARTUP=1; '
+    '"$(uv tool dir)/mini-swe-agent/bin/python" -c "import minisweagent, mcp; print(minisweagent.__version__)"'
+)
 WRAPPER = Path(__file__).with_name("mini_with_figures.py")
 WRAPPER_TARGET = "/tmp/mini_with_figures.py"
 LAUNCH = "mini-swe-agent --yolo"
@@ -41,6 +47,11 @@ class RazaviMiniSweAgent(MiniSweAgent):
         super().__init__(*args, config=merge(DEFAULT_CONFIG, config or {}), version=version or MINI_SWE_AGENT_VERSION, **kwargs)
 
     async def install(self, environment: Any) -> None:
+        # tools/export_harbor_tasks.py --preinstall mini-swe-agent builds this toolchain into the
+        # image; then nothing is downloaded at run time.
+        found = await environment.exec(PREINSTALLED_CHECK)
+        if found.return_code == 0 and (found.stdout or "").strip().splitlines()[-1:] == [self._version]:
+            return
         await super().install(environment)
         # Harbor 0.25 installs litellm without its proxy extra, but litellm's tool-calling path
         # imports the MCP client, so every model call would fail without it.
