@@ -9,6 +9,7 @@ import mimetypes
 import re
 import time
 import urllib.error
+import urllib.parse
 import urllib.request
 from pathlib import Path
 from typing import Any
@@ -75,7 +76,21 @@ def build_content(repo_root: Path, task: dict[str, Any]) -> tuple[list[dict[str,
     return content, figures
 
 
+LOOPBACK_HOSTS = {"127.0.0.1", "localhost", "::1"}
+
+
+def require_secure_url(url: str) -> None:
+    """Reject a provider URL that would send an API key over plaintext HTTP."""
+    parsed = urllib.parse.urlsplit(url)
+    if parsed.scheme == "https":
+        return
+    if parsed.scheme == "http" and parsed.hostname in LOOPBACK_HOSTS:
+        return
+    raise ValueError("provider URL must use https, or http only for a loopback host")
+
+
 def endpoint(base_url: str) -> str:
+    require_secure_url(base_url)
     base = base_url.rstrip("/")
     return f"{base}/chat/completions" if base.endswith("/v1") else f"{base}/v1/chat/completions"
 
@@ -135,6 +150,7 @@ def model_reasoning(base_url: str, model: str, timeout: int = 30) -> dict[str, A
 
     None means the model exposes no effort selection. Raises if the model is not listed.
     """
+    require_secure_url(base_url)
     base = base_url.rstrip("/")
     url = f"{base}/models" if base.endswith("/v1") else f"{base}/v1/models"
     with urllib.request.urlopen(url, timeout=timeout) as response:
@@ -182,6 +198,7 @@ def response_text(body: dict[str, Any]) -> tuple[str, str]:
 
 
 def post_json(url: str, key: str, body: dict[str, Any], timeout: int) -> dict[str, Any]:
+    require_secure_url(url)
     request = urllib.request.Request(
         url,
         data=json.dumps(body, ensure_ascii=False).encode(),
@@ -193,6 +210,7 @@ def post_json(url: str, key: str, body: dict[str, Any], timeout: int) -> dict[st
 
 
 def post_stream(url: str, key: str, body: dict[str, Any], timeout: int) -> dict[str, Any]:
+    require_secure_url(url)
     """POST a streaming request and reassemble it into a non-streamed response body.
 
     A streamed connection keeps receiving data while the model reasons, so long answers
