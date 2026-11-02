@@ -154,6 +154,141 @@ python3 tools/direct_qa_muse_code.py run \
 
 Pass `--route muse_code_exec` to `build_model_json.py` for these runs.
 
+## Agentic runs on Harbor
+
+The agentic modes in [`agentic/README.md`](../agentic/README.md) run on
+[Harbor](https://github.com/harbor-framework/harbor) 0.25 with Docker.
+`export_harbor_tasks.py` writes the 50 tasks as Harbor tasks, one directory
+each under `output/harbor/<mode>/` (not committed):
+
+- `instruction.md`: the question, the mode's environment notes and the
+  deliverable, `/app/answer.md`;
+- `environment/`: the mode's image (`agentic/harness/harbor-<mode>.Dockerfile`;
+  for `ngspice-sky130`, ngspice 47 built from source, the Sky130 bundle and the
+  skill) plus the task's `instruction.md` and figures in `/app`;
+- `tests/`: a separate verifier container with the golden solution, the rubric
+  and `evaluate_answers.py`. It grades `/app/answer.md`, the task's only
+  artifact, with GPT-6 Luna at max effort and writes the score divided by 4 as
+  the reward (a missing answer scores 0 with no judge call).
+
+Golden solutions never enter the agent's container. With the default
+`--network allowlist`, the agent reaches only the model API while it runs and
+the verifier only the judge API. That needs a sandbox that can switch network
+policy after start; Docker Desktop cannot (its kernel lacks nftables FIB
+support), so on a Mac export with `--network public`, which leaves the network
+open and asks the agent in the instruction not to use the internet.
+
+The reference agent is `agentic/harbor/razavi_mini_swe_agent.py`: Harbor's
+mini-swe-agent set up the way Artificial Analysis runs Terminal-Bench 4.0
+(mini-swe-agent 2.4.6 with its `mini` config and prompts, the native bash tool,
+the full transcript with no compaction, at most 500 steps), with the figures
+attached as images. A bash-only agent cannot look at a PNG, and Harbor passes
+the task as one command-line argument, too small for a figure's base64, so the
+agent uploads `mini_with_figures.py` and starts mini-swe-agent through it; the
+script adds each figure in `/app` as a mini-swe-agent multimodal tag before
+the instruction's Environment section. It also adds the `mcp` package after
+Harbor's install: Harbor 0.25 installs LiteLLM without its proxy extra, but
+LiteLLM's tool-calling path imports the MCP client, so every model call fails
+without it. DeepSeek V4.1 Flash 1017 scored the same with this agent as with
+the standalone runner it replaced (87.83% against 87.50%; see
+`experiments/2026-10-27-agentic-ngspice-sky130`).
+
+Harbor installs every agent inside the container on every run, which fails on
+an unreliable connection. `--preinstall <agent>` (repeatable) builds the agent
+into the task image once instead, in layers before the task files so all tasks
+share them, and the run downloads nothing. For mini-swe-agent that is Harbor's
+own toolchain (uv 0.13.6, Python 3.12) with mini-swe-agent 2.4.6, LiteLLM
+1.106.4 and `mcp` pinned; the agent class then skips Harbor's install.
+
+```bash
+python3 tools/export_harbor_tasks.py --network public \
+  --preinstall mini-swe-agent --preinstall claude-code --preinstall codex --preinstall gemini-cli
+PYTHONPATH=agentic/harbor harbor run -y \
+  -p output/harbor/ngspice-sky130-public \
+  --agent razavi_mini_swe_agent:RazaviMiniSweAgent \
+  -m deepseek/deepseek-flash \
+  --ak 'config={"model": {"model_kwargs": {"thinking": {"type": "enabled"}, "extra_body": {"reasoning_effort": "max"}, "max_tokens": 131072}}}' \
+  -o output/harbor-jobs -n 4 -k 3
+```
+
+`DEEPSEEK_API_KEY` and `OPENROUTER_API_KEY` (for the judge) must be set.
+LiteLLM, which mini-swe-agent uses here, turns a top-level `reasoning_effort`
+into "thinking on" for DeepSeek, so the effort level goes in `extra_body`.
+`harbor trial regrade <trial dir> -p <task dir>` re-runs only the verifier on
+a recorded trial; it also needs `PYTHONPATH=agentic/harbor`.
+
+Gemini runs through Harbor's own `gemini-cli` agent, which reads the figures
+from `/app` itself. Harbor installs Gemini CLI on every run by fetching nvm
+from GitHub, Node from nodejs.org and the CLI from npm, which fails on an
+unreliable connection. Export with `--preinstall gemini-cli` to build Node
+22.23.4 (checksum-pinned) and Gemini CLI 0.65.0 into the task image once, with
+retries, and run `agentic/harbor/razavi_gemini_cli.py`, which skips Harbor's
+install when `gemini` is already there. `GEMINI_FORCE_OAUTH=1` uses the Mac's
+"Login with Google" credentials (`~/.gemini/oauth_creds.json`); Harbor copies
+them into the container for the run and deletes them afterwards. Gemini CLI
+cannot log in non-interactively, so the local login must be current: run
+`gemini` once in a terminal if it has lapsed. Google refuses Gemini CLI for
+free "Gemini Code Assist for individuals" accounts (`IneligibleTierError`,
+pointing to Antigravity), so those need a `GEMINI_API_KEY` instead.
+
+```bash
+GEMINI_FORCE_OAUTH=1 PYTHONPATH=agentic/harbor harbor run -y \
+  -p output/harbor/ngspice-sky130-public \
+  --agent razavi_gemini_cli:RazaviGeminiCli -m gemini/gemini-3.1-pro-preview \
+  -o output/harbor-jobs -n 4 -k 3 --max-retries 2
+```
+
+Codex runs through Harbor's own `codex` agent, which views the figures with
+its `view_image` tool. `--preinstall codex` builds Codex CLI 0.165.0 and
+ripgrep into the image (sharing the Node layer with `gemini-cli`), and Harbor
+then skips its own install. `CODEX_FORCE_AUTH_JSON=1` uses the Mac's ChatGPT
+login (`~/.codex/auth.json`). Harbor copies it into the container and never
+writes it back, so if Codex refreshes the login there, the Mac's copy may stop
+working and need `codex login`.
+
+```bash
+CODEX_FORCE_AUTH_JSON=1 harbor run -y \
+  -p output/harbor/ngspice-sky130-public \
+  -a codex -m openai/gpt-6-astra --ak reasoning_effort=max \
+  -o output/harbor-jobs -n 4 -k 3 --max-retries 2
+```
+
+Claude Code runs through Harbor's own `claude-code` agent, which reads the
+figures with its Read tool. `--preinstall claude-code` builds Claude Code
+2.1.198 into the image, and Harbor skips its install when the requested
+`version` matches. Pointed at Moonshot's Anthropic-compatible endpoint, it runs
+Kimi:
+
+```bash
+harbor run -y \
+  --path=output/harbor/ngspice-sky130-public \
+  --agent=claude-code \
+  --model='kimi-31-pro-nuvora[1m]' \
+  --agent-kwarg=version=2.1.198 \
+  --agent-kwarg=disallowed_tools=EnterPlanMode,EnterWorktree,ExitPlanMode,ExitWorktree,AskUserQuestion \
+  --agent-env=ANTHROPIC_MODEL='kimi-31-pro-nuvora[1m]' \
+  --agent-env=ANTHROPIC_DEFAULT_FABLE_MODEL='kimi-31-pro-nuvora[1m]' \
+  --agent-env=ANTHROPIC_DEFAULT_OPUS_MODEL='kimi-31-pro-nuvora[1m]' \
+  --agent-env=ANTHROPIC_DEFAULT_SONNET_MODEL='kimi-31-pro-nuvora[1m]' \
+  --agent-env=ANTHROPIC_DEFAULT_HAIKU_MODEL='kimi-31-pro-nuvora[1m]' \
+  --agent-env=CLAUDE_CODE_SUBAGENT_MODEL='kimi-31-pro-nuvora[1m]' \
+  --agent-env=CLAUDE_CODE_AUTO_COMPACT_WINDOW='1048576' \
+  --agent-env=CLAUDE_CODE_EFFORT_LEVEL='max' \
+  --agent-env=FORCE_AUTO_BACKGROUND_TASKS='1' \
+  --agent-env=ENABLE_BACKGROUND_TASKS='1' \
+  --agent-env=ENABLE_TOOL_SEARCH='false' \
+  --agent-env=IS_SANDBOX='1' \
+  --agent-env=API_TIMEOUT_MS='12000000' \
+  --agent-env=BUN_CONFIG_HTTP_IDLE_TIMEOUT='2000' \
+  --agent-env=CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC='1' \
+  --agent-env=ANTHROPIC_BASE_URL='https://api.moonshot.ai/anthropic' \
+  --agent-env=ANTHROPIC_API_KEY="$MOONSHOT_API_KEY" \
+  -o output/harbor-jobs -n 4 -k 3 --max-retries 2
+```
+
+Pass keys from the environment, as above, rather than literally: Harbor redacts
+them in the job's saved config, but a literal key stays in the shell history.
+
 ## `evaluate_answers.py`
 
 `evaluate_answers.py` scores saved answer JSONL files after model generation.

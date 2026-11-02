@@ -51,4 +51,22 @@ relevant.
 The bundled Sky130 subset is not a full PDK or benchmark ground truth. Many
 questions are qualitative or under-specified, so simulation supports rather
 than replaces circuit reasoning. Harness examples are provided as Dockerfiles
-under `agentic/harness/`.
+under `agentic/harness/`. Build them from the repository root. They hold only
+public files: each task's instruction and figures under `/benchmark/tasks`,
+plus the simulator bundle and skill for `ngspice-sky130`, whose images build
+ngspice 47, the latest release, from source. Golden solutions, the
+rubric, `data/tasks.jsonl`, `netlists/` and the rest of the repository never
+enter an image, since an agent with a shell can read anything in its container.
+
+## Running On Harbor
+
+Both modes run on Harbor. `tools/export_harbor_tasks.py` writes the tasks in
+Harbor's format, built on the `agentic/harness/harbor-*.Dockerfile` images:
+they hold only the public simulator bundle and skill (the `ngspice-sky130`
+image builds ngspice 47 from source) plus each task's instruction and figures,
+and the golden solution goes only into a separate verifier container. The
+reference agent, `agentic/harbor/razavi_mini_swe_agent.py`, is mini-swe-agent
+configured like Artificial Analysis's Terminal-Bench 4.0 runs, with the
+figures sent as images, since a bash-only agent cannot view a PNG; Codex,
+Claude Code and Gemini CLI run through Harbor's own agents. See
+[`tools/README.md`](../tools/README.md#agentic-runs-on-harbor).

@@ -1,0 +1,163 @@
+from __future__ import annotations
+
+import argparse
+import base64
+import importlib.util
+import json
+import re
+import shutil
+import sys
+import tempfile
+import tomllib
+import unittest
+from pathlib import Path
+from unittest import mock
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "tools"))
+import export_harbor_tasks as EXPORT
+from direct_qa_openrouter_common import REPO_ROOT, load_tasks
+
+
+def load(path: Path):
+    spec = importlib.util.spec_from_file_location(path.stem, path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+WRAPPER = load(ROOT / "agentic/harbor/mini_with_figures.py")
+GRADE = load(ROOT / "agentic/harbor/grade.py")
+
+
+def export_args(output_dir: Path, mode: str = "ngspice-sky130", network: str = "allowlist", preinstall: tuple[str, ...] = ()) -> argparse.Namespace:
+    return argparse.Namespace(
+        mode=mode, network=network, preinstall=list(preinstall), output_dir=output_dir, agent_timeout=3600, verifier_timeout=2400,
+        judge_api_url="https://openrouter.ai/api/v1/chat/completions", judge_model="openai/gpt-6-luna",
+        judge_key_env="OPENROUTER_API_KEY", judge_effort="max", judge_max_tokens=128000, judge_timeout=1800,
+    )
+
+
+class HarborExportTests(unittest.TestCase):
+    def test_instruction_has_the_environment_and_no_solution(self) -> None:
+        for task in load_tasks(REPO_ROOT):
+            text = EXPORT.task_text(task, "ngspice-sky130")
+            self.assertTrue(text.startswith(task["instruction"].strip()), task["task_slug"])
+            self.assertIn("/app/answer.md", text)
+            self.assertIn("/app/.claude/skills/ngspice-sky130/SKILL.md", text)
+            self.assertNotIn("<MSWEA_MULTIMODAL_CONTENT>", text)
+            self.assertNotIn(task["golden_solution"].strip()[-80:], text)
+        multimodal = EXPORT.task_text(load_tasks(REPO_ROOT, ["part1-008-source-follower"])[0], "multimodal")
+        self.assertNotIn("ngspice", multimodal)
+
+    def test_image_files_are_public(self) -> None:
+        for mode in EXPORT.MODES:
+            files = EXPORT.context_files(REPO_ROOT, mode)
+            self.assertEqual(files[0], EXPORT.MODES[mode]["dockerfile"])
+            for relative in files:
+                self.assertFalse(relative.startswith(("tasks/", "netlists/", "data/", "experiments/")), relative)
+                self.assertNotIn("golden", relative)
+
+    def test_wrapper_attaches_every_figure_before_the_environment(self) -> None:
+        """Inside the container mini_with_figures.py adds each /app figure as an image after the question."""
+        for slug in ("part1-008-source-follower", "part1-001-double-length-and-width-mosfet-its-intrinsic"):
+            task = load_tasks(REPO_ROOT, [slug])[0]
+            instruction = EXPORT.task_text(task, "ngspice-sky130")
+            with tempfile.TemporaryDirectory() as app:
+                for relative in task["figures"]:
+                    shutil.copy2(REPO_ROOT / relative, Path(app) / Path(relative).name)
+                text = WRAPPER.with_figures(instruction, Path(app))
+            if not task["figures"]:
+                self.assertEqual(text, instruction)
+                continue
+            head, rest = text.split("\n\n## Attached Figures", 1)
+            section, tail = rest.split("\n\n## Environment", 1)
+            self.assertEqual(f"{head}\n\n## Environment{tail}", instruction)
+            payloads = re.findall(r"data:image/png;base64,([A-Za-z0-9+/=]+)</MSWEA_MULTIMODAL_CONTENT>", section)
+            self.assertEqual([base64.b64decode(payload) for payload in payloads], [(REPO_ROOT / relative).read_bytes() for relative in sorted(task["figures"])])
+
+    def test_export_keeps_answers_in_the_verifier(self) -> None:
+        task = load_tasks(REPO_ROOT, ["part1-008-source-follower"])[0]
+        with tempfile.TemporaryDirectory() as tmp:
+            target = EXPORT.export_task(REPO_ROOT, task, export_args(Path(tmp)))
+            golden = (REPO_ROOT / task["task_path"] / "golden_solution.md").read_text(encoding="utf-8")
+            agent_side = [path for path in (target / "environment").rglob("*") if path.is_file()] + [target / "instruction.md"]
+            for path in agent_side:
+                self.assertNotIn(path.name, ("golden_solution.md", "evaluation_rubric.md", "judge.json"), path)
+                if path.suffix in (".md", ".py", ".json", ""):
+                    self.assertNotIn(golden.strip(), path.read_text(encoding="utf-8", errors="ignore"), path)
+            self.assertEqual((target / "tests/repo" / task["task_path"] / "golden_solution.md").read_text(encoding="utf-8"), golden)
+            self.assertNotIn("<MSWEA_MULTIMODAL_CONTENT>", (target / "instruction.md").read_text(encoding="utf-8"))
+            self.assertEqual(sorted(path.name for path in (target / "environment/task").iterdir()), ["figure-05.png", "instruction.md"])
+            dockerfile = (target / "environment/Dockerfile").read_text(encoding="utf-8")
+            self.assertTrue(dockerfile.startswith((REPO_ROOT / EXPORT.MODES["ngspice-sky130"]["dockerfile"]).read_text(encoding="utf-8")))
+            self.assertTrue(dockerfile.rstrip().endswith("COPY task/ /app/"))
+            # Harbor runs the verifier in the task's workdir, so its image must have /app.
+            self.assertIn("WORKDIR /app", (target / "tests/Dockerfile").read_text(encoding="utf-8"))
+
+    def test_task_toml_isolates_the_agent_and_the_verifier(self) -> None:
+        task = load_tasks(REPO_ROOT, ["part1-008-source-follower"])[0]
+        with tempfile.TemporaryDirectory() as tmp:
+            target = EXPORT.export_task(REPO_ROOT, task, export_args(Path(tmp)))
+            config = tomllib.loads((target / "task.toml").read_text(encoding="utf-8"))
+        self.assertEqual(config["artifacts"], ["/app/answer.md"])
+        self.assertEqual(config["verifier"]["environment_mode"], "separate")
+        self.assertEqual(config["verifier"]["allowed_hosts"], ["openrouter.ai"])
+        self.assertEqual(config["verifier"]["env"], {"OPENROUTER_API_KEY": "${OPENROUTER_API_KEY}"})
+        self.assertEqual((config["agent"]["network_mode"], config["agent"]["allowed_hosts"]), ("allowlist", []))
+        self.assertEqual(config["metadata"]["figures"], task["figures"])
+
+    def test_public_export_asks_the_agent_not_to_use_the_internet(self) -> None:
+        task = load_tasks(REPO_ROOT, ["part1-008-source-follower"])[0]
+        with tempfile.TemporaryDirectory() as tmp:
+            target = EXPORT.export_task(REPO_ROOT, task, export_args(Path(tmp), network="public"))
+            config = tomllib.loads((target / "task.toml").read_text(encoding="utf-8"))
+            instruction = (target / "instruction.md").read_text(encoding="utf-8")
+        self.assertEqual((config["agent"]["network_mode"], config["verifier"]["network_mode"]), ("public", "public"))
+        self.assertNotIn(EXPORT.NO_INTERNET, instruction)
+        self.assertIn(EXPORT.NO_INTERNET_REQUEST, instruction)
+
+    def test_preinstalled_gemini_cli_is_shared_by_all_tasks(self) -> None:
+        tasks = load_tasks(REPO_ROOT, ["part1-008-source-follower", "part1-001-double-length-and-width-mosfet-its-intrinsic"])
+        with tempfile.TemporaryDirectory() as tmp:
+            plain = (EXPORT.export_task(REPO_ROOT, tasks[0], export_args(Path(tmp) / "plain")) / "environment/Dockerfile").read_text(encoding="utf-8")
+            dockerfiles = [(EXPORT.export_task(REPO_ROOT, task, export_args(Path(tmp) / "gemini", preinstall=("gemini-cli",))) / "environment/Dockerfile").read_text(encoding="utf-8") for task in tasks]
+        self.assertNotIn("gemini-cli", plain)
+        for dockerfile in dockerfiles:
+            self.assertIn('npm install -g --fetch-retries=10', dockerfile)
+            self.assertLess(dockerfile.index("@google/gemini-cli"), dockerfile.index("COPY task/ /app/"))
+        # Identical up to the task files, so Docker builds the layer once for every task.
+        self.assertEqual(dockerfiles[0], dockerfiles[1])
+
+    def test_preinstalled_agents_share_one_node(self) -> None:
+        task = load_tasks(REPO_ROOT, ["part1-008-source-follower"])[0]
+        with tempfile.TemporaryDirectory() as tmp:
+            dockerfile = (EXPORT.export_task(REPO_ROOT, task, export_args(Path(tmp), preinstall=("codex", "gemini-cli", "claude-code", "codex"))) / "environment/Dockerfile").read_text(encoding="utf-8")
+        self.assertEqual(dockerfile.count("nodejs.org/dist"), 1)
+        self.assertEqual(dockerfile.count('"@openai/codex@'), 1)
+        for package in ('"@anthropic-ai/claude-code@', '"@openai/codex@', '"@google/gemini-cli@'):
+            self.assertLess(dockerfile.index("nodejs.org/dist"), dockerfile.index(package))
+            self.assertLess(dockerfile.index(package), dockerfile.index("COPY task/ /app/"))
+
+    def test_preinstalled_mini_swe_agent_needs_no_node(self) -> None:
+        task = load_tasks(REPO_ROOT, ["part1-008-source-follower"])[0]
+        with tempfile.TemporaryDirectory() as tmp:
+            dockerfile = (EXPORT.export_task(REPO_ROOT, task, export_args(Path(tmp), preinstall=("mini-swe-agent",))) / "environment/Dockerfile").read_text(encoding="utf-8")
+        self.assertNotIn("nodejs.org/dist", dockerfile)
+        self.assertIn('"mini-swe-agent==${MINI_SWE_AGENT_VERSION}"', dockerfile)
+        self.assertIn('--with "mcp==${MCP_VERSION}"', dockerfile)
+        self.assertLess(dockerfile.index("uv tool install"), dockerfile.index("COPY task/ /app/"))
+
+    def test_grader_scores_a_missing_answer_zero_without_the_judge(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tests, verifier = Path(tmp) / "tests", Path(tmp) / "logs/verifier"
+            tests.mkdir()
+            (tests / "judge.json").write_text(json.dumps({"task_path": "tasks/x"}), encoding="utf-8")
+            with mock.patch.multiple(GRADE, TESTS=tests, ANSWER=Path(tmp) / "app/answer.md", VERIFIER=verifier), mock.patch.object(GRADE.subprocess, "run") as run:
+                self.assertEqual(GRADE.main(), 0)
+            run.assert_not_called()
+            self.assertEqual(json.loads((verifier / "reward.json").read_text()), {"reward": 0, "score_0_to_4": 0})
+
+
+if __name__ == "__main__":
+    unittest.main()
