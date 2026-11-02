@@ -85,6 +85,10 @@ runs (e.g. to compare several efforts) but prints a notice. The resolved effort
 and the listed efforts are recorded in `validation_report.json`. Pass
 `--skip-effort-check` only for endpoints that are not OpenRouter.
 
+The request leaves the sampling temperature to the provider unless
+`--temperature` is given; pass `--temperature 0` to repeat an earlier
+temperature-0 run of a non-reasoning model under the same settings.
+
 The runner writes public answer JSONL, a redacted raw audit log, and a
 validation report under the selected output directory. Audit an existing run
 without making network requests:

@@ -118,6 +118,8 @@ def execute(args: argparse.Namespace, smoke: bool = False) -> dict[str, Any]:
         rollout, task = job
         content, figures = build_content(root, task)
         body = build_payload(args.model, content, args.effort, args.max_tokens, args.provider)
+        if args.temperature is not None:
+            body["temperature"] = args.temperature
         result = call_model(url, key, body, args.timeout, args.max_retries)
         request = {"reasoning": body.get("reasoning") or {"effort": body.get("reasoning_effort"), "thinking": body.get("thinking"), "chat_template_kwargs": body.get("chat_template_kwargs")}, "sampling": {k: body[k] for k in ("temperature", "top_p") if k in body}, "content_blocks": [part["type"] for part in content]}
         return rollout, task, figures, result, request
@@ -217,6 +219,7 @@ def add_run_args(parser: argparse.ArgumentParser) -> None:
         help="do not check --effort against OpenRouter's model list (for endpoints that are not OpenRouter)",
     )
     parser.add_argument("--max-tokens", type=int, default=131072)
+    parser.add_argument("--temperature", type=float, default=None, help="sampling temperature; omitted from the request unless set")
     parser.add_argument("--timeout", type=int, default=5400)
     parser.add_argument("--concurrency", type=int, default=4)
     parser.add_argument("--max-retries", type=int, default=3)

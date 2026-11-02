@@ -1,10 +1,10 @@
 {
   "model_key": "gpt_4o",
-  "display_name": "GPT-4o",
+  "display_name": "GPT-4o (2024-08-06)",
   "provider": "openai",
   "evaluation_model_ids": [],
   "thinking_effort": "default",
-  "configuration_note": "Published scores come from GPT-6 Luna at maximum reasoning effort, which re-graded every answer on 2026-10-27; the judge named above is kept for audit.",
+  "configuration_note": "GPT-4o answered all 50 tasks in three rollouts on 2026-08-01 through OpenRouter's openai/gpt-4o alias at temperature 0 with max_tokens 8,192. That alias serves the gpt-4o-2024-08-06 snapshot: it returns the same system fingerprint and charges the same price as openai/gpt-4o-2024-08-06, so this entry is dated to that snapshot; the original May 2024 snapshot is listed separately as GPT-4o (2024-05-13). Published scores come from GPT-6 Luna at maximum reasoning effort, which re-graded every answer on 2026-10-27; the judge named above is kept for audit.",
   "mode": "direct_qa",
   "summary": {
     "rollout_count": 3,

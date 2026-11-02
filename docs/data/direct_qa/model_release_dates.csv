@@ -28,7 +28,8 @@ gpt_54_mini,GPT-5.4 Mini,openai,medium,openrouter:openai/gpt-5.4-mini,2026-03-17
 minimax_m3,MiniMax M3,minimax,default,vela:209249,2026-06-01,official_release,https://www.minimax.io/blog/minimax-m3,
 gemma_4_31b_it,Gemma 4 31B IT,google,default,google/gemma-4-31b-it,2026-04-02,official_model_repository,https://huggingface.co/google/gemma-4-31B-it,Uses the publication date of Google's official model repository.
 llama_4_maverick,Llama 4 Maverick,meta,default,meta-llama/llama-4-maverick,2025-04-05,official_release,https://ai.meta.com/blog/llama-4-multimodal-intelligence/,
-gpt_4o,GPT-4o,openai,default,openai/gpt-4o,2024-05-13,official_release,https://openai.com/index/hello-gpt-4o/,
+gpt_4o,GPT-4o (2024-08-06),openai,default,openai/gpt-4o,2024-08-06,official_release,https://openai.com/index/introducing-structured-outputs-in-the-api/,OpenRouter's openai/gpt-4o alias serves gpt-4o-2024-08-06 (same system fingerprint and price as openai/gpt-4o-2024-08-06).
+gpt_4o_2024_05_13,GPT-4o (2024-05-13),openai,default,openrouter:openai/gpt-4o-2024-05-13,2024-05-13,official_release,https://openai.com/index/hello-gpt-4o/,Evaluated through OpenRouter at temperature 0; GPT-6 Luna at maximum reasoning effort is the judge.
 gpt_4o_mini,GPT-4o Mini,openai,default,openai/gpt-4o-mini,2024-07-18,official_release,https://openai.com/index/gpt-4o-mini-advancing-cost-efficient-intelligence/,
 qwen25_vl_72b_instruct,Qwen2.5-VL-72B Instruct,qwen,default,qwen/qwen2.5-vl-72b-instruct,2025-01-26,official_release,https://qwenlm.github.io/blog/qwen2.5-vl/,
 claude_sonnet_4,Claude Sonnet 4,anthropic,default,anthropic/claude-sonnet-4,2025-05-22,official_release,https://www.anthropic.com/news/claude-4,

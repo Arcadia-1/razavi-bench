@@ -52,6 +52,33 @@ counted in tokens and cost.
 Costs are OpenRouter's billed amounts at each model's published API price;
 judge cost is excluded.
 
+## GPT-4o snapshots
+
+The GPT-4o entry published from `2026-08-01-direct-qa` was run through
+OpenRouter's `openai/gpt-4o` alias but dated to the original May 13, 2024
+release. That alias serves `gpt-4o-2024-08-06`: on 2026-11-02 it returned the
+same system fingerprint (`fp_625eb29508`) and charged the same price as
+`openai/gpt-4o-2024-08-06`, while `openai/gpt-4o-2024-05-13` returned a
+different one. The existing entry is therefore relabelled GPT-4o (2024-08-06)
+and dated August 6, 2024, and the May snapshot was run here as its own entry.
+
+- Answer model: `openai/gpt-4o-2024-05-13` (served by Azure), no reasoning
+  setting
+- Temperature 0, as in the August run; `max_tokens` 4,096, the snapshot's
+  output limit (the August run used 8,192)
+- Rollouts: 3 × 50 tasks, generation concurrency 8
+
+| Model | Overall | Part 1 | Part 2 | Rollouts | Score distribution (4/3/2/1/0) |
+|---|---:|---:|---:|---|---|
+| GPT-4o (2024-05-13) | **35.67%** | 28.61% | 46.25% | 34.00%, 35.00%, 38.00% | 8 / 25 / 30 / 47 / 40 |
+| GPT-4o (2024-08-06), August run | 43.00% | 37.78% | 50.83% | 43.00%, 44.50%, 41.50% | 7 / 42 / 32 / 40 / 29 |
+
+Eleven requests that timed out at the gateway (HTTP 504) and one answer that
+ran into the 4,096-token limit were re-sampled. The 151 billed requests used
+137,600 input and 81,518 output tokens; at OpenRouter's price for this snapshot ($5 input, $15
+output per 1M tokens, no cached-input discount) the answer-model cost is about
+$1.91.
+
 ## Contents
 
 - `<model>/model_outputs/`: three cleaned 50-answer rollout JSONL files
