@@ -133,6 +133,41 @@ the next attempt. Every billed attempt is counted:
 | MiniMax-01 | 150 | 1,181,211 | 78,075 | $0.32 |
 | Nova Pro | 155 | 250,128 | 72,172 | $0.43 |
 
+## Top-effort reruns of three default-effort entries
+
+GPT-5, Gemini 2.5 Pro and Gemini 3.5 Flash were the default-effort entries
+whose reruns could move the score frontier. The August runs sent no reasoning
+setting: GPT-5 and Gemini 2.5 Pro went through OpenRouter on 2026-08-03 with
+`max_tokens` 16,384 and the provider defaults (medium effort for GPT-5,
+dynamic thinking for Gemini 2.5 Pro, where 12 of 150 answers reached the
+cap), and Gemini 3.5 Flash ran on 2026-08-15 with thinking enabled at a level
+the platform did not record. Each rerun replaces its entry under the same key.
+
+| Model | OpenRouter id | Effort | `max_tokens` | Overall | Part 1 | Part 2 | Rollouts | Score distribution (4/3/2/1/0) | August run |
+|---|---|---|---:|---:|---:|---:|---|---|---:|
+| Gemini 3.5 Flash | `google/gemini-3.5-flash` | high | 65,536 | **84.17%** | 92.22% | 72.08% | 84.00%, 84.50%, 84.00% | 104 / 21 / 7 / 12 / 6 | 83.83% |
+| Gemini 2.5 Pro | `google/gemini-2.5-pro` | max | 65,536 | **69.67%** | 76.67% | 59.17% | 68.50%, 67.00%, 73.50% | 75 / 15 / 27 / 19 / 14 | 62.33% |
+| GPT-5 | `openai/gpt-5` | high | 128,000 | **62.17%** | 67.50% | 54.17% | 62.00%, 63.00%, 61.50% | 60 / 23 / 19 / 26 / 22 | 63.33% |
+
+High is the highest effort OpenRouter lists for GPT-5 and Gemini 3.5 Flash.
+It lists none for Gemini 2.5 Pro, so max asks for the largest thinking budget.
+Gemini 2.5 Pro gains 7.33 points and now sets the frontier from June 17, 2025,
+above GPT-5 and Claude Opus 4.5; Gemini 3.5 Flash, 0.17 points above GPT-5.3,
+sets it from May 19, 2026 until Claude Opus 4.8. GPT-5 at high effort scores
+within its rollout range of the medium-effort run.
+
+All 450 requests finished on the first attempt. The Gemini 3.5 Flash grading
+stalled on one request and was resumed with `--resume`.
+
+| Model | Input tokens (cached) | Output tokens (reasoning) | Cost |
+|---|---:|---:|---:|
+| Gemini 3.5 Flash | 158,751 (0) | 906,017 (728,393) | $8.39 |
+| Gemini 2.5 Pro | 44,388 (0) | 1,125,629 (958,796) | $11.31 |
+| GPT-5 | 113,706 (14,976) | 1,056,655 (1,009,664) | $10.69 |
+
+The website's Gemini 2.5 Pro output price is corrected from $12 to $10 per 1M
+tokens, OpenRouter's price.
+
 ## Contents
 
 - `<model>/model_outputs/`: three cleaned 50-answer rollout JSONL files
