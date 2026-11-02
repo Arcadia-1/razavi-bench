@@ -1086,8 +1086,8 @@ function bTL(){
     points.push({m:m.m,d:m.d,pv:m.pv,e:m.e,release:release,month:release.slice(0,7),score:m.o.mn});
   });
   points.sort(function(a,b){return a.release.localeCompare(b.release)});
-  // Start the score axis at 35% unless a lower score would fall below it.
-  var yMin=points.reduce(function(lo,p){return Math.min(lo,Math.floor((p.score-2)/5)*5)},35);
+  // Start the score axis at 30%, lower only if a score would fall below it.
+  var yMin=points.reduce(function(lo,p){return Math.min(lo,Math.floor(p.score/10)*10)},30);
   var firstMonth=relMonthIndex("2024-04");
   var lastMonth=(points.length?relMonthIndex(points[points.length-1].month):firstMonth)+REL_FUTURE_MONTHS;
   var months=Array.from({length:lastMonth-firstMonth+1},function(_,i){return relMonthLabel(firstMonth+i)});
