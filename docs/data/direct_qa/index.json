@@ -1,6 +1,6 @@
 {
   "schema_version": "razavi-bench.direct-qa.v1",
-  "generated_at": "2026-10-30T10:30:41.052716+00:00",
+  "generated_at": "2026-11-02T18:46:25.869341+00:00",
   "benchmark": {
     "mode": "direct_qa",
     "question_count": 50,
@@ -11298,6 +11298,578 @@
       "detail_file": "models/grok_45.json"
     },
     {
+      "model_key": "gemini_3_flash",
+      "display_name": "Gemini 3 Flash",
+      "provider": "google",
+      "evaluation_model_ids": [],
+      "thinking_effort": "high",
+      "configuration_note": "Gemini 3 Flash (OpenRouter google/gemini-3-flash-preview) answered all 50 tasks in three rollouts through OpenRouter's chat completions route at reasoning effort high, the highest OpenRouter lists for this model (max_tokens 65,536, the model's output limit). Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's published Gemini 3 Flash API price ($0.50 input, $0.05 cached input, $3 output per 1M tokens).",
+      "mode": "direct_qa",
+      "detail_file": "models/gemini_3_flash.json",
+      "summary": {
+        "rollout_count": 3,
+        "answer_count": 150,
+        "scores": {
+          "overall": {
+            "gpt_6_luna_max": {
+              "response_count": 150,
+              "correct_count": 95,
+              "incorrect_count": 55,
+              "partial_credit_count": 42,
+              "zero_count": 13,
+              "mean_score_0_to_4": 3.1333333333333333,
+              "score_percent": 78.33333333333333,
+              "score_distribution": {
+                "0": 13,
+                "1": 12,
+                "2": 12,
+                "3": 18,
+                "4": 95
+              }
+            },
+            "active": {
+              "response_count": 150,
+              "correct_count": 95,
+              "incorrect_count": 55,
+              "partial_credit_count": 42,
+              "zero_count": 13,
+              "mean_score_0_to_4": 3.1333333333333333,
+              "score_percent": 78.33333333333333,
+              "score_distribution": {
+                "0": 13,
+                "1": 12,
+                "2": 12,
+                "3": 18,
+                "4": 95
+              }
+            }
+          },
+          "part1": {
+            "gpt_6_luna_max": {
+              "response_count": 90,
+              "correct_count": 69,
+              "incorrect_count": 21,
+              "partial_credit_count": 14,
+              "zero_count": 7,
+              "mean_score_0_to_4": 3.488888888888889,
+              "score_percent": 87.22222222222223,
+              "score_distribution": {
+                "0": 7,
+                "2": 4,
+                "3": 10,
+                "4": 69
+              }
+            },
+            "active": {
+              "response_count": 90,
+              "correct_count": 69,
+              "incorrect_count": 21,
+              "partial_credit_count": 14,
+              "zero_count": 7,
+              "mean_score_0_to_4": 3.488888888888889,
+              "score_percent": 87.22222222222223,
+              "score_distribution": {
+                "0": 7,
+                "2": 4,
+                "3": 10,
+                "4": 69
+              }
+            }
+          },
+          "part2": {
+            "gpt_6_luna_max": {
+              "response_count": 60,
+              "correct_count": 26,
+              "incorrect_count": 34,
+              "partial_credit_count": 28,
+              "zero_count": 6,
+              "mean_score_0_to_4": 2.6,
+              "score_percent": 65.0,
+              "score_distribution": {
+                "0": 6,
+                "1": 12,
+                "2": 8,
+                "3": 8,
+                "4": 26
+              }
+            },
+            "active": {
+              "response_count": 60,
+              "correct_count": 26,
+              "incorrect_count": 34,
+              "partial_credit_count": 28,
+              "zero_count": 6,
+              "mean_score_0_to_4": 2.6,
+              "score_percent": 65.0,
+              "score_distribution": {
+                "0": 6,
+                "1": 12,
+                "2": 8,
+                "3": 8,
+                "4": 26
+              }
+            }
+          }
+        },
+        "by_rollout": {
+          "1": {
+            "response_count": 50,
+            "correct_count": 32,
+            "incorrect_count": 18,
+            "partial_credit_count": 14,
+            "zero_count": 4,
+            "mean_score_0_to_4": 3.18,
+            "score_percent": 79.5,
+            "score_distribution": {
+              "0": 4,
+              "1": 4,
+              "2": 3,
+              "3": 7,
+              "4": 32
+            }
+          },
+          "2": {
+            "response_count": 50,
+            "correct_count": 32,
+            "incorrect_count": 18,
+            "partial_credit_count": 14,
+            "zero_count": 4,
+            "mean_score_0_to_4": 3.16,
+            "score_percent": 79.0,
+            "score_distribution": {
+              "0": 4,
+              "1": 4,
+              "2": 4,
+              "3": 6,
+              "4": 32
+            }
+          },
+          "3": {
+            "response_count": 50,
+            "correct_count": 31,
+            "incorrect_count": 19,
+            "partial_credit_count": 14,
+            "zero_count": 5,
+            "mean_score_0_to_4": 3.06,
+            "score_percent": 76.5,
+            "score_distribution": {
+              "0": 5,
+              "1": 4,
+              "2": 5,
+              "3": 5,
+              "4": 31
+            }
+          }
+        },
+        "tokens": {
+          "response_count": 150,
+          "usage_record_count": 150,
+          "complete_usage_count": 150,
+          "missing_usage_count": 0,
+          "missing_cached_input_count": 0,
+          "complete": true,
+          "totals": {
+            "cached_input_tokens": 0,
+            "input_tokens": 158752,
+            "output_tokens": 714932,
+            "total_tokens": 873684
+          },
+          "known_totals": {
+            "cached_input_tokens": 0,
+            "input_tokens": 158752,
+            "output_tokens": 714932,
+            "total_tokens": 873684
+          }
+        },
+        "by_rollout_part": {
+          "part1": {
+            "1": {
+              "response_count": 30,
+              "correct_count": 23,
+              "incorrect_count": 7,
+              "partial_credit_count": 5,
+              "zero_count": 2,
+              "mean_score_0_to_4": 3.533333333333333,
+              "score_percent": 88.33333333333333,
+              "score_distribution": {
+                "0": 2,
+                "2": 1,
+                "3": 4,
+                "4": 23
+              }
+            },
+            "2": {
+              "response_count": 30,
+              "correct_count": 24,
+              "incorrect_count": 6,
+              "partial_credit_count": 4,
+              "zero_count": 2,
+              "mean_score_0_to_4": 3.533333333333333,
+              "score_percent": 88.33333333333333,
+              "score_distribution": {
+                "0": 2,
+                "2": 2,
+                "3": 2,
+                "4": 24
+              }
+            },
+            "3": {
+              "response_count": 30,
+              "correct_count": 22,
+              "incorrect_count": 8,
+              "partial_credit_count": 5,
+              "zero_count": 3,
+              "mean_score_0_to_4": 3.4,
+              "score_percent": 85.0,
+              "score_distribution": {
+                "0": 3,
+                "2": 1,
+                "3": 4,
+                "4": 22
+              }
+            }
+          },
+          "part2": {
+            "1": {
+              "response_count": 20,
+              "correct_count": 9,
+              "incorrect_count": 11,
+              "partial_credit_count": 9,
+              "zero_count": 2,
+              "mean_score_0_to_4": 2.65,
+              "score_percent": 66.25,
+              "score_distribution": {
+                "0": 2,
+                "1": 4,
+                "2": 2,
+                "3": 3,
+                "4": 9
+              }
+            },
+            "2": {
+              "response_count": 20,
+              "correct_count": 8,
+              "incorrect_count": 12,
+              "partial_credit_count": 10,
+              "zero_count": 2,
+              "mean_score_0_to_4": 2.6,
+              "score_percent": 65.0,
+              "score_distribution": {
+                "0": 2,
+                "1": 4,
+                "2": 2,
+                "3": 4,
+                "4": 8
+              }
+            },
+            "3": {
+              "response_count": 20,
+              "correct_count": 9,
+              "incorrect_count": 11,
+              "partial_credit_count": 9,
+              "zero_count": 2,
+              "mean_score_0_to_4": 2.55,
+              "score_percent": 63.74999999999999,
+              "score_distribution": {
+                "0": 2,
+                "1": 4,
+                "2": 4,
+                "3": 1,
+                "4": 9
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "model_key": "gpt_52",
+      "display_name": "GPT-5.2",
+      "provider": "openai",
+      "evaluation_model_ids": [],
+      "thinking_effort": "xhigh",
+      "configuration_note": "GPT-5.2 answered all 50 tasks in three rollouts through OpenRouter's chat completions route at reasoning effort xhigh, the highest OpenRouter lists for this model (max_tokens 128,000, the model's output limit). One request that lost its connection mid-response, one that ended in a provider error and one that returned nothing for over an hour were re-sampled; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's published GPT-5.2 API price ($1.75 input, $0.175 cached input, $14 output per 1M tokens).",
+      "mode": "direct_qa",
+      "detail_file": "models/gpt_52.json",
+      "summary": {
+        "rollout_count": 3,
+        "answer_count": 150,
+        "scores": {
+          "overall": {
+            "gpt_6_luna_max": {
+              "response_count": 150,
+              "correct_count": 95,
+              "incorrect_count": 55,
+              "partial_credit_count": 45,
+              "zero_count": 10,
+              "mean_score_0_to_4": 3.1333333333333333,
+              "score_percent": 78.33333333333333,
+              "score_distribution": {
+                "0": 10,
+                "1": 16,
+                "2": 13,
+                "3": 16,
+                "4": 95
+              }
+            },
+            "active": {
+              "response_count": 150,
+              "correct_count": 95,
+              "incorrect_count": 55,
+              "partial_credit_count": 45,
+              "zero_count": 10,
+              "mean_score_0_to_4": 3.1333333333333333,
+              "score_percent": 78.33333333333333,
+              "score_distribution": {
+                "0": 10,
+                "1": 16,
+                "2": 13,
+                "3": 16,
+                "4": 95
+              }
+            }
+          },
+          "part1": {
+            "gpt_6_luna_max": {
+              "response_count": 90,
+              "correct_count": 67,
+              "incorrect_count": 23,
+              "partial_credit_count": 15,
+              "zero_count": 8,
+              "mean_score_0_to_4": 3.411111111111111,
+              "score_percent": 85.27777777777777,
+              "score_distribution": {
+                "0": 8,
+                "1": 1,
+                "2": 4,
+                "3": 10,
+                "4": 67
+              }
+            },
+            "active": {
+              "response_count": 90,
+              "correct_count": 67,
+              "incorrect_count": 23,
+              "partial_credit_count": 15,
+              "zero_count": 8,
+              "mean_score_0_to_4": 3.411111111111111,
+              "score_percent": 85.27777777777777,
+              "score_distribution": {
+                "0": 8,
+                "1": 1,
+                "2": 4,
+                "3": 10,
+                "4": 67
+              }
+            }
+          },
+          "part2": {
+            "gpt_6_luna_max": {
+              "response_count": 60,
+              "correct_count": 28,
+              "incorrect_count": 32,
+              "partial_credit_count": 30,
+              "zero_count": 2,
+              "mean_score_0_to_4": 2.716666666666667,
+              "score_percent": 67.91666666666667,
+              "score_distribution": {
+                "0": 2,
+                "1": 15,
+                "2": 9,
+                "3": 6,
+                "4": 28
+              }
+            },
+            "active": {
+              "response_count": 60,
+              "correct_count": 28,
+              "incorrect_count": 32,
+              "partial_credit_count": 30,
+              "zero_count": 2,
+              "mean_score_0_to_4": 2.716666666666667,
+              "score_percent": 67.91666666666667,
+              "score_distribution": {
+                "0": 2,
+                "1": 15,
+                "2": 9,
+                "3": 6,
+                "4": 28
+              }
+            }
+          }
+        },
+        "by_rollout": {
+          "1": {
+            "response_count": 50,
+            "correct_count": 32,
+            "incorrect_count": 18,
+            "partial_credit_count": 15,
+            "zero_count": 3,
+            "mean_score_0_to_4": 3.18,
+            "score_percent": 79.5,
+            "score_distribution": {
+              "0": 3,
+              "1": 5,
+              "2": 4,
+              "3": 6,
+              "4": 32
+            }
+          },
+          "2": {
+            "response_count": 50,
+            "correct_count": 33,
+            "incorrect_count": 17,
+            "partial_credit_count": 14,
+            "zero_count": 3,
+            "mean_score_0_to_4": 3.18,
+            "score_percent": 79.5,
+            "score_distribution": {
+              "0": 3,
+              "1": 5,
+              "2": 5,
+              "3": 4,
+              "4": 33
+            }
+          },
+          "3": {
+            "response_count": 50,
+            "correct_count": 30,
+            "incorrect_count": 20,
+            "partial_credit_count": 16,
+            "zero_count": 4,
+            "mean_score_0_to_4": 3.04,
+            "score_percent": 76.0,
+            "score_distribution": {
+              "0": 4,
+              "1": 6,
+              "2": 4,
+              "3": 6,
+              "4": 30
+            }
+          }
+        },
+        "tokens": {
+          "response_count": 150,
+          "usage_record_count": 150,
+          "complete_usage_count": 150,
+          "missing_usage_count": 0,
+          "missing_cached_input_count": 0,
+          "complete": true,
+          "totals": {
+            "cached_input_tokens": 80384,
+            "input_tokens": 268884,
+            "output_tokens": 2241346,
+            "total_tokens": 2510230
+          },
+          "known_totals": {
+            "cached_input_tokens": 80384,
+            "input_tokens": 268884,
+            "output_tokens": 2241346,
+            "total_tokens": 2510230
+          }
+        },
+        "by_rollout_part": {
+          "part1": {
+            "1": {
+              "response_count": 30,
+              "correct_count": 23,
+              "incorrect_count": 7,
+              "partial_credit_count": 5,
+              "zero_count": 2,
+              "mean_score_0_to_4": 3.466666666666667,
+              "score_percent": 86.66666666666667,
+              "score_distribution": {
+                "0": 2,
+                "1": 1,
+                "2": 1,
+                "3": 3,
+                "4": 23
+              }
+            },
+            "2": {
+              "response_count": 30,
+              "correct_count": 23,
+              "incorrect_count": 7,
+              "partial_credit_count": 4,
+              "zero_count": 3,
+              "mean_score_0_to_4": 3.433333333333333,
+              "score_percent": 85.83333333333333,
+              "score_distribution": {
+                "0": 3,
+                "2": 1,
+                "3": 3,
+                "4": 23
+              }
+            },
+            "3": {
+              "response_count": 30,
+              "correct_count": 21,
+              "incorrect_count": 9,
+              "partial_credit_count": 6,
+              "zero_count": 3,
+              "mean_score_0_to_4": 3.3333333333333335,
+              "score_percent": 83.33333333333334,
+              "score_distribution": {
+                "0": 3,
+                "2": 2,
+                "3": 4,
+                "4": 21
+              }
+            }
+          },
+          "part2": {
+            "1": {
+              "response_count": 20,
+              "correct_count": 9,
+              "incorrect_count": 11,
+              "partial_credit_count": 10,
+              "zero_count": 1,
+              "mean_score_0_to_4": 2.75,
+              "score_percent": 68.75,
+              "score_distribution": {
+                "0": 1,
+                "1": 4,
+                "2": 3,
+                "3": 3,
+                "4": 9
+              }
+            },
+            "2": {
+              "response_count": 20,
+              "correct_count": 10,
+              "incorrect_count": 10,
+              "partial_credit_count": 10,
+              "zero_count": 0,
+              "mean_score_0_to_4": 2.8,
+              "score_percent": 70.0,
+              "score_distribution": {
+                "1": 5,
+                "2": 4,
+                "3": 1,
+                "4": 10
+              }
+            },
+            "3": {
+              "response_count": 20,
+              "correct_count": 9,
+              "incorrect_count": 11,
+              "partial_credit_count": 10,
+              "zero_count": 1,
+              "mean_score_0_to_4": 2.6,
+              "score_percent": 65.0,
+              "score_distribution": {
+                "0": 1,
+                "1": 6,
+                "2": 2,
+                "3": 2,
+                "4": 9
+              }
+            }
+          }
+        }
+      }
+    },
+    {
       "model_key": "qwen_38_27b",
       "display_name": "Qwen 3.8 27B",
       "provider": "qwen",
@@ -16838,6 +17410,295 @@
       }
     },
     {
+      "model_key": "claude_opus_45",
+      "display_name": "Claude Opus 4.5",
+      "provider": "anthropic",
+      "evaluation_model_ids": [],
+      "thinking_effort": "max",
+      "configuration_note": "Claude Opus 4.5 answered all 50 tasks in three rollouts through OpenRouter's chat completions route at reasoning effort max, which OpenRouter sends as an extended-thinking budget of 60,800 tokens (95% of max_tokens 64,000, the model's output limit). One request that lost its connection mid-response was re-sampled; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's published Claude Opus 4.5 API price ($5 input, $0.50 cached input, $25 output per 1M tokens).",
+      "mode": "direct_qa",
+      "detail_file": "models/claude_opus_45.json",
+      "summary": {
+        "rollout_count": 3,
+        "answer_count": 150,
+        "scores": {
+          "overall": {
+            "gpt_6_luna_max": {
+              "response_count": 150,
+              "correct_count": 67,
+              "incorrect_count": 83,
+              "partial_credit_count": 58,
+              "zero_count": 25,
+              "mean_score_0_to_4": 2.5866666666666664,
+              "score_percent": 64.66666666666666,
+              "score_distribution": {
+                "0": 25,
+                "1": 18,
+                "2": 18,
+                "3": 22,
+                "4": 67
+              }
+            },
+            "active": {
+              "response_count": 150,
+              "correct_count": 67,
+              "incorrect_count": 83,
+              "partial_credit_count": 58,
+              "zero_count": 25,
+              "mean_score_0_to_4": 2.5866666666666664,
+              "score_percent": 64.66666666666666,
+              "score_distribution": {
+                "0": 25,
+                "1": 18,
+                "2": 18,
+                "3": 22,
+                "4": 67
+              }
+            }
+          },
+          "part1": {
+            "gpt_6_luna_max": {
+              "response_count": 90,
+              "correct_count": 46,
+              "incorrect_count": 44,
+              "partial_credit_count": 25,
+              "zero_count": 19,
+              "mean_score_0_to_4": 2.7111111111111112,
+              "score_percent": 67.77777777777779,
+              "score_distribution": {
+                "0": 19,
+                "1": 3,
+                "2": 9,
+                "3": 13,
+                "4": 46
+              }
+            },
+            "active": {
+              "response_count": 90,
+              "correct_count": 46,
+              "incorrect_count": 44,
+              "partial_credit_count": 25,
+              "zero_count": 19,
+              "mean_score_0_to_4": 2.7111111111111112,
+              "score_percent": 67.77777777777779,
+              "score_distribution": {
+                "0": 19,
+                "1": 3,
+                "2": 9,
+                "3": 13,
+                "4": 46
+              }
+            }
+          },
+          "part2": {
+            "gpt_6_luna_max": {
+              "response_count": 60,
+              "correct_count": 21,
+              "incorrect_count": 39,
+              "partial_credit_count": 33,
+              "zero_count": 6,
+              "mean_score_0_to_4": 2.4,
+              "score_percent": 60.0,
+              "score_distribution": {
+                "0": 6,
+                "1": 15,
+                "2": 9,
+                "3": 9,
+                "4": 21
+              }
+            },
+            "active": {
+              "response_count": 60,
+              "correct_count": 21,
+              "incorrect_count": 39,
+              "partial_credit_count": 33,
+              "zero_count": 6,
+              "mean_score_0_to_4": 2.4,
+              "score_percent": 60.0,
+              "score_distribution": {
+                "0": 6,
+                "1": 15,
+                "2": 9,
+                "3": 9,
+                "4": 21
+              }
+            }
+          }
+        },
+        "by_rollout": {
+          "1": {
+            "response_count": 50,
+            "correct_count": 22,
+            "incorrect_count": 28,
+            "partial_credit_count": 20,
+            "zero_count": 8,
+            "mean_score_0_to_4": 2.56,
+            "score_percent": 64.0,
+            "score_distribution": {
+              "0": 8,
+              "1": 7,
+              "2": 6,
+              "3": 7,
+              "4": 22
+            }
+          },
+          "2": {
+            "response_count": 50,
+            "correct_count": 23,
+            "incorrect_count": 27,
+            "partial_credit_count": 19,
+            "zero_count": 8,
+            "mean_score_0_to_4": 2.64,
+            "score_percent": 66.0,
+            "score_distribution": {
+              "0": 8,
+              "1": 6,
+              "2": 5,
+              "3": 8,
+              "4": 23
+            }
+          },
+          "3": {
+            "response_count": 50,
+            "correct_count": 22,
+            "incorrect_count": 28,
+            "partial_credit_count": 19,
+            "zero_count": 9,
+            "mean_score_0_to_4": 2.56,
+            "score_percent": 64.0,
+            "score_distribution": {
+              "0": 9,
+              "1": 5,
+              "2": 7,
+              "3": 7,
+              "4": 22
+            }
+          }
+        },
+        "tokens": {
+          "response_count": 150,
+          "usage_record_count": 150,
+          "complete_usage_count": 150,
+          "missing_usage_count": 0,
+          "missing_cached_input_count": 0,
+          "complete": true,
+          "totals": {
+            "cached_input_tokens": 0,
+            "input_tokens": 203313,
+            "output_tokens": 797956,
+            "total_tokens": 1001269
+          },
+          "known_totals": {
+            "cached_input_tokens": 0,
+            "input_tokens": 203313,
+            "output_tokens": 797956,
+            "total_tokens": 1001269
+          }
+        },
+        "by_rollout_part": {
+          "part1": {
+            "1": {
+              "response_count": 30,
+              "correct_count": 16,
+              "incorrect_count": 14,
+              "partial_credit_count": 8,
+              "zero_count": 6,
+              "mean_score_0_to_4": 2.7666666666666666,
+              "score_percent": 69.16666666666667,
+              "score_distribution": {
+                "0": 6,
+                "1": 1,
+                "2": 3,
+                "3": 4,
+                "4": 16
+              }
+            },
+            "2": {
+              "response_count": 30,
+              "correct_count": 16,
+              "incorrect_count": 14,
+              "partial_credit_count": 8,
+              "zero_count": 6,
+              "mean_score_0_to_4": 2.7333333333333334,
+              "score_percent": 68.33333333333333,
+              "score_distribution": {
+                "0": 6,
+                "1": 2,
+                "2": 2,
+                "3": 4,
+                "4": 16
+              }
+            },
+            "3": {
+              "response_count": 30,
+              "correct_count": 14,
+              "incorrect_count": 16,
+              "partial_credit_count": 9,
+              "zero_count": 7,
+              "mean_score_0_to_4": 2.6333333333333333,
+              "score_percent": 65.83333333333333,
+              "score_distribution": {
+                "0": 7,
+                "2": 4,
+                "3": 5,
+                "4": 14
+              }
+            }
+          },
+          "part2": {
+            "1": {
+              "response_count": 20,
+              "correct_count": 6,
+              "incorrect_count": 14,
+              "partial_credit_count": 12,
+              "zero_count": 2,
+              "mean_score_0_to_4": 2.25,
+              "score_percent": 56.25,
+              "score_distribution": {
+                "0": 2,
+                "1": 6,
+                "2": 3,
+                "3": 3,
+                "4": 6
+              }
+            },
+            "2": {
+              "response_count": 20,
+              "correct_count": 7,
+              "incorrect_count": 13,
+              "partial_credit_count": 11,
+              "zero_count": 2,
+              "mean_score_0_to_4": 2.5,
+              "score_percent": 62.5,
+              "score_distribution": {
+                "0": 2,
+                "1": 4,
+                "2": 3,
+                "3": 4,
+                "4": 7
+              }
+            },
+            "3": {
+              "response_count": 20,
+              "correct_count": 8,
+              "incorrect_count": 12,
+              "partial_credit_count": 10,
+              "zero_count": 2,
+              "mean_score_0_to_4": 2.45,
+              "score_percent": 61.25000000000001,
+              "score_distribution": {
+                "0": 2,
+                "1": 5,
+                "2": 3,
+                "3": 2,
+                "4": 8
+              }
+            }
+          }
+        }
+      }
+    },
+    {
       "model_key": "gpt_5",
       "display_name": "GPT-5",
       "provider": "openai",
@@ -17602,6 +18463,296 @@
         }
       },
       "detail_file": "models/gpt_54_mini.json"
+    },
+    {
+      "model_key": "gpt_51",
+      "display_name": "GPT-5.1",
+      "provider": "openai",
+      "evaluation_model_ids": [],
+      "thinking_effort": "high",
+      "configuration_note": "GPT-5.1 answered all 50 tasks in three rollouts through OpenRouter's chat completions route at reasoning effort high, the highest OpenRouter lists for this model (max_tokens 128,000, the model's output limit). One request that ended in a provider error was re-sampled; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's published GPT-5.1 API price ($1.25 input, $0.125 cached input, $10 output per 1M tokens).",
+      "mode": "direct_qa",
+      "detail_file": "models/gpt_51.json",
+      "summary": {
+        "rollout_count": 3,
+        "answer_count": 150,
+        "scores": {
+          "overall": {
+            "gpt_6_luna_max": {
+              "response_count": 150,
+              "correct_count": 65,
+              "incorrect_count": 85,
+              "partial_credit_count": 61,
+              "zero_count": 24,
+              "mean_score_0_to_4": 2.5,
+              "score_percent": 62.5,
+              "score_distribution": {
+                "0": 24,
+                "1": 26,
+                "2": 16,
+                "3": 19,
+                "4": 65
+              }
+            },
+            "active": {
+              "response_count": 150,
+              "correct_count": 65,
+              "incorrect_count": 85,
+              "partial_credit_count": 61,
+              "zero_count": 24,
+              "mean_score_0_to_4": 2.5,
+              "score_percent": 62.5,
+              "score_distribution": {
+                "0": 24,
+                "1": 26,
+                "2": 16,
+                "3": 19,
+                "4": 65
+              }
+            }
+          },
+          "part1": {
+            "gpt_6_luna_max": {
+              "response_count": 90,
+              "correct_count": 48,
+              "incorrect_count": 42,
+              "partial_credit_count": 24,
+              "zero_count": 18,
+              "mean_score_0_to_4": 2.7,
+              "score_percent": 67.5,
+              "score_distribution": {
+                "0": 18,
+                "1": 6,
+                "2": 9,
+                "3": 9,
+                "4": 48
+              }
+            },
+            "active": {
+              "response_count": 90,
+              "correct_count": 48,
+              "incorrect_count": 42,
+              "partial_credit_count": 24,
+              "zero_count": 18,
+              "mean_score_0_to_4": 2.7,
+              "score_percent": 67.5,
+              "score_distribution": {
+                "0": 18,
+                "1": 6,
+                "2": 9,
+                "3": 9,
+                "4": 48
+              }
+            }
+          },
+          "part2": {
+            "gpt_6_luna_max": {
+              "response_count": 60,
+              "correct_count": 17,
+              "incorrect_count": 43,
+              "partial_credit_count": 37,
+              "zero_count": 6,
+              "mean_score_0_to_4": 2.2,
+              "score_percent": 55.00000000000001,
+              "score_distribution": {
+                "0": 6,
+                "1": 20,
+                "2": 7,
+                "3": 10,
+                "4": 17
+              }
+            },
+            "active": {
+              "response_count": 60,
+              "correct_count": 17,
+              "incorrect_count": 43,
+              "partial_credit_count": 37,
+              "zero_count": 6,
+              "mean_score_0_to_4": 2.2,
+              "score_percent": 55.00000000000001,
+              "score_distribution": {
+                "0": 6,
+                "1": 20,
+                "2": 7,
+                "3": 10,
+                "4": 17
+              }
+            }
+          }
+        },
+        "by_rollout": {
+          "1": {
+            "response_count": 50,
+            "correct_count": 23,
+            "incorrect_count": 27,
+            "partial_credit_count": 19,
+            "zero_count": 8,
+            "mean_score_0_to_4": 2.46,
+            "score_percent": 61.5,
+            "score_distribution": {
+              "0": 8,
+              "1": 10,
+              "2": 6,
+              "3": 3,
+              "4": 23
+            }
+          },
+          "2": {
+            "response_count": 50,
+            "correct_count": 23,
+            "incorrect_count": 27,
+            "partial_credit_count": 19,
+            "zero_count": 8,
+            "mean_score_0_to_4": 2.6,
+            "score_percent": 65.0,
+            "score_distribution": {
+              "0": 8,
+              "1": 7,
+              "2": 5,
+              "3": 7,
+              "4": 23
+            }
+          },
+          "3": {
+            "response_count": 50,
+            "correct_count": 19,
+            "incorrect_count": 31,
+            "partial_credit_count": 23,
+            "zero_count": 8,
+            "mean_score_0_to_4": 2.44,
+            "score_percent": 61.0,
+            "score_distribution": {
+              "0": 8,
+              "1": 9,
+              "2": 5,
+              "3": 9,
+              "4": 19
+            }
+          }
+        },
+        "tokens": {
+          "response_count": 150,
+          "usage_record_count": 150,
+          "complete_usage_count": 150,
+          "missing_usage_count": 0,
+          "missing_cached_input_count": 0,
+          "complete": true,
+          "totals": {
+            "cached_input_tokens": 3456,
+            "input_tokens": 113706,
+            "output_tokens": 1175632,
+            "total_tokens": 1289338
+          },
+          "known_totals": {
+            "cached_input_tokens": 3456,
+            "input_tokens": 113706,
+            "output_tokens": 1175632,
+            "total_tokens": 1289338
+          }
+        },
+        "by_rollout_part": {
+          "part1": {
+            "1": {
+              "response_count": 30,
+              "correct_count": 17,
+              "incorrect_count": 13,
+              "partial_credit_count": 6,
+              "zero_count": 7,
+              "mean_score_0_to_4": 2.6666666666666665,
+              "score_percent": 66.66666666666666,
+              "score_distribution": {
+                "0": 7,
+                "1": 1,
+                "2": 4,
+                "3": 1,
+                "4": 17
+              }
+            },
+            "2": {
+              "response_count": 30,
+              "correct_count": 18,
+              "incorrect_count": 12,
+              "partial_credit_count": 7,
+              "zero_count": 5,
+              "mean_score_0_to_4": 2.9,
+              "score_percent": 72.5,
+              "score_distribution": {
+                "0": 5,
+                "1": 2,
+                "2": 2,
+                "3": 3,
+                "4": 18
+              }
+            },
+            "3": {
+              "response_count": 30,
+              "correct_count": 13,
+              "incorrect_count": 17,
+              "partial_credit_count": 11,
+              "zero_count": 6,
+              "mean_score_0_to_4": 2.533333333333333,
+              "score_percent": 63.33333333333333,
+              "score_distribution": {
+                "0": 6,
+                "1": 3,
+                "2": 3,
+                "3": 5,
+                "4": 13
+              }
+            }
+          },
+          "part2": {
+            "1": {
+              "response_count": 20,
+              "correct_count": 6,
+              "incorrect_count": 14,
+              "partial_credit_count": 13,
+              "zero_count": 1,
+              "mean_score_0_to_4": 2.15,
+              "score_percent": 53.75,
+              "score_distribution": {
+                "0": 1,
+                "1": 9,
+                "2": 2,
+                "3": 2,
+                "4": 6
+              }
+            },
+            "2": {
+              "response_count": 20,
+              "correct_count": 5,
+              "incorrect_count": 15,
+              "partial_credit_count": 12,
+              "zero_count": 3,
+              "mean_score_0_to_4": 2.15,
+              "score_percent": 53.75,
+              "score_distribution": {
+                "0": 3,
+                "1": 5,
+                "2": 3,
+                "3": 4,
+                "4": 5
+              }
+            },
+            "3": {
+              "response_count": 20,
+              "correct_count": 6,
+              "incorrect_count": 14,
+              "partial_credit_count": 12,
+              "zero_count": 2,
+              "mean_score_0_to_4": 2.3,
+              "score_percent": 57.49999999999999,
+              "score_distribution": {
+                "0": 2,
+                "1": 6,
+                "2": 2,
+                "3": 4,
+                "4": 6
+              }
+            }
+          }
+        }
+      }
     },
     {
       "model_key": "gemini_25_pro",
@@ -18759,6 +19910,582 @@
         }
       },
       "detail_file": "models/inkling.json"
+    },
+    {
+      "model_key": "claude_sonnet_45",
+      "display_name": "Claude Sonnet 4.5",
+      "provider": "anthropic",
+      "evaluation_model_ids": [],
+      "thinking_effort": "max",
+      "configuration_note": "Claude Sonnet 4.5 answered all 50 tasks in three rollouts through OpenRouter's chat completions route at reasoning effort max, which OpenRouter sends as an extended-thinking budget of 60,800 tokens (95% of max_tokens 64,000, the model's output limit). Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's published Claude Sonnet 4.5 API price ($3 input, $0.30 cached input, $15 output per 1M tokens).",
+      "mode": "direct_qa",
+      "detail_file": "models/claude_sonnet_45.json",
+      "summary": {
+        "rollout_count": 3,
+        "answer_count": 150,
+        "scores": {
+          "overall": {
+            "gpt_6_luna_max": {
+              "response_count": 150,
+              "correct_count": 46,
+              "incorrect_count": 104,
+              "partial_credit_count": 79,
+              "zero_count": 25,
+              "mean_score_0_to_4": 2.2933333333333334,
+              "score_percent": 57.333333333333336,
+              "score_distribution": {
+                "0": 25,
+                "1": 27,
+                "2": 23,
+                "3": 29,
+                "4": 46
+              }
+            },
+            "active": {
+              "response_count": 150,
+              "correct_count": 46,
+              "incorrect_count": 104,
+              "partial_credit_count": 79,
+              "zero_count": 25,
+              "mean_score_0_to_4": 2.2933333333333334,
+              "score_percent": 57.333333333333336,
+              "score_distribution": {
+                "0": 25,
+                "1": 27,
+                "2": 23,
+                "3": 29,
+                "4": 46
+              }
+            }
+          },
+          "part1": {
+            "gpt_6_luna_max": {
+              "response_count": 90,
+              "correct_count": 34,
+              "incorrect_count": 56,
+              "partial_credit_count": 35,
+              "zero_count": 21,
+              "mean_score_0_to_4": 2.466666666666667,
+              "score_percent": 61.66666666666667,
+              "score_distribution": {
+                "0": 21,
+                "1": 4,
+                "2": 11,
+                "3": 20,
+                "4": 34
+              }
+            },
+            "active": {
+              "response_count": 90,
+              "correct_count": 34,
+              "incorrect_count": 56,
+              "partial_credit_count": 35,
+              "zero_count": 21,
+              "mean_score_0_to_4": 2.466666666666667,
+              "score_percent": 61.66666666666667,
+              "score_distribution": {
+                "0": 21,
+                "1": 4,
+                "2": 11,
+                "3": 20,
+                "4": 34
+              }
+            }
+          },
+          "part2": {
+            "gpt_6_luna_max": {
+              "response_count": 60,
+              "correct_count": 12,
+              "incorrect_count": 48,
+              "partial_credit_count": 44,
+              "zero_count": 4,
+              "mean_score_0_to_4": 2.033333333333333,
+              "score_percent": 50.83333333333333,
+              "score_distribution": {
+                "0": 4,
+                "1": 23,
+                "2": 12,
+                "3": 9,
+                "4": 12
+              }
+            },
+            "active": {
+              "response_count": 60,
+              "correct_count": 12,
+              "incorrect_count": 48,
+              "partial_credit_count": 44,
+              "zero_count": 4,
+              "mean_score_0_to_4": 2.033333333333333,
+              "score_percent": 50.83333333333333,
+              "score_distribution": {
+                "0": 4,
+                "1": 23,
+                "2": 12,
+                "3": 9,
+                "4": 12
+              }
+            }
+          }
+        },
+        "by_rollout": {
+          "1": {
+            "response_count": 50,
+            "correct_count": 17,
+            "incorrect_count": 33,
+            "partial_credit_count": 25,
+            "zero_count": 8,
+            "mean_score_0_to_4": 2.36,
+            "score_percent": 59.0,
+            "score_distribution": {
+              "0": 8,
+              "1": 7,
+              "2": 11,
+              "3": 7,
+              "4": 17
+            }
+          },
+          "2": {
+            "response_count": 50,
+            "correct_count": 16,
+            "incorrect_count": 34,
+            "partial_credit_count": 25,
+            "zero_count": 9,
+            "mean_score_0_to_4": 2.3,
+            "score_percent": 57.49999999999999,
+            "score_distribution": {
+              "0": 9,
+              "1": 10,
+              "2": 4,
+              "3": 11,
+              "4": 16
+            }
+          },
+          "3": {
+            "response_count": 50,
+            "correct_count": 13,
+            "incorrect_count": 37,
+            "partial_credit_count": 29,
+            "zero_count": 8,
+            "mean_score_0_to_4": 2.22,
+            "score_percent": 55.50000000000001,
+            "score_distribution": {
+              "0": 8,
+              "1": 10,
+              "2": 8,
+              "3": 11,
+              "4": 13
+            }
+          }
+        },
+        "tokens": {
+          "response_count": 150,
+          "usage_record_count": 150,
+          "complete_usage_count": 150,
+          "missing_usage_count": 0,
+          "missing_cached_input_count": 0,
+          "complete": true,
+          "totals": {
+            "cached_input_tokens": 0,
+            "input_tokens": 203313,
+            "output_tokens": 750472,
+            "total_tokens": 953785
+          },
+          "known_totals": {
+            "cached_input_tokens": 0,
+            "input_tokens": 203313,
+            "output_tokens": 750472,
+            "total_tokens": 953785
+          }
+        },
+        "by_rollout_part": {
+          "part1": {
+            "1": {
+              "response_count": 30,
+              "correct_count": 14,
+              "incorrect_count": 16,
+              "partial_credit_count": 9,
+              "zero_count": 7,
+              "mean_score_0_to_4": 2.566666666666667,
+              "score_percent": 64.16666666666667,
+              "score_distribution": {
+                "0": 7,
+                "2": 6,
+                "3": 3,
+                "4": 14
+              }
+            },
+            "2": {
+              "response_count": 30,
+              "correct_count": 11,
+              "incorrect_count": 19,
+              "partial_credit_count": 11,
+              "zero_count": 8,
+              "mean_score_0_to_4": 2.3666666666666667,
+              "score_percent": 59.166666666666664,
+              "score_distribution": {
+                "0": 8,
+                "1": 3,
+                "3": 8,
+                "4": 11
+              }
+            },
+            "3": {
+              "response_count": 30,
+              "correct_count": 9,
+              "incorrect_count": 21,
+              "partial_credit_count": 15,
+              "zero_count": 6,
+              "mean_score_0_to_4": 2.466666666666667,
+              "score_percent": 61.66666666666667,
+              "score_distribution": {
+                "0": 6,
+                "1": 1,
+                "2": 5,
+                "3": 9,
+                "4": 9
+              }
+            }
+          },
+          "part2": {
+            "1": {
+              "response_count": 20,
+              "correct_count": 3,
+              "incorrect_count": 17,
+              "partial_credit_count": 16,
+              "zero_count": 1,
+              "mean_score_0_to_4": 2.05,
+              "score_percent": 51.24999999999999,
+              "score_distribution": {
+                "0": 1,
+                "1": 7,
+                "2": 5,
+                "3": 4,
+                "4": 3
+              }
+            },
+            "2": {
+              "response_count": 20,
+              "correct_count": 5,
+              "incorrect_count": 15,
+              "partial_credit_count": 14,
+              "zero_count": 1,
+              "mean_score_0_to_4": 2.2,
+              "score_percent": 55.00000000000001,
+              "score_distribution": {
+                "0": 1,
+                "1": 7,
+                "2": 4,
+                "3": 3,
+                "4": 5
+              }
+            },
+            "3": {
+              "response_count": 20,
+              "correct_count": 4,
+              "incorrect_count": 16,
+              "partial_credit_count": 14,
+              "zero_count": 2,
+              "mean_score_0_to_4": 1.85,
+              "score_percent": 46.25,
+              "score_distribution": {
+                "0": 2,
+                "1": 9,
+                "2": 3,
+                "3": 2,
+                "4": 4
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "model_key": "o3",
+      "display_name": "o3",
+      "provider": "openai",
+      "evaluation_model_ids": [],
+      "thinking_effort": "high",
+      "configuration_note": "o3 answered all 50 tasks in three rollouts through OpenRouter's chat completions route at reasoning effort high, the highest OpenAI offers for o3 (max_tokens 100,000, the model's output limit). One request that lost its connection mid-response was re-sampled; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's published o3 API price ($2 input, $0.50 cached input, $8 output per 1M tokens).",
+      "mode": "direct_qa",
+      "detail_file": "models/o3.json",
+      "summary": {
+        "rollout_count": 3,
+        "answer_count": 150,
+        "scores": {
+          "overall": {
+            "gpt_6_luna_max": {
+              "response_count": 150,
+              "correct_count": 36,
+              "incorrect_count": 114,
+              "partial_credit_count": 96,
+              "zero_count": 18,
+              "mean_score_0_to_4": 2.2333333333333334,
+              "score_percent": 55.833333333333336,
+              "score_distribution": {
+                "0": 18,
+                "1": 30,
+                "2": 37,
+                "3": 29,
+                "4": 36
+              }
+            },
+            "active": {
+              "response_count": 150,
+              "correct_count": 36,
+              "incorrect_count": 114,
+              "partial_credit_count": 96,
+              "zero_count": 18,
+              "mean_score_0_to_4": 2.2333333333333334,
+              "score_percent": 55.833333333333336,
+              "score_distribution": {
+                "0": 18,
+                "1": 30,
+                "2": 37,
+                "3": 29,
+                "4": 36
+              }
+            }
+          },
+          "part1": {
+            "gpt_6_luna_max": {
+              "response_count": 90,
+              "correct_count": 24,
+              "incorrect_count": 66,
+              "partial_credit_count": 51,
+              "zero_count": 15,
+              "mean_score_0_to_4": 2.388888888888889,
+              "score_percent": 59.72222222222222,
+              "score_distribution": {
+                "0": 15,
+                "1": 6,
+                "2": 22,
+                "3": 23,
+                "4": 24
+              }
+            },
+            "active": {
+              "response_count": 90,
+              "correct_count": 24,
+              "incorrect_count": 66,
+              "partial_credit_count": 51,
+              "zero_count": 15,
+              "mean_score_0_to_4": 2.388888888888889,
+              "score_percent": 59.72222222222222,
+              "score_distribution": {
+                "0": 15,
+                "1": 6,
+                "2": 22,
+                "3": 23,
+                "4": 24
+              }
+            }
+          },
+          "part2": {
+            "gpt_6_luna_max": {
+              "response_count": 60,
+              "correct_count": 12,
+              "incorrect_count": 48,
+              "partial_credit_count": 45,
+              "zero_count": 3,
+              "mean_score_0_to_4": 2.0,
+              "score_percent": 50.0,
+              "score_distribution": {
+                "0": 3,
+                "1": 24,
+                "2": 15,
+                "3": 6,
+                "4": 12
+              }
+            },
+            "active": {
+              "response_count": 60,
+              "correct_count": 12,
+              "incorrect_count": 48,
+              "partial_credit_count": 45,
+              "zero_count": 3,
+              "mean_score_0_to_4": 2.0,
+              "score_percent": 50.0,
+              "score_distribution": {
+                "0": 3,
+                "1": 24,
+                "2": 15,
+                "3": 6,
+                "4": 12
+              }
+            }
+          }
+        },
+        "by_rollout": {
+          "1": {
+            "response_count": 50,
+            "correct_count": 13,
+            "incorrect_count": 37,
+            "partial_credit_count": 31,
+            "zero_count": 6,
+            "mean_score_0_to_4": 2.2,
+            "score_percent": 55.00000000000001,
+            "score_distribution": {
+              "0": 6,
+              "1": 12,
+              "2": 11,
+              "3": 8,
+              "4": 13
+            }
+          },
+          "2": {
+            "response_count": 50,
+            "correct_count": 10,
+            "incorrect_count": 40,
+            "partial_credit_count": 34,
+            "zero_count": 6,
+            "mean_score_0_to_4": 2.24,
+            "score_percent": 56.00000000000001,
+            "score_distribution": {
+              "0": 6,
+              "1": 7,
+              "2": 16,
+              "3": 11,
+              "4": 10
+            }
+          },
+          "3": {
+            "response_count": 50,
+            "correct_count": 13,
+            "incorrect_count": 37,
+            "partial_credit_count": 31,
+            "zero_count": 6,
+            "mean_score_0_to_4": 2.26,
+            "score_percent": 56.49999999999999,
+            "score_distribution": {
+              "0": 6,
+              "1": 11,
+              "2": 10,
+              "3": 10,
+              "4": 13
+            }
+          }
+        },
+        "tokens": {
+          "response_count": 150,
+          "usage_record_count": 150,
+          "complete_usage_count": 150,
+          "missing_usage_count": 0,
+          "missing_cached_input_count": 0,
+          "complete": true,
+          "totals": {
+            "cached_input_tokens": 13568,
+            "input_tokens": 121236,
+            "output_tokens": 657938,
+            "total_tokens": 779174
+          },
+          "known_totals": {
+            "cached_input_tokens": 13568,
+            "input_tokens": 121236,
+            "output_tokens": 657938,
+            "total_tokens": 779174
+          }
+        },
+        "by_rollout_part": {
+          "part1": {
+            "1": {
+              "response_count": 30,
+              "correct_count": 9,
+              "incorrect_count": 21,
+              "partial_credit_count": 17,
+              "zero_count": 4,
+              "mean_score_0_to_4": 2.4,
+              "score_percent": 60.0,
+              "score_distribution": {
+                "0": 4,
+                "1": 4,
+                "2": 7,
+                "3": 6,
+                "4": 9
+              }
+            },
+            "2": {
+              "response_count": 30,
+              "correct_count": 7,
+              "incorrect_count": 23,
+              "partial_credit_count": 17,
+              "zero_count": 6,
+              "mean_score_0_to_4": 2.3333333333333335,
+              "score_percent": 58.333333333333336,
+              "score_distribution": {
+                "0": 6,
+                "2": 9,
+                "3": 8,
+                "4": 7
+              }
+            },
+            "3": {
+              "response_count": 30,
+              "correct_count": 8,
+              "incorrect_count": 22,
+              "partial_credit_count": 17,
+              "zero_count": 5,
+              "mean_score_0_to_4": 2.433333333333333,
+              "score_percent": 60.83333333333333,
+              "score_distribution": {
+                "0": 5,
+                "1": 2,
+                "2": 6,
+                "3": 9,
+                "4": 8
+              }
+            }
+          },
+          "part2": {
+            "1": {
+              "response_count": 20,
+              "correct_count": 4,
+              "incorrect_count": 16,
+              "partial_credit_count": 14,
+              "zero_count": 2,
+              "mean_score_0_to_4": 1.9,
+              "score_percent": 47.5,
+              "score_distribution": {
+                "0": 2,
+                "1": 8,
+                "2": 4,
+                "3": 2,
+                "4": 4
+              }
+            },
+            "2": {
+              "response_count": 20,
+              "correct_count": 3,
+              "incorrect_count": 17,
+              "partial_credit_count": 17,
+              "zero_count": 0,
+              "mean_score_0_to_4": 2.1,
+              "score_percent": 52.5,
+              "score_distribution": {
+                "1": 7,
+                "2": 7,
+                "3": 3,
+                "4": 3
+              }
+            },
+            "3": {
+              "response_count": 20,
+              "correct_count": 5,
+              "incorrect_count": 15,
+              "partial_credit_count": 14,
+              "zero_count": 1,
+              "mean_score_0_to_4": 2.0,
+              "score_percent": 50.0,
+              "score_distribution": {
+                "0": 1,
+                "1": 9,
+                "2": 4,
+                "3": 1,
+                "4": 5
+              }
+            }
+          }
+        }
+      }
     },
     {
       "model_key": "llama_4_maverick",
