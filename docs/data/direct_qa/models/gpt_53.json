@@ -4,7 +4,7 @@
   "provider": "openai",
   "evaluation_model_ids": [],
   "thinking_effort": "default",
-  "configuration_note": "Published scores come from GPT-6 Luna at maximum reasoning effort, which re-graded every answer on 2026-10-27; the judge named above is kept for audit.",
+  "configuration_note": "GPT-5.3-Codex (OpenRouter openai/gpt-5.3-codex, shown as GPT-5.3) answered all 50 tasks in three rollouts on 2026-08-01 at the provider's default reasoning effort (medium) with temperature 0 and max_tokens 8,192, which caps reasoning and answer together; the xhigh entry repeats the run at the model's highest effort and full output limit. Published scores come from GPT-6 Luna at maximum reasoning effort, which re-graded every answer on 2026-10-27; the judge named above is kept for audit.",
   "mode": "direct_qa",
   "summary": {
     "rollout_count": 3,

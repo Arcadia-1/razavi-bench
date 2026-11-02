@@ -79,6 +79,29 @@ ran into the 4,096-token limit were re-sampled. The 151 billed requests used
 output per 1M tokens, no cached-input discount) the answer-model cost is about
 $1.91.
 
+## GPT-5.3 at xhigh
+
+The published GPT-5.3 entry (`2026-08-01-direct-qa`) is GPT-5.3-Codex run at
+the provider's default effort (medium) with temperature 0 and `max_tokens`
+8,192, a cap that reasoning and answer share. It was repeated here at the
+model's highest effort and full output limit and published as a second
+configuration, `gpt_53_xhigh`; the original entry is kept.
+
+- Answer model: `openai/gpt-5.3-codex`, reasoning effort xhigh (OpenRouter
+  lists `xhigh, high, medium, low, none`), `max_tokens` 128,000
+- Rollouts: 3 × 50 tasks, generation concurrency 12
+
+| Configuration | Overall | Part 1 | Part 2 | Rollouts | Score distribution (4/3/2/1/0) |
+|---|---:|---:|---:|---|---|
+| GPT-5.3 [xhigh] | **84.00%** | 90.83% | 73.75% | 85.00%, 83.50%, 83.50% | 107 / 13 / 13 / 11 / 6 |
+| GPT-5.3 [default], August run | 74.67% | 82.78% | 62.50% | 72.00%, 79.00%, 73.00% | 91 / 11 / 14 / 23 / 11 |
+
+All 150 requests finished on the first attempt: 268,884 input tokens (75,264
+cached) and 1,196,908 output tokens (1,144,177 reasoning), about $17.11 at
+OpenRouter's price ($1.75 input, $0.175 cached input, $14 output per 1M
+tokens). GPT-5.3 [xhigh] ranks 20th of 73 and sets the score frontier from
+February 5, 2026 until Claude Opus 4.8.
+
 ## Contents
 
 - `<model>/model_outputs/`: three cleaned 50-answer rollout JSONL files
