@@ -43,6 +43,7 @@ PROVIDER_STYLE = {
     "deepseek": ("DeepSeek", "#4D6BFE"),
     "mistral": ("Mistral", "#FF7000"),
     "nvidia": ("NVIDIA", "#76B900"),
+    "amazon": ("Amazon", "#FF9900"),
 }
 
 LABEL_OFFSETS = {

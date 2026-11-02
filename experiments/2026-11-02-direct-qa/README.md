@@ -103,6 +103,40 @@ OpenRouter's price ($1.75 input, $0.175 cached input, $14 output per 1M
 tokens). GPT-5.3 [xhigh] ranks 20th of 72 and sets the score frontier from
 February 5, 2026 until Claude Opus 4.8.
 
+## Late 2024 and January 2025
+
+Four vision models from October 2024 to January 2025 that OpenRouter still
+serves were added to fill that stretch of the timeline. o1, Claude 3.5
+Sonnet and Haiku, Gemini 2.0 Flash, Pixtral Large and Grok 2 Vision are no
+longer listed; DeepSeek V3, DeepSeek R1 and o3-mini cannot read the
+schematics; Perplexity Sonar searches the web and would break the tool-free
+rule. None of the four has a reasoning setting, so all run at temperature 0
+like the GPT-4o snapshots, with `max_tokens` at each model's output limit
+(16,384 for MiniMax-01, whose listed limit is its context length).
+
+| Model | OpenRouter id | Release (first listed) | `max_tokens` | Overall | Part 1 | Part 2 | Rollouts | Score distribution (4/3/2/1/0) |
+|---|---|---|---:|---:|---:|---:|---|---|
+| GPT-4o (2024-11-20) | `openai/gpt-4o-2024-11-20` | 2024-11-20 | 16,384 | **46.67%** | 45.56% | 48.33% | 46.50%, 48.00%, 45.50% | 22 / 29 / 33 / 39 / 27 |
+| MiniMax-01 | `minimax/minimax-01` | 2025-01-15 | 16,384 | **35.67%** | 30.83% | 42.92% | 36.50%, 34.50%, 36.00% | 8 / 34 / 24 / 32 / 52 |
+| Nova Pro | `amazon/nova-pro-v1` | 2024-12-05 | 5,120 | **33.67%** | 27.50% | 42.92% | 31.50%, 34.00%, 35.50% | 7 / 21 / 40 / 31 / 51 |
+| Nova Lite | `amazon/nova-lite-v1` | 2024-12-05 | 5,120 | **22.00%** | 17.22% | 29.17% | 20.50%, 23.00%, 22.50% | 0 / 14 / 30 / 30 / 76 |
+
+GPT-4o (2024-11-20) sets the score frontier from November 20, 2024, above
+GPT-4o (2024-08-06) at 43.00%, until Llama 4 Maverick. Nova Lite is the
+lowest-scoring configuration on the leaderboard.
+
+Nova Pro returned two empty responses, which were re-sampled, and one answer
+ran into the 5,120-token limit three times; re-run, it finished normally on
+the next attempt. Nova Lite returned three empty responses and one answer that
+ran into the limit, all re-sampled. Every billed attempt is counted:
+
+| Model | Billed requests | Input tokens | Output tokens | Cost |
+|---|---:|---:|---:|---:|
+| GPT-4o (2024-11-20) | 150 | 136,446 | 80,658 | $1.11 |
+| MiniMax-01 | 150 | 1,181,211 | 78,075 | $0.32 |
+| Nova Pro | 155 | 250,128 | 72,172 | $0.43 |
+| Nova Lite | 154 | 245,902 | 82,204 | $0.03 |
+
 ## Contents
 
 - `<model>/model_outputs/`: three cleaned 50-answer rollout JSONL files

@@ -488,7 +488,7 @@ section h2{line-height:1.2}
   </div>
 </footer>
 
-<script src="assets/pricing.js?v=20261102-gpt-53-replaced"></script>
+<script src="assets/pricing.js?v=20261102-late-2024-models"></script>
 <script>
 // ==== BENCHMARK DATA (loaded from docs/data/direct_qa/index.json) ====
 var S=["Incorrect","Mostly incorrect","Partially correct","Mostly correct","Correct"];
@@ -992,9 +992,9 @@ function loadReleaseDates(){
     bTL();
   });
 }
-var REL_PROVIDER_COLOR={anthropic:"#D97757",openai:"#10A37F",google:"#4285F4",qwen:"#6C5CE7",alibaba:"#FF6A00",xai:"#000000",bytedance:"#325AB4",zhipu:"#000000",xiaomi:"#FF6700",moonshot:"#7C5CC4",thinkingmachines:"#D946EF",stepfun:"#4F46E5",minimax:"#E01878",meta:"#0668E1",deepseek:"#4D6BFE",mistral:"#FF7000",nvidia:"#76B900"};
-var REL_ORDER=["anthropic","openai","google","qwen","alibaba","xai","bytedance","zhipu","xiaomi","moonshot","thinkingmachines","stepfun","minimax","meta","deepseek","mistral","nvidia"];
-var REL_LABEL_NAME={anthropic:"Anthropic",openai:"OpenAI",google:"Google",qwen:"Qwen",alibaba:"Qwen",xai:"xAI",bytedance:"ByteDance",zhipu:"Zhipu AI",xiaomi:"Xiaomi",moonshot:"Moonshot",thinkingmachines:"Thinking Machines",stepfun:"StepFun",minimax:"MiniMax",meta:"Meta",deepseek:"DeepSeek",mistral:"Mistral",nvidia:"NVIDIA"};
+var REL_PROVIDER_COLOR={anthropic:"#D97757",openai:"#10A37F",google:"#4285F4",qwen:"#6C5CE7",alibaba:"#FF6A00",xai:"#000000",bytedance:"#325AB4",zhipu:"#000000",xiaomi:"#FF6700",moonshot:"#7C5CC4",thinkingmachines:"#D946EF",stepfun:"#4F46E5",minimax:"#E01878",meta:"#0668E1",deepseek:"#4D6BFE",mistral:"#FF7000",nvidia:"#76B900",amazon:"#FF9900"};
+var REL_ORDER=["anthropic","openai","google","qwen","alibaba","xai","bytedance","zhipu","xiaomi","moonshot","thinkingmachines","stepfun","minimax","meta","deepseek","mistral","nvidia","amazon"];
+var REL_LABEL_NAME={anthropic:"Anthropic",openai:"OpenAI",google:"Google",qwen:"Qwen",alibaba:"Qwen",xai:"xAI",bytedance:"ByteDance",zhipu:"Zhipu AI",xiaomi:"Xiaomi",moonshot:"Moonshot",thinkingmachines:"Thinking Machines",stepfun:"StepFun",minimax:"MiniMax",meta:"Meta",deepseek:"DeepSeek",mistral:"Mistral",nvidia:"NVIDIA",amazon:"Amazon"};
 function relMonthIndex(s){return Number(s.slice(0,4))*12+Number(s.slice(5,7))-1}
 function relMonthLabel(n){return Math.floor(n/12)+"-"+String(n%12+1).padStart(2,"0")}
 // Frontier labels sit up-left of their point: nothing can ever be plotted there (earlier
@@ -1086,6 +1086,8 @@ function bTL(){
     points.push({m:m.m,d:m.d,pv:m.pv,e:m.e,release:release,month:release.slice(0,7),score:m.o.mn});
   });
   points.sort(function(a,b){return a.release.localeCompare(b.release)});
+  // Start the score axis at 35% unless a lower score would fall below it.
+  var yMin=points.reduce(function(lo,p){return Math.min(lo,Math.floor((p.score-2)/5)*5)},35);
   var firstMonth=relMonthIndex("2024-04");
   var lastMonth=(points.length?relMonthIndex(points[points.length-1].month):firstMonth)+REL_FUTURE_MONTHS;
   var months=Array.from({length:lastMonth-firstMonth+1},function(_,i){return relMonthLabel(firstMonth+i)});
@@ -1134,7 +1136,7 @@ function bTL(){
       tooltip:{filter:function(it){return it.dataset.type==="scatter"},itemSort:function(a,b){return b.parsed.y-a.parsed.y},
         callbacks:{title:function(items){var it=items[0];if(!it)return"";return items.length>1?it.raw.x:relLabelText(it.raw)+" | "+it.raw.release},label:function(c){var score=c.parsed.y.toFixed(1)+"%";return c.chart.tooltip.dataPoints.length>1?" "+relLabelText(c.raw)+": "+score:" Active score: "+score}}}},
     scales:{x:{type:"category",labels:months,offset:true,grid:{color:"#F0F2F5"},ticks:{maxTicksLimit:12,maxRotation:0,font:{size:12},color:"#333"},title:{display:true,text:"Model Release Month",color:"#333",font:{size:12,weight:"500"},padding:{top:8}}},
-      y:{min:35,max:100,grid:{color:"#e5e5e5"},ticks:{font:{size:12},color:"#333",callback:function(v){return v+"%"}},title:{display:true,text:"Active Overall Score (%)",color:"#333",font:{size:12,weight:"500"},padding:{bottom:8}}}},
+      y:{min:yMin,max:100,grid:{color:"#e5e5e5"},ticks:{font:{size:12},color:"#333",callback:function(v){return v+"%"}},title:{display:true,text:"Active Overall Score (%)",color:"#333",font:{size:12,weight:"500"},padding:{bottom:8}}}},
     animation:false
   },plugins:[tlLabelPlugin]});
   ch.$labelModes=labelModes;

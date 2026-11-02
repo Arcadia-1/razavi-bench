@@ -117,9 +117,13 @@ def load_tokens(args: argparse.Namespace) -> dict[str, tuple[dict, dict, int]]:
         earlier = [usage_record(a.get("usage") or {}) for a in attempts[:-1]]
         billed = sum_usage(earlier + [selected]) if earlier else selected
         tokens[f"{row['rollout']}:{row['task_slug']}"] = (billed, dict(selected), max(len(attempts), 1))
-    # A slot whose every attempt failed still cost tokens; bill them for --unanswered.
+    # Failed attempts still cost tokens: bill them to the slot's answer when a later
+    # (--resume) pass answered it, and to the unanswered slot otherwise.
     for key, records in failed.items():
-        if key not in tokens:
+        if key in tokens:
+            billed, selected, count = tokens[key]
+            tokens[key] = (sum_usage(records + [billed]), selected, count + len(records))
+        else:
             tokens[key] = (sum_usage(records), dict(records[-1]), len(records))
     return tokens
 
