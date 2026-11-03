@@ -139,8 +139,12 @@ file writes, web tools and reminder agents are disabled and runs are capped at
 one model step. An attempt counts only if it completes with a non-empty answer
 from exactly one model call; otherwise (typically when the model tries to call a
 tool) it is re-sampled up to `--max-retries` times. The runner stops if Muse
-Code downgrades the requested effort. Token usage is read from Muse Code's
-session logs under `~/.local/share/muse/sessions`.
+Code downgrades the requested effort. Each call also sets `endpoint_transport`
+to null for that run only (`-c endpoint_transport=null`), so an override in
+`~/.config/muse/settings.json`, such as one written by a local model gateway,
+cannot redirect requests away from Meta's API; the file itself is not changed.
+Token usage is read from Muse Code's session logs under
+`~/.local/share/muse/sessions`.
 
 ```bash
 python3 tools/direct_qa_muse_code.py run \

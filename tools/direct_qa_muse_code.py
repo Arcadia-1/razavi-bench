@@ -44,6 +44,9 @@ LOCKDOWN = [
     "--disable-reminders",
     "--max-model-steps", "1",
 ]
+# A local gateway can redirect Muse Code's endpoint in ~/.config/muse/settings.json;
+# clearing it per run keeps every request on Meta's own API.
+META_ENDPOINT = ["-c", "endpoint_transport=null"]
 
 
 def session_usages(session_id: str) -> list[dict[str, Any]]:
@@ -102,6 +105,7 @@ def run_once(args: argparse.Namespace, prompt: str, images: list[Path]) -> dict[
             "--model", args.model,
             "--reasoning-effort", args.effort,
             "--session-id", session_id,
+            *META_ENDPOINT,
             *LOCKDOWN,
             *[part for image in images for part in ("--image", str(image))],
             "--prompt-file", str(prompt_file),
