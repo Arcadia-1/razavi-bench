@@ -6,7 +6,7 @@
     208665
   ],
   "thinking_effort": "max",
-  "configuration_note": "Published scores come from GPT-6 Luna at maximum reasoning effort, which re-graded every answer on 2026-10-27; the judge named above is kept for audit.",
+  "configuration_note": "Claude Fable 5 answered all 50 tasks in three rollouts on 2026-07-15 at reasoning effort max. Eleven of those answers carried a flag for internet or tool evidence; they were re-run on 2026-11-03 through OpenRouter's chat completions route (anthropic/claude-fable-5) at reasoning effort max with no tools, and the new answers replace them. Published scores come from GPT-6 Luna at maximum reasoning effort, which re-graded every answer on 2026-10-27; the judge named above is kept for audit.",
   "mode": "direct_qa",
   "summary": {
     "rollout_count": 3,
@@ -15,18 +15,18 @@
       "overall": {
         "active": {
           "response_count": 150,
-          "correct_count": 122,
-          "incorrect_count": 28,
-          "partial_credit_count": 24,
+          "correct_count": 121,
+          "incorrect_count": 29,
+          "partial_credit_count": 25,
           "zero_count": 4,
-          "mean_score_0_to_4": 3.62,
-          "score_percent": 90.5,
+          "mean_score_0_to_4": 3.6133333333333333,
+          "score_percent": 90.33333333333333,
           "score_distribution": {
             "0": 4,
             "1": 5,
             "2": 7,
-            "3": 12,
-            "4": 122
+            "3": 13,
+            "4": 121
           }
         },
         "minimax_m3": {
@@ -63,34 +63,34 @@
         },
         "gpt_6_luna_max": {
           "response_count": 150,
-          "correct_count": 122,
-          "incorrect_count": 28,
-          "partial_credit_count": 24,
+          "correct_count": 121,
+          "incorrect_count": 29,
+          "partial_credit_count": 25,
           "zero_count": 4,
-          "mean_score_0_to_4": 3.62,
-          "score_percent": 90.5,
+          "mean_score_0_to_4": 3.6133333333333333,
+          "score_percent": 90.33333333333333,
           "score_distribution": {
             "0": 4,
             "1": 5,
             "2": 7,
-            "3": 12,
-            "4": 122
+            "3": 13,
+            "4": 121
           }
         }
       },
       "part1": {
         "active": {
           "response_count": 90,
-          "correct_count": 82,
-          "incorrect_count": 8,
-          "partial_credit_count": 5,
+          "correct_count": 81,
+          "incorrect_count": 9,
+          "partial_credit_count": 6,
           "zero_count": 3,
-          "mean_score_0_to_4": 3.811111111111111,
-          "score_percent": 95.27777777777777,
+          "mean_score_0_to_4": 3.8,
+          "score_percent": 95.0,
           "score_distribution": {
             "0": 3,
-            "3": 5,
-            "4": 82
+            "3": 6,
+            "4": 81
           }
         },
         "minimax_m3": {
@@ -123,16 +123,16 @@
         },
         "gpt_6_luna_max": {
           "response_count": 90,
-          "correct_count": 82,
-          "incorrect_count": 8,
-          "partial_credit_count": 5,
+          "correct_count": 81,
+          "incorrect_count": 9,
+          "partial_credit_count": 6,
           "zero_count": 3,
-          "mean_score_0_to_4": 3.811111111111111,
-          "score_percent": 95.27777777777777,
+          "mean_score_0_to_4": 3.8,
+          "score_percent": 95.0,
           "score_distribution": {
             "0": 3,
-            "3": 5,
-            "4": 82
+            "3": 6,
+            "4": 81
           }
         }
       },
@@ -204,17 +204,17 @@
     "by_rollout": {
       "1": {
         "response_count": 50,
-        "correct_count": 41,
-        "incorrect_count": 9,
-        "partial_credit_count": 8,
+        "correct_count": 40,
+        "incorrect_count": 10,
+        "partial_credit_count": 9,
         "zero_count": 1,
-        "mean_score_0_to_4": 3.68,
-        "score_percent": 92.0,
+        "mean_score_0_to_4": 3.66,
+        "score_percent": 91.5,
         "score_distribution": {
           "0": 1,
           "1": 2,
-          "3": 6,
-          "4": 41
+          "3": 7,
+          "4": 40
         }
       },
       "2": {
@@ -274,16 +274,16 @@
       "part1": {
         "1": {
           "response_count": 30,
-          "correct_count": 27,
-          "incorrect_count": 3,
-          "partial_credit_count": 2,
+          "correct_count": 26,
+          "incorrect_count": 4,
+          "partial_credit_count": 3,
           "zero_count": 1,
-          "mean_score_0_to_4": 3.8,
-          "score_percent": 95.0,
+          "mean_score_0_to_4": 3.7666666666666666,
+          "score_percent": 94.16666666666667,
           "score_distribution": {
             "0": 1,
-            "3": 2,
-            "4": 27
+            "3": 3,
+            "4": 26
           }
         },
         "2": {
@@ -1942,54 +1942,35 @@
       "figures": [],
       "rollout": 1,
       "configuration": {
-        "model_id": 208665,
-        "thinking_effort": "max"
+        "model_id": null,
+        "thinking_effort": "max",
+        "api_model": "anthropic/claude-fable-5",
+        "route": "openrouter_chat_completions"
       },
       "answer": {
-        "text": "## Miller effect recap\n\nIn a common‑source (or common‑emitter) stage, the gate–drain capacitance $C_{gd}$ ($C_\\mu$ for a BJT) bridges the input and the output. Because the drain swings in anti‑phase with the gate by the stage gain, the voltage across $C_{gd}$ changes by $(1+|A_v|)$ times the input swing, so the input must supply $(1+|A_v|)$ times the charge. Seen from the input:\n\n$$C_{in} = C_{gs} + (1+g_m R_L)\\,C_{gd}$$\n\nWith a large gain (e.g., $g_mR_L \\approx 100$), a tiny $C_{gd}$ becomes an enormous effective input capacitance, which together with the source resistance forms a dominant, bandwidth‑limiting pole.\n\n## What the cascode changes\n\nA cascode stacks a common‑gate device $M_2$ on top of the common‑source input device $M_1$, taking the output at the drain of $M_2$.\n\n**1. The input device's local gain collapses to ≈ −1.**\nThe drain of $M_1$ no longer sees the load $R_L$; it sees the input resistance of the common‑gate stage, roughly $1/g_{m2}$. Hence the gain from $M_1$'s gate to its own drain is\n\n$$A_{v1} = -g_{m1}\\cdot\\frac{1}{g_{m2}} \\approx -1 \\quad (g_{m1}\\approx g_{m2})$$\n\nso the Miller multiplication of $C_{gd1}$ is only\n\n$$C_{gd1}(1 - A_{v1}) \\approx 2\\,C_{gd1}$$\n\ninstead of $(1+g_mR_L)C_{gd1}$. Physically, the cascode *pins* the drain of $M_1$ — that node barely moves — so charging current through $C_{gd1}$ stays small.\n\n**2. The gain is still there, but it appears at a \"safe\" node.**\nThe overall gain $-g_{m1}R_{out}$ is unchanged; the large swing simply occurs at the drain of $M_2$. The capacitance from that node, $C_{gd2}$, connects to $M_2$'s gate — which is at AC ground. It therefore just shunts the output rather than acting as feedback across an inverting gain, so it undergoes no Miller multiplication. There is no floating capacitance between the input and the high‑swing output node.\n\n**3. The internal node doesn't create a new problem.**\nThe node between the devices is low‑impedance ($\\approx 1/g_{m2}$), so despite the capacitance piled up there ($C_{gd1}, C_{db1}, C_{gs2}$), its pole sits near $g_{m2}/C_{node}$ — close to the device $f_T$ and usually non‑dominant.\n\n## Bottom line\n\nThe cascode decouples voltage gain from Miller multiplication: the capacitor that connects to the input only ever sees ~unity gain, while the node that develops the full gain has no capacitive path back to the input. The input pole moves out by roughly the factor $g_mR_L/2$, giving high gain **and** wide bandwidth (plus much better reverse isolation, which is why cascodes are ubiquitous in RF design).\n\n*(Caveat: with a very high‑impedance load, the resistance looking into $M_2$'s source rises to $\\approx R_L/(g_{m2}r_{o2})$ and some Miller effect returns at low frequency — but load capacitance restores the benefit at the frequencies that matter.)*",
+        "text": "## Short Answer\n\nIn a cascode, the gain *across the Miller capacitance* ($C_{gd}$ of the input transistor) is reduced to approximately **−1**, instead of the full stage gain. Since Miller multiplication scales with the gain across the capacitor, the multiplication factor drops from $(1 + g_m R_{out})$ to about **2**.\n\n## The Problem in a Simple Common-Source Stage\n\nIn a CS stage, $C_{gd}$ connects the input (gate) to the output (drain), which swings with gain $A_v = -g_m R_{out}$. The input therefore sees:\n\n$$C_{in} = C_{gs} + C_{gd}\\,(1 + g_m R_{out})$$\n\nWith a gain of, say, 50, the small $C_{gd}$ gets multiplied by ~51, creating a low-frequency input pole $\\omega_p = 1/\\big(R_S\\, C_{in}\\big)$ that limits bandwidth.\n\n## What the Cascode Changes\n\nIn a cascode, the input device $M_1$ (common-source) drives the source of the cascode device $M_2$ (common-gate). The crucial point: **the drain of $M_1$ now sees a low impedance**, namely the input resistance of the common-gate stage:\n\n$$R_X \\approx \\frac{1}{g_{m2}}$$\n\nSo the gain from the gate of $M_1$ to its *own drain* (node X) is only:\n\n$$A_{v1} = -g_{m1} R_X \\approx -\\frac{g_{m1}}{g_{m2}} \\approx -1$$\n\n(since both devices carry the same bias current). The Miller-multiplied input capacitance becomes:\n\n$$C_{in} \\approx C_{gs1} + C_{gd1}\\,(1 + 1) = C_{gs1} + 2\\,C_{gd1}$$\n\n— a multiplication factor of ~2 instead of ~50+. The input pole moves to much higher frequency.\n\n## Where Did the Gain Go?\n\nThe overall gain is unchanged: $A_v \\approx -g_{m1} R_{out}$. But the large voltage swing now occurs at the **drain of $M_2$**, and from there **no capacitance couples back to the input**:\n\n- $M_2$'s gate is at AC ground, so $C_{gd2}$ simply connects the output node to ground — it is *not* Miller-multiplied.\n- $M_2$ acts as a **current buffer**: $M_1$ converts $v_{in}$ to current, $M_2$ passes that current to the high-impedance output node where the voltage gain is developed.\n\n## Intuition\n\nThe Miller effect is severe when the capacitor's bottom plate swings hard in opposition to the input, forcing the source to supply charge for the *full* input-plus-output swing. The cascode device **shields** the input transistor's drain from the output: node X barely moves (it swings only about as much as the input itself), so the charge drawn through $C_{gd1}$ is small.\n\n## Side Benefits / Caveat\n\n- The broken feedthrough path also improves **reverse isolation** and stability (important at RF).\n- Caveat: the output node pole ($R_{out} \\cdot C_{out}$) still exists; if the load impedance is very high, *that* pole may dominate. The cascode specifically fixes the Miller-induced **input** pole.",
         "format": "markdown",
-        "sha256": "bd6290ce96b974ae9899daeb371147023abddd2b86111dcb79c482147a82aa72"
+        "sha256": "2864c929eb7c59b1d98f79b7d5e30c35f0c9c2a0c6c1858713508f21cf11d8f9"
       },
-      "model_call_count": 2,
-      "internet_or_tool_evidence": true,
-      "source_experiment": "2026-07-15-direct-qa",
+      "model_call_count": 1,
+      "internet_or_tool_evidence": false,
+      "source_experiment": "2026-11-03-direct-qa",
       "scores": {
-        "minimax_m3": {
-          "score_0_to_4": 4,
-          "is_full_credit": true,
-          "rationale": "The candidate answer correctly identifies all the essential points from the golden solution: (1) the cascode holds the drain of M1 at a low-impedance node (~1/gm2) created by the common-gate device, (2) the local gain from M1's gate to its drain is small (~-1), so the Miller multiplication of Cgd1 is reduced (the candidate correctly computes ~2Cgd1, matching Razavi's '-2' gain figure), and (3) the full gain still appears at M2's drain but Cgd2 connects to AC ground and doesn't undergo Miller multiplication. The reasoning is correct, the topology is right, and the design conclusion matches. Minor terminology differences (e.g., discussing BJT C_mu) don't detract from the core explanation.",
-          "golden_solution_sha256": "116d68c2d1000a9d062b36020338810742ef4c569416a030f3903e97255aedaf",
-          "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
-        },
-        "deepseek_v4_pro": {
-          "score_0_to_4": 4,
-          "is_full_credit": true,
-          "rationale": "The answer correctly identifies the key mechanism: the low impedance at the drain of M1 reduces the gain across Cgd1, limiting Miller multiplication. It explains the roles of M1 and M2, the approximate gain of -1, and why Cgd2 does not cause Miller effect. The reasoning aligns with the golden solution, and the caveat about high-impedance loads is a valid secondary note that does not contradict the main point.",
-          "golden_solution_sha256": "116d68c2d1000a9d062b36020338810742ef4c569416a030f3903e97255aedaf",
-          "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
-        },
         "gpt_6_luna_max": {
-          "score_0_to_4": 4,
-          "is_full_credit": true,
-          "rationale": "Correctly explains that the common-gate device makes the input transistor’s drain a low-impedance node, reducing the gain across its Cgd and hence Miller multiplication while leaving the large swing at the output. The approximate local gain and extra bandwidth claims are secondary imprecisions, not errors in the central explanation.",
-          "judge_model": "openai/gpt-6-luna",
+          "score_0_to_4": 3,
+          "is_full_credit": false,
+          "rationale": "Correctly explains that the cascode holds M1’s drain at low impedance, reducing the local gain across Cgd1 and its Miller multiplication. The −1/factor-of-2 estimate is an overly specific approximation; the local gain can be closer to −2, though the main conclusion remains correct.",
           "golden_solution_sha256": "116d68c2d1000a9d062b36020338810742ef4c569416a030f3903e97255aedaf",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
-      "active_score": {
-        "policy": "gpt_6_luna_max",
-        "score_0_to_4": 4,
-        "score_percent": 100,
-        "is_full_credit": true
-      },
       "tokens": {
-        "cached_input_tokens": 18319,
-        "input_tokens": 18507,
-        "output_tokens": 6057,
-        "total_tokens": 24564,
-        "cache_creation_input_tokens": 0,
-        "reasoning_output_tokens": null,
+        "cached_input_tokens": 0,
+        "input_tokens": 60,
+        "output_tokens": 4568,
+        "total_tokens": 4628,
+        "cache_creation_input_tokens": null,
+        "reasoning_output_tokens": 3461,
         "complete": true,
         "availability": "complete",
         "missing_fields": []
@@ -1997,15 +1978,21 @@
       "selected_response_tokens": {
         "cached_input_tokens": 0,
         "input_tokens": 60,
-        "output_tokens": 5631,
-        "total_tokens": 5691,
-        "cache_creation_input_tokens": 0,
-        "reasoning_output_tokens": null,
+        "output_tokens": 4568,
+        "total_tokens": 4628,
+        "cache_creation_input_tokens": null,
+        "reasoning_output_tokens": 3461,
         "complete": true,
         "availability": "complete",
         "missing_fields": []
       },
-      "attempt_count": 2
+      "attempt_count": 1,
+      "active_score": {
+        "policy": "gpt_6_luna_max",
+        "score_0_to_4": 3,
+        "score_percent": 75,
+        "is_full_credit": false
+      }
     },
     {
       "question_id": "part1-023-common-gate-pmos-load",
@@ -4261,70 +4248,57 @@
       "figures": [],
       "rollout": 2,
       "configuration": {
-        "model_id": 208665,
-        "thinking_effort": "max"
+        "model_id": null,
+        "thinking_effort": "max",
+        "api_model": "anthropic/claude-fable-5",
+        "route": "openrouter_chat_completions"
       },
       "answer": {
-        "text": "## Yes — the small-signal model of a PMOS is *identical* to that of an NMOS.\n\nSame topology, same element orientations, same equations:\n\n```\n        G o──────┬──────────────┬──────────o D\n                 │              │\n                +│            ┌─┴─┐   ↓ gm·vgs\n            vgs  │            │ro │  (D → S)\n                −│            └─┬─┘\n                 │              │\n        S o──────┴──────────────┴──────────o S\n```\n\n$$i_d = g_m v_{gs} + g_{mb} v_{bs} + \\frac{v_{ds}}{r_o}$$\n\nwith $g_m, g_{mb}, r_o > 0$ and the dependent source pointing the same way as in the NMOS model.\n\n### Why the signs don't flip\n\nThe small-signal model is a **linearization around the bias point** — only *derivatives* of $i_D$ appear in it, never the (negative) bias quantities themselves. For a PMOS, both $I_D$ and $V_{GS}$ are negative, and the two sign reversals cancel:\n\n- Raise $v_{GS}$ by a small $\\Delta$ (i.e., make it *less* negative) → $|V_{GS}|$ shrinks → $|I_D|$ shrinks → the signed $i_D$ (a negative number) *increases* toward zero.\n- So $g_m = \\partial i_D / \\partial v_{GS} > 0$ — exactly as for an NMOS. The same argument gives $\\partial i_D/\\partial v_{DS} = 1/r_o > 0$.\n\nA common mistake is to reverse the direction of the $g_m v_{gs}$ current source (or the $r_o$ current) for a PMOS — that double-counts the polarity that the derivative has already absorbed.\n\n### The one caveat\n\n*Identical in form* doesn't mean *identical in numbers*. The parameter **values** differ because of device physics:\n\n| Parameter | PMOS vs. NMOS |\n|---|---|\n| $g_m$ | Lower for the same $W/L$ and $\\|I_D\\|$, since $\\mu_p \\approx \\frac{1}{2}$–$\\frac{1}{4}\\,\\mu_n$ |\n| $r_o$ (via $\\lambda$) | Different channel-length modulation |\n| $g_{mb}$ (via $\\gamma$) | Different body-effect coefficient |\n| Capacitances | Larger $W$ typically needed → larger $C_{GS}$, $C_{GD}$, etc. |\n\nSo in AC analysis you can treat every MOSFET — N or P — with one and the same model; only the numbers plugged into $g_m$, $r_o$, and $g_{mb}$ change.",
+        "text": "## Yes — the small-signal models are identical.\n\nEven though the *large-signal* (bias) voltages and currents of a PMOS are opposite in polarity to those of an NMOS, the small-signal model deals only with **increments** around the operating point. When the signs are tracked carefully, the incremental behavior of both devices is described by exactly the same equivalent circuit: a current source $g_m v_{gs}$ flowing from drain to source, a source $g_{mb}v_{bs}$, an output resistance $r_o$ between drain and source, and the same capacitances between the same terminals.\n\n### Quick derivation\n\nWrite the PMOS saturation current using source-referenced (magnitude-friendly) variables, with $I_{SD}$ flowing source → drain:\n\n$$I_{SD} = \\frac{1}{2}\\mu_p C_{ox}\\frac{W}{L}\\left(V_{SG} - |V_{TH}|\\right)^2 (1+\\lambda V_{SD})$$\n\nTaking increments:\n\n$$\\Delta i_{SD} = g_m\\,\\Delta v_{SG} + \\frac{\\Delta v_{SD}}{r_o}$$\n\nNow convert to the NMOS sign convention ($i_{DS} = -i_{SD}$, $v_{GS} = -v_{SG}$, $v_{DS} = -v_{SD}$). Both sides simply flip sign:\n\n$$\\Delta i_{DS} = g_m\\,\\Delta v_{GS} + \\frac{\\Delta v_{DS}}{r_o}$$\n\nThis is *exactly* the NMOS small-signal relation — same equation, same polarities.\n\n### Intuitive check\n\n- **NMOS:** raising the gate by $\\Delta v$ increases the current flowing *into* the drain.\n- **PMOS:** raising the gate by $\\Delta v$ makes $|V_{GS}|$ smaller, so the device sources *less* current out of its drain — which is equivalent to an *increase* in the current defined into the drain.\n\nBoth changes have the same sign, so the $g_m v_{gs}$ generator points the same way in both models.\n\n### Caveats\n\n- **Identical model ≠ identical values.** Since $\\mu_p < \\mu_n$, a PMOS has lower $g_m$ for the same dimensions and bias current; $\\lambda$, $\\gamma$, and capacitances also differ numerically.\n- **Common mistake:** reversing the direction of the $g_m v_{gs}$ source (or $r_o$ current) when drawing the PMOS small-signal model because the device is \"upside down\" in the schematic. Don't — the model is drawn identically for both device types.",
         "format": "markdown",
-        "sha256": "e9c133bf17d1caa954b8caef42d042a2991f3de7503b5bd4ff0175fa3d11c769"
+        "sha256": "d9f23b096d320d86652e1ddfed720826eb20ba1ad51eb4c40becc8c48d29d31d"
       },
-      "model_call_count": 2,
-      "internet_or_tool_evidence": true,
-      "source_experiment": "2026-07-15-direct-qa",
+      "model_call_count": 1,
+      "internet_or_tool_evidence": false,
+      "source_experiment": "2026-11-03-direct-qa",
       "scores": {
-        "minimax_m3": {
-          "score_0_to_4": 4,
-          "is_full_credit": true,
-          "rationale": "The candidate correctly states that the PMOS small-signal model is identical in form to the NMOS model, with the same topology, elements (gm, gmb, ro, capacitances), and equations. It provides a clear and correct explanation of why the signs don't flip (linearization around bias point absorbs the polarity), correctly identifying that gm, gmb, and 1/ro are all positive derivatives. The caveat about parameter values differing is a nice addition. This aligns well with the golden solution.",
-          "golden_solution_sha256": "3efff1057bca28f59c691e6a7b1b35b9aef015475c1aa91f716113f27e63976f",
-          "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
-        },
-        "deepseek_v4_pro": {
-          "score_0_to_4": 4,
-          "is_full_credit": true,
-          "rationale": "The answer correctly states the small-signal model is identical in form, explains the sign cancellation due to linearization, and notes parameter values differ. It matches the golden solution's key points and adds helpful detail without contradicting it.",
-          "golden_solution_sha256": "3efff1057bca28f59c691e6a7b1b35b9aef015475c1aa91f716113f27e63976f",
-          "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
-        },
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly states that the PMOS model has the same form when voltage and current polarities are consistent, and gives a compatible source-referenced sign convention. It also distinguishes model structure from parameter values.",
-          "judge_model": "openai/gpt-6-luna",
+          "rationale": "Correctly shows that the PMOS model has the same form as the NMOS model after consistent source/drain voltage and current sign conversions, and distinguishes model structure from device-dependent parameter values.",
           "golden_solution_sha256": "3efff1057bca28f59c691e6a7b1b35b9aef015475c1aa91f716113f27e63976f",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
-      "active_score": {
-        "policy": "gpt_6_luna_max",
-        "score_0_to_4": 4,
-        "score_percent": 100,
-        "is_full_credit": true
-      },
       "tokens": {
-        "cached_input_tokens": 36632,
-        "input_tokens": 36894,
-        "output_tokens": 5223,
-        "total_tokens": 42117,
-        "cache_creation_input_tokens": 0,
-        "reasoning_output_tokens": null,
+        "cached_input_tokens": 0,
+        "input_tokens": 63,
+        "output_tokens": 4474,
+        "total_tokens": 4537,
+        "cache_creation_input_tokens": null,
+        "reasoning_output_tokens": 3595,
         "complete": true,
         "availability": "complete",
         "missing_fields": []
       },
       "selected_response_tokens": {
-        "cached_input_tokens": 18319,
-        "input_tokens": 18450,
-        "output_tokens": 3169,
-        "total_tokens": 21619,
-        "cache_creation_input_tokens": 0,
-        "reasoning_output_tokens": null,
+        "cached_input_tokens": 0,
+        "input_tokens": 63,
+        "output_tokens": 4474,
+        "total_tokens": 4537,
+        "cache_creation_input_tokens": null,
+        "reasoning_output_tokens": 3595,
         "complete": true,
         "availability": "complete",
         "missing_fields": []
       },
-      "attempt_count": 2
+      "attempt_count": 1,
+      "active_score": {
+        "policy": "gpt_6_luna_max",
+        "score_0_to_4": 4,
+        "score_percent": 100,
+        "is_full_credit": true
+      }
     },
     {
       "question_id": "part1-004-sketch-ix-versus-vx",
@@ -4336,70 +4310,57 @@
       ],
       "rollout": 2,
       "configuration": {
-        "model_id": 208665,
-        "thinking_effort": "max"
+        "model_id": null,
+        "thinking_effort": "max",
+        "api_model": "anthropic/claude-fable-5",
+        "route": "openrouter_chat_completions"
       },
       "answer": {
-        "text": "## Analysis\n\nM1 is **diode-connected**: its gate and drain are tied to the same node, so\n\n$$V_{GS} = V_{DS} = V_X, \\qquad I_X = I_D$$\n\n**Region check:** whenever the device is on, $V_{DS} = V_{GS} > V_{GS} - V_{TH}$ — the saturation condition is satisfied automatically. A diode-connected MOSFET can never enter the triode region; it's either **off** or **in saturation**.\n\n**Case 1 — $V_X \\le V_{TH}$:** M1 is off, so\n\n$$I_X = 0$$\n\n**Case 2 — $V_X > V_{TH}$:** M1 is in saturation:\n\n$$I_X = \\frac{1}{2}\\,\\mu_n C_{ox}\\,\\frac{W}{L}\\,(V_X - V_{TH})^2$$\n\n(times $(1+\\lambda V_X)$ if channel-length modulation is included).\n\n## Sketch\n\n```\n I_X\n  │                                          ·\n  │                                        ·\n  │                                      ·\n  │                                    ·\n  │                                 ·\n  │                              ·          parabola:\n  │                           ·             ½ μnCox(W/L)(V_X − V_TH)²\n  │                       ·\n  │                   ·\n  │              ·\n  │        ··\n  ├━━━━━━━━─────────────────────────────────→  V_X\n  0       V_TH\n  (I_X = 0 for V_X ≤ V_TH)\n```\n\nThe curve sits at zero until $V_X = V_{TH}$, then rises **quadratically** (square-law). Its slope at any bias point equals $g_m = \\mu_n C_{ox}\\frac{W}{L}(V_X - V_{TH})$, which grows linearly with $V_X$ — i.e., the diode-connected device looks like a nonlinear resistor of small-signal resistance $\\approx 1/g_m$ that gets \"stronger\" (lower resistance) as $V_X$ increases.",
+        "text": "# Analysis\n\n**Setup.** M₁ is *diode‑connected*: its gate is tied to its drain, and that node is driven by V_X, with the source grounded. Therefore:\n\n$$V_{GS} = V_{DS} = V_X$$\n\n**Region of operation.** Check the saturation condition:\n\n$$V_{DS} \\ge V_{GS} - V_{TH} \\quad\\Longrightarrow\\quad V_X \\ge V_X - V_{TH}$$\n\nThis is *always true* (since V_TH > 0). So a diode-connected MOSFET is never in the triode region — it is either **off** or in **saturation**.\n\n**Resulting I–V relationship:**\n\n- **For V_X < V_TH:** M₁ is off:\n$$I_X = 0$$\n\n- **For V_X ≥ V_TH:** M₁ is saturated:\n$$I_X = \\frac{1}{2}\\,\\mu_n C_{ox}\\frac{W}{L}\\left(V_X - V_{TH}\\right)^2 \\;\\left(1+\\lambda V_X\\right)$$\n\n(the λ term is a slight correction if channel-length modulation is included).\n\n# Sketch\n\n```\n I_X ↑\n     |                            .\n     |                           .\n     |                          .          parabolic:\n     |                        .'      ½ μnCox(W/L)(V_X − V_TH)²\n     |                      .'\n     |                    .'\n     |                 ..'\n     |              ..'\n     |         _..-'\n     |________•______________________________→  V_X\n     0       V_TH\n      (I_X = 0)\n```\n\n**Key features of the curve:**\n\n- I_X = 0 until V_X reaches V_TH (for V_X < 0 the device also stays off, since the terminal at V_X then acts as the source, giving V_GS = 0).\n- At V_X = V_TH the curve starts with **zero slope** and rises **quadratically**.\n- The slope at any point equals the transconductance:\n$$\\frac{dI_X}{dV_X} = \\mu_n C_{ox}\\frac{W}{L}(V_X - V_{TH}) = g_m$$\n\nso the curve gets steeper as V_X increases — the diode-connected transistor behaves like a square-law \"diode.\"",
         "format": "markdown",
-        "sha256": "25271dbd21e18454c0417b2c0e58a6f3cf22d6e2acc2578cd0fcc886fbae751e"
+        "sha256": "880f5283919fac9a13a4df05d2ca3c6441e3fe1bbf702040382c2cee81ea516f"
       },
-      "model_call_count": 4,
-      "internet_or_tool_evidence": true,
-      "source_experiment": "2026-07-15-direct-qa",
+      "model_call_count": 1,
+      "internet_or_tool_evidence": false,
+      "source_experiment": "2026-11-03-direct-qa",
       "scores": {
-        "minimax_m3": {
-          "score_0_to_4": 4,
-          "is_full_credit": true,
-          "rationale": "The candidate correctly identifies the diode-connected MOSFET with gate and drain tied to VX, source at ground. It correctly states the device is off for VX <= VTH and in saturation for VX > VTH, giving the exact same square-law expression as the golden solution. The sketch shows zero current up to threshold and a quadratic rise afterward. The reasoning about the saturation condition being automatically satisfied is correct and adds insight.",
-          "golden_solution_sha256": "bfea619964059498c81e339b724f52ee5be4d15612b8ccbbb4260542c7f763d0",
-          "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
-        },
-        "deepseek_v4_pro": {
-          "score_0_to_4": 4,
-          "is_full_credit": true,
-          "rationale": "The answer correctly identifies the diode-connected MOSFET, states that it is off for VX ≤ VTH and in saturation for VX > VTH, gives the correct quadratic I-V relation, and sketches the curve accordingly. The mention of channel-length modulation is optional and does not detract. The reasoning aligns with the golden solution.",
-          "golden_solution_sha256": "bfea619964059498c81e339b724f52ee5be4d15612b8ccbbb4260542c7f763d0",
-          "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
-        },
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies the diode-connected MOSFET, its off and saturation regions, and sketches the zero-then-quadratic current trend. The added channel-length-modulation and small-signal comments are appropriate.",
-          "judge_model": "openai/gpt-6-luna",
+          "rationale": "Correctly identifies the diode-connected NMOS, its cutoff below threshold, and the quadratic rise in saturation above threshold. The optional channel-length-modulation term and minor caveats do not alter the essential sketch.",
           "golden_solution_sha256": "bfea619964059498c81e339b724f52ee5be4d15612b8ccbbb4260542c7f763d0",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
-      "active_score": {
-        "policy": "gpt_6_luna_max",
-        "score_0_to_4": 4,
-        "score_percent": 100,
-        "is_full_credit": true
-      },
       "tokens": {
-        "cached_input_tokens": 73252,
-        "input_tokens": 78920,
-        "output_tokens": 10063,
-        "total_tokens": 88983,
-        "cache_creation_input_tokens": 0,
-        "reasoning_output_tokens": null,
+        "cached_input_tokens": 0,
+        "input_tokens": 1349,
+        "output_tokens": 2105,
+        "total_tokens": 3454,
+        "cache_creation_input_tokens": null,
+        "reasoning_output_tokens": 1365,
         "complete": true,
         "availability": "complete",
         "missing_fields": []
       },
       "selected_response_tokens": {
-        "cached_input_tokens": 18311,
-        "input_tokens": 19728,
-        "output_tokens": 2098,
-        "total_tokens": 21826,
-        "cache_creation_input_tokens": 0,
-        "reasoning_output_tokens": null,
+        "cached_input_tokens": 0,
+        "input_tokens": 1349,
+        "output_tokens": 2105,
+        "total_tokens": 3454,
+        "cache_creation_input_tokens": null,
+        "reasoning_output_tokens": 1365,
         "complete": true,
         "availability": "complete",
         "missing_fields": []
       },
-      "attempt_count": 4
+      "attempt_count": 1,
+      "active_score": {
+        "policy": "gpt_6_luna_max",
+        "score_0_to_4": 4,
+        "score_percent": 100,
+        "is_full_credit": true
+      }
     },
     {
       "question_id": "part1-005-sketch-ix-versus-vx",
@@ -4411,70 +4372,57 @@
       ],
       "rollout": 2,
       "configuration": {
-        "model_id": 208665,
-        "thinking_effort": "max"
+        "model_id": null,
+        "thinking_effort": "max",
+        "api_model": "anthropic/claude-fable-5",
+        "route": "openrouter_chat_completions"
       },
       "answer": {
-        "text": "**Setup.** M1's source is grounded, its gate is at $V_X$, and its drain sits at a fixed $1\\text{ V}$, so\n\n$$V_{GS} = V_X, \\qquad V_{DS} = 1\\text{ V (constant)}, \\qquad I_X = I_D.$$\n\nSweeping $V_X$ moves the device through three regions (take $\\lambda = 0$):\n\n**1. Off — $V_X < V_{TH}$:**\n$$I_X = 0$$\n\n**2. Saturation — $V_{TH} < V_X < V_{TH} + 1\\text{ V}$:**\nHere $V_{DS} = 1\\text{ V} > V_X - V_{TH}$, so\n\n$$I_X = \\tfrac{1}{2}\\,\\mu_n C_{ox}\\tfrac{W}{L}\\,(V_X - V_{TH})^2 \\quad\\text{(parabola)}$$\n\n**3. Triode — $V_X > V_{TH} + 1\\text{ V}$:**\nNow the overdrive exceeds $V_{DS}$, so\n\n$$I_X = \\mu_n C_{ox}\\tfrac{W}{L}\\Big[(V_X - V_{TH})(1\\text{ V}) - \\tfrac{1}{2}(1\\text{ V})^2\\Big] \\quad\\text{(straight line, slope } \\mu_n C_{ox}\\tfrac{W}{L}\\cdot 1\\text{ V})$$\n\n**Sketch:**\n\n```\n I_X\n  │                                       ／\n  │                                     ／    triode:\n  │                                   ／      straight line,\n  │                                 ／        slope = μnCox(W/L)·(1V)\n  │                               ／\n  │                             ⟋  ← smooth transition\n  │                           ⌒       (slopes match)\n  │                        ⌒\n  │                     ⌒     saturation:\n  │                  ⌒        ½μnCox(W/L)(V_X−V_TH)²\n  │              ⌒            (parabola)\n  │          ⌒\n  ├─────────┴─────────────────┼──────────────→ V_X\n  0        V_TH           V_TH + 1V\n   ←──off──→\n   (I_X=0)\n```\n\n**Key points:**\n\n- The curve is zero up to $V_{TH}$, rises **parabolically**, then becomes **linear** at $V_X = V_{TH} + 1\\text{ V}$.\n- The transition is smooth: at the boundary, both expressions give slope $\\mu_n C_{ox}\\frac{W}{L}(1\\text{ V})$, so there is no kink.\n- Note the reversal of the usual picture: with $V_{DS}$ *fixed* and $V_{GS}$ swept, the transistor starts in **saturation** at low $V_X$ and enters **triode** at high $V_X$ — opposite to the familiar $I_D$–$V_{DS}$ characteristic. Once in triode, the current keeps growing (linearly), unlike the flat saturation of an $I_D$–$V_{DS}$ plot, because increasing $V_X$ keeps enhancing the channel.",
+        "text": "## Setting Up\n\nFrom the circuit:\n- Gate voltage: $V_G = V_X$, Source grounded → $V_{GS} = V_X$\n- Drain tied to the supply → $V_{DS} = 1\\text{ V}$ (**fixed**)\n- $I_X = I_D$ of $M_1$\n\nSince $V_{DS}$ is pinned at 1 V, the region of operation depends on how $V_X$ compares to $V_{TH}$ and $V_{TH} + 1$ V.\n\n## Three Regions of Operation\n\n**1. Cutoff: $V_X < V_{TH}$**\n\n$$I_X = 0$$\n\n**2. Saturation: $V_{TH} < V_X < V_{TH} + 1\\ \\text{V}$** \n\n(because $V_{DS} = 1\\,\\text{V} > V_X - V_{TH}$)\n\n$$I_X = \\frac{1}{2}\\,\\mu_n C_{ox} \\frac{W}{L} (V_X - V_{TH})^2 \\quad \\Rightarrow \\quad \\textbf{parabolic rise}$$\n\n**3. Triode: $V_X > V_{TH} + 1\\ \\text{V}$** \n\n(now $V_{DS} = 1\\,\\text{V} < V_X - V_{TH}$)\n\n$$I_X = \\mu_n C_{ox}\\frac{W}{L}\\left[(V_X - V_{TH})(1\\,\\text{V}) - \\frac{1}{2}(1\\,\\text{V})^2\\right] \\quad \\Rightarrow \\quad \\textbf{straight line}$$\n\nwith constant slope $\\mu_n C_{ox}\\frac{W}{L}\\,(1\\,\\text{V})$.\n\n## Sketch\n\n```\n I_X\n  |                                     /\n  |                                    /   ← triode: linear,\n  |                                   /      slope = μnCox(W/L)(1V)\n  |                                  /\n  |                              _.-´\n  |                           _-´   ← saturation: quadratic\n  |                        .-´        ½μnCox(W/L)(Vx−VTH)²\n  |                     .·´\n  |_________________..·´\n  +----------------|--------|------------→ V_X\n  0               VTH    VTH + 1V\n```\n\n## Key Points\n\n- $I_X = 0$ until $V_X$ reaches $V_{TH}$.\n- The curve is **quadratic** between $V_{TH}$ and $V_{TH}+1$ V.\n- At $V_X = V_{TH} + 1$ V the device leaves saturation; beyond this the parabola smoothly turns into a **straight line** (both the current, $I_X = \\frac{1}{2}\\mu_n C_{ox}\\frac{W}{L}(1\\,\\text{V})^2$, and the slope are continuous at the transition).\n- Unlike a diode-connected device, the current does **not** keep rising quadratically — fixing $V_{DS}$ at 1 V forces the transistor into triode, where $I_X$ grows only linearly with $V_X$.",
         "format": "markdown",
-        "sha256": "d75d2192523ccb0863d069d40743cc80aa5d40b1db8f04e802c2439f59b091af"
+        "sha256": "cdeacc969ce9f93eef8c06602895fe4f55a2d2f57159f8d668476c2de568834e"
       },
-      "model_call_count": 3,
-      "internet_or_tool_evidence": true,
-      "source_experiment": "2026-07-15-direct-qa",
+      "model_call_count": 1,
+      "internet_or_tool_evidence": false,
+      "source_experiment": "2026-11-03-direct-qa",
       "scores": {
-        "minimax_m3": {
-          "score_0_to_4": 4,
-          "is_full_credit": true,
-          "rationale": "The candidate answer correctly identifies all three regions (off, saturation, triode), provides the correct current expressions for each, correctly identifies the boundary at V_TH + 1 V, notes the smooth transition matching slopes, and even highlights the non-obvious insight that the device moves from saturation to triode as V_GS increases (opposite to the usual I_D-V_DS characteristic). All of this matches the golden solution precisely.",
-          "golden_solution_sha256": "363af6ae2d7dce084a6645e94164c923e7f4f183f039d791bef2129658368787",
-          "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
-        },
-        "deepseek_v4_pro": {
-          "score_0_to_4": 4,
-          "is_full_credit": true,
-          "rationale": "The answer correctly identifies the three regions (off, saturation, triode) with the proper boundary conditions, provides the correct current equations, and sketches the I-V curve with the right shape and smooth transition. The explanation of the reversed region order (saturation then triode) is accurate and aligns with the golden solution. No errors or omissions are present.",
-          "golden_solution_sha256": "363af6ae2d7dce084a6645e94164c923e7f4f183f039d791bef2129658368787",
-          "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
-        },
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies the off, saturation, and triode regions as VX increases, gives the appropriate current expressions and transition at VTH + 1 V, and describes the resulting zero–quadratic–linear curve.",
-          "judge_model": "openai/gpt-6-luna",
+          "rationale": "Correctly identifies the fixed 1 V drain-source voltage and gives the cutoff, saturation, and triode regions with the appropriate current expressions and sketch trend. The transition is correctly described as continuous in current and slope.",
           "golden_solution_sha256": "363af6ae2d7dce084a6645e94164c923e7f4f183f039d791bef2129658368787",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
-      "active_score": {
-        "policy": "gpt_6_luna_max",
-        "score_0_to_4": 4,
-        "score_percent": 100,
-        "is_full_credit": true
-      },
       "tokens": {
-        "cached_input_tokens": 54957,
-        "input_tokens": 59667,
-        "output_tokens": 9961,
-        "total_tokens": 69628,
-        "cache_creation_input_tokens": 0,
-        "reasoning_output_tokens": null,
+        "cached_input_tokens": 0,
+        "input_tokens": 1502,
+        "output_tokens": 2124,
+        "total_tokens": 3626,
+        "cache_creation_input_tokens": null,
+        "reasoning_output_tokens": 1113,
         "complete": true,
         "availability": "complete",
         "missing_fields": []
       },
       "selected_response_tokens": {
-        "cached_input_tokens": 18319,
-        "input_tokens": 19889,
-        "output_tokens": 4211,
-        "total_tokens": 24100,
-        "cache_creation_input_tokens": 0,
-        "reasoning_output_tokens": null,
+        "cached_input_tokens": 0,
+        "input_tokens": 1502,
+        "output_tokens": 2124,
+        "total_tokens": 3626,
+        "cache_creation_input_tokens": null,
+        "reasoning_output_tokens": 1113,
         "complete": true,
         "availability": "complete",
         "missing_fields": []
       },
-      "attempt_count": 3
+      "attempt_count": 1,
+      "active_score": {
+        "policy": "gpt_6_luna_max",
+        "score_0_to_4": 4,
+        "score_percent": 100,
+        "is_full_credit": true
+      }
     },
     {
       "question_id": "part1-006-device-act-as-current-source",
@@ -5311,54 +5259,35 @@
       ],
       "rollout": 2,
       "configuration": {
-        "model_id": 208665,
-        "thinking_effort": "max"
+        "model_id": null,
+        "thinking_effort": "max",
+        "api_model": "anthropic/claude-fable-5",
+        "route": "openrouter_chat_completions"
       },
       "answer": {
-        "text": "# Circuit Analysis: PMOS CS Stage with Diode-Connected PMOS Load\n\n## Identifying the Topology\n\n**M₂** (PMOS): source at $V_{DD}$, gate driven by $V_{in}$, drain at the output node → **common-source amplifying device**.\n\n**M₁** (PMOS): source at $V_{out}$, with **both gate and drain tied to ground**. Since $V_G = V_D$, M₁ is **diode-connected** and acts as the load, presenting a small-signal resistance of $\\frac{1}{g_{m1}} \\parallel r_{O1}$ at the output.\n\n## Small-Signal Gain\n\nKCL at the output node (source of M₂ and gate/drain of M₁ are at AC ground):\n\n$$g_{m2}v_{in} + \\frac{v_{out}}{r_{O2}} + g_{m1}v_{out} + \\frac{v_{out}}{r_{O1}} = 0$$\n\n$$\\boxed{A_v = -g_{m2}\\left(\\frac{1}{g_{m1}} \\parallel r_{O1} \\parallel r_{O2}\\right)}$$\n\nNeglecting channel-length modulation ($\\lambda = 0$):\n\n$$A_v = -\\frac{g_{m2}}{g_{m1}}$$\n\nSince both transistors are **PMOS carrying the same bias current** $I_D$, using $g_m = \\sqrt{2\\mu_p C_{ox}(W/L)I_D}$, the current and $\\mu_p C_{ox}$ cancel:\n\n$$A_v = -\\sqrt{\\frac{(W/L)_2}{(W/L)_1}}$$\n\n## Large-Signal Confirmation\n\nEquating saturation currents ($|I_{D2}| = |I_{D1}|$, with $|V_{GS1}| = V_{out}$):\n\n$$(W/L)_2\\left(V_{DD} - V_{in} - |V_{TH}|\\right)^2 = (W/L)_1\\left(V_{out} - |V_{TH}|\\right)^2$$\n\n$$V_{out} = |V_{TH}| + \\sqrt{\\frac{(W/L)_2}{(W/L)_1}}\\left(V_{DD} - V_{in} - |V_{TH}|\\right)$$\n\nThe characteristic is **linear**, with slope equal to the small-signal gain — a key property of this topology.\n\n## Key Observations\n\n- **Gain set purely by geometry:** independent of process ($\\mu_p C_{ox}$), temperature, and bias current to first order — a well-defined, robust gain.\n- **No body effect:** since both devices are PMOS, each can sit in its own n-well with body tied to source, so $g_{mb1}$ does not degrade the gain.\n- **Port impedances:** $R_{in} = \\infty$ (gate input); $R_{out} = \\frac{1}{g_{m1}} \\parallel r_{O1} \\parallel r_{O2} \\approx \\frac{1}{g_{m1}}$ (relatively low, which is why the gain is modest).\n- **Trade-off:** since $g_m = 2I_D/|V_{ov}|$, the gain equals $|V_{ov1}|/|V_{ov2}|$. A large gain requires a large overdrive for M₁, raising the output bias level $V_{out} = |V_{TH}| + |V_{ov1}|$ and squeezing the swing available before M₂ leaves saturation ($V_{out} \\leq V_{in} + |V_{TH}|$).",
+        "text": "# Circuit Analysis: PMOS Common-Source Stage with Diode-Connected Load\n\n## 1. Recognizing the Topology\n\nBoth devices are PMOS transistors:\n\n- **M₂** — source at $V_{DD}$, gate driven by $V_{in}$, drain at $V_{out}$ → **common-source amplifying device** (source is at AC ground).\n- **M₁** — gate *and* drain both tied to ground, source at $V_{out}$ → **diode-connected load**. With $V_G = V_D$, it behaves as a two-terminal \"diode\" between the output node and ground, and it is guaranteed to be in saturation whenever it conducts ($V_{SD1} = V_{SG1}$).\n\nSo this is a **CS stage with a diode-connected load** — a \"$g_m/g_m$\" amplifier.\n\n## 2. Large-Signal (DC) Behavior\n\nThe two devices carry the same current. With both in saturation (square law, $\\lambda \\approx 0$, equal $|V_{TH}|$):\n\n$$\\frac{1}{2}\\mu_p C_{ox}\\left(\\tfrac{W}{L}\\right)_2 (V_{DD}-V_{in}-|V_{TH}|)^2 = \\frac{1}{2}\\mu_p C_{ox}\\left(\\tfrac{W}{L}\\right)_1 (V_{out}-|V_{TH}|)^2$$\n\nsince $V_{SG2} = V_{DD} - V_{in}$ and $V_{SG1} = V_{out}$. Solving:\n\n$$\\boxed{V_{out} = |V_{TH}| + \\sqrt{\\frac{(W/L)_2}{(W/L)_1}}\\,\\big(V_{DD}-V_{in}-|V_{TH}|\\big)}$$\n\nKey observations:\n\n- The input–output characteristic is a **straight line** → inherently linear gain.\n- The stage **inverts**: raising $V_{in}$ reduces $V_{SG2}$, reduces $I_D$, and $V_{out}$ falls.\n- **Valid range:** M₂ stays saturated for $V_{out} \\le V_{in} + |V_{TH}|$; the output bottoms out near $|V_{TH}|$ as M₂ approaches cutoff ($V_{in} \\to V_{DD} - |V_{TH}|$).\n\n## 3. Small-Signal Gain\n\nKCL at the output node (looking into the source of M₁ with its gate/drain grounded gives $1/(g_{m1}+g_{mb1}) \\parallel r_{O1}$):\n\n$$A_v = -g_{m2}\\left[\\frac{1}{g_{m1}+g_{mb1}} \\,\\Big\\|\\, r_{O1} \\,\\Big\\|\\, r_{O2}\\right] \\;\\approx\\; -\\frac{g_{m2}}{g_{m1}+g_{mb1}}$$\n\nSince each PMOS can sit in its own n-well, **M₁'s body can be tied to its source**, eliminating body effect ($g_{mb1}=0$):\n\n$$A_v \\approx -\\frac{g_{m2}}{g_{m1}}$$\n\nBecause both devices carry the *same* current and are the same type ($\\mu_p C_{ox}$ identical), using $g_m = \\sqrt{2\\mu_p C_{ox}(W/L)I_D}$:\n\n$$\\boxed{A_v = -\\sqrt{\\frac{(W/L)_2}{(W/L)_1}} = -\\frac{V_{OV1}}{V_{OV2}}}$$\n\n— which matches the slope of the large-signal characteristic found above.\n\n## 4. Impedances\n\n| Quantity | Value |\n|---|---|\n| Input resistance | $R_{in} = \\infty$ (gate) |\n| Output resistance | $R_{out} = \\dfrac{1}{g_{m1}} \\parallel r_{O1} \\parallel r_{O2} \\approx \\dfrac{1}{g_{m1}}$ (low) |\n\n## 5. Design Implications\n\n- **Ratiometric gain:** $A_v$ depends only on a *geometry ratio* — to first order independent of process ($\\mu_p C_{ox}$ cancels), temperature, supply, and bias current. This makes the gain accurate and the amplifier linear.\n- **Cost of gain:** a gain of $A$ requires $(W/L)_2/(W/L)_1 = A^2$ and forces $V_{OV1} = A\\cdot V_{OV2}$. Since the output must sit at $V_{out} = |V_{TH}| + V_{OV1}$, large gains eat up headroom and swing — so this topology is practical only for **modest gains (~2–10)**.\n- **Speed:** the low-impedance output node ($\\approx 1/g_{m1}$) makes the output pole fast; the main bandwidth limit is Miller multiplication of $C_{GD2}$ at the input.\n\n**Summary:** Figure 13 is an inverting PMOS common-source amplifier loaded by a diode-connected PMOS, with gain $A_v \\approx -g_{m2}/g_{m1} = -\\sqrt{(W/L)_2/(W/L)_1}$, infinite input resistance, and output resistance $\\approx 1/g_{m1}$.",
         "format": "markdown",
-        "sha256": "d9c6546ca6a8cd5782bcda63d515f1995d8954d72ac6119a1a31b7fcddeda0d6"
+        "sha256": "8fe6503c6e32f4da40445535f174b8be9e6cb21945ba1dca461e63b4fdde5401"
       },
-      "model_call_count": 2,
-      "internet_or_tool_evidence": true,
-      "source_experiment": "2026-07-15-direct-qa",
+      "model_call_count": 1,
+      "internet_or_tool_evidence": false,
+      "source_experiment": "2026-11-03-direct-qa",
       "scores": {
-        "minimax_m3": {
-          "score_0_to_4": 4,
-          "is_full_credit": true,
-          "rationale": "The answer correctly identifies both transistors as PMOS, M2 as the common-source input device, M1 as a diode-connected PMOS load with gate and drain tied to ground, and derives the small-signal gain as Av ≈ -gm2/gm1 (the gm/gm amplifier result). It also correctly derives the gain in terms of geometry ratios, discusses no body effect (since both are PMOS in own n-wells), and provides large-signal confirmation. The essential conclusions match the golden solution fully.",
-          "golden_solution_sha256": "b9bd40d93897263d8f8ec48e8a570180ddbbc0962f905b31861c1d4b96315bc9",
-          "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
-        },
-        "deepseek_v4_pro": {
-          "score_0_to_4": 4,
-          "is_full_credit": true,
-          "rationale": "Correctly identifies both transistors as PMOS, M2 as common-source input device, M1 as diode-connected PMOS load with gate/drain tied to ground, and gives gm/gm gain Av = -gm2/gm1. Includes valid large-signal confirmation and secondary observations without contradicting the essential answer.",
-          "golden_solution_sha256": "b9bd40d93897263d8f8ec48e8a570180ddbbc0962f905b31861c1d4b96315bc9",
-          "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
-        },
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies both devices as PMOS, M2 as the common-source input device, and M1 as a diode-connected PMOS load with gate and drain grounded. It gives the required gm/gm gain, Av ≈ −gm2/gm1.",
-          "judge_model": "openai/gpt-6-luna",
+          "rationale": "Correctly identifies both devices as PMOS, M2 as the common-source input device, M1 as a diode-connected PMOS load, and gives the expected gm/gm gain. This meets the golden solution’s full-credit rule.",
           "golden_solution_sha256": "b9bd40d93897263d8f8ec48e8a570180ddbbc0962f905b31861c1d4b96315bc9",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
-      "active_score": {
-        "policy": "gpt_6_luna_max",
-        "score_0_to_4": 4,
-        "score_percent": 100,
-        "is_full_credit": true
-      },
       "tokens": {
-        "cached_input_tokens": 18311,
-        "input_tokens": 22165,
-        "output_tokens": 22982,
-        "total_tokens": 45147,
-        "cache_creation_input_tokens": 0,
-        "reasoning_output_tokens": null,
+        "cached_input_tokens": 0,
+        "input_tokens": 1893,
+        "output_tokens": 9565,
+        "total_tokens": 11458,
+        "cache_creation_input_tokens": null,
+        "reasoning_output_tokens": 7789,
         "complete": true,
         "availability": "complete",
         "missing_fields": []
@@ -5366,15 +5295,21 @@
       "selected_response_tokens": {
         "cached_input_tokens": 0,
         "input_tokens": 1893,
-        "output_tokens": 9205,
-        "total_tokens": 11098,
-        "cache_creation_input_tokens": 0,
-        "reasoning_output_tokens": null,
+        "output_tokens": 9565,
+        "total_tokens": 11458,
+        "cache_creation_input_tokens": null,
+        "reasoning_output_tokens": 7789,
         "complete": true,
         "availability": "complete",
         "missing_fields": []
       },
-      "attempt_count": 2
+      "attempt_count": 1,
+      "active_score": {
+        "policy": "gpt_6_luna_max",
+        "score_0_to_4": 4,
+        "score_percent": 100,
+        "is_full_credit": true
+      }
     },
     {
       "question_id": "part1-018-find-rout",
@@ -7259,70 +7194,57 @@
       ],
       "rollout": 2,
       "configuration": {
-        "model_id": 208665,
-        "thinking_effort": "max"
+        "model_id": null,
+        "thinking_effort": "max",
+        "api_model": "anthropic/claude-fable-5",
+        "route": "openrouter_chat_completions"
       },
       "answer": {
-        "text": "# Figure 12(a): A Dynamic Divide-by-Two Circuit\n\n**Verdict:** the loop is a master–slave toggle flip-flop built from two *dynamic* latches — it divides the clock frequency by 2, producing an output at $f_{CK}/2$ with edges on the falling edges of $CK$.\n\n## Topology\n\nLabel the nodes: $X$ (output of the last inverter, fed back) → $S_1$ ($CK$) → $A$ → Inv₁ → $B$ → $S_2$ ($\\overline{CK}$) → $C$ → Inv₂ → Inv₃ → $X$.\n\n- **Master latch** = $S_1$ + Inv₁ (inverting, samples when $CK = 1$)\n- **Slave latch** = $S_2$ + Inv₂ + Inv₃ (non-inverting, samples when $CK = 0$)\n- The loop contains **three inversions → one net inversion**, i.e., a master–slave D flip-flop with $D = \\overline{Q}$ — the canonical divide-by-two.\n\n## Phase-by-phase operation\n\n| Phase | $S_1$ | $S_2$ | Master | Slave | $X$ |\n|---|---|---|---|---|---|\n| $CK = 1$ | on | off | samples: $B = \\overline{X}$ | holds ($C$ floats) | unchanged |\n| $CK = 0$ | off | on | holds ($A$ floats) | transfers: $X \\leftarrow B = \\overline{X_{old}}$ | **toggles** |\n\nTrace (each column = one half-cycle, \"·\" = floating node holding charge):\n\n```\nCK : 1   0   1   0   1   0\nA  : 0   ·   1   ·   0   ·\nB  : 1   1   0   0   1   1\nC  : ·   1   ·   0   ·   1\nX  : 0   1   1   0   0   1    ← period = 2·Tck  ⇒  f_out = f_CK/2\n```\n\n$X$ flips once per clock period (at each falling edge), so its period is $2T_{CK}$. Note two bonuses: consecutive output transitions are spaced exactly $T_{CK}$ apart, so the output duty cycle is ~50% **regardless of the clock's duty cycle**; and node $B$ toggles on *rising* edges while $X$ toggles on *falling* edges — with a 50% clock, $B$ and $X$ are quadrature phases of $f_{CK}/2$ (free I/Q).\n\n## Why one net inversion — and why the slave has two inverters\n\nToggling requires an **odd** number of inversions around the loop. With an even count the loop would simply re-circulate the same value every cycle and latch up (no division). The second inverter in the slave both fixes the parity and adds delay margin against races.\n\n## Consequences of being *dynamic*\n\n- **State storage:** when a switch is off, the downstream inverter input ($A$ or $C$) floats, holding its logic level as charge on parasitic capacitance. Leakage (subthreshold, junctions) therefore imposes a **minimum clock frequency** — the clock cannot be stopped or slowed arbitrarily. Charge injection/clock feedthrough from the switches also perturbs the held levels.\n- **In exchange:** the circuit is tiny (~8–10 transistors), dissipates no static power, and is *ratioless* — each node is driven by only one gate at a time, so operation doesn't depend on device-strength ratios.\n- **Speed:** each half-cycle need only accommodate one switch plus one or two inverter delays ($T/2 \\gtrsim t_{sw} + 2t_{inv}$ for the slave phase), so $f_{max} \\approx 1/[2(t_{sw}+2t_{inv})]$ — this topology is among the fastest CMOS dividers, hence its use in prescalers.\n\n## Clocking requirement\n\n$CK$ and $\\overline{CK}$ must not conduct simultaneously for longer than the loop delay: if both switches are on, the loop degenerates into a transparent **three-inverter ring oscillator** and the state races around it, corrupting division. The tightest race is at the $CK$ rising edge, where only $S_1$ + Inv₁'s delay separates new data from the still-closing $S_2$ — which is why skew between the two clock phases is the Achilles' heel of this divider (and the motivation for single-phase techniques like TSPC).\n\nThis \"clock-gated ring oscillator\" view is the cleanest summary: the switches chop a 3-stage ring in two places, and the clock paces the circulating edge — one lap (one polarity flip, half an output period) per clock cycle. It also sets up part (b), where the red inverter deliberately re-closes that ring during one phase.",
+        "text": "# Figure 12(a): A Dynamic (Charge‑Storage) Divide‑by‑Two Circuit\n\n## What the circuit is\n\nThe loop contains two *dynamic latches* clocked on opposite phases:\n\n- **Latch 1 (master):** switch $S_1$ (on when $CK = 1$) followed by $\\text{Inv}_1$ → an *inverting* latch.\n- **Latch 2 (slave):** switch $S_2$ (on when $\\overline{CK} = 1$, i.e., $CK = 0$) followed by two cascaded inverters → a *non-inverting* latch.\n\nThe total number of inversions around the loop is **three (odd)**, so the circuit continuously tries to \"disagree\" with itself — the hallmark of a toggle flip-flop. Each latch stores its state as charge on the parasitic capacitance at the inverter input (node $A$ = input of Inv₁, node $Y$ = input of the inverter pair): there is no static storage element.\n\n## Phase-by-phase operation\n\nLet $V_{out}$ be the last inverter's output (fed back to $S_1$). Start with $V_{out} = 0$:\n\n| Phase | $S_1$ | $S_2$ | Action |\n|---|---|---|---|\n| $CK=1$ | on | off | $A = V_{out} = 0 \\Rightarrow X = \\text{Inv}_1\\text{ out} = 1$. Node $Y$ floats → $V_{out}$ **held** at 0 |\n| $CK=0$ | off | on | $A$ floats (holds 0, so $X=1$); $Y = X = 1$ → two inversions → $V_{out} = 1$ (**toggles**) |\n| $CK=1$ | on | off | $A = 1 \\Rightarrow X = 0$; output held at 1 |\n| $CK=0$ | off | on | $Y = 0 \\Rightarrow V_{out} = 0$ (**toggles**) |\n\nBecause the two switches are never on in the same phase, the loop is never fully transparent: in each clock period the state advances around *half* the loop per half-cycle, producing exactly **one output toggle per input clock cycle**.\n\n## Resulting behavior\n\n- **Frequency division:** $V_{out}$ completes one full period every two clock periods:\n$$f_{out} = \\frac{f_{CK}}{2}$$\n- **50% duty cycle:** $V_{out}$ transitions only on falling edges of $CK$, which are spaced $T_{CK}$ apart — so the output duty cycle is 50% regardless of the clock's duty cycle.\n- **Quadrature phases:** node $X$ (Inv₁ output) toggles on *rising* edges of $CK$, i.e., it is offset from $V_{out}$ by $T_{CK}/2$ = one quarter of the output period → the circuit inherently provides $f_{CK}/2$ outputs in quadrature (90° apart).\n\nAn intuitive view: with both switches shorted, the loop is simply a three-inverter ring oscillator; the clocked switches gate its propagation so that it is forced to toggle at exactly $f_{CK}/2$.\n\n## Limitations (why Fig. 12(b) adds the red inverter)\n\n1. **Minimum clock frequency.** Nodes $A$ and $Y$ float for half of every cycle. Leakage (subthreshold, junction, gate leakage) causes the stored voltage to droop; if the clock is too slow — or stops — the state is corrupted. The divider therefore fails below some $f_{min}$.\n2. **Charge injection / clock feedthrough** from the switches disturbs the floating nodes, degrading noise margins.\n3. **Clock overlap race:** if $CK$ and $\\overline{CK}$ overlap, both switches conduct momentarily, making the three-inverter loop transparent; a fast signal could race through and cause miscounting.\n4. **Maximum speed** is set by each half-period accommodating the switch + inverter(s) delay (the two-inverter slave path dominates).\n\nFigure 12(b) addresses item 1: the weak feedback (\"keeper\") inverter placed around $\\text{Inv}_1$ cross-couples with it to form a static storage cell, making the latch *pseudo-static*. The keeper must be weak enough to be overpowered through $S_1$ when new data arrives, but it preserves the state indefinitely — allowing the divider to operate down to arbitrarily low clock frequencies.\n\n**Conclusion:** Figure 12(a) is a compact dynamic master–slave toggle flip-flop acting as a ÷2 frequency divider ($f_{out}=f_{CK}/2$, ~50% duty cycle, quadrature-capable), but its charge-based state storage imposes a minimum operating frequency — the deficiency remedied by the keeper inverter in Fig. 12(b).",
         "format": "markdown",
-        "sha256": "2042e96ac0cb9fa5b5bbb584076a597238079fd4900f12ea62ab6d8e7a524534"
+        "sha256": "048721cb9d5252dbb068a02142ab6a1252db5deaa17cb7471e0127036c839b1c"
       },
-      "model_call_count": 2,
-      "internet_or_tool_evidence": true,
-      "source_experiment": "2026-07-15-direct-qa",
+      "model_call_count": 1,
+      "internet_or_tool_evidence": false,
+      "source_experiment": "2026-11-03-direct-qa",
       "scores": {
-        "minimax_m3": {
-          "score_0_to_4": 4,
-          "is_full_credit": true,
-          "rationale": "The candidate correctly identifies the circuit as a dynamic-latch master-slave divide-by-two, explains alternate sampling/holding producing output at f_CK/2, and discusses dynamic storage with leakage/minimum frequency considerations. Topology, device roles, dominant mechanism, and key consequences are all correctly described, going well beyond the golden solution's essentials.",
-          "golden_solution_sha256": "49b86ec12c96c87a6a86bbf9460b32853e5c213e1aebca1ff399e9bac088033c",
-          "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
-        },
-        "deepseek_v4_pro": {
-          "score_0_to_4": 4,
-          "is_full_credit": true,
-          "rationale": "The answer correctly identifies the circuit as a dynamic-latch divide-by-two, explains the master-slave operation and toggling, and gives the correct output frequency. The detailed phase-by-phase trace, discussion of inversion parity, and dynamic-latch consequences are accurate and align with the golden solution. The golden solution notes that exact internal signal naming is secondary, so the thorough analysis is fully consistent and earns a score of 4.",
-          "golden_solution_sha256": "49b86ec12c96c87a6a86bbf9460b32853e5c213e1aebca1ff399e9bac088033c",
-          "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
-        },
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies the dynamic master–slave latch feedback divider and explains that alternate sampling and holding makes the output toggle once per input-clock period, giving fCK/2. The additional topology and implementation details do not undermine the essential answer.",
-          "judge_model": "openai/gpt-6-luna",
+          "rationale": "Correctly identifies the circuit as a dynamic master–slave latch divider and explains that alternating sample/hold phases toggle the output at half the clock frequency. The additional details do not undermine the essential analysis.",
           "golden_solution_sha256": "49b86ec12c96c87a6a86bbf9460b32853e5c213e1aebca1ff399e9bac088033c",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
-      "active_score": {
-        "policy": "gpt_6_luna_max",
-        "score_0_to_4": 4,
-        "score_percent": 100,
-        "is_full_credit": true
-      },
       "tokens": {
-        "cached_input_tokens": 36634,
-        "input_tokens": 42482,
-        "output_tokens": 40017,
-        "total_tokens": 82499,
-        "cache_creation_input_tokens": 0,
-        "reasoning_output_tokens": null,
+        "cached_input_tokens": 0,
+        "input_tokens": 2856,
+        "output_tokens": 8936,
+        "total_tokens": 11792,
+        "cache_creation_input_tokens": null,
+        "reasoning_output_tokens": 7311,
         "complete": true,
         "availability": "complete",
         "missing_fields": []
       },
       "selected_response_tokens": {
-        "cached_input_tokens": 18317,
-        "input_tokens": 21241,
-        "output_tokens": 22289,
-        "total_tokens": 43530,
-        "cache_creation_input_tokens": 0,
-        "reasoning_output_tokens": null,
+        "cached_input_tokens": 0,
+        "input_tokens": 2856,
+        "output_tokens": 8936,
+        "total_tokens": 11792,
+        "cache_creation_input_tokens": null,
+        "reasoning_output_tokens": 7311,
         "complete": true,
         "availability": "complete",
         "missing_fields": []
       },
-      "attempt_count": 2
+      "attempt_count": 1,
+      "active_score": {
+        "policy": "gpt_6_luna_max",
+        "score_0_to_4": 4,
+        "score_percent": 100,
+        "is_full_credit": true
+      }
     },
     {
       "question_id": "part2-014-red-inverter-b-affect-performance",
@@ -7784,70 +7706,57 @@
       ],
       "rollout": 2,
       "configuration": {
-        "model_id": 208665,
-        "thinking_effort": "max"
+        "model_id": null,
+        "thinking_effort": "max",
+        "api_model": "anthropic/claude-fable-5",
+        "route": "openrouter_chat_completions"
       },
       "answer": {
-        "text": "# Quadrature Oscillator — Oscillation Frequency\n\nThis is a quadrature VCO: two identical LC oscillators, each with a cross-coupled pair (tail current $I_{SS}$) and a parallel coupling pair (tail current $I_1$) driven by the other oscillator's outputs. One coupling path is straight and the other is crossed, which forces the two cores to run 90° out of phase.\n\n**Key point:** each tank receives *two* currents — one from its own cross-coupled pair (in phase with its tank voltage) and one injected by the coupling pair (in quadrature, since it's driven by the other core). The tank must therefore operate *off resonance* to absorb the resulting phase.\n\n**Derivation:**\n\n1. With full switching, the differential currents are square waves; their fundamentals have amplitudes $(4/\\pi)I_{SS}$ and $(4/\\pi)I_1$.\n\n2. The total current flowing into tank 1 is the vector sum of a component aligned with $V_{X1Y1}$ and one at 90° to it, so it leads/lags the tank voltage by\n\n$$\\theta = \\tan^{-1}\\!\\left(\\frac{I_1}{I_{SS}}\\right)$$\n\n3. For the voltage and current phasors to be self-consistent, the tank impedance must contribute the opposite phase, $-\\theta$. Near resonance a parallel RLC tank has\n\n$$\\angle Z_T \\approx -\\,2Q\\,\\frac{\\Delta\\omega}{\\omega_0}$$\n\n4. Equating the two phases:\n\n$$2Q\\,\\frac{\\Delta\\omega}{\\omega_0} = \\frac{I_1}{I_{SS}} \\;\\;\\Rightarrow\\;\\; \\Delta\\omega = \\frac{\\omega_0}{2Q}\\cdot\\frac{I_1}{I_{SS}}$$\n\n**Result:**\n\n$$\\boxed{\\;\\omega_{osc} \\approx \\omega_0\\left(1 \\pm \\frac{1}{2Q}\\cdot\\frac{I_1}{I_{SS}}\\right), \\qquad \\omega_0 = \\frac{1}{\\sqrt{LC_{tot}}}\\;}$$\n\nwhere $C_{tot}$ is the total parasitic capacitance at each output node (no explicit capacitor is shown — transistor, interconnect, and inductor self-capacitance set the resonance), and $Q$ is the tank quality factor.\n\nNotes:\n\n- The oscillator runs **off the tank resonance** by $\\Delta\\omega = (\\omega_0/2Q)(I_1/I_{SS})$ — a stronger coupling ratio $I_1/I_{SS}$ pushes it further away (which is why quadrature coupling degrades phase noise: the tank is not used at its peak-$Q$ point).\n- The $\\pm$ reflects the well-known **mode ambiguity**: the circuit can settle with core 2 leading or lagging core 1 by 90°, i.e., oscillate above or below $\\omega_0$; which mode wins depends on mismatches unless the design deliberately breaks the symmetry.",
+        "text": "## Identifying the Circuit\n\nThis is a **quadrature oscillator**: two identical cross‑coupled LC oscillators (core pairs biased by $I_{SS}$) that are coupled to each other through the parallel differential pairs biased by $I_1$. The one crossing in the interconnection wires makes the coupling *antiphase*, which forces the two outputs into quadrature:\n\n$$V_{X2,Y2} = \\pm j\\,V_{X1,Y1}\\;( \\pm 90^\\circ).$$\n\n## Current Injected into Each Tank\n\nWith large swings, all pairs switch completely. Looking at the fundamental components of the drain currents (and referencing phases to a tank's *own* voltage):\n\n- **Core pair:** injects $\\frac{4}{\\pi}I_{SS}$, *in phase* with the tank voltage (this is what replenishes the loss).\n- **Coupling pair:** injects $\\frac{4}{\\pi}I_1$, but since its gates are driven by the *other* oscillator, this current is in **quadrature** with the tank's own voltage.\n\nThus the total fundamental current flowing into each tank is\n\n$$I_{tank} = \\frac{4}{\\pi}\\left(I_{SS} \\pm jI_1\\right),$$\n\ni.e., it makes an angle $\\phi = \\tan^{-1}(I_1/I_{SS})$ with the tank voltage.\n\n## Phase Balance Condition\n\nFor the tank voltage to be self-consistent, the tank impedance must rotate this current back by $\\mp\\phi$. A parallel RLC tank provides phase only *off resonance*:\n\n$$\\angle Z_T(\\omega) = -\\tan^{-1}\\!\\left[Q\\left(\\frac{\\omega}{\\omega_0}-\\frac{\\omega_0}{\\omega}\\right)\\right]\\approx -\\tan^{-1}\\!\\left(\\frac{2Q\\,\\Delta\\omega}{\\omega_0}\\right),$$\n\nwith $\\omega_0 = 1/\\sqrt{LC}$ and $Q$ the tank quality factor. Setting the tank phase equal to $\\mp\\tan^{-1}(I_1/I_{SS})$:\n\n$$\\frac{2Q\\,\\Delta\\omega}{\\omega_0} = \\pm\\frac{I_1}{I_{SS}}.$$\n\n## Result\n\n$$\\boxed{\\;\\omega_{osc} \\approx \\frac{1}{\\sqrt{LC}}\\left(1 \\pm \\frac{1}{2Q}\\cdot\\frac{I_1}{I_{SS}}\\right)\\;}$$\n\n(exactly, $\\omega_{osc}=\\omega_0\\big[\\sqrt{1+k^2}\\pm k\\big]$ with $k = I_1/(2QI_{SS})$).\n\n**Remarks:**\n\n- The oscillator runs **off the tank resonance** by the fractional amount $I_1/(2QI_{SS})$ — this is the price paid for quadrature coupling (and it degrades phase noise, since the tank operates where its phase slope is not at maximum).\n- The $\\pm$ reflects a genuine **mode ambiguity**: both quadrature sequences ($V_2$ leading or lagging $V_1$ by 90°) satisfy the oscillation conditions, so the circuit may start up at either frequency.\n- Since no explicit capacitors are shown, $C$ here is the total node capacitance (the $C_{GS}$, $C_{GD}$, $C_{DB}$ of the four transistors connected to each node plus wiring).\n- For weak coupling ($I_1 \\ll I_{SS}$) or high $Q$, the frequency reduces to simply $\\omega_{osc}\\approx 1/\\sqrt{LC}$.",
         "format": "markdown",
-        "sha256": "c314dbad919d347122bef07e2c18ef146d608c000dae3849b0165d98f1710017"
+        "sha256": "9137fee87298c8ce526fea5d1ec5565ad351bb60b884ce3df1979f3f8ba34904"
       },
-      "model_call_count": 2,
-      "internet_or_tool_evidence": true,
-      "source_experiment": "2026-07-15-direct-qa",
+      "model_call_count": 1,
+      "internet_or_tool_evidence": false,
+      "source_experiment": "2026-11-03-direct-qa",
       "scores": {
-        "minimax_m3": {
-          "score_0_to_4": 4,
-          "is_full_credit": true,
-          "rationale": "The answer correctly identifies the tank resonance ω0 = 1/√(LC), derives the coupling-induced frequency shift Δω = (ω0/2Q)(I1/ISS), and combines them as ωosc = ω0(1 ± I1/(2Q·ISS)). This matches the golden solution's essential result. The derivation is physically sound, noting the phasor sum of in-phase and quadrature currents and the tank impedance phase near resonance. The ± sign ambiguity is correctly noted. Minor differences (use of 2Q vs. some golden formulations, tan vs. small-angle approximation) are within acceptable secondary variation.",
-          "golden_solution_sha256": "a0cee84b009dba612321a85434dc495078eb23b6bce694bb282e0278e0d69df9",
-          "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
-        },
-        "deepseek_v4_pro": {
-          "score_0_to_4": 4,
-          "is_full_credit": true,
-          "rationale": "The answer correctly identifies the tank resonance frequency and includes a coupling-induced shift of the form Δω = (ω0/(2Q))·(I1/ISS), matching the golden solution's required form. It uses large-signal switching assumptions, derives the phase condition, and notes the mode ambiguity. The golden solution's secondary concerns (notation, frequency vs. angular frequency, edge-of-oscillation warning) are not required for full credit, and the candidate's answer is complete and correct.",
-          "golden_solution_sha256": "a0cee84b009dba612321a85434dc495078eb23b6bce694bb282e0278e0d69df9",
-          "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
-        },
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly gives the tank resonance and the coupling-induced shift, with the large-signal approximation Δω ≈ (I1/ISS)ω0/(2Q). The sign is appropriately left dependent on coupling orientation; extra discussion does not undermine the essential result.",
-          "judge_model": "openai/gpt-6-luna",
+          "rationale": "Correctly starts from the tank resonance and derives the coupling-induced shift Δω/ω₀ ≈ ±I₁/(2Q Iₛₛ), matching the large-signal result. The additional mode and phase-noise remarks are nonessential.",
           "golden_solution_sha256": "a0cee84b009dba612321a85434dc495078eb23b6bce694bb282e0278e0d69df9",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
-      "active_score": {
-        "policy": "gpt_6_luna_max",
-        "score_0_to_4": 4,
-        "score_percent": 100,
-        "is_full_credit": true
-      },
       "tokens": {
-        "cached_input_tokens": 36630,
-        "input_tokens": 40870,
-        "output_tokens": 12448,
-        "total_tokens": 53318,
-        "cache_creation_input_tokens": 0,
-        "reasoning_output_tokens": null,
+        "cached_input_tokens": 0,
+        "input_tokens": 2052,
+        "output_tokens": 10730,
+        "total_tokens": 12782,
+        "cache_creation_input_tokens": null,
+        "reasoning_output_tokens": 9478,
         "complete": true,
         "availability": "complete",
         "missing_fields": []
       },
       "selected_response_tokens": {
-        "cached_input_tokens": 18315,
-        "input_tokens": 20435,
-        "output_tokens": 5337,
-        "total_tokens": 25772,
-        "cache_creation_input_tokens": 0,
-        "reasoning_output_tokens": null,
+        "cached_input_tokens": 0,
+        "input_tokens": 2052,
+        "output_tokens": 10730,
+        "total_tokens": 12782,
+        "cache_creation_input_tokens": null,
+        "reasoning_output_tokens": 9478,
         "complete": true,
         "availability": "complete",
         "missing_fields": []
       },
-      "attempt_count": 2
+      "attempt_count": 1,
+      "active_score": {
+        "policy": "gpt_6_luna_max",
+        "score_0_to_4": 4,
+        "score_percent": 100,
+        "is_full_credit": true
+      }
     },
     {
       "question_id": "part1-001-double-length-and-width-mosfet-its-intrinsic",
@@ -8378,70 +8287,57 @@
       ],
       "rollout": 3,
       "configuration": {
-        "model_id": 208665,
-        "thinking_effort": "max"
+        "model_id": null,
+        "thinking_effort": "max",
+        "api_model": "anthropic/claude-fable-5",
+        "route": "openrouter_chat_completions"
       },
       "answer": {
-        "text": "# Figure 5 — Source Follower (Common-Drain Stage)\n\n**Topology:** Input at the gate, output at the source, drain tied to V_DD (AC ground). This is the classic NMOS **source follower**, used as a voltage buffer / level shifter.\n\n## Qualitative operation\n\nFor V_in < V_TH, M1 is off and V_out = 0. Once V_in > V_TH, M1 conducts and V_out \"follows\" V_in, offset down by one gate-source voltage:\n\n```\nV_out = V_in − V_GS\n```\n\nNote that since the drain sits at V_DD, saturation requires V_DS ≥ V_GS − V_TH, i.e. V_in ≤ V_DD + V_TH — **M1 is always saturated** for any realistic input, which is a structural advantage of this stage.\n\n## Large-signal characteristic\n\nWith M1 in saturation and I_D flowing through R_S:\n\n```\nV_out = I_D·R_S = ½ μnCox (W/L) R_S (V_in − V_out − V_TH)²\n```\n\nThis is implicit in V_out. Differentiating (and noting V_TH depends on V_out through the body effect, dV_TH/dV_SB = η = g_mb/g_m):\n\n```\ndV_out          g_m·R_S\n──────  =  ─────────────────────\ndV_in      1 + (g_m + g_mb)·R_S\n```\n\nBecause g_m itself varies with the bias current (which varies with V_out = I_D·R_S), the gain is **input-dependent → the follower is inherently nonlinear** unless driven by a constant current source instead of R_S.\n\n## Small-signal gain\n\nKCL at the output node (v_gs = v_in − v_out, v_bs = −v_out, r_o from source to AC ground):\n\n```\ng_m(v_in − v_out) − g_mb·v_out = v_out/R_S + v_out/r_o\n```\n\n```\n           g_m                        g_m · (R_S ∥ r_o ∥ 1/g_mb)\nA_v = ──────────────────────────  =  ────────────────────────────────\n      g_m + g_mb + 1/R_S + 1/r_o     1 + g_m · (R_S ∥ r_o ∥ 1/g_mb)\n```\n\nLimiting cases:\n\n| Assumption | Gain |\n|---|---|\n| Neglect r_o, body effect | `g_m·R_S / (1 + g_m·R_S)` |\n| R_S → ∞ (ideal current source), neglect r_o | `g_m / (g_m + g_mb) = 1/(1+η)` |\n\nThe gain is **always < 1**, and even with ideal biasing the **body effect caps it** at roughly 0.8–0.9 (typical η ≈ 0.1–0.25). It approaches unity only as g_m·R_S ≫ 1 and if the body can be tied to the source.\n\n## Port impedances\n\n- **Input resistance:** ∞ at low frequency (gate).\n- **Output resistance** (looking into the source):\n\n```\nR_out = (1/g_m) ∥ (1/g_mb) ∥ r_o ∥ R_S ≈ 1/(g_m + g_mb)\n```\n\nHigh input impedance + low output impedance is exactly the buffer profile: the stage provides no voltage gain but delivers **current gain / drive capability**, isolating a high-impedance node from a heavy load.\n\n## Summary of properties\n\n1. **A_v ≲ 1**, non-inverting — a buffer, not an amplifier.\n2. **Low R_out ≈ 1/(g_m + g_mb)** — good for driving small resistive loads.\n3. **DC level shift** of V_GS from input to output (sometimes exploited intentionally).\n4. **Drawbacks:** nonlinearity from body-effect-modulated V_TH (V_SB = V_out varies with signal), gain error, and voltage headroom consumed by V_GS. Replacing R_S with a current source fixes the bias-dependence; tying source to body (possible for PMOS in an n-well process) removes the body effect.",
+        "text": "# Analysis of Figure 5: NMOS Source Follower (Common-Drain Stage)\n\n## 1. Topology Identification\n\n- **Input** applied to the **gate** of M₁\n- **Output** taken from the **source** (across R_S)\n- **Drain** tied directly to V_DD → AC ground\n\nThis is a **source follower (common-drain amplifier)**, used as a voltage buffer/level shifter.\n\n## 2. Large-Signal (DC) Behavior\n\n**Cutoff:** For $V_{in} < V_{TH}$, M₁ is off, $I_D = 0$, and $V_{out} = 0$.\n\n**Conduction:** For $V_{in} > V_{TH}$, the output \"follows\" the input, shifted down by one gate-source voltage:\n\n$$V_{out} = V_{in} - V_{GS1}$$\n\nThe operating point is found from two simultaneous conditions:\n\n$$I_D = \\frac{V_{out}}{R_S} = \\frac{1}{2}\\mu_n C_{ox}\\frac{W}{L}\\left(V_{in} - V_{out} - V_{TH}\\right)^2$$\n\n**Saturation check:** Since $V_D = V_{DD}$, saturation requires $V_{DS} \\ge V_{GS} - V_{TH}$:\n\n$$V_{DD} - V_{out} \\ge V_{in} - V_{out} - V_{TH} \\;\\Rightarrow\\; V_{in} \\le V_{DD} + V_{TH}$$\n\n→ **M₁ remains in saturation for any practical input** ($V_{in} \\le V_{DD}$).\n\n## 3. Small-Signal Voltage Gain\n\nReplace M₁ with its small-signal model (drain at AC ground). With $v_{gs} = v_{in} - v_{out}$, KCL at the source node:\n\n$$g_m(v_{in} - v_{out}) = \\frac{v_{out}}{R_S}$$\n\n$$\\boxed{A_v = \\frac{v_{out}}{v_{in}} = \\frac{R_S}{R_S + \\dfrac{1}{g_m}} = \\frac{g_m R_S}{1 + g_m R_S}}$$\n\n**Including channel-length modulation ($r_o$) and body effect ($g_{mb}$, with $v_{bs} = -v_{out}$):**\n\n$$A_v = \\frac{g_m}{g_m + g_{mb} + \\dfrac{1}{R_S} + \\dfrac{1}{r_o}} = \\frac{g_m\\left(R_S \\,\\|\\, r_o \\,\\|\\, \\tfrac{1}{g_{mb}}\\right)}{1 + g_m\\left(R_S \\,\\|\\, r_o \\,\\|\\, \\tfrac{1}{g_{mb}}\\right)}$$\n\n**Key properties of the gain:**\n- Always **positive** (no inversion) and **less than unity**\n- $A_v \\to 1$ as $g_m R_S \\gg 1$\n- Body effect degrades the gain (limits it to $g_m/(g_m + g_{mb})$ even for $R_S \\to \\infty$)\n\n## 4. Input and Output Impedances\n\n**Input impedance:** $R_{in} = \\infty$ (gate, at low frequency)\n\n**Output impedance:** Set $v_{in}=0$, apply test voltage $v_x$ at the output ($v_{gs} = -v_x$):\n\n$$\\boxed{R_{out} = \\frac{1}{g_m} \\,\\Big\\|\\, R_S} \\qquad \\left(\\text{generally: } \\frac{1}{g_m}\\,\\Big\\|\\,\\frac{1}{g_{mb}}\\,\\Big\\|\\, r_o \\,\\Big\\|\\, R_S\\right)$$\n\nThe low output resistance $\\approx 1/g_m$ is the defining feature of this stage.\n\n## 5. Summary\n\n| Property | Result |\n|---|---|\n| Gain | $A_v = \\dfrac{g_m R_S}{1+g_m R_S} \\lesssim 1$, non-inverting |\n| $R_{in}$ | $\\infty$ |\n| $R_{out}$ | $\\dfrac{1}{g_m}\\|R_S$ (low) |\n| DC function | Level shifter: $V_{out} = V_{in} - V_{GS}$ |\n\n**Role:** The circuit is a **voltage buffer** — it presents high impedance to the source, drives low-impedance loads, and provides near-unity gain. Its drawbacks are the DC level shift of $V_{GS}$, gain error from $g_{mb}$ and finite $g_m R_S$, and nonlinearity because $V_{GS}$ (and $V_{TH}$, via body effect) varies with the output level.",
         "format": "markdown",
-        "sha256": "40cfdd15561d30b0da59ce15fec802618e7e123c5ce6982f4b7faeaee0565f7c"
+        "sha256": "3ccdda939083eb929d87ba9ffdefc80d688842f1dd059452125d4f7debababed"
       },
-      "model_call_count": 3,
-      "internet_or_tool_evidence": true,
-      "source_experiment": "2026-07-15-direct-qa",
+      "model_call_count": 1,
+      "internet_or_tool_evidence": false,
+      "source_experiment": "2026-11-03-direct-qa",
       "scores": {
-        "minimax_m3": {
-          "score_0_to_4": 4,
-          "is_full_credit": true,
-          "rationale": "The candidate correctly identifies the source follower topology, derives Av = gm·RS/(1+gm·RS) when neglecting body effect and ro, notes gain < 1 and non-inverting, and gives output resistance ≈ 1/gm in parallel with RS. These match the golden solution. Additional discussion of body effect, current-source biasing, and large-signal behavior is extra but consistent and does not contradict the essential answer.",
-          "golden_solution_sha256": "a0bad1aa69070b1e10d5c9aeaf4dd740c5e6b8aea8736122af99171af62e3bd0",
-          "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
-        },
-        "deepseek_v4_pro": {
-          "score_0_to_4": 4,
-          "is_full_credit": true,
-          "rationale": "The candidate correctly identifies the topology as a source follower, derives the small-signal gain neglecting body effect and ro as Av ≈ gm RS / (1 + gm RS), and states the output resistance as approximately 1/gm in parallel with RS. These match the golden solution's essential results. Additional discussion of body effect, large-signal behavior, and port impedances is consistent and does not contradict the core answer.",
-          "golden_solution_sha256": "a0bad1aa69070b1e10d5c9aeaf4dd740c5e6b8aea8736122af99171af62e3bd0",
-          "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
-        },
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies the source follower and gives the expected positive, sub-unity gain and source output resistance, including the golden solution’s limiting case. The extra discussion is mostly sound; minor qualifications about nonlinearity and approximations do not affect the essential analysis.",
-          "judge_model": "openai/gpt-6-luna",
+          "rationale": "Correctly identifies the source follower and gives the positive, sub-unity gain and output resistance specified by the golden solution. The additional body-effect and finite-ro analyses are consistent with the stated simplifying assumptions.",
           "golden_solution_sha256": "a0bad1aa69070b1e10d5c9aeaf4dd740c5e6b8aea8736122af99171af62e3bd0",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
-      "active_score": {
-        "policy": "gpt_6_luna_max",
-        "score_0_to_4": 4,
-        "score_percent": 100,
-        "is_full_credit": true
-      },
       "tokens": {
-        "cached_input_tokens": 54933,
-        "input_tokens": 59040,
-        "output_tokens": 10423,
-        "total_tokens": 69463,
-        "cache_creation_input_tokens": 0,
-        "reasoning_output_tokens": null,
+        "cached_input_tokens": 0,
+        "input_tokens": 1301,
+        "output_tokens": 4444,
+        "total_tokens": 5745,
+        "cache_creation_input_tokens": null,
+        "reasoning_output_tokens": 2861,
         "complete": true,
         "availability": "complete",
         "missing_fields": []
       },
       "selected_response_tokens": {
-        "cached_input_tokens": 18311,
-        "input_tokens": 19680,
-        "output_tokens": 4501,
-        "total_tokens": 24181,
-        "cache_creation_input_tokens": 0,
-        "reasoning_output_tokens": null,
+        "cached_input_tokens": 0,
+        "input_tokens": 1301,
+        "output_tokens": 4444,
+        "total_tokens": 5745,
+        "cache_creation_input_tokens": null,
+        "reasoning_output_tokens": 2861,
         "complete": true,
         "availability": "complete",
         "missing_fields": []
       },
-      "attempt_count": 3
+      "attempt_count": 1,
+      "active_score": {
+        "policy": "gpt_6_luna_max",
+        "score_0_to_4": 4,
+        "score_percent": 100,
+        "is_full_credit": true
+      }
     },
     {
       "question_id": "part1-009-common-gate-source-input",
@@ -8828,70 +8724,57 @@
       ],
       "rollout": 3,
       "configuration": {
-        "model_id": 208665,
-        "thinking_effort": "max"
+        "model_id": null,
+        "thinking_effort": "max",
+        "api_model": "anthropic/claude-fable-5",
+        "route": "openrouter_chat_completions"
       },
       "answer": {
-        "text": "# Figure 11(a): The Static CMOS Inverter\n\n## Topology\n\n- **M₁** — NMOS, source grounded, gate at V_in, drain at V_out\n- **M₂** — PMOS, source at V_DD, gate at V_in, drain at V_out\n\nBoth devices are **common-source** stages sharing the input and output nodes — a complementary push-pull pair. Each source is tied to its own rail (and bulk), so **neither device suffers body effect**, and the input draws no DC current (purely capacitive gate load).\n\n## Large-Signal (Logic) Operation\n\n| V_in | M₁ (NMOS) | M₂ (PMOS) | V_out |\n|------|-----------|-----------|-------|\n| 0 | off (V_GS1 = 0) | on, deep triode (V_GS2 = −V_DD) | **V_DD** |\n| V_DD | on, deep triode | off (V_GS2 = 0) | **0** |\n\nIn each logic state one transistor is **off**, so no DC path exists between V_DD and ground. Consequences:\n\n1. **Rail-to-rail swing.** With I_D = 0, the on device (in triode) drops zero volts — the output reaches the rail *exactly*, independent of W/L (\"ratioless\" logic, unlike pseudo-NMOS).\n2. **Zero static power** (only leakage in a real device).\n3. **Stiff logic levels.** The on device presents a low output resistance, R_on = 1/[μC_ox(W/L)(V_DD − V_TH)].\n\n## Voltage Transfer Characteristic\n\nM₁ is saturated iff V_out ≥ V_in − V_THN; M₂ is saturated iff V_out ≤ V_in + |V_THP|. Sweeping V_in from 0 to V_DD gives five regions:\n\n| Region | Condition | M₁ | M₂ | V_out |\n|--------|-----------|----|----|-------|\n| I | V_in ≤ V_THN | off | triode (I = 0) | V_DD |\n| II | V_in ≳ V_THN | saturation | triode | falling |\n| III | V_in ≈ V_M | saturation | saturation | steep transition |\n| IV | V_in ≲ V_DD − \\|V_THP\\| | triode | saturation | approaching 0 |\n| V | V_in ≥ V_DD − \\|V_THP\\| | triode (I = 0) | off | 0 |\n\nIn Region II, the VTC follows from equating the drain currents:\n\n```\n½ μn Cox (W/L)₁ (Vin − VTHN)²\n   = ½ μp Cox (W/L)₂ [2(VDD − Vin − |VTHP|)(VDD − Vout) − (VDD − Vout)²]\n```\n\n(Region IV is the mirror image.)\n\n## Switching Threshold V_M\n\nIn Region III both devices are saturated. Equating saturation currents (λ ≈ 0):\n\n```\n√r · (VM − VTHN) = VDD − VM − |VTHP| ,   r = μn(W/L)₁ / [μp(W/L)₂]\n\nVM = (VDD − |VTHP| + √r · VTHN) / (1 + √r)\n```\n\nFor a symmetric VTC (V_M = V_DD/2), we need r = 1, i.e. **(W/L)₂ ≈ (μn/μp)(W/L)₁ ≈ 2–3 × (W/L)₁**, since PMOS mobility is 2–3× lower.\n\n## Gain in the Transition Region\n\nNear V_M both transistors are saturated and *both* are driven by the input, so their small-signal currents add at the output:\n\n```\nAv = −(gm1 + gm2)(rO1 ∥ rO2)\n```\n\nThis is the key **current-reuse** property: for a given bias current, the inverter delivers twice the transconductance of a single common-source stage. It makes the VTC nearly vertical (with λ = 0 it *is* vertical at V_M), giving near-ideal noise margins NM_L ≈ V_M and NM_H ≈ V_DD − V_M — and it is why the inverter also serves as an amplifier in inverter-based analog design when biased at V_M.\n\n## Power Dissipation\n\n- **Static:** ≈ 0 (one device always off).\n- **Dynamic:** each switching cycle draws C_L·V_DD² from the supply → P = f·C_L·V_DD² (half dissipated in M₂ while charging C_L, half in M₁ while discharging).\n- **Short-circuit (\"crowbar\"):** during finite input edges, both devices conduct momentarily while V_THN < V_in < V_DD − |V_THP|.\n\n## Why This Connection Is Correct (vs. Figure 11(b))\n\nIn (a), each source sits at a rail, so each transistor is a common-source switch capable of pulling the output *all the way* to its rail. If the devices are swapped as in (b), both act as source followers: the output high level is limited to V_DD − V_THN and the low level to |V_THP| (worsened further by body effect) — degraded, non-rail-to-rail levels. Configuration (a) is the proper complementary inverter.",
+        "text": "# Analysis of Figure 11(a): The CMOS Inverter\n\n## 1. Recognizing the topology\n\n- **M₁** is an NMOS device: source grounded, gate at $V_{in}$, drain at $V_{out}$ → a **common-source** device.\n- **M₂** is a PMOS device: source at $V_{DD}$, gate at $V_{in}$, drain at $V_{out}$ → also a **common-source** device.\n\nBoth gates are driven by the input and both drains form the output, so the two transistors operate as a **complementary (push–pull) common-source pair**: each transistor is simultaneously an amplifying device *and* the load for the other. Note also that $V_{SB}=0$ for both devices, so there is no body effect.\n\n## 2. Logic-level (large-signal) operation\n\n**$V_{in} = 0$:**\n$V_{GS1}=0 < V_{THN}$ → M₁ **off**. $|V_{GS2}| = V_{DD} > |V_{THP}|$ → M₂ **on**. Since M₁ carries no current, M₂ must also carry zero current, which forces $|V_{DS2}| = 0$:\n\n$$V_{out} = V_{DD}$$\n\n**$V_{in} = V_{DD}$:** By symmetry, M₂ is off, M₁ is on in deep triode with zero current:\n\n$$V_{out} = 0$$\n\nTwo crucial conclusions:\n\n1. **The circuit inverts** ($V_{in}$ low → $V_{out}$ high, and vice versa).\n2. The output reaches the **rails exactly** ($V_{OH}=V_{DD}$, $V_{OL}=0$), *independent of device sizes* (\"ratioless\" logic), and **no static current flows** in either state → **zero static power dissipation**. This property is why CMOS dominates digital design.\n\n## 3. Voltage transfer characteristic (VTC)\n\nLet $k_n = \\mu_n C_{ox}(W/L)_1$, $k_p = \\mu_p C_{ox}(W/L)_2$. Since no DC load current flows, $I_{D1}=|I_{D2}|$ at every point. Five regions result:\n\n| Region | Input range | M₁ | M₂ | Output |\n|---|---|---|---|---|\n| I | $V_{in}<V_{THN}$ | off | deep triode | $V_{out}=V_{DD}$ |\n| II | $V_{in}\\gtrsim V_{THN}$ | saturation | triode | $V_{out}$ begins to fall |\n| III | $V_{in}\\approx V_M$ | saturation | saturation | steep transition (high gain) |\n| IV | $V_{in}\\lesssim V_{DD}-|V_{THP}|$ | triode | saturation | $V_{out}$ approaches 0 |\n| V | $V_{in}>V_{DD}-|V_{THP}|$ | deep triode | off | $V_{out}=0$ |\n\n(M₁ is saturated iff $V_{out}\\ge V_{in}-V_{THN}$; M₂ is saturated iff $V_{out}\\le V_{in}+|V_{THP}|$.)\n\n**Switching threshold ($V_M$, where $V_{in}=V_{out}$):** both devices saturated, so equating square-law currents:\n\n$$\\frac{k_n}{2}(V_M-V_{THN})^2=\\frac{k_p}{2}\\left(V_{DD}-V_M-|V_{THP}|\\right)^2$$\n\n$$\\boxed{V_M=\\frac{V_{DD}-|V_{THP}|+\\sqrt{k_n/k_p}\\,\\;V_{THN}}{1+\\sqrt{k_n/k_p}}}$$\n\nFor a symmetric VTC ($V_M = V_{DD}/2$) we need $k_n = k_p$ and $V_{THN}=|V_{THP}|$; since $\\mu_n \\approx 2\\text{–}3\\,\\mu_p$, the PMOS is made **2–3× wider** than the NMOS.\n\n## 4. The transition region: the inverter as an amplifier\n\nIn region III both transistors are saturated current sources, so the small-signal gain is very high. Both devices are driven by $v_{in}$ and their drain currents sum at the output:\n\n$$\\boxed{A_v=-\\left(g_{m1}+g_{m2}\\right)\\left(r_{o1}\\parallel r_{o2}\\right)}$$\n\n- The transconductances **add** (push–pull action), while the same bias current flows through both devices — a \"**current-reuse**\" property that makes the inverter an efficient analog gain stage (used in inverter-based OTAs, TIAs, ring and crystal oscillators).\n- With $\\lambda \\to 0$ the VTC becomes nearly vertical at $V_M$: an almost ideal, abrupt switching characteristic → **large noise margins**.\n\n## 5. Power and drive capability\n\n- **Static power:** zero (one device always off), apart from leakage.\n- **Dynamic power:** $P = f_{sw} C_L V_{DD}^2$, plus a brief \"crowbar\" (short-circuit) current while $V_{THN}<V_{in}<V_{DD}-|V_{THP}|$ during transitions, peaking at $I_{peak}=\\frac{k_n}{2}(V_M-V_{THN})^2$.\n- **Output drive:** in each logic state the on transistor is in deep triode, presenting a low resistance that actively pins $V_{out}$ to a rail:\n\n$$R_{on,N}=\\frac{1}{k_n(V_{DD}-V_{THN})},\\qquad R_{on,P}=\\frac{1}{k_p(V_{DD}-|V_{THP}|)}$$\n\ngiving delays of roughly $t_{PHL}\\approx 0.69\\,R_{on,N}C_L$ and $t_{PLH}\\approx 0.69\\,R_{on,P}C_L$.\n\n## 6. Summary (and contrast with Fig. 11(b))\n\nFigure 11(a) is the **standard CMOS inverter**: both transistors act as common-source devices, yielding inversion, **rail-to-rail swing**, **zero static power**, strong symmetric drive, and high gain near $V_M$. By contrast, in Fig. 11(b) the devices are flipped (NMOS on top, PMOS on bottom), so each operates as a **source follower**: the output can only reach $V_{DD}-V_{THN}$ on the high side and $|V_{THP}|$ on the low side, and the stage does not invert — illustrating exactly why topology (a) is the correct and universal choice.",
         "format": "markdown",
-        "sha256": "e0809a61615c00ec1597a69cffe85b41521eda78ec17b5f997547961b8fbe120"
+        "sha256": "dd2e9ec2efaa386ce27a5ed2e374b8b1f29bc748a254a1586fa3527e9d2b3e53"
       },
-      "model_call_count": 2,
-      "internet_or_tool_evidence": true,
-      "source_experiment": "2026-07-15-direct-qa",
+      "model_call_count": 1,
+      "internet_or_tool_evidence": false,
+      "source_experiment": "2026-11-03-direct-qa",
       "scores": {
-        "minimax_m3": {
-          "score_0_to_4": 4,
-          "is_full_credit": true,
-          "rationale": "The candidate answer correctly identifies Figure 11(a) as a CMOS inverter with NMOS pull-down and PMOS pull-up, describes the topology, and provides the small-signal gain Av = -(gmn + gmp)(ron || rop), which matches the golden solution. It also correctly notes the analog amplifier behavior near the switching point. The additional analysis of VTC, switching threshold, power dissipation, and comparison with Figure 11(b) is accurate and consistent with the golden solution's essential points.",
-          "golden_solution_sha256": "a9ae7f63b346f063f2ee33ca906550735b7e5f7591cb423ba15d9143443fb105",
-          "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
-        },
-        "deepseek_v4_pro": {
-          "score_0_to_4": 4,
-          "is_full_credit": true,
-          "rationale": "The answer correctly identifies the CMOS inverter topology, device roles, and small-signal amplifier behavior with transconductance gm1+gm2 and output resistance ro1||ro2, matching the golden solution. It provides extensive additional detail (large-signal operation, VTC, switching threshold, power) that is consistent and does not contradict the essential analog amplifier description. No errors in the core analog-circuit reasoning.",
-          "golden_solution_sha256": "a9ae7f63b346f063f2ee33ca906550735b7e5f7591cb423ba15d9143443fb105",
-          "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
-        },
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies the CMOS inverter and its high-gain inverting operation near the switching point, with gain set by the sum of the two transconductances and the parallel output resistance. The additional analysis is broadly consistent; its minor idealizations do not undermine the essential answer.",
-          "judge_model": "openai/gpt-6-luna",
+          "rationale": "Correctly identifies the CMOS inverter and its pull-up/pull-down operation, and gives the correct high-gain small-signal result with transconductances adding and output resistances in parallel. The extra discussion does not undermine the essential analysis.",
           "golden_solution_sha256": "a9ae7f63b346f063f2ee33ca906550735b7e5f7591cb423ba15d9143443fb105",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
-      "active_score": {
-        "policy": "gpt_6_luna_max",
-        "score_0_to_4": 4,
-        "score_percent": 100,
-        "is_full_credit": true
-      },
       "tokens": {
-        "cached_input_tokens": 36638,
-        "input_tokens": 38262,
-        "output_tokens": 20499,
-        "total_tokens": 58761,
-        "cache_creation_input_tokens": 0,
-        "reasoning_output_tokens": null,
+        "cached_input_tokens": 0,
+        "input_tokens": 744,
+        "output_tokens": 11647,
+        "total_tokens": 12391,
+        "cache_creation_input_tokens": null,
+        "reasoning_output_tokens": 9419,
         "complete": true,
         "availability": "complete",
         "missing_fields": []
       },
       "selected_response_tokens": {
-        "cached_input_tokens": 18319,
-        "input_tokens": 19131,
-        "output_tokens": 10904,
-        "total_tokens": 30035,
-        "cache_creation_input_tokens": 0,
-        "reasoning_output_tokens": null,
+        "cached_input_tokens": 0,
+        "input_tokens": 744,
+        "output_tokens": 11647,
+        "total_tokens": 12391,
+        "cache_creation_input_tokens": null,
+        "reasoning_output_tokens": 9419,
         "complete": true,
         "availability": "complete",
         "missing_fields": []
       },
-      "attempt_count": 2
+      "attempt_count": 1,
+      "active_score": {
+        "policy": "gpt_6_luna_max",
+        "score_0_to_4": 4,
+        "score_percent": 100,
+        "is_full_credit": true
+      }
     },
     {
       "question_id": "part1-015-malformed-cmos-inverter",
@@ -9426,54 +9309,35 @@
       "figures": [],
       "rollout": 3,
       "configuration": {
-        "model_id": 208665,
-        "thinking_effort": "max"
+        "model_id": null,
+        "thinking_effort": "max",
+        "api_model": "anthropic/claude-fable-5",
+        "route": "openrouter_chat_completions"
       },
       "answer": {
-        "text": "## Short answer\n\nIn a cascode, the input transistor no longer drives the high‑impedance output node — its drain is loaded by the very low input resistance ($\\approx 1/g_{m2}$) of the common‑gate transistor. The voltage gain *across the gate–drain capacitance* is therefore only about $-1$ instead of $-g_m R_{out}$, so the Miller multiplication factor drops from a potentially huge value to roughly 2.\n\n## Reasoning\n\n**Miller effect recap.** A capacitance $C$ bridging the input and output of an inverting stage with gain $-A_v$ appears at the input as\n\n$$C_{in} = (1 + A_v)\\,C$$\n\nbecause when the input moves by $\\Delta v$, the other plate moves by $-A_v\\,\\Delta v$, so the capacitor must be charged through a total swing of $(1+A_v)\\Delta v$.\n\n**Simple common-source stage.** Here $C_{gd}$ connects the gate (input) directly to the drain (output), and the gain across it is the full stage gain $|A_v| = g_m R_{out}$, which may be 50–100 or more. The input capacitance\n\n$$C_{in} = C_{gs} + (1 + g_m R_{out})\\,C_{gd}$$\n\nis dominated by the multiplied $C_{gd}$; together with the source resistance $R_S$ it creates a low-frequency input pole that kills the bandwidth.\n\n**Cascode.** The drain of the input device $M_1$ now connects to the *source* of the cascode device $M_2$, whose input resistance is only\n\n$$R_{in,CG} \\approx \\frac{1}{g_{m2}}$$\n\nSo the gain from $M_1$'s gate to $M_1$'s drain — the gain seen by $C_{gd1}$ — is\n\n$$A_{v1} \\approx -g_{m1}\\cdot\\frac{1}{g_{m2}} \\approx -1$$\n\n(since both transistors carry the same current, $g_{m1}\\approx g_{m2}$). The Miller factor becomes $1 + |A_{v1}| \\approx 2$:\n\n$$C_{in} \\approx C_{gs1} + 2\\,C_{gd1}$$\n\n**Why the gain doesn't reintroduce the problem.** The large voltage gain hasn't disappeared — it is now produced by the common-gate stage, from the source of $M_2$ to the output. But the large output swing appears across $C_{gd2}$, whose other terminal is the gate of $M_2$, which sits at **AC ground**. A capacitance to ground is not Miller-multiplied; it simply loads the output node. Moreover, the internal cascode node is low-impedance ($\\sim 1/g_{m2}$), so the pole there is at high frequency.\n\n**Result.** The cascode delivers the same (or higher) overall gain while presenting only a small input capacitance, pushing the input pole to much higher frequency — hence a much wider bandwidth and better output-to-input isolation. (The identical argument applies to the BJT version: $C_{\\mu 1}$ in a common-emitter + common-base cascode sees a gain of $\\approx -1$.)",
+        "text": "## Short answer\n\nIn a cascode, the gate–drain capacitance of the input transistor no longer \"sees\" the full amplifier gain. The common-gate (cascode) device presents a **low impedance (≈ 1/g_m2)** at the drain of the input device, so the voltage gain from the input gate to that drain is only about **−1**. The Miller multiplication factor therefore collapses from $(1 + g_m R_{out})$ to about **2**, while the full voltage swing is developed at the cascode device's drain — a node whose capacitance returns to AC ground, not to the input.\n\n## 1. The problem in a plain common-source stage\n\nIn a CS stage with gain $A_v = -g_m R_D$, the capacitor $C_{gd}$ bridges input and output. By Miller's theorem the input sees\n\n$$C_{in} = C_{gs} + (1 + g_m R_D)\\,C_{gd}.$$\n\nWith $g_m R_D = 40$, $C_{gd}$ counts roughly **41×**. Driven from a source resistance $R_S$, the input pole $\\omega_p = 1/\\big(R_S C_{in}\\big)$ becomes the bandwidth bottleneck.\n\n## 2. What the cascode changes\n\n```\n        VDD\n         |\n         R_D\n         |────── v_out      (full swing here)\n        D|\n  Vb ───G| M2   common gate (gate at AC ground)\n        S|\n         |  node X:  R_X ≈ 1/(g_m2 + g_mb2)\n        D|\n v_in ──G| M1   common source;  C_gd1 spans gate ↔ X\n        S|\n         |\n        GND\n```\n\nThe resistance looking into the source of $M_2$ is\n\n$$R_X = \\frac{R_D + r_{o2}}{1 + (g_{m2}+g_{mb2})\\,r_{o2}} \\;\\approx\\; \\frac{1}{g_{m2}+g_{mb2}},$$\n\nso the gain from the input to node X (the drain of $M_1$) is\n\n$$A_X = -g_{m1} R_X \\approx -\\frac{g_{m1}}{g_{m2}+g_{mb2}} \\approx -1$$\n\nfor matched devices carrying the same current. The Miller factor for $C_{gd1}$ is then $1 - A_X \\approx 2$:\n\n$$\\boxed{\\,C_{in} \\approx C_{gs1} + 2\\,C_{gd1}\\,}\\qquad\\text{vs.}\\qquad C_{gs} + (1+g_mR_D)\\,C_{gd}.$$\n\n## 3. Where did the gain go — and why it doesn't hurt\n\nThe overall gain is unchanged: $M_2$ is a **current buffer** (current gain ≈ 1) that passes $g_{m1}v_{in}$ to $R_D$, so $A_v \\approx -g_{m1}R_D$ still. The large voltage swing now appears at the **drain of $M_2$**, but the capacitor coupling that node backward, $C_{gd2}$, goes to the **gate of $M_2$, which is at AC ground**. It is just a grounded capacitance at the output — no Miller multiplication, and no feedback path to the input. The CG stage isolates the input from the high-swing node.\n\n## 4. Intuition (charge argument)\n\nThe Miller effect is really the input having to charge the bridging capacitor through its full input-to-output swing: if $v_{in}$ rises by $\\Delta V$ and the drain falls by $|A|\\Delta V$, the source must supply $(1+|A|)C\\,\\Delta V$ of charge. In the cascode, node X is \"pinned\" by the low impedance $1/g_{m2}$ and moves only about $-\\Delta V$, so the charge drawn is only $\\approx 2C\\,\\Delta V$.\n\n## 5. Bandwidth consequence\n\n- **Input pole:** $\\omega_{in} \\approx \\dfrac{1}{R_S\\,(C_{gs1}+2C_{gd1})}$ — vastly improved.\n- **Pole at node X:** $\\omega_X \\approx \\dfrac{g_{m2}}{C_{gd1}+C_{db1}+C_{sb2}+C_{gs2}}$ — near the device $f_T$, usually non-dominant.\n- The output pole is set by $R_D$ and load capacitance, as before.\n\nThus the cascode largely breaks the gain–bandwidth coupling that the Miller effect imposes on a single CS stage.\n\n## Caveat\n\n$R_X \\approx 1/g_{m2}$ assumes a moderate load. With a very high-impedance (cascoded current-source) load, $R_X \\approx R_L/(g_{m2}r_{o2})$ grows, and some Miller multiplication of $C_{gd1}$ reappears at low frequency — though it is still suppressed near the band edge where the load impedance drops. The identical argument applies to the BJT cascode: $C_\\mu$ of the CE device sees a load of $r_{e2}\\approx 1/g_{m2}$, giving a gain of ≈ −1 and a Miller factor of ≈ 2.",
         "format": "markdown",
-        "sha256": "fcf0cd172ce6947d1c1769d77876b45393e525e7a49d0ab5fe15ca0ae8533ed9"
+        "sha256": "671639ce50997f7e63a62cc639596c58d6eaa35ff9c33c0473b5fe138ee771c2"
       },
-      "model_call_count": 2,
-      "internet_or_tool_evidence": true,
-      "source_experiment": "2026-07-15-direct-qa",
+      "model_call_count": 1,
+      "internet_or_tool_evidence": false,
+      "source_experiment": "2026-11-03-direct-qa",
       "scores": {
-        "minimax_m3": {
-          "score_0_to_4": 4,
-          "is_full_credit": true,
-          "rationale": "The candidate answer correctly identifies the dominant mechanism: the drain of M1 is loaded by the low input impedance (~1/gm2) of the common-gate cascode, making the gain across Cgd1 only about -1, so the Miller multiplication factor is ~2 instead of (1+g_m*R_out). It also correctly explains that Cgd2 sees AC ground at the gate of M2 and isn't Miller-multiplied. These match the golden solution's essential points, with additional accurate detail about the common-gate stage producing the large output gain and the high-frequency internal pole.",
-          "golden_solution_sha256": "116d68c2d1000a9d062b36020338810742ef4c569416a030f3903e97255aedaf",
-          "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
-        },
-        "deepseek_v4_pro": {
-          "score_0_to_4": 4,
-          "is_full_credit": true,
-          "rationale": "The answer correctly identifies the low-impedance node at the drain of the input transistor due to the common-gate device, leading to a small gain across Cgd (~-1) and a Miller factor of ~2. It explains why the large output swing does not reintroduce the problem (Cgd2 is to AC ground). The reasoning aligns with the golden solution's emphasis on reduced voltage swing and small effective gain, and the conclusion is correct.",
-          "golden_solution_sha256": "116d68c2d1000a9d062b36020338810742ef4c569416a030f3903e97255aedaf",
-          "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
-        },
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies that the common-gate device makes the input transistor’s drain a low-impedance node, so the gain across its Cgd—and thus Miller multiplication—is small compared with the overall stage gain. The estimate of about −1 rather than the golden solution’s possible value around −2 is a minor approximation that does not change the explanation.",
-          "judge_model": "openai/gpt-6-luna",
+          "rationale": "Correctly explains that the common-gate device holds the input transistor’s drain at low impedance, so the gain across its Cgd is small relative to the full-stage gain and Miller multiplication is reduced. The stated roughly −1 local gain is a reasonable approximation; the extra bandwidth and load discussion is secondary.",
           "golden_solution_sha256": "116d68c2d1000a9d062b36020338810742ef4c569416a030f3903e97255aedaf",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
-      "active_score": {
-        "policy": "gpt_6_luna_max",
-        "score_0_to_4": 4,
-        "score_percent": 100,
-        "is_full_credit": true
-      },
       "tokens": {
-        "cached_input_tokens": 18317,
-        "input_tokens": 18505,
-        "output_tokens": 7739,
-        "total_tokens": 26244,
-        "cache_creation_input_tokens": 0,
-        "reasoning_output_tokens": null,
+        "cached_input_tokens": 0,
+        "input_tokens": 60,
+        "output_tokens": 8611,
+        "total_tokens": 8671,
+        "cache_creation_input_tokens": null,
+        "reasoning_output_tokens": 6900,
         "complete": true,
         "availability": "complete",
         "missing_fields": []
@@ -9481,15 +9345,21 @@
       "selected_response_tokens": {
         "cached_input_tokens": 0,
         "input_tokens": 60,
-        "output_tokens": 5543,
-        "total_tokens": 5603,
-        "cache_creation_input_tokens": 0,
-        "reasoning_output_tokens": null,
+        "output_tokens": 8611,
+        "total_tokens": 8671,
+        "cache_creation_input_tokens": null,
+        "reasoning_output_tokens": 6900,
         "complete": true,
         "availability": "complete",
         "missing_fields": []
       },
-      "attempt_count": 2
+      "attempt_count": 1,
+      "active_score": {
+        "policy": "gpt_6_luna_max",
+        "score_0_to_4": 4,
+        "score_percent": 100,
+        "is_full_credit": true
+      }
     },
     {
       "question_id": "part1-023-common-gate-pmos-load",
@@ -9501,54 +9371,35 @@
       ],
       "rollout": 3,
       "configuration": {
-        "model_id": 208665,
-        "thinking_effort": "max"
+        "model_id": null,
+        "thinking_effort": "max",
+        "api_model": "anthropic/claude-fable-5",
+        "route": "openrouter_chat_completions"
       },
       "answer": {
-        "text": "# Common-Gate Stage with PMOS Current-Source Load\n\n## 1. Recognizing the Topology\n\n**M₂ (NMOS):** The input $V_{in}$ drives the **source**, the gate is tied to the fixed bias $V_{b1}$ (an AC ground), and the output is taken at the **drain** → M₂ operates as a **common-gate (CG) amplifier**.\n\n**M₁ (PMOS):** Its source sits at $V_{DD}$ and its gate at the fixed bias $V_{b2}$, so $V_{SG1} = V_{DD} - V_{b2}$ is constant → M₁ operates as a **current source (active load)**, presenting only its output resistance $r_{O1}$ to the signal.\n\nNote that if channel-length modulation were ignored ($\\lambda = 0$), the load would be an ideal current source and the gain would go to infinity — so $r_O$ must be retained here.\n\n## 2. Operating (Saturation) Conditions\n\n| Device | Requirement | Resulting condition on $V_{out}$ |\n|---|---|---|\n| M₂ (sat.) | $V_{DS2} \\geq V_{GS2} - V_{THN}$ | $V_{out} \\geq V_{b1} - V_{THN}$ |\n| M₁ (sat.) | $V_{SD1} \\geq V_{SG1} - \\lvert V_{THP}\\rvert$ | $V_{out} \\leq V_{b2} + \\lvert V_{THP}\\rvert$ |\n\nAllowable output swing:\n$$V_{b1} - V_{THN} \\;\\leq\\; V_{out} \\;\\leq\\; V_{b2} + |V_{THP}|$$\n\nThe bias current is set by M₁: $I_D = \\tfrac{1}{2}\\mu_p C_{ox}\\left(\\tfrac{W}{L}\\right)_1 (V_{DD}-V_{b2}-|V_{THP}|)^2$, and M₂ (via $V_{b1}$ and the DC level of $V_{in}$) must be sized to carry the same current.\n\n## 3. Small-Signal Gain\n\nSince $v_{GS1} = 0$, replace M₁ by $r_{O1}$. For M₂: $v_{gs2} = -v_{in}$. KCL at the output node:\n\n$$\\frac{v_{out}}{r_{O1}} + g_{m2}(-v_{in}) + \\frac{v_{out}-v_{in}}{r_{O2}} = 0$$\n\n$$\\boxed{A_v = \\left(g_{m2} + \\frac{1}{r_{O2}}\\right)(r_{O1}\\,\\|\\,r_{O2}) \\;\\approx\\; g_{m2}\\,(r_{O1}\\,\\|\\,r_{O2})}$$\n\n- The gain is **positive (noninverting)** — a hallmark of the CG stage.\n- Including body effect (bulk of M₂ grounded, $v_{bs2}=-v_{in}$): $A_v \\approx (g_{m2}+g_{mb2})(r_{O1}\\|r_{O2})$.\n\n## 4. Input and Output Impedance\n\n**Input resistance** (looking into the source of M₂, with drain loaded by $r_{O1}$):\n\n$$R_{in} = \\frac{r_{O1} + r_{O2}}{1 + g_{m2} r_{O2}} \\;\\approx\\; \\frac{1}{g_{m2}}\\left(1 + \\frac{r_{O1}}{r_{O2}}\\right)$$\n\nBecause the load is a *high* impedance ($r_{O1}$), $R_{in}$ is noticeably **larger than the usual $1/g_{m2}$** (e.g., $\\approx 2/g_{m2}$ if $r_{O1}\\approx r_{O2}$).\n\n**Output resistance** (with an ideal source driving $V_{in}$, the source of M₂ is at AC ground, so looking into its drain gives $r_{O2}$):\n\n$$R_{out} = r_{O1}\\,\\|\\,r_{O2}$$\n\n## 5. Summary of Properties\n\n- **Gain:** $A_v \\approx g_{m2}(r_{O1}\\|r_{O2})$ — comparable to a common-source stage with the same active load (about half the intrinsic gain $g_m r_O$).\n- **Low input impedance, high output impedance** → useful as a current buffer or for matching low-impedance sources.\n- **No Miller effect** (gate is grounded), making the CG stage attractive at high frequencies.\n- **Practical note:** the DC bias current of M₂ must flow through the input source, so $V_{in}$ must include an appropriate DC level (or coupling network).",
+        "text": "# Analysis of Figure 17: Common-Gate Stage with PMOS Current-Source Load\n\n## 1. Topology Identification\n\n| Device | Type | Terminals | Role |\n|---|---|---|---|\n| $M_2$ | NMOS | Input at **source**, gate at fixed $V_{b1}$, drain at output | **Common-gate amplifying device** |\n| $M_1$ | PMOS | Source at $V_{DD}$, gate at fixed $V_{b2}$, drain at output | **Current-source (active) load** |\n\nSince $V_{b1}$ holds the gate of $M_2$ at AC ground while the signal enters the source, $M_2$ operates as a **common-gate stage**. $M_1$ has both gate and source at AC ground ($v_{GS1} = 0$), so it injects no signal current — it simply presents its output resistance $r_{O1}$ to the output node.\n\n## 2. DC Bias Conditions\n\nBoth devices carry the same drain current, set by the PMOS load:\n\n$$I_D = \\frac{1}{2}\\mu_p C_{ox}\\left(\\frac{W}{L}\\right)_1 (V_{DD} - V_{b2} - |V_{THP}|)^2$$\n\n**Saturation requirements** (defining the allowable output window):\n\n- $M_2$: $V_{out} \\ge V_{b1} - V_{THN}$\n- $M_1$: $V_{out} \\le V_{b2} + |V_{THP}|$\n\nThe DC level of $V_{in}$ must satisfy $V_{GS2} = V_{b1} - V_{IN,dc} > V_{THN}$ so that $M_2$ conducts $I_D$.\n\n## 3. Small-Signal Gain\n\nReplace $M_1$ by $r_{O1}$ (to AC ground). For $M_2$: $v_{gs2} = -v_{in}$, $v_{ds2} = v_{out} - v_{in}$. KCL at the output node:\n\n$$\\frac{v_{out}}{r_{O1}} - g_{m2}v_{in} + \\frac{v_{out} - v_{in}}{r_{O2}} = 0$$\n\nSolving:\n\n$$\\boxed{A_v = \\frac{v_{out}}{v_{in}} = \\left(g_{m2} + \\frac{1}{r_{O2}}\\right)(r_{O1} \\,\\|\\, r_{O2}) = \\frac{(1 + g_{m2}r_{O2})\\,r_{O1}}{r_{O1} + r_{O2}} \\;\\approx\\; +\\,g_{m2}\\,(r_{O1} \\,\\|\\, r_{O2})}$$\n\n**Key observations:**\n- The gain is **positive (non-inverting)** — characteristic of common-gate stages.\n- The magnitude equals that of a CS stage with the same load; channel-length modulation is essential here: if $\\lambda = 0$, the load is an ideal current source and $|A_v| \\to \\infty$.\n- If body effect is included (bulk at AC ground): $g_{m2} \\rightarrow g_{m2} + g_{mb2}$, slightly *increasing* the gain.\n- In terms of bias: $A_v \\approx \\dfrac{g_{m2}}{(\\lambda_1 + \\lambda_2)I_D}$.\n\n## 4. Port Impedances\n\n**Input resistance** (looking into the source of $M_2$, with drain loaded by $r_{O1}$):\n\n$$R_{in} = \\frac{r_{O1} + r_{O2}}{1 + g_{m2}r_{O2}} \\approx \\frac{1}{g_{m2}}\\left(1 + \\frac{r_{O1}}{r_{O2}}\\right)$$\n\nNote: because the load is high-impedance, $R_{in}$ is *larger* than the textbook $1/g_{m}$ (e.g., $\\approx 2/g_{m2}$ if $r_{O1} = r_{O2}$).\n\n**Output resistance** (ideal input source, $R_S = 0$):\n\n$$R_{out} = r_{O1} \\,\\|\\, r_{O2}$$\n\n(With a finite source resistance $R_S$: $R_{out} = r_{O1} \\,\\|\\, \\left[r_{O2}(1 + g_{m2}R_S) + R_S\\right]$, and the gain is attenuated by the $R_S$–$R_{in}$ divider.)\n\n## 5. Summary\n\nThis is a **common-gate amplifier with an active (PMOS current-source) load** achieving a high intrinsic gain $\\approx g_{m2}(r_{O1}\\|r_{O2})$ without needing a large resistor or large supply headroom. Its low input impedance and absence of Miller multiplication of $C_{GD}$ make this topology attractive for current-mode inputs and wideband applications; $V_{b2}$ programs the bias current, while $V_{b1}$ sets $M_2$'s gate bias and establishes the output swing limits $V_{b1} - V_{THN} \\le V_{out} \\le V_{b2} + |V_{THP}|$.",
         "format": "markdown",
-        "sha256": "b41d931f73f354b185473ac7dc5b9e20788f664dd9d8f89c66f2b58c7a97a0e2"
+        "sha256": "9ac9c55dc589c12e56f3dabf9ee5c7dd423c04def353678feb8bb6ab85fc23bc"
       },
-      "model_call_count": 2,
-      "internet_or_tool_evidence": true,
-      "source_experiment": "2026-07-15-direct-qa",
+      "model_call_count": 1,
+      "internet_or_tool_evidence": false,
+      "source_experiment": "2026-11-03-direct-qa",
       "scores": {
-        "minimax_m3": {
-          "score_0_to_4": 4,
-          "is_full_credit": true,
-          "rationale": "The candidate answer correctly identifies the common-gate NMOS stage with PMOS current-source load, places Vin at the source of M2 with Vb1 and Vb2 as bias voltages, describes the non-inverting gain, and gives Av ≈ gm2(ro1 || ro2). It also correctly identifies low input resistance (~1/gm2 order) and includes reasonable refinements (body effect, finite ro). All essential elements of the golden solution are captured, and no contradictions with the common-gate topology or gain mechanism exist. Per the full-credit rule, the answer merits a score of 4.",
-          "golden_solution_sha256": "cddb7f65664208f014b1e15b1a2e3a5880bd6c44c80c6a3141ea02d1bf049817",
-          "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
-        },
-        "deepseek_v4_pro": {
-          "score_0_to_4": 4,
-          "is_full_credit": true,
-          "rationale": "The answer correctly identifies the common-gate NMOS stage with PMOS current-source load, places Vin at the source of M2, identifies Vb1 and Vb2 as bias voltages, describes non-inverting gain and low input resistance, and gives Av ≈ gm2(ro1||ro2). Additional details on Rin, Rout, body effect, and saturation conditions are consistent and do not contradict the core mechanism. Meets the full-credit rule.",
-          "golden_solution_sha256": "cddb7f65664208f014b1e15b1a2e3a5880bd6c44c80c6a3141ea02d1bf049817",
-          "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
-        },
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies the common-gate NMOS with PMOS current-source load, source-driven input, bias voltages, non-inverting gain, low input resistance, and the required gain expression. Additional details do not undermine the essential analysis.",
-          "judge_model": "openai/gpt-6-luna",
+          "rationale": "Correctly identifies the common-gate NMOS with PMOS current-source load, source-driven input, bias voltages, non-inverting gain, low input resistance, and the expected gain expression. The additional small-signal details are consistent with the topology.",
           "golden_solution_sha256": "cddb7f65664208f014b1e15b1a2e3a5880bd6c44c80c6a3141ea02d1bf049817",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
-      "active_score": {
-        "policy": "gpt_6_luna_max",
-        "score_0_to_4": 4,
-        "score_percent": 100,
-        "is_full_credit": true
-      },
       "tokens": {
-        "cached_input_tokens": 18319,
-        "input_tokens": 21145,
-        "output_tokens": 22301,
-        "total_tokens": 43446,
-        "cache_creation_input_tokens": 0,
-        "reasoning_output_tokens": null,
+        "cached_input_tokens": 0,
+        "input_tokens": 1379,
+        "output_tokens": 17052,
+        "total_tokens": 18431,
+        "cache_creation_input_tokens": null,
+        "reasoning_output_tokens": 15349,
         "complete": true,
         "availability": "complete",
         "missing_fields": []
@@ -9556,15 +9407,21 @@
       "selected_response_tokens": {
         "cached_input_tokens": 0,
         "input_tokens": 1379,
-        "output_tokens": 10076,
-        "total_tokens": 11455,
-        "cache_creation_input_tokens": 0,
-        "reasoning_output_tokens": null,
+        "output_tokens": 17052,
+        "total_tokens": 18431,
+        "cache_creation_input_tokens": null,
+        "reasoning_output_tokens": 15349,
         "complete": true,
         "availability": "complete",
         "missing_fields": []
       },
-      "attempt_count": 2
+      "attempt_count": 1,
+      "active_score": {
+        "policy": "gpt_6_luna_max",
+        "score_0_to_4": 4,
+        "score_percent": 100,
+        "is_full_credit": true
+      }
     },
     {
       "question_id": "part1-024-many-poles-have",
