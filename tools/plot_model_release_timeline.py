@@ -44,6 +44,7 @@ PROVIDER_STYLE = {
     "mistral": ("Mistral", "#FF7000"),
     "nvidia": ("NVIDIA", "#76B900"),
     "amazon": ("Amazon", "#FF9900"),
+    "tencent": ("Tencent", "#0052D9"),
 }
 
 LABEL_OFFSETS = {
