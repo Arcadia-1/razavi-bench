@@ -1,0 +1,42 @@
+{
+ "benchmark": "razavi-bench",
+ "experiment": "2026-11-07-direct-qa",
+ "run_date": "2026-11-07",
+ "mode": "direct_multimodal_qa",
+ "model_name": "Qwen3.8 27B",
+ "provider_model": "Qwen/Qwen3.8-27B",
+ "model_repository": "https://huggingface.co/Qwen/Qwen3.8-27B",
+ "model_revision": "8c0b3d30f3ae96f5c7f774de704bf0ada83e422a",
+ "checkpoint_precision": "BF16",
+ "license": "Apache-2.0",
+ "api_format": "openai_chat_completions_streaming",
+ "reasoning": "thinking on at the server default (reasoning_effort xhigh, which this chat template also uses when none is given)",
+ "temperature": 1.0,
+ "top_p": 0.95,
+ "max_tokens": 245760,
+ "max_model_len": 262144,
+ "concurrency": 32,
+ "runtime": {
+  "vllm": "0.33.0",
+  "reasoning_parser": "qwen3",
+  "gpus": 2,
+  "gpu_memory_utilization": 0.85
+ },
+ "rollouts": [
+  1,
+  2,
+  3
+ ],
+ "completed_answers": 150,
+ "failed_answers": 0,
+ "image_answer_count": 138,
+ "token_usage": {
+  "input_tokens": 248766,
+  "output_tokens": 1881366,
+  "reasoning_output_tokens": 1743283,
+  "cached_input_tokens": "not reported by the server; priced as uncached"
+ },
+ "median_seconds_per_answer": 358.13,
+ "answer_cleaning": [],
+ "raw_responses_retained_locally": true
+}

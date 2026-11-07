@@ -1,0 +1,44 @@
+{
+ "benchmark": "razavi-bench",
+ "experiment": "2026-11-07-direct-qa",
+ "run_date": "2026-11-07",
+ "mode": "direct_multimodal_qa",
+ "model_name": "Qwen3.5 9B",
+ "provider_model": "Qwen/Qwen3.5-9B",
+ "model_repository": "https://huggingface.co/Qwen/Qwen3.5-9B",
+ "model_revision": "c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+ "checkpoint_precision": "BF16",
+ "license": "Apache-2.0",
+ "api_format": "openai_chat_completions_streaming",
+ "reasoning": "thinking on (the model default); no reasoning-effort level",
+ "temperature": 1.0,
+ "top_p": 0.95,
+ "max_tokens": 245760,
+ "max_model_len": 262144,
+ "concurrency": 32,
+ "runtime": {
+  "vllm": "0.33.0",
+  "reasoning_parser": "qwen3",
+  "gpus": 3,
+  "gpu_memory_utilization": 0.45
+ },
+ "rollouts": [
+  1,
+  2,
+  3
+ ],
+ "completed_answers": 150,
+ "failed_answers": 0,
+ "image_answer_count": 138,
+ "token_usage": {
+  "input_tokens": 242466,
+  "output_tokens": 2543051,
+  "reasoning_output_tokens": 2413410,
+  "cached_input_tokens": "not reported by the server; priced as uncached"
+ },
+ "median_seconds_per_answer": 235.91,
+ "answer_cleaning": [
+  "part2-005-determine-small-signal-resistance-seen-looking-into rollout 3: leaked reasoning before </think> removed, then regraded"
+ ],
+ "raw_responses_retained_locally": true
+}
