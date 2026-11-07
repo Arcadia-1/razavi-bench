@@ -17,9 +17,10 @@
  "max_model_len": 262144,
  "concurrency": 32,
  "runtime": {
+  "gpu": "one NVIDIA B200 (183 GB)",
+  "cuda_visible_devices": "2",
   "vllm": "0.33.0",
   "reasoning_parser": "qwen3",
-  "gpus": 2,
   "gpu_memory_utilization": 0.85
  },
  "rollouts": [

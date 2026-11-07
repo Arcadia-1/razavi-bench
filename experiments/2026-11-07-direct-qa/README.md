@@ -5,7 +5,8 @@ generated with each folder's `run.py` and published with
 `tools/build_model_json.py --tokens`.
 
 - Server: vLLM 0.33.0 with the `qwen3` reasoning parser and a 262,144-token
-  context, on a university GPU server, reached through an SSH tunnel
+  context, each model on one NVIDIA B200 of a university GPU server, reached
+  through an SSH tunnel
 - Requests: streamed chat completions; thinking on; Qwen's recommended
   thinking-mode sampling (temperature 1.0, top_p 0.95); `max_tokens` 245,760
 - Judge: GPT-6 Luna at maximum reasoning effort, with
@@ -33,7 +34,8 @@ One Qwen 3.5 9B answer (`part2-005`, rollout 3) came back with the end of its
 reasoning in the final text, up to a `</think>` tag. The published answer is the
 text after that tag, and it was regraded (1 point, as before). The server did not
 report cached input tokens; they are recorded as 0. The models are self-hosted,
-so the site shows no API cost.
+so the site shows no API cost; the paper prices both at OpenRouter's list price
+for the same model.
 
 ## Contents
 
