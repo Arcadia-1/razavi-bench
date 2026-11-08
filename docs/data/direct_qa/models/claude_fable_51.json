@@ -15,18 +15,18 @@
       "overall": {
         "active": {
           "response_count": 150,
-          "correct_count": 122,
-          "incorrect_count": 28,
-          "partial_credit_count": 24,
+          "correct_count": 123,
+          "incorrect_count": 27,
+          "partial_credit_count": 23,
           "zero_count": 4,
-          "mean_score_0_to_4": 3.62,
-          "score_percent": 90.5,
+          "mean_score_0_to_4": 3.6266666666666665,
+          "score_percent": 90.66666666666666,
           "score_distribution": {
             "0": 4,
             "1": 4,
             "2": 9,
-            "3": 11,
-            "4": 122
+            "3": 10,
+            "4": 123
           }
         },
         "minimax_m3": {
@@ -63,34 +63,34 @@
         },
         "gpt_6_luna_max": {
           "response_count": 150,
-          "correct_count": 122,
-          "incorrect_count": 28,
-          "partial_credit_count": 24,
+          "correct_count": 123,
+          "incorrect_count": 27,
+          "partial_credit_count": 23,
           "zero_count": 4,
-          "mean_score_0_to_4": 3.62,
-          "score_percent": 90.5,
+          "mean_score_0_to_4": 3.6266666666666665,
+          "score_percent": 90.66666666666666,
           "score_distribution": {
             "0": 4,
             "1": 4,
             "2": 9,
-            "3": 11,
-            "4": 122
+            "3": 10,
+            "4": 123
           }
         }
       },
       "part1": {
         "active": {
           "response_count": 90,
-          "correct_count": 79,
-          "incorrect_count": 11,
-          "partial_credit_count": 8,
+          "correct_count": 80,
+          "incorrect_count": 10,
+          "partial_credit_count": 7,
           "zero_count": 3,
-          "mean_score_0_to_4": 3.7777777777777777,
-          "score_percent": 94.44444444444444,
+          "mean_score_0_to_4": 3.7888888888888888,
+          "score_percent": 94.72222222222221,
           "score_distribution": {
             "0": 3,
-            "3": 8,
-            "4": 79
+            "3": 7,
+            "4": 80
           }
         },
         "minimax_m3": {
@@ -124,16 +124,16 @@
         },
         "gpt_6_luna_max": {
           "response_count": 90,
-          "correct_count": 79,
-          "incorrect_count": 11,
-          "partial_credit_count": 8,
+          "correct_count": 80,
+          "incorrect_count": 10,
+          "partial_credit_count": 7,
           "zero_count": 3,
-          "mean_score_0_to_4": 3.7777777777777777,
-          "score_percent": 94.44444444444444,
+          "mean_score_0_to_4": 3.7888888888888888,
+          "score_percent": 94.72222222222221,
           "score_distribution": {
             "0": 3,
-            "3": 8,
-            "4": 79
+            "3": 7,
+            "4": 80
           }
         }
       },
@@ -205,18 +205,18 @@
     "by_rollout": {
       "1": {
         "response_count": 50,
-        "correct_count": 39,
-        "incorrect_count": 11,
-        "partial_credit_count": 9,
+        "correct_count": 40,
+        "incorrect_count": 10,
+        "partial_credit_count": 8,
         "zero_count": 2,
-        "mean_score_0_to_4": 3.54,
-        "score_percent": 88.5,
+        "mean_score_0_to_4": 3.56,
+        "score_percent": 89.0,
         "score_distribution": {
           "0": 2,
           "1": 2,
           "2": 2,
-          "3": 5,
-          "4": 39
+          "3": 4,
+          "4": 40
         }
       },
       "2": {
@@ -275,16 +275,16 @@
       "part1": {
         "1": {
           "response_count": 30,
-          "correct_count": 25,
-          "incorrect_count": 5,
-          "partial_credit_count": 4,
+          "correct_count": 26,
+          "incorrect_count": 4,
+          "partial_credit_count": 3,
           "zero_count": 1,
-          "mean_score_0_to_4": 3.7333333333333334,
-          "score_percent": 93.33333333333333,
+          "mean_score_0_to_4": 3.7666666666666666,
+          "score_percent": 94.16666666666667,
           "score_distribution": {
             "0": 1,
-            "3": 4,
-            "4": 25
+            "3": 3,
+            "4": 26
           }
         },
         "2": {
@@ -474,19 +474,19 @@
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         },
         "gpt_6_luna_max": {
-          "score_0_to_4": 3,
-          "is_full_credit": false,
-          "rationale": "Correctly explains that fixed device size makes gm rise with overdrive, while fixed current makes it fall. However, it omits the golden solution’s usual interpretation that the question assumes fixed device size, and instead emphasizes fixed current as the practically relevant case.",
+          "score_0_to_4": 4,
+          "is_full_credit": true,
+          "rationale": "Correctly identifies Student A as right for a fixed device size and explains that gm rises with overdrive, while accurately noting Student B’s result applies when ID is fixed. The added design-context discussion does not change the essential answer.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "facd7a0e127d62601f7a97e0174170be36ff21c242c7c410c1b3db48c1fc94d5",
+          "golden_solution_sha256": "e805626814432e31b3628b4bf4073fa0c2304a7c8ea8bad4f0422be86c312f74",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
       "active_score": {
         "policy": "gpt_6_luna_max",
-        "score_0_to_4": 3,
-        "score_percent": 75,
-        "is_full_credit": false
+        "score_0_to_4": 4,
+        "score_percent": 100,
+        "is_full_credit": true
       },
       "tokens": {
         "cached_input_tokens": 0,
@@ -1972,9 +1972,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly explains that the common-gate device holds the input transistor’s drain at low impedance, keeping the voltage swing across its Cgd small and reducing Miller multiplication while preserving overall gain. The approximate local gain of −1 rather than the cited possible value near −2 is a minor, nonessential difference.",
+          "rationale": "Correctly identifies the low-impedance cascode node and the roughly −1 gain across the input transistor’s Cgd, reducing its Miller factor to about 2 rather than the full stage gain. The phrase “barely moves” is informal, but the answer immediately clarifies the correct swing and Miller multiplication.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "116d68c2d1000a9d062b36020338810742ef4c569416a030f3903e97255aedaf",
+          "golden_solution_sha256": "0d298300029d3b4545999675d8ec4b4c83532fca89fa9878f9898848f75f534f",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -4218,9 +4218,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly explains that both statements can be true depending on what is held fixed: at fixed device size, gm rises with overdrive; at fixed drain current, it falls. This matches the golden solution and identifies the usual fixed-size interpretation.",
+          "rationale": "Correctly explains that for a fixed-size MOSFET, increasing overdrive increases gm because ID rises with VOV². It also correctly gives the fixed-ID condition under which gm decreases.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "facd7a0e127d62601f7a97e0174170be36ff21c242c7c410c1b3db48c1fc94d5",
+          "golden_solution_sha256": "e805626814432e31b3628b4bf4073fa0c2304a7c8ea8bad4f0422be86c312f74",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -5714,9 +5714,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly explains that the cascode holds the input transistor’s drain at a low-impedance node, reducing its local gain and thus the Miller multiplication of Cgd, while retaining large overall gain at the output. The approximations and extra bandwidth claims do not undermine the central explanation.",
+          "rationale": "Correctly identifies the cascode’s low-impedance intermediate node and the resulting gain of roughly −1 across the input transistor’s Cgd, giving a Miller factor of about 2 rather than the full-stage gain. The extra details do not undermine the essential explanation.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "116d68c2d1000a9d062b36020338810742ef4c569416a030f3903e97255aedaf",
+          "golden_solution_sha256": "0d298300029d3b4545999675d8ec4b4c83532fca89fa9878f9898848f75f534f",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -7960,9 +7960,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly explains that both students can be right under different constraints: at fixed W/L, gm rises with overdrive; at fixed current, it falls. The extra design commentary does not change the correct central answer.",
+          "rationale": "Correctly explains that Student A is right for fixed W/L, while Student B is right if current is fixed and W/L is reduced. The equations and resulting trends match the golden solution.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "facd7a0e127d62601f7a97e0174170be36ff21c242c7c410c1b3db48c1fc94d5",
+          "golden_solution_sha256": "e805626814432e31b3628b4bf4073fa0c2304a7c8ea8bad4f0422be86c312f74",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -9456,9 +9456,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly explains that the cascode holds the input transistor’s drain at a low-impedance node, so the local gain across its feedback capacitance is much smaller than the overall stage gain. The approximate −1 gain and related simplifications do not change the essential conclusion.",
+          "rationale": "Correctly identifies the low-impedance cascode node and the resulting gain of about −1 across the input transistor’s feedback capacitance, so its Miller multiplication is about 2 rather than the full stage gain. The answer also makes clear the effect is reduced, not eliminated; its additional claims do not undermine the core explanation.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "116d68c2d1000a9d062b36020338810742ef4c569416a030f3903e97255aedaf",
+          "golden_solution_sha256": "0d298300029d3b4545999675d8ec4b4c83532fca89fa9878f9898848f75f534f",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },

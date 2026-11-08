@@ -555,9 +555,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly explains that the result depends on what is held constant: at fixed device size, increasing overdrive increases gm; at fixed current, it decreases gm. The square-law relations and assumptions are appropriate.",
+          "rationale": "Correctly explains that for fixed W/L, increasing overdrive raises gm, so Student A is correct; Student B applies when current is fixed and W/L is reduced.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "facd7a0e127d62601f7a97e0174170be36ff21c242c7c410c1b3db48c1fc94d5",
+          "golden_solution_sha256": "e805626814432e31b3628b4bf4073fa0c2304a7c8ea8bad4f0422be86c312f74",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -623,9 +623,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly distinguishes fixed device size from fixed drain current, derives the corresponding gm trends, and gives the usual fixed-size conclusion that Student A is correct. The short-channel comment is secondary and does not undermine the essential answer.",
+          "rationale": "Correctly identifies Student A for fixed device dimensions and explains that increasing overdrive raises current quadratically and transconductance linearly. It also correctly qualifies Student B's claim for fixed drain current; the additional short-channel note does not undermine the central answer.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "facd7a0e127d62601f7a97e0174170be36ff21c242c7c410c1b3db48c1fc94d5",
+          "golden_solution_sha256": "e805626814432e31b3628b4bf4073fa0c2304a7c8ea8bad4f0422be86c312f74",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -691,9 +691,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly explains that both statements can be true depending on what is held fixed, and identifies the usual fixed-device-size case in which increasing overdrive increases gm. The equations and fixed-current comparison support the conclusion.",
+          "rationale": "Correctly identifies Student A as right for a fixed device size and explains that the drain current rises with overdrive, so gm rises. It also correctly describes the fixed-current case in which Student B is right; the added caveats do not undermine the main answer.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "facd7a0e127d62601f7a97e0174170be36ff21c242c7c410c1b3db48c1fc94d5",
+          "golden_solution_sha256": "e805626814432e31b3628b4bf4073fa0c2304a7c8ea8bad4f0422be86c312f74",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -4743,9 +4743,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly explains that the cascode holds M1’s drain at a low-impedance node, so the gain across Cgd1 is small relative to the overall stage gain and Miller multiplication is reduced. The approximate −1 local-gain estimate can vary (the golden solution notes it may be around −2), but that does not change the explanation.",
+          "rationale": "Correctly identifies the low impedance at M1’s drain and the resulting local gain of roughly −1, so Cgd1 is multiplied by about 2 rather than by the full stage gain. The ‘almost fixed’ wording is slightly overstated, but the quantified explanation captures the essential mechanism.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "116d68c2d1000a9d062b36020338810742ef4c569416a030f3903e97255aedaf",
+          "golden_solution_sha256": "0d298300029d3b4545999675d8ec4b4c83532fca89fa9878f9898848f75f534f",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -4811,9 +4811,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly explains that the cascode holds M1’s drain at low impedance, making the gain across Cgd1 much smaller than the stage gain and reducing Miller multiplication while retaining high output gain. The approximate internal gain differs slightly from the golden estimate, but the mechanism and conclusion are right.",
+          "rationale": "Correctly identifies the low-impedance cascode node and the roughly −1 gain across Cgd1, giving about 2× rather than full-stage-gain Miller multiplication. The qualitative claim that the drain barely swings is clarified by the correct calculation and does not change the conclusion.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "116d68c2d1000a9d062b36020338810742ef4c569416a030f3903e97255aedaf",
+          "golden_solution_sha256": "0d298300029d3b4545999675d8ec4b4c83532fca89fa9878f9898848f75f534f",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -4879,9 +4879,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly explains that the common-gate device keeps the input transistor’s drain at low impedance, so the gain across Cgd1 is only about -1 (Miller factor about 2), far below the cascode’s overall gain. The approximations and secondary details are consistent with the golden solution.",
+          "rationale": "Correctly identifies the low-impedance M1-drain/M2-source node and derives a gain across Cgd1 of about −1, giving a Miller factor of about 2 rather than the full-stage-gain factor. The minor “nearly fixed” phrasing does not undermine the explicit, correct estimate.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "116d68c2d1000a9d062b36020338810742ef4c569416a030f3903e97255aedaf",
+          "golden_solution_sha256": "0d298300029d3b4545999675d8ec4b4c83532fca89fa9878f9898848f75f534f",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },

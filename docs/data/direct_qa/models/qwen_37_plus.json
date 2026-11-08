@@ -483,19 +483,19 @@
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         },
         "gpt_6_luna_max": {
-          "score_0_to_4": 3,
-          "is_full_credit": false,
-          "rationale": "The derivation correctly shows that at fixed device size, increasing overdrive increases gm, matching the usual interpretation. But it incorrectly dismisses Student B: at fixed drain current, increasing overdrive reduces gm, so the answer misses an important condition.",
+          "score_0_to_4": 4,
+          "is_full_credit": true,
+          "rationale": "Correctly identifies Student A and shows that, for fixed W/L, ID grows as VOV², so gm increases linearly with VOV. Discussing Student B’s fixed-ID condition is not required.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "facd7a0e127d62601f7a97e0174170be36ff21c242c7c410c1b3db48c1fc94d5",
+          "golden_solution_sha256": "e805626814432e31b3628b4bf4073fa0c2304a7c8ea8bad4f0422be86c312f74",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
       "active_score": {
         "policy": "gpt_6_luna_max",
-        "score_0_to_4": 3,
-        "score_percent": 75,
-        "is_full_credit": false
+        "score_0_to_4": 4,
+        "score_percent": 100,
+        "is_full_credit": true
       },
       "tokens": {
         "cached_input_tokens": 0,
@@ -1979,19 +1979,19 @@
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         },
         "gpt_6_luna_max": {
-          "score_0_to_4": 4,
-          "is_full_credit": true,
-          "rationale": "Correctly explains that the common-gate device holds M1’s drain at low impedance, so Cgd1 sees only an order-unity gain and much less Miller multiplication than the full stage gain. The −1 estimate is assumption-dependent (the gain can be closer to −2), but that does not change the essential explanation.",
+          "score_0_to_4": 3,
+          "is_full_credit": false,
+          "rationale": "Correctly identifies the low-impedance M1-drain node and derives a gain near −1, giving about a 2× Miller factor. However, calling the Miller multiplication negligible overstates the reduction; the effect is reduced, not eliminated.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "116d68c2d1000a9d062b36020338810742ef4c569416a030f3903e97255aedaf",
+          "golden_solution_sha256": "0d298300029d3b4545999675d8ec4b4c83532fca89fa9878f9898848f75f534f",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
       "active_score": {
         "policy": "gpt_6_luna_max",
-        "score_0_to_4": 4,
-        "score_percent": 100,
-        "is_full_credit": true
+        "score_0_to_4": 3,
+        "score_percent": 75,
+        "is_full_credit": false
       },
       "tokens": {
         "cached_input_tokens": 0,
@@ -4225,19 +4225,19 @@
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         },
         "gpt_6_luna_max": {
-          "score_0_to_4": 3,
-          "is_full_credit": false,
-          "rationale": "The derivation correctly shows that at fixed device size, increasing overdrive increases gm, matching the usual interpretation. However, it incorrectly dismisses Student B: at fixed drain current, gm = 2ID/VOV decreases, as the golden solution emphasizes.",
+          "score_0_to_4": 4,
+          "is_full_credit": true,
+          "rationale": "Correctly identifies Student A and explains that for fixed W/L, ID grows as VOV², so gm increases linearly with VOV. Discussing Student B's fixed-ID condition is optional.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "facd7a0e127d62601f7a97e0174170be36ff21c242c7c410c1b3db48c1fc94d5",
+          "golden_solution_sha256": "e805626814432e31b3628b4bf4073fa0c2304a7c8ea8bad4f0422be86c312f74",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
       "active_score": {
         "policy": "gpt_6_luna_max",
-        "score_0_to_4": 3,
-        "score_percent": 75,
-        "is_full_credit": false
+        "score_0_to_4": 4,
+        "score_percent": 100,
+        "is_full_credit": true
       },
       "tokens": {
         "cached_input_tokens": 0,
@@ -5721,19 +5721,19 @@
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         },
         "gpt_6_luna_max": {
-          "score_0_to_4": 4,
-          "is_full_credit": true,
-          "rationale": "Correctly explains that the common-gate device holds M1’s drain at a low-impedance node, keeping its gain—and thus Cgd’s Miller multiplication—much smaller than the cascode’s overall gain. The unity-gain estimate is conditional on similar transconductances; the effect is reduced, not eliminated, as its stated 2× factor also indicates.",
+          "score_0_to_4": 3,
+          "is_full_credit": false,
+          "rationale": "Correctly identifies the low-impedance M1-drain node and derives a gate-to-drain gain near −1, giving a Cgd multiplication of about 2. However, it later says the node has almost no swing and that there is almost no Miller multiplication; the effect is reduced, not nearly eliminated.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "116d68c2d1000a9d062b36020338810742ef4c569416a030f3903e97255aedaf",
+          "golden_solution_sha256": "0d298300029d3b4545999675d8ec4b4c83532fca89fa9878f9898848f75f534f",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
       "active_score": {
         "policy": "gpt_6_luna_max",
-        "score_0_to_4": 4,
-        "score_percent": 100,
-        "is_full_credit": true
+        "score_0_to_4": 3,
+        "score_percent": 75,
+        "is_full_credit": false
       },
       "tokens": {
         "cached_input_tokens": 0,
@@ -7967,19 +7967,19 @@
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         },
         "gpt_6_luna_max": {
-          "score_0_to_4": 3,
-          "is_full_credit": false,
-          "rationale": "The derivation correctly shows that gm increases with VOV for fixed device size, matching the usual interpretation. It omits that at fixed ID, gm decreases with VOV, so Student B can also be correct under a different constraint.",
+          "score_0_to_4": 4,
+          "is_full_credit": true,
+          "rationale": "Correctly identifies Student A and derives that, for a fixed device size, the saturation square-law model gives gm = μnCox(W/L)VOV, so gm rises with overdrive. Discussing Student B’s fixed-current condition is optional.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "facd7a0e127d62601f7a97e0174170be36ff21c242c7c410c1b3db48c1fc94d5",
+          "golden_solution_sha256": "e805626814432e31b3628b4bf4073fa0c2304a7c8ea8bad4f0422be86c312f74",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
       "active_score": {
         "policy": "gpt_6_luna_max",
-        "score_0_to_4": 3,
-        "score_percent": 75,
-        "is_full_credit": false
+        "score_0_to_4": 4,
+        "score_percent": 100,
+        "is_full_credit": true
       },
       "tokens": {
         "cached_input_tokens": 0,
@@ -9463,19 +9463,19 @@
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         },
         "gpt_6_luna_max": {
-          "score_0_to_4": 4,
-          "is_full_credit": true,
-          "rationale": "Correctly identifies that the common-gate device holds M1’s drain at low impedance, keeping the gain across M1’s Cgd small and reducing Miller multiplication despite high overall gain. The -1 estimate is an idealized approximation (the gain can be around -2), and the extra Cgd2 discussion is imprecise, but neither changes the central explanation.",
+          "score_0_to_4": 3,
+          "is_full_credit": false,
+          "rationale": "Correctly identifies the low-impedance M2 source at M1’s drain, giving a gain across Cgd1 of about −1 and a Miller factor near 2. However, the optional Cgd2 discussion mislocates that capacitor: M2’s Cgd is between its gate and output drain, not at M1’s drain.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "116d68c2d1000a9d062b36020338810742ef4c569416a030f3903e97255aedaf",
+          "golden_solution_sha256": "0d298300029d3b4545999675d8ec4b4c83532fca89fa9878f9898848f75f534f",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
       "active_score": {
         "policy": "gpt_6_luna_max",
-        "score_0_to_4": 4,
-        "score_percent": 100,
-        "is_full_credit": true
+        "score_0_to_4": 3,
+        "score_percent": 75,
+        "is_full_credit": false
       },
       "tokens": {
         "cached_input_tokens": 0,

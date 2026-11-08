@@ -489,9 +489,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies that both claims can hold under different fixed conditions, and that for a fixed device size the usual interpretation, increasing overdrive increases gm.",
+          "rationale": "Correctly identifies Student A for a fixed device, derives that gm increases linearly with overdrive, and explains that Student B’s result applies when ID is held fixed.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "facd7a0e127d62601f7a97e0174170be36ff21c242c7c410c1b3db48c1fc94d5",
+          "golden_solution_sha256": "e805626814432e31b3628b4bf4073fa0c2304a7c8ea8bad4f0422be86c312f74",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -1985,9 +1985,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly explains that the cascode holds the input transistor’s drain at a relatively low-impedance node, reducing the gain and voltage swing across its Cgd. It also notes that Miller multiplication is reduced, not eliminated; the minor details are consistent with the golden solution.",
+          "rationale": "Correctly identifies the low-impedance cascode node and the limited gain across the lower transistor’s Cgd, rather than the full output gain. “Nearly constant” slightly overstates the effect—the intermediate-node gain can be about −1, giving a Miller factor near 2—but this is a minor caveat allowed by the golden solution.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "116d68c2d1000a9d062b36020338810742ef4c569416a030f3903e97255aedaf",
+          "golden_solution_sha256": "0d298300029d3b4545999675d8ec4b4c83532fca89fa9878f9898848f75f534f",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -4231,9 +4231,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly explains that at fixed device size, increasing overdrive increases gm, while at fixed drain current gm decreases; the equations and assumptions are appropriate.",
+          "rationale": "Correctly identifies Student A for a fixed device, explains that increasing overdrive raises drain current and gm, and notes Student B’s conclusion applies at fixed current.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "facd7a0e127d62601f7a97e0174170be36ff21c242c7c410c1b3db48c1fc94d5",
+          "golden_solution_sha256": "e805626814432e31b3628b4bf4073fa0c2304a7c8ea8bad4f0422be86c312f74",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -5727,9 +5727,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly explains that the cascode holds the input transistor’s drain at a low-impedance, low-swing node, reducing—but not eliminating—Miller multiplication of its gate-drain capacitance. It also distinguishes this local gain from the overall cascode gain.",
+          "rationale": "Correctly identifies the low-impedance cascode node and the resulting small gain across the lower transistor’s Cgd, while noting that Miller multiplication is reduced rather than eliminated. The omitted approximate factor of two is a minor detail.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "116d68c2d1000a9d062b36020338810742ef4c569416a030f3903e97255aedaf",
+          "golden_solution_sha256": "0d298300029d3b4545999675d8ec4b4c83532fca89fa9878f9898848f75f534f",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -7973,9 +7973,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly explains that the result depends on what is held fixed: at fixed device size, increasing overdrive increases gm, while at fixed drain current it decreases gm. This matches the usual interpretation and the golden solution.",
+          "rationale": "Correctly explains that for a fixed-size MOSFET, increasing overdrive increases drain current and transconductance, so Student A is correct. It also accurately notes Student B's result applies when drain current is held fixed.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "facd7a0e127d62601f7a97e0174170be36ff21c242c7c410c1b3db48c1fc94d5",
+          "golden_solution_sha256": "e805626814432e31b3628b4bf4073fa0c2304a7c8ea8bad4f0422be86c312f74",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -9469,9 +9469,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly explains that the cascode holds the input transistor’s drain at a relatively low-impedance, low-swing node, reducing the voltage gain across its Cgd and hence Miller multiplication, while not eliminating the effect.",
+          "rationale": "Correctly explains that the cascode’s low-impedance intermediate node limits the input transistor’s drain swing and isolates its Cgd from the large output swing. It also notes that Miller effect is reduced, not eliminated.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "116d68c2d1000a9d062b36020338810742ef4c569416a030f3903e97255aedaf",
+          "golden_solution_sha256": "0d298300029d3b4545999675d8ec4b4c83532fca89fa9878f9898848f75f534f",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },

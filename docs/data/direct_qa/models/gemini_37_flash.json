@@ -472,9 +472,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly explains that both claims depend on what is held fixed: at fixed device size, gm increases with overdrive; at fixed drain current, gm decreases.",
+          "rationale": "Correctly explains that for fixed W/L, gm increases linearly with overdrive voltage, so Student A is right. It also correctly notes that Student B applies when ID is fixed and W/L is reduced.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "facd7a0e127d62601f7a97e0174170be36ff21c242c7c410c1b3db48c1fc94d5",
+          "golden_solution_sha256": "e805626814432e31b3628b4bf4073fa0c2304a7c8ea8bad4f0422be86c312f74",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -1968,9 +1968,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly explains that the common-gate cascode holds the input transistor’s drain at a low-impedance node, reducing the gain and voltage swing across Cgd1 and thus its Miller multiplication. The approximate 2× estimate is assumption-dependent, but the answer captures the essential mechanism and notes that the multiplication is reduced rather than absent.",
+          "rationale": "Correctly identifies M2’s low-impedance input as limiting the swing at M1’s drain, giving a gain near −1 and a Miller factor of about 2 rather than the full-stage gain. The explanation does not claim the effect is eliminated; its stronger wording is clarified by the quantitative estimate.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "116d68c2d1000a9d062b36020338810742ef4c569416a030f3903e97255aedaf",
+          "golden_solution_sha256": "0d298300029d3b4545999675d8ec4b4c83532fca89fa9878f9898848f75f534f",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -4214,9 +4214,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly explains that both statements can be true depending on what is held constant, gives the corresponding transconductance relations, and identifies fixed device size as the usual interpretation.",
+          "rationale": "Correctly explains that for fixed W/L, gm increases with overdrive voltage because drain current rises quadratically, and notes that gm decreases only when ID is held constant.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "facd7a0e127d62601f7a97e0174170be36ff21c242c7c410c1b3db48c1fc94d5",
+          "golden_solution_sha256": "e805626814432e31b3628b4bf4073fa0c2304a7c8ea8bad4f0422be86c312f74",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -5710,9 +5710,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 3,
           "is_full_credit": false,
-          "rationale": "Correctly explains that the cascode presents a low impedance at the input transistor’s drain, reducing its local gain and thus Miller multiplication. However, it overstates the effect as eliminated and gives an approximate gain of −1 where the gain can be around −2; the Miller effect remains finite.",
+          "rationale": "Correctly identifies the low-impedance cascode node and derives a local gain near −1, so Cgd1 is multiplied by about 2 rather than the full-stage gain. However, the conclusion that the voltage swing is negligible and Miller multiplication is eliminated overstates the reduction and contradicts that calculation.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "116d68c2d1000a9d062b36020338810742ef4c569416a030f3903e97255aedaf",
+          "golden_solution_sha256": "0d298300029d3b4545999675d8ec4b4c83532fca89fa9878f9898848f75f534f",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -7956,9 +7956,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly explains that both students can be right under different constraints: at fixed W/L, gm rises with VOV; at fixed ID, gm falls. The equations and design implications match the golden solution.",
+          "rationale": "Correctly identifies Student A as right for a fixed transistor size, explains that gm rises with VOV, and accurately notes Student B’s result applies when ID is held fixed.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "facd7a0e127d62601f7a97e0174170be36ff21c242c7c410c1b3db48c1fc94d5",
+          "golden_solution_sha256": "e805626814432e31b3628b4bf4073fa0c2304a7c8ea8bad4f0422be86c312f74",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -9452,9 +9452,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly explains that the cascode holds M1’s drain at a low-impedance node, making the gain across Cgd1 small compared with the overall stage gain. The approximately −1 gain and 2× capacitance factor are reasonable matched-device approximations; the effect is not claimed to be exactly zero.",
+          "rationale": "Correctly identifies the low-impedance node at M1’s drain and derives a local gain near −1, so Cgd1 is multiplied by about 2 rather than by the full cascode gain. The wording that the swing is negligible or the effect is neutralized slightly overstates the reduction, but the answer’s calculation makes clear that Miller effect is reduced, not eliminated.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "116d68c2d1000a9d062b36020338810742ef4c569416a030f3903e97255aedaf",
+          "golden_solution_sha256": "0d298300029d3b4545999675d8ec4b4c83532fca89fa9878f9898848f75f534f",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },

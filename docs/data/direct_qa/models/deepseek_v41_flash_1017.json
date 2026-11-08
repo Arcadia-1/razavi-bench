@@ -557,9 +557,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly explains that the result depends on what is held fixed: at fixed device size, increasing overdrive increases gm; at fixed drain current, it decreases gm. This matches the golden solution.",
+          "rationale": "Correctly identifies Student A as right for a fixed device: increasing overdrive raises drain current and gm. It also accurately explains the fixed-current condition under which Student B would be right.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "facd7a0e127d62601f7a97e0174170be36ff21c242c7c410c1b3db48c1fc94d5",
+          "golden_solution_sha256": "e805626814432e31b3628b4bf4073fa0c2304a7c8ea8bad4f0422be86c312f74",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -625,9 +625,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly distinguishes the fixed-device-size case, where increasing overdrive raises gm, from the fixed-current case, where it lowers gm, matching the golden solution.",
+          "rationale": "Correctly identifies Student A as right for a fixed device, explains that gm increases with overdrive, and gives the valid fixed-current condition under which Student B would be right.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "facd7a0e127d62601f7a97e0174170be36ff21c242c7c410c1b3db48c1fc94d5",
+          "golden_solution_sha256": "e805626814432e31b3628b4bf4073fa0c2304a7c8ea8bad4f0422be86c312f74",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -693,9 +693,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly explains that the result depends on what is held fixed: at fixed W/L, increasing overdrive raises gm; at fixed ID, it lowers gm. This matches the golden solution and identifies Student A as the usual fixed-size interpretation.",
+          "rationale": "Correctly states that with fixed W/L, increasing overdrive raises drain current and gm, so Student A is correct; it also accurately explains Student B’s fixed-current condition.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "facd7a0e127d62601f7a97e0174170be36ff21c242c7c410c1b3db48c1fc94d5",
+          "golden_solution_sha256": "e805626814432e31b3628b4bf4073fa0c2304a7c8ea8bad4f0422be86c312f74",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -4745,9 +4745,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies that the cascode holds the input transistor’s drain at a low-impedance node, so its Cgd sees only a small local gain rather than the full stage gain. The answer also correctly notes that the reduction is not perfect and distinguishes the upper transistor’s capacitance.",
+          "rationale": "Correctly identifies the low-impedance cascode node at the input transistor’s drain and the resulting order-unity gain across its feedback capacitance, reducing Miller multiplication relative to a common-source stage. The remaining caveats are consistent with the explanation.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "116d68c2d1000a9d062b36020338810742ef4c569416a030f3903e97255aedaf",
+          "golden_solution_sha256": "0d298300029d3b4545999675d8ec4b4c83532fca89fa9878f9898848f75f534f",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -4813,9 +4813,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly explains that the cascode holds the input transistor’s drain at a low-impedance node, keeping its voltage gain and Cgd Miller multiplication small relative to the overall stage gain. It also appropriately notes that the effect is reduced, not eliminated.",
+          "rationale": "Correctly identifies the low-impedance cascode node and the resulting roughly unity gain across the input device’s Cgd, so its Miller multiplication is much smaller than the full-stage gain. The minor omission of body effect in the impedance estimate does not change the conclusion.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "116d68c2d1000a9d062b36020338810742ef4c569416a030f3903e97255aedaf",
+          "golden_solution_sha256": "0d298300029d3b4545999675d8ec4b4c83532fca89fa9878f9898848f75f534f",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -4881,9 +4881,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly explains that the common-gate device keeps the input transistor’s drain at low impedance, so its Cgd sees only a small internal-node gain rather than the full cascode gain. It also correctly notes that Miller multiplication is reduced, not eliminated; the approximate gain value differs slightly from the golden solution’s example but does not affect the conclusion.",
+          "rationale": "Correctly identifies the cascode’s low-impedance internal node, the resulting gain across the input transistor’s feedback capacitance of roughly −1, and the consequent Miller multiplier of about 2 rather than the full stage gain. The effect is appropriately described as reduced, not eliminated.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "116d68c2d1000a9d062b36020338810742ef4c569416a030f3903e97255aedaf",
+          "golden_solution_sha256": "0d298300029d3b4545999675d8ec4b4c83532fca89fa9878f9898848f75f534f",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },

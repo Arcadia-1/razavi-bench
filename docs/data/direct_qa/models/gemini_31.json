@@ -488,9 +488,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly explains that the answer depends on what is held constant: at fixed W/L, gm increases with overdrive; at fixed drain current, it decreases.",
+          "rationale": "Correctly explains that for fixed W/L, gm increases with overdrive, while at fixed drain current it decreases.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "facd7a0e127d62601f7a97e0174170be36ff21c242c7c410c1b3db48c1fc94d5",
+          "golden_solution_sha256": "e805626814432e31b3628b4bf4073fa0c2304a7c8ea8bad4f0422be86c312f74",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -1984,9 +1984,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies that the common-gate device keeps the input transistor’s drain at a low-impedance, low-swing node, so the local gain across Cgd and its Miller multiplication are much smaller than the cascode’s overall gain.",
+          "rationale": "Correctly identifies the cascode’s low-impedance node and the resulting local gain of about unity, so Cgd sees only modest Miller multiplication rather than the full stage gain. The approximations are acceptable.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "116d68c2d1000a9d062b36020338810742ef4c569416a030f3903e97255aedaf",
+          "golden_solution_sha256": "0d298300029d3b4545999675d8ec4b4c83532fca89fa9878f9898848f75f534f",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -4230,9 +4230,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly distinguishes the fixed-device-size and fixed-drain-current cases and gives the appropriate transconductance trends and equations.",
+          "rationale": "Correctly identifies Student A as right for fixed W/L and explains that Student B is right only when ID is held fixed.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "facd7a0e127d62601f7a97e0174170be36ff21c242c7c410c1b3db48c1fc94d5",
+          "golden_solution_sha256": "e805626814432e31b3628b4bf4073fa0c2304a7c8ea8bad4f0422be86c312f74",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -5726,9 +5726,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies that the common-gate device holds the input transistor’s drain at a low-impedance node, keeping its gate-to-drain gain modest and reducing Miller multiplication. The approximate gain of −1 is consistent with the golden solution’s order-of-magnitude example.",
+          "rationale": "Correctly identifies the low-impedance cascode node and the approximately −1 gain to M1’s drain, so Cgd’s Miller factor is about 2 rather than being set by the full stage gain. “Very small” and “drastically” somewhat overstate the reduction, but the stated gain makes the essential mechanism clear.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "116d68c2d1000a9d062b36020338810742ef4c569416a030f3903e97255aedaf",
+          "golden_solution_sha256": "0d298300029d3b4545999675d8ec4b4c83532fca89fa9878f9898848f75f534f",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -7972,9 +7972,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly explains that both statements can be true depending on what is held fixed: at fixed W/L, gm rises with VOV; at fixed ID, gm falls with VOV.",
+          "rationale": "Correctly states that at fixed W/L, gm increases with VOV, while at fixed ID it decreases as VOV rises.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "facd7a0e127d62601f7a97e0174170be36ff21c242c7c410c1b3db48c1fc94d5",
+          "golden_solution_sha256": "e805626814432e31b3628b4bf4073fa0c2304a7c8ea8bad4f0422be86c312f74",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -9468,9 +9468,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies the cascode’s low-impedance input-transistor drain, which keeps the gain across Cgd small and reduces Miller multiplication. The approximate local gain may vary (the golden solution notes it can be around −2), but this does not change the essential explanation.",
+          "rationale": "Correctly identifies the low-impedance cascode node and the roughly −1 gain across Cgd, giving a Miller factor near 2 rather than the large common-source gain. Calling the gain “very small” is imprecise, but the answer clarifies its magnitude and gets the key result right.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "116d68c2d1000a9d062b36020338810742ef4c569416a030f3903e97255aedaf",
+          "golden_solution_sha256": "0d298300029d3b4545999675d8ec4b4c83532fca89fa9878f9898848f75f534f",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },

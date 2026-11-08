@@ -479,8 +479,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly explains that the trend depends on what is held fixed: at fixed device size, gm increases with VOV; at fixed drain current, it decreases. This matches the golden solution.",
-          "golden_solution_sha256": "facd7a0e127d62601f7a97e0174170be36ff21c242c7c410c1b3db48c1fc94d5",
+          "rationale": "Correctly explains that for a fixed device size, increasing overdrive increases gm, so Student A is correct; it also accurately notes that Student B’s result applies when drain current is held fixed.",
+          "judge_model": "openai/gpt-6-luna",
+          "golden_solution_sha256": "e805626814432e31b3628b4bf4073fa0c2304a7c8ea8bad4f0422be86c312f74",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -539,8 +540,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly explains that the trend depends on what is held fixed: at fixed W/L, gm rises with VOV; at fixed ID, gm falls. This matches the golden solution.",
-          "golden_solution_sha256": "facd7a0e127d62601f7a97e0174170be36ff21c242c7c410c1b3db48c1fc94d5",
+          "rationale": "Correctly states that for a fixed device size, increasing overdrive increases gm, and explains that the opposite trend applies only when drain current is held fixed.",
+          "judge_model": "openai/gpt-6-luna",
+          "golden_solution_sha256": "e805626814432e31b3628b4bf4073fa0c2304a7c8ea8bad4f0422be86c312f74",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -599,8 +601,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly explains that the result depends on what is held constant: at fixed device size, increasing overdrive increases gm; at fixed current, it decreases gm. This matches the golden solution.",
-          "golden_solution_sha256": "facd7a0e127d62601f7a97e0174170be36ff21c242c7c410c1b3db48c1fc94d5",
+          "rationale": "Correctly explains that for a fixed transistor, increasing overdrive increases gm because the drain current rises; it also correctly notes that gm decreases with overdrive if current is held constant by changing device size.",
+          "judge_model": "openai/gpt-6-luna",
+          "golden_solution_sha256": "e805626814432e31b3628b4bf4073fa0c2304a7c8ea8bad4f0422be86c312f74",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -4187,8 +4190,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly explains that the cascode keeps the input transistor’s drain at a low-impedance node, so its Cgd sees much less gain than the full stage gain. The approximate −1 local gain is a minor modeling variation from the golden solution’s roughly −2, not a change to the essential reasoning.",
-          "golden_solution_sha256": "116d68c2d1000a9d062b36020338810742ef4c569416a030f3903e97255aedaf",
+          "rationale": "Correctly identifies the low-impedance intermediate node and the roughly −1 gain across the lower device’s feedback capacitance, yielding about 2× rather than full-stage Miller multiplication. The minor “nearly constant” wording does not undermine the explicit estimate.",
+          "judge_model": "openai/gpt-6-luna",
+          "golden_solution_sha256": "0d298300029d3b4545999675d8ec4b4c83532fca89fa9878f9898848f75f534f",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -4247,8 +4251,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies the input transistor’s drain as a low-impedance intermediate node, so its Cgd sees only a modest local gain rather than the cascode’s full output gain. The estimate of about −1 rather than the golden solution’s illustrative −2 is a minor, circuit-dependent difference and does not change the explanation.",
-          "golden_solution_sha256": "116d68c2d1000a9d062b36020338810742ef4c569416a030f3903e97255aedaf",
+          "rationale": "Correctly identifies the low-impedance cascode node and the roughly −gm1/gm2 gain across the input transistor’s Cgd, giving about a 1+gm1/gm2 Miller factor (roughly 2 for similar devices) rather than multiplication by the full stage gain.",
+          "judge_model": "openai/gpt-6-luna",
+          "golden_solution_sha256": "0d298300029d3b4545999675d8ec4b4c83532fca89fa9878f9898848f75f534f",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -4307,8 +4312,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly explains that the cascode holds the input transistor’s drain at a low-impedance, low-swing node, so its Cgd/Cμ sees much less gain and Miller multiplication than in a common-source stage. The approximate gain may vary (the golden solution notes it can be around −2), but that does not affect the central explanation.",
-          "golden_solution_sha256": "116d68c2d1000a9d062b36020338810742ef4c569416a030f3903e97255aedaf",
+          "rationale": "Correctly explains that the cascode’s low-impedance source node keeps the input transistor’s drain swing small, limiting its Cgd Miller multiplication to about 2 rather than the full-stage gain. Omitting gmb from the approximation is minor.",
+          "judge_model": "openai/gpt-6-luna",
+          "golden_solution_sha256": "0d298300029d3b4545999675d8ec4b4c83532fca89fa9878f9898848f75f534f",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },

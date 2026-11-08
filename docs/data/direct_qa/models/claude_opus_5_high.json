@@ -470,9 +470,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly explains that both students can be right under different constraints: at fixed W/L, gm rises with overdrive; at fixed ID, it falls. The extra design commentary does not change the essential answer.",
+          "rationale": "Correctly identifies Student A as right for a fixed device size, since increasing overdrive also increases drain current and gm. It also accurately explains that Student B’s result applies when ID is held fixed and W/L changes; the additional discussion does not undermine the central answer.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "facd7a0e127d62601f7a97e0174170be36ff21c242c7c410c1b3db48c1fc94d5",
+          "golden_solution_sha256": "e805626814432e31b3628b4bf4073fa0c2304a7c8ea8bad4f0422be86c312f74",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -1966,9 +1966,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies that the cascode holds the input transistor’s drain at low impedance, reducing the gain across Cgd1 and its Miller multiplication while leaving the large gain at the isolated output. The stated roughly unity gain and Miller factor near 2 match the essential result.",
+          "rationale": "Correctly explains that M2 presents a low impedance at M1’s drain, limiting the gain across Cgd1 to roughly unity and its Miller multiplier to about 2 rather than the full stage gain. The reduction is not overstated as elimination; minor omitted body-effect detail does not change the conclusion.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "116d68c2d1000a9d062b36020338810742ef4c569416a030f3903e97255aedaf",
+          "golden_solution_sha256": "0d298300029d3b4545999675d8ec4b4c83532fca89fa9878f9898848f75f534f",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -4212,9 +4212,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly explains that both students can be right depending on what is held fixed: at fixed device size, gm rises with VOV; at fixed ID, it falls. The equations and examples support the essential distinction.",
+          "rationale": "Correctly identifies Student A as right for a fixed W/L device, where increasing overdrive also raises drain current and gm. It correctly explains Student B's result applies when ID is held fixed and W/L changes. The extra caveats do not undermine the central answer.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "facd7a0e127d62601f7a97e0174170be36ff21c242c7c410c1b3db48c1fc94d5",
+          "golden_solution_sha256": "e805626814432e31b3628b4bf4073fa0c2304a7c8ea8bad4f0422be86c312f74",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -5708,9 +5708,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies that the cascode holds M1’s drain at a low-impedance node, reducing the gain and voltage swing across Cgd1 relative to the full stage gain; it also recognizes the effect is reduced, not eliminated. The rough −1 estimate and ancillary loading claims are imprecise but do not alter the essential explanation.",
+          "rationale": "Correctly identifies the low-impedance cascode source node and shows that the gain across M1’s Cgd is about −gm1/gm2, so its Miller factor is roughly 2 rather than the full stage-gain factor. The additional details do not undermine the essential explanation.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "116d68c2d1000a9d062b36020338810742ef4c569416a030f3903e97255aedaf",
+          "golden_solution_sha256": "0d298300029d3b4545999675d8ec4b4c83532fca89fa9878f9898848f75f534f",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -7954,9 +7954,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly distinguishes the fixed-device-size case, where increasing overdrive raises gm, from the fixed-current case, where gm = 2ID/Vov falls. The equations and numerical examples support the central answer; extra design commentary does not change it.",
+          "rationale": "Correctly identifies Student A as right for fixed W/L and explains that increasing overdrive raises current and gm. It also correctly limits Student B’s decreasing-gm claim to fixed current with adjusted geometry; the extra design discussion does not change the essential answer.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "facd7a0e127d62601f7a97e0174170be36ff21c242c7c410c1b3db48c1fc94d5",
+          "golden_solution_sha256": "e805626814432e31b3628b4bf4073fa0c2304a7c8ea8bad4f0422be86c312f74",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -9450,9 +9450,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies the key mechanism: the cascode holds the input transistor’s drain at relatively low impedance, so the gain across Cgd1—and thus its Miller multiplication—is much smaller than the full stage gain. The local gain is load-dependent and may be closer to −2 than −1, but the answer acknowledges that it is nonzero and its central explanation remains correct.",
+          "rationale": "Correctly identifies the low-impedance node at M1’s drain and explains that the gain across Cgd1 is only about −1, giving a Miller multiplier near 2 rather than the full stage-gain multiplier. It does not overstate the effect as zero; peripheral discussion does not undermine the central explanation.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "116d68c2d1000a9d062b36020338810742ef4c569416a030f3903e97255aedaf",
+          "golden_solution_sha256": "0d298300029d3b4545999675d8ec4b4c83532fca89fa9878f9898848f75f534f",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },

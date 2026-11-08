@@ -485,9 +485,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly explains that both statements depend on what is held fixed, gives the fixed-size and fixed-current trends, and notes the usual fixed-size interpretation.",
+          "rationale": "Correctly identifies Student A as right for a fixed device size and explains that increasing overdrive also increases drain current. It also correctly gives Student B's result for fixed current, which is optional but consistent.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "facd7a0e127d62601f7a97e0174170be36ff21c242c7c410c1b3db48c1fc94d5",
+          "golden_solution_sha256": "e805626814432e31b3628b4bf4073fa0c2304a7c8ea8bad4f0422be86c312f74",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -1981,9 +1981,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly explains that the cascode holds the input transistor’s drain at low impedance, reducing the gain across its Cgd and thus Miller multiplication. The estimate of about −1 is an approximation; the gain is small relative to the overall stage gain, not necessarily exactly that value.",
+          "rationale": "Correctly identifies the low-impedance node at M1’s drain and the resulting local gain of about −1, so Cgd1 is multiplied by roughly 2 rather than by the full stage gain. Omitting body transconductance is a minor approximation.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "116d68c2d1000a9d062b36020338810742ef4c569416a030f3903e97255aedaf",
+          "golden_solution_sha256": "0d298300029d3b4545999675d8ec4b4c83532fca89fa9878f9898848f75f534f",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -4227,9 +4227,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly explains that both students can be right depending on what is held fixed, gives the appropriate square-law relationships, and notes that the usual fixed-device-size interpretation supports Student A.",
+          "rationale": "Correctly states that for a fixed transistor size, increasing overdrive raises gm because the drain current also rises; it also correctly explains Student B’s fixed-current condition.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "facd7a0e127d62601f7a97e0174170be36ff21c242c7c410c1b3db48c1fc94d5",
+          "golden_solution_sha256": "e805626814432e31b3628b4bf4073fa0c2304a7c8ea8bad4f0422be86c312f74",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -5723,9 +5723,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly explains that the cascode holds M1’s drain at low impedance, greatly reducing the gain and Miller multiplication across Cgd1 while leaving the overall gain at the cascode output. The estimate of roughly −1 is a reasonable approximation; the effect is correctly described as reduced, not eliminated.",
+          "rationale": "Correctly explains that M2 presents a low impedance at M1’s drain, limiting the gain across Cgd1 to about −1 and its Miller factor to roughly 2 rather than the full-stage gain. Omitting body effect in the impedance estimate is a minor approximation.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "116d68c2d1000a9d062b36020338810742ef4c569416a030f3903e97255aedaf",
+          "golden_solution_sha256": "0d298300029d3b4545999675d8ec4b4c83532fca89fa9878f9898848f75f534f",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -7969,9 +7969,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly explains that at fixed device geometry, increasing overdrive increases gm, while at fixed drain current it decreases gm. This captures the key dependence and agrees with the usual fixed-size interpretation.",
+          "rationale": "Correctly identifies Student A as right for a fixed device geometry, since gm increases with Vov, and explains that Student B is right only when ID is held fixed.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "facd7a0e127d62601f7a97e0174170be36ff21c242c7c410c1b3db48c1fc94d5",
+          "golden_solution_sha256": "e805626814432e31b3628b4bf4073fa0c2304a7c8ea8bad4f0422be86c312f74",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -9465,9 +9465,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly explains that the cascode holds M1’s drain at low impedance, keeping the gain across Cgd1 small and reducing its Miller multiplication; the large output gain is isolated from the input. The approximate gain and minor Miller-formula sign imprecision do not change the essential conclusion.",
+          "rationale": "Correctly explains that M2 presents a low impedance at M1’s drain, limiting the gain across Cgd1 to about −1 and its Miller multiplication to roughly 2 rather than the full-stage gain. The approximations and discussion of the output gain are appropriate.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "116d68c2d1000a9d062b36020338810742ef4c569416a030f3903e97255aedaf",
+          "golden_solution_sha256": "0d298300029d3b4545999675d8ec4b4c83532fca89fa9878f9898848f75f534f",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
