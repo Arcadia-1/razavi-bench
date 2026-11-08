@@ -18,12 +18,14 @@ versus time. It does not change the leaderboard.
   --max-tokens 128000 --json-mode`
 
 On each of the four questions, the probe's mean score is within 3.5 points of
-the published benchmark's for the same 24 models:
+the published benchmark's for the same 24 models. The Q15 answers were re-graded
+after its reference answer was revised on 2026-11-08
+(`../2026-11-08-luna-regrade-q15-q28-p2q5-p2q16/`):
 
 | Question | Probe | Benchmark, same models |
 |---|---:|---:|
 | Q14 CMOS inverter | 75.3% | 74.7% |
-| Q15 two NMOS devices | 44.4% | 47.9% |
+| Q15 two NMOS devices | 47.2% | 46.9% |
 | Q20 NMOS cascode | 98.3% | 99.0% |
 | Q21 PMOS source follower into common gate | 40.3% | 38.5% |
 
