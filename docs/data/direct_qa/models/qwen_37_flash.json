@@ -13,18 +13,18 @@
       "overall": {
         "active": {
           "response_count": 150,
-          "correct_count": 75,
-          "incorrect_count": 75,
-          "partial_credit_count": 66,
-          "zero_count": 9,
-          "mean_score_0_to_4": 2.973333333333333,
-          "score_percent": 74.33333333333333,
+          "correct_count": 77,
+          "incorrect_count": 73,
+          "partial_credit_count": 65,
+          "zero_count": 8,
+          "mean_score_0_to_4": 3.006666666666667,
+          "score_percent": 75.16666666666667,
           "score_distribution": {
-            "0": 9,
+            "0": 8,
             "1": 18,
             "2": 16,
-            "3": 32,
-            "4": 75
+            "3": 31,
+            "4": 77
           }
         },
         "minimax_m3": {
@@ -61,35 +61,36 @@
         },
         "gpt_6_luna_max": {
           "response_count": 150,
-          "correct_count": 75,
-          "incorrect_count": 75,
-          "partial_credit_count": 66,
-          "zero_count": 9,
-          "mean_score_0_to_4": 2.973333333333333,
-          "score_percent": 74.33333333333333,
+          "correct_count": 77,
+          "incorrect_count": 73,
+          "partial_credit_count": 65,
+          "zero_count": 8,
+          "mean_score_0_to_4": 3.006666666666667,
+          "score_percent": 75.16666666666667,
           "score_distribution": {
-            "0": 9,
+            "0": 8,
             "1": 18,
             "2": 16,
-            "3": 32,
-            "4": 75
+            "3": 31,
+            "4": 77
           }
         }
       },
       "part1": {
         "active": {
           "response_count": 90,
-          "correct_count": 60,
-          "incorrect_count": 30,
+          "correct_count": 61,
+          "incorrect_count": 29,
           "partial_credit_count": 23,
-          "zero_count": 7,
-          "mean_score_0_to_4": 3.388888888888889,
-          "score_percent": 84.72222222222221,
+          "zero_count": 6,
+          "mean_score_0_to_4": 3.411111111111111,
+          "score_percent": 85.27777777777777,
           "score_distribution": {
-            "0": 7,
+            "0": 6,
+            "1": 1,
             "2": 4,
-            "3": 19,
-            "4": 60
+            "3": 18,
+            "4": 61
           }
         },
         "minimax_m3": {
@@ -126,35 +127,36 @@
         },
         "gpt_6_luna_max": {
           "response_count": 90,
-          "correct_count": 60,
-          "incorrect_count": 30,
+          "correct_count": 61,
+          "incorrect_count": 29,
           "partial_credit_count": 23,
-          "zero_count": 7,
-          "mean_score_0_to_4": 3.388888888888889,
-          "score_percent": 84.72222222222221,
+          "zero_count": 6,
+          "mean_score_0_to_4": 3.411111111111111,
+          "score_percent": 85.27777777777777,
           "score_distribution": {
-            "0": 7,
+            "0": 6,
+            "1": 1,
             "2": 4,
-            "3": 19,
-            "4": 60
+            "3": 18,
+            "4": 61
           }
         }
       },
       "part2": {
         "active": {
           "response_count": 60,
-          "correct_count": 15,
-          "incorrect_count": 45,
-          "partial_credit_count": 43,
+          "correct_count": 16,
+          "incorrect_count": 44,
+          "partial_credit_count": 42,
           "zero_count": 2,
-          "mean_score_0_to_4": 2.35,
-          "score_percent": 58.75,
+          "mean_score_0_to_4": 2.4,
+          "score_percent": 60.0,
           "score_distribution": {
             "0": 2,
-            "1": 18,
+            "1": 17,
             "2": 12,
             "3": 13,
-            "4": 15
+            "4": 16
           }
         },
         "minimax_m3": {
@@ -190,18 +192,18 @@
         },
         "gpt_6_luna_max": {
           "response_count": 60,
-          "correct_count": 15,
-          "incorrect_count": 45,
-          "partial_credit_count": 43,
+          "correct_count": 16,
+          "incorrect_count": 44,
+          "partial_credit_count": 42,
           "zero_count": 2,
-          "mean_score_0_to_4": 2.35,
-          "score_percent": 58.75,
+          "mean_score_0_to_4": 2.4,
+          "score_percent": 60.0,
           "score_distribution": {
             "0": 2,
-            "1": 18,
+            "1": 17,
             "2": 12,
             "3": 13,
-            "4": 15
+            "4": 16
           }
         }
       }
@@ -209,50 +211,50 @@
     "by_rollout": {
       "1": {
         "response_count": 50,
-        "correct_count": 26,
-        "incorrect_count": 24,
-        "partial_credit_count": 21,
-        "zero_count": 3,
-        "mean_score_0_to_4": 3.02,
-        "score_percent": 75.5,
+        "correct_count": 25,
+        "incorrect_count": 25,
+        "partial_credit_count": 23,
+        "zero_count": 2,
+        "mean_score_0_to_4": 3.0,
+        "score_percent": 75.0,
         "score_distribution": {
-          "0": 3,
-          "1": 6,
-          "2": 4,
+          "0": 2,
+          "1": 7,
+          "2": 5,
           "3": 11,
-          "4": 26
+          "4": 25
         }
       },
       "2": {
         "response_count": 50,
-        "correct_count": 26,
-        "incorrect_count": 24,
-        "partial_credit_count": 21,
+        "correct_count": 27,
+        "incorrect_count": 23,
+        "partial_credit_count": 20,
         "zero_count": 3,
-        "mean_score_0_to_4": 2.92,
-        "score_percent": 73.0,
+        "mean_score_0_to_4": 2.96,
+        "score_percent": 74.0,
         "score_distribution": {
           "0": 3,
           "1": 7,
-          "2": 7,
+          "2": 6,
           "3": 7,
-          "4": 26
+          "4": 27
         }
       },
       "3": {
         "response_count": 50,
-        "correct_count": 23,
-        "incorrect_count": 27,
-        "partial_credit_count": 24,
+        "correct_count": 25,
+        "incorrect_count": 25,
+        "partial_credit_count": 22,
         "zero_count": 3,
-        "mean_score_0_to_4": 2.98,
-        "score_percent": 74.5,
+        "mean_score_0_to_4": 3.06,
+        "score_percent": 76.5,
         "score_distribution": {
           "0": 3,
-          "1": 5,
+          "1": 4,
           "2": 5,
-          "3": 14,
-          "4": 23
+          "3": 13,
+          "4": 25
         }
       }
     },
@@ -280,46 +282,47 @@
       "part1": {
         "1": {
           "response_count": 30,
-          "correct_count": 21,
-          "incorrect_count": 9,
-          "partial_credit_count": 6,
-          "zero_count": 3,
-          "mean_score_0_to_4": 3.3666666666666667,
-          "score_percent": 84.16666666666667,
+          "correct_count": 20,
+          "incorrect_count": 10,
+          "partial_credit_count": 8,
+          "zero_count": 2,
+          "mean_score_0_to_4": 3.3333333333333335,
+          "score_percent": 83.33333333333334,
           "score_distribution": {
-            "0": 3,
-            "2": 1,
+            "0": 2,
+            "1": 1,
+            "2": 2,
             "3": 5,
-            "4": 21
+            "4": 20
           }
         },
         "2": {
           "response_count": 30,
-          "correct_count": 21,
-          "incorrect_count": 9,
-          "partial_credit_count": 7,
+          "correct_count": 22,
+          "incorrect_count": 8,
+          "partial_credit_count": 6,
           "zero_count": 2,
-          "mean_score_0_to_4": 3.4,
-          "score_percent": 85.0,
+          "mean_score_0_to_4": 3.466666666666667,
+          "score_percent": 86.66666666666667,
           "score_distribution": {
             "0": 2,
-            "2": 3,
+            "2": 2,
             "3": 4,
-            "4": 21
+            "4": 22
           }
         },
         "3": {
           "response_count": 30,
-          "correct_count": 18,
-          "incorrect_count": 12,
-          "partial_credit_count": 10,
+          "correct_count": 19,
+          "incorrect_count": 11,
+          "partial_credit_count": 9,
           "zero_count": 2,
-          "mean_score_0_to_4": 3.4,
-          "score_percent": 85.0,
+          "mean_score_0_to_4": 3.433333333333333,
+          "score_percent": 85.83333333333333,
           "score_distribution": {
             "0": 2,
-            "3": 10,
-            "4": 18
+            "3": 9,
+            "4": 19
           }
         }
       },
@@ -357,18 +360,18 @@
         },
         "3": {
           "response_count": 20,
-          "correct_count": 5,
-          "incorrect_count": 15,
-          "partial_credit_count": 14,
+          "correct_count": 6,
+          "incorrect_count": 14,
+          "partial_credit_count": 13,
           "zero_count": 1,
-          "mean_score_0_to_4": 2.35,
-          "score_percent": 58.75,
+          "mean_score_0_to_4": 2.5,
+          "score_percent": 62.5,
           "score_distribution": {
             "0": 1,
-            "1": 5,
+            "1": 4,
             "2": 5,
             "3": 4,
-            "4": 5
+            "4": 6
           }
         }
       }
@@ -1456,19 +1459,19 @@
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         },
         "gpt_6_luna_max": {
-          "score_0_to_4": 4,
-          "is_full_credit": true,
-          "rationale": "It correctly identifies both devices as NMOS, conveys the upper device’s threshold-limited pull-up opposed by the lower pull-down, and concludes this is not a normal CMOS inverter. The VDD/2 resistor-divider estimate is oversimplified, but the golden full-credit rule does not require detailed current-balance analysis.",
+          "score_0_to_4": 2,
+          "is_full_credit": false,
+          "rationale": "Correctly identifies both devices as NMOS and concludes the circuit is not a normal inverter. However, it misstates the output connection and misses the upper NMOS's source-follower action, leading to an incorrect voltage-divider and Vout ≈ VDD/2 analysis instead of the actual current-balanced attenuator behavior.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "0baa9e972308e40ff5420b6292af6021c743103764b4a72c7c5cd188682011a6",
+          "golden_solution_sha256": "b598ce9b14c47387d9b8d874c626add0f845d3b4bc6f5ad44a431e7ddf11ad3d",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
       "active_score": {
         "policy": "gpt_6_luna_max",
-        "score_0_to_4": 4,
-        "score_percent": 100,
-        "is_full_credit": true
+        "score_0_to_4": 2,
+        "score_percent": 50,
+        "is_full_credit": false
       },
       "tokens": {
         "cached_input_tokens": 0,
@@ -2429,18 +2432,18 @@
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         },
         "gpt_6_luna_max": {
-          "score_0_to_4": 0,
+          "score_0_to_4": 1,
           "is_full_credit": false,
-          "rationale": "The answer reverses M2’s connections: its gate is tied to Vout and its drain to X, not the other way around. It therefore invents a parallel-load/triode feedback mechanism and misses the actual feedback that changes M2’s pull on the input node. The M1 inversion and positive-feedback label are correct, but the analysis rests on the wrong topology.",
+          "rationale": "The answer misidentifies M2’s connections: its gate is tied to Vout and its drain to X, not as a parallel output device with its gate at X. This reverses the feedback analysis; the claimed positive-feedback mechanism is incorrect and internally inconsistent. It earns limited credit for recognizing M1’s inversion and mentioning possible latching.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "8725dfc04d82712368d6e8dfe8641cd376fdfa70aa0623e55d004d2a3b5fd988",
+          "golden_solution_sha256": "eb7fb3f782c2e056a842871b4f7eb3df5f5f60917db8824dcac697c3eedb6c1a",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
       "active_score": {
         "policy": "gpt_6_luna_max",
-        "score_0_to_4": 0,
-        "score_percent": 0,
+        "score_0_to_4": 1,
+        "score_percent": 25,
         "is_full_credit": false
       },
       "tokens": {
@@ -2956,9 +2959,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies the oscillation-driven charging and discharging of the three load capacitances, derives the power relation, and obtains R_x = 1/(3 f_0 C_L).",
+          "rationale": "Correctly identifies oscillation-driven charging of the three load capacitances and derives the accepted result, R_x ≈ 1/(3 f_0 C_L).",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "a8256db6948e5bfed369844d2aabb600455c89fefd4449a1eebbd49b6744aef7",
+          "golden_solution_sha256": "2cc2a0caae58e2eaf669e33c8ca2745fffb560f244af06138e3d1d9406af42ae",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -3781,9 +3784,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 1,
           "is_full_credit": false,
-          "rationale": "It recognizes the shunt-feedback topology and the 50-ohm constraint, but recommends the exact naive limit the golden solution rejects: maximizing RF and gm, with NF approaching 1 + gamma. It omits the essential role of channel-length modulation and finite output resistance in producing an optimum with NF < 1 + gamma.",
+          "rationale": "The answer omits finite output resistance and uses an incorrect input-resistance relation, concluding that gm is limited to 1/Rin and NF cannot improve below 1 + gamma. This misses the central result: with finite ro, gm can exceed 1/Rs while RF is adjusted to maintain the 50-ohm match, lowering NF below 1 + gamma.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "ad5e0dd61adb8cf97f78b6dec8746d1170eb0a46791d7c68c4fad4cf2614488e",
+          "golden_solution_sha256": "6801650fd2054e7d374317849fcda2881c563a35f3d14b44d310d3d32f91b1cd",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -5200,9 +5203,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies both devices as NMOS, describes the upper source-follower and lower pull-down actions, and concludes the circuit is not a normal CMOS inverter.",
+          "rationale": "Correctly identifies both devices as NMOS, recognizes the upper source-follower and lower pull-down actions, and concludes the circuit is not a normal CMOS inverter.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "0baa9e972308e40ff5420b6292af6021c743103764b4a72c7c5cd188682011a6",
+          "golden_solution_sha256": "b598ce9b14c47387d9b8d874c626add0f845d3b4bc6f5ad44a431e7ddf11ad3d",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -6171,19 +6174,19 @@
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         },
         "gpt_6_luna_max": {
-          "score_0_to_4": 2,
-          "is_full_credit": false,
-          "rationale": "Correctly identifies the topology and positive-feedback path, but wrongly concludes that the circuit is necessarily an unstable comparator/latch. It misses the key result that the input conductance is approximately gds2 − gm1gm2RD1, so the input resistance can be large or negative depending on loop gain.",
+          "score_0_to_4": 4,
+          "is_full_credit": true,
+          "rationale": "Correctly identifies M2’s gate connection, traces the positive-feedback loop, and concludes the linear bias is unstable and latches. This satisfies the full-credit rule; the imprecise DC-state details do not change the essential answer.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "8725dfc04d82712368d6e8dfe8641cd376fdfa70aa0623e55d004d2a3b5fd988",
+          "golden_solution_sha256": "eb7fb3f782c2e056a842871b4f7eb3df5f5f60917db8824dcac697c3eedb6c1a",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
       "active_score": {
         "policy": "gpt_6_luna_max",
-        "score_0_to_4": 2,
-        "score_percent": 50,
-        "is_full_credit": false
+        "score_0_to_4": 4,
+        "score_percent": 100,
+        "is_full_credit": true
       },
       "tokens": {
         "cached_input_tokens": 0,
@@ -6698,9 +6701,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies the oscillation-driven charging of the three load capacitances and derives the equivalent supply resistance as 1/(3 f0 CL) using charge/current and power arguments.",
+          "rationale": "Correctly identifies oscillation-driven charging and discharging of the three load capacitances and derives the expected resistance, 1/(3 f0 CL), with frequency held fixed.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "a8256db6948e5bfed369844d2aabb600455c89fefd4449a1eebbd49b6744aef7",
+          "golden_solution_sha256": "2cc2a0caae58e2eaf669e33c8ca2745fffb560f244af06138e3d1d9406af42ae",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -7523,9 +7526,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 1,
           "is_full_credit": false,
-          "rationale": "It recognizes the shunt-feedback topology and the 50-ohm matching constraint, but gives the rejected optimization: maximize RF and loop gain, claiming NF approaches 1. It misses that finite output resistance/channel-length modulation must be jointly chosen and that the optimum can have NF below 1 + gamma.",
+          "rationale": "It identifies the shunt-feedback inverter and suggests adjusting the bias to maintain the match, but omits finite output resistance and incorrectly concludes that increasing RF while keeping gm near 1/Rs drives NF toward 1. The key optimization is to raise gm above 1/Rs and increase RF to preserve Rin, allowing NF below 1 + gamma.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "ad5e0dd61adb8cf97f78b6dec8746d1170eb0a46791d7c68c4fad4cf2614488e",
+          "golden_solution_sha256": "6801650fd2054e7d374317849fcda2881c563a35f3d14b44d310d3d32f91b1cd",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -8942,9 +8945,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies both devices as NMOS, describes the upper device’s threshold-limited pull-up/source-follower behavior and the lower pull-down action, and concludes the circuit is not a normal CMOS inverter. The simplified voltage-divider description does not undermine the essential analysis.",
+          "rationale": "Correctly identifies both devices as NMOS, describes the upper device’s threshold-limited source-follower pull-up action and the lower pull-down, and concludes this is not a normal CMOS inverter. The imprecise on-resistance-divider description does not change the central conclusion.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "0baa9e972308e40ff5420b6292af6021c743103764b4a72c7c5cd188682011a6",
+          "golden_solution_sha256": "b598ce9b14c47387d9b8d874c626add0f845d3b4bc6f5ad44a431e7ddf11ad3d",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -9913,19 +9916,19 @@
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         },
         "gpt_6_luna_max": {
-          "score_0_to_4": 3,
-          "is_full_credit": false,
-          "rationale": "Correctly identifies M1’s inverting path and the positive-feedback mechanism through M2. However, it omits M2’s gds2 contribution, so the input conductance is not necessarily negative; that depends on loop gain. The claims of inherent instability and bistability are therefore too strong.",
+          "score_0_to_4": 4,
+          "is_full_credit": true,
+          "rationale": "Correctly identifies M2’s gate connection, the positive-feedback loop, and its negative-input-resistance/unstable latching consequence. The simplified input-resistance formula omits output-resistance effects, but the golden solution does not require a precise formula.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "8725dfc04d82712368d6e8dfe8641cd376fdfa70aa0623e55d004d2a3b5fd988",
+          "golden_solution_sha256": "eb7fb3f782c2e056a842871b4f7eb3df5f5f60917db8824dcac697c3eedb6c1a",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
       "active_score": {
         "policy": "gpt_6_luna_max",
-        "score_0_to_4": 3,
-        "score_percent": 75,
-        "is_full_credit": false
+        "score_0_to_4": 4,
+        "score_percent": 100,
+        "is_full_credit": true
       },
       "tokens": {
         "cached_input_tokens": 0,
@@ -10440,9 +10443,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies the oscillation-driven charging and discharging of the three load capacitances, derives the average power, and obtains the required resistance 1/(3 CL f0).",
+          "rationale": "Correctly identifies oscillation-driven charging and discharging of the three load capacitances and derives the specified result, 1/(3·CL·f0).",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "a8256db6948e5bfed369844d2aabb600455c89fefd4449a1eebbd49b6744aef7",
+          "golden_solution_sha256": "2cc2a0caae58e2eaf669e33c8ca2745fffb560f244af06138e3d1d9406af42ae",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -11263,19 +11266,19 @@
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         },
         "gpt_6_luna_max": {
-          "score_0_to_4": 1,
-          "is_full_credit": false,
-          "rationale": "It correctly recognizes the shunt-feedback topology and approximate input-match relation, but recommends increasing gm and RF without limit. It misses the key result that channel-length modulation and finite output resistance must be jointly optimized with the 50-ohm match to achieve the noise optimum.",
+          "score_0_to_4": 4,
+          "is_full_credit": true,
+          "rationale": "It includes finite output resistance in its high-gain input-match estimate and correctly recommends increasing gm while raising RF to keep Rin at 50 Ω, which captures the key NF-improvement strategy. The noise derivation is approximate, but does not change the correct conclusion.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "ad5e0dd61adb8cf97f78b6dec8746d1170eb0a46791d7c68c4fad4cf2614488e",
+          "golden_solution_sha256": "6801650fd2054e7d374317849fcda2881c563a35f3d14b44d310d3d32f91b1cd",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
       "active_score": {
         "policy": "gpt_6_luna_max",
-        "score_0_to_4": 1,
-        "score_percent": 25,
-        "is_full_credit": false
+        "score_0_to_4": 4,
+        "score_percent": 100,
+        "is_full_credit": true
       },
       "tokens": {
         "cached_input_tokens": 0,

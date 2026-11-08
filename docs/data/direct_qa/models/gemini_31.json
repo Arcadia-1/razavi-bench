@@ -15,18 +15,18 @@
       "overall": {
         "active": {
           "response_count": 150,
-          "correct_count": 96,
-          "incorrect_count": 54,
+          "correct_count": 99,
+          "incorrect_count": 51,
           "partial_credit_count": 46,
-          "zero_count": 8,
-          "mean_score_0_to_4": 3.22,
-          "score_percent": 80.5,
+          "zero_count": 5,
+          "mean_score_0_to_4": 3.3,
+          "score_percent": 82.5,
           "score_distribution": {
-            "0": 8,
+            "0": 5,
             "1": 13,
             "2": 13,
             "3": 20,
-            "4": 96
+            "4": 99
           }
         },
         "minimax_m3": {
@@ -63,18 +63,18 @@
         },
         "gpt_6_luna_max": {
           "response_count": 150,
-          "correct_count": 96,
-          "incorrect_count": 54,
+          "correct_count": 99,
+          "incorrect_count": 51,
           "partial_credit_count": 46,
-          "zero_count": 8,
-          "mean_score_0_to_4": 3.22,
-          "score_percent": 80.5,
+          "zero_count": 5,
+          "mean_score_0_to_4": 3.3,
+          "score_percent": 82.5,
           "score_distribution": {
-            "0": 8,
+            "0": 5,
             "1": 13,
             "2": 13,
             "3": 20,
-            "4": 96
+            "4": 99
           }
         }
       },
@@ -144,18 +144,17 @@
       "part2": {
         "active": {
           "response_count": 60,
-          "correct_count": 25,
-          "incorrect_count": 35,
+          "correct_count": 28,
+          "incorrect_count": 32,
           "partial_credit_count": 32,
-          "zero_count": 3,
-          "mean_score_0_to_4": 2.683333333333333,
-          "score_percent": 67.08333333333333,
+          "zero_count": 0,
+          "mean_score_0_to_4": 2.8833333333333333,
+          "score_percent": 72.08333333333333,
           "score_distribution": {
-            "0": 3,
             "1": 13,
             "2": 9,
             "3": 10,
-            "4": 25
+            "4": 28
           }
         },
         "minimax_m3": {
@@ -191,18 +190,17 @@
         },
         "gpt_6_luna_max": {
           "response_count": 60,
-          "correct_count": 25,
-          "incorrect_count": 35,
+          "correct_count": 28,
+          "incorrect_count": 32,
           "partial_credit_count": 32,
-          "zero_count": 3,
-          "mean_score_0_to_4": 2.683333333333333,
-          "score_percent": 67.08333333333333,
+          "zero_count": 0,
+          "mean_score_0_to_4": 2.8833333333333333,
+          "score_percent": 72.08333333333333,
           "score_distribution": {
-            "0": 3,
             "1": 13,
             "2": 9,
             "3": 10,
-            "4": 25
+            "4": 28
           }
         }
       }
@@ -210,50 +208,50 @@
     "by_rollout": {
       "1": {
         "response_count": 50,
-        "correct_count": 34,
-        "incorrect_count": 16,
+        "correct_count": 35,
+        "incorrect_count": 15,
         "partial_credit_count": 14,
-        "zero_count": 2,
-        "mean_score_0_to_4": 3.34,
-        "score_percent": 83.5,
+        "zero_count": 1,
+        "mean_score_0_to_4": 3.42,
+        "score_percent": 85.5,
         "score_distribution": {
-          "0": 2,
+          "0": 1,
           "1": 3,
           "2": 5,
           "3": 6,
-          "4": 34
+          "4": 35
         }
       },
       "2": {
         "response_count": 50,
-        "correct_count": 31,
-        "incorrect_count": 19,
+        "correct_count": 32,
+        "incorrect_count": 18,
         "partial_credit_count": 16,
-        "zero_count": 3,
-        "mean_score_0_to_4": 3.2,
-        "score_percent": 80.0,
+        "zero_count": 2,
+        "mean_score_0_to_4": 3.28,
+        "score_percent": 82.0,
         "score_distribution": {
-          "0": 3,
+          "0": 2,
           "1": 4,
           "2": 4,
           "3": 8,
-          "4": 31
+          "4": 32
         }
       },
       "3": {
         "response_count": 50,
-        "correct_count": 31,
-        "incorrect_count": 19,
+        "correct_count": 32,
+        "incorrect_count": 18,
         "partial_credit_count": 16,
-        "zero_count": 3,
-        "mean_score_0_to_4": 3.12,
-        "score_percent": 78.0,
+        "zero_count": 2,
+        "mean_score_0_to_4": 3.2,
+        "score_percent": 80.0,
         "score_distribution": {
-          "0": 3,
+          "0": 2,
           "1": 6,
           "2": 4,
           "3": 6,
-          "4": 31
+          "4": 32
         }
       }
     },
@@ -328,50 +326,47 @@
       "part2": {
         "1": {
           "response_count": 20,
-          "correct_count": 9,
-          "incorrect_count": 11,
+          "correct_count": 10,
+          "incorrect_count": 10,
           "partial_credit_count": 10,
-          "zero_count": 1,
-          "mean_score_0_to_4": 2.8,
-          "score_percent": 70.0,
+          "zero_count": 0,
+          "mean_score_0_to_4": 3.0,
+          "score_percent": 75.0,
           "score_distribution": {
-            "0": 1,
             "1": 3,
             "2": 4,
             "3": 3,
-            "4": 9
+            "4": 10
           }
         },
         "2": {
           "response_count": 20,
-          "correct_count": 8,
-          "incorrect_count": 12,
+          "correct_count": 9,
+          "incorrect_count": 11,
           "partial_credit_count": 11,
-          "zero_count": 1,
-          "mean_score_0_to_4": 2.7,
-          "score_percent": 67.5,
+          "zero_count": 0,
+          "mean_score_0_to_4": 2.9,
+          "score_percent": 72.5,
           "score_distribution": {
-            "0": 1,
             "1": 4,
             "2": 3,
             "3": 4,
-            "4": 8
+            "4": 9
           }
         },
         "3": {
           "response_count": 20,
-          "correct_count": 8,
-          "incorrect_count": 12,
+          "correct_count": 9,
+          "incorrect_count": 11,
           "partial_credit_count": 11,
-          "zero_count": 1,
-          "mean_score_0_to_4": 2.55,
-          "score_percent": 63.74999999999999,
+          "zero_count": 0,
+          "mean_score_0_to_4": 2.75,
+          "score_percent": 68.75,
           "score_distribution": {
-            "0": 1,
             "1": 6,
             "2": 2,
             "3": 3,
-            "4": 8
+            "4": 9
           }
         }
       }
@@ -1461,9 +1456,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 0,
           "is_full_credit": false,
-          "rationale": "The answer misidentifies M2 as PMOS and analyzes the circuit as a complementary push-pull stage. The golden solution requires recognizing that both devices are NMOS.",
+          "rationale": "Misidentifies the lower transistor as PMOS; the golden solution requires recognizing both devices as NMOS, and assigns zero for either device-type error.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "0baa9e972308e40ff5420b6292af6021c743103764b4a72c7c5cd188682011a6",
+          "golden_solution_sha256": "b598ce9b14c47387d9b8d874c626add0f845d3b4bc6f5ad44a431e7ddf11ad3d",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -2434,9 +2429,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies the positive-feedback path and derives the input conductance as gds2 − gm1gm2(RD1 || ro1), including the conditions for negative input resistance. The transimpedance result and its high-loop-gain limit are also consistent with the circuit.",
+          "rationale": "Correctly identifies M2 as controlled by Vout, traces the positive-feedback loop, and derives the loop-gain-modified input resistance, including its negative value when loop gain exceeds one. The optional transimpedance analysis does not undermine the essential answer.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "8725dfc04d82712368d6e8dfe8641cd376fdfa70aa0623e55d004d2a3b5fd988",
+          "golden_solution_sha256": "eb7fb3f782c2e056a842871b4f7eb3df5f5f60917db8824dcac697c3eedb6c1a",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -2957,18 +2952,18 @@
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         },
         "gpt_6_luna_max": {
-          "score_0_to_4": 0,
+          "score_0_to_4": 1,
           "is_full_credit": false,
-          "rationale": "The answer derives a static gm-based resistance, which describes a non-oscillating operating point. It misses the oscillation-driven charging and discharging of CL and the required dependence RX ≈ 1/(3 f0 CL).",
+          "rationale": "The static, gm-based derivation is internally consistent, but it ignores oscillation-driven charging and discharging of the load capacitances, which sets the resistance. The answer therefore misses the dominant mechanism and the result involving f0 and CL.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "a8256db6948e5bfed369844d2aabb600455c89fefd4449a1eebbd49b6744aef7",
+          "golden_solution_sha256": "2cc2a0caae58e2eaf669e33c8ca2745fffb560f244af06138e3d1d9406af42ae",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
       "active_score": {
         "policy": "gpt_6_luna_max",
-        "score_0_to_4": 0,
-        "score_percent": 0,
+        "score_0_to_4": 1,
+        "score_percent": 25,
         "is_full_credit": false
       },
       "tokens": {
@@ -3782,19 +3777,19 @@
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         },
         "gpt_6_luna_max": {
-          "score_0_to_4": 1,
-          "is_full_credit": false,
-          "rationale": "The answer recommends maximizing RF and increasing gm, the naive design direction the golden solution rejects. Although it identifies the shunt-feedback match and mentions finite output resistance, it misses the key point that channel-length modulation and finite output resistance must be optimized jointly to achieve the NF optimum, potentially below 1 + gamma.",
+          "score_0_to_4": 4,
+          "is_full_credit": true,
+          "rationale": "The answer uses the finite-output-resistance input-match relation and correctly recommends increasing RF and gm together to maintain 50 Ω while reducing NF. This captures the key result that gm need not be pinned at 1/Rs; its approximate noise expression does not change the central conclusion.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "ad5e0dd61adb8cf97f78b6dec8746d1170eb0a46791d7c68c4fad4cf2614488e",
+          "golden_solution_sha256": "6801650fd2054e7d374317849fcda2881c563a35f3d14b44d310d3d32f91b1cd",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
       "active_score": {
         "policy": "gpt_6_luna_max",
-        "score_0_to_4": 1,
-        "score_percent": 25,
-        "is_full_credit": false
+        "score_0_to_4": 4,
+        "score_percent": 100,
+        "is_full_credit": true
       },
       "tokens": {
         "cached_input_tokens": 0,
@@ -5203,9 +5198,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 0,
           "is_full_credit": false,
-          "rationale": "The answer misidentifies M2 as PMOS; both devices are NMOS. It therefore analyzes the circuit as a complementary push-pull stage, contrary to the essential topology.",
+          "rationale": "The answer misidentifies M2 as PMOS; both devices are NMOS, a required topology detail for this question.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "0baa9e972308e40ff5420b6292af6021c743103764b4a72c7c5cd188682011a6",
+          "golden_solution_sha256": "b598ce9b14c47387d9b8d874c626add0f845d3b4bc6f5ad44a431e7ddf11ad3d",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -6176,9 +6171,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies the positive-feedback path and derives the input conductance, negative-input-resistance condition, and transimpedance consistently with the circuit. The small-signal assumptions and limiting result are appropriate.",
+          "rationale": "Correctly identifies the positive-feedback path through M1 and M2, recognizes that M2 is controlled by Vout rather than diode-connected, and derives the loop-gain-dependent negative input resistance. This satisfies the full-credit rule.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "8725dfc04d82712368d6e8dfe8641cd376fdfa70aa0623e55d004d2a3b5fd988",
+          "golden_solution_sha256": "eb7fb3f782c2e056a842871b4f7eb3df5f5f60917db8824dcac697c3eedb6c1a",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -6699,18 +6694,18 @@
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         },
         "gpt_6_luna_max": {
-          "score_0_to_4": 0,
+          "score_0_to_4": 1,
           "is_full_credit": false,
-          "rationale": "The answer derives a static, gm-based resistance for a non-oscillating operating point. It misses the dominant oscillation-driven charging and discharging of the three load capacitances and the resulting RX ≈ 1/(3f0CL).",
+          "rationale": "The static symmetry and diode-connected-device analysis is internally consistent, but it ignores the oscillation-driven charging and discharging of the load capacitances that sets the resistance. The golden solution explicitly assigns this kind of answer a score of 1.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "a8256db6948e5bfed369844d2aabb600455c89fefd4449a1eebbd49b6744aef7",
+          "golden_solution_sha256": "2cc2a0caae58e2eaf669e33c8ca2745fffb560f244af06138e3d1d9406af42ae",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
       "active_score": {
         "policy": "gpt_6_luna_max",
-        "score_0_to_4": 0,
-        "score_percent": 0,
+        "score_0_to_4": 1,
+        "score_percent": 25,
         "is_full_credit": false
       },
       "tokens": {
@@ -7524,19 +7519,19 @@
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         },
         "gpt_6_luna_max": {
-          "score_0_to_4": 1,
-          "is_full_credit": false,
-          "rationale": "It recognizes the shunt-feedback LNA and the input-match constraint, but recommends maximizing RF and transconductance—the naive strategy the solution rejects. It misses the key role of channel-length modulation and finite output resistance in jointly optimizing NF, including the possibility of NF below 1 + γ.",
+          "score_0_to_4": 4,
+          "is_full_credit": true,
+          "rationale": "It uses the finite-output-resistance input-match relation and correctly recommends increasing both gm and RF to improve NF while preserving Rin = 50 Ω. This captures the required optimization; the omitted explicit NF < 1 + γ bound is not a substantive error.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "ad5e0dd61adb8cf97f78b6dec8746d1170eb0a46791d7c68c4fad4cf2614488e",
+          "golden_solution_sha256": "6801650fd2054e7d374317849fcda2881c563a35f3d14b44d310d3d32f91b1cd",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
       "active_score": {
         "policy": "gpt_6_luna_max",
-        "score_0_to_4": 1,
-        "score_percent": 25,
-        "is_full_credit": false
+        "score_0_to_4": 4,
+        "score_percent": 100,
+        "is_full_credit": true
       },
       "tokens": {
         "cached_input_tokens": 0,
@@ -8945,9 +8940,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 0,
           "is_full_credit": false,
-          "rationale": "The answer misidentifies the lower transistor as PMOS; both devices are NMOS, so it analyzes the wrong topology.",
+          "rationale": "The answer misidentifies M2 as PMOS; both devices are NMOS. The golden solution makes correct identification of both transistor types non-negotiable.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "0baa9e972308e40ff5420b6292af6021c743103764b4a72c7c5cd188682011a6",
+          "golden_solution_sha256": "b598ce9b14c47387d9b8d874c626add0f845d3b4bc6f5ad44a431e7ddf11ad3d",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -9918,9 +9913,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies the positive-feedback path and the role of M2, whose gate is tied to Vout. The derived input conductance, approximately 1/ro2 − gm1gm2(RD1 || ro1), matches the golden mechanism and correctly predicts a large or negative input resistance at high loop gain; the extra transimpedance analysis is consistent.",
+          "rationale": "Correctly treats M2 as controlled by Vout rather than diode-connected, traces the positive-feedback loop, and derives the loop-gain-modified input resistance, including its negative value for loop gain above one. This satisfies the full-credit rule.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "8725dfc04d82712368d6e8dfe8641cd376fdfa70aa0623e55d004d2a3b5fd988",
+          "golden_solution_sha256": "eb7fb3f782c2e056a842871b4f7eb3df5f5f60917db8824dcac697c3eedb6c1a",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -10441,18 +10436,18 @@
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         },
         "gpt_6_luna_max": {
-          "score_0_to_4": 0,
+          "score_0_to_4": 1,
           "is_full_credit": false,
-          "rationale": "The answer analyzes a static metastable operating point and derives a gm-based resistance, rather than the oscillating supply resistance. It misses the load-capacitance charging and discharging mechanism and the required dependence on 1/(3 f0 CL).",
+          "rationale": "It derives a static gm-based resistance and ignores the oscillation-driven charging and discharging of the load capacitances, which sets the resistance being asked for.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "a8256db6948e5bfed369844d2aabb600455c89fefd4449a1eebbd49b6744aef7",
+          "golden_solution_sha256": "2cc2a0caae58e2eaf669e33c8ca2745fffb560f244af06138e3d1d9406af42ae",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
       "active_score": {
         "policy": "gpt_6_luna_max",
-        "score_0_to_4": 0,
-        "score_percent": 0,
+        "score_0_to_4": 1,
+        "score_percent": 25,
         "is_full_credit": false
       },
       "tokens": {
@@ -11266,19 +11261,19 @@
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         },
         "gpt_6_luna_max": {
-          "score_0_to_4": 1,
-          "is_full_credit": false,
-          "rationale": "It recognizes the shunt-feedback input-match tradeoff, but recommends maximizing RF and transconductance—the naive direction the golden solution rejects. It misses the key role of finite output resistance/channel-length modulation in jointly optimizing NF while preserving the 50-ohm match.",
+          "score_0_to_4": 4,
+          "is_full_credit": true,
+          "rationale": "It uses the finite-output-resistance input-match relation and correctly recommends increasing RF and gm together to maintain 50 Ω, reducing NF as gm rises. This captures the essential optimization, with practical power limits.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "ad5e0dd61adb8cf97f78b6dec8746d1170eb0a46791d7c68c4fad4cf2614488e",
+          "golden_solution_sha256": "6801650fd2054e7d374317849fcda2881c563a35f3d14b44d310d3d32f91b1cd",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
       "active_score": {
         "policy": "gpt_6_luna_max",
-        "score_0_to_4": 1,
-        "score_percent": 25,
-        "is_full_credit": false
+        "score_0_to_4": 4,
+        "score_percent": 100,
+        "is_full_credit": true
       },
       "tokens": {
         "cached_input_tokens": 0,
