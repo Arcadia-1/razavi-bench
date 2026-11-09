@@ -1,40 +1,14 @@
 # Golden Solution - part2-011-structure-provide-quadrature-outputs
 
-The structure can provide nominal quadrature outputs in an ideal logic-timing
-sense, but it does not guarantee accurate 90-degree quadrature in the actual
-CMOS circuit.
+Nominally yes, but not accurately.
 
-Ideally, the two clocked latches behave like a divide-by-two. One latch output
-updates on one clock phase and the other updates on the opposite clock phase.
-Since the output period is twice the input clock period, a half-input-clock
-delay corresponds to 90 degrees at the divided output frequency. In this
-limited sense, nodes such as `X` and `Z` can be viewed as nominal quadrature
-outputs.
+Figure 10 is a C2MOS divide-by-two. The left latch takes `Z` as its data input and produces `X`; the right latch takes `X` and, clocked on the opposite phase, produces `Y`; `Inv3` inverts `Y` to give `Z`, which closes the loop. Each node toggles at half the clock frequency, and the two latches change state on opposite clock edges, half an input clock period apart, which is 90 degrees at the output frequency. Ideally, therefore, `X` and `Y` are in quadrature, and `Z`, the inverse of `Y`, is also nominally in quadrature with `X`.
 
-The practical problem is that `Z` is not a direct latch output. It is obtained
-from `Y` through `Inv3`, so the path `Y -> Inv3 -> Z` adds extra inverter delay.
-Thus `Z` is skewed relative to the ideal latch timing.
+Razavi scores 2 Gemini's answer "Yes, it does. The output at Y or Z is in quadrature with respect to that at X", and names two departures from exact quadrature:
 
-The two latch outputs also do not see the same capacitance. The left latch
-output `X` mainly drives the next latch input, while the right latch output `Y`
-also drives `Inv3`. The input capacitance of `Inv3` is not just ordinary gate
-capacitance: its gate-drain capacitance can be Miller-multiplied. This makes
-the `Y`/`Z` path load heavier and different from the `X` path.
+- the delay through `Inv3` causes a skew in `Z`;
+- it is difficult to ensure equal load capacitances seen by the two latches. `X` drives the data transistors of the second latch, whereas `Y` drives `Inv3`; for example, the gate-drain capacitances within `Inv3` experience Miller multiplication, but those within the second latch do not. Unequal loads give unequal latch delays, so even `X` and `Y` are not exactly 90 degrees apart.
 
-Because latch propagation delay depends on load capacitance, these unequal
-loads and the extra `Inv3` delay introduce quadrature phase error. Therefore a
-careful answer is: the circuit provides approximate or nominal quadrature, but
-not exact or robust 90-degree quadrature unless the paths are carefully matched,
-buffered, or calibrated.
+Full-credit rule: give full credit if the answer says the circuit provides nominal or approximate quadrature (a divide-by-two whose two latches switch half an input period apart) and explains why it is not exact, giving both the `Inv3` delay that skews `Z` and the unequal loading of the two latches. Miller multiplication within `Inv3` is Razavi's example of the unequal loading, not a separate requirement; any correct account of the load mismatch between the two latch outputs is sufficient. Naming `X` and `Y`, or `X` and `Z`, as the nominal quadrature pair is acceptable. A headline "yes" followed by these caveats is acceptable.
 
-A complete answer should say the structure is
-nominally a quadrature divide-by-two but not an accurate/robust quadrature
-generator, and identifies the two main nonidealities: the extra `Inv3` delay
-from `Y` to `Z`, and unequal latch loading, especially the Miller-multiplied
-capacitance of `Inv3`.
-
-An answer that only explains the ideal half-clock-period spacing and says the
-circuit provides quadrature outputs is incomplete because it misses the analog
-delay and loading asymmetries. An answer that says simply "no quadrature"
-without recognizing the nominal divide-by-two quadrature mechanism is also
-incomplete.
+An answer that gives the nominal quadrature and only one of the two departures earns 3. An answer that says "yes" with only the ideal half-period argument earns 2 (Razavi's score for Gemini). An answer that says "no" because of a real asymmetry, without recognizing the nominal divide-by-two quadrature, earns 2; one that says "no" for a wrong reason earns at most 1.

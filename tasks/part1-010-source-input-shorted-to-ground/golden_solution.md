@@ -9,3 +9,7 @@ At midband, with an ideal short to ground,
 `vout/vin ~= 0`.
 
 The circuit is not a valid common-gate amplifier as drawn; the source-ground short must be noticed before assigning a gain expression. Only nonideal source impedance or parasitics in the short would allow a residual signal to appear at the source.
+
+Razavi scores 1 ChatGPT's answer "This is a common-gate amplifier. The input is applied at the source (through C1). Av ~= gm RD", commenting that it identifies the topology correctly but is oblivious to the short between the source and ground.
+
+Full-credit rule: give full credit if the answer notices that the source is shorted to ground and concludes that the input is shorted, so the circuit provides no (ideally zero) voltage gain from `Vin`. An answer that recognizes the common-gate configuration with the input at the source but misses the short, and so gives a common-gate gain such as `gm RD`, earns 1 (Razavi's score). An answer that misses the short and also misreads the topology, for example by placing the input at the gate, earns 0. An answer that notices the short but still assigns a common-gate gain as if it were absent earns at most 2.

@@ -15,18 +15,18 @@
       "overall": {
         "active": {
           "response_count": 150,
-          "correct_count": 122,
-          "incorrect_count": 28,
-          "partial_credit_count": 25,
-          "zero_count": 3,
-          "mean_score_0_to_4": 3.6866666666666665,
-          "score_percent": 92.16666666666666,
+          "correct_count": 125,
+          "incorrect_count": 25,
+          "partial_credit_count": 21,
+          "zero_count": 4,
+          "mean_score_0_to_4": 3.7133333333333334,
+          "score_percent": 92.83333333333333,
           "score_distribution": {
-            "0": 3,
-            "1": 2,
-            "2": 6,
-            "3": 17,
-            "4": 122
+            "0": 4,
+            "1": 1,
+            "2": 4,
+            "3": 16,
+            "4": 125
           }
         },
         "minimax_m3": {
@@ -63,18 +63,18 @@
         },
         "gpt_6_luna_max": {
           "response_count": 150,
-          "correct_count": 122,
-          "incorrect_count": 28,
-          "partial_credit_count": 25,
-          "zero_count": 3,
-          "mean_score_0_to_4": 3.6866666666666665,
-          "score_percent": 92.16666666666666,
+          "correct_count": 125,
+          "incorrect_count": 25,
+          "partial_credit_count": 21,
+          "zero_count": 4,
+          "mean_score_0_to_4": 3.7133333333333334,
+          "score_percent": 92.83333333333333,
           "score_distribution": {
-            "0": 3,
-            "1": 2,
-            "2": 6,
-            "3": 17,
-            "4": 122
+            "0": 4,
+            "1": 1,
+            "2": 4,
+            "3": 16,
+            "4": 125
           }
         }
       },
@@ -83,13 +83,12 @@
           "response_count": 90,
           "correct_count": 79,
           "incorrect_count": 11,
-          "partial_credit_count": 8,
-          "zero_count": 3,
-          "mean_score_0_to_4": 3.7555555555555555,
-          "score_percent": 93.88888888888889,
+          "partial_credit_count": 7,
+          "zero_count": 4,
+          "mean_score_0_to_4": 3.7444444444444445,
+          "score_percent": 93.61111111111111,
           "score_distribution": {
-            "0": 3,
-            "1": 1,
+            "0": 4,
             "3": 7,
             "4": 79
           }
@@ -128,13 +127,12 @@
           "response_count": 90,
           "correct_count": 79,
           "incorrect_count": 11,
-          "partial_credit_count": 8,
-          "zero_count": 3,
-          "mean_score_0_to_4": 3.7555555555555555,
-          "score_percent": 93.88888888888889,
+          "partial_credit_count": 7,
+          "zero_count": 4,
+          "mean_score_0_to_4": 3.7444444444444445,
+          "score_percent": 93.61111111111111,
           "score_distribution": {
-            "0": 3,
-            "1": 1,
+            "0": 4,
             "3": 7,
             "4": 79
           }
@@ -143,17 +141,17 @@
       "part2": {
         "active": {
           "response_count": 60,
-          "correct_count": 43,
-          "incorrect_count": 17,
-          "partial_credit_count": 17,
+          "correct_count": 46,
+          "incorrect_count": 14,
+          "partial_credit_count": 14,
           "zero_count": 0,
-          "mean_score_0_to_4": 3.5833333333333335,
-          "score_percent": 89.58333333333334,
+          "mean_score_0_to_4": 3.6666666666666665,
+          "score_percent": 91.66666666666666,
           "score_distribution": {
             "1": 1,
-            "2": 6,
-            "3": 10,
-            "4": 43
+            "2": 4,
+            "3": 9,
+            "4": 46
           }
         },
         "minimax_m3": {
@@ -188,17 +186,17 @@
         },
         "gpt_6_luna_max": {
           "response_count": 60,
-          "correct_count": 43,
-          "incorrect_count": 17,
-          "partial_credit_count": 17,
+          "correct_count": 46,
+          "incorrect_count": 14,
+          "partial_credit_count": 14,
           "zero_count": 0,
-          "mean_score_0_to_4": 3.5833333333333335,
-          "score_percent": 89.58333333333334,
+          "mean_score_0_to_4": 3.6666666666666665,
+          "score_percent": 91.66666666666666,
           "score_distribution": {
             "1": 1,
-            "2": 6,
-            "3": 10,
-            "4": 43
+            "2": 4,
+            "3": 9,
+            "4": 46
           }
         }
       }
@@ -206,17 +204,17 @@
     "by_rollout": {
       "1": {
         "response_count": 50,
-        "correct_count": 41,
-        "incorrect_count": 9,
-        "partial_credit_count": 8,
+        "correct_count": 42,
+        "incorrect_count": 8,
+        "partial_credit_count": 7,
         "zero_count": 1,
-        "mean_score_0_to_4": 3.72,
-        "score_percent": 93.0,
+        "mean_score_0_to_4": 3.74,
+        "score_percent": 93.5,
         "score_distribution": {
           "0": 1,
           "2": 2,
-          "3": 6,
-          "4": 41
+          "3": 5,
+          "4": 42
         }
       },
       "2": {
@@ -225,29 +223,29 @@
         "incorrect_count": 9,
         "partial_credit_count": 8,
         "zero_count": 1,
-        "mean_score_0_to_4": 3.7,
-        "score_percent": 92.5,
+        "mean_score_0_to_4": 3.74,
+        "score_percent": 93.5,
         "score_distribution": {
           "0": 1,
-          "2": 3,
-          "3": 5,
+          "2": 1,
+          "3": 7,
           "4": 41
         }
       },
       "3": {
         "response_count": 50,
-        "correct_count": 40,
-        "incorrect_count": 10,
-        "partial_credit_count": 9,
-        "zero_count": 1,
-        "mean_score_0_to_4": 3.64,
-        "score_percent": 91.0,
+        "correct_count": 42,
+        "incorrect_count": 8,
+        "partial_credit_count": 6,
+        "zero_count": 2,
+        "mean_score_0_to_4": 3.66,
+        "score_percent": 91.5,
         "score_distribution": {
-          "0": 1,
-          "1": 2,
+          "0": 2,
+          "1": 1,
           "2": 1,
-          "3": 6,
-          "4": 40
+          "3": 4,
+          "4": 42
         }
       }
     },
@@ -305,13 +303,12 @@
           "response_count": 30,
           "correct_count": 25,
           "incorrect_count": 5,
-          "partial_credit_count": 4,
-          "zero_count": 1,
-          "mean_score_0_to_4": 3.6666666666666665,
-          "score_percent": 91.66666666666666,
+          "partial_credit_count": 3,
+          "zero_count": 2,
+          "mean_score_0_to_4": 3.6333333333333333,
+          "score_percent": 90.83333333333333,
           "score_distribution": {
-            "0": 1,
-            "1": 1,
+            "0": 2,
             "3": 3,
             "4": 25
           }
@@ -320,16 +317,16 @@
       "part2": {
         "1": {
           "response_count": 20,
-          "correct_count": 15,
-          "incorrect_count": 5,
-          "partial_credit_count": 5,
+          "correct_count": 16,
+          "incorrect_count": 4,
+          "partial_credit_count": 4,
           "zero_count": 0,
-          "mean_score_0_to_4": 3.65,
-          "score_percent": 91.25,
+          "mean_score_0_to_4": 3.7,
+          "score_percent": 92.5,
           "score_distribution": {
             "2": 2,
-            "3": 3,
-            "4": 15
+            "3": 2,
+            "4": 16
           }
         },
         "2": {
@@ -338,27 +335,27 @@
           "incorrect_count": 7,
           "partial_credit_count": 7,
           "zero_count": 0,
-          "mean_score_0_to_4": 3.5,
-          "score_percent": 87.5,
+          "mean_score_0_to_4": 3.6,
+          "score_percent": 90.0,
           "score_distribution": {
-            "2": 3,
-            "3": 4,
+            "2": 1,
+            "3": 6,
             "4": 13
           }
         },
         "3": {
           "response_count": 20,
-          "correct_count": 15,
-          "incorrect_count": 5,
-          "partial_credit_count": 5,
+          "correct_count": 17,
+          "incorrect_count": 3,
+          "partial_credit_count": 3,
           "zero_count": 0,
-          "mean_score_0_to_4": 3.6,
-          "score_percent": 90.0,
+          "mean_score_0_to_4": 3.7,
+          "score_percent": 92.5,
           "score_distribution": {
             "1": 1,
             "2": 1,
-            "3": 3,
-            "4": 15
+            "3": 1,
+            "4": 17
           }
         }
       }
@@ -773,9 +770,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies the diode connection and explains that current depends on terminal voltage, giving a low incremental resistance rather than current-source behavior. The additional biasing discussion is consistent with the main conclusion.",
+          "rationale": "Correctly identifies M1 as a PMOS with its source at VX and gate and drain grounded, and explains that the diode connection presents low impedance (about 1/gm), so it cannot act as a current source.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "c68ae81f6db628588daf721db5f50dcda0e30ccf15d07f2aa122c69f77cb6630",
+          "golden_solution_sha256": "20b0fcb71c5ac038622c26f3ac86aaf2af15f4064029312681192c8362271780",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -1073,9 +1070,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies that the source is hard-shorted to ground, so the input cannot modulate the transistor and the small-signal gain is essentially zero. The extra redesign discussion is not needed to analyze the circuit as drawn.",
+          "rationale": "Correctly identifies that the source is hard-shorted to ground, so the input cannot modulate the transistor and the ideal voltage gain is zero. The extra discussion does not undermine this central conclusion.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "04635aa20d7351531d21b095cfc597fe08d90d4585bdd3d49797d9b3b532985c",
+          "golden_solution_sha256": "4fa501e147a166a71d6aa33565bbe693318d65c0c8c788e7a5087eb13c71d3ea",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -1373,9 +1370,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies the CMOS inverter and its PMOS pull-up/NMOS pull-down operation. It also gives the key analog result near the switching point: high inverting gain from the summed transconductances driving the parallel output resistances. The additional detail does not undermine the essential answer.",
+          "rationale": "Correctly identifies the standard CMOS inverter, with an NMOS pull-down and PMOS pull-up. The additional operating-point and transfer-characteristic analysis does not contradict the inverter’s operation.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "a9ae7f63b346f063f2ee33ca906550735b7e5f7591cb423ba15d9143443fb105",
+          "golden_solution_sha256": "840046eac3d7c03b675f1189f0c155481e30a0dabe801adc9eba216a9a4a04f4",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -1523,9 +1520,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies the inverting common-source NMOS stage and diode-connected PMOS load, and gives the appropriate small-signal resistance and gain. The square-law gain and swing discussion is idealized, but its assumptions are stated and it does not undermine the central analysis.",
+          "rationale": "Correctly identifies the common-source NMOS with a diode-connected PMOS load and gives the inverting gain with channel-length modulation treated consistently. This meets the golden solution’s full-credit rule; the ancillary swing comments do not change the essential answer.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "e3ef57b7b3aef516cf52881678cf446dd9598cd15aa847d199c20164df558910",
+          "golden_solution_sha256": "890a218dd592ccc44d29c47d073a2630294c84b195016d665cdb5f09108c1fc5",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -1748,9 +1745,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly applies M2’s saturation condition and shows how the intermediate node X depends on Vb1 and M1’s gate-source voltage. The resulting design conclusion—set Vb1 low enough to keep X within M2’s saturation limit—matches the essential answer.",
+          "rationale": "Correctly identifies both PMOS device roles, states M2’s saturation condition, relates VX to Vb1 through M1’s gate-source voltage, and derives the equivalent bias constraint. The additional headroom discussion is consistent.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "614ee4da3a76f2d6c9fb94392e48645e2bc4ebd102e3f23f67586897464a8c33",
+          "golden_solution_sha256": "519fe1851b4fd9a0e83d2b184c82583260701cb7382ec5e7c6bdd728b4cc9a0f",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -2121,9 +2118,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies two independent dynamic nodes and accounts for the input/output effects of the bridging Cgd through Miller approximation. The M2 bias-side capacitances load the output or remain between AC-grounded nodes, rather than creating another pole.",
+          "rationale": "Correctly identifies the two independent nodes—the M1 gate and output—and assigns the relevant capacitances and AC-grounded M2 connections appropriately. The Miller-based pole estimates are consistent with the two-pole conclusion.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "72fa059e1c3503faf2e652be9d4502478a02de83b67344ae9de4f5d3d140d5e9",
+          "golden_solution_sha256": "a186c7d78b22ed309b07c9b6c97e61997ddf23f0ee23de6faa3536cb2c682d8c",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -2571,9 +2568,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies M1 as the common-gate NMOS and M2 as the PMOS feedback device, describes the feedback path to the input node, and gives the very low input resistance and approximately 1/gm2 transimpedance and output resistance required for full credit.",
+          "rationale": "Correctly identifies M1 as the common-gate NMOS and M2 as the PMOS feedback device, traces the loop back to the input node, and gives the very low input resistance and transimpedance/output resistance of approximately 1/gm2. This meets the golden solution’s full-credit rule.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "cd3edbbe2ab031457f86ce6ee3756894b18f8c1322b31b8a5d7d6fb5b0861a1f",
+          "golden_solution_sha256": "81b07f946459ec3d1a0c51926785b2333e0320bb99c892d5929e040324abeaf8",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -2646,9 +2643,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly concludes that equal loading on all three nodes preserves oscillation while increasing delay and lowering frequency. The single-pole/Barkhausen analysis is secondary, but it supports the conclusion and does not displace the key symmetry argument.",
+          "rationale": "Correctly concludes that all three capacitors lower the oscillation frequency without changing the ideal oscillation condition. The small-signal phase/gain analysis and the delay argument both support the conclusion.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "f42723fb29bde1b8ba4d13ccd5c946fe11579ec697358806b8abdbffbb002d52",
+          "golden_solution_sha256": "382bd8dbcc1993e2438bdfd3faf5268719f050e1964cb818b2278171cb2c25bf",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -2871,9 +2868,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly concludes that doubling device widths improves phase noise by about 3 dB, with a coherent scaling argument for capacitance, drive, and device noise. The additional frequency and power discussion is consistent with the stated assumptions.",
+          "rationale": "Correctly gives a 3 dB phase-noise reduction and explains it with the right scaling: device noise current power doubles while node charge doubles, so its squared signal scale grows fourfold. The frequency and power trends are also consistent with the stated assumptions.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "148226fdb3b2614fcbf8c0c0b54dd1120a83013da885fa1b07899d8948742530",
+          "golden_solution_sha256": "f9299196b0b81aa8f665614cd6e16eba9d8392f73cfe6422876d92d225ddc94e",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -3321,9 +3318,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly captures the key tradeoff: wider clocked devices can initially improve speed by reducing their on-resistance, while added capacitance eventually limits or reverses the benefit. The extra sizing and clock-loading discussion is secondary.",
+          "rationale": "Correctly states that widening the clocked transistors initially improves speed by reducing their on-resistance, while added latch-node capacitance eventually limits or reverses the benefit, producing an optimum width.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "c667a566dcf3e43d67027f09b56764e524cb7556e3a7b55693858fec2cf38867",
+          "golden_solution_sha256": "93d9b522d441668a699cc09168ad1991cf00bb982a5ad716cae0b7c7bec7c4fd",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -3394,19 +3391,19 @@
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         },
         "gpt_6_luna_max": {
-          "score_0_to_4": 3,
-          "is_full_credit": false,
-          "rationale": "Correctly identifies nominal divide-by-two quadrature and notes the extra Inv3 delay and unequal latch loading. It does not explain the key Miller-multiplied capacitance contribution to the load mismatch, and somewhat overstates the outputs as a working quadrature generator rather than emphasizing that accurate, robust 90° quadrature is not guaranteed.",
+          "score_0_to_4": 4,
+          "is_full_credit": true,
+          "rationale": "Correctly identifies nominal divide-by-two quadrature and explains both departures from exact quadrature: Inv3 delay and unequal loading of the latch outputs. The additional caveats do not undermine the essential answer.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "6da6b223d9f98ad0bc088099f8187b5c9939545ab681adce94ab58baed13609c",
+          "golden_solution_sha256": "a208e36107d3c6d3d835e897ccf309733e82f6921b41cd2eef1a21949e70e6f6",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
       "active_score": {
         "policy": "gpt_6_luna_max",
-        "score_0_to_4": 3,
-        "score_percent": 75,
-        "is_full_credit": false
+        "score_0_to_4": 4,
+        "score_percent": 100,
+        "is_full_credit": true
       },
       "tokens": {
         "cached_input_tokens": 0,
@@ -3621,9 +3618,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 2,
           "is_full_credit": false,
-          "rationale": "It correctly identifies a feedforward path and its high-speed benefit, but wrongly claims the circuit becomes a ring oscillator with narrow-band injection locking. It also misses the key low-frequency effect: the unclocked branch can overwhelm the latch path, raising the minimum usable clock frequency.",
+          "rationale": "It correctly identifies the feedforward bypass, its speed benefit, and the ring-like path while CK̄ is on. But it incorrectly says the loop is never broken and misses the key low-frequency consequence: the unclocked branch can overpower the main path, raising the minimum usable clock frequency. Its narrow injection-locking claim does not capture that tradeoff.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "f7110b2e3e5b0224dbcf3c5f7eb5f3af139df8269315a7a06505d3ce8317da99",
+          "golden_solution_sha256": "09f12aa6905fa83982420dcd1602844314d44b4575734bb31f92f5ccf31131d2",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -3696,9 +3693,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 3,
           "is_full_credit": false,
-          "rationale": "Correctly rejects the keeper interpretation and identifies the red inverter as a feedforward bypass. However, the answer is cut off before explaining the key tradeoff: the path can help at high speed but can dominate the latch at low clock rates and raise the minimum usable frequency.",
+          "rationale": "Correctly rejects the keeper interpretation and identifies the red inverter as a feedforward bypass of the CK switch and Inv1. However, it does not explain the key tradeoff: the unclocked branch can help at high speed but overpower the intended latch behavior at low clock rates, raising the minimum usable frequency.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "3342af1d7821cdbdafe8b1d6c81d9fe4cc40a2399b047aa5e4f58092f9e74c6d",
+          "golden_solution_sha256": "172cbb780508db2c8965d08eedaac49be4edfaf50993cf59fb05d5d161e1fa3c",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -4515,9 +4512,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies the diode-connected device and explains that its current varies strongly with terminal voltage, giving a low small-signal resistance of approximately 1/gm rather than current-source behavior. The additional biasing discussion is consistent with the essential answer.",
+          "rationale": "Correctly identifies M1 as a diode-connected PMOS with its source at the top and gate/drain grounded. It explains that the current depends on VX and the device presents a low small-signal resistance of about 1/gm, so it cannot act as a current source.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "c68ae81f6db628588daf721db5f50dcda0e30ccf15d07f2aa122c69f77cb6630",
+          "golden_solution_sha256": "20b0fcb71c5ac038622c26f3ac86aaf2af15f4064029312681192c8362271780",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -4815,9 +4812,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies the hard short at the source, giving zero small-signal source voltage and essentially zero gain. The additional discussion does not change this central conclusion.",
+          "rationale": "Correctly identifies that the input node is hard-shorted to ground, so the source signal is zero and the ideal voltage gain is zero. This satisfies the golden solution’s full-credit rule; the additional discussion does not undermine that conclusion.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "04635aa20d7351531d21b095cfc597fe08d90d4585bdd3d49797d9b3b532985c",
+          "golden_solution_sha256": "4fa501e147a166a71d6aa33565bbe693318d65c0c8c788e7a5087eb13c71d3ea",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -5115,9 +5112,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies the CMOS inverter and its pull-up/pull-down devices, and gives the correct high-gain small-signal result near the switching point: −(gmn+gmp)(ro1∥ro2). The additional analysis does not undermine the essential answer.",
+          "rationale": "Correctly identifies the PMOS pull-up and NMOS pull-down as a CMOS inverter and describes its operation consistently. The additional VTC, gain, and power analysis does not contradict the essential answer.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "a9ae7f63b346f063f2ee33ca906550735b7e5f7591cb423ba15d9143443fb105",
+          "golden_solution_sha256": "840046eac3d7c03b675f1189f0c155481e30a0dabe801adc9eba216a9a4a04f4",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -5265,9 +5262,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies the common-source NMOS with a diode-connected PMOS load and gives the appropriate first-order load resistance and gain. The additional transfer-curve and swing discussion is consistent with the stated square-law assumptions.",
+          "rationale": "Correctly identifies the common-source NMOS stage with a diode-connected PMOS load and gives the inverting gain as −gm1(1/gm2 ‖ ro1 ‖ ro2), equivalently −gm1/gm2 when channel-length modulation is neglected. The additional analysis is consistent with the ideal square-law model; its large-signal caveats are nonessential.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "e3ef57b7b3aef516cf52881678cf446dd9598cd15aa847d199c20164df558910",
+          "golden_solution_sha256": "890a218dd592ccc44d29c47d073a2630294c84b195016d665cdb5f09108c1fc5",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -5490,9 +5487,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly derives M2’s saturation limit and shows how the internal node X depends on Vb1 and M1’s current, leading to the right biasing direction: lower Vb1 to preserve M2’s saturation margin. The PMOS equations are consistent with the golden condition under the stated sign/reference convention.",
+          "rationale": "Correctly identifies both PMOS devices, derives M2’s saturation condition, and relates VX to Vb1 to obtain the required bias inequality. Minor notation or practical-comment imprecision does not affect the essential answer.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "614ee4da3a76f2d6c9fb94392e48645e2bc4ebd102e3f23f67586897464a8c33",
+          "golden_solution_sha256": "519fe1851b4fd9a0e83d2b184c82583260701cb7382ec5e7c6bdd728b4cc9a0f",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -5863,9 +5860,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies the two independent dynamic nodes and accounts for the input- and output-side effects of the inter-node C_GD. The stated output loading and pole estimates are consistent with the circuit assumptions.",
+          "rationale": "Correctly identifies two independent capacitive nodes—the M1 gate and output—and assigns the relevant capacitances to each. The added Miller and zero details do not alter the correct pole count.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "72fa059e1c3503faf2e652be9d4502478a02de83b67344ae9de4f5d3d140d5e9",
+          "golden_solution_sha256": "a186c7d78b22ed309b07c9b6c97e61997ddf23f0ee23de6faa3536cb2c682d8c",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -6313,9 +6310,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies M₁ as the common-gate NMOS, M₂ as the PMOS feedback device driven by Vout, and the feedback path to the input. It also gives the very low input resistance and transimpedance of approximately 1/gm2, satisfying the full-credit rule.",
+          "rationale": "Correctly identifies M1 as the common-gate NMOS, M2 as the PMOS feedback device driven by Vout, and the feedback path to the input node. It also gives the very low input resistance and the transimpedance/output-resistance scale of 1/gm2, satisfying the golden solution’s full-credit rule.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "cd3edbbe2ab031457f86ce6ee3756894b18f8c1322b31b8a5d7d6fb5b0861a1f",
+          "golden_solution_sha256": "81b07f946459ec3d1a0c51926785b2333e0320bb99c892d5929e040324abeaf8",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -6388,9 +6385,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly concludes that equal loading at all three nodes preserves oscillation while increasing stage delay and lowering frequency. The idealized one-pole/Barkhausen analysis is secondary but supports the correct physical conclusion.",
+          "rationale": "Correctly concludes that equal capacitive loading at all three nodes lowers the oscillation frequency without preventing oscillation, and supports this with a valid small-signal phase and gain analysis whose condition is independent of capacitance.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "f42723fb29bde1b8ba4d13ccd5c946fe11579ec697358806b8abdbffbb002d52",
+          "golden_solution_sha256": "382bd8dbcc1993e2438bdfd3faf5268719f050e1964cb818b2278171cb2c25bf",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -6613,9 +6610,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly concludes that doubling all device widths improves phase noise by about 3 dB, with a consistent scaling argument: capacitance and drive/noise current scale up while the signal charge scales up, yielding a factor-of-two phase-noise reduction. The frequency and power observations are compatible with the ideal scaling assumptions.",
+          "rationale": "Correctly gives about a 3 dB phase-noise reduction and supports it with the right scaling: node capacitance and drive current double, while device white-noise current power doubles and signal charge squared quadruples. It also correctly notes roughly unchanged frequency and doubled power.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "148226fdb3b2614fcbf8c0c0b54dd1120a83013da885fa1b07899d8948742530",
+          "golden_solution_sha256": "f9299196b0b81aa8f665614cd6e16eba9d8392f73cfe6422876d92d225ddc94e",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -7063,9 +7060,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "It captures the key tradeoff: wider clocked devices reduce on-resistance and can initially improve speed, while their added capacitance eventually limits or reverses the benefit. The optimum-sizing model and clock-loading discussion are reasonable supplemental details.",
+          "rationale": "Correctly says widening initially improves speed by reducing the clocked devices’ on-resistance, while added drain capacitance eventually limits or reverses the benefit. The extra clock-loading discussion does not undermine the essential reasoning.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "c667a566dcf3e43d67027f09b56764e524cb7556e3a7b55693858fec2cf38867",
+          "golden_solution_sha256": "93d9b522d441668a699cc09168ad1991cf00bb982a5ad716cae0b7c7bec7c4fd",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -7138,9 +7135,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 3,
           "is_full_credit": false,
-          "rationale": "Correctly identifies nominal divide-by-two quadrature and recognizes that unequal loading and delays reduce accuracy. However, it overstates the ideal X–Z relationship and does not clearly identify the existing Y→Inv₃→Z delay as a source of phase error; it also omits the Miller-multiplied loading detail.",
+          "rationale": "Correctly identifies nominal divide-by-two quadrature and explains the latch-load mismatch, but does not clearly explain that Inv₃’s propagation delay specifically skews Z.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "6da6b223d9f98ad0bc088099f8187b5c9939545ab681adce94ab58baed13609c",
+          "golden_solution_sha256": "a208e36107d3c6d3d835e897ccf309733e82f6921b41cd2eef1a21949e70e6f6",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -7361,18 +7358,18 @@
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         },
         "gpt_6_luna_max": {
-          "score_0_to_4": 2,
+          "score_0_to_4": 3,
           "is_full_credit": false,
-          "rationale": "It recognizes a bypass and gives the correct broad trends—better high-speed operation but a higher minimum usable clock. However, it mischaracterizes the circuit as a self-oscillating ring with injection locking and misses the actual low-frequency mechanism: the unclocked feedforward branch can overwhelm the first latch.",
+          "rationale": "It correctly identifies the feedforward bypass, the speed benefit, and the unclocked loop’s low-frequency self-oscillation and corruption. However, it misleadingly suggests the red inverter cures the floating-node leakage problem, contrary to the stated distinction that it is not a keeper; the lock-range, swing, and power claims are also unsupported.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "f7110b2e3e5b0224dbcf3c5f7eb5f3af139df8269315a7a06505d3ce8317da99",
+          "golden_solution_sha256": "09f12aa6905fa83982420dcd1602844314d44b4575734bb31f92f5ccf31131d2",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
       "active_score": {
         "policy": "gpt_6_luna_max",
-        "score_0_to_4": 2,
-        "score_percent": 50,
+        "score_0_to_4": 3,
+        "score_percent": 75,
         "is_full_credit": false
       },
       "tokens": {
@@ -7436,18 +7433,18 @@
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         },
         "gpt_6_luna_max": {
-          "score_0_to_4": 2,
+          "score_0_to_4": 3,
           "is_full_credit": false,
-          "rationale": "Correctly rejects the keeper interpretation and notices the direct bypass path and possible contention. But it mischaracterizes the branch as redundant or an unstable ring-oscillator path, and misses its intended feedforward speed-up role and the tradeoff that it can overpower the latch at low clock rates and raise the minimum usable frequency.",
+          "rationale": "Correctly rejects the keeper interpretation and identifies the red inverter as an unclocked feedforward path bypassing the CK switch and Inv1; it also explains the low-frequency contention and odd-inversion loop. It does not clearly state the branch’s intended high-speed pre-drive benefit, so it misses part of the required tradeoff.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "3342af1d7821cdbdafe8b1d6c81d9fe4cc40a2399b047aa5e4f58092f9e74c6d",
+          "golden_solution_sha256": "172cbb780508db2c8965d08eedaac49be4edfaf50993cf59fb05d5d161e1fa3c",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
       "active_score": {
         "policy": "gpt_6_luna_max",
-        "score_0_to_4": 2,
-        "score_percent": 50,
+        "score_0_to_4": 3,
+        "score_percent": 75,
         "is_full_credit": false
       },
       "tokens": {
@@ -8255,18 +8252,18 @@
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         },
         "gpt_6_luna_max": {
-          "score_0_to_4": 1,
+          "score_0_to_4": 0,
           "is_full_credit": false,
-          "rationale": "Although it answers “No,” it misidentifies the device as having gate and source grounded and in cutoff. The figure’s diode-connected device has a low small-signal resistance and its current varies with terminal voltage, rather than acting as an open circuit.",
+          "rationale": "It misreads the connections: M1 is a diode-connected PMOS with its source at the IX node, not a grounded-source device in cutoff. The key reason it cannot be a current source is its low small-signal impedance, about 1/gm.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "c68ae81f6db628588daf721db5f50dcda0e30ccf15d07f2aa122c69f77cb6630",
+          "golden_solution_sha256": "20b0fcb71c5ac038622c26f3ac86aaf2af15f4064029312681192c8362271780",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
       "active_score": {
         "policy": "gpt_6_luna_max",
-        "score_0_to_4": 1,
-        "score_percent": 25,
+        "score_0_to_4": 0,
+        "score_percent": 0,
         "is_full_credit": false
       },
       "tokens": {
@@ -8557,9 +8554,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly notices that the source is hard-shorted to ground, so the input produces no small-signal source voltage and the ideal midband gain is zero. The DC-bias discussion is consistent and does not undermine the central result.",
+          "rationale": "The answer notices that M1’s source is directly grounded, so the input is shunted to ground and the ideal small-signal gain is zero, matching the full-credit rule.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "04635aa20d7351531d21b095cfc597fe08d90d4585bdd3d49797d9b3b532985c",
+          "golden_solution_sha256": "4fa501e147a166a71d6aa33565bbe693318d65c0c8c788e7a5087eb13c71d3ea",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -8857,9 +8854,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies the CMOS inverter and its pull-up/pull-down roles, and gives the correct high-gain small-signal behavior near the switching point: transconductances add and output resistances are in parallel. The additional analysis does not undermine the essential answer.",
+          "rationale": "Correctly identifies the CMOS inverter and its NMOS pull-down and PMOS pull-up. The supplemental operating-region, switching-threshold, and small-signal analyses are consistent with inverter operation.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "a9ae7f63b346f063f2ee33ca906550735b7e5f7591cb423ba15d9143443fb105",
+          "golden_solution_sha256": "840046eac3d7c03b675f1189f0c155481e30a0dabe801adc9eba216a9a4a04f4",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -9007,9 +9004,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies the common-source NMOS with diode-connected PMOS load and gives the inverting gain with the diode-connected load resistance, including the usual modest-gain approximation. The additional analysis is largely consistent; peripheral overstatements do not change the essential result.",
+          "rationale": "Correctly identifies the common-source NMOS stage with a diode-connected PMOS load and gives the inverting gain with both output resistances included, as well as the usual −gm1/gm2 approximation. The additional large-signal and design discussion does not undermine the essential analysis.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "e3ef57b7b3aef516cf52881678cf446dd9598cd15aa847d199c20164df558910",
+          "golden_solution_sha256": "890a218dd592ccc44d29c47d073a2630294c84b195016d665cdb5f09108c1fc5",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -9232,9 +9229,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies that M2’s saturation depends on the intermediate node X and derives a Vb1 bound consistent with the golden condition under the PMOS sign convention. The additional current and headroom discussion is also consistent.",
+          "rationale": "Correctly identifies both devices as PMOS, gives M2’s saturation condition, relates X to Vb1, and derives the resulting Vb1 constraint. The additional headroom discussion is consistent.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "614ee4da3a76f2d6c9fb94392e48645e2bc4ebd102e3f23f67586897464a8c33",
+          "golden_solution_sha256": "519fe1851b4fd9a0e83d2b184c82583260701cb7382ec5e7c6bdd728b4cc9a0f",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -9605,9 +9602,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies two independent dynamic nodes and accounts for the input/output effects of the bridging Cgd, along with the output-node capacitances. The conclusion and stated small-signal model agree with the golden solution.",
+          "rationale": "Correctly identifies two independent signal nodes—the M1 gate and output—and assigns the relevant capacitances to them. The additional transfer-function and pole details are consistent with that topology.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "72fa059e1c3503faf2e652be9d4502478a02de83b67344ae9de4f5d3d140d5e9",
+          "golden_solution_sha256": "a186c7d78b22ed309b07c9b6c97e61997ddf23f0ee23de6faa3536cb2c682d8c",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -10055,9 +10052,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies the common-gate NMOS, PMOS feedback device, and feedback path, and gives the key low-input-resistance and approximately 1/gm2 transimpedance/output-resistance results.",
+          "rationale": "Correctly identifies M1 as the common-gate NMOS, M2 as the PMOS feedback device, and the loop back to the input node. It gives the low input resistance and the expected transimpedance/output resistance of approximately 1/gm2, satisfying the full-credit rule.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "cd3edbbe2ab031457f86ce6ee3756894b18f8c1322b31b8a5d7d6fb5b0861a1f",
+          "golden_solution_sha256": "81b07f946459ec3d1a0c51926785b2333e0320bb99c892d5929e040324abeaf8",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -10130,9 +10127,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly states that equal capacitive loading at all three nodes preserves oscillation while lowering its frequency. The idealized phase and gain calculation is consistent with that conclusion, and the caveat about practical limits does not undermine the essential answer.",
+          "rationale": "Correctly concludes that the ring continues oscillating at a lower frequency and supports it with the small-signal phase and gain analysis. The oscillation condition is independent of capacitance; scaling the capacitors lowers the frequency.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "f42723fb29bde1b8ba4d13ccd5c946fe11579ec697358806b8abdbffbb002d52",
+          "golden_solution_sha256": "382bd8dbcc1993e2438bdfd3faf5268719f050e1964cb818b2278171cb2c25bf",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -10355,9 +10352,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly concludes that doubling all device widths reduces phase noise by about 3 dB, and its drive-strength, capacitance, and power-scaling explanation is consistent with the golden solution.",
+          "rationale": "Correctly gives an approximately 3 dB phase-noise reduction and supports it with valid self-loaded capacitance, current, and jitter scaling. The frequency and power conclusions also match the golden solution.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "148226fdb3b2614fcbf8c0c0b54dd1120a83013da885fa1b07899d8948742530",
+          "golden_solution_sha256": "f9299196b0b81aa8f665614cd6e16eba9d8392f73cfe6422876d92d225ddc94e",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -10805,9 +10802,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly captures the key tradeoff: wider clocked devices initially reduce switch resistance and can improve data transfer, while added capacitance limits or can reverse the gain. The simplified RC model and optimum sizing conclusion are consistent with the answer.",
+          "rationale": "Correctly states that widening the clocked transistors initially improves speed by reducing their on-resistance, while added latch-node capacitance eventually limits or reverses the benefit, yielding an optimum width. Extra clock-loading discussion does not undermine the essential answer.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "c667a566dcf3e43d67027f09b56764e524cb7556e3a7b55693858fec2cf38867",
+          "golden_solution_sha256": "93d9b522d441668a699cc09168ad1991cf00bb982a5ad716cae0b7c7bec7c4fd",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -10878,19 +10875,19 @@
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         },
         "gpt_6_luna_max": {
-          "score_0_to_4": 3,
-          "is_full_credit": false,
-          "rationale": "Correctly identifies the nominal divide-by-two quadrature behavior and recognizes the extra Inv3 delay and unequal loading. However, it overstates clock duty cycle as the determining accuracy factor and omits the Miller-multiplied Inv3 input capacitance, a key source of the loading asymmetry.",
+          "score_0_to_4": 4,
+          "is_full_credit": true,
+          "rationale": "Correctly identifies nominal divide-by-two quadrature and explains the two key sources of error: Inv3 delay and unequal loading of the latch outputs. These meet the full-credit rule; the extra duty-cycle discussion does not change the essential answer.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "6da6b223d9f98ad0bc088099f8187b5c9939545ab681adce94ab58baed13609c",
+          "golden_solution_sha256": "a208e36107d3c6d3d835e897ccf309733e82f6921b41cd2eef1a21949e70e6f6",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
       "active_score": {
         "policy": "gpt_6_luna_max",
-        "score_0_to_4": 3,
-        "score_percent": 75,
-        "is_full_credit": false
+        "score_0_to_4": 4,
+        "score_percent": 100,
+        "is_full_credit": true
       },
       "tokens": {
         "cached_input_tokens": 0,
@@ -11105,9 +11102,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 1,
           "is_full_credit": false,
-          "rationale": "It recognizes an unclocked bypass/feedforward path, but reverses both key performance conclusions: the path improves high-speed operation and raises—not removes—the minimum usable clock frequency. Its claims of worse maximum speed and improved low-frequency robustness contradict the golden solution.",
+          "rationale": "It recognizes the feedforward bypass and possible contention, but reverses both central performance effects: the branch improves high-speed operation and raises—not removes—the minimum usable clock frequency.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "f7110b2e3e5b0224dbcf3c5f7eb5f3af139df8269315a7a06505d3ce8317da99",
+          "golden_solution_sha256": "09f12aa6905fa83982420dcd1602844314d44b4575734bb31f92f5ccf31131d2",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -11178,19 +11175,19 @@
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         },
         "gpt_6_luna_max": {
-          "score_0_to_4": 3,
-          "is_full_credit": false,
-          "rationale": "Correctly rejects the keeper interpretation, identifies a feedforward path bypassing part of the latch path, and gives the right qualitative high-speed/low-frequency tradeoff. However, it overstates the behavior as a definite ring oscillator or injection-locked divider, which is not the intended explanation.",
+          "score_0_to_4": 4,
+          "is_full_credit": true,
+          "rationale": "It correctly rejects the keeper interpretation, identifies the feedforward path bypassing the CK switch and Inv1, and captures the unclocked loop’s high-speed benefit versus low-frequency corruption and increased minimum usable frequency. The injection-locking framing is permitted by the golden solution.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "3342af1d7821cdbdafe8b1d6c81d9fe4cc40a2399b047aa5e4f58092f9e74c6d",
+          "golden_solution_sha256": "172cbb780508db2c8965d08eedaac49be4edfaf50993cf59fb05d5d161e1fa3c",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
       "active_score": {
         "policy": "gpt_6_luna_max",
-        "score_0_to_4": 3,
-        "score_percent": 75,
-        "is_full_credit": false
+        "score_0_to_4": 4,
+        "score_percent": 100,
+        "is_full_credit": true
       },
       "tokens": {
         "cached_input_tokens": 0,
