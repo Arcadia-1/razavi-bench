@@ -1,0 +1,7 @@
+# Golden Solution - part1-006-device-act-as-current-source
+
+No. `M1` is a PMOS device: its source is the top terminal, into which `IX` flows, and its gate and drain are both grounded. It is therefore a diode-connected PMOS (gate tied to drain) with `VSG = VSD = VX`. Whenever it conducts it is in saturation, with `IX ~= (1/2) mu_p Cox (W/L) (VX - |VTHP|)^2`, so its current is set by its terminal voltage and its small-signal resistance is only about `1/gm` (in parallel with `ro`).
+
+A current source must keep its current nearly constant as its terminal voltage changes, that is, present a high impedance. The diode-connected device presents a low impedance and behaves as a nonlinear resistor, so it cannot act as a current source.
+
+Full-credit rule: give full credit only if the answer concludes that the device cannot act as a current source because, being diode-connected, it presents a low impedance (about `1/gm`), and identifies `M1` as a PMOS device with its connections read correctly. An answer that reaches the low-impedance conclusion but calls `M1` an NMOS device, or misplaces its terminals, earns at most 2. An answer that reaches the low-impedance conclusion without ever stating the device type earns 3. An answer that says the device, as drawn with `IX` flowing in, can act as a current source earns 0. Noting in addition that for `VX` below ground the device is off with `VGS = 0` and carries a tiny, nearly constant leakage current is correct supplementary content, not such a claim, and must not lower the score.
