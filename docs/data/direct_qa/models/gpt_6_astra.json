@@ -19,11 +19,12 @@
           "incorrect_count": 19,
           "partial_credit_count": 19,
           "zero_count": 0,
-          "mean_score_0_to_4": 3.8066666666666666,
-          "score_percent": 95.16666666666667,
+          "mean_score_0_to_4": 3.8133333333333335,
+          "score_percent": 95.33333333333334,
           "score_distribution": {
-            "2": 10,
-            "3": 9,
+            "1": 1,
+            "2": 7,
+            "3": 11,
             "4": 131
           }
         },
@@ -64,11 +65,12 @@
           "incorrect_count": 19,
           "partial_credit_count": 19,
           "zero_count": 0,
-          "mean_score_0_to_4": 3.8066666666666666,
-          "score_percent": 95.16666666666667,
+          "mean_score_0_to_4": 3.8133333333333335,
+          "score_percent": 95.33333333333334,
           "score_distribution": {
-            "2": 10,
-            "3": 9,
+            "1": 1,
+            "2": 7,
+            "3": 11,
             "4": 131
           }
         }
@@ -133,11 +135,12 @@
           "incorrect_count": 18,
           "partial_credit_count": 18,
           "zero_count": 0,
-          "mean_score_0_to_4": 3.533333333333333,
-          "score_percent": 88.33333333333333,
+          "mean_score_0_to_4": 3.55,
+          "score_percent": 88.75,
           "score_distribution": {
-            "2": 10,
-            "3": 8,
+            "1": 1,
+            "2": 7,
+            "3": 10,
             "4": 42
           }
         },
@@ -178,11 +181,12 @@
           "incorrect_count": 18,
           "partial_credit_count": 18,
           "zero_count": 0,
-          "mean_score_0_to_4": 3.533333333333333,
-          "score_percent": 88.33333333333333,
+          "mean_score_0_to_4": 3.55,
+          "score_percent": 88.75,
           "score_distribution": {
-            "2": 10,
-            "3": 8,
+            "1": 1,
+            "2": 7,
+            "3": 10,
             "4": 42
           }
         }
@@ -195,10 +199,11 @@
         "incorrect_count": 8,
         "partial_credit_count": 8,
         "zero_count": 0,
-        "mean_score_0_to_4": 3.74,
-        "score_percent": 93.5,
+        "mean_score_0_to_4": 3.72,
+        "score_percent": 93.0,
         "score_distribution": {
-          "2": 5,
+          "1": 1,
+          "2": 4,
           "3": 3,
           "4": 42
         }
@@ -209,11 +214,11 @@
         "incorrect_count": 5,
         "partial_credit_count": 5,
         "zero_count": 0,
-        "mean_score_0_to_4": 3.86,
-        "score_percent": 96.5,
+        "mean_score_0_to_4": 3.88,
+        "score_percent": 97.0,
         "score_distribution": {
-          "2": 2,
-          "3": 3,
+          "2": 1,
+          "3": 4,
           "4": 45
         }
       },
@@ -223,11 +228,11 @@
         "incorrect_count": 6,
         "partial_credit_count": 6,
         "zero_count": 0,
-        "mean_score_0_to_4": 3.82,
-        "score_percent": 95.5,
+        "mean_score_0_to_4": 3.84,
+        "score_percent": 96.0,
         "score_distribution": {
-          "2": 3,
-          "3": 3,
+          "2": 2,
+          "3": 4,
           "4": 44
         }
       }
@@ -299,10 +304,11 @@
           "incorrect_count": 7,
           "partial_credit_count": 7,
           "zero_count": 0,
-          "mean_score_0_to_4": 3.4,
-          "score_percent": 85.0,
+          "mean_score_0_to_4": 3.35,
+          "score_percent": 83.75,
           "score_distribution": {
-            "2": 5,
+            "1": 1,
+            "2": 4,
             "3": 2,
             "4": 13
           }
@@ -313,11 +319,11 @@
           "incorrect_count": 5,
           "partial_credit_count": 5,
           "zero_count": 0,
-          "mean_score_0_to_4": 3.65,
-          "score_percent": 91.25,
+          "mean_score_0_to_4": 3.7,
+          "score_percent": 92.5,
           "score_distribution": {
-            "2": 2,
-            "3": 3,
+            "2": 1,
+            "3": 4,
             "4": 15
           }
         },
@@ -327,11 +333,11 @@
           "incorrect_count": 6,
           "partial_credit_count": 6,
           "zero_count": 0,
-          "mean_score_0_to_4": 3.55,
-          "score_percent": 88.75,
+          "mean_score_0_to_4": 3.6,
+          "score_percent": 90.0,
           "score_distribution": {
-            "2": 3,
-            "3": 3,
+            "2": 2,
+            "3": 4,
             "4": 14
           }
         }
@@ -597,9 +603,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies the diode-connected transistor, its off and saturation regions, and the resulting zero-then-quadratic IX-versus-VX characteristic.",
+          "rationale": "Correctly identifies the diode-connected NMOS, states it is off up to threshold and in saturation above threshold, and gives the quadratic current rise.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "bfea619964059498c81e339b724f52ee5be4d15612b8ccbbb4260542c7f763d0",
+          "golden_solution_sha256": "769af5ac610bb7825c7abce92bf56d510d018662cbce83d47eef1dee2597750d",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -822,9 +828,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies the PMOS common-source stage and derives the inverting gain, including the expected reduction from source degeneration. The additional DC and finite-\u001bro\u001f analyses are consistent with the circuit.",
+          "rationale": "Correctly identifies a PMOS common-source stage with source degeneration and gives the inverting gain −gmRD/(1 + gmRS). The additional small-signal refinements are consistent with the stated assumptions.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "85852e6ee7894cfee103d5f0b93ef0cdf6d01252819b54b6f4034e0d9bb55faf",
+          "golden_solution_sha256": "cd8fcec5f92210366117d02bce0f4174b55a012666155b3dfc965be2c669f3a3",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -897,9 +903,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies the NMOS source follower and gives the positive, sub-unity gain and output resistance matching the golden solution. The additional DC and finite-body-effect/output-resistance analysis is consistent with the stated assumptions.",
+          "rationale": "Correctly identifies the NMOS source follower and gives its positive, less-than-unity gain, with appropriate operating-point and output-resistance analysis.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "a0bad1aa69070b1e10d5c9aeaf4dd740c5e6b8aea8736122af99171af62e3bd0",
+          "golden_solution_sha256": "8f23ff232475a4bec79b12629414fe11fc7b9c6e9609b2ebcfc0e4ed2a0839d7",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -1122,9 +1128,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies the two independent dynamic nodes and explains that the gate-drain coupling capacitor does not add a third pole. The grounded source-body capacitance contributes no additional dynamic node.",
+          "rationale": "Correctly identifies two poles and justifies the capacitor count: C_SB is shorted between ground terminals, while C_GD stores no independent voltage beyond the gate and drain node voltages.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "8459e1de5982e5761432bc638072c2482c75ab01d9cafa95ba18681b1dbf1bf8",
+          "golden_solution_sha256": "d6e2d72c604ae3c83e7b25306ecb7ec85736574c7dd1a3f26a206b697a6dabfe",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -1197,9 +1203,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies the source input and divider feedback to the gate, and derives the required closed-loop gain with the divider’s output loading included. The large-loop-gain result is also correct; the additional resistance and bias discussion is consistent and not required.",
+          "rationale": "Correctly identifies the source-driven input, output-divider feedback to the gate, and negative feedback, with the correct closed-loop gain. Optional resistance and bias analysis does not detract from the essential answer.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "3a2542aeb3321cb92810a162b9c722f7e09ae20f60cfeaa989bcbdcd83311ebf",
+          "golden_solution_sha256": "c4eb57e96a0e70ff6aa718bcfd4e80be89f93bd2bf97d638ee206a2ecd64f575",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -1272,9 +1278,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies the NMOS source follower and current-sink load, derives the positive sub-unity gain including body effect and output resistances, and gives consistent output-resistance and saturation conditions.",
+          "rationale": "Correctly identifies M1 as a source follower and M2 as its current-sink load, and gives the positive, sub-unity gain with appropriate body-effect and output-resistance refinements. The additional operating-point and saturation analysis is consistent with the stated assumptions.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "5899641dbd24cb36d6d6d3697396d69386914708f3cd9d7b7d849ea09ccd465c",
+          "golden_solution_sha256": "9c0eaf5035e4eafe98a151f1035fd6512be41f7b78831b9e6cd3dd9618a8eb67",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -1647,9 +1653,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies M1 as the cascode device and gives the standard output-resistance expression and its high-gain approximation. The stated assumptions and optional body-effect adjustment are consistent.",
+          "rationale": "Correctly identifies M1 as the cascode device and gives the correct output-resistance expression and approximation. Explicitly naming the devices as PMOS is not required by the full-credit rule.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "71e489d49cff005682501b8c470034a335ee43cc28d4fbcccdef74e2184d852d",
+          "golden_solution_sha256": "0e58951a444fd5eb5a81c93c3c94eef4ae9b6f921b6512a0c0fecf7f946efcb1",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -1797,9 +1803,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies M1 as the common-source NMOS and M2 as the common-gate NMOS cascode, and derives the allowed ideal-current-source gain expression. Omitting body effect in the derivation is explicitly acceptable.",
+          "rationale": "Correctly identifies M1 as the common-source NMOS and M2 as the common-gate NMOS cascode, and derives the ideal-current-source gain −gm1ro1(1+gm2ro2), equivalent to the accepted high-gain expression. Omitting body effect in the main derivation is allowed.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "61bcf44445629e8680bdc6f3bf3ffb8efce4e2ea67d91fd25c7bc185e4f6f25f",
+          "golden_solution_sha256": "fa3ce3c10c3d0bf6258738fc6e9b064c896064cb851cd7f79a50e2fe2b3c822b",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -1872,9 +1878,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly answers no and identifies M1’s source-follower action, distinguishing it from the common-source device required for a conventional cascode.",
+          "rationale": "Correctly says the circuit is not a cascode and explains that grounded-drain PMOS M1 is a source follower feeding common-gate M2, so the required common-source input stage is absent.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "4e4f5566d59f894b1c9da376d4cca1d5f1a3a87065e2121de8d602e1a096f087",
+          "golden_solution_sha256": "7f9e0f88c009a8a25ec2184287032d702e4ac63736a803d1b8f3b4092778054c",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -2020,9 +2026,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies the common-gate NMOS with PMOS current-source load, the source-driven input and bias voltages, non-inverting gain, low input resistance, and the required gain approximation. The additional small-signal and bias details are consistent with the topology.",
+          "rationale": "Correctly identifies the common-gate NMOS with PMOS current-source load, places the input at M2’s source, and gives the non-inverting gain and low input resistance with valid formulas. Additional bias and headroom analysis is consistent.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "cddb7f65664208f014b1e15b1a2e3a5880bd6c44c80c6a3141ea02d1bf049817",
+          "golden_solution_sha256": "bef1a8379b057bee5021488ff4aa65884dec1cb905b95a6d1d764f0128473407",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -2170,9 +2176,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies the common-gate series NMOS pair and concludes that it behaves approximately like a device with effective length L1+L2 for equal widths. The supporting derivation and stated idealizing assumptions are consistent with the golden solution.",
+          "rationale": "Correctly identifies the common-gate series NMOS stack, shows that the lower device is in triode, and derives the longer effective channel (L1 + L2 for equal widths). The additional operating-region and transfer-characteristic analysis is consistent with its stated assumptions.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "db84fb2d2c7e6e5829294eb909ba25061fc63c90cd78d589a90060b0423ec6de",
+          "golden_solution_sha256": "f4c42a319616e7d942081a3389417d0f1c64822932dcec21eebd003d9f6660ad",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -2245,9 +2251,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies M1 as a source follower driving M2 as a common-gate stage, with the signal passing through the shared source node to the output. The gain and operating-point analysis is consistent with the stated ideal-current-source and device assumptions.",
+          "rationale": "Correctly identifies the source-follower/common-gate topology (and differential-pair view), with the correct noninverting gain and signal-path reasoning.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "3630d9f291a0072fcf56fcab9ca4e1109c2c3d257ca8955c1500d72440877f61",
+          "golden_solution_sha256": "5f76b34ca8287a0570c6f002e2eadb7a24e8054bf59e90b39e7d140a788b3c2c",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -2320,9 +2326,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies the Cgs–Rs transition, derives an impedance with the expected low-frequency 1/gm1 and high-frequency Rs limits, and explains the positive inductive behavior under the appropriate condition gm1Rs > 1.",
+          "rationale": "Correctly derives the output impedance and explains that the gate follows the source through Cgs at higher frequencies, causing Zout to rise from about 1/gm to RS and behave inductively when RS > 1/gm.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "4ab6714ad7ba506cc65604bcb3a907b20d6cc03c465b90d7ef05241f0b637f67",
+          "golden_solution_sha256": "8c59f914b88c1f25c100ef0914c7e54f6c3e86c55b273ac88a1c45724902d303",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -2470,9 +2476,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies the common-gate M1, node X driving the common-source M2, and the negative shunt-shunt feedback through RF. The signal path and high-loop-gain result, ZT ≈ −RF, are correct; the small-signal equations are consistent with the stated idealizations.",
+          "rationale": "Correctly identifies M1 as the common-gate input device, M2 as the common-source stage driven by X, and RF as negative feedback from the output to the input, forming a transimpedance amplifier. The additional small-signal analysis is consistent with the stated assumptions.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "751acf6a0964249cadc3439e7e14fab2e46afdb5e133bcaaecc1e7fcb59ef20a",
+          "golden_solution_sha256": "3de185b163e9067ba58585d0a347eecc50f9da3dc36d0d1a8e05a54adcc11752",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -2695,9 +2701,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly states that doubling the capacitors halves the oscillation frequency and reduces white-noise phase noise by a factor of four (about 6 dB), with a consistent scaling explanation.",
+          "rationale": "Correctly states a roughly 6 dB (fourfold) phase-noise reduction at fixed absolute offset, justifies it via doubled charge and unchanged device-noise currents, and notes the halved oscillation frequency.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "3d816896a3fcd832f419385d2e5957cfee911ba9bdcb3c7abd50564b06771522",
+          "golden_solution_sha256": "c8a3a6ddcab3a54151ffe61cb3e809a6731a66beda02e9f8898ea9c435318b06",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -2995,9 +3001,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly rejects the off-time argument, derives RX ≈ 2TD/CL from the three-stage ring relation, and explains that this remains on the MOS resistance or inverse-transconductance scale. The additional small-signal qualification does not undermine the central answer.",
+          "rationale": "Correctly rejects the off-time argument and derives that RX is on the order of the MOS resistance scale from the ring frequency and stage delay. The additional supply-dependence refinement does not alter the conclusion.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "640c56b49db9f7fe6507e5dfe88d887811aabcd94c2a1b717eb0376c20b7f0fe",
+          "golden_solution_sha256": "c36bba350573544976be5a9449b6012cd45755e50504890981ce547cd8e9ee47",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -3070,9 +3076,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly states that initial gain decreases and explains that wider M7 increases tail current while the input pair’s gm/ID decreases.",
+          "rationale": "Correctly states that the initial gain decreases and explains that a wider M7 raises tail current while the input pair’s gm/ID falls. This matches the essential trend and mechanism.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "722eb375cb9a20faa4d5369081ad62bf8606700f4fe57ca2602e159d51c6bd28",
+          "golden_solution_sha256": "3be19d840ea0028f994c70cfd93497080016f88968540a82c98a00f03980212f",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -3145,9 +3151,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly states that increasing the capacitances leaves the initial gain approximately unchanged while slowing the buildup and increasing comparison delay; the proposed capacitance cancellation is consistent with that result.",
+          "rationale": "Correctly states that the initial gain is approximately unchanged because the longer amplification interval compensates for the larger capacitance; the main effect is increased delay.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "806970fa9d2e87bbb08dc12710001abb7a45f270e2f26e215227f0d22df63132",
+          "golden_solution_sha256": "181f6e0ce2e77c4df0e1602f9ce1b8891080eeecdff293462f41c7d6d66c5590",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -3445,9 +3451,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 3,
           "is_full_credit": false,
-          "rationale": "Correctly concludes that wider clocked devices improve speed by reducing on-resistance and notes practical limits. It omits the golden solution’s charge-sharing or swing-degradation tradeoff.",
+          "rationale": "Correctly says widening the clocked devices improves speed by reducing series resistance while adding little output loading. It omits the charge-sharing swing degradation, so it does not earn full credit.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "74e71884cf01aaf51ce841cdf1f597ebc2a27a3f270cb291683e84f95b4ddb18",
+          "golden_solution_sha256": "318c27e5f5623103c64ba9716043fb25f88281b2efa86f52761064364631036f",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -3970,9 +3976,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 2,
           "is_full_credit": false,
-          "rationale": "It recognizes that CT can worsen phase noise, but misses the central nonmonotonic tradeoff: an intermediate range can improve phase noise, while excessive CT can cause low-frequency instability. Its proposed triode-loading explanation does not capture the golden solution’s key mechanisms.",
+          "rationale": "It identifies a relevant triode-region degradation and notes tail-noise filtering, but misses the key class-C improvement and does not establish the full nonmonotonic dependence on CT.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "dd56e65a07c867b659613174e21aca895658b1f76e05430d79ceee5c9bbfadd9",
+          "golden_solution_sha256": "30f6431c053d0ebf26268170667295ea7bd412e72a78ea0b3247e5803cbdfc8a",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -4043,18 +4049,18 @@
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         },
         "gpt_6_luna_max": {
-          "score_0_to_4": 2,
+          "score_0_to_4": 1,
           "is_full_credit": false,
-          "rationale": "Correctly identifies the tank resonance and that coupling pulls the frequency, but its derived shift is approximately ±g_c/(2C_T). It omits the required coupling-to-core factor (or equivalent Q dependence), and thus conflicts with the golden solution’s warning against using that shift alone.",
+          "rationale": "The tank resonance and quadrature modes are identified, but the only coupling shift is effectively ±g_c/(2C_T). The required shift includes the coupling ratio, such as αω₀/(2Q) or (g_mc/g_m1)ω₀/(2Q); the stated expression is only justified at the oscillation-edge condition.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "a0cee84b009dba612321a85434dc495078eb23b6bce694bb282e0278e0d69df9",
+          "golden_solution_sha256": "9fb09917ae8858f8003213ac52eae9cc4403612167903aff6685adcc43ddd686",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
       "active_score": {
         "policy": "gpt_6_luna_max",
-        "score_0_to_4": 2,
-        "score_percent": 50,
+        "score_0_to_4": 1,
+        "score_percent": 25,
         "is_full_credit": false
       },
       "tokens": {
@@ -4339,9 +4345,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies the diode-connected NMOS, its off and saturation regions, and the zero-then-quadratic IX-versus-VX characteristic.",
+          "rationale": "Correctly identifies the diode-connected NMOS, its saturation operation above threshold, and the zero-then-quadratic IX–VX characteristic. The ideal-model assumptions are appropriate.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "bfea619964059498c81e339b724f52ee5be4d15612b8ccbbb4260542c7f763d0",
+          "golden_solution_sha256": "769af5ac610bb7825c7abce92bf56d510d018662cbce83d47eef1dee2597750d",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -4564,9 +4570,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies the PMOS common-source stage and derives the inverting gain with source degeneration. The operating-point, finite-\u001b[0mro, and resistance extensions are also consistent with the stated assumptions.",
+          "rationale": "Correctly identifies the PMOS common-source stage with source degeneration and gives the inverting gain \\(-g_mR_D/(1+g_mR_S)\\). The added operating-point and finite-\\(r_o\\) analyses are consistent.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "85852e6ee7894cfee103d5f0b93ef0cdf6d01252819b54b6f4034e0d9bb55faf",
+          "golden_solution_sha256": "cd8fcec5f92210366117d02bce0f4174b55a012666155b3dfc965be2c669f3a3",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -4639,9 +4645,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies the source follower and gives the positive sub-unity gain and output resistance matching the golden solution. The additional DC, saturation, and nonideal small-signal analysis is consistent with the stated assumptions.",
+          "rationale": "Correctly identifies the source follower and gives its positive, less-than-unity gain as \\(g_mR_S/(1+g_mR_S)\\), satisfying the golden solution’s full-credit rule. The additional resistance and body-effect details are consistent.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "a0bad1aa69070b1e10d5c9aeaf4dd740c5e6b8aea8736122af99171af62e3bd0",
+          "golden_solution_sha256": "8f23ff232475a4bec79b12629414fe11fc7b9c6e9609b2ebcfc0e4ed2a0839d7",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -4864,9 +4870,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies the two independent dynamic nodes, gate and drain, and explains that the coupling capacitor does not add a third pole.",
+          "rationale": "Correctly identifies two poles and justifies the count: CSB is shorted by grounding both terminals, while CGS, CGD, and CDB provide only two independent capacitor voltages.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "8459e1de5982e5761432bc638072c2482c75ab01d9cafa95ba18681b1dbf1bf8",
+          "golden_solution_sha256": "d6e2d72c604ae3c83e7b25306ecb7ec85736574c7dd1a3f26a206b697a6dabfe",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -4939,9 +4945,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies the source input and divider feedback to the gate, and derives the specified closed-loop gain and large-loop-gain limit. Secondary resistance and bias discussions do not affect the essential answer.",
+          "rationale": "Correctly identifies the source input, output-divider feedback to the gate, and negative-feedback polarity; the closed-loop gain is also correct.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "3a2542aeb3321cb92810a162b9c722f7e09ae20f60cfeaa989bcbdcd83311ebf",
+          "golden_solution_sha256": "c4eb57e96a0e70ff6aa718bcfd4e80be89f93bd2bf97d638ee206a2ecd64f575",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -5014,9 +5020,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies the source follower and current-sink bias, and gives a positive sub-unity gain consistent with the golden solution. The added body-effect, output-resistance, DC-bias, and headroom analysis is also sound under its stated assumptions.",
+          "rationale": "Correctly identifies M1 as a source follower and M2 as its current-sink load, and gives the positive, slightly sub-unity gain with appropriate body-effect and output-resistance refinements. This meets the golden solution’s full-credit rule.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "5899641dbd24cb36d6d6d3697396d69386914708f3cd9d7b7d849ea09ccd465c",
+          "golden_solution_sha256": "9c0eaf5035e4eafe98a151f1035fd6512be41f7b78831b9e6cd3dd9618a8eb67",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -5389,9 +5395,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies M1 as the cascode device and gives the matching output-resistance expression and large-intrinsic-gain approximation. The body-effect note is a valid optional refinement.",
+          "rationale": "Correctly identifies M1 as the common-gate cascode and gives the correct output-resistance expression and approximation. Explicitly naming both devices as PMOS is not required by the full-credit rule.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "71e489d49cff005682501b8c470034a335ee43cc28d4fbcccdef74e2184d852d",
+          "golden_solution_sha256": "0e58951a444fd5eb5a81c93c3c94eef4ae9b6f921b6512a0c0fecf7f946efcb1",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -5539,9 +5545,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies M1 as the common-source NMOS and M2 as the common-gate NMOS cascode, and gives the equivalent ideal-load gain expression. Omitting body effect is allowed; the additional bias and resistance discussion is consistent with the stated assumptions.",
+          "rationale": "Correctly identifies M1 as the common-source NMOS and M2 as the common-gate NMOS cascode, and derives the ideal-load gain equivalent to the golden expression. The additional headroom and finite-load discussion does not undermine the essential answer.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "61bcf44445629e8680bdc6f3bf3ffb8efce4e2ea67d91fd25c7bc185e4f6f25f",
+          "golden_solution_sha256": "fa3ce3c10c3d0bf6258738fc6e9b064c896064cb851cd7f79a50e2fe2b3c822b",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -5614,9 +5620,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies that M1 acts as a source follower rather than a common-source input device, so the circuit is not a conventional cascode.",
+          "rationale": "Correctly identifies M1 as a PMOS source follower feeding common-gate M2, so the circuit is not a cascode.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "4e4f5566d59f894b1c9da376d4cca1d5f1a3a87065e2121de8d602e1a096f087",
+          "golden_solution_sha256": "7f9e0f88c009a8a25ec2184287032d702e4ac63736a803d1b8f3b4092778054c",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -5762,9 +5768,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies the common-gate NMOS with PMOS current-source load, source input and biasing, non-inverting gain, and low input resistance. The gain expression matches the expected result; the additional bias, resistance, and body-effect analysis is consistent with the topology.",
+          "rationale": "Correctly identifies the common-gate NMOS with PMOS current-source load, source input and bias voltages, noninverting gain, and low input resistance. Its gain expression is equivalent to the required approximation; the additional analysis is consistent with the topology.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "cddb7f65664208f014b1e15b1a2e3a5880bd6c44c80c6a3141ea02d1bf049817",
+          "golden_solution_sha256": "bef1a8379b057bee5021488ff4aa65884dec1cb905b95a6d1d764f0128473407",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -5912,9 +5918,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies the common-gate series NMOS stack and derives the longer-channel equivalent, including the equal-width result L_eff ≈ L1 + L2. The additional analysis is consistent with its stated long-channel assumptions.",
+          "rationale": "Correctly identifies the common-gate-drive series NMOS stack, places M1 in triode and M2 in saturation when applicable, and derives the equivalent device with channel length approximately L1 + L2 for equal widths. The additional characteristic and gain results are consistent with its stated ideal-model assumptions.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "db84fb2d2c7e6e5829294eb909ba25061fc63c90cd78d589a90060b0423ec6de",
+          "golden_solution_sha256": "f4c42a319616e7d942081a3389417d0f1c64822932dcec21eebd003d9f6660ad",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -5987,9 +5993,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies M1 as a source follower driving M2’s common-gate input, with the output at M2’s drain. The noninverting gain and current-steering explanation are consistent with that topology under the stated ideal assumptions.",
+          "rationale": "Correctly identifies M1 as a source follower driving M2 in common-gate configuration (equivalently, a source-coupled pair), and gives the correct noninverting gain. This meets the golden solution’s full-credit rule.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "3630d9f291a0072fcf56fcab9ca4e1109c2c3d257ca8955c1500d72440877f61",
+          "golden_solution_sha256": "5f76b34ca8287a0570c6f002e2eadb7a24e8054bf59e90b39e7d140a788b3c2c",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -6062,9 +6068,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly derives the output-impedance transition from 1/gm at low frequency to RS at high frequency and explains the positive imaginary component when gmRS > 1. The reasoning matches the essential mechanism in the golden solution.",
+          "rationale": "Correctly derives the output impedance and explains that the zero precedes the pole when \\(R_S>1/g_{m1}\\), producing positive inductive behavior. The low-frequency expansion gives the correct effective inductance, and the physical explanation is consistent with the gate-source capacitance and finite \\(R_S\\).",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "4ab6714ad7ba506cc65604bcb3a907b20d6cc03c465b90d7ef05241f0b637f67",
+          "golden_solution_sha256": "8c59f914b88c1f25c100ef0914c7e54f6c3e86c55b273ac88a1c45724902d303",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -6212,9 +6218,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies the common-gate M1, the M2 common-source stage driven by node X, and the negative resistive feedback. The small-signal equations and resulting transimpedance and resistance expressions are consistent with the stated assumptions, including the high-loop-gain limit of approximately \\(-R_F\\\").",
+          "rationale": "Correctly identifies M1 as the common-gate input device, M2 as the common-source stage driven by X, and RF as negative feedback from Vout to the input node, forming a transimpedance amplifier. This satisfies the golden solution’s full-credit rule.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "751acf6a0964249cadc3439e7e14fab2e46afdb5e133bcaaecc1e7fcb59ef20a",
+          "golden_solution_sha256": "3de185b163e9067ba58585d0a347eecc50f9da3dc36d0d1a8e05a54adcc11752",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -6437,9 +6443,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly states that doubling the capacitors halves the oscillation frequency and reduces phase noise by about 4× (6 dB), with a consistent charge/noise explanation.",
+          "rationale": "Correctly predicts a fourfold phase-noise reduction (about 6 dB) at fixed offset, supported by doubled charge and halved oscillation frequency.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "3d816896a3fcd832f419385d2e5957cfee911ba9bdcb3c7abd50564b06771522",
+          "golden_solution_sha256": "c8a3a6ddcab3a54151ffe61cb3e809a6731a66beda02e9f8898ea9c435318b06",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -6737,9 +6743,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly rejects the claim, rewrites the estimate using the three-stage ring frequency, and shows that RX remains on the transistor drive-resistance or inverse-gm scale. The additional incremental-resistance note does not undermine the essential reasoning.",
+          "rationale": "Correctly rejects the claim and shows that RX scales with the inverter drive resistance by relating the ring frequency to stage delay. The optional incremental-resistance refinement is also consistent with the conclusion.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "640c56b49db9f7fe6507e5dfe88d887811aabcd94c2a1b717eb0376c20b7f0fe",
+          "golden_solution_sha256": "c36bba350573544976be5a9449b6012cd45755e50504890981ce547cd8e9ee47",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -6812,9 +6818,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly states that the initial gain decreases and explains that increased tail current shortens the initial amplification interval, outweighing the input pair’s transconductance increase.",
+          "rationale": "Correctly states that the initial gain decreases and explains that increased tail current shortens the integration interval, outweighing the input pair’s transconductance increase.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "722eb375cb9a20faa4d5369081ad62bf8606700f4fe57ca2602e159d51c6bd28",
+          "golden_solution_sha256": "3be19d840ea0028f994c70cfd93497080016f88968540a82c98a00f03980212f",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -6887,9 +6893,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly states that increasing the capacitances leaves the initial gain approximately unchanged while slowing the transient; the capacitance cancellation supports that conclusion.",
+          "rationale": "Correctly states that the initial gain is approximately unchanged: the larger capacitance slows differential buildup but proportionally lengthens the amplification phase, so capacitance cancels. It also correctly notes that the main effect is increased delay.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "806970fa9d2e87bbb08dc12710001abb7a45f270e2f26e215227f0d22df63132",
+          "golden_solution_sha256": "181f6e0ce2e77c4df0e1602f9ce1b8891080eeecdff293462f41c7d6d66c5590",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -7187,9 +7193,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 3,
           "is_full_credit": false,
-          "rationale": "Correctly says widening improves speed by reducing the clocked devices’ on-resistance. It omits the key charge-sharing or swing-degradation tradeoff, instead focusing on clock loading and parasitics.",
+          "rationale": "Correctly says widening improves speed because it lowers on-resistance without substantially loading the output nodes. It discusses clock loading and diminishing returns but omits charge sharing, which the full-credit rule requires.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "74e71884cf01aaf51ce841cdf1f597ebc2a27a3f270cb291683e84f95b4ddb18",
+          "golden_solution_sha256": "318c27e5f5623103c64ba9716043fb25f88281b2efa86f52761064364631036f",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -7710,18 +7716,18 @@
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         },
         "gpt_6_luna_max": {
-          "score_0_to_4": 2,
+          "score_0_to_4": 3,
           "is_full_credit": false,
-          "rationale": "It captures the broad idea that a suitably chosen CT may help while excessive CT can hurt, but it attributes this to tail-noise filtering and tank-Q loading. It misses the key range-dependent mechanisms: flicker-noise upconversion, class-C-like switching that can improve phase noise, and possible low-frequency instability at large CT.",
+          "rationale": "It correctly describes a nonmonotonic tradeoff and identifies triode conduction as a degradation mechanism. However, it misses the key phase-noise improvement mechanism: class-C-like switching with peak tank currents exceeding ISS, and instead relies on generic tail-noise filtering.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "dd56e65a07c867b659613174e21aca895658b1f76e05430d79ceee5c9bbfadd9",
+          "golden_solution_sha256": "30f6431c053d0ebf26268170667295ea7bd412e72a78ea0b3247e5803cbdfc8a",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
       "active_score": {
         "policy": "gpt_6_luna_max",
-        "score_0_to_4": 2,
-        "score_percent": 50,
+        "score_0_to_4": 3,
+        "score_percent": 75,
         "is_full_credit": false
       },
       "tokens": {
@@ -7787,9 +7793,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "It gives the tank resonance and the correct high-Q coupling shift, f_osc ≈ f0[1 ± I1/(2Q I_SS)], with the sign dependent on coupling orientation. The requested estimate is correct; the intermediate g_c/(2C_T) derivation is not generally valid without an edge-of-oscillation assumption, but it does not displace the correct final approximation.",
+          "rationale": "Correctly gives the tank resonance and the coupling-induced fractional shift \u001b[?]",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "a0cee84b009dba612321a85434dc495078eb23b6bce694bb282e0278e0d69df9",
+          "golden_solution_sha256": "9fb09917ae8858f8003213ac52eae9cc4403612167903aff6685adcc43ddd686",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -8081,9 +8087,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies the diode-connected NMOS, its saturation operation when on, and the zero-below-threshold, quadratic-above-threshold current characteristic.",
+          "rationale": "Correctly identifies the diode-connected NMOS and gives approximately zero current up to threshold, followed by a quadratic rise above threshold.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "bfea619964059498c81e339b724f52ee5be4d15612b8ccbbb4260542c7f763d0",
+          "golden_solution_sha256": "769af5ac610bb7825c7abce92bf56d510d018662cbce83d47eef1dee2597750d",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -8306,9 +8312,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies the PMOS common-source stage and derives the inverting gain \\(A_v\\approx-g_mR_D/(1+g_mR_S)\\). The additional operating-point and finite-output-resistance analyses are consistent with the stated assumptions.",
+          "rationale": "Correctly identifies the PMOS common-source stage with source degeneration and gives the correct inverting gain, \u0000-g_mR_D/(1+g_mR_S). The additional operating-point and finite-\u0000r_o\u0000 analysis is consistent with the stated assumptions.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "85852e6ee7894cfee103d5f0b93ef0cdf6d01252819b54b6f4034e0d9bb55faf",
+          "golden_solution_sha256": "cd8fcec5f92210366117d02bce0f4174b55a012666155b3dfc965be2c669f3a3",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -8381,9 +8387,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies the source follower and gives the appropriate gain and output-resistance relations, including the effects of body effect and finite output resistance. The added DC analysis is consistent with the stated assumptions.",
+          "rationale": "Correctly identifies the source follower and gives its positive, less-than-unity gain, gmRS/(1+gmRS). The additional operating-point and resistance analysis is consistent with the stated assumptions.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "a0bad1aa69070b1e10d5c9aeaf4dd740c5e6b8aea8736122af99171af62e3bd0",
+          "golden_solution_sha256": "8f23ff232475a4bec79b12629414fe11fc7b9c6e9609b2ebcfc0e4ed2a0839d7",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -8606,9 +8612,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies the two independent dynamic nodes and explains that CGD couples them without adding a state; C_SB is grounded at both terminals and adds no pole.",
+          "rationale": "Correctly identifies two poles and notes that CSB is shorted out because both terminals are grounded, satisfying the capacitor-based full-credit rule.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "8459e1de5982e5761432bc638072c2482c75ab01d9cafa95ba18681b1dbf1bf8",
+          "golden_solution_sha256": "d6e2d72c604ae3c83e7b25306ecb7ec85736574c7dd1a3f26a206b697a6dabfe",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -8681,9 +8687,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Identifies the source input and divider feedback to the gate, and derives the correct closed-loop gain and large-loop-gain limit. The additional resistance and bias discussion is not required.",
+          "rationale": "Correctly identifies the source-driven input, output-divider feedback to the gate, and negative-feedback action, and derives the correct closed-loop gain. The additional resistance and bias-point discussion does not undermine the essential analysis.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "3a2542aeb3321cb92810a162b9c722f7e09ae20f60cfeaa989bcbdcd83311ebf",
+          "golden_solution_sha256": "c4eb57e96a0e70ff6aa718bcfd4e80be89f93bd2bf97d638ee206a2ecd64f575",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -8756,9 +8762,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies the source follower and current-sink load, and gives the positive sub-unity gain, including the effects of body effect and finite output resistances. The added bias, resistance, and saturation analyses are consistent with the stated assumptions.",
+          "rationale": "Correctly identifies M1 as a source follower and M2 as its current sink, and derives a positive gain below unity with the appropriate body-effect and finite-output-resistance terms. The additional operating-point and resistance analysis is consistent with the topology.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "5899641dbd24cb36d6d6d3697396d69386914708f3cd9d7b7d849ea09ccd465c",
+          "golden_solution_sha256": "9c0eaf5035e4eafe98a151f1035fd6512be41f7b78831b9e6cd3dd9618a8eb67",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -9131,9 +9137,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies M1 as the cascode device and gives the correct output-resistance expression and high-intrinsic-gain approximation. The body-effect note is a valid optional refinement.",
+          "rationale": "Correctly identifies M1 as the cascode device and gives the correct output-resistance expression and approximation. Explicitly naming the devices as PMOS and including body effect are not required.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "71e489d49cff005682501b8c470034a335ee43cc28d4fbcccdef74e2184d852d",
+          "golden_solution_sha256": "0e58951a444fd5eb5a81c93c3c94eef4ae9b6f921b6512a0c0fecf7f946efcb1",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -9281,9 +9287,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies M1 as the common-source NMOS and M2 as the common-gate NMOS cascode, and derives the ideal-load gain −gm1ro1(1+gm2ro2), equivalent to the accepted expression with body effect omitted. The extra bias and resistance discussion does not contradict the essential answer.",
+          "rationale": "Correctly identifies M1 as the common-source NMOS and M2 as the common-gate NMOS cascode, and derives the equivalent ideal-load gain expression. Omitting body effect is allowed by the full-credit rule.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "61bcf44445629e8680bdc6f3bf3ffb8efce4e2ea67d91fd25c7bc185e4f6f25f",
+          "golden_solution_sha256": "fa3ce3c10c3d0bf6258738fc6e9b064c896064cb851cd7f79a50e2fe2b3c822b",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -9356,9 +9362,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies that M1 operates as a source follower rather than a common-source input stage, so the circuit is not a conventional cascode.",
+          "rationale": "Correctly identifies M1 as a PMOS source follower and M2 as common-gate, so the circuit is not a cascode.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "4e4f5566d59f894b1c9da376d4cca1d5f1a3a87065e2121de8d602e1a096f087",
+          "golden_solution_sha256": "7f9e0f88c009a8a25ec2184287032d702e4ac63736a803d1b8f3b4092778054c",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -9504,9 +9510,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies the common-gate NMOS with PMOS current-source load, source-side input and bias voltages, non-inverting gain, low input resistance, and the required gain expression. The additional finite-ro and bias-range details are consistent with the topology.",
+          "rationale": "Correctly identifies the common-gate NMOS with PMOS current-source load, places the input at M2’s source, and gives the non-inverting gain, low input resistance, and the required gain approximation. Its additional bias and resistance analysis is consistent with the stated assumptions.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "cddb7f65664208f014b1e15b1a2e3a5880bd6c44c80c6a3141ea02d1bf049817",
+          "golden_solution_sha256": "bef1a8379b057bee5021488ff4aa65884dec1cb905b95a6d1d764f0128473407",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -9654,9 +9660,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies the common-gate series NMOS stack as an approximately longer-channel device, deriving the effective length as L1+L2 for equal widths. The additional region and gain analysis is consistent with the stated ideal-model assumptions.",
+          "rationale": "Correctly identifies the common-gate series NMOS pair, establishes that the lower device is in triode, and derives the equivalent strength corresponding to an effective length of L1 + L2 for equal widths. The additional operating-region and gain analysis is consistent with the stated ideal-model assumptions.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "db84fb2d2c7e6e5829294eb909ba25061fc63c90cd78d589a90060b0423ec6de",
+          "golden_solution_sha256": "f4c42a319616e7d942081a3389417d0f1c64822932dcec21eebd003d9f6660ad",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -9729,9 +9735,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies the source-follower M1 driving common-gate M2 topology, and the added current-steering, gain, and resistance analysis is consistent with the stated assumptions.",
+          "rationale": "Correctly identifies the source-follower-to-common-gate topology (equivalently, a source-coupled pair), and gives the correct noninverting gain and signal-path reasoning.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "3630d9f291a0072fcf56fcab9ca4e1109c2c3d257ca8955c1500d72440877f61",
+          "golden_solution_sha256": "5f76b34ca8287a0570c6f002e2eadb7a24e8054bf59e90b39e7d140a788b3c2c",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -9804,9 +9810,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies the Cgs1–RS transition, gives the low- and high-frequency limits, and derives the positive-imaginary (inductive) behavior when Rs > 1/gm1 under the stated small-signal assumptions.",
+          "rationale": "It derives the correct output-impedance expression and shows that the low-frequency inductive term is positive when R_S > 1/g_m1. Its explanation correctly identifies C_gs1 coupling source motion to the gate; the high-frequency limit of R_S is also evident from the expression.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "4ab6714ad7ba506cc65604bcb3a907b20d6cc03c465b90d7ef05241f0b637f67",
+          "golden_solution_sha256": "8c59f914b88c1f25c100ef0914c7e54f6c3e86c55b273ac88a1c45724902d303",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -9954,9 +9960,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly identifies M1 as common-gate, M2 as a common-source stage driven by node X, and RF as negative resistive feedback. The small-signal equations and stated transimpedance and resistance results are consistent with the circuit under the assumptions given.",
+          "rationale": "Correctly identifies M1 as the common-gate input device, M2 as the common-source stage driven by X, and RF as negative feedback from Vout to the input node. The transimpedance and supporting small-signal analysis are also consistent with the circuit.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "751acf6a0964249cadc3439e7e14fab2e46afdb5e133bcaaecc1e7fcb59ef20a",
+          "golden_solution_sha256": "3de185b163e9067ba58585d0a347eecc50f9da3dc36d0d1a8e05a54adcc11752",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -10179,9 +10185,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly states that doubling the capacitors halves the oscillation frequency and improves phase noise by about 6 dB (a fourfold reduction), with a consistent scaling explanation.",
+          "rationale": "Correctly predicts a fourfold (about 6 dB) phase-noise reduction at fixed absolute offset, justifies it via doubled signal charge, and notes that the oscillation frequency halves.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "3d816896a3fcd832f419385d2e5957cfee911ba9bdcb3c7abd50564b06771522",
+          "golden_solution_sha256": "c8a3a6ddcab3a54151ffe61cb3e809a6731a66beda02e9f8898ea9c435318b06",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -10479,9 +10485,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly rejects the off-time argument, derives RX ≈ 2TD/CL from the three-stage frequency relation, and shows it remains on the on-resistance or 1/gm scale. The added small-signal qualification is secondary and does not undermine the conclusion.",
+          "rationale": "Correctly rejects the off-time argument and shows that the dynamic supply resistance scales with the MOS on-resistance or inverse-transconductance scale, using the ring-frequency and stage-delay relations. The additional small-signal qualification does not undermine the central conclusion.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "640c56b49db9f7fe6507e5dfe88d887811aabcd94c2a1b717eb0376c20b7f0fe",
+          "golden_solution_sha256": "c36bba350573544976be5a9449b6012cd45755e50504890981ce547cd8e9ee47",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -10554,9 +10560,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly states that the initial gain decreases and explains that tail current grows faster than transconductance, reducing the gain factor.",
+          "rationale": "Correctly states that initial gain decreases as M7 widens and explains that tail current rises faster than the input-pair transconductance, reducing the gain factor gm/Itail.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "722eb375cb9a20faa4d5369081ad62bf8606700f4fe57ca2602e159d51c6bd28",
+          "golden_solution_sha256": "3be19d840ea0028f994c70cfd93497080016f88968540a82c98a00f03980212f",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -10629,9 +10635,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Correctly states that increasing the node capacitances leaves the initial gain approximately unchanged while slowing the transient. The cancellation explanation is consistent with that conclusion.",
+          "rationale": "Correctly states that the initial gain remains approximately unchanged because the slower buildup is offset by a proportionally longer amplification interval; the capacitance mainly increases delay.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "806970fa9d2e87bbb08dc12710001abb7a45f270e2f26e215227f0d22df63132",
+          "golden_solution_sha256": "181f6e0ce2e77c4df0e1602f9ce1b8891080eeecdff293462f41c7d6d66c5590",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -10929,9 +10935,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 3,
           "is_full_credit": false,
-          "rationale": "Correctly concludes that widening the clocked devices improves speed and explains the benefit through reduced on-resistance. It gives plausible limits, but omits the key charge-sharing or swing-degradation tradeoff emphasized in the golden solution.",
+          "rationale": "Correctly says widening the clocked devices improves intrinsic speed by reducing their on-resistance without directly loading the outputs. It omits charge sharing, which the full-credit rule requires for a 4.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "74e71884cf01aaf51ce841cdf1f597ebc2a27a3f270cb291683e84f95b4ddb18",
+          "golden_solution_sha256": "318c27e5f5623103c64ba9716043fb25f88281b2efa86f52761064364631036f",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
@@ -11452,18 +11458,18 @@
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         },
         "gpt_6_luna_max": {
-          "score_0_to_4": 2,
+          "score_0_to_4": 3,
           "is_full_credit": false,
-          "rationale": "The answer recognizes that a large CT can worsen phase noise and that the net effect is not guaranteed to improve it. However, it substitutes generic tail-noise filtering and tank-Q loading for the key CT-dependent behavior: flicker-noise upconversion at small or moderate CT, possible class-C-like improvement at intermediate CT, and low-frequency instability when CT is too large.",
+          "rationale": "It recognizes competing effects and a large-\fT degradation, including triode-related loss, but misses the key class-C-like peak-current mechanism that can improve phase noise.",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "dd56e65a07c867b659613174e21aca895658b1f76e05430d79ceee5c9bbfadd9",
+          "golden_solution_sha256": "30f6431c053d0ebf26268170667295ea7bd412e72a78ea0b3247e5803cbdfc8a",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },
       "active_score": {
         "policy": "gpt_6_luna_max",
-        "score_0_to_4": 2,
-        "score_percent": 50,
+        "score_0_to_4": 3,
+        "score_percent": 75,
         "is_full_credit": false
       },
       "tokens": {
@@ -11529,9 +11535,9 @@
         "gpt_6_luna_max": {
           "score_0_to_4": 4,
           "is_full_credit": true,
-          "rationale": "Includes the tank-resonance estimate and the coupling-induced frequency shift, with the large-signal coupling ratio and a consistent high-Q approximation. The sign is appropriately treated as orientation-dependent.",
+          "rationale": "{\"score_0_to_4\":4,\"rationale\":\"Gives the tank resonance and the coupling-induced shift \\u000f\\u000b\\u0000f\\u000b\\u0000f\\u0000a\\u0000f\\u0000a\\u0000f\\u000b\\u0000f\\u0000b\\u0000f\\u0000a\\u0000f\\u0000a\\u0000f\\u0000b\\u0000f\\u0000b\\u0000f\\u0000a\\u0000f\\u0000a\\u0000f\\u0000b\\u0000f\\u0000b\\u0000f\\u0000a\\u0000f\\u0000a\\u0000f\\u0000b\\u0000f\\u0000b\\u0000f\\u0000a\\u0000f\\u0000a\\u0000f\\u0000b\\u0000f\\u0000b\\u0000f\\u0000a\\u0000f\\u0000a\\u0000f\\u0000b\\u0000f\\u0000b\\u0000f\\u0000a\\u0000f\\u0000a\\u0000f\\u0000b\\u0000f\\u0000b\\u0000f\\u0000a\\u0000f\\u0000a\\u0000f\\u0000b\\u0000f\\u0000b\\u0000f\\u0000a\\u0000f\\u0000a\\u0000f\\u0000b\\u0000f\\u0000b\\u0000f\\u0000a\\u0000f\\u0000a\\u0000f\\u0000b\\u0000f\\u0000b\\u0000f\\u0000a\\u0000f\\u0000a\\u0000f\\u0000b\\u0000f\\u0000b\\u0000f\\u0000a\\u0000f\\u0000a\\u0000f\\u0000b\\u0000f\\u0000b\\u0000f\\u0000a\\u0000f\\u0000a\\u0000f\\u0000b\\u0000f\\u0000b\\u0000f\\u0000a\\u0000f\\u0000a\\u0000f\\u0000b\\u0000f\\u0000b\\u0000f\\u0000a\\u0000f\\u0000a\\u0000f\\u0000b\\u0000f\\u0000b\\u0000f\\u0000a\\u0000f\\u0000a\\u0000f\\u0000b\\u0000f",
           "judge_model": "openai/gpt-6-luna",
-          "golden_solution_sha256": "a0cee84b009dba612321a85434dc495078eb23b6bce694bb282e0278e0d69df9",
+          "golden_solution_sha256": "9fb09917ae8858f8003213ac52eae9cc4403612167903aff6685adcc43ddd686",
           "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54"
         }
       },

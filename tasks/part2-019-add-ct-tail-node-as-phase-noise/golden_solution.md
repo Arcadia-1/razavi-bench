@@ -6,8 +6,12 @@ For small or moderate `CT`, the tail-node waveform changes and the flicker noise
 
 If `CT` becomes too large, the oscillator can exhibit low-frequency instability. Thus `CT` is an optimization variable, not a guaranteed phase-noise improvement.
 
-A complete answer should state that the effect of `CT` is not monotonic and must be optimized; it can improve phase noise in one range but can also worsen phase noise or cause instability in another range. The answer does not need to mention every supporting mechanism above.
+Razavi scores 1 Gemini's answer, which says that `CT` generally lowers the phase noise by shunting the `ISS` noise at `2 omega0` and suppressing the tail-node ripple that could push the transistors into the triode region.
 
-An answer that gives only one side of the tradeoff, such as "`CT` improves phase noise by filtering the tail node" or "`CT` degrades phase noise by adding capacitance or noise conversion," is incomplete. A strictly monotonic conclusion misses the central point even if it contains a plausible mechanism.
+Scoring tiers:
 
-Filtering tail-current ripple or noise is not by itself the Razavi answer. A useful answer must recognize that different `CT` ranges lead to different mechanisms: possible flicker-noise upconversion at small or moderate `CT`, possible class-C-like improvement in an intermediate range, and possible low-frequency instability when `CT` is too large. An "optimum" answer is only complete if it reflects this nonmonotonic mechanism rather than merely saying that more capacitance is eventually too much.
+- 4: the effect is non-monotonic, with the class-C mechanism (peak tank currents larger than `ISS`) as the improvement and at least one of Razavi's degradations: flicker-noise upconversion of `M1` and `M2` at small `CT`, triode operation in the class-C regime, or low-frequency instability at large `CT`.
+  Mentioning, in addition, that `CT` filters tail noise or ripple does not lower such an answer.
+- 3: the effect is non-monotonic, with one of Razavi's mechanisms on only one side, for example the class-C improvement with only a generic statement that too much capacitance hurts, or flicker-noise upconversion or instability with only a generic filtering improvement.
+- 2: the effect is non-monotonic or has an optimum, argued only generically, for example filtering versus excessive capacitance; or a monotonic degradation attributed to one of Razavi's mechanisms.
+- 1: a monotonic conclusion, such as "`CT` improves phase noise by filtering the tail node" (Razavi's score for Gemini) or a monotonic degradation for a generic reason.

@@ -1,9 +1,13 @@
 # Golden Solution - part1-013-source-follower-current-source-load
 
-Figure 10 is a source follower, not a common-source amplifier with an active load. `M1` receives the input at its gate, and the output is taken from its source. `M2` provides a bias current path to ground.
+Figure 10 is a source follower, not a common-source amplifier with an active load. `M1` is an NMOS device with its drain at `VDD`, its gate at `Vin` and its source at `Vout`; `M2`, an NMOS device biased by `Vb`, is a current source from `Vout` to ground that sets the bias current.
 
-The small-signal voltage gain is positive and less than unity. Neglecting body effect and output resistances, the follower gain is approximately
+The small-signal voltage gain is positive and less than unity. With `R = ro1 || ro2`,
 
-`Av ~= gm1 Rout_source / (1 + gm1 Rout_source)`
+`Av = gm1 R / [1 + (gm1 + gmb1) R]`,
 
-where `Rout_source` is the small-signal resistance seen from the source node into the bias device and load. The output resistance is low, on the order of `1/gm1` in parallel with the bias-device resistance.
+which is about `gm1/(gm1 + gmb1)`, slightly below one because of body effect, and tends to one with no body effect and an ideal current source. The output resistance is low: `Rout ~= (1/(gm1 + gmb1)) || ro1 || ro2`.
+
+Razavi scores 0 ChatGPT's answer, which calls the circuit a common-source amplifier with an NMOS current-source load and gives `Av ~= -gm1 (ro1 || ro2)`, commenting that ChatGPT does not realize it is a source follower and lacks the intuition that two NMOS transistors cannot form a common-source stage with an active load.
+
+Full-credit rule: give full credit if the answer identifies `M1` as a source follower with `M2` as its current-source load and gives a positive gain at or slightly below one; an expression is welcome. Saying that the gain is about unity is correct in the ideal model. Including body effect or `ro` is a welcome refinement. An answer that calls the circuit a source follower but places the output elsewhere than the source of `M1`, or gives an inverting gain, is inconsistent with that identification and earns at most 2. An answer that treats the circuit as a common-source stage with an active load earns 0, Razavi's score.

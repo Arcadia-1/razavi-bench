@@ -2,7 +2,9 @@
 
 Figure 15 is an NMOS cascode gain stage. `M1` is the input common-source transistor, `M2` is the common-gate cascode transistor biased by `Vb1`, and `I1` is the load current source at the output.
 
-A change in `vin` changes the drain current of `M1`; `M2` conveys this current to the output while holding node `X` relatively quiet. The output is therefore an inverted voltage at the drain of `M2`.
+A change in `vin` changes the drain current of `M1`; `M2`, a common-gate device, conveys this current to the output, so the output is an inverted voltage at the drain of `M2`. `M2` shields node `X` from the output: the swing at `X` is smaller than the output swing by the factor `1 + (gm2 + gmb2) ro2`. `X` is a low-impedance node, about `1/gm2`, only when the load resistance at the output is small; with the ideal current-source load below, `X` still swings by `-gm1 ro1 vin`.
+
+Razavi scores 0 ChatGPT's answer, which takes `M2` to be a PMOS device and calls the circuit a common-source amplifier with an active load.
 
 The small-signal gain is approximately
 

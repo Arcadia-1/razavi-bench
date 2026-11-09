@@ -1,7 +1,9 @@
 # Golden Solution - part1-011-many-poles-have
 
-The circuit has two poles in the usual small-signal model.
+The circuit has two poles.
 
-The capacitors are connected among two independent dynamic nodes: the input/gate-side node and the output/drain-side node. `CGD` couples these two nodes, but it does not by itself create a third independent node.
+In Figure 8, `M1` is a common-source NMOS stage driven through `RS`, with load `RD`, and four capacitors: `CGS` from the gate to ground, `CGD` from the gate to the drain, `CDB` from the drain to ground, and `CSB` from the source to ground. Because the source is grounded, both terminals of `CSB` are at ground: it stores no energy and contributes nothing. `CGS`, `CGD` and `CDB` form a loop through ground, so only two of their three voltages are independent. The circuit therefore has two state variables and two poles; `CGD` also introduces a zero.
 
-Thus the number of poles is two. More precisely, the count should be based on independent energy-storage state variables, not simply on the number of capacitors drawn.
+Razavi scores 3 ChatGPT's answer "There are two independent energy-storing nodes. Thus, the circuit has two poles," commenting that the answer is correct but that energy storage should be attributed to devices rather than to nodes.
+
+Full-credit rule: give full credit for two poles with a justification that accounts for the capacitors themselves, for example by noting that `CSB` is shorted out because both its terminals are grounded, or that `CGS`, `CGD` and `CDB` form a capacitor loop so that only two capacitor voltages are independent, or by deriving a transfer function with a second-order denominator. An answer that gives two poles justified only by counting two energy-storing nodes, as ChatGPT did, earns 3 (Razavi's score). A bare "two" with no justification earns at most 3. A count other than two, or one pole per capacitor, earns at most 1.

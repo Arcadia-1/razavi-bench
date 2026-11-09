@@ -1,7 +1,9 @@
 # Golden Solution - part2-002-phase-noise-three-capacitors-doubled
 
-Doubling all three load capacitors lowers the oscillation frequency by about a factor of two. For white-noise-induced phase noise in this ring oscillator, the relevant expression scales with `f0^2` while the other parameters are approximately independent of `CL`.
+Doubling all three load capacitors lowers the oscillation frequency by about a factor of two. Razavi's expression for the phase noise due to white noise in this ring oscillator scales as `(f0/Delta f)^2`, multiplied by terms (device noise currents, bias current, supply voltage) that are approximately independent of `CL`.
 
-Therefore, when `CL` is doubled and `f0` is halved, the phase-noise spectral density drops by about a factor of four, i.e. about 6 dB.
+Therefore, at a fixed offset frequency `Delta f`, doubling `CL` halves `f0` and lowers the phase-noise spectral density by about a factor of four, i.e. about 6 dB. At a fixed relative offset `Delta f/f0`, it is unchanged.
 
-A complete answer should state both the frequency scaling and the phase-noise result: doubling all three capacitors halves `f0`, and the white-noise-induced phase noise decreases by about 4x or 6 dB. Alternative edge-rate, energy, or delay-based explanations are acceptable only if they preserve this scaling. Saying the phase noise is unchanged or worsens contradicts the central result.
+Razavi scores 4 Gemini's answer "The phase noise falls by a factor of four," which comes with an analysis based on the edge rate.
+
+Full-credit rule: give full credit for a decrease of about a factor of four (6 dB) at a given offset frequency, supported either by the halving of `f0` or by an equivalent edge-rate, impulse-sensitivity, charge or delay argument that implies it; stating the frequency halving explicitly is not required if the argument implies it. A bare "6 dB" or "four times lower" with no justification earns 3. An answer that says only that the phase noise falls, without the magnitude, or that gives a wrong magnitude such as 3 dB, earns at most 2. An answer that says the phase noise is unchanged, other than explicitly at a fixed relative offset `Delta f/f0`, or that it worsens contradicts the central result and earns at most 1.

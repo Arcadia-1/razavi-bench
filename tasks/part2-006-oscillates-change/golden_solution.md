@@ -12,6 +12,8 @@ Using `f0 = 1/(6 TD)` for a three-stage ring, this can also be written as
 
 Since the delay `TD` is roughly `Req CL`, this gives `RX` on the order of the MOS on-resistance or inverse transconductance. Thus the static diode-connected answer is not the correct derivation or primary expression, but the dynamic result is not much larger merely because individual devices are off for part of the cycle.
 
-A complete answer should reject the claim that oscillation makes `RX` much higher. It should use `f0 = 1/(6 TD)` to rewrite `RX ~= 1/(3 f0 CL)` as `RX ~= 2 TD/CL`, and then explain that because `TD ~= Req CL`, the resistance remains on the order of `Req` or inverse transconductance.
+Razavi scores 1 Gemini's answer "Yes, it does. The average resistance is now much higher because the path from VDD to ground through the transistors is off most of the time."
+
+Full-credit rule: give full credit if the answer rejects the claim that oscillation makes `RX` much higher and shows that `RX` stays on the order of the MOS on-resistance or inverse transconductance. Razavi's route, writing `f0 = 1/(6 TD)` so that `RX ~= 2 TD/CL` and then `TD ~= Req CL`, is one way; any equivalent argument earns full credit, for example that `f0` is proportional to `1/(Req CL)` so that `RX = 1/(3 f0 CL)` is proportional to `Req`. An answer that also refines `RX` for the dependence of `f0` on `VDD`, for example to about `1/(6 f0 CL)`, reaches the same conclusion and is correct. An answer that agrees that `RX` becomes much higher earns 1, Razavi's score.
 
 A generic statement that oscillation invalidates DC or small-signal analysis, without addressing whether `RX` becomes much higher, misses the question. An answer that says `RX` becomes much higher because the devices are off for much of the cycle repeats the specific misconception being tested.
