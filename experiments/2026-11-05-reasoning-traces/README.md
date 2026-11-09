@@ -18,17 +18,18 @@ versus time. It does not change the leaderboard.
   --max-tokens 128000 --json-mode`
 
 On each of the four questions, the probe's mean score is within 3.5 points of
-the published benchmark's for the same 24 models. The Q15 and Q14 answers were
-re-graded after their reference answers were revised on 2026-11-08 and
+the published benchmark's for the same 24 models. All four questions' answers
+were re-graded after their reference answers were revised on 2026-11-08 and
 2026-11-09 (`../2026-11-08-luna-regrade-q15-q28-p2q5-p2q16/`,
-`../2026-11-09-luna-regrade-13-questions/`):
+`../2026-11-09-luna-regrade-13-questions/`,
+`../2026-11-09-luna-regrade-21-questions/`):
 
 | Question | Probe | Benchmark, same models |
 |---|---:|---:|
 | Q14 CMOS inverter | 97.2% | 99.7% |
 | Q15 two NMOS devices | 47.2% | 46.9% |
-| Q20 NMOS cascode | 98.3% | 99.0% |
-| Q21 PMOS source follower into common gate | 40.3% | 38.5% |
+| Q20 NMOS cascode | 97.9% | 98.3% |
+| Q21 PMOS source follower into common gate | 41.0% | 39.2% |
 
 Median answer times run from 4.9 s (GPT-4o 2024-11-20) to 341 s (Hy4). The
 per-model medians, the GPT-6 Luna labels of each reasoning trace, and the
