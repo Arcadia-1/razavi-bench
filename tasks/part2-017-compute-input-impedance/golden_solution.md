@@ -1,6 +1,6 @@
 # Golden Solution - part2-017-compute-input-impedance
 
-Use the simplified model in Figure 14(b) and apply Miller's theorem to the feedback resistor.
+Model the TIA as Razavi's simplified model does (his Figure 14(b), which the question does not show): the input node drives an amplifier of unloaded voltage gain `-A0`, whose output resistance is `RD2`, and `RF` connects the input node to the amplifier's output. Apply Miller's theorem to the feedback resistor.
 
 The exact input resistance is
 

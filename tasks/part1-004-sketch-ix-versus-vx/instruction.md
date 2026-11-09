@@ -2,7 +2,7 @@
 
 ## Question
 
-Sketch IX versus VX in the circuit in Figure 1.
+Sketch IX versus VX in the circuit in the figure.
 
 ## Figures
 

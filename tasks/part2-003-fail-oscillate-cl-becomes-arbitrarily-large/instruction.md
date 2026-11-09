@@ -2,7 +2,7 @@
 
 ## Question
 
-Does the circuit in Figure 6 fail to oscillate if CL becomes arbitrarily large?
+Does the circuit in the figure fail to oscillate if CL becomes arbitrarily large?
 
 ## Figures
 

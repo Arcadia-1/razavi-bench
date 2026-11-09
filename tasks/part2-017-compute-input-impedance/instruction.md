@@ -2,7 +2,7 @@
 
 ## Question
 
-Compute the input impedance of the circuit in Figure 14(a).
+Compute the input impedance of the circuit in the figure.
 
 ## Figures
 

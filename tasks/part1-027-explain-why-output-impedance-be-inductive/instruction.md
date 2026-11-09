@@ -2,7 +2,7 @@
 
 ## Question
 
-Explain why the output impedance of the circuit shown in Figure 21 can be inductive.
+Explain why the output impedance of the circuit shown in the figure can be inductive.
 
 ## Figures
 

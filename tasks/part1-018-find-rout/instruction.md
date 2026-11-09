@@ -2,7 +2,7 @@
 
 ## Question
 
-Find Rout in Figure 14.
+Find Rout in the figure.
 
 ## Figures
 

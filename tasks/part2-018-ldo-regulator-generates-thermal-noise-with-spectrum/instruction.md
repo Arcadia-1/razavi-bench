@@ -2,7 +2,7 @@
 
 ## Question
 
-If the LDO regulator in Figure 15 generates thermal noise with spectrum Sth, how do we compute the VCO output phase noise?
+If the LDO regulator in the figure generates thermal noise with spectrum Sth, how do we compute the VCO output phase noise?
 
 ## Figures
 

@@ -2,7 +2,7 @@
 
 ## Question
 
-Estimate the oscillation frequency of the circuit in Figure 17.
+Estimate the oscillation frequency of the circuit in the figure.
 
 ## Figures
 

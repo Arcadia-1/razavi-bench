@@ -2,7 +2,7 @@
 
 ## Question
 
-How many poles does the circuit of Figure 8 have?
+How many poles does the circuit shown in the figure have?
 
 ## Figures
 

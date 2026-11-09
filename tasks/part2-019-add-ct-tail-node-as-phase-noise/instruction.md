@@ -2,7 +2,7 @@
 
 ## Question
 
-We add CT to the tail node, as in Figure 16. What happens to the phase noise?
+We add CT to the tail node, as in the figure. What happens to the phase noise?
 
 ## Figures
 

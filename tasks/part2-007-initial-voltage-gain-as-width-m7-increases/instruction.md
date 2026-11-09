@@ -2,7 +2,7 @@
 
 ## Question
 
-In the circuit of Figure 9, what happens to the initial voltage gain as the width of M7 increases?
+In the circuit shown in the figure, what happens to the initial voltage gain as the width of M7 increases?
 
 ## Figures
 

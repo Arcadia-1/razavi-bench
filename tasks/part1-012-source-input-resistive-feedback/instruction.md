@@ -2,7 +2,7 @@
 
 ## Question
 
-Analyze the circuit shown in Figure 9.
+Analyze the circuit shown in the figure.
 
 ## Figures
 

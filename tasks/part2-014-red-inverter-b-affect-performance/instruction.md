@@ -2,7 +2,7 @@
 
 ## Question
 
-How does the red inverter in Figure 12(b) affect the performance?
+How does the red inverter in the figure affect the performance?
 
 ## Figures
 

@@ -2,7 +2,7 @@
 
 The resistance seen looking into the supply node of the oscillating ring is set by the charging and discharging of the load capacitances, not by the static resistance of diode-connected inverter devices.
 
-Here, `CL` is the effective load capacitance at each internal oscillator node, and `f0` is the oscillation frequency. In every cycle, each of the three nodes is charged from the supply and then discharged, so each node draws a charge of about `CL VDD` per period, like a switched-capacitor resistor of value `1/(f0 CL)`. The three nodes together give
+Here, `CL` is the effective load capacitance at each internal oscillator node, and `f0` is the oscillation frequency. The question does not name these quantities, so any symbols for the node capacitance and the oscillation frequency (for example `C`, `CL`, `f`, `fosc`, `1/T`) are equally correct. In every cycle, each of the three nodes is charged from the supply and then discharged, so each node draws a charge of about `CL VDD` per period, like a switched-capacitor resistor of value `1/(f0 CL)`. The three nodes together give
 
 `RX ~= 1 / (3 f0 CL)`.
 

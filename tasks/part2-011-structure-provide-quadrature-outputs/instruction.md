@@ -2,7 +2,7 @@
 
 ## Question
 
-Does the structure in Figure 10 provide quadrature outputs?
+Does the structure in the figure provide quadrature outputs?
 
 ## Figures
 

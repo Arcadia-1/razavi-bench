@@ -2,7 +2,7 @@
 
 ## Question
 
-If we increase the widths of M5 and M6 in Figure 9, does the speed improve or degrade?
+If we increase the widths of M5 and M6 in the figure, does the speed improve or degrade?
 
 ## Figures
 

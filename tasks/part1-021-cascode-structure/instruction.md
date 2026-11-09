@@ -2,7 +2,7 @@
 
 ## Question
 
-Is the circuit of Figure 16 a cascode structure?
+Is the circuit shown in the figure a cascode structure?
 
 ## Figures
 

@@ -2,7 +2,7 @@
 
 ## Question
 
-How do we ensure that M2 is in saturation in Figure 14?
+How do we ensure that M2 is in saturation in the figure?
 
 ## Figures
 

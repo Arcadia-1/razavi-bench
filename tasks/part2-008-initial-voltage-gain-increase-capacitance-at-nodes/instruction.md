@@ -2,7 +2,7 @@
 
 ## Question
 
-In Figure 9, what happens to the initial voltage gain if we increase the capacitance at nodes P and Q?
+In the figure, what happens to the initial voltage gain if we increase the capacitance at nodes P and Q?
 
 ## Figures
 

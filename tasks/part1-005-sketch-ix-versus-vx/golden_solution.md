@@ -15,3 +15,7 @@ For `VX >= VTH + 1 V`, the device enters the triode region because `VDS = 1 V < 
 `IX ~= mu_n Cox (W/L) [(VX - VTH)(1 V) - (1/2)(1 V)^2]`.
 
 So the sketch is zero below threshold, then quadratic in saturation, then roughly linear in `VX` after the drain-to-source voltage limits the device to the triode region.
+
+Razavi scores 4 ChatGPT's answer "For VTH < VX < VTH + 1 V, IX rises quadratically. For VX > VTH + 1 V, it transitions to a straight line."
+
+Full-credit rule: give full credit for a quadratic rise from `VTH` to `VTH + 1 V` and a transition to a roughly linear rise beyond it (the triode region). Stating that `IX` is zero below `VTH` is welcome but not required when the rise starts at `VTH`.

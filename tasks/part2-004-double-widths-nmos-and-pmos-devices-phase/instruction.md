@@ -2,7 +2,7 @@
 
 ## Question
 
-If we double the widths of the NMOS and PMOS devices in Figure 7, what happens to the phase noise?
+If we double the widths of the NMOS and PMOS devices in the figure, what happens to the phase noise?
 
 ## Figures
 

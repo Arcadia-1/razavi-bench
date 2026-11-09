@@ -2,7 +2,7 @@
 
 ## Question
 
-Does the circuit in Figure 5 fail to oscillate if the three capacitors become arbitrarily large?
+Does the circuit in the figure fail to oscillate if the three capacitors become arbitrarily large?
 
 ## Figures
 

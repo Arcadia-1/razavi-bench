@@ -2,7 +2,7 @@
 
 ## Question
 
-How do we optimize the circuit of Figure 13 for the NF if Rin must remain equal to 50 Ohm?
+How do we optimize the circuit shown in the figure for the NF if Rin must remain equal to 50 Ohm?
 
 ## Figures
 

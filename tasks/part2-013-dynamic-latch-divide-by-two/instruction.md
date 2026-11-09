@@ -2,7 +2,7 @@
 
 ## Question
 
-Analyze the arrangement in Figure 12(a).
+Analyze the arrangement in the figure.
 
 ## Figures
 

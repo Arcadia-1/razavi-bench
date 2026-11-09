@@ -2,7 +2,7 @@
 
 ## Question
 
-In the circuit of Figure 10, does the speed improve or degrade if we increase the widths of the clocked transistors?
+In the circuit shown in the figure, does the speed improve or degrade if we increase the widths of the clocked transistors?
 
 ## Figures
 

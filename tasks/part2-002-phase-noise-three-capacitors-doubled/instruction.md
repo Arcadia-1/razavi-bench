@@ -2,7 +2,7 @@
 
 ## Question
 
-What happens to the phase noise if the three capacitors in Figure 5 are doubled?
+What happens to the phase noise if the three capacitors in the figure are doubled?
 
 ## Figures
 

@@ -2,7 +2,7 @@
 
 ## Question
 
-For the ring oscillator in Figure 8, consider the small-signal resistance `RX`
+For the ring oscillator in the figure, consider the small-signal resistance `RX`
 seen looking into the supply node.
 
 Use `CL` for the effective load capacitance at each internal oscillator node,
