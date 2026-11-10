@@ -15,14 +15,14 @@ gpt_55,GPT-5.5,openai,xhigh,vela:204765,2026-04-23,official_release,https://open
 gpt_53,GPT-5.3,openai,xhigh,openrouter:openai/gpt-5.3-codex,2026-02-05,official_release,https://openai.com/index/introducing-gpt-5-3-codex/,The evaluated provider model is GPT-5.3-Codex at reasoning effort xhigh; the benchmark display name is GPT-5.3.
 qwen_37_flash,Qwen 3.7 Flash,qwen,max,qwen/qwen3.7-flash,2026-07-25,official_release,https://docs.qwencloud.com/changelog/models,
 kimi_k3,Kimi K3,moonshot,max,vela:209566,2026-07-16,official_release,https://www.moonshot.ai/,
-kimi_k27,Kimi K2.7,moonshot,default,vela:208717;openrouter:moonshotai/kimi-k2.7-code,2026-06-16,official_release,https://forum.moonshot.ai/t/here-comes-kimi-k2-7-code-better-coding-with-more-efficiency/441,The evaluated provider model is Kimi K2.7 Code; one slot was replaced through the same OpenRouter model with reasoning enabled.
+kimi_k27,Kimi K2.7,moonshot,thinking,vela:208717;openrouter:moonshotai/kimi-k2.7-code,2026-06-16,official_release,https://forum.moonshot.ai/t/here-comes-kimi-k2-7-code-better-coding-with-more-efficiency/441,The evaluated provider model is Kimi K2.7 Code; one slot was replaced through the same OpenRouter model with reasoning enabled.
 gpt_54_thinking_high,GPT-5.4,openai,xhigh,vela:204202,2026-03-05,official_release,https://openai.com/index/introducing-gpt-5-4/,Vela Responses API logs verify reasoning.effort=high and nonzero reasoning tokens on all 150 answers.
 inkling_small,Inkling Small,thinkingmachines,max,thinkingmachines/inkling-small,2026-07-15,official_preview,https://thinkingmachines.ai/news/introducing-inkling/,Announced as a preview alongside Inkling.
 step_37_flash,Step 3.7 Flash,stepfun,high,stepfun/step-3.7-flash,2026-05-29,official_release,https://static.stepfun.com/blog/step-3.7-flash/,
 inkling,Inkling,thinkingmachines,max,thinkingmachines/inkling,2026-07-15,official_release,https://thinkingmachines.ai/news/introducing-inkling/,
 claude_sonnet_46,Claude Sonnet 4.6,anthropic,max,vela:203075;openrouter:anthropic/claude-sonnet-4.6,2026-02-17,official_release,https://www.anthropic.com/news/claude-sonnet-4-6,Thinking-enabled Vela run with same-model OpenRouter repair slots where required.
 gpt_54_mini,GPT-5.4 Mini,openai,xhigh,openrouter:openai/gpt-5.4-mini,2026-03-17,official_release,https://openai.com/index/introducing-gpt-5-4-mini-and-nano/,
-minimax_m3,MiniMax M3,minimax,default,vela:209249,2026-06-01,official_release,https://www.minimax.io/blog/minimax-m3,
+minimax_m3,MiniMax M3,minimax,thinking,vela:209249,2026-06-01,official_release,https://www.minimax.io/blog/minimax-m3,
 gemma_4_31b_it,Gemma 4 31B IT,google,max,google/gemma-4-31b-it,2026-04-02,official_model_repository,https://huggingface.co/google/gemma-4-31B-it,Uses the publication date of Google's official model repository.
 llama_4_maverick,Llama 4 Maverick,meta,default,meta-llama/llama-4-maverick,2025-04-05,official_release,https://ai.meta.com/blog/llama-4-multimodal-intelligence/,
 gpt_4o,GPT-4o (2024-08-06),openai,default,openai/gpt-4o,2024-08-06,official_release,https://openai.com/index/introducing-structured-outputs-in-the-api/,OpenRouter's openai/gpt-4o alias serves gpt-4o-2024-08-06 (same system fingerprint and price as openai/gpt-4o-2024-08-06).
@@ -68,6 +68,6 @@ gemini_3_flash,Gemini 3 Flash,google,high,openrouter:google/gemini-3-flash-previ
 gpt_4o_2024_11_20,GPT-4o (2024-11-20),openai,default,openrouter:openai/gpt-4o-2024-11-20,2024-11-20,openrouter_first_listed,https://openrouter.ai/openai/gpt-4o-2024-11-20,Evaluated through OpenRouter at temperature 0; GPT-6 Luna at maximum reasoning effort is the judge.
 nova_pro,Nova Pro,amazon,default,openrouter:amazon/nova-pro-v1,2024-12-05,openrouter_first_listed,https://openrouter.ai/amazon/nova-pro-v1,Evaluated through OpenRouter at temperature 0; GPT-6 Luna at maximum reasoning effort is the judge.
 hy4,Hy4,tencent,high,openrouter:tencent/hy4,2026-11-04,openrouter_first_listed,https://openrouter.ai/tencent/hy4,Evaluated through OpenRouter at reasoning effort high; GPT-6 Luna at maximum reasoning effort is the judge.
-qwen_35_9b,Qwen 3.5 9B,qwen,default,Qwen/Qwen3.5-9B,2026-02-27,official_model_repository,https://huggingface.co/Qwen/Qwen3.5-9B,Uses the creation date of Qwen's official model repository; the evaluated checkpoint is the official BF16 release.
+qwen_35_9b,Qwen 3.5 9B,qwen,thinking,Qwen/Qwen3.5-9B,2026-02-27,official_model_repository,https://huggingface.co/Qwen/Qwen3.5-9B,Uses the creation date of Qwen's official model repository; the evaluated checkpoint is the official BF16 release.
 claude_fable_52,Claude Fable 5.2,anthropic,max,openrouter:anthropic/claude-fable-5.2,2026-11-09,openrouter_first_listed,https://openrouter.ai/anthropic/claude-fable-5.2,
 minimax_m31_flash,MiniMax M3.1 Flash,minimax,max,minimax-api:MiniMax-M3.1-Flash;openrouter:minimax/minimax-m3.1-flash,2026-10-19,openrouter_first_listed,https://openrouter.ai/minimax/minimax-m3.1-flash,

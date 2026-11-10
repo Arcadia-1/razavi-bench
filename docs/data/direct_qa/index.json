@@ -1,6 +1,6 @@
 {
   "schema_version": "razavi-bench.direct-qa.v1",
-  "generated_at": "2026-11-10T13:08:36.255620+00:00",
+  "generated_at": "2026-11-10T13:27:27.603938+00:00",
   "benchmark": {
     "mode": "direct_qa",
     "question_count": 50,
@@ -11386,7 +11386,7 @@
       "display_name": "MiniMax M3",
       "provider": "minimax",
       "evaluation_model_ids": [],
-      "thinking_effort": "default",
+      "thinking_effort": "thinking",
       "configuration_note": "MiniMax M3 answered the 50 tasks in three rollouts through MiniMax's own chat completions API (MiniMax-M3) with thinking on (the model has no effort levels). Requests set max_completion_tokens to 512,000, the model's output limit. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for MiniMax M3 on 2026-11-10 ($0.30 input, $0.06 cached input, $1.20 output per 1M tokens).",
       "mode": "direct_qa",
       "summary": {
@@ -12537,7 +12537,7 @@
       "display_name": "Kimi K2.7",
       "provider": "moonshot",
       "evaluation_model_ids": [],
-      "thinking_effort": "default",
+      "thinking_effort": "thinking",
       "configuration_note": "Kimi K2.7 answered the 50 tasks in three rollouts through OpenRouter's chat completions route (moonshotai/kimi-k2.7-code) with thinking on (the model has no effort levels). Requests set max_tokens to 235,929, the model's output limit. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Kimi K2.7 on 2026-11-10 ($0.60 input, $0.16 cached input, $3.50 output per 1M tokens).",
       "mode": "direct_qa",
       "summary": {
@@ -16572,7 +16572,7 @@
       "display_name": "Qwen 3.5 9B",
       "provider": "qwen",
       "evaluation_model_ids": [],
-      "thinking_effort": "default",
+      "thinking_effort": "thinking",
       "configuration_note": "Self-hosted official BF16 checkpoint (Qwen/Qwen3.5-9B, revision c2022362) on vLLM 0.33.0 with the qwen3 reasoning parser. Qwen 3.5 9B answered the 50 tasks in three rollouts with thinking on, its only reasoning setting, with Qwen's recommended thinking-mode sampling (temperature 1.0, top_p 0.95), and no max_tokens, so the server allowed the 262,144-token context less the prompt. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. The checkpoint is self-hosted; like every other entry, its cost uses OpenRouter's list price for Qwen 3.5 9B on 2026-11-10 ($0.17 input, $0.17 cached input, $0.25 output per 1M tokens).",
       "mode": "direct_qa",
       "detail_file": "models/qwen_35_9b.json",

@@ -3,7 +3,7 @@
   "display_name": "MiniMax M3",
   "provider": "minimax",
   "evaluation_model_ids": [],
-  "thinking_effort": "default",
+  "thinking_effort": "thinking",
   "configuration_note": "MiniMax M3 answered the 50 tasks in three rollouts through MiniMax's own chat completions API (MiniMax-M3) with thinking on (the model has no effort levels). Requests set max_completion_tokens to 512,000, the model's output limit. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for MiniMax M3 on 2026-11-10 ($0.30 input, $0.06 cached input, $1.20 output per 1M tokens).",
   "mode": "direct_qa",
   "summary": {
@@ -292,7 +292,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -353,7 +353,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -414,7 +414,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -475,7 +475,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -536,7 +536,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -597,7 +597,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -658,7 +658,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -719,7 +719,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -780,7 +780,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -843,7 +843,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -906,7 +906,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -969,7 +969,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -1032,7 +1032,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -1095,7 +1095,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -1158,7 +1158,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -1221,7 +1221,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -1284,7 +1284,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -1347,7 +1347,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -1410,7 +1410,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -1473,7 +1473,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -1536,7 +1536,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -1599,7 +1599,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -1662,7 +1662,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -1725,7 +1725,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -1788,7 +1788,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -1851,7 +1851,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -1914,7 +1914,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -1977,7 +1977,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -2040,7 +2040,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -2103,7 +2103,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -2166,7 +2166,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -2229,7 +2229,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -2292,7 +2292,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -2355,7 +2355,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -2418,7 +2418,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -2481,7 +2481,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -2544,7 +2544,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -2607,7 +2607,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -2670,7 +2670,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -2733,7 +2733,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -2796,7 +2796,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -2859,7 +2859,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -2922,7 +2922,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -2985,7 +2985,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -3048,7 +3048,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -3111,7 +3111,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -3174,7 +3174,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -3237,7 +3237,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -3300,7 +3300,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -3363,7 +3363,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -3426,7 +3426,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -3489,7 +3489,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -3552,7 +3552,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -3615,7 +3615,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -3678,7 +3678,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -3741,7 +3741,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -3804,7 +3804,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -3867,7 +3867,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -3930,7 +3930,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -3993,7 +3993,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -4056,7 +4056,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -4119,7 +4119,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -4182,7 +4182,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -4243,7 +4243,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -4304,7 +4304,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -4365,7 +4365,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -4428,7 +4428,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -4491,7 +4491,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -4554,7 +4554,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -4617,7 +4617,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -4680,7 +4680,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -4743,7 +4743,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -4806,7 +4806,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -4869,7 +4869,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -4932,7 +4932,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -4995,7 +4995,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -5058,7 +5058,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -5121,7 +5121,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -5184,7 +5184,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -5247,7 +5247,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -5310,7 +5310,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -5373,7 +5373,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -5436,7 +5436,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -5499,7 +5499,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -5562,7 +5562,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -5625,7 +5625,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -5688,7 +5688,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -5751,7 +5751,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -5814,7 +5814,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -5877,7 +5877,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -5940,7 +5940,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -6003,7 +6003,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -6066,7 +6066,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -6129,7 +6129,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -6192,7 +6192,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -6255,7 +6255,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -6318,7 +6318,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -6381,7 +6381,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -6444,7 +6444,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -6507,7 +6507,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -6570,7 +6570,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -6633,7 +6633,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -6696,7 +6696,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -6759,7 +6759,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -6822,7 +6822,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -6885,7 +6885,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -6948,7 +6948,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -7011,7 +7011,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -7074,7 +7074,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -7137,7 +7137,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -7200,7 +7200,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -7263,7 +7263,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -7326,7 +7326,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -7389,7 +7389,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -7452,7 +7452,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -7515,7 +7515,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -7578,7 +7578,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -7641,7 +7641,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -7704,7 +7704,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -7767,7 +7767,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -7830,7 +7830,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -7893,7 +7893,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -7956,7 +7956,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -8019,7 +8019,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -8082,7 +8082,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -8145,7 +8145,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -8208,7 +8208,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -8271,7 +8271,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -8334,7 +8334,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -8397,7 +8397,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -8460,7 +8460,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -8523,7 +8523,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -8586,7 +8586,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -8649,7 +8649,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -8712,7 +8712,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -8775,7 +8775,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -8838,7 +8838,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -8901,7 +8901,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -8964,7 +8964,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -9027,7 +9027,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -9090,7 +9090,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -9153,7 +9153,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -9216,7 +9216,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -9279,7 +9279,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -9342,7 +9342,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -9405,7 +9405,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -9468,7 +9468,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -9531,7 +9531,7 @@
       "rollout": 1,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -9594,7 +9594,7 @@
       "rollout": 2,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },
@@ -9657,7 +9657,7 @@
       "rollout": 3,
       "configuration": {
         "model_id": null,
-        "thinking_effort": "default",
+        "thinking_effort": "thinking",
         "api_model": "MiniMax-M3",
         "route": "minimax_chat_completions"
       },

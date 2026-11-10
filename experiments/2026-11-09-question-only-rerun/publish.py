@@ -62,7 +62,9 @@ SELF_HOSTED = {
 ROUTES = {"selfhosted": "selfhosted_vllm_chat_completions", "minimax": "minimax_chat_completions",
           "openrouter": "openrouter_chat_completions"}
 # Effort shown on the site where the trace records the server default rather than its level.
-EFFORT_SHOWN = {"glm_5_3_flash_260828_max": "max"}
+EFFORT_SHOWN = {"glm_5_3_flash_260828_max": "max",
+                # Thinking is on and the model has no effort levels: shown as "thinking", not blank.
+                "minimax_m3": "thinking", "kimi_k27": "thinking", "qwen_35_9b": "thinking"}
 # Models whose reasoning is a switch rather than effort levels.
 THINKING_ONLY = {"kimi_k27", "minimax_m3"}
 
