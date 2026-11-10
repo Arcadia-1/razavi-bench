@@ -51,7 +51,7 @@ kimi_k27,Kimi K2.7,moonshot,2026-06-16,batch 4,73.5,64.17,150,default,default,Fa
 kimi_k3,Kimi K3,moonshot,2026-07-16,batch 6,76.17,73.5,150,max,max,False
 llama_4_maverick,Llama 4 Maverick,meta,2025-04-05,first ten / batch 2,50.83,46.0,150,default,default,False
 mimo_2_6_pro,Mimo 2.6 Pro,xiaomi,2026-09-22,first ten / batch 2,68.17,54.83,150,thinking,max,True
-minimax_m3,MiniMax M3,minimax,2026-06-01,first ten / batch 2,50.5,64.33,150,default,max,True
+minimax_m3,MiniMax M3,minimax,2026-06-01,MiniMax API,50.5,69.17,150,default,default,False
 mistral_large_2512,Mistral Large 2512,mistral,2025-12-01,first ten / batch 2,49.33,28.0,150,default,default,False
 mistral_large_4_0,Mistral Large 4,mistral,2026-10-06,batch 4,77.0,70.33,150,high,high,False
 mistral_medium_35,Mistral Medium 3.5,mistral,2026-05-22,batch 5,54.33,36.5,150,max,high,False
@@ -70,3 +70,4 @@ qwen_38_27b,Qwen 3.8 27B,qwen,2026-08-05,self-hosted,77.67,67.0,150,default,xhig
 qwen_38_max,Qwen 3.8 Max,alibaba,2026-08-03,batch 4,88.0,81.33,150,default,xhigh,True
 step_37_flash,Step 3.7 Flash,stepfun,2026-05-29,batch 4,65.33,47.5,150,default,high,True
 claude_fable_52,Claude Fable 5.2,anthropic,2026-11-09,batch 8,,95.83,150,,max,False
+minimax_m31_flash,MiniMax M3.1 Flash,minimax,2026-10-19,MiniMax API,,72.67,150,,max,False

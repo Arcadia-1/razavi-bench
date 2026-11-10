@@ -10,6 +10,7 @@ Notable changes to Razavi-Bench, newest first, by commit date.
 4. Priced the self-hosted entries (Qwen 3.8 27B, Qwen 3.5 9B, GLM 5.3 Flash) at OpenRouter's rates, and linked this changelog from every page's footer.
 5. Added each task's exact prompt to `data/tasks.jsonl` and switched the runners in `tools/` to send only it.
 6. Updated the Hugging Face dataset (Arcadia-2026/razavi-bench) to the current tasks, figures, references and prompts, and removed its old June experiment files, docs and article PDFs.
+7. Replaced MiniMax M3's entry with a run through MiniMax's own API (69.2%, against 64.3% through OpenRouter) and added MiniMax M3.1 Flash (72.7%).
 
 ## 2026-11-09
 

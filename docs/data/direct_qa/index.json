@@ -1,6 +1,6 @@
 {
   "schema_version": "razavi-bench.direct-qa.v1",
-  "generated_at": "2026-11-10T10:37:54.088105+00:00",
+  "generated_at": "2026-11-10T13:03:15.896342+00:00",
   "benchmark": {
     "mode": "direct_qa",
     "question_count": 50,
@@ -9948,6 +9948,293 @@
       "detail_file": "models/kimi_k3.json"
     },
     {
+      "model_key": "minimax_m31_flash",
+      "display_name": "MiniMax M3.1 Flash",
+      "provider": "minimax",
+      "evaluation_model_ids": [],
+      "thinking_effort": "max",
+      "configuration_note": "MiniMax M3.1 Flash answered the 50 tasks in three rollouts through MiniMax's own chat completions API (MiniMax-M3.1-Flash) at maximum reasoning effort. Requests set max_completion_tokens to 524,288, the model's output limit. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's published MiniMax M3.1 Flash API price ($0.15 input, $0.015 cached input, $0.60 output per 1M tokens).",
+      "mode": "direct_qa",
+      "detail_file": "models/minimax_m31_flash.json",
+      "summary": {
+        "rollout_count": 3,
+        "answer_count": 150,
+        "scores": {
+          "overall": {
+            "gpt_6_luna_max": {
+              "response_count": 150,
+              "correct_count": 84,
+              "incorrect_count": 66,
+              "partial_credit_count": 54,
+              "zero_count": 12,
+              "mean_score_0_to_4": 2.9066666666666667,
+              "score_percent": 72.66666666666667,
+              "score_distribution": {
+                "0": 12,
+                "1": 21,
+                "2": 20,
+                "3": 13,
+                "4": 84
+              }
+            },
+            "active": {
+              "response_count": 150,
+              "correct_count": 84,
+              "incorrect_count": 66,
+              "partial_credit_count": 54,
+              "zero_count": 12,
+              "mean_score_0_to_4": 2.9066666666666667,
+              "score_percent": 72.66666666666667,
+              "score_distribution": {
+                "0": 12,
+                "1": 21,
+                "2": 20,
+                "3": 13,
+                "4": 84
+              }
+            }
+          },
+          "part1": {
+            "gpt_6_luna_max": {
+              "response_count": 90,
+              "correct_count": 68,
+              "incorrect_count": 22,
+              "partial_credit_count": 12,
+              "zero_count": 10,
+              "mean_score_0_to_4": 3.2888888888888888,
+              "score_percent": 82.22222222222221,
+              "score_distribution": {
+                "0": 10,
+                "1": 3,
+                "2": 6,
+                "3": 3,
+                "4": 68
+              }
+            },
+            "active": {
+              "response_count": 90,
+              "correct_count": 68,
+              "incorrect_count": 22,
+              "partial_credit_count": 12,
+              "zero_count": 10,
+              "mean_score_0_to_4": 3.2888888888888888,
+              "score_percent": 82.22222222222221,
+              "score_distribution": {
+                "0": 10,
+                "1": 3,
+                "2": 6,
+                "3": 3,
+                "4": 68
+              }
+            }
+          },
+          "part2": {
+            "gpt_6_luna_max": {
+              "response_count": 60,
+              "correct_count": 16,
+              "incorrect_count": 44,
+              "partial_credit_count": 42,
+              "zero_count": 2,
+              "mean_score_0_to_4": 2.3333333333333335,
+              "score_percent": 58.333333333333336,
+              "score_distribution": {
+                "0": 2,
+                "1": 18,
+                "2": 14,
+                "3": 10,
+                "4": 16
+              }
+            },
+            "active": {
+              "response_count": 60,
+              "correct_count": 16,
+              "incorrect_count": 44,
+              "partial_credit_count": 42,
+              "zero_count": 2,
+              "mean_score_0_to_4": 2.3333333333333335,
+              "score_percent": 58.333333333333336,
+              "score_distribution": {
+                "0": 2,
+                "1": 18,
+                "2": 14,
+                "3": 10,
+                "4": 16
+              }
+            }
+          }
+        },
+        "by_rollout": {
+          "1": {
+            "response_count": 50,
+            "correct_count": 29,
+            "incorrect_count": 21,
+            "partial_credit_count": 19,
+            "zero_count": 2,
+            "mean_score_0_to_4": 3.12,
+            "score_percent": 78.0,
+            "score_distribution": {
+              "0": 2,
+              "1": 5,
+              "2": 7,
+              "3": 7,
+              "4": 29
+            }
+          },
+          "2": {
+            "response_count": 50,
+            "correct_count": 27,
+            "incorrect_count": 23,
+            "partial_credit_count": 18,
+            "zero_count": 5,
+            "mean_score_0_to_4": 2.8,
+            "score_percent": 70.0,
+            "score_distribution": {
+              "0": 5,
+              "1": 7,
+              "2": 8,
+              "3": 3,
+              "4": 27
+            }
+          },
+          "3": {
+            "response_count": 50,
+            "correct_count": 28,
+            "incorrect_count": 22,
+            "partial_credit_count": 17,
+            "zero_count": 5,
+            "mean_score_0_to_4": 2.8,
+            "score_percent": 70.0,
+            "score_distribution": {
+              "0": 5,
+              "1": 9,
+              "2": 5,
+              "3": 3,
+              "4": 28
+            }
+          }
+        },
+        "tokens": {
+          "response_count": 150,
+          "usage_record_count": 150,
+          "complete_usage_count": 150,
+          "missing_usage_count": 0,
+          "missing_cached_input_count": 0,
+          "complete": true,
+          "totals": {
+            "cached_input_tokens": 195872,
+            "input_tokens": 302592,
+            "output_tokens": 2674237,
+            "total_tokens": 2976829
+          },
+          "known_totals": {
+            "cached_input_tokens": 195872,
+            "input_tokens": 302592,
+            "output_tokens": 2674237,
+            "total_tokens": 2976829
+          }
+        },
+        "by_rollout_part": {
+          "part1": {
+            "1": {
+              "response_count": 30,
+              "correct_count": 24,
+              "incorrect_count": 6,
+              "partial_credit_count": 4,
+              "zero_count": 2,
+              "mean_score_0_to_4": 3.533333333333333,
+              "score_percent": 88.33333333333333,
+              "score_distribution": {
+                "0": 2,
+                "2": 2,
+                "3": 2,
+                "4": 24
+              }
+            },
+            "2": {
+              "response_count": 30,
+              "correct_count": 23,
+              "incorrect_count": 7,
+              "partial_credit_count": 3,
+              "zero_count": 4,
+              "mean_score_0_to_4": 3.2333333333333334,
+              "score_percent": 80.83333333333333,
+              "score_distribution": {
+                "0": 4,
+                "1": 1,
+                "2": 2,
+                "4": 23
+              }
+            },
+            "3": {
+              "response_count": 30,
+              "correct_count": 21,
+              "incorrect_count": 9,
+              "partial_credit_count": 5,
+              "zero_count": 4,
+              "mean_score_0_to_4": 3.1,
+              "score_percent": 77.5,
+              "score_distribution": {
+                "0": 4,
+                "1": 2,
+                "2": 2,
+                "3": 1,
+                "4": 21
+              }
+            }
+          },
+          "part2": {
+            "1": {
+              "response_count": 20,
+              "correct_count": 5,
+              "incorrect_count": 15,
+              "partial_credit_count": 15,
+              "zero_count": 0,
+              "mean_score_0_to_4": 2.5,
+              "score_percent": 62.5,
+              "score_distribution": {
+                "1": 5,
+                "2": 5,
+                "3": 5,
+                "4": 5
+              }
+            },
+            "2": {
+              "response_count": 20,
+              "correct_count": 4,
+              "incorrect_count": 16,
+              "partial_credit_count": 15,
+              "zero_count": 1,
+              "mean_score_0_to_4": 2.15,
+              "score_percent": 53.75,
+              "score_distribution": {
+                "0": 1,
+                "1": 6,
+                "2": 6,
+                "3": 3,
+                "4": 4
+              }
+            },
+            "3": {
+              "response_count": 20,
+              "correct_count": 7,
+              "incorrect_count": 13,
+              "partial_credit_count": 12,
+              "zero_count": 1,
+              "mean_score_0_to_4": 2.35,
+              "score_percent": 58.75,
+              "score_distribution": {
+                "0": 1,
+                "1": 7,
+                "2": 3,
+                "3": 2,
+                "4": 7
+              }
+            }
+          }
+        }
+      }
+    },
+    {
       "model_key": "qwen_37_plus",
       "display_name": "Qwen 3.7 Plus",
       "provider": "qwen",
@@ -11095,6 +11382,292 @@
       }
     },
     {
+      "model_key": "minimax_m3",
+      "display_name": "MiniMax M3",
+      "provider": "minimax",
+      "evaluation_model_ids": [],
+      "thinking_effort": "default",
+      "configuration_note": "MiniMax M3 answered the 50 tasks in three rollouts through MiniMax's own chat completions API (MiniMax-M3) with thinking on (the model has no effort levels). Requests set max_completion_tokens to 512,000, the model's output limit. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's published MiniMax M3 API price ($0.60 input, $0.06 cached input, $2.40 output per 1M tokens).",
+      "mode": "direct_qa",
+      "summary": {
+        "rollout_count": 3,
+        "answer_count": 150,
+        "scores": {
+          "overall": {
+            "gpt_6_luna_max": {
+              "response_count": 150,
+              "correct_count": 79,
+              "incorrect_count": 71,
+              "partial_credit_count": 59,
+              "zero_count": 12,
+              "mean_score_0_to_4": 2.7666666666666666,
+              "score_percent": 69.16666666666667,
+              "score_distribution": {
+                "0": 12,
+                "1": 30,
+                "2": 18,
+                "3": 11,
+                "4": 79
+              }
+            },
+            "active": {
+              "response_count": 150,
+              "correct_count": 79,
+              "incorrect_count": 71,
+              "partial_credit_count": 59,
+              "zero_count": 12,
+              "mean_score_0_to_4": 2.7666666666666666,
+              "score_percent": 69.16666666666667,
+              "score_distribution": {
+                "0": 12,
+                "1": 30,
+                "2": 18,
+                "3": 11,
+                "4": 79
+              }
+            }
+          },
+          "part1": {
+            "gpt_6_luna_max": {
+              "response_count": 90,
+              "correct_count": 63,
+              "incorrect_count": 27,
+              "partial_credit_count": 16,
+              "zero_count": 11,
+              "mean_score_0_to_4": 3.077777777777778,
+              "score_percent": 76.94444444444444,
+              "score_distribution": {
+                "0": 11,
+                "1": 9,
+                "2": 5,
+                "3": 2,
+                "4": 63
+              }
+            },
+            "active": {
+              "response_count": 90,
+              "correct_count": 63,
+              "incorrect_count": 27,
+              "partial_credit_count": 16,
+              "zero_count": 11,
+              "mean_score_0_to_4": 3.077777777777778,
+              "score_percent": 76.94444444444444,
+              "score_distribution": {
+                "0": 11,
+                "1": 9,
+                "2": 5,
+                "3": 2,
+                "4": 63
+              }
+            }
+          },
+          "part2": {
+            "gpt_6_luna_max": {
+              "response_count": 60,
+              "correct_count": 16,
+              "incorrect_count": 44,
+              "partial_credit_count": 43,
+              "zero_count": 1,
+              "mean_score_0_to_4": 2.3,
+              "score_percent": 57.49999999999999,
+              "score_distribution": {
+                "0": 1,
+                "1": 21,
+                "2": 13,
+                "3": 9,
+                "4": 16
+              }
+            },
+            "active": {
+              "response_count": 60,
+              "correct_count": 16,
+              "incorrect_count": 44,
+              "partial_credit_count": 43,
+              "zero_count": 1,
+              "mean_score_0_to_4": 2.3,
+              "score_percent": 57.49999999999999,
+              "score_distribution": {
+                "0": 1,
+                "1": 21,
+                "2": 13,
+                "3": 9,
+                "4": 16
+              }
+            }
+          }
+        },
+        "by_rollout": {
+          "1": {
+            "response_count": 50,
+            "correct_count": 26,
+            "incorrect_count": 24,
+            "partial_credit_count": 20,
+            "zero_count": 4,
+            "mean_score_0_to_4": 2.82,
+            "score_percent": 70.5,
+            "score_distribution": {
+              "0": 4,
+              "1": 9,
+              "2": 5,
+              "3": 6,
+              "4": 26
+            }
+          },
+          "2": {
+            "response_count": 50,
+            "correct_count": 26,
+            "incorrect_count": 24,
+            "partial_credit_count": 20,
+            "zero_count": 4,
+            "mean_score_0_to_4": 2.72,
+            "score_percent": 68.0,
+            "score_distribution": {
+              "0": 4,
+              "1": 11,
+              "2": 6,
+              "3": 3,
+              "4": 26
+            }
+          },
+          "3": {
+            "response_count": 50,
+            "correct_count": 27,
+            "incorrect_count": 23,
+            "partial_credit_count": 19,
+            "zero_count": 4,
+            "mean_score_0_to_4": 2.76,
+            "score_percent": 69.0,
+            "score_distribution": {
+              "0": 4,
+              "1": 10,
+              "2": 7,
+              "3": 2,
+              "4": 27
+            }
+          }
+        },
+        "tokens": {
+          "response_count": 150,
+          "usage_record_count": 150,
+          "complete_usage_count": 150,
+          "missing_usage_count": 0,
+          "missing_cached_input_count": 0,
+          "complete": true,
+          "totals": {
+            "cached_input_tokens": 189924,
+            "input_tokens": 301632,
+            "output_tokens": 2846132,
+            "total_tokens": 3147764
+          },
+          "known_totals": {
+            "cached_input_tokens": 189924,
+            "input_tokens": 301632,
+            "output_tokens": 2846132,
+            "total_tokens": 3147764
+          }
+        },
+        "by_rollout_part": {
+          "part1": {
+            "1": {
+              "response_count": 30,
+              "correct_count": 20,
+              "incorrect_count": 10,
+              "partial_credit_count": 6,
+              "zero_count": 4,
+              "mean_score_0_to_4": 3.033333333333333,
+              "score_percent": 75.83333333333333,
+              "score_distribution": {
+                "0": 4,
+                "1": 3,
+                "2": 1,
+                "3": 2,
+                "4": 20
+              }
+            },
+            "2": {
+              "response_count": 30,
+              "correct_count": 21,
+              "incorrect_count": 9,
+              "partial_credit_count": 6,
+              "zero_count": 3,
+              "mean_score_0_to_4": 3.066666666666667,
+              "score_percent": 76.66666666666667,
+              "score_distribution": {
+                "0": 3,
+                "1": 4,
+                "2": 2,
+                "4": 21
+              }
+            },
+            "3": {
+              "response_count": 30,
+              "correct_count": 22,
+              "incorrect_count": 8,
+              "partial_credit_count": 4,
+              "zero_count": 4,
+              "mean_score_0_to_4": 3.1333333333333333,
+              "score_percent": 78.33333333333333,
+              "score_distribution": {
+                "0": 4,
+                "1": 2,
+                "2": 2,
+                "4": 22
+              }
+            }
+          },
+          "part2": {
+            "1": {
+              "response_count": 20,
+              "correct_count": 6,
+              "incorrect_count": 14,
+              "partial_credit_count": 14,
+              "zero_count": 0,
+              "mean_score_0_to_4": 2.5,
+              "score_percent": 62.5,
+              "score_distribution": {
+                "1": 6,
+                "2": 4,
+                "3": 4,
+                "4": 6
+              }
+            },
+            "2": {
+              "response_count": 20,
+              "correct_count": 5,
+              "incorrect_count": 15,
+              "partial_credit_count": 14,
+              "zero_count": 1,
+              "mean_score_0_to_4": 2.2,
+              "score_percent": 55.00000000000001,
+              "score_distribution": {
+                "0": 1,
+                "1": 7,
+                "2": 4,
+                "3": 3,
+                "4": 5
+              }
+            },
+            "3": {
+              "response_count": 20,
+              "correct_count": 5,
+              "incorrect_count": 15,
+              "partial_credit_count": 15,
+              "zero_count": 0,
+              "mean_score_0_to_4": 2.2,
+              "score_percent": 55.00000000000001,
+              "score_distribution": {
+                "1": 8,
+                "2": 5,
+                "3": 2,
+                "4": 5
+              }
+            }
+          }
+        }
+      },
+      "detail_file": "models/minimax_m3.json"
+    },
+    {
       "model_key": "qwen_38_27b",
       "display_name": "Qwen 3.8 27B",
       "provider": "qwen",
@@ -11958,294 +12531,6 @@
         }
       },
       "detail_file": "models/qwen_37_flash.json"
-    },
-    {
-      "model_key": "minimax_m3",
-      "display_name": "MiniMax M3",
-      "provider": "minimax",
-      "evaluation_model_ids": [],
-      "thinking_effort": "max",
-      "configuration_note": "MiniMax M3 answered the 50 tasks in three rollouts through OpenRouter's chat completions route (minimax/minimax-m3) at maximum reasoning effort. Requests set max_tokens to 512,000, the model's output limit. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's published MiniMax M3 API price ($0.60 input, $0.06 cached input, $2.40 output per 1M tokens).",
-      "mode": "direct_qa",
-      "summary": {
-        "rollout_count": 3,
-        "answer_count": 150,
-        "scores": {
-          "overall": {
-            "gpt_6_luna_max": {
-              "response_count": 150,
-              "correct_count": 70,
-              "incorrect_count": 80,
-              "partial_credit_count": 58,
-              "zero_count": 22,
-              "mean_score_0_to_4": 2.5733333333333333,
-              "score_percent": 64.33333333333333,
-              "score_distribution": {
-                "0": 22,
-                "1": 25,
-                "2": 18,
-                "3": 15,
-                "4": 70
-              }
-            },
-            "active": {
-              "response_count": 150,
-              "correct_count": 70,
-              "incorrect_count": 80,
-              "partial_credit_count": 58,
-              "zero_count": 22,
-              "mean_score_0_to_4": 2.5733333333333333,
-              "score_percent": 64.33333333333333,
-              "score_distribution": {
-                "0": 22,
-                "1": 25,
-                "2": 18,
-                "3": 15,
-                "4": 70
-              }
-            }
-          },
-          "part1": {
-            "gpt_6_luna_max": {
-              "response_count": 90,
-              "correct_count": 55,
-              "incorrect_count": 35,
-              "partial_credit_count": 16,
-              "zero_count": 19,
-              "mean_score_0_to_4": 2.7777777777777777,
-              "score_percent": 69.44444444444444,
-              "score_distribution": {
-                "0": 19,
-                "1": 7,
-                "2": 4,
-                "3": 5,
-                "4": 55
-              }
-            },
-            "active": {
-              "response_count": 90,
-              "correct_count": 55,
-              "incorrect_count": 35,
-              "partial_credit_count": 16,
-              "zero_count": 19,
-              "mean_score_0_to_4": 2.7777777777777777,
-              "score_percent": 69.44444444444444,
-              "score_distribution": {
-                "0": 19,
-                "1": 7,
-                "2": 4,
-                "3": 5,
-                "4": 55
-              }
-            }
-          },
-          "part2": {
-            "gpt_6_luna_max": {
-              "response_count": 60,
-              "correct_count": 15,
-              "incorrect_count": 45,
-              "partial_credit_count": 42,
-              "zero_count": 3,
-              "mean_score_0_to_4": 2.2666666666666666,
-              "score_percent": 56.666666666666664,
-              "score_distribution": {
-                "0": 3,
-                "1": 18,
-                "2": 14,
-                "3": 10,
-                "4": 15
-              }
-            },
-            "active": {
-              "response_count": 60,
-              "correct_count": 15,
-              "incorrect_count": 45,
-              "partial_credit_count": 42,
-              "zero_count": 3,
-              "mean_score_0_to_4": 2.2666666666666666,
-              "score_percent": 56.666666666666664,
-              "score_distribution": {
-                "0": 3,
-                "1": 18,
-                "2": 14,
-                "3": 10,
-                "4": 15
-              }
-            }
-          }
-        },
-        "by_rollout": {
-          "1": {
-            "response_count": 50,
-            "correct_count": 24,
-            "incorrect_count": 26,
-            "partial_credit_count": 21,
-            "zero_count": 5,
-            "mean_score_0_to_4": 2.76,
-            "score_percent": 69.0,
-            "score_distribution": {
-              "0": 5,
-              "1": 7,
-              "2": 7,
-              "3": 7,
-              "4": 24
-            }
-          },
-          "2": {
-            "response_count": 50,
-            "correct_count": 26,
-            "incorrect_count": 24,
-            "partial_credit_count": 18,
-            "zero_count": 6,
-            "mean_score_0_to_4": 2.62,
-            "score_percent": 65.5,
-            "score_distribution": {
-              "0": 6,
-              "1": 12,
-              "2": 3,
-              "3": 3,
-              "4": 26
-            }
-          },
-          "3": {
-            "response_count": 50,
-            "correct_count": 20,
-            "incorrect_count": 30,
-            "partial_credit_count": 19,
-            "zero_count": 11,
-            "mean_score_0_to_4": 2.34,
-            "score_percent": 58.5,
-            "score_distribution": {
-              "0": 11,
-              "1": 6,
-              "2": 8,
-              "3": 5,
-              "4": 20
-            }
-          }
-        },
-        "tokens": {
-          "response_count": 150,
-          "usage_record_count": 150,
-          "complete_usage_count": 150,
-          "missing_usage_count": 0,
-          "missing_cached_input_count": 0,
-          "complete": true,
-          "totals": {
-            "cached_input_tokens": 44235,
-            "input_tokens": 254702,
-            "output_tokens": 2462477,
-            "total_tokens": 2717179
-          },
-          "known_totals": {
-            "cached_input_tokens": 44235,
-            "input_tokens": 254702,
-            "output_tokens": 2462477,
-            "total_tokens": 2717179
-          }
-        },
-        "by_rollout_part": {
-          "part1": {
-            "1": {
-              "response_count": 30,
-              "correct_count": 19,
-              "incorrect_count": 11,
-              "partial_credit_count": 6,
-              "zero_count": 5,
-              "mean_score_0_to_4": 2.933333333333333,
-              "score_percent": 73.33333333333333,
-              "score_distribution": {
-                "0": 5,
-                "1": 2,
-                "2": 2,
-                "3": 2,
-                "4": 19
-              }
-            },
-            "2": {
-              "response_count": 30,
-              "correct_count": 21,
-              "incorrect_count": 9,
-              "partial_credit_count": 4,
-              "zero_count": 5,
-              "mean_score_0_to_4": 3.0,
-              "score_percent": 75.0,
-              "score_distribution": {
-                "0": 5,
-                "1": 3,
-                "3": 1,
-                "4": 21
-              }
-            },
-            "3": {
-              "response_count": 30,
-              "correct_count": 15,
-              "incorrect_count": 15,
-              "partial_credit_count": 6,
-              "zero_count": 9,
-              "mean_score_0_to_4": 2.4,
-              "score_percent": 60.0,
-              "score_distribution": {
-                "0": 9,
-                "1": 2,
-                "2": 2,
-                "3": 2,
-                "4": 15
-              }
-            }
-          },
-          "part2": {
-            "1": {
-              "response_count": 20,
-              "correct_count": 5,
-              "incorrect_count": 15,
-              "partial_credit_count": 15,
-              "zero_count": 0,
-              "mean_score_0_to_4": 2.5,
-              "score_percent": 62.5,
-              "score_distribution": {
-                "1": 5,
-                "2": 5,
-                "3": 5,
-                "4": 5
-              }
-            },
-            "2": {
-              "response_count": 20,
-              "correct_count": 5,
-              "incorrect_count": 15,
-              "partial_credit_count": 14,
-              "zero_count": 1,
-              "mean_score_0_to_4": 2.05,
-              "score_percent": 51.24999999999999,
-              "score_distribution": {
-                "0": 1,
-                "1": 9,
-                "2": 3,
-                "3": 2,
-                "4": 5
-              }
-            },
-            "3": {
-              "response_count": 20,
-              "correct_count": 5,
-              "incorrect_count": 15,
-              "partial_credit_count": 13,
-              "zero_count": 2,
-              "mean_score_0_to_4": 2.25,
-              "score_percent": 56.25,
-              "score_distribution": {
-                "0": 2,
-                "1": 4,
-                "2": 6,
-                "3": 3,
-                "4": 5
-              }
-            }
-          }
-        }
-      },
-      "detail_file": "models/minimax_m3.json"
     },
     {
       "model_key": "kimi_k27",

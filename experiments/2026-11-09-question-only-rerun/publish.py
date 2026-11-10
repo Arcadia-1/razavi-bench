@@ -58,10 +58,12 @@ SELF_HOSTED = {
                                  "max, its chat template's default and highest level, with the sampling of its "
                                  "generation_config (temperature 1.0, top_p 0.95)"),
 }
+ROUTES = {"selfhosted": "selfhosted_vllm_chat_completions", "minimax": "minimax_chat_completions",
+          "openrouter": "openrouter_chat_completions"}
 # Effort shown on the site where the trace records the server default rather than its level.
 EFFORT_SHOWN = {"glm_5_3_flash_260828_max": "max"}
 # Models whose reasoning is a switch rather than effort levels.
-THINKING_ONLY = {"kimi_k27"}
+THINKING_ONLY = {"kimi_k27", "minimax_m3"}
 
 
 def sha(text: str) -> str:
@@ -72,6 +74,14 @@ def prices() -> dict[str, list[float]]:
     text = (REPO / "docs/assets/pricing.js").read_text()
     body = text.split("var PRICE={", 1)[1].split("};", 1)[0]
     return {k: [float(x) for x in v.split(",")] for k, v in re.findall(r"(\w+):\[([^\]]+)\]", body)}
+
+
+def source_of_answers(path: Path) -> str:
+    return "selfhosted" if path.name.startswith("answers_selfhosted") else "minimax" if path.name.startswith("answers_minimax") else "openrouter"
+
+
+def source_of_traces(path: Path) -> str:
+    return "selfhosted" if "runs_selfhosted" in path.parts else "minimax" if "runs_minimax" in path.parts else "openrouter"
 
 
 def selected_answers() -> dict[tuple[str, str, int], dict]:
@@ -86,7 +96,7 @@ def selected_answers() -> dict[tuple[str, str, int], dict]:
             model = cs.RELABEL.get(r["model_name"], r["model_name"])
             if model == "glm_5_3_flash_260828_max" and not path.name.startswith("answers_selfhosted"):
                 continue
-            answers[(model, r["task_slug"], r["rollout"])] = {**r, "_selfhosted": path.name.startswith("answers_selfhosted")}
+            answers[(model, r["task_slug"], r["rollout"])] = {**r, "_source": source_of_answers(path)}
     return answers
 
 
@@ -108,7 +118,8 @@ def traces() -> dict[tuple[str, str, int], list[dict]]:
         if "discarded" in path.parts:
             continue
         for row in cs.read(path):
-            row["_selfhosted"] = "runs_selfhosted" in path.parts
+            row["_source"] = source_of_traces(path)
+            row["_selfhosted"] = row["_source"] == "selfhosted"
             model = cs.RELABEL.get(row["model_key"], row["model_key"])
             slots[(model, row["task_slug"], row["rollout"])].append(row)
     return slots
@@ -146,6 +157,10 @@ def note(key: str, name: str, rows: list[dict], effort: str, looped: int, price:
     row = rows[0]
     if key in SELF_HOSTED:
         text = SELF_HOSTED[key] + ", and no max_tokens, so the server allowed the 262,144-token context less the prompt."
+    elif row["_source"] == "minimax":
+        text = (f"{name} answered the 50 tasks in three rollouts through MiniMax's own chat completions API "
+                f"({row['model']}) {effort_phrase(key, effort)}. Requests set max_completion_tokens to "
+                f"{row['max_tokens']:,}, the model's output limit.")
     else:
         settings = [f"max_tokens to {row['max_tokens']:,}, the model's output limit"]
         if row.get("temperature") is not None:
@@ -201,7 +216,7 @@ def main() -> int:
                 digest = sha(answer["answer"])
                 score = by_model.get((key, digest, slug)) or any_model.get((digest, slug))
                 matches = [r for r in slots[(key, slug, rollout)]  # same text can come from another run
-                           if sha(r.get("answer") or "") == digest and r["_selfhosted"] == answer["_selfhosted"]]
+                           if sha(r.get("answer") or "") == digest and r["_source"] == answer["_source"]]
                 if score is None or not matches:
                     raise SystemExit(f"{key} {slug} r{rollout}: score={score is not None} trace={bool(matches)}")
                 selected = matches[-1]
@@ -220,7 +235,7 @@ def main() -> int:
         if len(efforts) != 1 or len(models) != 1:
             raise SystemExit(f"{key}: mixed configuration efforts={efforts} models={models}")
         effort = EFFORT_SHOWN.get(key, efforts.pop())
-        route = "selfhosted_vllm_chat_completions" if selected_rows[0]["_selfhosted"] else "openrouter_chat_completions"
+        route = ROUTES[selected_rows[0]["_source"]]
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp) / "answers.jsonl"
             path.write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in chosen), encoding="utf-8")
