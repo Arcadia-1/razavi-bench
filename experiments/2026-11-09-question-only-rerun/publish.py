@@ -169,12 +169,13 @@ def note(key: str, name: str, rows: list[dict], effort: str, looped: int, price:
                 f"({row['model']}) {effort_phrase(key, effort)}. Requests set max_completion_tokens to "
                 f"{row['max_tokens']:,}, the model's output limit.")
     else:
-        settings = [f"max_tokens to {row['max_tokens']:,}, the model's output limit"]
+        settings = []
         if row.get("temperature") is not None:
             settings.append(f"temperature to {row['temperature']:g}")
         top_p = (row.get("request_options") or {}).get("top_p")
         if top_p is not None:
-            settings.append(f"top_p to {top_p:g}, as its model card recommends")
+            settings.append(f"top_p to {top_p:g} (as its model card recommends)")
+        settings.append(f"max_tokens to {row['max_tokens']:,}, the model's output limit")
         listed = settings[0] if len(settings) == 1 else ", ".join(settings[:-1]) + " and " + settings[-1]
         text = (f"{name} answered the 50 tasks in three rollouts through OpenRouter's chat completions route "
                 f"({row['model']}) {effort_phrase(key, effort)}. Requests set {listed}.")

@@ -23,6 +23,7 @@ var PRICE={
   gemini_38_flash:[0.825,4.125,0.0825],
   gemini_3_flash:[0.5,3,0.05],
   gemini_4_argon:[2,10,0.1],
+  gemini_4_carbon:[2,10,0.1],
   gemma_4_31b_it:[0.2,0.4,0.2],
   glm_5_3_flash_260828_max:[0.15,0.5,0.03],
   gpt_4o:[2.5,10,1.25],

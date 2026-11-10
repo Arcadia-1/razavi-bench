@@ -1,0 +1,48 @@
+{
+  "answer_chars": 6639,
+  "answer_metadata": {
+    "benchmark": "razavi-bench",
+    "experiment": "2026-11-09-question-only-rerun",
+    "model_name": "gemini_4_carbon",
+    "rollout": 1
+  },
+  "answer_sha256": "6d6032b76025a3dd80388a9984440b7759ab523459e4cb85f1f2ab982094ac71",
+  "golden_solution_sha256": "9fb09917ae8858f8003213ac52eae9cc4403612167903aff6685adcc43ddd686",
+  "judge_api_format": "chat-completions",
+  "judge_model": "openai/gpt-6-luna",
+  "judge_script_sha256": "19a0259bd2411c71e44a546dc2bc58fe855c71ff8674f75130db7ddaabf56f26",
+  "judge_system_sha256": "5dc6bd623ac84598a572a6e06c08516704ef305c07593c1a1f2e3669265d790b",
+  "judge_usage": {
+    "completion_tokens": 128000,
+    "completion_tokens_details": {
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 8234
+    },
+    "cost": 0.064457425,
+    "cost_details": {
+      "upstream_inference_completions_cost": 0.064,
+      "upstream_inference_cost": 0.064457425,
+      "upstream_inference_prompt_cost": 0.000457425
+    },
+    "is_byok": false,
+    "prompt_tokens": 3660,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 3657,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 131660
+  },
+  "parse_error": "",
+  "question_sha256": "bbddaa73b5fc2baa9abada90753bc68c9848e7d303990e17deb441b9a87479bb",
+  "rationale": "{\"score_0_to_4\":3,\"rationale\":\"It correctly gives the tank resonance and the coupling shift \\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0m\\u001b[0",
+  "repo_commit": "228ce7d7b78454d63e41b922fbe2b6a55ab571f4",
+  "rubric_sha256": "7c95b8e3a1a51fcebb49a1ad05e777ad488f398109bed3af7814ed1709b67a54",
+  "score_0_to_1": 0.75,
+  "score_0_to_4": 3,
+  "source_key": "|tasks/part2-020-estimate-oscillation-frequency|2026-11-09-question-only-rerun|gemini_4_carbon|1||6d6032b76025a3dd",
+  "task_path": "tasks/part2-020-estimate-oscillation-frequency",
+  "task_slug": "part2-020-estimate-oscillation-frequency"
+}

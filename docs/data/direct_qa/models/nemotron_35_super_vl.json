@@ -4,7 +4,7 @@
   "provider": "nvidia",
   "evaluation_model_ids": [],
   "thinking_effort": "max",
-  "configuration_note": "Nemotron 3.5 Super VL answered the 50 tasks in three rollouts through OpenRouter's chat completions route (nvidia/nemotron-3.5-super-vl) at maximum reasoning effort. Requests set max_tokens to 943,718, the model's output limit, temperature to 1 and top_p to 0.95, as its model card recommends. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Nemotron 3.5 Super VL on 2026-11-10 ($0.15 input, $0.02 cached input, $0.47 output per 1M tokens).",
+  "configuration_note": "Nemotron 3.5 Super VL answered the 50 tasks in three rollouts through OpenRouter's chat completions route (nvidia/nemotron-3.5-super-vl) at maximum reasoning effort. Requests set temperature to 1, top_p to 0.95 (as its model card recommends) and max_tokens to 943,718, the model's output limit. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Nemotron 3.5 Super VL on 2026-11-10 ($0.15 input, $0.02 cached input, $0.47 output per 1M tokens).",
   "mode": "direct_qa",
   "summary": {
     "rollout_count": 3,

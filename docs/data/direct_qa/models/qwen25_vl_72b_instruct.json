@@ -4,7 +4,7 @@
   "provider": "qwen",
   "evaluation_model_ids": [],
   "thinking_effort": "default",
-  "configuration_note": "Qwen2.5-VL-72B Instruct answered the 50 tasks in three rollouts through OpenRouter's chat completions route (qwen/qwen2.5-vl-72b-instruct) without reasoning (the model has no reasoning setting). Requests set max_tokens to 115,200, the model's output limit and temperature to 0. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Qwen2.5-VL-72B Instruct on 2026-11-10 ($0.80 input, $0.40 cached input, $1.00 output per 1M tokens).",
+  "configuration_note": "Qwen2.5-VL-72B Instruct answered the 50 tasks in three rollouts through OpenRouter's chat completions route (qwen/qwen2.5-vl-72b-instruct) without reasoning (the model has no reasoning setting). Requests set temperature to 0 and max_tokens to 115,200, the model's output limit. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Qwen2.5-VL-72B Instruct on 2026-11-10 ($0.80 input, $0.40 cached input, $1.00 output per 1M tokens).",
   "mode": "direct_qa",
   "summary": {
     "rollout_count": 3,

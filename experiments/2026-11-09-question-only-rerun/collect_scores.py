@@ -31,7 +31,7 @@ RELABEL = {"claude_opus_5_medium": "claude_opus_5"}
 DROPPED = {"claude_opus_5_xhigh", "claude_opus_5_high", "claude_opus_5_medium", "gpt_6_sol_thinking_high",
            "minimax_01", "claude_sonnet_4", "doubao_seed_21_pro_260915_max"}
 ANSWERS = ["answers.jsonl", "batch3/answers.jsonl", "batch3/addon_hy4/answers.jsonl", "batch4/answers.jsonl",
-           "batch5/answers.jsonl", "batch6/answers.jsonl|batch6/answers_partial.jsonl", "batch7/answers.jsonl", "batch8/answers.jsonl", "batch9/answers.jsonl", "batch10/answers.jsonl",
+           "batch5/answers.jsonl", "batch6/answers.jsonl|batch6/answers_partial.jsonl", "batch7/answers.jsonl", "batch8/answers.jsonl", "batch9/answers.jsonl", "batch10/answers.jsonl", "batch11/answers.jsonl",
            "answers_selfhosted.jsonl", "answers_selfhosted_9b.jsonl", "answers_selfhosted_glm.jsonl",
            "q6q12/answers.jsonl", "answers_minimax_m3.jsonl", "answers_minimax.jsonl"]
 SCORES = ["scores-gpt-6-luna-max.jsonl", "scores-recal4-gpt-6-luna-max.jsonl", "scores-selfhosted-gpt-6-luna-max.jsonl",
@@ -39,17 +39,18 @@ SCORES = ["scores-gpt-6-luna-max.jsonl", "scores-recal4-gpt-6-luna-max.jsonl", "
           "batch3/scores_all10-gpt-6-luna-max.jsonl", "batch3/scores-gpt-6-luna-max.jsonl",
           "batch3/addon_hy4/scores-gpt-6-luna-max.jsonl", "batch4/scores-gpt-6-luna-max.jsonl",
           "batch5/scores-gpt-6-luna-max.jsonl", "batch6/partial-scores-gpt-6-luna-max.jsonl",
-          "batch6/scores-gpt-6-luna-max.jsonl", "batch7/scores-gpt-6-luna-max.jsonl", "batch8/scores-gpt-6-luna-max.jsonl", "batch9/scores-gpt-6-luna-max.jsonl", "batch10/scores-gpt-6-luna-max.jsonl", "q6q12/scores-gpt-6-luna-max.jsonl",
+          "batch6/scores-gpt-6-luna-max.jsonl", "batch7/scores-gpt-6-luna-max.jsonl", "batch8/scores-gpt-6-luna-max.jsonl", "batch9/scores-gpt-6-luna-max.jsonl", "batch10/scores-gpt-6-luna-max.jsonl", "batch11/scores-gpt-6-luna-max.jsonl", "q6q12/scores-gpt-6-luna-max.jsonl",
           "q6q12/scores-selfhosted-gpt-6-luna-max.jsonl", "scores-minimax-gpt-6-luna-max.jsonl",
           "scores-minimax-m3-gpt-6-luna-max.jsonl"]
 SOURCE = {"answers.jsonl": "first ten / batch 2", "batch3": "batch 3", "batch4": "batch 4", "batch5": "batch 5",
-          "batch6": "batch 6", "batch7": "batch 7", "batch8": "batch 8", "batch9": "batch 9", "batch10": "batch 10", "answers_selfhosted": "self-hosted",
+          "batch6": "batch 6", "batch7": "batch 7", "batch8": "batch 8", "batch9": "batch 9", "batch10": "batch 10", "batch11": "batch 11", "answers_selfhosted": "self-hosted",
           "answers_minimax": "MiniMax API"}
 EFFORT_RANK = {"none": 0, "minimal": 1, "low": 2, "medium": 3, "high": 4, "xhigh": 5, "max": 6}
 # Published at their models' only or default-top reasoning setting, labelled "default" or otherwise.
 # Entries with no published run, added for the rerun: key -> (display name, provider, release date).
 NEW_ENTRIES = {"claude_fable_52": ("Claude Fable 5.2", "anthropic", "2026-11-09"),
-               "minimax_m31_flash": ("MiniMax M3.1 Flash", "minimax", "2026-10-19")}
+               "minimax_m31_flash": ("MiniMax M3.1 Flash", "minimax", "2026-10-19"),
+               "gemini_4_carbon": ("Gemini 4 Carbon", "google", "2026-11-10")}
 SAME_SETTING = {"qwen_38_27b", "qwen_35_9b", "kimi_k27", "nemotron_35_super_vl"}
 
 

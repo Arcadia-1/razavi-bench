@@ -1,6 +1,6 @@
 {
   "schema_version": "razavi-bench.direct-qa.v1",
-  "generated_at": "2026-11-10T13:27:27.603938+00:00",
+  "generated_at": "2026-11-10T18:56:28.723065+00:00",
   "benchmark": {
     "mode": "direct_qa",
     "question_count": 50,
@@ -15,6 +15,262 @@
     "token_definition": "input_tokens includes cached and cache-creation input; cached_input_tokens is the cache-read subset; tokens are summed over answer-model attempts only"
   },
   "models": [
+    {
+      "model_key": "gemini_4_carbon",
+      "display_name": "Gemini 4 Carbon",
+      "provider": "google",
+      "evaluation_model_ids": [],
+      "thinking_effort": "high",
+      "configuration_note": "Gemini 4 Carbon answered the 50 tasks in three rollouts through OpenRouter's chat completions route (google/gemini-4-carbon) at reasoning effort high, the highest it offers. Requests set temperature to 0 and max_tokens to 943,718, the model's output limit. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Gemini 4 Carbon on 2026-11-10 ($2.00 input, $0.10 cached input, $10.00 output per 1M tokens).",
+      "mode": "direct_qa",
+      "detail_file": "models/gemini_4_carbon.json",
+      "summary": {
+        "rollout_count": 3,
+        "answer_count": 150,
+        "scores": {
+          "overall": {
+            "gpt_6_luna_max": {
+              "response_count": 150,
+              "correct_count": 144,
+              "incorrect_count": 6,
+              "partial_credit_count": 6,
+              "zero_count": 0,
+              "mean_score_0_to_4": 3.933333333333333,
+              "score_percent": 98.33333333333333,
+              "score_distribution": {
+                "1": 1,
+                "2": 2,
+                "3": 3,
+                "4": 144
+              }
+            },
+            "active": {
+              "response_count": 150,
+              "correct_count": 144,
+              "incorrect_count": 6,
+              "partial_credit_count": 6,
+              "zero_count": 0,
+              "mean_score_0_to_4": 3.933333333333333,
+              "score_percent": 98.33333333333333,
+              "score_distribution": {
+                "1": 1,
+                "2": 2,
+                "3": 3,
+                "4": 144
+              }
+            }
+          },
+          "part1": {
+            "gpt_6_luna_max": {
+              "response_count": 90,
+              "correct_count": 89,
+              "incorrect_count": 1,
+              "partial_credit_count": 1,
+              "zero_count": 0,
+              "mean_score_0_to_4": 3.988888888888889,
+              "score_percent": 99.72222222222223,
+              "score_distribution": {
+                "3": 1,
+                "4": 89
+              }
+            },
+            "active": {
+              "response_count": 90,
+              "correct_count": 89,
+              "incorrect_count": 1,
+              "partial_credit_count": 1,
+              "zero_count": 0,
+              "mean_score_0_to_4": 3.988888888888889,
+              "score_percent": 99.72222222222223,
+              "score_distribution": {
+                "3": 1,
+                "4": 89
+              }
+            }
+          },
+          "part2": {
+            "gpt_6_luna_max": {
+              "response_count": 60,
+              "correct_count": 55,
+              "incorrect_count": 5,
+              "partial_credit_count": 5,
+              "zero_count": 0,
+              "mean_score_0_to_4": 3.85,
+              "score_percent": 96.25,
+              "score_distribution": {
+                "1": 1,
+                "2": 2,
+                "3": 2,
+                "4": 55
+              }
+            },
+            "active": {
+              "response_count": 60,
+              "correct_count": 55,
+              "incorrect_count": 5,
+              "partial_credit_count": 5,
+              "zero_count": 0,
+              "mean_score_0_to_4": 3.85,
+              "score_percent": 96.25,
+              "score_distribution": {
+                "1": 1,
+                "2": 2,
+                "3": 2,
+                "4": 55
+              }
+            }
+          }
+        },
+        "by_rollout": {
+          "1": {
+            "response_count": 50,
+            "correct_count": 48,
+            "incorrect_count": 2,
+            "partial_credit_count": 2,
+            "zero_count": 0,
+            "mean_score_0_to_4": 3.94,
+            "score_percent": 98.5,
+            "score_distribution": {
+              "2": 1,
+              "3": 1,
+              "4": 48
+            }
+          },
+          "2": {
+            "response_count": 50,
+            "correct_count": 48,
+            "incorrect_count": 2,
+            "partial_credit_count": 2,
+            "zero_count": 0,
+            "mean_score_0_to_4": 3.92,
+            "score_percent": 98.0,
+            "score_distribution": {
+              "1": 1,
+              "3": 1,
+              "4": 48
+            }
+          },
+          "3": {
+            "response_count": 50,
+            "correct_count": 48,
+            "incorrect_count": 2,
+            "partial_credit_count": 2,
+            "zero_count": 0,
+            "mean_score_0_to_4": 3.94,
+            "score_percent": 98.5,
+            "score_distribution": {
+              "2": 1,
+              "3": 1,
+              "4": 48
+            }
+          }
+        },
+        "tokens": {
+          "response_count": 150,
+          "usage_record_count": 150,
+          "complete_usage_count": 150,
+          "missing_usage_count": 0,
+          "missing_cached_input_count": 0,
+          "complete": true,
+          "totals": {
+            "cached_input_tokens": 0,
+            "input_tokens": 157371,
+            "output_tokens": 2764234,
+            "total_tokens": 2921605
+          },
+          "known_totals": {
+            "cached_input_tokens": 0,
+            "input_tokens": 157371,
+            "output_tokens": 2764234,
+            "total_tokens": 2921605
+          }
+        },
+        "by_rollout_part": {
+          "part1": {
+            "1": {
+              "response_count": 30,
+              "correct_count": 30,
+              "incorrect_count": 0,
+              "partial_credit_count": 0,
+              "zero_count": 0,
+              "mean_score_0_to_4": 4.0,
+              "score_percent": 100.0,
+              "score_distribution": {
+                "4": 30
+              }
+            },
+            "2": {
+              "response_count": 30,
+              "correct_count": 29,
+              "incorrect_count": 1,
+              "partial_credit_count": 1,
+              "zero_count": 0,
+              "mean_score_0_to_4": 3.966666666666667,
+              "score_percent": 99.16666666666667,
+              "score_distribution": {
+                "3": 1,
+                "4": 29
+              }
+            },
+            "3": {
+              "response_count": 30,
+              "correct_count": 30,
+              "incorrect_count": 0,
+              "partial_credit_count": 0,
+              "zero_count": 0,
+              "mean_score_0_to_4": 4.0,
+              "score_percent": 100.0,
+              "score_distribution": {
+                "4": 30
+              }
+            }
+          },
+          "part2": {
+            "1": {
+              "response_count": 20,
+              "correct_count": 18,
+              "incorrect_count": 2,
+              "partial_credit_count": 2,
+              "zero_count": 0,
+              "mean_score_0_to_4": 3.85,
+              "score_percent": 96.25,
+              "score_distribution": {
+                "2": 1,
+                "3": 1,
+                "4": 18
+              }
+            },
+            "2": {
+              "response_count": 20,
+              "correct_count": 19,
+              "incorrect_count": 1,
+              "partial_credit_count": 1,
+              "zero_count": 0,
+              "mean_score_0_to_4": 3.85,
+              "score_percent": 96.25,
+              "score_distribution": {
+                "1": 1,
+                "4": 19
+              }
+            },
+            "3": {
+              "response_count": 20,
+              "correct_count": 18,
+              "incorrect_count": 2,
+              "partial_credit_count": 2,
+              "zero_count": 0,
+              "mean_score_0_to_4": 3.85,
+              "score_percent": 96.25,
+              "score_distribution": {
+                "2": 1,
+                "3": 1,
+                "4": 18
+              }
+            }
+          }
+        }
+      }
+    },
     {
       "model_key": "claude_opus_55",
       "display_name": "Claude Opus 5.5",
@@ -529,7 +785,7 @@
       "provider": "google",
       "evaluation_model_ids": [],
       "thinking_effort": "high",
-      "configuration_note": "Gemini 4 Argon answered the 50 tasks in three rollouts through OpenRouter's chat completions route (google/gemini-4-argon) at reasoning effort high, the highest it offers. Requests set max_tokens to 943,718, the model's output limit and temperature to 0. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Gemini 4 Argon on 2026-11-10 ($2.00 input, $0.10 cached input, $10.00 output per 1M tokens).",
+      "configuration_note": "Gemini 4 Argon answered the 50 tasks in three rollouts through OpenRouter's chat completions route (google/gemini-4-argon) at reasoning effort high, the highest it offers. Requests set temperature to 0 and max_tokens to 943,718, the model's output limit. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Gemini 4 Argon on 2026-11-10 ($2.00 input, $0.10 cached input, $10.00 output per 1M tokens).",
       "mode": "direct_qa",
       "detail_file": "models/gemini_4_argon.json",
       "summary": {
@@ -2670,7 +2926,7 @@
       "provider": "google",
       "evaluation_model_ids": [],
       "thinking_effort": "high",
-      "configuration_note": "Gemini 3.8 Flash answered the 50 tasks in three rollouts through OpenRouter's chat completions route (google/gemini-3.8-flash) at reasoning effort high, the highest it offers. Requests set max_tokens to 65,536, the model's output limit and temperature to 0. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Gemini 3.8 Flash on 2026-11-10 ($0.825 input, $0.0825 cached input, $4.125 output per 1M tokens).",
+      "configuration_note": "Gemini 3.8 Flash answered the 50 tasks in three rollouts through OpenRouter's chat completions route (google/gemini-3.8-flash) at reasoning effort high, the highest it offers. Requests set temperature to 0 and max_tokens to 65,536, the model's output limit. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Gemini 3.8 Flash on 2026-11-10 ($0.825 input, $0.0825 cached input, $4.125 output per 1M tokens).",
       "mode": "direct_qa",
       "summary": {
         "rollout_count": 3,
@@ -2937,7 +3193,7 @@
       "provider": "google",
       "evaluation_model_ids": [],
       "thinking_effort": "high",
-      "configuration_note": "Gemini 3.7 Flash answered the 50 tasks in three rollouts through OpenRouter's chat completions route (google/gemini-3.7-flash) at reasoning effort high, the highest it offers. Requests set max_tokens to 65,536, the model's output limit and temperature to 0. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Gemini 3.7 Flash on 2026-11-10 ($0.75 input, $0.075 cached input, $3.75 output per 1M tokens).",
+      "configuration_note": "Gemini 3.7 Flash answered the 50 tasks in three rollouts through OpenRouter's chat completions route (google/gemini-3.7-flash) at reasoning effort high, the highest it offers. Requests set temperature to 0 and max_tokens to 65,536, the model's output limit. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Gemini 3.7 Flash on 2026-11-10 ($0.75 input, $0.075 cached input, $3.75 output per 1M tokens).",
       "mode": "direct_qa",
       "summary": {
         "rollout_count": 3,
@@ -4309,7 +4565,7 @@
       "provider": "google",
       "evaluation_model_ids": [],
       "thinking_effort": "high",
-      "configuration_note": "Gemini 3.5 Flash answered the 50 tasks in three rollouts through OpenRouter's chat completions route (google/gemini-3.5-flash) at reasoning effort high, the highest it offers. Requests set max_tokens to 65,536, the model's output limit and temperature to 0. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Gemini 3.5 Flash on 2026-11-10 ($1.50 input, $0.15 cached input, $9.00 output per 1M tokens).",
+      "configuration_note": "Gemini 3.5 Flash answered the 50 tasks in three rollouts through OpenRouter's chat completions route (google/gemini-3.5-flash) at reasoning effort high, the highest it offers. Requests set temperature to 0 and max_tokens to 65,536, the model's output limit. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Gemini 3.5 Flash on 2026-11-10 ($1.50 input, $0.15 cached input, $9.00 output per 1M tokens).",
       "mode": "direct_qa",
       "summary": {
         "rollout_count": 3,
@@ -4864,7 +5120,7 @@
       "provider": "google",
       "evaluation_model_ids": [],
       "thinking_effort": "high",
-      "configuration_note": "Gemini 3.6 Flash answered the 50 tasks in three rollouts through OpenRouter's chat completions route (google/gemini-3.6-flash) at reasoning effort high, the highest it offers. Requests set max_tokens to 65,536, the model's output limit and temperature to 0. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Gemini 3.6 Flash on 2026-11-10 ($0.75 input, $0.075 cached input, $3.75 output per 1M tokens).",
+      "configuration_note": "Gemini 3.6 Flash answered the 50 tasks in three rollouts through OpenRouter's chat completions route (google/gemini-3.6-flash) at reasoning effort high, the highest it offers. Requests set temperature to 0 and max_tokens to 65,536, the model's output limit. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Gemini 3.6 Flash on 2026-11-10 ($0.75 input, $0.075 cached input, $3.75 output per 1M tokens).",
       "mode": "direct_qa",
       "summary": {
         "rollout_count": 3,
@@ -6276,7 +6532,7 @@
       "provider": "alibaba",
       "evaluation_model_ids": [],
       "thinking_effort": "xhigh",
-      "configuration_note": "Qwen 3.8 Max answered the 50 tasks in three rollouts through OpenRouter's chat completions route (qwen/qwen3.8-max-0902) at reasoning effort xhigh, the highest it offers. Requests set max_tokens to 131,072, the model's output limit and temperature to 0. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Qwen 3.8 Max on 2026-11-10 ($2.00 input, $0.25 cached input, $6.00 output per 1M tokens).",
+      "configuration_note": "Qwen 3.8 Max answered the 50 tasks in three rollouts through OpenRouter's chat completions route (qwen/qwen3.8-max-0902) at reasoning effort xhigh, the highest it offers. Requests set temperature to 0 and max_tokens to 131,072, the model's output limit. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Qwen 3.8 Max on 2026-11-10 ($2.00 input, $0.25 cached input, $6.00 output per 1M tokens).",
       "mode": "direct_qa",
       "summary": {
         "rollout_count": 3,
@@ -7399,7 +7655,7 @@
       "provider": "google",
       "evaluation_model_ids": [],
       "thinking_effort": "high",
-      "configuration_note": "Gemini 3 Flash answered the 50 tasks in three rollouts through OpenRouter's chat completions route (google/gemini-3-flash-preview) at reasoning effort high, the highest it offers. Requests set max_tokens to 65,536, the model's output limit and temperature to 0. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Gemini 3 Flash on 2026-11-10 ($0.50 input, $0.05 cached input, $3.00 output per 1M tokens).",
+      "configuration_note": "Gemini 3 Flash answered the 50 tasks in three rollouts through OpenRouter's chat completions route (google/gemini-3-flash-preview) at reasoning effort high, the highest it offers. Requests set temperature to 0 and max_tokens to 65,536, the model's output limit. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Gemini 3 Flash on 2026-11-10 ($0.50 input, $0.05 cached input, $3.00 output per 1M tokens).",
       "mode": "direct_qa",
       "detail_file": "models/gemini_3_flash.json",
       "summary": {
@@ -7681,7 +7937,7 @@
       "provider": "google",
       "evaluation_model_ids": [],
       "thinking_effort": "high",
-      "configuration_note": "Gemini 3.1 Pro answered the 50 tasks in three rollouts through OpenRouter's chat completions route (google/gemini-3.1-pro-preview) at reasoning effort high, the highest it offers. Requests set max_tokens to 65,536, the model's output limit and temperature to 0. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Gemini 3.1 Pro on 2026-11-10 ($2.00 input, $0.20 cached input, $12.00 output per 1M tokens).",
+      "configuration_note": "Gemini 3.1 Pro answered the 50 tasks in three rollouts through OpenRouter's chat completions route (google/gemini-3.1-pro-preview) at reasoning effort high, the highest it offers. Requests set temperature to 0 and max_tokens to 65,536, the model's output limit. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Gemini 3.1 Pro on 2026-11-10 ($2.00 input, $0.20 cached input, $12.00 output per 1M tokens).",
       "mode": "direct_qa",
       "summary": {
         "rollout_count": 3,
@@ -8530,7 +8786,7 @@
       "provider": "xai",
       "evaluation_model_ids": [],
       "thinking_effort": "xhigh",
-      "configuration_note": "Grok 4.6 answered the 50 tasks in three rollouts through OpenRouter's chat completions route (x-ai/grok-4.6) at reasoning effort xhigh, the highest it offers. Requests set max_tokens to 450,000, the model's output limit and temperature to 0. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Grok 4.6 on 2026-11-10 ($2.00 input, $0.50 cached input, $6.00 output per 1M tokens).",
+      "configuration_note": "Grok 4.6 answered the 50 tasks in three rollouts through OpenRouter's chat completions route (x-ai/grok-4.6) at reasoning effort xhigh, the highest it offers. Requests set temperature to 0 and max_tokens to 450,000, the model's output limit. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Grok 4.6 on 2026-11-10 ($2.00 input, $0.50 cached input, $6.00 output per 1M tokens).",
       "mode": "direct_qa",
       "summary": {
         "rollout_count": 3,
@@ -9101,7 +9357,7 @@
       "provider": "xai",
       "evaluation_model_ids": [],
       "thinking_effort": "high",
-      "configuration_note": "Grok 4.5 answered the 50 tasks in three rollouts through OpenRouter's chat completions route (x-ai/grok-4.5) at reasoning effort high, the highest it offers. Requests set max_tokens to 450,000, the model's output limit and temperature to 0. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Grok 4.5 on 2026-11-10 ($2.00 input, $0.30 cached input, $6.00 output per 1M tokens).",
+      "configuration_note": "Grok 4.5 answered the 50 tasks in three rollouts through OpenRouter's chat completions route (x-ai/grok-4.5) at reasoning effort high, the highest it offers. Requests set temperature to 0 and max_tokens to 450,000, the model's output limit. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Grok 4.5 on 2026-11-10 ($2.00 input, $0.30 cached input, $6.00 output per 1M tokens).",
       "mode": "direct_qa",
       "summary": {
         "rollout_count": 3,
@@ -10240,7 +10496,7 @@
       "provider": "qwen",
       "evaluation_model_ids": [],
       "thinking_effort": "max",
-      "configuration_note": "Qwen 3.7 Plus answered the 50 tasks in three rollouts through OpenRouter's chat completions route (qwen/qwen3.7-plus) at maximum reasoning effort. Requests set max_tokens to 131,072, the model's output limit and temperature to 0. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Qwen 3.7 Plus on 2026-11-10 ($0.32 input, $0.064 cached input, $1.28 output per 1M tokens).",
+      "configuration_note": "Qwen 3.7 Plus answered the 50 tasks in three rollouts through OpenRouter's chat completions route (qwen/qwen3.7-plus) at maximum reasoning effort. Requests set temperature to 0 and max_tokens to 131,072, the model's output limit. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Qwen 3.7 Plus on 2026-11-10 ($0.32 input, $0.064 cached input, $1.28 output per 1M tokens).",
       "mode": "direct_qa",
       "summary": {
         "rollout_count": 3,
@@ -10527,7 +10783,7 @@
       "provider": "xai",
       "evaluation_model_ids": [],
       "thinking_effort": "xhigh",
-      "configuration_note": "Grok 4.7 answered the 50 tasks in three rollouts through OpenRouter's chat completions route (x-ai/grok-4.7) at reasoning effort xhigh, the highest it offers. Requests set max_tokens to 450,000, the model's output limit and temperature to 0. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Grok 4.7 on 2026-11-10 ($2.00 input, $0.50 cached input, $6.00 output per 1M tokens).",
+      "configuration_note": "Grok 4.7 answered the 50 tasks in three rollouts through OpenRouter's chat completions route (x-ai/grok-4.7) at reasoning effort xhigh, the highest it offers. Requests set temperature to 0 and max_tokens to 450,000, the model's output limit. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Grok 4.7 on 2026-11-10 ($2.00 input, $0.50 cached input, $6.00 output per 1M tokens).",
       "mode": "direct_qa",
       "detail_file": "models/grok_4_7.json",
       "summary": {
@@ -12250,7 +12506,7 @@
       "provider": "qwen",
       "evaluation_model_ids": [],
       "thinking_effort": "max",
-      "configuration_note": "Qwen 3.7 Flash answered the 50 tasks in three rollouts through OpenRouter's chat completions route (qwen/qwen3.7-flash) at maximum reasoning effort. Requests set max_tokens to 65,536, the model's output limit and temperature to 0. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Qwen 3.7 Flash on 2026-11-10 ($0.03 input, $0.006 cached input, $0.13 output per 1M tokens).",
+      "configuration_note": "Qwen 3.7 Flash answered the 50 tasks in three rollouts through OpenRouter's chat completions route (qwen/qwen3.7-flash) at maximum reasoning effort. Requests set temperature to 0 and max_tokens to 65,536, the model's output limit. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Qwen 3.7 Flash on 2026-11-10 ($0.03 input, $0.006 cached input, $0.13 output per 1M tokens).",
       "mode": "direct_qa",
       "summary": {
         "rollout_count": 3,
@@ -13110,7 +13366,7 @@
       "provider": "thinkingmachines",
       "evaluation_model_ids": [],
       "thinking_effort": "max",
-      "configuration_note": "Inkling Small answered the 50 tasks in three rollouts through OpenRouter's chat completions route (thinkingmachines/inkling-small) at maximum reasoning effort. Requests set max_tokens to 262,144, the model's output limit and temperature to 0. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Inkling Small on 2026-11-10 ($0.45 input, $0.10 cached input, $1.20 output per 1M tokens).",
+      "configuration_note": "Inkling Small answered the 50 tasks in three rollouts through OpenRouter's chat completions route (thinkingmachines/inkling-small) at maximum reasoning effort. Requests set temperature to 0 and max_tokens to 262,144, the model's output limit. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Inkling Small on 2026-11-10 ($0.45 input, $0.10 cached input, $1.20 output per 1M tokens).",
       "mode": "direct_qa",
       "summary": {
         "rollout_count": 3,
@@ -13397,7 +13653,7 @@
       "provider": "google",
       "evaluation_model_ids": [],
       "thinking_effort": "max",
-      "configuration_note": "Gemini 2.5 Pro answered the 50 tasks in three rollouts through OpenRouter's chat completions route (google/gemini-2.5-pro) at maximum reasoning effort. Requests set max_tokens to 65,536, the model's output limit and temperature to 0. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Gemini 2.5 Pro on 2026-11-10 ($1.25 input, $0.125 cached input, $10.00 output per 1M tokens).",
+      "configuration_note": "Gemini 2.5 Pro answered the 50 tasks in three rollouts through OpenRouter's chat completions route (google/gemini-2.5-pro) at maximum reasoning effort. Requests set temperature to 0 and max_tokens to 65,536, the model's output limit. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Gemini 2.5 Pro on 2026-11-10 ($1.25 input, $0.125 cached input, $10.00 output per 1M tokens).",
       "mode": "direct_qa",
       "summary": {
         "rollout_count": 3,
@@ -15129,7 +15385,7 @@
       "provider": "google",
       "evaluation_model_ids": [],
       "thinking_effort": "max",
-      "configuration_note": "Gemma 4 31B IT answered the 50 tasks in three rollouts through OpenRouter's chat completions route (google/gemma-4-31b-it) at maximum reasoning effort. Requests set max_tokens to 16,384, the model's output limit and temperature to 0. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Gemma 4 31B IT on 2026-11-10 ($0.20 input, $0.20 cached input, $0.40 output per 1M tokens).",
+      "configuration_note": "Gemma 4 31B IT answered the 50 tasks in three rollouts through OpenRouter's chat completions route (google/gemma-4-31b-it) at maximum reasoning effort. Requests set temperature to 0 and max_tokens to 16,384, the model's output limit. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Gemma 4 31B IT on 2026-11-10 ($0.20 input, $0.20 cached input, $0.40 output per 1M tokens).",
       "mode": "direct_qa",
       "summary": {
         "rollout_count": 3,
@@ -15419,7 +15675,7 @@
       "provider": "thinkingmachines",
       "evaluation_model_ids": [],
       "thinking_effort": "max",
-      "configuration_note": "Inkling answered the 50 tasks in three rollouts through OpenRouter's chat completions route (thinkingmachines/inkling) at maximum reasoning effort. Requests set max_tokens to 471,859, the model's output limit and temperature to 0. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Inkling on 2026-11-10 ($1.00 input, $0.17 cached input, $4.05 output per 1M tokens).",
+      "configuration_note": "Inkling answered the 50 tasks in three rollouts through OpenRouter's chat completions route (thinkingmachines/inkling) at maximum reasoning effort. Requests set temperature to 0 and max_tokens to 471,859, the model's output limit. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Inkling on 2026-11-10 ($1.00 input, $0.17 cached input, $4.05 output per 1M tokens).",
       "mode": "direct_qa",
       "summary": {
         "rollout_count": 3,
@@ -15707,7 +15963,7 @@
       "provider": "stepfun",
       "evaluation_model_ids": [],
       "thinking_effort": "high",
-      "configuration_note": "Step 3.7 Flash answered the 50 tasks in three rollouts through OpenRouter's chat completions route (stepfun/step-3.7-flash) at reasoning effort high, the highest it offers. Requests set max_tokens to 230,400, the model's output limit and temperature to 0. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. In 4 slots the model reached its output limit on every attempt; those answers are graded as returned. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Step 3.7 Flash on 2026-11-10 ($0.20 input, $0.04 cached input, $1.15 output per 1M tokens).",
+      "configuration_note": "Step 3.7 Flash answered the 50 tasks in three rollouts through OpenRouter's chat completions route (stepfun/step-3.7-flash) at reasoning effort high, the highest it offers. Requests set temperature to 0 and max_tokens to 230,400, the model's output limit. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. In 4 slots the model reached its output limit on every attempt; those answers are graded as returned. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Step 3.7 Flash on 2026-11-10 ($0.20 input, $0.04 cached input, $1.15 output per 1M tokens).",
       "mode": "direct_qa",
       "summary": {
         "rollout_count": 3,
@@ -15995,7 +16251,7 @@
       "provider": "meta",
       "evaluation_model_ids": [],
       "thinking_effort": "default",
-      "configuration_note": "Llama 4 Maverick answered the 50 tasks in three rollouts through OpenRouter's chat completions route (meta-llama/llama-4-maverick) without reasoning (the model has no reasoning setting). Requests set max_tokens to 32,768, the model's output limit and temperature to 0. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Llama 4 Maverick on 2026-11-10 ($0.35 input, $0.17 cached input, $1.00 output per 1M tokens).",
+      "configuration_note": "Llama 4 Maverick answered the 50 tasks in three rollouts through OpenRouter's chat completions route (meta-llama/llama-4-maverick) without reasoning (the model has no reasoning setting). Requests set temperature to 0 and max_tokens to 32,768, the model's output limit. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Llama 4 Maverick on 2026-11-10 ($0.35 input, $0.17 cached input, $1.00 output per 1M tokens).",
       "mode": "direct_qa",
       "summary": {
         "rollout_count": 3,
@@ -16859,7 +17115,7 @@
       "provider": "google",
       "evaluation_model_ids": [],
       "thinking_effort": "max",
-      "configuration_note": "Gemini 2.5 Flash-Lite answered the 50 tasks in three rollouts through OpenRouter's chat completions route (google/gemini-2.5-flash-lite) at maximum reasoning effort. Requests set max_tokens to 65,535, the model's output limit and temperature to 0. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. In 9 slots the model reached its output limit on every attempt; those answers are graded as returned. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Gemini 2.5 Flash-Lite on 2026-11-10 ($0.10 input, $0.01 cached input, $0.40 output per 1M tokens).",
+      "configuration_note": "Gemini 2.5 Flash-Lite answered the 50 tasks in three rollouts through OpenRouter's chat completions route (google/gemini-2.5-flash-lite) at maximum reasoning effort. Requests set temperature to 0 and max_tokens to 65,535, the model's output limit. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. In 9 slots the model reached its output limit on every attempt; those answers are graded as returned. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Gemini 2.5 Flash-Lite on 2026-11-10 ($0.10 input, $0.01 cached input, $0.40 output per 1M tokens).",
       "mode": "direct_qa",
       "summary": {
         "rollout_count": 3,
@@ -17149,7 +17405,7 @@
       "provider": "nvidia",
       "evaluation_model_ids": [],
       "thinking_effort": "max",
-      "configuration_note": "Nemotron 3.5 Super VL answered the 50 tasks in three rollouts through OpenRouter's chat completions route (nvidia/nemotron-3.5-super-vl) at maximum reasoning effort. Requests set max_tokens to 943,718, the model's output limit, temperature to 1 and top_p to 0.95, as its model card recommends. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Nemotron 3.5 Super VL on 2026-11-10 ($0.15 input, $0.02 cached input, $0.47 output per 1M tokens).",
+      "configuration_note": "Nemotron 3.5 Super VL answered the 50 tasks in three rollouts through OpenRouter's chat completions route (nvidia/nemotron-3.5-super-vl) at maximum reasoning effort. Requests set temperature to 1, top_p to 0.95 (as its model card recommends) and max_tokens to 943,718, the model's output limit. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Nemotron 3.5 Super VL on 2026-11-10 ($0.15 input, $0.02 cached input, $0.47 output per 1M tokens).",
       "mode": "direct_qa",
       "detail_file": "models/nemotron_35_super_vl.json",
       "summary": {
@@ -17722,7 +17978,7 @@
       "provider": "qwen",
       "evaluation_model_ids": [],
       "thinking_effort": "default",
-      "configuration_note": "Qwen3-VL-235B-A22B Instruct answered the 50 tasks in three rollouts through OpenRouter's chat completions route (qwen/qwen3-vl-235b-a22b-instruct) without reasoning (the model has no reasoning setting). Requests set max_tokens to 32,768, the model's output limit and temperature to 0. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Qwen3-VL-235B-A22B Instruct on 2026-11-10 ($0.21 input, $0.10 cached input, $1.90 output per 1M tokens).",
+      "configuration_note": "Qwen3-VL-235B-A22B Instruct answered the 50 tasks in three rollouts through OpenRouter's chat completions route (qwen/qwen3-vl-235b-a22b-instruct) without reasoning (the model has no reasoning setting). Requests set temperature to 0 and max_tokens to 32,768, the model's output limit. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Qwen3-VL-235B-A22B Instruct on 2026-11-10 ($0.21 input, $0.10 cached input, $1.90 output per 1M tokens).",
       "mode": "direct_qa",
       "summary": {
         "rollout_count": 3,
@@ -18011,7 +18267,7 @@
       "provider": "openai",
       "evaluation_model_ids": [],
       "thinking_effort": "default",
-      "configuration_note": "GPT-4o (2024-11-20) answered the 50 tasks in three rollouts through OpenRouter's chat completions route (openai/gpt-4o-2024-11-20) without reasoning (the model has no reasoning setting). Requests set max_tokens to 16,384, the model's output limit and temperature to 0. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for GPT-4o (2024-11-20) on 2026-11-10 ($2.50 input, $1.25 cached input, $10.00 output per 1M tokens).",
+      "configuration_note": "GPT-4o (2024-11-20) answered the 50 tasks in three rollouts through OpenRouter's chat completions route (openai/gpt-4o-2024-11-20) without reasoning (the model has no reasoning setting). Requests set temperature to 0 and max_tokens to 16,384, the model's output limit. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for GPT-4o (2024-11-20) on 2026-11-10 ($2.50 input, $1.25 cached input, $10.00 output per 1M tokens).",
       "mode": "direct_qa",
       "detail_file": "models/gpt_4o_2024_11_20.json",
       "summary": {
@@ -18298,7 +18554,7 @@
       "provider": "openai",
       "evaluation_model_ids": [],
       "thinking_effort": "default",
-      "configuration_note": "GPT-4o (2024-08-06) answered the 50 tasks in three rollouts through OpenRouter's chat completions route (openai/gpt-4o-2024-08-06) without reasoning (the model has no reasoning setting). Requests set max_tokens to 16,384, the model's output limit and temperature to 0. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for GPT-4o (2024-08-06) on 2026-11-10 ($2.50 input, $1.25 cached input, $10.00 output per 1M tokens).",
+      "configuration_note": "GPT-4o (2024-08-06) answered the 50 tasks in three rollouts through OpenRouter's chat completions route (openai/gpt-4o-2024-08-06) without reasoning (the model has no reasoning setting). Requests set temperature to 0 and max_tokens to 16,384, the model's output limit. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for GPT-4o (2024-08-06) on 2026-11-10 ($2.50 input, $1.25 cached input, $10.00 output per 1M tokens).",
       "mode": "direct_qa",
       "summary": {
         "rollout_count": 3,
@@ -18873,7 +19129,7 @@
       "provider": "openai",
       "evaluation_model_ids": [],
       "thinking_effort": "default",
-      "configuration_note": "GPT-4o (2024-05-13) answered the 50 tasks in three rollouts through OpenRouter's chat completions route (openai/gpt-4o-2024-05-13) without reasoning (the model has no reasoning setting). Requests set max_tokens to 4,096, the model's output limit and temperature to 0. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for GPT-4o (2024-05-13) on 2026-11-10 ($5.00 input, $5.00 cached input, $15.00 output per 1M tokens).",
+      "configuration_note": "GPT-4o (2024-05-13) answered the 50 tasks in three rollouts through OpenRouter's chat completions route (openai/gpt-4o-2024-05-13) without reasoning (the model has no reasoning setting). Requests set temperature to 0 and max_tokens to 4,096, the model's output limit. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for GPT-4o (2024-05-13) on 2026-11-10 ($5.00 input, $5.00 cached input, $15.00 output per 1M tokens).",
       "mode": "direct_qa",
       "detail_file": "models/gpt_4o_2024_05_13.json",
       "summary": {
@@ -19163,7 +19419,7 @@
       "provider": "mistral",
       "evaluation_model_ids": [],
       "thinking_effort": "default",
-      "configuration_note": "Mistral Large 2512 answered the 50 tasks in three rollouts through OpenRouter's chat completions route (mistralai/mistral-large-2512) without reasoning (the model has no reasoning setting). Requests set max_tokens to 209,715, the model's output limit and temperature to 0. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Mistral Large 2512 on 2026-11-10 ($0.50 input, $0.05 cached input, $1.50 output per 1M tokens).",
+      "configuration_note": "Mistral Large 2512 answered the 50 tasks in three rollouts through OpenRouter's chat completions route (mistralai/mistral-large-2512) without reasoning (the model has no reasoning setting). Requests set temperature to 0 and max_tokens to 209,715, the model's output limit. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Mistral Large 2512 on 2026-11-10 ($0.50 input, $0.05 cached input, $1.50 output per 1M tokens).",
       "mode": "direct_qa",
       "detail_file": "models/mistral_large_2512.json",
       "summary": {
@@ -19449,7 +19705,7 @@
       "provider": "qwen",
       "evaluation_model_ids": [],
       "thinking_effort": "default",
-      "configuration_note": "Qwen2.5-VL-72B Instruct answered the 50 tasks in three rollouts through OpenRouter's chat completions route (qwen/qwen2.5-vl-72b-instruct) without reasoning (the model has no reasoning setting). Requests set max_tokens to 115,200, the model's output limit and temperature to 0. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Qwen2.5-VL-72B Instruct on 2026-11-10 ($0.80 input, $0.40 cached input, $1.00 output per 1M tokens).",
+      "configuration_note": "Qwen2.5-VL-72B Instruct answered the 50 tasks in three rollouts through OpenRouter's chat completions route (qwen/qwen2.5-vl-72b-instruct) without reasoning (the model has no reasoning setting). Requests set temperature to 0 and max_tokens to 115,200, the model's output limit. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Qwen2.5-VL-72B Instruct on 2026-11-10 ($0.80 input, $0.40 cached input, $1.00 output per 1M tokens).",
       "mode": "direct_qa",
       "summary": {
         "rollout_count": 3,
@@ -19739,7 +19995,7 @@
       "provider": "openai",
       "evaluation_model_ids": [],
       "thinking_effort": "default",
-      "configuration_note": "GPT-4o Mini answered the 50 tasks in three rollouts through OpenRouter's chat completions route (openai/gpt-4o-mini-2024-07-18) without reasoning (the model has no reasoning setting). Requests set max_tokens to 16,384, the model's output limit and temperature to 0. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for GPT-4o Mini on 2026-11-10 ($0.15 input, $0.075 cached input, $0.60 output per 1M tokens).",
+      "configuration_note": "GPT-4o Mini answered the 50 tasks in three rollouts through OpenRouter's chat completions route (openai/gpt-4o-mini-2024-07-18) without reasoning (the model has no reasoning setting). Requests set temperature to 0 and max_tokens to 16,384, the model's output limit. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for GPT-4o Mini on 2026-11-10 ($0.15 input, $0.075 cached input, $0.60 output per 1M tokens).",
       "mode": "direct_qa",
       "summary": {
         "rollout_count": 3,
@@ -20026,7 +20282,7 @@
       "provider": "amazon",
       "evaluation_model_ids": [],
       "thinking_effort": "default",
-      "configuration_note": "Nova Pro answered the 50 tasks in three rollouts through OpenRouter's chat completions route (amazon/nova-pro-v1) without reasoning (the model has no reasoning setting). Requests set max_tokens to 5,120, the model's output limit and temperature to 0. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Nova Pro on 2026-11-10 ($0.80 input, $0.80 cached input, $3.20 output per 1M tokens).",
+      "configuration_note": "Nova Pro answered the 50 tasks in three rollouts through OpenRouter's chat completions route (amazon/nova-pro-v1) without reasoning (the model has no reasoning setting). Requests set temperature to 0 and max_tokens to 5,120, the model's output limit. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Nova Pro on 2026-11-10 ($0.80 input, $0.80 cached input, $3.20 output per 1M tokens).",
       "mode": "direct_qa",
       "detail_file": "models/nova_pro.json",
       "summary": {
