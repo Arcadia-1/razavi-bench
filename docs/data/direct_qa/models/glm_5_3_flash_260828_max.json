@@ -4,7 +4,7 @@
   "provider": "zhipu",
   "evaluation_model_ids": [],
   "thinking_effort": "max",
-  "configuration_note": "Self-hosted official BF16 weights (zai-org/GLM-5.3-Flash-BF16, revision f9fed3bb) on vLLM 0.33.0. GLM 5.3 Flash answered the 50 tasks in three rollouts at reasoning effort max, its chat template's default and highest level, with the sampling of its generation_config (temperature 1.0, top_p 0.95), and no max_tokens, so the server allowed the 262,144-token context less the prompt. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens. Answers were graded by GPT-6 Luna at maximum reasoning effort. The checkpoint is self-hosted, so the site shows no API cost; token usage is kept.",
+  "configuration_note": "Self-hosted official BF16 weights (zai-org/GLM-5.3-Flash-BF16, revision f9fed3bb) on vLLM 0.33.0. GLM 5.3 Flash answered the 50 tasks in three rollouts at reasoning effort max, its chat template's default and highest level, with the sampling of its generation_config (temperature 1.0, top_p 0.95), and no max_tokens, so the server allowed the 262,144-token context less the prompt. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. The checkpoint is self-hosted; like every other entry, its cost uses OpenRouter's published GLM 5.3 Flash API price ($0.15 input, $0.03 cached input, $0.50 output per 1M tokens).",
   "mode": "direct_qa",
   "summary": {
     "rollout_count": 3,

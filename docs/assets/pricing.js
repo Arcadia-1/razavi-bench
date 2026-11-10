@@ -24,7 +24,7 @@ var PRICE={
   claude_haiku_45:[1,5,0.2], claude_haiku_55:[0.1,0.5,0.01],
   qwen25_vl_72b_instruct:[0.8,1,0.8], qwen3_vl_235b_a22b_instruct:[0.21,1.9,0.21]
 };
-// Self-hosted checkpoints retain token accounting but have no comparable API bill.
-var NO_API_COST={qwen_38_27b:true, qwen_35_9b:true, glm_5_3_flash_260828_max:true};
+// Self-hosted checkpoints are priced at OpenRouter's list price for the same model, like every other entry.
+var NO_API_COST={};
 function computeCost(modelKey,tk){if(NO_API_COST[modelKey])return null;var p=PRICE[modelKey];if(!p&&modelKey){var keys=Object.keys(PRICE);for(var i=0;i<keys.length;i++){if(modelKey.indexOf(keys[i])===0){p=PRICE[keys[i]];break;}}}if(!p||!tk)return null;var cached=tk.cached_input_tokens||0;var cost=((tk.input_tokens-cached)*p[0]+cached*p[2]+tk.output_tokens*p[1])/1e6;return Math.round(cost*100)/100;}
 function priceSummary(modelKey){var p=PRICE[modelKey];if(!p&&modelKey){var keys=Object.keys(PRICE);for(var i=0;i<keys.length;i++){if(modelKey.indexOf(keys[i])===0){p=PRICE[keys[i]];break;}}}if(!p)return "";return "$"+p[0].toFixed(2)+"/M in · $"+p[1].toFixed(2)+"/M out";}

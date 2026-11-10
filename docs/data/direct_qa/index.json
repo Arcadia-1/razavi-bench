@@ -1,6 +1,6 @@
 {
   "schema_version": "razavi-bench.direct-qa.v1",
-  "generated_at": "2026-11-10T10:23:29.497894+00:00",
+  "generated_at": "2026-11-10T10:37:54.088105+00:00",
   "benchmark": {
     "mode": "direct_qa",
     "question_count": 50,
@@ -7114,7 +7114,7 @@
       "provider": "zhipu",
       "evaluation_model_ids": [],
       "thinking_effort": "max",
-      "configuration_note": "Self-hosted official BF16 weights (zai-org/GLM-5.3-Flash-BF16, revision f9fed3bb) on vLLM 0.33.0. GLM 5.3 Flash answered the 50 tasks in three rollouts at reasoning effort max, its chat template's default and highest level, with the sampling of its generation_config (temperature 1.0, top_p 0.95), and no max_tokens, so the server allowed the 262,144-token context less the prompt. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens. Answers were graded by GPT-6 Luna at maximum reasoning effort. The checkpoint is self-hosted, so the site shows no API cost; token usage is kept.",
+      "configuration_note": "Self-hosted official BF16 weights (zai-org/GLM-5.3-Flash-BF16, revision f9fed3bb) on vLLM 0.33.0. GLM 5.3 Flash answered the 50 tasks in three rollouts at reasoning effort max, its chat template's default and highest level, with the sampling of its generation_config (temperature 1.0, top_p 0.95), and no max_tokens, so the server allowed the 262,144-token context less the prompt. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. The checkpoint is self-hosted; like every other entry, its cost uses OpenRouter's published GLM 5.3 Flash API price ($0.15 input, $0.03 cached input, $0.50 output per 1M tokens).",
       "mode": "direct_qa",
       "detail_file": "models/glm_5_3_flash_260828_max.json",
       "summary": {
@@ -11100,7 +11100,7 @@
       "provider": "qwen",
       "evaluation_model_ids": [],
       "thinking_effort": "xhigh",
-      "configuration_note": "Self-hosted official BF16 checkpoint (Qwen/Qwen3.8-27B, revision 8c0b3d30) on vLLM 0.33.0 with the qwen3 reasoning parser. Qwen 3.8 27B answered the 50 tasks in three rollouts at reasoning effort xhigh, the highest its chat template accepts, with Qwen's recommended thinking-mode sampling (temperature 1.0, top_p 0.95), and no max_tokens, so the server allowed the 262,144-token context less the prompt. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens. Answers were graded by GPT-6 Luna at maximum reasoning effort. The checkpoint is self-hosted, so the site shows no API cost; token usage is kept.",
+      "configuration_note": "Self-hosted official BF16 checkpoint (Qwen/Qwen3.8-27B, revision 8c0b3d30) on vLLM 0.33.0 with the qwen3 reasoning parser. Qwen 3.8 27B answered the 50 tasks in three rollouts at reasoning effort xhigh, the highest its chat template accepts, with Qwen's recommended thinking-mode sampling (temperature 1.0, top_p 0.95), and no max_tokens, so the server allowed the 262,144-token context less the prompt. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. The checkpoint is self-hosted; like every other entry, its cost uses OpenRouter's published Qwen 3.8 27B API price ($0.15 input, $0.0375 cached input, $1.88 output per 1M tokens).",
       "mode": "direct_qa",
       "summary": {
         "rollout_count": 3,
@@ -16288,7 +16288,7 @@
       "provider": "qwen",
       "evaluation_model_ids": [],
       "thinking_effort": "default",
-      "configuration_note": "Self-hosted official BF16 checkpoint (Qwen/Qwen3.5-9B, revision c2022362) on vLLM 0.33.0 with the qwen3 reasoning parser. Qwen 3.5 9B answered the 50 tasks in three rollouts with thinking on, its only reasoning setting, with Qwen's recommended thinking-mode sampling (temperature 1.0, top_p 0.95), and no max_tokens, so the server allowed the 262,144-token context less the prompt. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens. Answers were graded by GPT-6 Luna at maximum reasoning effort. The checkpoint is self-hosted, so the site shows no API cost; token usage is kept.",
+      "configuration_note": "Self-hosted official BF16 checkpoint (Qwen/Qwen3.5-9B, revision c2022362) on vLLM 0.33.0 with the qwen3 reasoning parser. Qwen 3.5 9B answered the 50 tasks in three rollouts with thinking on, its only reasoning setting, with Qwen's recommended thinking-mode sampling (temperature 1.0, top_p 0.95), and no max_tokens, so the server allowed the 262,144-token context less the prompt. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. The checkpoint is self-hosted; like every other entry, its cost uses OpenRouter's published Qwen 3.5 9B API price ($0.17 input, $0.17 cached input, $0.25 output per 1M tokens).",
       "mode": "direct_qa",
       "detail_file": "models/qwen_35_9b.json",
       "summary": {

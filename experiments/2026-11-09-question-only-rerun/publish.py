@@ -158,15 +158,14 @@ def note(key: str, name: str, rows: list[dict], effort: str, looped: int, price:
                 f"({row['model']}) {effort_phrase(key, effort)}. Requests set {listed}.")
     text += (" Each request was one user message holding only the question text and its figure: no title, "
              "headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in "
-             "tokens" + ("" if key in SELF_HOSTED else " and cost") + ".")
+             "tokens and cost.")
     if looped:
         text += (f" In {looped} slot{'s' if looped > 1 else ''} the model reached its output limit on every attempt; "
                  f"{'those answers are' if looped > 1 else 'that answer is'} graded as returned.")
     text += " Answers were graded by GPT-6 Luna at maximum reasoning effort."
-    if key in SELF_HOSTED:
-        text += " The checkpoint is self-hosted, so the site shows no API cost; token usage is kept."
-    elif price:
-        text += (f" Cost uses OpenRouter's published {name} API price (${price[0]:.2f} input, ${price[2]:g} cached input, "
+    if price:
+        text += ((" The checkpoint is self-hosted; like every other entry, its cost" if key in SELF_HOSTED else " Cost")
+                 + f" uses OpenRouter's published {name} API price (${price[0]:.2f} input, ${price[2]:g} cached input, "
                  f"${price[1]:.2f} output per 1M tokens).")
     return text
 
@@ -231,7 +230,9 @@ def main() -> int:
                 model_key=key, display_name=name, provider=provider, effort=effort, api_model=models.pop(), route=route,
                 source_experiment=EXPERIMENT, judge_key=JUDGE, answers=[path], scores=None, tokens=None, raw_log=None,
                 unanswered=[],
-                configuration_note=note(key, name, selected_rows, effort, looped, price.get(key))))
+                configuration_note=note(key, name, selected_rows, effort, looped,
+                                        # pricing.js falls back to a key that prefixes the model key
+                                        price.get(key) or next((v for k, v in price.items() if key.startswith(k)), None))))
         for a in model["answers"]:
             a["scores"][JUDGE]["judge_model"] = "openai/gpt-6-luna"
         percent = model["summary"]["scores"]["overall"][JUDGE]["score_percent"]
