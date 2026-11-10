@@ -9,6 +9,7 @@ Notable changes to Razavi-Bench, newest first, by commit date.
 3. Restored Part 2 Q6 and Q12 to Razavi's wording and gave the Q6 reference partial-credit tiers.
 4. Priced the self-hosted entries (Qwen 3.8 27B, Qwen 3.5 9B, GLM 5.3 Flash) at OpenRouter's rates, and linked this changelog from every page's footer.
 5. Added each task's exact prompt to `data/tasks.jsonl` and switched the runners in `tools/` to send only it.
+6. Updated the Hugging Face dataset (Arcadia-2026/razavi-bench) to the current tasks, figures, references and prompts, and removed its old June experiment files, docs and article PDFs.
 
 ## 2026-11-09
 
