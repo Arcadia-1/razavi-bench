@@ -4,7 +4,7 @@
   "provider": "google",
   "evaluation_model_ids": [],
   "thinking_effort": "high",
-  "configuration_note": "Gemini 3.7 Flash answered the 50 tasks in three rollouts through OpenRouter's chat completions route (google/gemini-3.7-flash) at reasoning effort high, the highest it offers. Requests set max_tokens to 65,536, the model's output limit and temperature to 0. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's published Gemini 3.7 Flash API price ($0.38 input, $0.0375 cached input, $1.88 output per 1M tokens).",
+  "configuration_note": "Gemini 3.7 Flash answered the 50 tasks in three rollouts through OpenRouter's chat completions route (google/gemini-3.7-flash) at reasoning effort high, the highest it offers. Requests set max_tokens to 65,536, the model's output limit and temperature to 0. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Gemini 3.7 Flash on 2026-11-10 ($0.75 input, $0.075 cached input, $3.75 output per 1M tokens).",
   "mode": "direct_qa",
   "summary": {
     "rollout_count": 3,

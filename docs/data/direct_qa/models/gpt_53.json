@@ -4,7 +4,7 @@
   "provider": "openai",
   "evaluation_model_ids": [],
   "thinking_effort": "xhigh",
-  "configuration_note": "GPT-5.3 answered the 50 tasks in three rollouts through OpenRouter's chat completions route (openai/gpt-5.3-codex) at reasoning effort xhigh, the highest it offers. Requests set max_tokens to 128,000, the model's output limit. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's published GPT-5.3 API price ($1.75 input, $0.175 cached input, $14.00 output per 1M tokens).",
+  "configuration_note": "GPT-5.3 answered the 50 tasks in three rollouts through OpenRouter's chat completions route (openai/gpt-5.3-codex) at reasoning effort xhigh, the highest it offers. Requests set max_tokens to 128,000, the model's output limit. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for GPT-5.3 on 2026-11-10 ($1.75 input, $0.175 cached input, $14.00 output per 1M tokens).",
   "mode": "direct_qa",
   "summary": {
     "rollout_count": 3,

@@ -4,7 +4,7 @@
   "provider": "mistral",
   "evaluation_model_ids": [],
   "thinking_effort": "high",
-  "configuration_note": "Mistral Large 4 answered the 50 tasks in three rollouts through OpenRouter's chat completions route (mistralai/mistral-large-4-0) at reasoning effort high, the highest it offers. Requests set max_tokens to 262,144, the model's output limit. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's published Mistral Large 4 API price ($0.68 input, $0.07 cached input, $2.09 output per 1M tokens).",
+  "configuration_note": "Mistral Large 4 answered the 50 tasks in three rollouts through OpenRouter's chat completions route (mistralai/mistral-large-4-0) at reasoning effort high, the highest it offers. Requests set max_tokens to 262,144, the model's output limit. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Mistral Large 4 on 2026-11-10 ($0.70 input, $0.07 cached input, $2.10 output per 1M tokens).",
   "mode": "direct_qa",
   "summary": {
     "rollout_count": 3,

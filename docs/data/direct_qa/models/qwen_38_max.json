@@ -4,7 +4,7 @@
   "provider": "alibaba",
   "evaluation_model_ids": [],
   "thinking_effort": "xhigh",
-  "configuration_note": "Qwen 3.8 Max answered the 50 tasks in three rollouts through OpenRouter's chat completions route (qwen/qwen3.8-max-0902) at reasoning effort xhigh, the highest it offers. Requests set max_tokens to 131,072, the model's output limit and temperature to 0. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's published Qwen 3.8 Max API price ($1.00 input, $0.1 cached input, $6.00 output per 1M tokens).",
+  "configuration_note": "Qwen 3.8 Max answered the 50 tasks in three rollouts through OpenRouter's chat completions route (qwen/qwen3.8-max-0902) at reasoning effort xhigh, the highest it offers. Requests set max_tokens to 131,072, the model's output limit and temperature to 0. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Qwen 3.8 Max on 2026-11-10 ($2.00 input, $0.25 cached input, $6.00 output per 1M tokens).",
   "mode": "direct_qa",
   "summary": {
     "rollout_count": 3,

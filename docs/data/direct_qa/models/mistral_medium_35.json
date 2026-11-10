@@ -4,7 +4,7 @@
   "provider": "mistral",
   "evaluation_model_ids": [],
   "thinking_effort": "high",
-  "configuration_note": "Mistral Medium 3.5 answered the 50 tasks in three rollouts through OpenRouter's chat completions route (mistralai/mistral-medium-3-5) at reasoning effort high, the highest it offers. Requests set max_tokens to 209,715, the model's output limit. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's published Mistral Medium 3.5 API price ($1.50 input, $1.5 cached input, $7.50 output per 1M tokens).",
+  "configuration_note": "Mistral Medium 3.5 answered the 50 tasks in three rollouts through OpenRouter's chat completions route (mistralai/mistral-medium-3-5) at reasoning effort high, the highest it offers. Requests set max_tokens to 209,715, the model's output limit. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Mistral Medium 3.5 on 2026-11-10 ($1.50 input, $1.50 cached input, $7.50 output per 1M tokens).",
   "mode": "direct_qa",
   "summary": {
     "rollout_count": 3,

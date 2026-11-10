@@ -4,7 +4,7 @@
   "provider": "anthropic",
   "evaluation_model_ids": [],
   "thinking_effort": "max",
-  "configuration_note": "Claude Fable 5.2 answered the 50 tasks in three rollouts through OpenRouter's chat completions route (anthropic/claude-fable-5.2) at maximum reasoning effort. Requests set max_tokens to 128,000, the model's output limit. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's published Claude Fable 5.2 API price ($8.00 input, $0.2 cached input, $40.00 output per 1M tokens).",
+  "configuration_note": "Claude Fable 5.2 answered the 50 tasks in three rollouts through OpenRouter's chat completions route (anthropic/claude-fable-5.2) at maximum reasoning effort. Requests set max_tokens to 128,000, the model's output limit. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Claude Fable 5.2 on 2026-11-10 ($8.00 input, $0.20 cached input, $40.00 output per 1M tokens).",
   "mode": "direct_qa",
   "summary": {
     "rollout_count": 3,

@@ -4,7 +4,7 @@
   "provider": "meta",
   "evaluation_model_ids": [],
   "thinking_effort": "max",
-  "configuration_note": "Muse Wonder Full 1.0 answered the 50 tasks in three rollouts through OpenRouter's chat completions route (meta/muse-wonder) at maximum reasoning effort. Requests set max_tokens to 943,718, the model's output limit. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's published Muse Wonder Full 1.0 API price ($4.00 input, $0.2 cached input, $20.00 output per 1M tokens).",
+  "configuration_note": "Muse Wonder Full 1.0 answered the 50 tasks in three rollouts through OpenRouter's chat completions route (meta/muse-wonder) at maximum reasoning effort. Requests set max_tokens to 943,718, the model's output limit. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Muse Wonder Full 1.0 on 2026-11-10 ($4.00 input, $0.20 cached input, $20.00 output per 1M tokens).",
   "mode": "direct_qa",
   "summary": {
     "rollout_count": 3,

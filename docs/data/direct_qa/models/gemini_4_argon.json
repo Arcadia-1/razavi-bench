@@ -4,7 +4,7 @@
   "provider": "google",
   "evaluation_model_ids": [],
   "thinking_effort": "high",
-  "configuration_note": "Gemini 4 Argon answered the 50 tasks in three rollouts through OpenRouter's chat completions route (google/gemini-4-argon) at reasoning effort high, the highest it offers. Requests set max_tokens to 943,718, the model's output limit and temperature to 0. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's published Gemini 4 Argon API price ($2.00 input, $0.1 cached input, $10.00 output per 1M tokens).",
+  "configuration_note": "Gemini 4 Argon answered the 50 tasks in three rollouts through OpenRouter's chat completions route (google/gemini-4-argon) at reasoning effort high, the highest it offers. Requests set max_tokens to 943,718, the model's output limit and temperature to 0. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Gemini 4 Argon on 2026-11-10 ($2.00 input, $0.10 cached input, $10.00 output per 1M tokens).",
   "mode": "direct_qa",
   "summary": {
     "rollout_count": 3,

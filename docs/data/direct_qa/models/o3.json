@@ -4,7 +4,7 @@
   "provider": "openai",
   "evaluation_model_ids": [],
   "thinking_effort": "high",
-  "configuration_note": "o3 answered the 50 tasks in three rollouts through OpenRouter's chat completions route (openai/o3) at reasoning effort high, the highest it offers. Requests set max_tokens to 100,000, the model's output limit. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's published o3 API price ($2.00 input, $0.5 cached input, $8.00 output per 1M tokens).",
+  "configuration_note": "o3 answered the 50 tasks in three rollouts through OpenRouter's chat completions route (openai/o3) at reasoning effort high, the highest it offers. Requests set max_tokens to 100,000, the model's output limit. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for o3 on 2026-11-10 ($2.00 input, $0.50 cached input, $8.00 output per 1M tokens).",
   "mode": "direct_qa",
   "summary": {
     "rollout_count": 3,

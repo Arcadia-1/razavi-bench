@@ -31,6 +31,7 @@ HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[1]
 DATA = REPO / "docs/data/direct_qa"
 EXPERIMENT = HERE.name
+PRICE_DATE = "2026-11-10"  # date of the OpenRouter list prices in docs/assets/pricing.js
 JUDGE = "gpt_6_luna_max"
 
 
@@ -143,6 +144,10 @@ def usage_of(rows: list[dict]) -> tuple[dict, int]:
     return (bmj.sum_usage(records) if len(records) > 1 else records[0]), len(records)
 
 
+def money(value: float) -> str:
+    return f"{value:.2f}" if round(value, 2) == value else f"{value:g}"
+
+
 def effort_phrase(key: str, effort: str) -> str:
     if key in THINKING_ONLY:
         return "with thinking on (the model has no effort levels)"
@@ -180,8 +185,8 @@ def note(key: str, name: str, rows: list[dict], effort: str, looped: int, price:
     text += " Answers were graded by GPT-6 Luna at maximum reasoning effort."
     if price:
         text += ((" The checkpoint is self-hosted; like every other entry, its cost" if key in SELF_HOSTED else " Cost")
-                 + f" uses OpenRouter's published {name} API price (${price[0]:.2f} input, ${price[2]:g} cached input, "
-                 f"${price[1]:.2f} output per 1M tokens).")
+                 + f" uses OpenRouter's list price for {name} on {PRICE_DATE} (${money(price[0])} input, ${money(price[2])} cached input, "
+                 f"${money(price[1])} output per 1M tokens).")
     return text
 
 

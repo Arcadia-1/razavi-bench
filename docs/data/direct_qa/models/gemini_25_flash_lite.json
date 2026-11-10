@@ -4,7 +4,7 @@
   "provider": "google",
   "evaluation_model_ids": [],
   "thinking_effort": "max",
-  "configuration_note": "Gemini 2.5 Flash-Lite answered the 50 tasks in three rollouts through OpenRouter's chat completions route (google/gemini-2.5-flash-lite) at maximum reasoning effort. Requests set max_tokens to 65,535, the model's output limit and temperature to 0. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. In 9 slots the model reached its output limit on every attempt; those answers are graded as returned. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's published Gemini 2.5 Flash-Lite API price ($0.10 input, $0.01 cached input, $0.40 output per 1M tokens).",
+  "configuration_note": "Gemini 2.5 Flash-Lite answered the 50 tasks in three rollouts through OpenRouter's chat completions route (google/gemini-2.5-flash-lite) at maximum reasoning effort. Requests set max_tokens to 65,535, the model's output limit and temperature to 0. Each request was one user message holding only the question text and its figure: no title, headings or system prompt. Answers cut off at the output limit were re-run; every attempt is counted in tokens and cost. In 9 slots the model reached its output limit on every attempt; those answers are graded as returned. Answers were graded by GPT-6 Luna at maximum reasoning effort. Cost uses OpenRouter's list price for Gemini 2.5 Flash-Lite on 2026-11-10 ($0.10 input, $0.01 cached input, $0.40 output per 1M tokens).",
   "mode": "direct_qa",
   "summary": {
     "rollout_count": 3,
