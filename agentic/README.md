@@ -6,14 +6,14 @@ figure-dependent questions.
 
 | Mode | Input and execution |
 | --- | --- |
-| Direct multimodal QA | Send `instruction.md` and its figure PNGs directly to the answer model. |
-| Agentic multimodal QA | Place the instruction and figures in `/app`; the agent writes `/app/answer.md`. |
+| Direct multimodal QA | Send the task's `prompt` and its figure directly to the answer model (see the top-level README). |
+| Agentic multimodal QA | Place the question and figure in `/app`; the agent writes `/app/answer.md`. |
 | Agentic ngspice-sky130 | Use the same file workflow with ngspice, the bundled Sky130 assets, and the public skill. |
 
 ## Inputs And Scoring
 
-Answer models and agents may receive only the public task instruction and its
-figures. Do not expose `golden_solution.md`, `evaluation_rubric.md`, source
+Answer models and agents may receive only the task's question (its `prompt`, with
+no title or figure numbers) and its figures. Do not expose `golden_solution.md`, `evaluation_rubric.md`, source
 articles, judge data, private records, or the curated `netlists/` tree.
 
 All modes are scored from the final answer against the same golden solution and
@@ -25,8 +25,8 @@ files, simulator decks, and logs are ignored.
 The task working directory is:
 
 ```text
-/app/instruction.md
-/app/figure-*.png
+/app/instruction.md   the question
+/app/figure-1.png     the figure, if the task has one
 ```
 
 The required output is `/app/answer.md`. This mode is a harness-parity test and

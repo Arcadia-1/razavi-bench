@@ -177,11 +177,12 @@ The agentic modes in [`agentic/README.md`](../agentic/README.md) run on
 `export_harbor_tasks.py` writes the 50 tasks as Harbor tasks, one directory
 each under `output/harbor/<mode>/` (not committed):
 
-- `instruction.md`: the question, the mode's environment notes and the
-  deliverable, `/app/answer.md`;
+- `instruction.md`: the question (the task's `prompt`, with no title or figure
+  numbers), the mode's environment notes and the deliverable, `/app/answer.md`;
 - `environment/`: the mode's image (`agentic/harness/harbor-<mode>.Dockerfile`;
   for `ngspice-sky130`, ngspice 47 built from source, the Sky130 bundle and the
-  skill) plus the task's `instruction.md` and figures in `/app`;
+  skill) plus, in `/app`, the question as `instruction.md` and the figure as
+  `figure-1.png`, not named by the article's figure number;
 - `tests/`: a separate verifier container with the golden solution, the rubric
   and `evaluate_answers.py`. It grades `/app/answer.md`, the task's only
   artifact, with GPT-6 Luna at max effort and writes the score divided by 4 as

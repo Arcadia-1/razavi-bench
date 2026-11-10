@@ -3,9 +3,11 @@
 
 <output-dir>/<task_slug>/
   task.toml        /app/answer.md is the artifact; the verifier runs in its own container
-  instruction.md   the question with the mode's environment notes and deliverable
+  instruction.md   the question (the task's prompt: no title or figure numbers) with the mode's
+                   environment notes and deliverable
   environment/     the mode's image (agentic/harness/harbor-<mode>.Dockerfile and its public
-                   files), any --preinstall agents, and the task's instruction and figures in /app
+                   files), any --preinstall agents, and in /app the question (instruction.md) and
+                   the figure, named figure-1.png rather than by the article's figure number
   tests/           the verifier image: agentic/harbor/grade.py, tools/evaluate_answers.py, the
                    rubric and this task's golden solution
 
@@ -23,7 +25,7 @@ from pathlib import Path
 from typing import Any
 from urllib.parse import urlsplit
 
-from direct_qa_openrouter_common import REPO_ROOT, load_tasks
+from direct_qa_openrouter_common import REPO_ROOT, load_tasks, prompt_text
 
 HARBOR_DIR = REPO_ROOT / "agentic/harbor"
 # Each mode's image: its Dockerfile and the only repository paths the task environment holds.
@@ -148,12 +150,23 @@ exec python3 /tests/grade.py
 """
 
 
+def question_md(task: dict[str, Any]) -> str:
+    """The question as the agent sees it: the task's prompt, the text the direct runs send, with no
+    title, figure numbers or subfigure labels."""
+    return f"## Question\n\n{prompt_text(task)}"
+
+
+def figure_names(task: dict[str, Any]) -> list[str]:
+    """Each figure's name in /app: figure-<n>.png in order, not the article's figure number."""
+    return [f"figure-{n}.png" for n in range(1, len(task.get("figures") or []) + 1)]
+
+
 def task_text(task: dict[str, Any], mode: str) -> str:
     """The agent's instruction: the question, the mode's environment notes and the deliverable.
 
     agentic/harbor/mini_with_figures.py adds the figures as images before "## Environment".
     """
-    return "\n\n".join([task["instruction"].strip(), f"## Environment\n\n{ENVIRONMENT[mode]}", f"## Deliverable\n\n{DELIVERABLE}"])
+    return "\n\n".join([question_md(task), f"## Environment\n\n{ENVIRONMENT[mode]}", f"## Deliverable\n\n{DELIVERABLE}"])
 
 
 def context_files(root: Path, mode: str) -> list[str]:
@@ -219,7 +232,6 @@ def export_task(root: Path, task: dict[str, Any], args: argparse.Namespace) -> P
     if target.exists():
         shutil.rmtree(target)
     task_dir = root / task["task_path"]
-    task_files = ["instruction.md", *(Path(relative).name for relative in task.get("figures") or [])]
 
     environment = target / "environment"
     for relative in context_files(root, args.mode):
@@ -231,8 +243,9 @@ def export_task(root: Path, task: dict[str, Any], args: argparse.Namespace) -> P
         node = [NODE_LAYER] if NODE_AGENTS.intersection(agents) else []
         dockerfile.write("".join([CURL_LAYER, *node, *(PREINSTALL_LAYERS[agent] for agent in agents), TASK_LAYER]))
     (environment / "task").mkdir(parents=True)
-    for name in task_files:
-        shutil.copy2(task_dir / name, environment / "task" / name)
+    (environment / "task/instruction.md").write_text(question_md(task) + "\n", encoding="utf-8")
+    for relative, name in zip(task.get("figures") or [], figure_names(task)):
+        shutil.copy2(root / relative, environment / "task" / name)
 
     tests = target / "tests"
     (tests / "repo" / task["task_path"]).mkdir(parents=True)

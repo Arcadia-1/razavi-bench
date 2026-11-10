@@ -42,7 +42,9 @@ class HarborExportTests(unittest.TestCase):
     def test_instruction_has_the_environment_and_no_solution(self) -> None:
         for task in load_tasks(REPO_ROOT):
             text = EXPORT.task_text(task, "ngspice-sky130")
-            self.assertTrue(text.startswith(task["instruction"].strip()), task["task_slug"])
+            self.assertTrue(text.startswith(f"## Question\n\n{task['prompt']}\n\n## Environment"), task["task_slug"])
+            self.assertNotIn(task["task_slug"], text)
+            self.assertIsNone(re.search(r"Fig(ure|\.)?\s*\d", text), task["task_slug"])
             self.assertIn("/app/answer.md", text)
             self.assertIn("/app/.claude/skills/ngspice-sky130/SKILL.md", text)
             self.assertNotIn("<MSWEA_MULTIMODAL_CONTENT>", text)
@@ -64,8 +66,8 @@ class HarborExportTests(unittest.TestCase):
             task = load_tasks(REPO_ROOT, [slug])[0]
             instruction = EXPORT.task_text(task, "ngspice-sky130")
             with tempfile.TemporaryDirectory() as app:
-                for relative in task["figures"]:
-                    shutil.copy2(REPO_ROOT / relative, Path(app) / Path(relative).name)
+                for relative, name in zip(task["figures"], EXPORT.figure_names(task)):
+                    shutil.copy2(REPO_ROOT / relative, Path(app) / name)
                 text = WRAPPER.with_figures(instruction, Path(app))
             if not task["figures"]:
                 self.assertEqual(text, instruction)
@@ -88,7 +90,9 @@ class HarborExportTests(unittest.TestCase):
                     self.assertNotIn(golden.strip(), path.read_text(encoding="utf-8", errors="ignore"), path)
             self.assertEqual((target / "tests/repo" / task["task_path"] / "golden_solution.md").read_text(encoding="utf-8"), golden)
             self.assertNotIn("<MSWEA_MULTIMODAL_CONTENT>", (target / "instruction.md").read_text(encoding="utf-8"))
-            self.assertEqual(sorted(path.name for path in (target / "environment/task").iterdir()), ["figure-05.png", "instruction.md"])
+            self.assertEqual(sorted(path.name for path in (target / "environment/task").iterdir()), ["figure-1.png", "instruction.md"])
+            self.assertEqual((target / "environment/task/instruction.md").read_text(encoding="utf-8"), f"## Question\n\n{task['prompt']}\n")
+            self.assertEqual((target / "environment/task/figure-1.png").read_bytes(), (REPO_ROOT / task["figures"][0]).read_bytes())
             dockerfile = (target / "environment/Dockerfile").read_text(encoding="utf-8")
             self.assertTrue(dockerfile.startswith((REPO_ROOT / EXPORT.MODES["ngspice-sky130"]["dockerfile"]).read_text(encoding="utf-8")))
             self.assertTrue(dockerfile.rstrip().endswith("COPY task/ /app/"))
