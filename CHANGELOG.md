@@ -12,6 +12,7 @@ Notable changes to Razavi-Bench, newest first, by commit date.
 6. Updated the Hugging Face dataset (Arcadia-2026/razavi-bench) to the current tasks, figures, references and prompts, and removed its old June experiment files, docs and article PDFs.
 7. Replaced MiniMax M3's entry with a run through MiniMax's own API (69.2%, against 64.3% through OpenRouter) and added MiniMax M3.1 Flash (72.7%).
 8. Priced every model at OpenRouter's list price on 2026-11-10 (`tools/sync_openrouter_prices.py`); 23 models' costs changed.
+9. Agentic (Harbor) tasks now give the agent only the question, with no title or figure numbers, and name the figure `figure-1.png`.
 
 ## 2026-11-09
 
