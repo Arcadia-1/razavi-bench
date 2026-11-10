@@ -1,0 +1,32 @@
+{
+  "status": "resolved_by_applied_revision",
+  "reason": "Final comparison with Razavi's original questions before batches 4-6",
+  "source": "Analog Design Experiments With AI - Part 2, pages 10-11",
+  "changes": [
+    {
+      "task_slug": "part2-006-oscillates-change",
+      "finding": "The current question includes the correct supply-resistance formula and its derivation, taken from the article's explanatory comments.",
+      "proposed_question": "For the ring oscillator in the figure, consider the small-signal resistance RX seen looking into the supply node.\n\nSomebody argues that, because the circuit is oscillating, the path from VDD to ground through the transistors is off for much of the cycle, so the average resistance should be much higher than the MOS on-resistance or inverse-transconductance scale.\n\nDo you agree with this argument?",
+      "reference_change_needed": false
+    },
+    {
+      "task_slug": "part2-012-repeat-question-10-for-topology",
+      "finding": "The article asks to repeat question 10 for this figure; the current standalone wording additionally names the topology and describes the clock terminals.",
+      "proposed_question": "In the circuit shown in the figure, does the speed improve or degrade if we increase the widths of the clocked transistors?",
+      "reference_change_needed": false
+    }
+  ],
+  "earlier_scheduled_models": 33,
+  "maximum_earlier_answer_slots_to_replace": 198,
+  "other_questions_and_figures": "Verified against the original articles and current prompt builder",
+  "resolution": {
+    "commit": "728956da1e1135b98ad7ac302be6d65dd85a12f9",
+    "input_lock": "round456.input-lock.json",
+    "applied_question_sources": [
+      "tasks/part2-006-oscillates-change/instruction.md",
+      "tasks/part2-012-repeat-question-10-for-topology/instruction.md"
+    ],
+    "q6_reference_revised": true,
+    "note": "The applied Q6 wording includes the original static answer as context. The earlier proposed text is retained here for provenance."
+  }
+}

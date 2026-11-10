@@ -1,0 +1,131 @@
+{
+ "created_at": "2026-11-10T08:07:42.724296+00:00",
+ "selection": "Batch 7, run at the user's request: Claude Opus 5.5, Claude Opus 4.8, GPT-6 Astra, Muse Wonder Full 1.0, Gemini 3.1 Pro (Claude Fable 5 and 5.1 not run)",
+ "expected_answers": 750,
+ "runner": "run_batch7.py (run.py main with these entries added)",
+ "source_commit": "728956da1e1135b98ad7ac302be6d65dd85a12f9",
+ "models": [
+  {
+   "name": "Claude Opus 5.5",
+   "model_key": "claude_opus_55",
+   "api_model": "anthropic/claude-opus-5.5",
+   "reasoning_effort": "max",
+   "temperature": null,
+   "max_tokens": 128000,
+   "request_options": {
+    "provider": {
+     "require_parameters": true
+    }
+   }
+  },
+  {
+   "name": "Claude Opus 4.8",
+   "model_key": "claude_opus_48",
+   "api_model": "anthropic/claude-opus-4.8",
+   "reasoning_effort": "max",
+   "temperature": null,
+   "max_tokens": 128000,
+   "request_options": {
+    "provider": {
+     "require_parameters": true
+    }
+   }
+  },
+  {
+   "name": "GPT-6 Astra",
+   "model_key": "gpt_6_astra",
+   "api_model": "openai/gpt-6-astra",
+   "reasoning_effort": "max",
+   "temperature": null,
+   "max_tokens": 128000,
+   "request_options": {
+    "provider": {
+     "require_parameters": true
+    }
+   }
+  },
+  {
+   "name": "Muse Wonder Full 1.0",
+   "model_key": "muse_wonder_full_10",
+   "api_model": "meta/muse-wonder",
+   "reasoning_effort": "max",
+   "temperature": null,
+   "max_tokens": 943718,
+   "request_options": {
+    "provider": {
+     "require_parameters": true
+    }
+   }
+  },
+  {
+   "name": "Gemini 3.1 Pro",
+   "model_key": "gemini_31",
+   "api_model": "google/gemini-3.1-pro-preview",
+   "reasoning_effort": "high",
+   "temperature": 0.0,
+   "max_tokens": 65536,
+   "request_options": {
+    "provider": {
+     "require_parameters": true
+    }
+   }
+  }
+ ],
+ "notes": {
+  "effort": "Highest effort each OpenRouter listing supports; the published runs used the same.",
+  "max_tokens": "Each model's OpenRouter max_completion_tokens.",
+  "muse_wonder": "Published through the local Muse Code CLI with its system prompt; rerun through OpenRouter meta/muse-wonder with the question and figure only."
+ },
+ "task_hashes": {
+  "part1-001-double-length-and-width-mosfet-its-intrinsic": "9e96cb0682d06028570ecf1e47c999a7d97c14494e428702707e4f43ddf37ad6",
+  "part1-002-student-says-transconductance-mosfet-goes-up-as": "41183d861d619ede2bb1ff5fcf192a8bbe7f4b03237660fa15d12124891c307b",
+  "part1-003-small-signal-model-pmos-device-identical-nmos": "c2e9ea4dce718229a0c76a98d19c898967d4960aabb86f08a0c918c345cf0491",
+  "part1-004-sketch-ix-versus-vx": "248f8043c9e3123470555dfe2476f2c975948ebde234a95852793a43286b7122",
+  "part1-005-sketch-ix-versus-vx": "d1024d93fa6d420fc129dcfa4740cf6afbb92df914706517c577ab8ec51a00ef",
+  "part1-006-device-act-as-current-source": "f2313bf92864a228ee731ee48b6ff9c0f024ac5872258f0a5a7850d0443ad9f7",
+  "part1-007-pmos-common-source-source-degeneration": "8f1b2795ad7d93254e0e9783a32cda9b8e82a931ff7fd17c43af463a773b9d76",
+  "part1-008-source-follower": "5c0791e185dbae4c8585bc3fd74e2a2321de9165395f0abc509e674e0dc24138",
+  "part1-009-common-gate-source-input": "554e1c791ccc03603e869c463460aee59f1c61ff11dc51c9200314932dac374a",
+  "part1-010-source-input-shorted-to-ground": "ac22264e26a87b69c27cb3939a721631f10f52339f8dc541a2ae81c852a603fc",
+  "part1-011-many-poles-have": "fe67664b4139d342eb9d7365f9e6f5a3749dcc2a5e00df8f2910129bf17f6fe6",
+  "part1-012-source-input-resistive-feedback": "704b7dfff147f499392e9e91c1d30c1ea1af43c52ed9ca27d6e15622e1943151",
+  "part1-013-source-follower-current-source-load": "7df2ae794f66219cb06332fe37a3fc157956fbefdc3111eb8809f3e7149b077c",
+  "part1-014-cmos-inverter": "1797f969ed060d5e609ab16f1d0abfea9f4d466cfe6d8687c14e8bbe3bb49c3d",
+  "part1-015-malformed-cmos-inverter": "a1bce2c634e850b9d3bdf4b750e60205d3c4b9c0e1055d776056019da89f0b53",
+  "part1-016-common-source-diode-connected-load": "9d841d8b9d4b754cf770d19ef65542ca708c11a654779eae19e8d73a077ba637",
+  "part1-017-pmos-input-invalid-pulldown": "6a11d50ccca1aa2c8c4b97d1194aebe3de14eaf225b3fc5171bbcb18019d20f4",
+  "part1-018-find-rout": "552995b41015cb9466c376d118086ed917c29722596186c56100069bb0dbcd17",
+  "part1-019-ensure-m2-saturation": "429658407ea5b41c6046ae6e26a3df9e889fe2832964a7032a4ffcd89e4196b3",
+  "part1-020-nmos-cascode-gain-stage": "7a0e4184883cfebd047ea9cf8daaf10646332ae0d705c2277f2c64da78ea25c7",
+  "part1-021-cascode-structure": "08f8b6c0ef7a17a9a0fdf0e0ade43999495ebb9a8c6091b7692c00bbd89e753d",
+  "part1-022-explain-why-miller-effect-less-pronounced-cascode": "481c91c33a3a092ae544e4bcb301a46bec92ab6a124cd9740772e8f54425c356",
+  "part1-023-common-gate-pmos-load": "aee51c2ef28c3da3649d54d67e40ccc5a5df07b2f2334560b4e670ac3e83c80b",
+  "part1-024-many-poles-have": "8e7705106852b42f8aed0e768de18f37dff55ab2aae7ddc47b0e44cbdc2df50d",
+  "part1-025-series-nmos-effective-long-channel": "1987ba2137641fa0e4cb341ffadae3bb83aa9c4a686d05684a23398db0d2a9b8",
+  "part1-026-source-follower-drives-common-gate": "e546063a88a26e68a4014d05e1ebc8492bc4bce83ea8038f44d36507258daaae",
+  "part1-027-explain-why-output-impedance-be-inductive": "9d9caee25ce8a77d1b9671eaf1ef5cca3219a96ec5a37e8b6b3a2d0fcdd5de12",
+  "part1-028-current-input-positive-feedback": "2e2b108b758ee3c0e9ec438cbd48cccc581d4755fa824caf2ebadc01a348b1e1",
+  "part1-029-feedback-transimpedance-amplifier": "b352b3ed69057d08070dc0dbff7faea835fc1d4b6d4c9a8bcb74b9f28ea39f84",
+  "part1-030-pmos-current-input-feedback": "0c6744f9bb131040f64233d2d5487e2eaca161d06f98cd5ee13660913d5b96d3",
+  "part2-001-fail-oscillate-three-capacitors-become-arbitrarily-large": "726ae9c8d5a6920413fe5af4bd196dc005f9766a49c2a4b819091f39e30a3581",
+  "part2-002-phase-noise-three-capacitors-doubled": "7da270e62c4f9a431c1f52f0483c3998e08623ece2c820e661ce45f2bf9ea95e",
+  "part2-003-fail-oscillate-cl-becomes-arbitrarily-large": "f6c93a6ecab70d2638e43ada2492bb99557c7d8b15d25e0112a0b2d4a38e98ec",
+  "part2-004-double-widths-nmos-and-pmos-devices-phase": "eceef52599af4cd86ecc05cbf22cba33b7892e05289d73abdfc922378882ed44",
+  "part2-005-determine-small-signal-resistance-seen-looking-into": "e074f0cb78d39c064110e796c997b00ce4a2b5c991a1bb60d62e23b7bcad2c08",
+  "part2-006-oscillates-change": "c80cea8884e540ad1cbcacc05fe2a61e7eec11c402265d446c4758cb63f7811b",
+  "part2-007-initial-voltage-gain-as-width-m7-increases": "9aa133355df9c453102a9b64f0bbbf32203ee26399e7157fe0a1ee7f38433757",
+  "part2-008-initial-voltage-gain-increase-capacitance-at-nodes": "c1f34941741fd1d09aaa91531e5257b5b0893a1d06d87ded9fb19bb0e0a1da5b",
+  "part2-009-increase-widths-m5-and-m6-speed-improve": "dea06d0a967c6ab2afcbad1c893aafe802afc0d1aaafedc3452c1a68506de55d",
+  "part2-010-speed-improve-or-degrade-increase-widths-clocked": "900c1f3e23feb34074dc99decbbc201fc2f0b2cbaf981672e7f155cc27e116cf",
+  "part2-011-structure-provide-quadrature-outputs": "dc1e3f6eced50393cf3f25b55620daef37a6c3527dd3aa82284a162094399a49",
+  "part2-012-repeat-question-10-for-topology": "e3f434730f4a663fe232453e98afcfe1fd12f454e77196aa3d4ab6f27d1abb6b",
+  "part2-013-dynamic-latch-divide-by-two": "288ee2c692704de1d5467111f9a44e5c371b2aa76e80e120be8afcad421c0b55",
+  "part2-014-red-inverter-b-affect-performance": "d10cb0c3754c4788da281550deeb4242a8fdafc2139f7225de3546a5ab431ee9",
+  "part2-015-but-input-red-inverter-not-tied-output": "9ee0c8d40405a1cce8922d534a3a1dbd06bb7a6445080ecce992b56d6ff4bddb",
+  "part2-016-optimize-for-nf-rin-must-remain-equal": "c65df4cc4acb3de48170d0e1d7c9a76765f0a65418dfb39f33201e192aed49b2",
+  "part2-017-compute-input-impedance": "47e7b629b32e294658ae60f6dbaac4269d8afe09eca1969cd2330eeaf5559a77",
+  "part2-018-ldo-regulator-generates-thermal-noise-with-spectrum": "2c881e4bd60934626bdc0837d7d5a6d21db8b7f03291ee94643c3219915766bf",
+  "part2-019-add-ct-tail-node-as-phase-noise": "7f5448cd1eb86f09bf3c605702c46900a768fb790ded2da45cb9433e9cb665bd",
+  "part2-020-estimate-oscillation-frequency": "3bb43c9c89595fb53b77ab76cc2d3721d77a15485920262478b93726cee9bc0f"
+ }
+}

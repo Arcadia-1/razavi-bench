@@ -1,0 +1,72 @@
+model_key,name,provider,release_date,source,published,rerun,graded,published_effort,rerun_effort,effort_raised
+claude_fable_5,Claude Fable 5,anthropic,2026-06-09,batch 9,93.5,90.5,150,max,max,False
+claude_fable_51,Claude Fable 5.1,anthropic,2026-09-01,batch 10,94.33,93.67,150,max,max,False
+claude_haiku_45,Claude Haiku 4.5,anthropic,2025-10-15,first ten / batch 2,38.83,31.17,150,default,max,True
+claude_haiku_55,Claude Haiku 5.5,anthropic,2026-10-07,batch 3,87.17,80.17,150,max,max,False
+claude_opus_45,Claude Opus 4.5,anthropic,2025-11-24,batch 6,67.67,52.83,150,max,max,False
+claude_opus_48,Claude Opus 4.8,anthropic,2026-05-28,batch 7,86.83,82.67,150,max,max,False
+claude_opus_5,Claude Opus 5,anthropic,2026-07-24,batch 6,93.33,94.0,150,max,max,False
+claude_opus_55,Claude Opus 5.5,anthropic,2026-09-22,batch 7,96.5,97.67,150,max,max,False
+claude_sonnet_45,Claude Sonnet 4.5,anthropic,2025-09-29,batch 5,58.5,44.17,150,max,max,False
+claude_sonnet_46,Claude Sonnet 4.6,anthropic,2026-02-17,batch 6,67.5,62.17,150,default,max,True
+deepseek_v41_flash,DeepSeek V4.1 Flash 0910,deepseek,2026-09-10,first ten / batch 2,78.83,69.67,150,max,max,False
+deepseek_v41_flash_1017,DeepSeek V4.1 Flash 1017,deepseek,2026-10-17,batch 3,84.5,77.33,150,max,max,False
+gemini_25_flash_lite,Gemini 2.5 Flash-Lite,google,2025-06-17,first ten / batch 2,40.5,42.5,150,default,max,True
+gemini_25_pro,Gemini 2.5 Pro,google,2025-06-17,batch 5,72.83,56.83,150,max,max,False
+gemini_31,Gemini 3.1 Pro,google,2026-02-19,batch 7,83.83,77.67,150,high,high,False
+gemini_35_flash,Gemini 3.5 Flash,google,2026-05-19,batch 5,87.33,85.5,150,high,high,False
+gemini_36_flash,Gemini 3.6 Flash,google,2026-07-21,batch 3,86.17,84.0,150,default,high,True
+gemini_37_flash,Gemini 3.7 Flash,google,2026-08-13,first ten / batch 2,91.33,88.5,150,high,high,False
+gemini_38_flash,Gemini 3.8 Flash,google,2026-09-02,batch 4,90.33,88.67,150,high,high,False
+gemini_3_flash,Gemini 3 Flash,google,2025-12-17,batch 3,82.5,79.33,150,high,high,False
+gemini_4_argon,Gemini 4 Argon,google,2026-10-13,batch 5,97.33,94.83,150,high,high,False
+gemma_4_31b_it,Gemma 4 31B IT,google,2026-04-02,first ten / batch 2,49.17,51.5,150,default,max,True
+glm_5_3_flash_260828_max,GLM 5.3 Flash,zhipu,2026-08-28,self-hosted,86.0,79.83,150,max,default,False
+gpt_4o,GPT-4o (2024-08-06),openai,2024-08-06,first ten / batch 2,43.5,31.17,150,default,default,False
+gpt_4o_2024_05_13,GPT-4o (2024-05-13),openai,2024-05-13,batch 3,38.83,28.83,150,default,default,False
+gpt_4o_2024_11_20,GPT-4o (2024-11-20),openai,2024-11-20,first ten / batch 2,47.83,31.67,150,default,default,False
+gpt_4o_mini,GPT-4o Mini,openai,2024-07-18,first ten / batch 2,35.17,25.67,150,default,default,False
+gpt_5,GPT-5,openai,2025-08-07,batch 5,64.5,53.33,150,high,high,False
+gpt_51,GPT-5.1,openai,2025-11-13,batch 5,63.33,55.0,150,high,high,False
+gpt_52,GPT-5.2,openai,2025-12-10,batch 6,79.17,73.67,150,xhigh,xhigh,False
+gpt_53,GPT-5.3,openai,2026-02-05,batch 6,84.17,82.33,150,xhigh,xhigh,False
+gpt_54_mini,GPT-5.4 Mini,openai,2026-03-17,first ten / batch 2,63.83,66.83,150,medium,xhigh,True
+gpt_54_thinking_high,GPT-5.4,openai,2026-03-05,batch 5,74.67,83.0,150,high,xhigh,True
+gpt_55,GPT-5.5,openai,2026-04-23,batch 6,78.5,86.5,150,max,xhigh,False
+gpt_56,GPT-5.6 Sol,openai,2026-07-09,batch 5,87.5,89.67,150,max,max,False
+gpt_56_luna,GPT-5.6 Luna,openai,2026-07-09,batch 3,82.0,77.0,150,max,max,False
+gpt_56_terra,GPT-5.6 Terra,openai,2026-07-09,batch 6,82.67,86.67,150,max,max,False
+gpt_6_1_sol,GPT-6.1 Sol,openai,2026-09-29,batch 4,93.0,92.83,150,max,max,False
+gpt_6_astra,GPT-6 Astra,openai,2026-09-03,batch 7,95.33,94.67,150,max,max,False
+gpt_6_luna,GPT-6 Luna,openai,2026-09-22,first ten / batch 2,83.17,75.5,150,max,max,False
+gpt_6_sol,GPT-6 Sol,openai,2026-09-22,batch 5,89.0,87.83,150,max,max,False
+grok_45,Grok 4.5,xai,2026-07-16,batch 3,82.83,74.5,150,default,high,True
+grok_46,Grok 4.6,xai,2026-08-12,batch 3,81.83,75.83,150,xhigh,xhigh,False
+grok_4_7,Grok 4.7,xai,2026-09-21,batch 6,80.33,71.17,150,xhigh,xhigh,False
+hy4,Hy4,tencent,2026-11-04,batch 3,91.5,90.33,150,high,high,False
+inkling,Inkling,thinkingmachines,2026-07-15,batch 4,61.33,48.67,150,default,max,True
+inkling_small,Inkling Small,thinkingmachines,2026-07-15,batch 3,69.83,58.5,150,default,max,True
+kimi_31_pro,Kimi 3.1 Pro,moonshot,2026-10-23,batch 6,90.0,84.83,150,max,max,False
+kimi_k27,Kimi K2.7,moonshot,2026-06-16,batch 4,73.5,64.17,150,default,default,False
+kimi_k3,Kimi K3,moonshot,2026-07-16,batch 6,76.17,73.5,150,max,max,False
+llama_4_maverick,Llama 4 Maverick,meta,2025-04-05,first ten / batch 2,50.83,46.0,150,default,default,False
+mimo_2_6_pro,Mimo 2.6 Pro,xiaomi,2026-09-22,first ten / batch 2,68.17,54.83,150,thinking,max,True
+minimax_m3,MiniMax M3,minimax,2026-06-01,first ten / batch 2,50.5,64.33,150,default,max,True
+mistral_large_2512,Mistral Large 2512,mistral,2025-12-01,first ten / batch 2,49.33,28.0,150,default,default,False
+mistral_large_4_0,Mistral Large 4,mistral,2026-10-06,batch 4,77.0,70.33,150,high,high,False
+mistral_medium_35,Mistral Medium 3.5,mistral,2026-05-22,batch 5,54.33,36.5,150,max,high,False
+muse_spark_12,Muse Spark 1.2,meta,2026-08-05,batch 4,84.67,83.67,150,xhigh,xhigh,False
+muse_spark_13,Muse Spark 1.3,meta,2026-09-02,batch 4,84.67,80.5,150,max,max,False
+muse_wonder_full_10,Muse Wonder Full 1.0,meta,2026-10-12,batch 7,89.33,87.83,150,max,max,False
+nemotron_35_super_vl,Nemotron 3.5 Super VL,nvidia,2026-10-15,first ten / batch 2,47.67,37.5,150,high,max,False
+nova_pro,Nova Pro,amazon,2024-12-05,first ten / batch 2,34.5,21.67,150,default,default,False
+o3,o3,openai,2025-04-16,batch 4,58.17,51.5,150,high,high,False
+qwen25_vl_72b_instruct,Qwen2.5-VL-72B Instruct,qwen,2025-01-26,first ten / batch 2,34.83,26.33,150,default,default,False
+qwen3_vl_235b_a22b_instruct,Qwen3-VL-235B-A22B Instruct,qwen,2025-09-23,first ten / batch 2,50.67,36.0,150,default,default,False
+qwen_35_9b,Qwen 3.5 9B,qwen,2026-02-27,self-hosted,57.0,43.17,150,default,default,False
+qwen_37_flash,Qwen 3.7 Flash,qwen,2026-07-25,first ten / batch 2,76.17,65.0,150,default,max,True
+qwen_37_plus,Qwen 3.7 Plus,qwen,2026-06-01,first ten / batch 2,80.5,71.83,150,default,max,True
+qwen_38_27b,Qwen 3.8 27B,qwen,2026-08-05,self-hosted,77.67,67.0,150,default,xhigh,False
+qwen_38_max,Qwen 3.8 Max,alibaba,2026-08-03,batch 4,88.0,81.33,150,default,xhigh,True
+step_37_flash,Step 3.7 Flash,stepfun,2026-05-29,batch 4,65.33,47.5,150,default,high,True
+claude_fable_52,Claude Fable 5.2,anthropic,2026-11-09,batch 8,,95.83,150,,max,False

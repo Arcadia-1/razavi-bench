@@ -1,0 +1,105 @@
+{
+  "verified_at": "2026-11-10T05:37:30.556936+00:00",
+  "models": [
+    {
+      "name": "Grok 4.7",
+      "reasoning_effort": "xhigh",
+      "max_tokens": 450000,
+      "reasoning_tokens": 536,
+      "reasoning_characters": 323,
+      "finish_reason": "stop",
+      "response_model": "x-ai/grok-4.7",
+      "seconds": 14.92
+    },
+    {
+      "name": "GPT-5.5",
+      "reasoning_effort": "xhigh",
+      "max_tokens": 128000,
+      "reasoning_tokens": 7250,
+      "reasoning_characters": 5674,
+      "finish_reason": "stop",
+      "response_model": "openai/gpt-5.5",
+      "seconds": 98.92
+    },
+    {
+      "name": "GPT-5.3",
+      "reasoning_effort": "xhigh",
+      "max_tokens": 128000,
+      "reasoning_tokens": 6453,
+      "reasoning_characters": 88,
+      "finish_reason": "stop",
+      "response_model": "openai/gpt-5.3-codex",
+      "seconds": 89.91
+    },
+    {
+      "name": "Claude Sonnet 4.6",
+      "reasoning_effort": "max",
+      "max_tokens": 128000,
+      "reasoning_tokens": 19718,
+      "reasoning_characters": 23756,
+      "finish_reason": "stop",
+      "response_model": "anthropic/claude-sonnet-4.6",
+      "seconds": 335.4
+    },
+    {
+      "name": "Claude Opus 5",
+      "reasoning_effort": "max",
+      "max_tokens": 128000,
+      "reasoning_tokens": 9509,
+      "reasoning_characters": 10433,
+      "finish_reason": "stop",
+      "response_model": "anthropic/claude-opus-5",
+      "seconds": 152.59
+    },
+    {
+      "name": "Claude Opus 4.5",
+      "reasoning_effort": "max",
+      "max_tokens": 64000,
+      "reasoning_tokens": 775,
+      "reasoning_characters": 1979,
+      "finish_reason": "stop",
+      "response_model": "anthropic/claude-opus-4.5",
+      "seconds": 26.3
+    },
+    {
+      "name": "GPT-5.6 Terra",
+      "reasoning_effort": "max",
+      "max_tokens": 128000,
+      "reasoning_tokens": 2588,
+      "reasoning_characters": 2022,
+      "finish_reason": "stop",
+      "response_model": "openai/gpt-5.6-terra",
+      "seconds": 34.66
+    },
+    {
+      "name": "Kimi K3",
+      "reasoning_effort": "max",
+      "max_tokens": 943718,
+      "reasoning_tokens": 5903,
+      "reasoning_characters": 18094,
+      "finish_reason": "stop",
+      "response_model": "moonshotai/kimi-k3",
+      "seconds": 80.44
+    },
+    {
+      "name": "GPT-5.2",
+      "reasoning_effort": "xhigh",
+      "max_tokens": 128000,
+      "reasoning_tokens": 3894,
+      "reasoning_characters": 4070,
+      "finish_reason": "stop",
+      "response_model": "openai/gpt-5.2",
+      "seconds": 58.74
+    },
+    {
+      "name": "Kimi 3.1 Pro",
+      "reasoning_effort": "max",
+      "max_tokens": 943718,
+      "reasoning_tokens": 4553,
+      "reasoning_characters": 15892,
+      "finish_reason": "stop",
+      "response_model": "moonshotai/kimi-k3.1-pro",
+      "seconds": 51.11
+    }
+  ]
+}

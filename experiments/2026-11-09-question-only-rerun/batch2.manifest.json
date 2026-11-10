@@ -1,0 +1,309 @@
+{
+  "created_at": "2026-11-09T18:46:19.673336+00:00",
+  "selection": "Next ten API entries by the prior 50-question cost estimate, excluding retired entries and the two self-hosted Qwen models",
+  "expected_answers": 1500,
+  "models": [
+    {
+      "name": "Nemotron 3.5 Super VL",
+      "model_key": "nemotron_35_super_vl",
+      "api_model": "nvidia/nemotron-3.5-super-vl",
+      "canonical_slug": "nvidia/nemotron-3.5-super-vl-20261015",
+      "reasoning_effort": "max",
+      "temperature": 1.0,
+      "max_tokens": 943718,
+      "request_options": {
+        "top_p": 0.95
+      },
+      "catalog_reasoning": {
+        "mandatory": false
+      },
+      "pricing": {
+        "prompt": "0.00000015",
+        "completion": "0.0000005",
+        "input_cache_read": "0.00000002"
+      }
+    },
+    {
+      "name": "Claude Haiku 4.5",
+      "model_key": "claude_haiku_45",
+      "api_model": "anthropic/claude-haiku-4.5",
+      "canonical_slug": "anthropic/claude-4.5-haiku-20251001",
+      "reasoning_effort": "max",
+      "temperature": null,
+      "max_tokens": 64000,
+      "request_options": {},
+      "catalog_reasoning": {
+        "mandatory": false
+      },
+      "pricing": {
+        "prompt": "0.000001",
+        "completion": "0.000005",
+        "web_search": "0.01",
+        "input_cache_read": "0.0000001",
+        "input_cache_write": "0.00000125",
+        "input_cache_write_1h": "0.000002"
+      }
+    },
+    {
+      "name": "GPT-4o Mini",
+      "model_key": "gpt_4o_mini",
+      "api_model": "openai/gpt-4o-mini-2024-07-18",
+      "canonical_slug": "openai/gpt-4o-mini-2024-07-18",
+      "reasoning_effort": null,
+      "temperature": 0.0,
+      "max_tokens": 16384,
+      "request_options": {},
+      "catalog_reasoning": null,
+      "pricing": {
+        "prompt": "0.00000015",
+        "completion": "0.0000006",
+        "input_cache_read": "0.000000075"
+      }
+    },
+    {
+      "name": "GPT-4o (2024-08-06)",
+      "model_key": "gpt_4o",
+      "api_model": "openai/gpt-4o-2024-08-06",
+      "canonical_slug": "openai/gpt-4o-2024-08-06",
+      "reasoning_effort": null,
+      "temperature": 0.0,
+      "max_tokens": 16384,
+      "request_options": {},
+      "catalog_reasoning": null,
+      "pricing": {
+        "prompt": "0.0000025",
+        "completion": "0.00001",
+        "input_cache_read": "0.00000125"
+      }
+    },
+    {
+      "name": "GPT-6 Luna",
+      "model_key": "gpt_6_luna",
+      "api_model": "openai/gpt-6-luna",
+      "canonical_slug": "openai/gpt-6-luna-20260922",
+      "reasoning_effort": "max",
+      "temperature": null,
+      "max_tokens": 128000,
+      "request_options": {},
+      "catalog_reasoning": {
+        "mandatory": false,
+        "default_enabled": true,
+        "supported_efforts": [
+          "max",
+          "xhigh",
+          "high",
+          "medium",
+          "low",
+          "none"
+        ],
+        "default_effort": "medium"
+      },
+      "pricing": {
+        "prompt": "0.0000001",
+        "completion": "0.0000005",
+        "web_search": "0.01",
+        "input_cache_read": "0.00000001",
+        "input_cache_write": "0.000000125",
+        "overrides": [
+          {
+            "min_prompt_tokens": 272000,
+            "prompt": "0.0000002",
+            "completion": "0.00000075",
+            "input_cache_read": "0.00000002",
+            "input_cache_write": "0.00000025"
+          }
+        ]
+      }
+    },
+    {
+      "name": "GPT-4o (2024-11-20)",
+      "model_key": "gpt_4o_2024_11_20",
+      "api_model": "openai/gpt-4o-2024-11-20",
+      "canonical_slug": "openai/gpt-4o-2024-11-20",
+      "reasoning_effort": null,
+      "temperature": 0.0,
+      "max_tokens": 16384,
+      "request_options": {},
+      "catalog_reasoning": null,
+      "pricing": {
+        "prompt": "0.0000025",
+        "completion": "0.00001",
+        "input_cache_read": "0.00000125"
+      }
+    },
+    {
+      "name": "Gemini 3.7 Flash",
+      "model_key": "gemini_37_flash",
+      "api_model": "google/gemini-3.7-flash",
+      "canonical_slug": "google/gemini-3.7-flash-20260813",
+      "reasoning_effort": "high",
+      "temperature": 0.0,
+      "max_tokens": 65536,
+      "request_options": {},
+      "catalog_reasoning": {
+        "mandatory": true,
+        "default_enabled": true,
+        "supported_efforts": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "default_effort": "medium"
+      },
+      "pricing": {
+        "prompt": "0.00000075",
+        "completion": "0.00000375",
+        "image": "0.00000075",
+        "audio": "0.00000075",
+        "input_audio_cache": "0.000000075",
+        "web_search": "0.014",
+        "internal_reasoning": "0.00000375",
+        "input_cache_read": "0.000000075",
+        "input_cache_write": "0.0000000416666666666667"
+      }
+    },
+    {
+      "name": "DeepSeek V4.1 Flash 0910",
+      "model_key": "deepseek_v41_flash",
+      "api_model": "deepseek/deepseek-v4.1-flash",
+      "canonical_slug": "deepseek/deepseek-v4.1-flash-20260910",
+      "reasoning_effort": "max",
+      "temperature": null,
+      "max_tokens": 943718,
+      "request_options": {},
+      "catalog_reasoning": {
+        "mandatory": false,
+        "default_enabled": true,
+        "supported_efforts": [
+          "max",
+          "high",
+          "low",
+          "none"
+        ],
+        "default_effort": "high"
+      },
+      "pricing": {
+        "prompt": "0.000000051",
+        "completion": "0.000000567",
+        "input_cache_read": "0.000000018"
+      }
+    },
+    {
+      "name": "GPT-5.4 Mini",
+      "model_key": "gpt_54_mini",
+      "api_model": "openai/gpt-5.4-mini",
+      "canonical_slug": "openai/gpt-5.4-mini-20260317",
+      "reasoning_effort": "xhigh",
+      "temperature": null,
+      "max_tokens": 128000,
+      "request_options": {},
+      "catalog_reasoning": {
+        "mandatory": false,
+        "default_enabled": false,
+        "supported_efforts": [
+          "xhigh",
+          "high",
+          "medium",
+          "low",
+          "none"
+        ],
+        "default_effort": "medium"
+      },
+      "pricing": {
+        "prompt": "0.00000075",
+        "completion": "0.0000045",
+        "web_search": "0.01",
+        "input_cache_read": "0.000000075"
+      }
+    },
+    {
+      "name": "Qwen 3.7 Plus",
+      "model_key": "qwen_37_plus",
+      "api_model": "qwen/qwen3.7-plus",
+      "canonical_slug": "qwen/qwen3.7-plus-20260602",
+      "reasoning_effort": "max",
+      "temperature": 0.0,
+      "max_tokens": 131072,
+      "request_options": {},
+      "catalog_reasoning": {
+        "mandatory": false,
+        "default_enabled": true
+      },
+      "pricing": {
+        "prompt": "0.00000032",
+        "completion": "0.00000128",
+        "input_cache_read": "0.000000064",
+        "input_cache_write": "0.0000004",
+        "overrides": [
+          {
+            "min_prompt_tokens": 256000,
+            "prompt": "0.00000096",
+            "completion": "0.00000384",
+            "input_cache_read": "0.000000192",
+            "input_cache_write": "0.0000012"
+          }
+        ]
+      }
+    }
+  ],
+  "sampling_notes": {
+    "Claude Haiku 4.5": "Provider-default temperature for enabled extended thinking; previous non-thinking run used 0.",
+    "GPT-5.4 Mini": "Temperature omitted because the model does not support it at xhigh effort."
+  },
+  "task_hashes": {
+    "part1-001-double-length-and-width-mosfet-its-intrinsic": "26a2afa05b7b47aea242ac24ff29196c6f711fb0e8754cdfe37eb5adb4f357ef",
+    "part1-002-student-says-transconductance-mosfet-goes-up-as": "209bf104b4cf1c47183a5cca17fff11d7528f9f435ce0ba04037e2807384f915",
+    "part1-003-small-signal-model-pmos-device-identical-nmos": "3e6798673a3329d1264f0f746dbf34b84d451fa556b7057b87538792cb365c38",
+    "part1-004-sketch-ix-versus-vx": "7a38f9a8c2b6fe8d53394709f4ace72efcf85bc4e9d3fa312ad260633f7b2a71",
+    "part1-005-sketch-ix-versus-vx": "ded4ad7dc3b9f122762a958b275dd79087df34abb80a1ec7d8a41bf797eed549",
+    "part1-006-device-act-as-current-source": "1b2c41d0dd5ba8e50081cce828ef38cf0829eee3362673c4a990b0019566934e",
+    "part1-007-pmos-common-source-source-degeneration": "c8799447b49b7cf7ed39911e4eab3cb20bf136cff8da21d36cf5fd0dbff870a0",
+    "part1-008-source-follower": "497e06835b50374e71a40b6df4c759bec913b2eb3daf9376a98cd4167550bc41",
+    "part1-009-common-gate-source-input": "ea973084f0ecad85c0d96a2593831d9f7f4f4e3b793fc7e6c593e4a078775aae",
+    "part1-010-source-input-shorted-to-ground": "b163431401c482691c617041782ae5f0a1af03b6acf8b4be41c98f49ede0d192",
+    "part1-011-many-poles-have": "741398fd89806bb9ff9138db3909c8d24297ef6659e43fbb16edd743d4680829",
+    "part1-012-source-input-resistive-feedback": "39e86170b6b8a0cd136371f29c7d9c583d452d80b6fe9bf55cfea4beb2ca9877",
+    "part1-013-source-follower-current-source-load": "a139abfe6f0bbc0b6ad54b2563affb7c17d75f8250518f1af859d18664efbb9e",
+    "part1-014-cmos-inverter": "c23965d2881a0f914e502fd251f068f804dec1631801354c5a6fad7145acca1e",
+    "part1-015-malformed-cmos-inverter": "b64e1543ecbac09cbffeb30fb4d2d63fd88544fc0631388a35966cabacfa59ab",
+    "part1-016-common-source-diode-connected-load": "4ce7671f23349d129b4c22741a574616920bf9a6495ff1769d8132489d1e846a",
+    "part1-017-pmos-input-invalid-pulldown": "cb913ce8ef849e26e64ed7cc3876686928c6f41ff5ae43fcd972a1c2ce8d7b57",
+    "part1-018-find-rout": "31c8dae380e41d38c3a5fb32815ae6b240f74f6dc7bd4f3a5d9a8d9409f1abd8",
+    "part1-019-ensure-m2-saturation": "af3af964b9f7bbb61c17b5cb13edaa3c66802b291257f764e72df3462a29a3fe",
+    "part1-020-nmos-cascode-gain-stage": "ecafa967d736886e6db8ee83f5f0550e755d38ea81688ac3f1b54b1b595c8ccf",
+    "part1-021-cascode-structure": "12606975ecedadeff898e0cfe95f4fc4f49d81b26c5bba946103a72cc05d1189",
+    "part1-022-explain-why-miller-effect-less-pronounced-cascode": "ad5fed19570bfe90a6e6e5f37867c8e533b8761bd564e246bcf813840922fdca",
+    "part1-023-common-gate-pmos-load": "c4354a363e76982f5f0a126f8c089b7917ca3772164cf7c4883b97faab73abb0",
+    "part1-024-many-poles-have": "8a4ae292e407e999fea7f860c7e84d3b00738a3f11d475981fab0673ed6fae6d",
+    "part1-025-series-nmos-effective-long-channel": "de238f0285daf20f3f6bcad54ca2cb299d0b6671b06c8fb6f1e840aafecabe36",
+    "part1-026-source-follower-drives-common-gate": "af1d1809e664339bb27831f881fb54e25279eb54c0e1f8d580d4a8b86bc2f020",
+    "part1-027-explain-why-output-impedance-be-inductive": "a96c3fc46d0cb1fbe7c9fe55c4080e3dc23bcf0cdeddc012d3503c1aebf8e3a8",
+    "part1-028-current-input-positive-feedback": "48bb0d5279c8b45fcf3300edb1d92edb0e1d54c86f9ef728718ec290feebd151",
+    "part1-029-feedback-transimpedance-amplifier": "61128c92f36428703f7ecf5b840553f10725bc2c4deab2049bf02597c3dccdcf",
+    "part1-030-pmos-current-input-feedback": "c50cddc28984d6b060c0bb27db219a2c2bb2102d41068d2e087d3653f2bccde0",
+    "part2-001-fail-oscillate-three-capacitors-become-arbitrarily-large": "48e14e9d206d9756b2630b71ea801902c747ccf2b17b58ea06197e188e806fd1",
+    "part2-002-phase-noise-three-capacitors-doubled": "43e0f3bbc4af815e8f6f39dac9f2665edb52aecc712a526fa2fd8ec762def50c",
+    "part2-003-fail-oscillate-cl-becomes-arbitrarily-large": "bee6ca23566e0446a2c23f6a0c00dd8aa69e292812e12b802388b4601e8065ea",
+    "part2-004-double-widths-nmos-and-pmos-devices-phase": "81122148e0101c4b3b53648f83499c27d1702a289070bfd68d33ce86fc9be6fa",
+    "part2-005-determine-small-signal-resistance-seen-looking-into": "af41f1e89ec1ef463927e3029b69c81b7d22dfe54f05a0041bd569da8fa55a9e",
+    "part2-006-oscillates-change": "327c49b73d63b2121dcff55b44676c268e0347ec9cbb44e506702db32f91428f",
+    "part2-007-initial-voltage-gain-as-width-m7-increases": "2b971d17190486eb27f6c032e3e7d7b0ead5edd99f738aa481d1afe0dc80bb17",
+    "part2-008-initial-voltage-gain-increase-capacitance-at-nodes": "cc214708b5e1911a7406d94c7ffb2ce7cf032671e12edf0ceb61a2abd322d99c",
+    "part2-009-increase-widths-m5-and-m6-speed-improve": "0516cf94ec2fd6d1530f9b0e57155633c3fdbfb5666b1e4ea90443a0170acbd4",
+    "part2-010-speed-improve-or-degrade-increase-widths-clocked": "b6e896da248926ac1fa7fc0633a43052910cd8ee771f9f4f7e603e845795a1fa",
+    "part2-011-structure-provide-quadrature-outputs": "84f2c55cb894f4da1e4241fd588823471ac023c12762202f3853735a2d50ba70",
+    "part2-012-repeat-question-10-for-topology": "f7f63a4776bbf6deb03f0c7bf25fb76ad459948bbdce07a807400df2c06d358b",
+    "part2-013-dynamic-latch-divide-by-two": "104350a8da16c2f57f5ad4e6871bbb468e97eb8d1c4cf0e8aa3473198f869486",
+    "part2-014-red-inverter-b-affect-performance": "db5a48a8a1487aa788bf3df50a74c4c59b7c52fa0b1ca6c972b008d38d98c083",
+    "part2-015-but-input-red-inverter-not-tied-output": "5439a7aec38d25d32366f6c8df87a3213d1e7b522b2c52bbb70bac70d27715c9",
+    "part2-016-optimize-for-nf-rin-must-remain-equal": "22df44605bdda3b21e00785a7c86e07879fb42b1686583c80d103fd7e91f218b",
+    "part2-017-compute-input-impedance": "3aead1762e236a2066da81ac77d63dc6057b0bbbf22ce0f68e12860b184b5c26",
+    "part2-018-ldo-regulator-generates-thermal-noise-with-spectrum": "c9e743f7eef06f35e23c292835bf64f686aa8003468ab8963695b691616ce214",
+    "part2-019-add-ct-tail-node-as-phase-noise": "3bbd364b48cc41050230fb29fca340aa7b57c3a7cb371e0f7a92a5b00bde7159",
+    "part2-020-estimate-oscillation-frequency": "80856497b623800d8fe2dd2cb1481b807f57ce02cecaf58f4984a3536efb8104"
+  },
+  "previous_batch": {
+    "answer_count": 1500,
+    "answer_digest": "d95fe0af86b569d9b7d06864599930e5a100427b9928a1b08cc787e0e873e2ee"
+  }
+}

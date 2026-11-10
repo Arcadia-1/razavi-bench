@@ -1,0 +1,105 @@
+{
+  "verified_at": "2026-11-10T05:29:03.450681+00:00",
+  "models": [
+    {
+      "name": "Gemini 4 Argon",
+      "reasoning_effort": "high",
+      "max_tokens": 943718,
+      "reasoning_tokens": 2890,
+      "reasoning_characters": 2206,
+      "finish_reason": "stop",
+      "response_model": "google/gemini-4-argon",
+      "seconds": 77.99
+    },
+    {
+      "name": "Mistral Medium 3.5",
+      "reasoning_effort": "high",
+      "max_tokens": 209715,
+      "reasoning_tokens": 1173,
+      "reasoning_characters": 4436,
+      "finish_reason": "stop",
+      "response_model": "mistralai/mistral-medium-3-5",
+      "seconds": 21.53
+    },
+    {
+      "name": "Gemini 3.5 Flash",
+      "reasoning_effort": "high",
+      "max_tokens": 65536,
+      "reasoning_tokens": 6466,
+      "reasoning_characters": 5163,
+      "finish_reason": "stop",
+      "response_model": "google/gemini-3.5-flash",
+      "seconds": 37.28
+    },
+    {
+      "name": "GPT-6 Sol",
+      "reasoning_effort": "max",
+      "max_tokens": 128000,
+      "reasoning_tokens": 3078,
+      "reasoning_characters": 1433,
+      "finish_reason": "stop",
+      "response_model": "openai/gpt-6-sol",
+      "seconds": 28.91
+    },
+    {
+      "name": "GPT-5.4",
+      "reasoning_effort": "xhigh",
+      "max_tokens": 128000,
+      "reasoning_tokens": 7768,
+      "reasoning_characters": 9638,
+      "finish_reason": "stop",
+      "response_model": "openai/gpt-5.4",
+      "seconds": 194.23
+    },
+    {
+      "name": "GPT-5.6 Sol",
+      "reasoning_effort": "max",
+      "max_tokens": 128000,
+      "reasoning_tokens": 4660,
+      "reasoning_characters": 4682,
+      "finish_reason": "stop",
+      "response_model": "openai/gpt-5.6-sol",
+      "seconds": 54.16
+    },
+    {
+      "name": "GPT-5",
+      "reasoning_effort": "high",
+      "max_tokens": 128000,
+      "reasoning_tokens": 7104,
+      "reasoning_characters": 5406,
+      "finish_reason": "stop",
+      "response_model": "openai/gpt-5",
+      "seconds": 104.28
+    },
+    {
+      "name": "Gemini 2.5 Pro",
+      "reasoning_effort": "max",
+      "max_tokens": 65536,
+      "reasoning_tokens": 2347,
+      "reasoning_characters": 4193,
+      "finish_reason": "stop",
+      "response_model": "google/gemini-2.5-pro",
+      "seconds": 28.24
+    },
+    {
+      "name": "Claude Sonnet 4.5",
+      "reasoning_effort": "max",
+      "max_tokens": 64000,
+      "reasoning_tokens": 604,
+      "reasoning_characters": 1586,
+      "finish_reason": "stop",
+      "response_model": "anthropic/claude-sonnet-4.5",
+      "seconds": 17.91
+    },
+    {
+      "name": "GPT-5.1",
+      "reasoning_effort": "high",
+      "max_tokens": 128000,
+      "reasoning_tokens": 6494,
+      "reasoning_characters": 5282,
+      "finish_reason": "stop",
+      "response_model": "openai/gpt-5.1",
+      "seconds": 85.11
+    }
+  ]
+}

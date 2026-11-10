@@ -1,0 +1,12 @@
+# Local working files: per-call traces and request logs (reasoning text, timings), the input
+# snapshots other batches ran from, discarded runs and the generated prompt viewer.
+runs/
+runs_selfhosted/
+discarded/
+inputs456-*/
+prompts.html
+# Intermediate copies of answers already in the files collect_scores.py reads.
+answers_batch*.jsonl
+answers_next10*.jsonl
+batch3/answers_all10.jsonl
+*_partial.jsonl

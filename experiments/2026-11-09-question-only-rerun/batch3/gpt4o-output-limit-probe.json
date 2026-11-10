@@ -1,0 +1,45 @@
+{
+  "request": {
+    "model": "openai/gpt-4o-2024-05-13",
+    "max_tokens": 16384,
+    "temperature": 0,
+    "stream": true,
+    "usage": {
+      "include": true
+    },
+    "messages": [
+      {
+        "role": "user",
+        "content": "Output every integer from 1 through 8000 in ascending order, separated by single spaces. Write all 8000 integers explicitly. Do not use ellipses, ranges, code, or explanatory text. Continue until you have written 8000."
+      }
+    ]
+  },
+  "response_model": "openai/gpt-4o-2024-05-13",
+  "finish_reason": "length",
+  "usage": {
+    "prompt_tokens": 58,
+    "completion_tokens": 4096,
+    "total_tokens": 4154,
+    "cost": 0.06173,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.06173,
+      "upstream_inference_prompt_cost": 0.00029,
+      "upstream_inference_completions_cost": 0.06144
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  },
+  "seconds": 14.5,
+  "answer_tail": "3 1664 1665 1666 1667 1668 1669 1670 1671 1672 1673 1674 1675 1676 1677 1678 1679 1680 1681 1682 1683 1684 1685 1686 1687 1688 1689 1690 1691 1692 1693 1694 1695 1696 1697 1698 169",
+  "answer_characters": 7386
+}

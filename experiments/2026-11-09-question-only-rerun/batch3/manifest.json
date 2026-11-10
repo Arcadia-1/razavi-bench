@@ -1,0 +1,695 @@
+{
+  "created_at": "2026-11-09T20:07:08.406453+00:00",
+  "selection": "Next ten API models by historical 50-question generation cost, excluding the first 20, two self-hosted Qwen models and retired entries",
+  "expected_answers": 1350,
+  "models": [
+    {
+      "name": "Inkling Small",
+      "model_key": "inkling_small",
+      "api_model": "thinkingmachines/inkling-small",
+      "canonical_slug": "thinkingmachines/inkling-small-20260730",
+      "reasoning_effort": "max",
+      "supported_efforts": [
+        "max",
+        "high",
+        "medium",
+        "low",
+        "minimal",
+        "none"
+      ],
+      "max_tokens": 262144,
+      "temperature": 0.0,
+      "request_options": {
+        "provider": {
+          "require_parameters": true
+        }
+      },
+      "pricing": {
+        "prompt": "0.00000045",
+        "completion": "0.0000012",
+        "input_cache_read": "0.0000001"
+      },
+      "catalog_reasoning": {
+        "mandatory": false,
+        "default_enabled": true,
+        "supported_efforts": [
+          "max",
+          "high",
+          "medium",
+          "low",
+          "minimal",
+          "none"
+        ],
+        "default_effort": "high"
+      }
+    },
+    {
+      "name": "GPT-4o (2024-05-13)",
+      "model_key": "gpt_4o_2024_05_13",
+      "api_model": "openai/gpt-4o-2024-05-13",
+      "canonical_slug": "openai/gpt-4o-2024-05-13",
+      "reasoning_effort": null,
+      "supported_efforts": [],
+      "max_tokens": 4096,
+      "temperature": 0.0,
+      "request_options": {},
+      "pricing": {
+        "prompt": "0.000005",
+        "completion": "0.000015"
+      },
+      "catalog_reasoning": null
+    },
+    {
+      "name": "Gemini 3 Flash",
+      "model_key": "gemini_3_flash",
+      "api_model": "google/gemini-3-flash-preview",
+      "canonical_slug": "google/gemini-3-flash-preview-20251217",
+      "reasoning_effort": "high",
+      "supported_efforts": [
+        "high",
+        "medium",
+        "low",
+        "minimal",
+        "none"
+      ],
+      "max_tokens": 65536,
+      "temperature": 0.0,
+      "request_options": {
+        "provider": {
+          "require_parameters": true
+        }
+      },
+      "pricing": {
+        "prompt": "0.0000005",
+        "completion": "0.000003",
+        "image": "0.0000005",
+        "audio": "0.000001",
+        "input_audio_cache": "0.0000001",
+        "web_search": "0.014",
+        "internal_reasoning": "0.000003",
+        "input_cache_read": "0.00000005",
+        "input_cache_write": "0.0000000833333333333333"
+      },
+      "catalog_reasoning": {
+        "mandatory": false,
+        "supported_efforts": [
+          "high",
+          "medium",
+          "low",
+          "minimal",
+          "none"
+        ],
+        "default_effort": "medium"
+      }
+    },
+    {
+      "name": "DeepSeek V4.1 Flash 1017",
+      "model_key": "deepseek_v41_flash_1017",
+      "api_model": "deepseek/deepseek-v4.1-flash-1017",
+      "canonical_slug": "deepseek/deepseek-v4.1-flash-20261017",
+      "reasoning_effort": "max",
+      "supported_efforts": [
+        "max",
+        "high",
+        "low",
+        "none"
+      ],
+      "max_tokens": 943718,
+      "temperature": null,
+      "request_options": {
+        "provider": {
+          "require_parameters": true
+        }
+      },
+      "pricing": {
+        "prompt": "0.000000006",
+        "completion": "0.0000005",
+        "input_cache_read": "0.000000005"
+      },
+      "catalog_reasoning": {
+        "mandatory": false,
+        "default_enabled": true,
+        "supported_efforts": [
+          "max",
+          "high",
+          "low",
+          "none"
+        ],
+        "default_effort": "high"
+      }
+    },
+    {
+      "name": "GPT-5.6 Luna",
+      "model_key": "gpt_56_luna",
+      "api_model": "openai/gpt-5.6-luna",
+      "canonical_slug": "openai/gpt-5.6-luna-20260709",
+      "reasoning_effort": "max",
+      "supported_efforts": [
+        "max",
+        "xhigh",
+        "high",
+        "medium",
+        "low",
+        "none"
+      ],
+      "max_tokens": 128000,
+      "temperature": null,
+      "request_options": {
+        "provider": {
+          "require_parameters": true
+        }
+      },
+      "pricing": {
+        "prompt": "0.0000002",
+        "completion": "0.0000012",
+        "web_search": "0.01",
+        "input_cache_read": "0.00000002",
+        "input_cache_write": "0.00000025",
+        "overrides": [
+          {
+            "min_prompt_tokens": 272000,
+            "prompt": "0.0000004",
+            "completion": "0.0000018",
+            "input_cache_read": "0.00000004",
+            "input_cache_write": "0.0000005"
+          }
+        ]
+      },
+      "catalog_reasoning": {
+        "mandatory": false,
+        "default_enabled": true,
+        "supported_efforts": [
+          "max",
+          "xhigh",
+          "high",
+          "medium",
+          "low",
+          "none"
+        ],
+        "default_effort": "medium"
+      }
+    },
+    {
+      "name": "Grok 4.5",
+      "model_key": "grok_45",
+      "api_model": "x-ai/grok-4.5",
+      "canonical_slug": "x-ai/grok-4.5-20260708",
+      "reasoning_effort": "high",
+      "supported_efforts": [
+        "high",
+        "medium",
+        "low"
+      ],
+      "max_tokens": 450000,
+      "temperature": 0.0,
+      "request_options": {
+        "provider": {
+          "require_parameters": true
+        }
+      },
+      "pricing": {
+        "prompt": "0.000002",
+        "completion": "0.000006",
+        "web_search": "0.005",
+        "input_cache_read": "0.0000003",
+        "overrides": [
+          {
+            "min_prompt_tokens": 200000,
+            "prompt": "0.000004",
+            "completion": "0.000012",
+            "input_cache_read": "0.0000006"
+          }
+        ]
+      },
+      "catalog_reasoning": {
+        "mandatory": true,
+        "default_enabled": true,
+        "supported_efforts": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "default_effort": "high"
+      }
+    },
+    {
+      "name": "Gemini 3.6 Flash",
+      "model_key": "gemini_36_flash",
+      "api_model": "google/gemini-3.6-flash",
+      "canonical_slug": "google/gemini-3.6-flash-20260721",
+      "reasoning_effort": "high",
+      "supported_efforts": [
+        "high",
+        "medium",
+        "low",
+        "minimal"
+      ],
+      "max_tokens": 65536,
+      "temperature": 0.0,
+      "request_options": {
+        "provider": {
+          "require_parameters": true
+        }
+      },
+      "pricing": {
+        "prompt": "0.00000075",
+        "completion": "0.00000375",
+        "image": "0.00000075",
+        "audio": "0.00000075",
+        "input_audio_cache": "0.000000075",
+        "web_search": "0.014",
+        "internal_reasoning": "0.00000375",
+        "input_cache_read": "0.000000075",
+        "input_cache_write": "0.0000000416666666666667"
+      },
+      "catalog_reasoning": {
+        "mandatory": true,
+        "default_enabled": true,
+        "supported_efforts": [
+          "high",
+          "medium",
+          "low",
+          "minimal"
+        ],
+        "default_effort": "medium"
+      }
+    },
+    {
+      "name": "Claude Haiku 5.5",
+      "model_key": "claude_haiku_55",
+      "api_model": "anthropic/claude-haiku-5.5",
+      "canonical_slug": "anthropic/claude-haiku-5.5-20261007",
+      "reasoning_effort": "max",
+      "supported_efforts": [
+        "max",
+        "xhigh",
+        "high",
+        "medium",
+        "low",
+        "none"
+      ],
+      "max_tokens": 128000,
+      "temperature": null,
+      "request_options": {
+        "provider": {
+          "require_parameters": true
+        }
+      },
+      "pricing": {
+        "prompt": "0.0000001",
+        "completion": "0.0000005",
+        "web_search": "0.01",
+        "input_cache_read": "0.00000001",
+        "input_cache_write": "0.000000125",
+        "input_cache_write_1h": "0.0000002",
+        "overrides": [
+          {
+            "min_prompt_tokens": 100000,
+            "prompt": "0.0000005",
+            "completion": "0.0000025",
+            "input_cache_read": "0.00000005",
+            "input_cache_write": "0.000000625",
+            "input_cache_write_1h": "0.000001"
+          }
+        ]
+      },
+      "catalog_reasoning": {
+        "mandatory": false,
+        "supported_efforts": [
+          "max",
+          "xhigh",
+          "high",
+          "medium",
+          "low",
+          "none"
+        ],
+        "default_effort": "medium"
+      }
+    },
+    {
+      "name": "Grok 4.6",
+      "model_key": "grok_46",
+      "api_model": "x-ai/grok-4.6",
+      "canonical_slug": "x-ai/grok-4.6-20260810",
+      "reasoning_effort": "xhigh",
+      "supported_efforts": [
+        "xhigh",
+        "high",
+        "medium",
+        "low"
+      ],
+      "max_tokens": 450000,
+      "temperature": 0.0,
+      "request_options": {
+        "provider": {
+          "require_parameters": true
+        }
+      },
+      "pricing": {
+        "prompt": "0.000002",
+        "completion": "0.000006",
+        "web_search": "0.005",
+        "input_cache_read": "0.0000005",
+        "overrides": [
+          {
+            "min_prompt_tokens": 200000,
+            "prompt": "0.000004",
+            "completion": "0.000012",
+            "input_cache_read": "0.000001"
+          }
+        ]
+      },
+      "catalog_reasoning": {
+        "mandatory": true,
+        "default_enabled": true,
+        "supported_efforts": [
+          "xhigh",
+          "high",
+          "medium",
+          "low"
+        ],
+        "default_effort": "high"
+      }
+    }
+  ],
+  "task_hashes": {
+    "part1-001-double-length-and-width-mosfet-its-intrinsic": {
+      "content_sha256": "96149a82db7fb22b7b1ab2dab42b0d1b7630f7a13242eed67702ed88a59da53c",
+      "question_sha256": "a7cc3f14b295b233c3a98c5090ca0ceb4d337d2d19d662995e4cd507d0414c91",
+      "golden_solution_sha256": "b623efa74b67c0787641e221f1d6de9d7318205927fbcd9490d3ed132b5450df"
+    },
+    "part1-002-student-says-transconductance-mosfet-goes-up-as": {
+      "content_sha256": "aaf7bdffa34967c19cb390df07b10ae655c1eff1a52c8be7649ad96baebd3ea9",
+      "question_sha256": "4223f96d19d3d7b77fd92799b49833ca2f8cd030c71b22d153b1f9fd5c7ff7f7",
+      "golden_solution_sha256": "e805626814432e31b3628b4bf4073fa0c2304a7c8ea8bad4f0422be86c312f74"
+    },
+    "part1-003-small-signal-model-pmos-device-identical-nmos": {
+      "content_sha256": "23ee38ad831191c6223146c9549dbad59b670138ce75b99b490186ddf72cb04d",
+      "question_sha256": "a09f07bd3c94958698fffdff7791bddf71522503b406f4bf95f2b50fef694169",
+      "golden_solution_sha256": "ad8a01fc96398ca5ab0993a444ff64ba0cfcb88738d2a52872ea47f671e0635e"
+    },
+    "part1-004-sketch-ix-versus-vx": {
+      "content_sha256": "bed6b5ab0eea11cb86c3091f4fc31b64d7b4e6ffc04dd4f8665391271427e851",
+      "question_sha256": "de7f7d24c990310445ea785695a4139fe193c3e955b76d2d35c1b7805447486c",
+      "golden_solution_sha256": "769af5ac610bb7825c7abce92bf56d510d018662cbce83d47eef1dee2597750d"
+    },
+    "part1-005-sketch-ix-versus-vx": {
+      "content_sha256": "0d30c1b212c3367f1953797aacdf4cb393d107d6fa7a7126f3c6231855cc660f",
+      "question_sha256": "52b60bba85683b74ae3245a430ef7b1bdfa36f46744a6e38d4f9ac8fd2efeb8d",
+      "golden_solution_sha256": "da000995f2032c3caf224acfa4963413c96cebf89a3cc792e76c3a444d327ffc"
+    },
+    "part1-006-device-act-as-current-source": {
+      "content_sha256": "3166c0ab496432246cfadd6ccc519d52737a5ccba3bd8ef44c087c91f74577d9",
+      "question_sha256": "1a06600557bcc0dc05184a75653488672c0963e9f40a2c31e11686ed4ac164a8",
+      "golden_solution_sha256": "20b0fcb71c5ac038622c26f3ac86aaf2af15f4064029312681192c8362271780"
+    },
+    "part1-007-pmos-common-source-source-degeneration": {
+      "content_sha256": "2f321eab070991e462376f701c2fa065323315a78606af01ca5f130b027cb3e5",
+      "question_sha256": "3f6b537a85210d2a650f47949b3fed2276c35e1785aefa03a2eb2f680996aa14",
+      "golden_solution_sha256": "cd8fcec5f92210366117d02bce0f4174b55a012666155b3dfc965be2c669f3a3"
+    },
+    "part1-008-source-follower": {
+      "content_sha256": "00ecbc2d8de8eccdb29a94bbb197ffe99f53d4b6deccc4bc8843433393fc552f",
+      "question_sha256": "62d4ef6ad488bbd99047e9cbbf71eb442b81da803fdd43910d44664120bc5b59",
+      "golden_solution_sha256": "8f23ff232475a4bec79b12629414fe11fc7b9c6e9609b2ebcfc0e4ed2a0839d7"
+    },
+    "part1-009-common-gate-source-input": {
+      "content_sha256": "6611a2ea2b1dbcaa45514bd8178f642661383419bf954199e961c4947d75280b",
+      "question_sha256": "554cfafaeeae842aee80676bc1ec649d4cd38f1b4ff624d66c5f86a08e0c55fe",
+      "golden_solution_sha256": "1b3a848197667846074404db3b3d8871ff2129384f8d686f3624e0319ea90d69"
+    },
+    "part1-010-source-input-shorted-to-ground": {
+      "content_sha256": "dd9c886c757f4dc4f359c6b2b7538be7ff4685f9ba0c882d1e19fd582ac56bf0",
+      "question_sha256": "a8b0a056908ac8816317db80fbe1278f75ef790548db4837dd182b0a8638fa0d",
+      "golden_solution_sha256": "4fa501e147a166a71d6aa33565bbe693318d65c0c8c788e7a5087eb13c71d3ea"
+    },
+    "part1-011-many-poles-have": {
+      "content_sha256": "d3395eeb701e2c828d2adc3d66837716cc53e428b9144c53edc389f28b571c2f",
+      "question_sha256": "2e8f9e59ac289579b17c24ef06d264dd2864b33b2b96bdad54a7266841d2485a",
+      "golden_solution_sha256": "d6e2d72c604ae3c83e7b25306ecb7ec85736574c7dd1a3f26a206b697a6dabfe"
+    },
+    "part1-012-source-input-resistive-feedback": {
+      "content_sha256": "fc807fc110d07f8e5531a8e5f3ef5864a69964ca53c4cf825946bdcdfab9de47",
+      "question_sha256": "3ccd4f1f04cae78179d7deacd41d91a00864b3f1a30da3161db5947a196c9e3f",
+      "golden_solution_sha256": "c4eb57e96a0e70ff6aa718bcfd4e80be89f93bd2bf97d638ee206a2ecd64f575"
+    },
+    "part1-013-source-follower-current-source-load": {
+      "content_sha256": "12feb2b0b1323aa40309649a81a26acc50a1631ac0ad88c778bd0f4a5407a4ad",
+      "question_sha256": "962dc0fef34591d1c13ae929701495c151a4e6f2a84a3a9c9255e25a9dbf6452",
+      "golden_solution_sha256": "9c0eaf5035e4eafe98a151f1035fd6512be41f7b78831b9e6cd3dd9618a8eb67"
+    },
+    "part1-014-cmos-inverter": {
+      "content_sha256": "97cdae64d7b5310b1c92596e5b91fdc08bc8d3328bc1ee34954c1a42a14a65ab",
+      "question_sha256": "e28225f03cabe8aafa71a20ebace328f621a2f5162754f4eb5ba690b944c524c",
+      "golden_solution_sha256": "840046eac3d7c03b675f1189f0c155481e30a0dabe801adc9eba216a9a4a04f4"
+    },
+    "part1-015-malformed-cmos-inverter": {
+      "content_sha256": "a11f70bb01f3e3d0e3ca13236b90f97236e7ce5b17b7df895d3bc0bcd465b3e0",
+      "question_sha256": "84c48b32b869cd3613c310662f1da079f1fd49ea70cc617077cf4e737343b4b8",
+      "golden_solution_sha256": "b598ce9b14c47387d9b8d874c626add0f845d3b4bc6f5ad44a431e7ddf11ad3d"
+    },
+    "part1-016-common-source-diode-connected-load": {
+      "content_sha256": "867741df8bd8353cd436ac949106a6e4e60f45ecec9ba9d581bb6f0e7e69da1e",
+      "question_sha256": "418caecb6fdee073bd032b565960942be24d243f6face8f800bace9bbb9fb469",
+      "golden_solution_sha256": "890a218dd592ccc44d29c47d073a2630294c84b195016d665cdb5f09108c1fc5"
+    },
+    "part1-017-pmos-input-invalid-pulldown": {
+      "content_sha256": "cddd39aa668d173a04762b2b41fd41a9cf42d602e4768505c34ee5dea4b2ea30",
+      "question_sha256": "dc73f133898624565ebb7e45ab6c46a5a042e6ec5a92b43d85c4752bc4114f79",
+      "golden_solution_sha256": "b9bd40d93897263d8f8ec48e8a570180ddbbc0962f905b31861c1d4b96315bc9"
+    },
+    "part1-018-find-rout": {
+      "content_sha256": "6285fc4f7c2cf264ffdd2833e1a77b4140814b26d0c24a06af4c21381aade197",
+      "question_sha256": "82775db8d73bedd435badc475607ff5e903d817d0414dc315468dd8cdf53e932",
+      "golden_solution_sha256": "0e58951a444fd5eb5a81c93c3c94eef4ae9b6f921b6512a0c0fecf7f946efcb1"
+    },
+    "part1-019-ensure-m2-saturation": {
+      "content_sha256": "5b1b646029324bf8b023a69c5ac8b470112d1586fb28d148867bf7dd1bf5e160",
+      "question_sha256": "e5314c17440642021e60edf7058ae62c6dc82b1e365db4ec32a15b5fcd58a5c8",
+      "golden_solution_sha256": "519fe1851b4fd9a0e83d2b184c82583260701cb7382ec5e7c6bdd728b4cc9a0f"
+    },
+    "part1-020-nmos-cascode-gain-stage": {
+      "content_sha256": "3b92b44ce12bfbf192f1fc1d200c382934845486dc5ef0e6147b4bc057b3072d",
+      "question_sha256": "6af585313a8441d9ceea003ae4cc0e088a48c765ed6ce23943749c71360c47cc",
+      "golden_solution_sha256": "fa3ce3c10c3d0bf6258738fc6e9b064c896064cb851cd7f79a50e2fe2b3c822b"
+    },
+    "part1-021-cascode-structure": {
+      "content_sha256": "fe528b842cbe5b49e1df9d01d2368caec6aefeca2956e0a421e09a5d97ff5b1e",
+      "question_sha256": "9c7ed60a23de9cc1fd52f00c4908c314a392c8ea31134003635709fe7d551297",
+      "golden_solution_sha256": "7f9e0f88c009a8a25ec2184287032d702e4ac63736a803d1b8f3b4092778054c"
+    },
+    "part1-022-explain-why-miller-effect-less-pronounced-cascode": {
+      "content_sha256": "af5d599c5e00a96749f7fcc775610da7beed3bf31b962f0328ff434c7ba88b98",
+      "question_sha256": "e7a1dddcda64f00321e0f60a128171b7b096287cb627554426f824be08fe2859",
+      "golden_solution_sha256": "0d298300029d3b4545999675d8ec4b4c83532fca89fa9878f9898848f75f534f"
+    },
+    "part1-023-common-gate-pmos-load": {
+      "content_sha256": "9486a2b06c40afda2264eb939bd85a81d37f292f4bb155d4a955f3c6ef7e1990",
+      "question_sha256": "d416d3d76f6d77f880096eccdcc9e240306c8bc717fe3d6bc4921d24e5b08a59",
+      "golden_solution_sha256": "bef1a8379b057bee5021488ff4aa65884dec1cb905b95a6d1d764f0128473407"
+    },
+    "part1-024-many-poles-have": {
+      "content_sha256": "553629a61326e060dc6b813da33104b5ec449400898b53235be97af83c05ad46",
+      "question_sha256": "60cd30d22d937fc809f2607cf421f813163d7f96c0a7063a38cd1b0966adb934",
+      "golden_solution_sha256": "a186c7d78b22ed309b07c9b6c97e61997ddf23f0ee23de6faa3536cb2c682d8c"
+    },
+    "part1-025-series-nmos-effective-long-channel": {
+      "content_sha256": "c8c695be9da36fd6a1fbe1fd50a68525c6dd08733ae2c93004d1beb1fc849921",
+      "question_sha256": "00b8dcad05065dfc35658ecebc5963f92603343eae496dd0188a0d7251bf7fd0",
+      "golden_solution_sha256": "f4c42a319616e7d942081a3389417d0f1c64822932dcec21eebd003d9f6660ad"
+    },
+    "part1-026-source-follower-drives-common-gate": {
+      "content_sha256": "2555c9fe87d3c2161e209d3b18625327d8dad79652f8d93ae2cadb126cb7f885",
+      "question_sha256": "1dabcdce9117115b38f4cf95dd828da46a217005f6d9adb99a761c0627635318",
+      "golden_solution_sha256": "5f76b34ca8287a0570c6f002e2eadb7a24e8054bf59e90b39e7d140a788b3c2c"
+    },
+    "part1-027-explain-why-output-impedance-be-inductive": {
+      "content_sha256": "9c6ba15bc8ba61b1597b9a68253db9a3b8df2d43036f32ae9997c23f513c782e",
+      "question_sha256": "061c32f79fbd010f4bc85f811da078d88172907317511d3918d490797d8801e6",
+      "golden_solution_sha256": "8c59f914b88c1f25c100ef0914c7e54f6c3e86c55b273ac88a1c45724902d303"
+    },
+    "part1-028-current-input-positive-feedback": {
+      "content_sha256": "a0aab0bffc64b4b121950609feee441e31e3bcbfe0c9a9e331c8f2bf4f926908",
+      "question_sha256": "0414e62b52c59605f21f069aef32df3ee365fc63b1d51d4cd878319427c1f3dc",
+      "golden_solution_sha256": "966942e01d767dcc8afc948021623863d816cf7567c0ad0be0b855267f6da7e8"
+    },
+    "part1-029-feedback-transimpedance-amplifier": {
+      "content_sha256": "66ba3196cf0dda6f564602116427e7fac324b2eae3101abbceae3cd41a777661",
+      "question_sha256": "371e32ccb6e6fb89df87b8661243a8ec0622c83c43e04e90457f7a45bfd21ec7",
+      "golden_solution_sha256": "3de185b163e9067ba58585d0a347eecc50f9da3dc36d0d1a8e05a54adcc11752"
+    },
+    "part1-030-pmos-current-input-feedback": {
+      "content_sha256": "84392035ecdf1b00ddc0ab255edf42370fdb220314f5966e078ec741fe628779",
+      "question_sha256": "cc3075cb7568a5c51f4115cbf2079dc0edabfc7a61537220f7d4b4ecee8fa09b",
+      "golden_solution_sha256": "81b07f946459ec3d1a0c51926785b2333e0320bb99c892d5929e040324abeaf8"
+    },
+    "part2-001-fail-oscillate-three-capacitors-become-arbitrarily-large": {
+      "content_sha256": "8dfc81140ad89a71cbc112d5b565f2eea6c9eb069a14d54cd3c8350b1ec9d83d",
+      "question_sha256": "1ebc1dd6d7ca840828a633314eaa367d60f7b826b86cc39e6384b98fcfe6db88",
+      "golden_solution_sha256": "382bd8dbcc1993e2438bdfd3faf5268719f050e1964cb818b2278171cb2c25bf"
+    },
+    "part2-002-phase-noise-three-capacitors-doubled": {
+      "content_sha256": "0276003b63733fa1d3ae9f2e41beb370c956fb14428c82df15e2999d0726273f",
+      "question_sha256": "e225c89a1af174e620885a92640dfba09c530bb918755f19be2f74692ffc9fe7",
+      "golden_solution_sha256": "c8a3a6ddcab3a54151ffe61cb3e809a6731a66beda02e9f8898ea9c435318b06"
+    },
+    "part2-003-fail-oscillate-cl-becomes-arbitrarily-large": {
+      "content_sha256": "cb97dfa69225774f5ee1d31c42b40c14e5a4a75f7a7af898e9beda6dd2d68bc3",
+      "question_sha256": "11e58333597f59e68fd610bbfdfe214bd22a547c4c796c907324b6f088c4607c",
+      "golden_solution_sha256": "f6dd3ed123c88a59472f7a76de74df7e33b3e73498632bd24bc1ea808e4efcbc"
+    },
+    "part2-004-double-widths-nmos-and-pmos-devices-phase": {
+      "content_sha256": "5a8cad84800d3ce8726e8f4f08e610291467f24729fd61c58955fad60e5b55ed",
+      "question_sha256": "94d0836adbb686549f4af7956fc9a969bfc6113ecb6c8df745b726fdbf9152a6",
+      "golden_solution_sha256": "f9299196b0b81aa8f665614cd6e16eba9d8392f73cfe6422876d92d225ddc94e"
+    },
+    "part2-005-determine-small-signal-resistance-seen-looking-into": {
+      "content_sha256": "ec2b763d8fc4633af7e22ad5b7b9b1c0d8f7be8f160ba51215834f00381a85c5",
+      "question_sha256": "2470abd4addf363684404a8c710c8f4e4924fba7924cce2b82d6dd015f9832de",
+      "golden_solution_sha256": "567a4e1905413cda5af92a626cb359563db923ba665d1835ff2377a534cd5d21"
+    },
+    "part2-006-oscillates-change": {
+      "content_sha256": "5064fd7cf3329416f2b06f347e4c4c611e6c529f9f2c66c36b7fb35205f8572f",
+      "question_sha256": "5c629c013f360d15e3806ef83aa1e9eee234b651e318a64b4bd3ce7966d2ca09",
+      "golden_solution_sha256": "c36bba350573544976be5a9449b6012cd45755e50504890981ce547cd8e9ee47"
+    },
+    "part2-007-initial-voltage-gain-as-width-m7-increases": {
+      "content_sha256": "fd0c6aefb27b0683819cd0f000200164a8b025b02fa7326275180978c3691b63",
+      "question_sha256": "5b4bb3aa9cd3bce1d5ae91e44fb80423f6f0fd19e9f183178a9d03cb3ec57cb0",
+      "golden_solution_sha256": "3be19d840ea0028f994c70cfd93497080016f88968540a82c98a00f03980212f"
+    },
+    "part2-008-initial-voltage-gain-increase-capacitance-at-nodes": {
+      "content_sha256": "7061a3670518e6f9db700c7726f83be49aa8dd0aea434cee9cd3564b26bbae92",
+      "question_sha256": "362e46a8ec98f8a45434459a46d9fcc6e35ef66de76cf5183b92a0bf211ba70d",
+      "golden_solution_sha256": "181f6e0ce2e77c4df0e1602f9ce1b8891080eeecdff293462f41c7d6d66c5590"
+    },
+    "part2-009-increase-widths-m5-and-m6-speed-improve": {
+      "content_sha256": "9ed0972c12ac0e828105aef7d8f560b3b2702243d0bff1e27188a648de67c05b",
+      "question_sha256": "ab3aed173c6f576ea7e69d519d4a9b74fba01dfa13f759efdca7058196dbc193",
+      "golden_solution_sha256": "5eed0194a609e5504312082df6fe7d71e18f6abfa8d0ff1bc1936ac8f33e2388"
+    },
+    "part2-010-speed-improve-or-degrade-increase-widths-clocked": {
+      "content_sha256": "05a226d76a12964269e93e74c487f607b2ee8b58457942f36cef28e06abd2284",
+      "question_sha256": "c99ff6da2585ea574819b44915441ba015975c4a3022b3f49b591c1b45bcea64",
+      "golden_solution_sha256": "93d9b522d441668a699cc09168ad1991cf00bb982a5ad716cae0b7c7bec7c4fd"
+    },
+    "part2-011-structure-provide-quadrature-outputs": {
+      "content_sha256": "f8ed53d9945dbb04d0a86d9eaf2aa4e8b61ab4edb09c81ef2cad7833cebc809f",
+      "question_sha256": "55766516750beb99205355c6c372f3e33a0cdd0769e4bd705a8c272f7868c2ea",
+      "golden_solution_sha256": "a208e36107d3c6d3d835e897ccf309733e82f6921b41cd2eef1a21949e70e6f6"
+    },
+    "part2-012-repeat-question-10-for-topology": {
+      "content_sha256": "8e985869afabf3d3872011653db0052d2e2088ca62f58ed27a1962cb62746e5c",
+      "question_sha256": "f908890b739bb61c1f791b43d0ed7b55200679b0e891c1cc88ed0802856461dc",
+      "golden_solution_sha256": "318c27e5f5623103c64ba9716043fb25f88281b2efa86f52761064364631036f"
+    },
+    "part2-013-dynamic-latch-divide-by-two": {
+      "content_sha256": "6844a6fd13cd5796ecb45c6af866091c516a0fc2f702add1df7aae66443c11e2",
+      "question_sha256": "70225004facca139d67f38950e52d542377ab91a14440683db417a9590345dec",
+      "golden_solution_sha256": "f425c26bf4178562557e147f38673688c0fa91f97a1c7cad9ab3d6417d10545f"
+    },
+    "part2-014-red-inverter-b-affect-performance": {
+      "content_sha256": "8cb842237249c483875ed3464d31cbf71159509af045006a652ced18db7fd361",
+      "question_sha256": "ff7f8094b2c7e40ed85744ddfd27d142830d0c23b82d92f43fc4875ab1e300cc",
+      "golden_solution_sha256": "09f12aa6905fa83982420dcd1602844314d44b4575734bb31f92f5ccf31131d2"
+    },
+    "part2-015-but-input-red-inverter-not-tied-output": {
+      "content_sha256": "1c0b9ce8da061acaff81aa59fc24ce7b4c245eb0b2fd64586a06ae1bae3019dd",
+      "question_sha256": "32b821f0d2ae00df1823da45e0b8866ac448ea6bed2380cdd25c576d40cd2acd",
+      "golden_solution_sha256": "172cbb780508db2c8965d08eedaac49be4edfaf50993cf59fb05d5d161e1fa3c"
+    },
+    "part2-016-optimize-for-nf-rin-must-remain-equal": {
+      "content_sha256": "dbdf2ad96395e31e9cdafe9956fb4f00318094ca613ea41291fc5b587b0785e1",
+      "question_sha256": "38d8463969b132cfb677f9cdb93b751ca1434eb5cc4a9fcf96ccc911a4c97799",
+      "golden_solution_sha256": "6801650fd2054e7d374317849fcda2881c563a35f3d14b44d310d3d32f91b1cd"
+    },
+    "part2-017-compute-input-impedance": {
+      "content_sha256": "4a289ba55d8ec7d9ea7095247a26a33c4bdbb45ad630f9fad843e763596c78f4",
+      "question_sha256": "4771c4293d62aee5a0ad37383b32351fc44071aaa1fb2322ba24bed55a8eb110",
+      "golden_solution_sha256": "d478f09ce99c16f2ada89711c88d0564aa20ae775a06fad0c89d6658dc32fb99"
+    },
+    "part2-018-ldo-regulator-generates-thermal-noise-with-spectrum": {
+      "content_sha256": "b2e70508ba6204341accd2301669a779c883f0d5f6d2a19c636d23aaa17f59d1",
+      "question_sha256": "4789f1573ad141fd8ce7b35c22b505e33bd3f72a683735934ae12660591c28f0",
+      "golden_solution_sha256": "f40f5d47fc68dc67261745b47ef8f93ebeabc96a5ea084c1e3fcf7bea12e1811"
+    },
+    "part2-019-add-ct-tail-node-as-phase-noise": {
+      "content_sha256": "1d1f12de32e938253ccb84a50602375b9dc8ed3e22b7721ef774f2121b0dcfe8",
+      "question_sha256": "9ef91ed24959c3a8d8dbdf7f783216789a9f3c8e7b094fa28a59a409098a3906",
+      "golden_solution_sha256": "30f6431c053d0ebf26268170667295ea7bd412e72a78ea0b3247e5803cbdfc8a"
+    },
+    "part2-020-estimate-oscillation-frequency": {
+      "content_sha256": "f3aed076d93a6ce6525c115b685af56109a769cd1ebe91bf4eeebd646386ced9",
+      "question_sha256": "bbddaa73b5fc2baa9abada90753bc68c9848e7d303990e17deb441b9a87479bb",
+      "golden_solution_sha256": "9fb09917ae8858f8003213ac52eae9cc4403612167903aff6685adcc43ddd686"
+    }
+  },
+  "sampling_notes": "Published temperature where compatible; omit temperature for enabled reasoning when required by the API. Every reasoning model explicitly uses its highest catalog-supported effort.",
+  "judge": {
+    "model": "openai/gpt-6-luna",
+    "reasoning_effort": "max",
+    "max_tokens": 128000
+  },
+  "skipped_models": [
+    {
+      "name": "GLM 5.3 Flash",
+      "model_key": "glm_5_3_flash_260828_max",
+      "api_model": "z-ai/glm-5.3-flash",
+      "canonical_slug": "z-ai/glm-5.3-flash-20260826",
+      "reasoning_effort": "max",
+      "supported_efforts": [
+        "max",
+        "high",
+        "low"
+      ],
+      "max_tokens": 943717,
+      "temperature": null,
+      "request_options": {
+        "provider": {
+          "require_parameters": true
+        }
+      },
+      "pricing": {
+        "prompt": "0.00000015",
+        "completion": "0.0000005",
+        "input_cache_read": "0.00000003"
+      },
+      "catalog_reasoning": {
+        "mandatory": true,
+        "default_enabled": true,
+        "supported_efforts": [
+          "max",
+          "high",
+          "low"
+        ],
+        "default_effort": "max"
+      },
+      "reason": "User requested skipping this model",
+      "skipped_at": "2026-11-09T20:22:52.833952+00:00"
+    }
+  ],
+  "reference_updates": [
+    {
+      "at": "2026-11-09T21:10:06.840823+00:00",
+      "reason": "Reference files were updated during generation; question text and image hashes remain identical",
+      "changes": {
+        "part1-003-small-signal-model-pmos-device-identical-nmos": {
+          "previous": "3efff1057bca28f59c691e6a7b1b35b9aef015475c1aa91f716113f27e63976f",
+          "current": "ad8a01fc96398ca5ab0993a444ff64ba0cfcb88738d2a52872ea47f671e0635e"
+        },
+        "part1-005-sketch-ix-versus-vx": {
+          "previous": "363af6ae2d7dce084a6645e94164c923e7f4f183f039d791bef2129658368787",
+          "current": "da000995f2032c3caf224acfa4963413c96cebf89a3cc792e76c3a444d327ffc"
+        },
+        "part1-028-current-input-positive-feedback": {
+          "previous": "eb7fb3f782c2e056a842871b4f7eb3df5f5f60917db8824dcac697c3eedb6c1a",
+          "current": "966942e01d767dcc8afc948021623863d816cf7567c0ad0be0b855267f6da7e8"
+        },
+        "part2-013-dynamic-latch-divide-by-two": {
+          "previous": "49b86ec12c96c87a6a86bbf9460b32853e5c213e1aebca1ff399e9bac088033c",
+          "current": "f425c26bf4178562557e147f38673688c0fa91f97a1c7cad9ab3d6417d10545f"
+        }
+      }
+    }
+  ]
+}

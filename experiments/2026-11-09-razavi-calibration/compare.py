@@ -17,7 +17,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 # Score files of each run, and the references they must have been given against (scores given
 # against an older reference, such as before the 2026-11-09 calibration rules, are dropped).
-RUNS = {"current": (["scores-gpt-6-luna-max.jsonl", "scores-gpt-6-luna-max.recal4.jsonl"], HERE.parents[1]),
+RUNS = {"current": (["scores-gpt-6-luna-max.jsonl", "scores-gpt-6-luna-max.recal4.jsonl", "scores-gpt-6-luna-max.q6q12.jsonl"], HERE.parents[1]),
         "blind": (["scores-blind-gpt-6-luna-max.jsonl"], HERE / "blind_references")}
 
 

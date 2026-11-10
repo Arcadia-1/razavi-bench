@@ -1,0 +1,105 @@
+{
+  "verified_at": "2026-11-10T05:34:48.675918+00:00",
+  "models": [
+    {
+      "name": "Step 3.7 Flash",
+      "reasoning_effort": "high",
+      "max_tokens": 230400,
+      "reasoning_tokens": 0,
+      "reasoning_characters": 109997,
+      "finish_reason": "stop",
+      "response_model": "stepfun/step-3.7-flash",
+      "seconds": 199.57
+    },
+    {
+      "name": "Kimi K2.7",
+      "reasoning_effort": "default",
+      "max_tokens": 235929,
+      "reasoning_tokens": 4229,
+      "reasoning_characters": 14010,
+      "finish_reason": "stop",
+      "response_model": "moonshotai/kimi-k2.7-code",
+      "seconds": 110.16
+    },
+    {
+      "name": "o3",
+      "reasoning_effort": "high",
+      "max_tokens": 100000,
+      "reasoning_tokens": 3584,
+      "reasoning_characters": 2075,
+      "finish_reason": "stop",
+      "response_model": "openai/o3",
+      "seconds": 81.79
+    },
+    {
+      "name": "Mistral Large 4",
+      "reasoning_effort": "high",
+      "max_tokens": 262144,
+      "reasoning_tokens": 5776,
+      "reasoning_characters": 20964,
+      "finish_reason": "stop",
+      "response_model": "mistralai/mistral-large-4-0",
+      "seconds": 114.85
+    },
+    {
+      "name": "Inkling",
+      "reasoning_effort": "max",
+      "max_tokens": 471859,
+      "reasoning_tokens": 5377,
+      "reasoning_characters": 19193,
+      "finish_reason": "stop",
+      "response_model": "thinkingmachines/inkling",
+      "seconds": 283.01
+    },
+    {
+      "name": "Muse Spark 1.2",
+      "reasoning_effort": "xhigh",
+      "max_tokens": 943718,
+      "reasoning_tokens": 2823,
+      "reasoning_characters": 355,
+      "finish_reason": "stop",
+      "response_model": "meta/muse-spark-1.2",
+      "seconds": 24.15
+    },
+    {
+      "name": "Muse Spark 1.3",
+      "reasoning_effort": "max",
+      "max_tokens": 943718,
+      "reasoning_tokens": 10418,
+      "reasoning_characters": 1010,
+      "finish_reason": "stop",
+      "response_model": "meta/muse-spark-1.3",
+      "seconds": 83.58
+    },
+    {
+      "name": "Qwen 3.8 Max",
+      "reasoning_effort": "xhigh",
+      "max_tokens": 131072,
+      "reasoning_tokens": 12726,
+      "reasoning_characters": 41850,
+      "finish_reason": "stop",
+      "response_model": "qwen/qwen3.8-max-0902",
+      "seconds": 273.42
+    },
+    {
+      "name": "GPT-6.1 Sol",
+      "reasoning_effort": "max",
+      "max_tokens": 128000,
+      "reasoning_tokens": 4458,
+      "reasoning_characters": 3519,
+      "finish_reason": "stop",
+      "response_model": "openai/gpt-6.1-sol",
+      "seconds": 108.02
+    },
+    {
+      "name": "Gemini 3.8 Flash",
+      "reasoning_effort": "high",
+      "max_tokens": 65536,
+      "reasoning_tokens": 14161,
+      "reasoning_characters": 15030,
+      "finish_reason": "stop",
+      "response_model": "google/gemini-3.8-flash",
+      "seconds": 116.51
+    }
+  ]
+}

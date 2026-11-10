@@ -1,0 +1,678 @@
+{
+  "verified_at": "2026-11-10T05:37:30.383151+00:00",
+  "passed": true,
+  "input_digest": "45b96917044c5eb16f7693b360250aab96c3a4c9b953a2c3374297aa26ca1bfb",
+  "question_count": 50,
+  "figure_associations": 46,
+  "review_decision": "correct_q6_q12",
+  "questions": [
+    {
+      "task_slug": "part1-001-double-length-and-width-mosfet-its-intrinsic",
+      "question": "If we double the length and width of a MOSFET, what happens to its intrinsic gain?",
+      "content_sha256": "96149a82db7fb22b7b1ab2dab42b0d1b7630f7a13242eed67702ed88a59da53c",
+      "figures": []
+    },
+    {
+      "task_slug": "part1-002-student-says-transconductance-mosfet-goes-up-as",
+      "question": "Student A says the transconductance of a MOSFET goes up as the overdrive voltage increases. Student B says it goes down. Who is correct?",
+      "content_sha256": "aaf7bdffa34967c19cb390df07b10ae655c1eff1a52c8be7649ad96baebd3ea9",
+      "figures": []
+    },
+    {
+      "task_slug": "part1-003-small-signal-model-pmos-device-identical-nmos",
+      "question": "Is the small-signal model of a PMOS device identical to that of an NMOS device?",
+      "content_sha256": "23ee38ad831191c6223146c9549dbad59b670138ce75b99b490186ddf72cb04d",
+      "figures": []
+    },
+    {
+      "task_slug": "part1-004-sketch-ix-versus-vx",
+      "question": "Sketch IX versus VX in the circuit in the figure.",
+      "content_sha256": "bed6b5ab0eea11cb86c3091f4fc31b64d7b4e6ffc04dd4f8665391271427e851",
+      "figures": [
+        {
+          "file": "tasks/part1-004-sketch-ix-versus-vx/figure-01.png",
+          "sha256": "6e1c82ebc1f8815641f5b66487334c54aab183c2b90e3fae70412dfdc4b096f9",
+          "bytes": 40935,
+          "width": 1418,
+          "height": 676
+        }
+      ]
+    },
+    {
+      "task_slug": "part1-005-sketch-ix-versus-vx",
+      "question": "Sketch IX versus VX in the circuit shown in the figure.",
+      "content_sha256": "0d30c1b212c3367f1953797aacdf4cb393d107d6fa7a7126f3c6231855cc660f",
+      "figures": [
+        {
+          "file": "tasks/part1-005-sketch-ix-versus-vx/figure-02.png",
+          "sha256": "6d2575ba351ae427529b762ba4dbf970086d562019deee84fb28abd6d75e827d",
+          "bytes": 45968,
+          "width": 1428,
+          "height": 770
+        }
+      ]
+    },
+    {
+      "task_slug": "part1-006-device-act-as-current-source",
+      "question": "Can the device shown in the figure act as a current source?",
+      "content_sha256": "3166c0ab496432246cfadd6ccc519d52737a5ccba3bd8ef44c087c91f74577d9",
+      "figures": [
+        {
+          "file": "tasks/part1-006-device-act-as-current-source/figure-03.png",
+          "sha256": "8bc208d77a45f14aeb49c58cdc5e34f90aa708e09317aacd35895d3b42374385",
+          "bytes": 19656,
+          "width": 788,
+          "height": 510
+        }
+      ]
+    },
+    {
+      "task_slug": "part1-007-pmos-common-source-source-degeneration",
+      "question": "Analyze the circuit shown in the figure.",
+      "content_sha256": "2f321eab070991e462376f701c2fa065323315a78606af01ca5f130b027cb3e5",
+      "figures": [
+        {
+          "file": "tasks/part1-007-pmos-common-source-source-degeneration/figure-04.png",
+          "sha256": "0e69a52fee87d99e354b667eb39f04bd89ac4c280295302651380c9a293c0ddd",
+          "bytes": 57610,
+          "width": 1342,
+          "height": 882
+        }
+      ]
+    },
+    {
+      "task_slug": "part1-008-source-follower",
+      "question": "Analyze the circuit shown in the figure.",
+      "content_sha256": "00ecbc2d8de8eccdb29a94bbb197ffe99f53d4b6deccc4bc8843433393fc552f",
+      "figures": [
+        {
+          "file": "tasks/part1-008-source-follower/figure-05.png",
+          "sha256": "83b56a4f557f1b6bb6058b13af03f47768456f49c001c58978a74fd555d3b64f",
+          "bytes": 47361,
+          "width": 1100,
+          "height": 850
+        }
+      ]
+    },
+    {
+      "task_slug": "part1-009-common-gate-source-input",
+      "question": "Analyze the circuit shown in the figure.",
+      "content_sha256": "6611a2ea2b1dbcaa45514bd8178f642661383419bf954199e961c4947d75280b",
+      "figures": [
+        {
+          "file": "tasks/part1-009-common-gate-source-input/figure-06.png",
+          "sha256": "3c784bbd5faf2f300596abad37ed095a0f29021684881b94ba98f582baed874d",
+          "bytes": 46826,
+          "width": 1086,
+          "height": 848
+        }
+      ]
+    },
+    {
+      "task_slug": "part1-010-source-input-shorted-to-ground",
+      "question": "Analyze the circuit shown in the figure.",
+      "content_sha256": "dd9c886c757f4dc4f359c6b2b7538be7ff4685f9ba0c882d1e19fd582ac56bf0",
+      "figures": [
+        {
+          "file": "tasks/part1-010-source-input-shorted-to-ground/figure-07.png",
+          "sha256": "35ca37c40e25ee69e1b2609f4be8cc1b9a3ad28f0775c0a593770969794af63e",
+          "bytes": 69825,
+          "width": 1302,
+          "height": 1110
+        }
+      ]
+    },
+    {
+      "task_slug": "part1-011-many-poles-have",
+      "question": "How many poles does the circuit shown in the figure have?",
+      "content_sha256": "d3395eeb701e2c828d2adc3d66837716cc53e428b9144c53edc389f28b571c2f",
+      "figures": [
+        {
+          "file": "tasks/part1-011-many-poles-have/figure-08.png",
+          "sha256": "ba79f1b9a31674dc9e63b8b3de1f7c2ca01f5fec509d14e7bf9f0d4ca646aecb",
+          "bytes": 431733,
+          "width": 1378,
+          "height": 1156
+        }
+      ]
+    },
+    {
+      "task_slug": "part1-012-source-input-resistive-feedback",
+      "question": "Analyze the circuit shown in the figure.",
+      "content_sha256": "fc807fc110d07f8e5531a8e5f3ef5864a69964ca53c4cf825946bdcdfab9de47",
+      "figures": [
+        {
+          "file": "tasks/part1-012-source-input-resistive-feedback/figure-09.png",
+          "sha256": "043fb6f7d074f4d431208519a114ca1048ced58d6d5bc33af0d3a62aef33b6e4",
+          "bytes": 310930,
+          "width": 1276,
+          "height": 1056
+        }
+      ]
+    },
+    {
+      "task_slug": "part1-013-source-follower-current-source-load",
+      "question": "Analyze the circuit shown in the figure.",
+      "content_sha256": "12feb2b0b1323aa40309649a81a26acc50a1631ac0ad88c778bd0f4a5407a4ad",
+      "figures": [
+        {
+          "file": "tasks/part1-013-source-follower-current-source-load/figure-10.png",
+          "sha256": "4a75dd518ed5ac3bfdc6ae37c6bf02e45405ba5265357e7c7b36a332a1c5fa3a",
+          "bytes": 187007,
+          "width": 1126,
+          "height": 866
+        }
+      ]
+    },
+    {
+      "task_slug": "part1-014-cmos-inverter",
+      "question": "Analyze the circuit shown in the figure.",
+      "content_sha256": "97cdae64d7b5310b1c92596e5b91fdc08bc8d3328bc1ee34954c1a42a14a65ab",
+      "figures": [
+        {
+          "file": "tasks/part1-014-cmos-inverter/figure-11.png",
+          "sha256": "e224bcbb5f3d932deb311d4f1f905fcbc6f1940bd343e650d1f3cb9b0c148663",
+          "bytes": 12541,
+          "width": 543,
+          "height": 410
+        }
+      ]
+    },
+    {
+      "task_slug": "part1-015-malformed-cmos-inverter",
+      "question": "Analyze the circuit shown in the figure.",
+      "content_sha256": "a11f70bb01f3e3d0e3ca13236b90f97236e7ce5b17b7df895d3bc0bcd465b3e0",
+      "figures": [
+        {
+          "file": "tasks/part1-015-malformed-cmos-inverter/figure-11.png",
+          "sha256": "8a21097190a67e6adbde16a5e44e3f1183bfa63b8086e1c1cb5b692cca461c86",
+          "bytes": 12487,
+          "width": 553,
+          "height": 405
+        }
+      ]
+    },
+    {
+      "task_slug": "part1-016-common-source-diode-connected-load",
+      "question": "Analyze the circuit shown in the figure.",
+      "content_sha256": "867741df8bd8353cd436ac949106a6e4e60f45ecec9ba9d581bb6f0e7e69da1e",
+      "figures": [
+        {
+          "file": "tasks/part1-016-common-source-diode-connected-load/figure-12.png",
+          "sha256": "29cf0c75dff2f58191f410c111d1a8126b30aedae0e17807b69b33f41476f106",
+          "bytes": 32533,
+          "width": 880,
+          "height": 646
+        }
+      ]
+    },
+    {
+      "task_slug": "part1-017-pmos-input-invalid-pulldown",
+      "question": "Analyze the circuit shown in the figure.",
+      "content_sha256": "cddd39aa668d173a04762b2b41fd41a9cf42d602e4768505c34ee5dea4b2ea30",
+      "figures": [
+        {
+          "file": "tasks/part1-017-pmos-input-invalid-pulldown/figure-13.png",
+          "sha256": "6a52c8c9b3859b348547a03555b47bdd498c2f3b082e9439cccac490c80137cb",
+          "bytes": 59468,
+          "width": 1326,
+          "height": 1046
+        }
+      ]
+    },
+    {
+      "task_slug": "part1-018-find-rout",
+      "question": "Find Rout in the figure.",
+      "content_sha256": "6285fc4f7c2cf264ffdd2833e1a77b4140814b26d0c24a06af4c21381aade197",
+      "figures": [
+        {
+          "file": "tasks/part1-018-find-rout/figure-14.png",
+          "sha256": "129ceb89f20320ec9c88a4a070a64f24b1fd2a6f67cd5478d94b9fdb5d27efe0",
+          "bytes": 89602,
+          "width": 1700,
+          "height": 1284
+        }
+      ]
+    },
+    {
+      "task_slug": "part1-019-ensure-m2-saturation",
+      "question": "How do we ensure that M2 is in saturation in the figure?",
+      "content_sha256": "5b1b646029324bf8b023a69c5ac8b470112d1586fb28d148867bf7dd1bf5e160",
+      "figures": [
+        {
+          "file": "tasks/part1-019-ensure-m2-saturation/figure-14.png",
+          "sha256": "2b29c3e7837dda74131d201d1a1a9a9ef1aec26d9ed5493de86620f09c637457",
+          "bytes": 91184,
+          "width": 1674,
+          "height": 1278
+        }
+      ]
+    },
+    {
+      "task_slug": "part1-020-nmos-cascode-gain-stage",
+      "question": "Analyze the circuit shown in the figure.",
+      "content_sha256": "3b92b44ce12bfbf192f1fc1d200c382934845486dc5ef0e6147b4bc057b3072d",
+      "figures": [
+        {
+          "file": "tasks/part1-020-nmos-cascode-gain-stage/figure-15.png",
+          "sha256": "0343344f5f7dc9b5eefb9df24690f5a2c64595cfb0b657a4c4ad8fd7a96d267f",
+          "bytes": 61392,
+          "width": 1166,
+          "height": 928
+        }
+      ]
+    },
+    {
+      "task_slug": "part1-021-cascode-structure",
+      "question": "Is the circuit shown in the figure a cascode structure?",
+      "content_sha256": "fe528b842cbe5b49e1df9d01d2368caec6aefeca2956e0a421e09a5d97ff5b1e",
+      "figures": [
+        {
+          "file": "tasks/part1-021-cascode-structure/figure-16.png",
+          "sha256": "8f7d607dca26dd65ae0fac1c108721b1f82a557e781f0783c591309fc39a7c58",
+          "bytes": 59145,
+          "width": 1222,
+          "height": 926
+        }
+      ]
+    },
+    {
+      "task_slug": "part1-022-explain-why-miller-effect-less-pronounced-cascode",
+      "question": "Explain why the Miller effect is less pronounced in a cascode.",
+      "content_sha256": "af5d599c5e00a96749f7fcc775610da7beed3bf31b962f0328ff434c7ba88b98",
+      "figures": []
+    },
+    {
+      "task_slug": "part1-023-common-gate-pmos-load",
+      "question": "Analyze the circuit shown in the figure.",
+      "content_sha256": "9486a2b06c40afda2264eb939bd85a81d37f292f4bb155d4a955f3c6ef7e1990",
+      "figures": [
+        {
+          "file": "tasks/part1-023-common-gate-pmos-load/figure-17.png",
+          "sha256": "0427671bff641d013b521f99af45fec5fb745f105306c0a75ff2a11e42d9fec3",
+          "bytes": 55837,
+          "width": 1148,
+          "height": 878
+        }
+      ]
+    },
+    {
+      "task_slug": "part1-024-many-poles-have",
+      "question": "How many poles does the circuit shown in the figure have?",
+      "content_sha256": "553629a61326e060dc6b813da33104b5ec449400898b53235be97af83c05ad46",
+      "figures": [
+        {
+          "file": "tasks/part1-024-many-poles-have/figure-18.png",
+          "sha256": "3fd95acd9f206f1ffb9768812c8e757dfaf9b41ce3fb5d20027f3daeb62be256",
+          "bytes": 91308,
+          "width": 1306,
+          "height": 1118
+        }
+      ]
+    },
+    {
+      "task_slug": "part1-025-series-nmos-effective-long-channel",
+      "question": "Analyze the circuit shown in the figure.",
+      "content_sha256": "c8c695be9da36fd6a1fbe1fd50a68525c6dd08733ae2c93004d1beb1fc849921",
+      "figures": [
+        {
+          "file": "tasks/part1-025-series-nmos-effective-long-channel/figure-19.png",
+          "sha256": "4812969f35c9368fcb64dfa3cd8099bd978c9860ef64e171b2cc9094e4cde907",
+          "bytes": 56469,
+          "width": 1192,
+          "height": 970
+        }
+      ]
+    },
+    {
+      "task_slug": "part1-026-source-follower-drives-common-gate",
+      "question": "Analyze the circuit shown in the figure.",
+      "content_sha256": "2555c9fe87d3c2161e209d3b18625327d8dad79652f8d93ae2cadb126cb7f885",
+      "figures": [
+        {
+          "file": "tasks/part1-026-source-follower-drives-common-gate/figure-20.png",
+          "sha256": "7ef669c77f6b1121060d3db90700892212aad0cf48d699ca640b271934637e9c",
+          "bytes": 457825,
+          "width": 1578,
+          "height": 1198
+        }
+      ]
+    },
+    {
+      "task_slug": "part1-027-explain-why-output-impedance-be-inductive",
+      "question": "Explain why the output impedance of the circuit shown in the figure can be inductive.",
+      "content_sha256": "9c6ba15bc8ba61b1597b9a68253db9a3b8df2d43036f32ae9997c23f513c782e",
+      "figures": [
+        {
+          "file": "tasks/part1-027-explain-why-output-impedance-be-inductive/figure-21.png",
+          "sha256": "c93fe548eefe8c88510d60e43ebc0d14637171e2ddf4df001843c301e77aba39",
+          "bytes": 318483,
+          "width": 1426,
+          "height": 924
+        }
+      ]
+    },
+    {
+      "task_slug": "part1-028-current-input-positive-feedback",
+      "question": "Analyze the circuit shown in the figure.",
+      "content_sha256": "a0aab0bffc64b4b121950609feee441e31e3bcbfe0c9a9e331c8f2bf4f926908",
+      "figures": [
+        {
+          "file": "tasks/part1-028-current-input-positive-feedback/figure-22.png",
+          "sha256": "4b5f6221cc549c7bbec1f901c8f36b6c33ae1886e7cbc8b093e304d0e95ac6d4",
+          "bytes": 451984,
+          "width": 1450,
+          "height": 1170
+        }
+      ]
+    },
+    {
+      "task_slug": "part1-029-feedback-transimpedance-amplifier",
+      "question": "Analyze the circuit shown in the figure.",
+      "content_sha256": "66ba3196cf0dda6f564602116427e7fac324b2eae3101abbceae3cd41a777661",
+      "figures": [
+        {
+          "file": "tasks/part1-029-feedback-transimpedance-amplifier/figure-23.png",
+          "sha256": "6d24b216efa136a23f486369f2bfaae0f909f978623b278491595199d7ababbb",
+          "bytes": 105728,
+          "width": 1464,
+          "height": 1306
+        }
+      ]
+    },
+    {
+      "task_slug": "part1-030-pmos-current-input-feedback",
+      "question": "Analyze the circuit shown in the figure.",
+      "content_sha256": "84392035ecdf1b00ddc0ab255edf42370fdb220314f5966e078ec741fe628779",
+      "figures": [
+        {
+          "file": "tasks/part1-030-pmos-current-input-feedback/figure-24.png",
+          "sha256": "43a4191a173d4a80f6e5ff4194f8d2915e0ccaabb2865da53757279737d74de1",
+          "bytes": 92815,
+          "width": 1454,
+          "height": 1246
+        }
+      ]
+    },
+    {
+      "task_slug": "part2-001-fail-oscillate-three-capacitors-become-arbitrarily-large",
+      "question": "Does the circuit in the figure fail to oscillate if the three capacitors become arbitrarily large?",
+      "content_sha256": "8dfc81140ad89a71cbc112d5b565f2eea6c9eb069a14d54cd3c8350b1ec9d83d",
+      "figures": [
+        {
+          "file": "tasks/part2-001-fail-oscillate-three-capacitors-become-arbitrarily-large/figure-05.png",
+          "sha256": "54a711b5f09e2dccb858946a843da3e9c180e145ad7c08c4f57e9b49d9c22dd3",
+          "bytes": 382051,
+          "width": 2118,
+          "height": 854
+        }
+      ]
+    },
+    {
+      "task_slug": "part2-002-phase-noise-three-capacitors-doubled",
+      "question": "What happens to the phase noise if the three capacitors in the figure are doubled?",
+      "content_sha256": "0276003b63733fa1d3ae9f2e41beb370c956fb14428c82df15e2999d0726273f",
+      "figures": [
+        {
+          "file": "tasks/part2-002-phase-noise-three-capacitors-doubled/figure-05.png",
+          "sha256": "54a711b5f09e2dccb858946a843da3e9c180e145ad7c08c4f57e9b49d9c22dd3",
+          "bytes": 382051,
+          "width": 2118,
+          "height": 854
+        }
+      ]
+    },
+    {
+      "task_slug": "part2-003-fail-oscillate-cl-becomes-arbitrarily-large",
+      "question": "Does the circuit in the figure fail to oscillate if CL becomes arbitrarily large?",
+      "content_sha256": "cb97dfa69225774f5ee1d31c42b40c14e5a4a75f7a7af898e9beda6dd2d68bc3",
+      "figures": [
+        {
+          "file": "tasks/part2-003-fail-oscillate-cl-becomes-arbitrarily-large/figure-06.png",
+          "sha256": "fca58e40e5991183e083c99c80a1bd7edb8b1efa62e0611a4b0142b7765e09b5",
+          "bytes": 348013,
+          "width": 2074,
+          "height": 828
+        }
+      ]
+    },
+    {
+      "task_slug": "part2-004-double-widths-nmos-and-pmos-devices-phase",
+      "question": "If we double the widths of the NMOS and PMOS devices in the figure, what happens to the phase noise?",
+      "content_sha256": "5a8cad84800d3ce8726e8f4f08e610291467f24729fd61c58955fad60e5b55ed",
+      "figures": [
+        {
+          "file": "tasks/part2-004-double-widths-nmos-and-pmos-devices-phase/figure-07.png",
+          "sha256": "f9c94cae13d46c5fb483ee4366c09235034a72ae82ca25730d0857b918cfea3d",
+          "bytes": 81424,
+          "width": 2120,
+          "height": 1304
+        }
+      ]
+    },
+    {
+      "task_slug": "part2-005-determine-small-signal-resistance-seen-looking-into",
+      "question": "Determine the small-signal resistance seen looking into the supply node of the ring oscillator in the figure.",
+      "content_sha256": "ec2b763d8fc4633af7e22ad5b7b9b1c0d8f7be8f160ba51215834f00381a85c5",
+      "figures": [
+        {
+          "file": "tasks/part2-005-determine-small-signal-resistance-seen-looking-into/figure-08.png",
+          "sha256": "cc9c7115ea0106868b0d34c632f32bdb0319ed679d4c85f060a668e104269bc4",
+          "bytes": 101526,
+          "width": 2070,
+          "height": 1276
+        }
+      ]
+    },
+    {
+      "task_slug": "part2-006-oscillates-change",
+      "question": "For the ring oscillator in the figure, somebody computes the small-signal resistance `RX`\nseen looking into the supply node as\n\n```text\nRX ~= (1/3) (1/gmn + 1/gmp)\n```\n\nwhere `gmn` and `gmp` are the transconductances of the NMOS and PMOS devices in each\ninverter, because each inverter behaves as two diode-connected devices in series.\n\nIf the circuit oscillates, does this answer change?",
+      "content_sha256": "05791a0cbd20fa60cdc4edbab2f45bb6b5c46d6ffc67e363db432327f3c998dd",
+      "figures": [
+        {
+          "file": "tasks/part2-006-oscillates-change/figure-08.png",
+          "sha256": "cc9c7115ea0106868b0d34c632f32bdb0319ed679d4c85f060a668e104269bc4",
+          "bytes": 101526,
+          "width": 2070,
+          "height": 1276
+        }
+      ]
+    },
+    {
+      "task_slug": "part2-007-initial-voltage-gain-as-width-m7-increases",
+      "question": "In the circuit shown in the figure, what happens to the initial voltage gain as the width of M7 increases?",
+      "content_sha256": "fd0c6aefb27b0683819cd0f000200164a8b025b02fa7326275180978c3691b63",
+      "figures": [
+        {
+          "file": "tasks/part2-007-initial-voltage-gain-as-width-m7-increases/figure-09.png",
+          "sha256": "36ed6f2b2ce560c83d3fa0ea132efbc8ca5fa0801b256e82bfd1afb5605c81d2",
+          "bytes": 184177,
+          "width": 2482,
+          "height": 1612
+        }
+      ]
+    },
+    {
+      "task_slug": "part2-008-initial-voltage-gain-increase-capacitance-at-nodes",
+      "question": "In the figure, what happens to the initial voltage gain if we increase the capacitance at nodes P and Q?",
+      "content_sha256": "7061a3670518e6f9db700c7726f83be49aa8dd0aea434cee9cd3564b26bbae92",
+      "figures": [
+        {
+          "file": "tasks/part2-008-initial-voltage-gain-increase-capacitance-at-nodes/figure-09.png",
+          "sha256": "36ed6f2b2ce560c83d3fa0ea132efbc8ca5fa0801b256e82bfd1afb5605c81d2",
+          "bytes": 184177,
+          "width": 2482,
+          "height": 1612
+        }
+      ]
+    },
+    {
+      "task_slug": "part2-009-increase-widths-m5-and-m6-speed-improve",
+      "question": "If we increase the widths of M5 and M6 in the figure, does the speed improve or degrade?",
+      "content_sha256": "9ed0972c12ac0e828105aef7d8f560b3b2702243d0bff1e27188a648de67c05b",
+      "figures": [
+        {
+          "file": "tasks/part2-009-increase-widths-m5-and-m6-speed-improve/figure-09.png",
+          "sha256": "36ed6f2b2ce560c83d3fa0ea132efbc8ca5fa0801b256e82bfd1afb5605c81d2",
+          "bytes": 184177,
+          "width": 2482,
+          "height": 1612
+        }
+      ]
+    },
+    {
+      "task_slug": "part2-010-speed-improve-or-degrade-increase-widths-clocked",
+      "question": "In the circuit shown in the figure, does the speed improve or degrade if we increase the widths of the clocked transistors?",
+      "content_sha256": "05a226d76a12964269e93e74c487f607b2ee8b58457942f36cef28e06abd2284",
+      "figures": [
+        {
+          "file": "tasks/part2-010-speed-improve-or-degrade-increase-widths-clocked/figure-10.png",
+          "sha256": "77977605225d500de407d96b7c018e7e3e82e02837c258bef439d8ec67d78b61",
+          "bytes": 90452,
+          "width": 1474,
+          "height": 1146
+        }
+      ]
+    },
+    {
+      "task_slug": "part2-011-structure-provide-quadrature-outputs",
+      "question": "Does the structure in the figure provide quadrature outputs?",
+      "content_sha256": "f8ed53d9945dbb04d0a86d9eaf2aa4e8b61ab4edb09c81ef2cad7833cebc809f",
+      "figures": [
+        {
+          "file": "tasks/part2-011-structure-provide-quadrature-outputs/figure-10.png",
+          "sha256": "77977605225d500de407d96b7c018e7e3e82e02837c258bef439d8ec67d78b61",
+          "bytes": 90452,
+          "width": 1474,
+          "height": 1146
+        }
+      ]
+    },
+    {
+      "task_slug": "part2-012-repeat-question-10-for-topology",
+      "question": "In the circuit shown in the figure, does the speed improve or degrade if we increase the widths of the clocked transistors?",
+      "content_sha256": "ad1b5e2054f550f5109b2ed5a7a5faff9572e73d400e059d5c74d4b29e4a9c9d",
+      "figures": [
+        {
+          "file": "tasks/part2-012-repeat-question-10-for-topology/figure-11.png",
+          "sha256": "8f006f32931b9b92ccf7805139c24c3736b6000faf22259f4de3f27fbd6a58eb",
+          "bytes": 78188,
+          "width": 1448,
+          "height": 1192
+        }
+      ]
+    },
+    {
+      "task_slug": "part2-013-dynamic-latch-divide-by-two",
+      "question": "Analyze the arrangement in the figure.",
+      "content_sha256": "6844a6fd13cd5796ecb45c6af866091c516a0fc2f702add1df7aae66443c11e2",
+      "figures": [
+        {
+          "file": "tasks/part2-013-dynamic-latch-divide-by-two/figure-12.png",
+          "sha256": "f6a9233ce73da8a5128468f691759a0b4b24cba3769167159f6e2344342b941e",
+          "bytes": 30643,
+          "width": 1212,
+          "height": 882
+        }
+      ]
+    },
+    {
+      "task_slug": "part2-014-red-inverter-b-affect-performance",
+      "question": "How does the red inverter in the figure affect the performance?",
+      "content_sha256": "8cb842237249c483875ed3464d31cbf71159509af045006a652ced18db7fd361",
+      "figures": [
+        {
+          "file": "tasks/part2-014-red-inverter-b-affect-performance/figure-12.png",
+          "sha256": "5664491b26ce0c85f3e6af3b6229a19e1014366929174f8fd56e9be7d6ca082b",
+          "bytes": 138705,
+          "width": 1204,
+          "height": 773
+        }
+      ]
+    },
+    {
+      "task_slug": "part2-015-but-input-red-inverter-not-tied-output",
+      "question": "In the figure, somebody answers:\n\n> The red inverter acts as a keeper, forming a cross-coupled latch with `Inv1`.\n> This removes the minimum clock frequency requirement due to leakage.\n\nDo you agree with this answer? What is the actual role of the red inverter?",
+      "content_sha256": "1c0b9ce8da061acaff81aa59fc24ce7b4c245eb0b2fd64586a06ae1bae3019dd",
+      "figures": [
+        {
+          "file": "tasks/part2-015-but-input-red-inverter-not-tied-output/figure-12.png",
+          "sha256": "5664491b26ce0c85f3e6af3b6229a19e1014366929174f8fd56e9be7d6ca082b",
+          "bytes": 138705,
+          "width": 1204,
+          "height": 773
+        }
+      ]
+    },
+    {
+      "task_slug": "part2-016-optimize-for-nf-rin-must-remain-equal",
+      "question": "How do we optimize the circuit shown in the figure for the NF if Rin must remain equal to 50 Ohm?",
+      "content_sha256": "dbdf2ad96395e31e9cdafe9956fb4f00318094ca613ea41291fc5b587b0785e1",
+      "figures": [
+        {
+          "file": "tasks/part2-016-optimize-for-nf-rin-must-remain-equal/figure-13.png",
+          "sha256": "9065c583708a254e0d21cf96e2fd95a04d5113d67f2f9fa140b5366749ec8f41",
+          "bytes": 87354,
+          "width": 1826,
+          "height": 1110
+        }
+      ]
+    },
+    {
+      "task_slug": "part2-017-compute-input-impedance",
+      "question": "Compute the input impedance of the circuit in the figure.",
+      "content_sha256": "4a289ba55d8ec7d9ea7095247a26a33c4bdbb45ad630f9fad843e763596c78f4",
+      "figures": [
+        {
+          "file": "tasks/part2-017-compute-input-impedance/figure-14.png",
+          "sha256": "6484da714612e712f71581445633c14161026d320fbf4ffb3e3604be0680d7ee",
+          "bytes": 15461,
+          "width": 497,
+          "height": 305
+        }
+      ]
+    },
+    {
+      "task_slug": "part2-018-ldo-regulator-generates-thermal-noise-with-spectrum",
+      "question": "If the LDO regulator in the figure generates thermal noise with spectrum Sth, how do we compute the VCO output phase noise?",
+      "content_sha256": "b2e70508ba6204341accd2301669a779c883f0d5f6d2a19c636d23aaa17f59d1",
+      "figures": [
+        {
+          "file": "tasks/part2-018-ldo-regulator-generates-thermal-noise-with-spectrum/figure-15.png",
+          "sha256": "29b939b6357fe030e6c763229fe00a71371b087c3f3cd646807c9d7a20106b55",
+          "bytes": 152503,
+          "width": 2218,
+          "height": 1268
+        }
+      ]
+    },
+    {
+      "task_slug": "part2-019-add-ct-tail-node-as-phase-noise",
+      "question": "We add CT to the tail node, as in the figure. What happens to the phase noise?",
+      "content_sha256": "1d1f12de32e938253ccb84a50602375b9dc8ed3e22b7721ef774f2121b0dcfe8",
+      "figures": [
+        {
+          "file": "tasks/part2-019-add-ct-tail-node-as-phase-noise/figure-16.png",
+          "sha256": "6b3b4480c7fc7c4106ffa061c7ed89583351fa01e84991fb36e66e7ac88cecb5",
+          "bytes": 145211,
+          "width": 1862,
+          "height": 1570
+        }
+      ]
+    },
+    {
+      "task_slug": "part2-020-estimate-oscillation-frequency",
+      "question": "Estimate the oscillation frequency of the circuit in the figure.",
+      "content_sha256": "f3aed076d93a6ce6525c115b685af56109a769cd1ebe91bf4eeebd646386ced9",
+      "figures": [
+        {
+          "file": "tasks/part2-020-estimate-oscillation-frequency/figure-17.png",
+          "sha256": "e38834441ddebee5d30bc92e233eff9b68d332a2f5f3c56ba7bf83817ae0b73d",
+          "bytes": 123788,
+          "width": 1054,
+          "height": 1438
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "verified_at": "2026-11-09T20:20:37.396293+00:00",
+  "models": [
+    {
+      "name": "Inkling Small",
+      "reasoning_effort": "max",
+      "max_tokens": 262144,
+      "reasoning_tokens": 5369,
+      "finish_reason": "stop",
+      "response_model": "thinkingmachines/inkling-small",
+      "seconds": 125.66
+    },
+    {
+      "name": "GPT-4o (2024-05-13)",
+      "reasoning_effort": "default",
+      "max_tokens": 4096,
+      "reasoning_tokens": 0,
+      "finish_reason": "stop",
+      "response_model": "openai/gpt-4o-2024-05-13",
+      "seconds": 6.76
+    },
+    {
+      "name": "Gemini 3 Flash",
+      "reasoning_effort": "high",
+      "max_tokens": 65536,
+      "reasoning_tokens": 8976,
+      "finish_reason": "stop",
+      "response_model": "google/gemini-3-flash-preview",
+      "seconds": 63.06
+    },
+    {
+      "name": "DeepSeek V4.1 Flash 1017",
+      "reasoning_effort": "max",
+      "max_tokens": 943718,
+      "reasoning_tokens": 12198,
+      "finish_reason": "stop",
+      "response_model": "deepseek/deepseek-v4.1-flash-1017",
+      "seconds": 65.85
+    },
+    {
+      "name": "GPT-5.6 Luna",
+      "reasoning_effort": "max",
+      "max_tokens": 128000,
+      "reasoning_tokens": 5696,
+      "finish_reason": "stop",
+      "response_model": "openai/gpt-5.6-luna",
+      "seconds": 55.01
+    },
+    {
+      "name": "Grok 4.5",
+      "reasoning_effort": "high",
+      "max_tokens": 450000,
+      "reasoning_tokens": 512,
+      "finish_reason": "stop",
+      "response_model": "x-ai/grok-4.5",
+      "seconds": 15.97
+    },
+    {
+      "name": "Gemini 3.6 Flash",
+      "reasoning_effort": "high",
+      "max_tokens": 65536,
+      "reasoning_tokens": 2917,
+      "finish_reason": "stop",
+      "response_model": "google/gemini-3.6-flash",
+      "seconds": 21.89
+    },
+    {
+      "name": "Claude Haiku 5.5",
+      "reasoning_effort": "max",
+      "max_tokens": 128000,
+      "reasoning_tokens": 26040,
+      "finish_reason": "stop",
+      "response_model": "anthropic/claude-haiku-5.5",
+      "seconds": 111.39
+    },
+    {
+      "name": "Grok 4.6",
+      "reasoning_effort": "xhigh",
+      "max_tokens": 450000,
+      "reasoning_tokens": 5122,
+      "finish_reason": "stop",
+      "response_model": "x-ai/grok-4.6",
+      "seconds": 99.17
+    }
+  ]
+}
