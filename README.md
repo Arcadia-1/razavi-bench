@@ -71,8 +71,7 @@ runs are in [`experiments/2026-11-09-question-only-rerun`](experiments/2026-11-0
 | `golden_solution` | The reference answer the judge grades against; never sent |
 
 `tools/export_tasks.py` rebuilds the file from `tasks/`, and refuses a prompt that
-names its task or cites a figure number. Changes to the questions, figures and
-reference answers are listed in [`CHANGELOG.md`](CHANGELOG.md).
+names its task or cites a figure number.
 
 ## Citation
 
