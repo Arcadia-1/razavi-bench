@@ -63,8 +63,17 @@ def load_tasks(repo_root: Path, slugs: list[str] | None = None) -> list[dict[str
     return [by_slug[slug] for slug in sorted(set(slugs))]
 
 
+def prompt_text(task: dict[str, Any]) -> str:
+    """The text a model is sent: the task's `prompt`, the "## Question" section of instruction.md
+    (no title, headings or figure section; see tools/export_tasks.py)."""
+    if task.get("prompt"):
+        return task["prompt"]
+    return task["instruction"].split("## Question", 1)[1].split("## Figures", 1)[0].strip()
+
+
 def build_content(repo_root: Path, task: dict[str, Any]) -> tuple[list[dict[str, Any]], list[str]]:
-    content = [{"type": "text", "text": task["instruction"]}]
+    """One user message: the prompt text, then each figure as an image, in order."""
+    content = [{"type": "text", "text": prompt_text(task)}]
     figures: list[str] = []
     for relative in task.get("figures") or []:
         path = repo_root / relative

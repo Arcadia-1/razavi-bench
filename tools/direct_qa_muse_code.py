@@ -30,6 +30,7 @@ from direct_qa_openrouter_common import (
     canonicalize,
     completed,
     load_tasks,
+    prompt_text,
     read_jsonl,
     write_json,
     write_jsonl,
@@ -138,7 +139,7 @@ def answer_task(args: argparse.Namespace, task: dict[str, Any]) -> dict[str, Any
     images = [args.repo_root / relative for relative in task.get("figures") or []]
     attempts = []
     for attempt in range(1, args.max_retries + 1):
-        result = run_once(args, task["instruction"], images)
+        result = run_once(args, prompt_text(task), images)
         attempts.append({
             "attempt": attempt,
             "status": 200,
@@ -197,7 +198,7 @@ def execute(args: argparse.Namespace, smoke: bool) -> dict[str, Any]:
                     "benchmark": "razavi-bench", "experiment": args.experiment, "run_date": args.run_date,
                     "task_slug": task["task_slug"], "task_path": task["task_path"], "part": task["part"],
                     "question_number": task["question_number"],
-                    "question": task["instruction"].split("## Question\n\n", 1)[-1].strip(),
+                    "question": prompt_text(task),
                     "figures": figures, "rollout": rollout, "answer": result["answer"],
                     "provider_model": args.model, "model_name": args.model_name, "model_family": args.model_family,
                     "reasoning_effort": args.effort, "model_call_attempts": len(result["attempts"]),

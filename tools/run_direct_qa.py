@@ -173,10 +173,12 @@ async def main_async(args: argparse.Namespace) -> int:
     commit = git_commit()
 
     async def run_one(rollout: int, task_dir: Path) -> None:
+        # Only the question text, then the figures, as in tools/export_tasks.py's `prompt`.
         instruction = (task_dir / "instruction.md").read_text(encoding="utf-8")
-        images = sorted(task_dir.glob("*.png"))
-        content = [image_content(path, args.api_format) for path in images]
-        content.append({"type": "text", "text": instruction})
+        instruction = instruction.split("## Question", 1)[1].split("## Figures", 1)[0].strip()
+        images = sorted(task_dir.glob("figure-*.png"))
+        content = [{"type": "text", "text": instruction}]
+        content += [image_content(path, args.api_format) for path in images]
         payload = {
             "model": args.model,
             "messages": [{"role": "user", "content": content}],

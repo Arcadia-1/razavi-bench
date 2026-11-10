@@ -2,12 +2,20 @@
 
 This directory contains the current reusable Razavi-Bench evaluation utilities.
 
+## `export_tasks.py`
+
+`export_tasks.py` rebuilds `data/tasks.jsonl` and `docs/data/tasks.jsonl` from
+`tasks/`. Each row's `prompt` is exactly the text a model is sent, the "## Question"
+section of `instruction.md`; its `figures` follow it in the same message. Every
+runner here builds its request from these two fields. Re-run it after editing a task.
+
 ## `run_direct_qa.py`
 
 `run_direct_qa.py` runs direct multimodal QA against an OpenAI-compatible
-chat-completions endpoint. For every selected rollout, it reads each task's
-`instruction.md`, places any PNG figures before the prompt text, and saves only
-the final visible answer in the public output JSONL. Full provider responses
+chat-completions endpoint. For every selected rollout, it sends the "## Question"
+section of each task's `instruction.md` followed by the task's figures, the message
+described in the top-level README, and saves only the final visible answer in the
+public output JSONL. Full provider responses
 are written to a separately selected local directory and should not be
 committed.
 

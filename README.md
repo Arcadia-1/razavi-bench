@@ -38,6 +38,42 @@ To evaluate a model yourself, see [`tools/README.md`](tools/README.md): one
 OpenRouter key runs the 50 tasks, grades them with the GPT-6 Luna judge at
 maximum reasoning effort, and builds the website data.
 
+## What a model receives
+
+Each answer comes from one request holding a single user message and no system
+prompt. The message has two parts:
+
+1. the task's `prompt` text in `data/tasks.jsonl`. This is the "## Question"
+   section of `tasks/<task>/instruction.md` and nothing else: no title, headings,
+   figure numbers or subfigure labels;
+2. the task's figure (`figures`) as a PNG image after the text. 46 tasks have one
+   figure and 4 have none. Each figure shows only the part of the circuit that its
+   question asks about.
+
+The leaderboard runs every model at its highest reasoning effort, with `max_tokens`
+at the model's own output limit. An answer cut off at that limit is re-run; one cut
+off on every attempt is graded as returned. Every task is answered in three
+independent trials, with no tools, web access, reference answers or earlier
+feedback. GPT-6 Luna at maximum reasoning effort grades each answer from 0 to 4
+against the task's `golden_solution` and [`evaluation_rubric.md`](evaluation_rubric.md).
+
+`tools/direct_qa_openrouter.py` sends exactly these messages. The leaderboard's own
+runs are in [`experiments/2026-11-09-question-only-rerun`](experiments/2026-11-09-question-only-rerun).
+
+### `data/tasks.jsonl`
+
+| Field | Content |
+| --- | --- |
+| `task_slug`, `part`, `question_number`, `task_path` | Task identity and folder |
+| `prompt` | The text sent to the model |
+| `figures` | The images sent after the text, in order |
+| `instruction` | The whole `instruction.md`, for reference; not sent |
+| `golden_solution` | The reference answer the judge grades against; never sent |
+
+`tools/export_tasks.py` rebuilds the file from `tasks/`, and refuses a prompt that
+names its task or cites a figure number. Changes to the questions, figures and
+reference answers are listed in [`CHANGELOG.md`](CHANGELOG.md).
+
 ## Citation
 
 ```bibtex

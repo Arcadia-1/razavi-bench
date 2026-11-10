@@ -8,6 +8,7 @@ Notable changes to Razavi-Bench, newest first, by commit date.
 2. Replaced the website's data with the rerun: 71 entries, adding Claude Fable 5.2 and removing Claude Opus 5 at high, xhigh and medium effort, GPT-6 Sol (thinking high), MiniMax-01, Claude Sonnet 4 and Doubao Seed 2.1 Pro.
 3. Restored Part 2 Q6 and Q12 to Razavi's wording and gave the Q6 reference partial-credit tiers.
 4. Priced the self-hosted entries (Qwen 3.8 27B, Qwen 3.5 9B, GLM 5.3 Flash) at OpenRouter's rates, and linked this changelog from every page's footer.
+5. Added each task's exact prompt to `data/tasks.jsonl` and switched the runners in `tools/` to send only it.
 
 ## 2026-11-09
 
