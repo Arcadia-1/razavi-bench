@@ -20,11 +20,12 @@ Current Direct QA data is published under `data/direct_qa/`:
 - `models/<model_key>.json` contains three rollouts for one model, including the
   question, raw answer, published judge results, active score, and token usage.
 
-The active score is GPT-6 Luna's at maximum reasoning effort
-(`gpt_6_luna_max`, `benchmark.active_score_policy` in `index.json`); every
-published answer was re-graded by it on 2026-10-27. Earlier judges' scores
-(DeepSeek V4 Pro, and MiniMax M3 for legacy entries) stay in the files for
-audit. `summary.by_rollout` gives each rollout's
+Every published answer comes from the 2026-11-09 question-only rerun
+(`experiments/2026-11-09-question-only-rerun`): each request held only the
+question text and its figure, at the model's highest reasoning effort and with
+max_tokens at its output limit. The active score is GPT-6 Luna's at maximum
+reasoning effort (`gpt_6_luna_max`, `benchmark.active_score_policy` in
+`index.json`). `summary.by_rollout` gives each rollout's
 overall score and `summary.by_rollout_part` splits it by part. After publishing
 new results, run `tools/apply_active_judge.py` and then
 `tools/aggregate_questions.js` to refresh these files.

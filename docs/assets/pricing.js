@@ -1,7 +1,7 @@
 // Shared by every page that shows costs, so they all price a run the same way.
 // API prices per 1M tokens: [input, output, cached]. Add new models here; every page reads this file.
 var PRICE={
-  claude_opus_55:[4,20,0.2], claude_fable_51:[10,50,0.25],
+  claude_fable_52:[8,40,0.2], claude_opus_55:[4,20,0.2], claude_fable_51:[10,50,0.25],
   claude_opus_5:[5,25,0.5], claude_fable_5:[10,50,1], claude_opus_48:[5,25,0.5], claude_sonnet_46:[3,15,0.3],
   claude_opus_45:[5,25,0.5], claude_sonnet_45:[3,15,0.3],
   gpt_6_astra:[10,50,1], gpt_6_sol:[2,10,0.2], gpt_6_1_sol:[2,10,0.1], gpt_6_luna:[0.1,0.5,0.01],
@@ -10,8 +10,8 @@ var PRICE={
   gpt_54_thinking_high:[2.5,15,0.25], gpt_54_mini:[0.75,4.5,0.075], gpt_4o:[2.5,10,1.25], gpt_4o_2024_05_13:[5,15,5], gpt_4o_2024_11_20:[2.5,10,1.25],
   qwen_38_max:[1,6,0.1], qwen_38_27b:[0.15,1.875,0.0375], gemini_35_flash:[1.5,9,0.15], gemini_36_flash:[1.5,7.5,0.15],
   gemini_37_flash:[0.375,1.875,0.0375], gemini_38_flash:[0.75,3.75,0.075], gemini_4_argon:[2,10,0.1], gemini_31:[2,12,0.2], gemini_3_flash:[0.5,3,0.05],
-  grok_45:[2,6,0.5], grok_46:[2,6,0.5], grok_4_7:[1.6,4.8,0.4], doubao_seed_21_pro:[0.88,4.42,0.088], doubao_seed_21_pro_260915_max:[0.88,4.42,0.088],
-  kimi_k3:[3,15,0.3], kimi_31_pro:[3,15,0.3], kimi_k27:[0.95,4,0.19], minimax_m3:[0.6,2.4,0.06], minimax_01:[0.2,1.1,0.2], nova_pro:[0.8,3.2,0.8], mimo_2_6_pro:[0.435,0.87,0.0036], inkling_small:[0.5,1.2,0.12],
+  grok_45:[2,6,0.5], grok_46:[2,6,0.5], grok_4_7:[1.6,4.8,0.4],
+  kimi_k3:[3,15,0.3], kimi_31_pro:[3,15,0.3], kimi_k27:[0.95,4,0.19], minimax_m3:[0.6,2.4,0.06], nova_pro:[0.8,3.2,0.8], mimo_2_6_pro:[0.435,0.87,0.0036], inkling_small:[0.5,1.2,0.12],
   qwen_37_plus:[0.32,1.28,0.064], qwen_37_flash:[0.03,0.13,0.006], qwen_35_9b:[0.17,0.25,0.17], step_37_flash:[0.2,1.15,0.02],
   inkling:[1,4.05,0.2], gemma_4_31b_it:[0.09,0.34,0.018], llama_4_maverick:[0.2,0.8,0.04],
   muse_spark_12:[1.25,4.25,0.15], muse_spark_13:[1.25,4.25,0.15], muse_wonder_full_10:[4,20,0.2], deepseek_v41_flash:[0.15,0.6,0.003], deepseek_v41_flash_1017:[0.15,0.6,0.003],
@@ -21,10 +21,10 @@ var PRICE={
   nemotron_35_super_vl:[0.1,0.4,0.08],
   gpt_5:[1.25,10,0.125], gpt_4o_mini:[0.15,0.6,0.075],
   gemini_25_pro:[1.25,10,0.125], gemini_25_flash_lite:[0.1,0.4,0.01],
-  claude_sonnet_4:[3,15,0.3], claude_haiku_45:[1,5,0.2], claude_haiku_55:[0.1,0.5,0.01],
+  claude_haiku_45:[1,5,0.2], claude_haiku_55:[0.1,0.5,0.01],
   qwen25_vl_72b_instruct:[0.8,1,0.8], qwen3_vl_235b_a22b_instruct:[0.21,1.9,0.21]
 };
 // Self-hosted checkpoints retain token accounting but have no comparable API bill.
-var NO_API_COST={qwen_38_27b:true, qwen_35_9b:true};
+var NO_API_COST={qwen_38_27b:true, qwen_35_9b:true, glm_5_3_flash_260828_max:true};
 function computeCost(modelKey,tk){if(NO_API_COST[modelKey])return null;var p=PRICE[modelKey];if(!p&&modelKey){var keys=Object.keys(PRICE);for(var i=0;i<keys.length;i++){if(modelKey.indexOf(keys[i])===0){p=PRICE[keys[i]];break;}}}if(!p||!tk)return null;var cached=tk.cached_input_tokens||0;var cost=((tk.input_tokens-cached)*p[0]+cached*p[2]+tk.output_tokens*p[1])/1e6;return Math.round(cost*100)/100;}
 function priceSummary(modelKey){var p=PRICE[modelKey];if(!p&&modelKey){var keys=Object.keys(PRICE);for(var i=0;i<keys.length;i++){if(modelKey.indexOf(keys[i])===0){p=PRICE[keys[i]];break;}}}if(!p)return "";return "$"+p[0].toFixed(2)+"/M in · $"+p[1].toFixed(2)+"/M out";}
