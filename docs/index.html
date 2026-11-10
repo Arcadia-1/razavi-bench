@@ -787,67 +787,6 @@ function bTok(){
 function fmt(v){if(v>=1000)return(v/1000).toFixed(1)+"k";if(v>=100)return Math.round(v)+"";return v.toFixed(2);}
 
 var effAxis="token",effScale="log";
-var pointLabelPlugin={
-  id:"pointLabels",
-  afterDatasetsDraw:function(chart,args,opts){
-    var ctx=chart.ctx;
-    ctx.save();
-    ctx.font="11px Inter,system-ui,sans-serif";
-    var placed=[];
-    var chartArea=chart.chartArea;
-    chart.data.datasets.forEach(function(ds,di){
-      var meta=chart.getDatasetMeta(di);
-      ds.data.forEach(function(pt,pi){
-        var el=meta.data[pi];
-        if(!el)return;
-        // Each point carries its own label: the model name with its effort on the first point
-        // of a family, just the effort on the others, and nothing when there is no effort to show.
-        var label=pt&&pt.lab!=null?pt.lab:(pi===0?ds.label:"");
-        if(!label)return;
-        var pos=el.getCenterPoint();
-        var tw=ctx.measureText(label).width;
-        // 默认放点右侧；靠右边缘时放左侧
-        var side=(pos.x+8+tw>chartArea.right-4)?"left":"right";
-        var lx=side==="right"?pos.x+8:pos.x-8-tw;
-        var ly=pos.y-4;
-        // 碰撞检测：与已放置标签垂直/水平重叠则下移
-        var placedHere=null;
-        for(var guard=0;guard<12;guard++){
-          var overlap=false;
-          for(var j=0;j<placed.length;j++){
-            var p=placed[j];
-            if(Math.abs(p.y-ly)<11&&!(lx+tw<p.x||lx>p.x+p.w)){
-              overlap=true;break;
-            }
-          }
-          if(!overlap)break;
-          ly+=11;
-        }
-        // 超出下边缘则向上回退到点上方
-        if(ly>chartArea.bottom-2)ly=pos.y-14;
-        placed.push({x:lx,y:ly,w:tw});
-        // 引导线（从标签到点）
-        ctx.strokeStyle="rgba(0,0,0,0.28)";
-        ctx.lineWidth=1;
-        ctx.beginPath();
-        ctx.moveTo(pos.x,pos.y);
-        ctx.lineTo(side==="right"?lx-2:lx+tw+2,ly+4);
-        ctx.stroke();
-        // 标签文字：先画白色窄描边（光晕），再叠加模型颜色
-        var isHover=chart.$hoverTarget===ds.label;
-        ctx.font=isHover?"bold 13px Inter,system-ui,sans-serif":"11px Inter,system-ui,sans-serif";
-        ctx.lineWidth=isHover?3.5:3;
-        ctx.lineJoin="round";
-        ctx.strokeStyle="#ffffff";
-        ctx.strokeText(label,lx,ly);
-        ctx.lineWidth=1;
-        ctx.fillStyle=ds.borderColor;
-        ctx.fillText(label,lx,ly);
-      });
-    });
-    ctx.restore();
-  }
-};
 var effHoverPlugin={
   id:"effHover",
   beforeDatasetsDraw:function(chart,args,opts){
@@ -895,9 +834,8 @@ function bEff(){
           raw=m.cost!=null?m.cost:null;
         }
         var x=effScale==="log"&&(!raw||raw<=0)?null:raw;
-        // The first point carries the model name; the others only their effort, e.g. "[max]".
-        var tag=m.e?"["+m.e+"]":"";
-        return{x:x,y:m[k].mn,effort:m.e||"default",lab:i===0?(tag?name+" "+tag:name):tag};
+        // Names show only on hover, in the tooltip, as on the release-date chart.
+        return{x:x,y:m[k].mn,tag:m.e?" ["+m.e+"]":""};
       }),
       backgroundColor:lineColor,
       borderColor:lineColor,
@@ -910,7 +848,7 @@ function bEff(){
     plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){
       var m=c.dataset.data[c.dataIndex];
       var rx=c.parsed.x;
-      return" "+c.dataset.label+" ["+m.effort+"]: "+c.parsed.y.toFixed(1)+"% / "+(effAxis==="token"?fmtK(rx):"$"+rx.toFixed(2));
+      return" "+c.dataset.label+m.tag+": "+c.parsed.y.toFixed(1)+"% / "+(effAxis==="token"?fmtK(rx):"$"+rx.toFixed(2));
     }}}},
     scales:{x:{type:effScale==="log"?"logarithmic":"linear",position:"bottom",grid:{color:"#e5e5e5"},
       title:{display:true,text:effAxis==="token"?"Total answer-model tokens (50 tasks × 3 rollouts)":"Estimated API cost (USD; judge cost excluded)",color:"#333",font:{size:12,weight:"500"},padding:{top:10}},
@@ -921,7 +859,7 @@ function bEff(){
         return"$"+fmt(real);
       }}},
       y:{min:20,max:100,grid:{color:"#e5e5e5"},title:{display:true,text:"Active score (%)",color:"#333",font:{size:12,weight:"500"}},ticks:{font:{size:12},color:"#333",callback:function(v){return v+"%"}}}}
-  },plugins:[pointLabelPlugin,effHoverPlugin]});
+  },plugins:[effHoverPlugin]});
   ch.$hoverOrig=ch.data.datasets.map(function(ds){return{borderColor:ds.borderColor,bg:ds.backgroundColor}});
 }
 function showLogTick(v){
