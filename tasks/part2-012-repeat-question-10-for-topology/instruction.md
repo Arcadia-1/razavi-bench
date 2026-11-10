@@ -2,9 +2,7 @@
 
 ## Question
 
-For the divide-by-two topology in the figure, does the speed improve or degrade
-if we increase the widths of the clocked transistors, i.e. the transistors whose
-gates are driven by `CK` or `CKbar`?
+In the circuit shown in the figure, does the speed improve or degrade if we increase the widths of the clocked transistors?
 
 ## Figures
 

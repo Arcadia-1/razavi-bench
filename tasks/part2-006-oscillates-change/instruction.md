@@ -2,25 +2,17 @@
 
 ## Question
 
-For the ring oscillator in the figure, consider the small-signal resistance `RX`
-seen looking into the supply node.
-
-Use `CL` for the effective load capacitance at each internal oscillator node,
-`f0` for the oscillation frequency, and `TD` for the delay of one inverter stage.
-
-From the dynamic charging and discharging of the three load capacitances, one
-can write
+For the ring oscillator in the figure, somebody computes the small-signal resistance `RX`
+seen looking into the supply node as
 
 ```text
-RX ~= 1 / (3 f0 CL)
+RX ~= (1/3) (1/gmn + 1/gmp)
 ```
 
-Somebody then argues that, because the circuit is oscillating, the path from
-`VDD` to ground through the transistors is off for much of the cycle, so the
-average resistance should be much higher than the MOS on-resistance or inverse
-transconductance scale.
+where `gmn` and `gmp` are the transconductances of the NMOS and PMOS devices in each
+inverter, because each inverter behaves as two diode-connected devices in series.
 
-Do you agree with this argument?
+If the circuit oscillates, does this answer change?
 
 ## Figures
 
